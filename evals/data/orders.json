@@ -1,0 +1,110 @@
+{
+  "O2001": {
+    "customer_id": "C1001",
+    "product": "无线降噪耳机",
+    "category": "数码",
+    "price": 899.00,
+    "signed_days_ago": 10,
+    "refunded": false,
+    "_note": "10 > 普通 7 但 ≤ 金牌 15：验证会员等级参与窗口判定，应通过"
+  },
+  "O2002": {
+    "customer_id": "C1002",
+    "product": "挪威三文鱼刺身 500g",
+    "category": "生鲜",
+    "price": 128.00,
+    "signed_days_ago": 2,
+    "refunded": false,
+    "_note": "生鲜类目黑名单：签收才 2 天也不退"
+  },
+  "O2003": {
+    "customer_id": "C1003",
+    "product": "机械键盘",
+    "category": "数码",
+    "price": 459.00,
+    "signed_days_ago": 5,
+    "refunded": false,
+    "_note": "高风险账户：即便是质量问题且在窗口内，也应转人工"
+  },
+  "O2004": {
+    "customer_id": "C1004",
+    "product": "缓震跑鞋",
+    "category": "服饰",
+    "price": 399.00,
+    "signed_days_ago": 3,
+    "refunded": false,
+    "_note": "普通会员窗口内（3 ≤ 7）：无理由 + 未拆封应通过"
+  },
+  "O2005": {
+    "customer_id": "C1004",
+    "product": "声波电动牙刷",
+    "category": "数码",
+    "price": 299.00,
+    "signed_days_ago": 9,
+    "refunded": false,
+    "_note": "9 > 普通无理由 7，但 ≤ 质量问题 15：验证 reason_type 影响窗口"
+  },
+  "O2006": {
+    "customer_id": "C1004",
+    "product": "胶囊咖啡机",
+    "category": "家电",
+    "price": 1299.00,
+    "signed_days_ago": 20,
+    "refunded": false,
+    "_note": "20 > 15：超出最宽窗口，硬否决，不应再追问用户"
+  },
+  "O2007": {
+    "customer_id": "C1004",
+    "product": "真空保温杯",
+    "category": "家居",
+    "price": 89.00,
+    "signed_days_ago": 4,
+    "refunded": true,
+    "_note": "已退款：重复申请应被拦截"
+  },
+  "O2008": {
+    "customer_id": "C1004",
+    "product": "定制刻字钢笔",
+    "category": "定制",
+    "price": 259.00,
+    "signed_days_ago": 1,
+    "refunded": false,
+    "_note": "定制类目黑名单"
+  },
+  "O2009": {
+    "customer_id": "C1005",
+    "product": "掌上游戏机",
+    "category": "数码",
+    "price": 2499.00,
+    "signed_days_ago": 3,
+    "refunded": false,
+    "_note": "金牌 + 高风险：风控优先级高于会员权益"
+  },
+  "O2010": {
+    "customer_id": "C1006",
+    "product": "视频平台会员年卡",
+    "category": "虚拟商品",
+    "price": 238.00,
+    "signed_days_ago": 1,
+    "refunded": false,
+    "_note": "虚拟商品类目黑名单"
+  },
+  "O2011": {
+    "customer_id": "C1006",
+    "product": "羊绒大衣",
+    "category": "服饰",
+    "price": 1580.00,
+    "signed_days_ago": 15,
+    "refunded": false,
+    "_note": "金牌窗口边界内：15 == 15，判定条件是 > window，应通过"
+  },
+  "O2012": {
+    "customer_id": "C1006",
+    "product": "智能手表",
+    "category": "数码",
+    "price": 1899.00,
+    "signed_days_ago": 16,
+    "refunded": false,
+    "_note": "金牌窗口边界外：16 > 15，超出一天也应拒绝"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "C1001": {
+    "name": "林晓",
+    "level": "金牌会员",
+    "register_date": "2023-05-12",
+    "refund_count_90d": 1,
+    "_note": "金牌会员、低风险：验证等级带来的更长无理由窗口"
+  },
+  "C1002": {
+    "name": "陈立",
+    "level": "普通会员",
+    "register_date": "2025-11-03",
+    "refund_count_90d": 0,
+    "_note": "普通会员基线"
+  },
+  "C1003": {
+    "name": "王强",
+    "level": "普通会员",
+    "register_date": "2024-01-20",
+    "refund_count_90d": 4,
+    "_note": "4 > 3：高风险，自动通道关闭"
+  },
+  "C1004": {
+    "name": "赵敏",
+    "level": "普通会员",
+    "register_date": "2024-08-09",
+    "refund_count_90d": 0,
+    "_note": "普通会员、低风险：窗口与商品条件类用例的载体"
+  },
+  "C1005": {
+    "name": "孙悦",
+    "level": "金牌会员",
+    "register_date": "2022-03-17",
+    "refund_count_90d": 5,
+    "_note": "5 > 3 且是金牌：验证风控优先于会员权益"
+  },
+  "C1006": {
+    "name": "周航",
+    "level": "金牌会员",
+    "register_date": "2023-11-28",
+    "refund_count_90d": 3,
+    "_note": "3 == 阈值：判定条件是 > 3，边界值不应触发高风险"
+  }
+}

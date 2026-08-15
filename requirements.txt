@@ -1,0 +1,16 @@
+# 核心
+langchain>=1.0.0
+langgraph>=1.0.0
+langchain-anthropic>=1.0.0
+
+# 政策检索：Agent 直连 Milvus（prod / eval 同一条路径）
+pymilvus>=2.4.0
+
+# agent/v1/meta.yaml 版本元信息
+pyyaml>=6.0
+
+# 可选：有 OPENAI_API_KEY 时用 OpenAI embeddings，否则回退到内置哈希嵌入
+# langchain-openai>=1.0.0
+
+# 说明：客户档案与订单在 v1 只跑 eval 数据源（services/*/eval.py），
+# 接入 prod 实现时再补 httpx；埋点（README 第八章）与评估流水线（第九章）同理。
