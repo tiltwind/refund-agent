@@ -39,9 +39,26 @@ def _render_profile(p: CustomerProfile) -> str:
 
 
 def _render_policies(sections: list[PolicySection]) -> str:
+    """渲染成「内容 + 来源 + 时间 + 层级 + 相关性理由」。
+
+    后四项不是给模型看的装饰，各有下游用途：来源用于答复引用与事后审计；
+    生效日期让模型知道这一版还算不算数；层级提示它答复消费者该引平台条款、
+    法规只用于判断平台条款是否有效；相关性理由与分数是坏 case 出现时区分
+    「检索错了」和「模型答错了」的唯一抓手。
+    """
     if not sections:
         return "未检索到相关政策条款"
-    return "\n\n".join(f"【{s.section}】{s.text}" for s in sections)
+    blocks = []
+    for i, s in enumerate(sections, 1):
+        layer = "平台条款（答复消费者的直接依据）" if s.layer == "platform" else "法律法规（法定底线）"
+        blocks.append(
+            f"[E{i}] {s.section}\n"
+            f"  来源: {s.source_path}  |  生效: {s.effective_date} 起  |  {layer}\n"
+            f"  相关性: {s.reason}\n"
+            f"  ---\n"
+            f"{s.text}"
+        )
+    return "\n\n".join(blocks)
 
 
 # ── 工具 ──────────────────────────────────────────────────────────────────
@@ -56,9 +73,15 @@ def get_customer_info(runtime: ToolRuntime[RefundContext]) -> str:
 
 @tool
 def search_refund_policy(query: str, runtime: ToolRuntime[RefundContext]) -> str:
-    """检索退款政策文档。判定退款资格前必须调用一次，把商品类目、签收天数、
-    会员等级、用户诉求一起写进 query 即可一次拿到相关条款；只有返回的条款
-    不足以覆盖判定要素时才需要再查。"""
+    """检索退款政策文档。判定退款资格前必须调用一次。
+
+    query 写成**一个完整的问句**，把商品类目、签收天数、会员等级、商品状态、
+    用户诉求都写进这个句子（例：「金牌会员签收 10 天的耳机未拆封，无理由退货
+    还在窗口期内吗？」），不要写成关键词堆叠 —— 检索器判断的是「哪条条款回答
+    了这个问题」，没有问句就只能退化成算主题相似度，会把措辞相近但答非所问的
+    条款排到前面。
+
+    一次即可拿到相关条款；只有返回的条款不足以覆盖判定要素时才需要再查。"""
     sections = rag_service(runtime.context).search_policy(query)
     return _render_policies(sections)
 

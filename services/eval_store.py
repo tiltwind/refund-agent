@@ -1,7 +1,8 @@
 """eval 数据源的加载与会话隔离 —— 只被 services/*/eval.py 使用。
 
 只覆盖客户档案与订单两类数据。**政策条款不在这里**：检索无论 prod 还是 eval
-都直连 Milvus（README 6.4），语料在 knowledge/policies.json，由灌库脚本写入。
+都直连 Milvus（README 6.4），语料就是 doc/policy/ 下的政策文档本身，
+由 knowledge/seed_milvus.py 切片后写入。
 
 两件事：
 

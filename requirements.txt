@@ -4,13 +4,21 @@ langgraph>=1.0.0
 langchain-anthropic>=1.0.0
 
 # 政策检索：Agent 直连 Milvus（prod / eval 同一条路径）
-pymilvus>=2.4.0
+# 需要 2.5+：稀疏向量与 BM25 Function（内置全文检索）自该版本起可用
+pymilvus>=2.5.0
 
-# agent/v1/meta.yaml 版本元信息
+# 本地嵌入与重排（llm/）：BGE-M3 稠密向量 + bge-reranker-v2-m3 交叉编码
+# 首次运行会下载约 4.4 GB 权重到 ~/.cache/huggingface；
+# 已离线缓存的用 BGE_M3_MODEL / BGE_RERANKER_MODEL 指向本地目录。
+# 不想跑重排：REFUND_AGENT_RERANK=off（链路照常，精排降级为融合分加权）
+torch>=2.9
+transformers>=4.45
+
+# 政策文档 frontmatter 与 agent/v1/meta.yaml
 pyyaml>=6.0
 
-# 可选：有 OPENAI_API_KEY 时用 OpenAI embeddings，否则回退到内置哈希嵌入
-# langchain-openai>=1.0.0
-
-# 说明：客户档案与订单在 v1 只跑 eval 数据源（services/*/eval.py），
+# 说明：BM25 的分词与打分都在 Milvus 服务端（中文分析器 + BM25 Function），
+# 应用侧不需要 jieba，也就不存在「本地倒排索引与 collection 漂移」这个问题。
+#
+# 客户档案与订单在 v1 只跑 eval 数据源（services/*/eval.py），
 # 接入 prod 实现时再补 httpx；埋点（README 第八章）与评估流水线（第九章）同理。

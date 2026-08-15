@@ -75,7 +75,7 @@ flowchart TD
     end
 
     subgraph VectorDB["向量库 · prod 与 eval 共用"]
-        KB["Milvus<br/>refund_policies collection<br/>语义检索 + 生效日期标量过滤"]
+        KB["Milvus 2.5+<br/>refund_policy_chunks collection<br/>BGE-M3 稠密向量 + BM25 稀疏向量<br/>生效日期 / 层级标量过滤"]
     end
 
     subgraph Downstream["下游微服务 · prod"]
@@ -123,7 +123,7 @@ flowchart TD
 | Agent Loop | 编排工具调用、管理对话状态 | 业务规则 |
 | 工具层 | schema ↔ 业务动作的双向翻译 | 业务规则、授权判定、协议细节 |
 | **服务接入层** | 下游能力的统一入口；客户档案与订单按 `request_source` 选择 prod / eval 实现，政策检索不分数据源 | 业务规则 |
-| Milvus 向量库 | 政策条款语义检索 + 生效日期过滤；**prod 与 eval 共用同一 collection** | — |
+| Milvus 向量库 | 政策条款混合检索（稠密 + BM25）+ 生效日期过滤；**prod 与 eval 共用同一 collection** | — |
 | 用户服务 | 客户档案（**自己做归属校验**） | — |
 | 订单系统 | 订单数据 + **退款规则引擎** + 退款执行（**自己做归属校验**） | — |
 
@@ -160,8 +160,11 @@ sequenceDiagram
     AG-->>M: 工具结果
 
     M-->>AG: tool_call: search_refund_policy
-    AG->>KB: 向量检索 + 生效日期标量过滤<br/>（类目 + 天数 + 等级 + 诉求 拼一次 query）
-    KB-->>AG: TopK 政策条款 + 相似度分
+    AG->>AG: 改写 → 路由（六步链路，6.4）
+    AG->>KB: 双路召回：稠密 + BM25<br/>生效日期 / 层级标量过滤
+    KB-->>AG: 两份排名列表 → RRF 融合
+    AG->>AG: 重排（cross-encoder）→ 装配（父块回填）
+    AG-->>AG: 条款原文 + 来源 + 生效日期 + 相关性理由
     AG-->>M: 工具结果
 
     M-->>AG: tool_call: check_refund_eligibility(order_id, ...)
@@ -431,14 +434,16 @@ def get_customer_info(runtime: ToolRuntime[RefundContext]) -> str:
 
 | 变化 | 后果 | 按住它的办法 |
 |---|---|---|
-| 政策改版、重新灌库 | 同一条用例昨天过今天挂 | collection **按版本发布**（`refund_policies_v3`），评估固定指向某个版本；线上灰度切换，**不在原 collection 上原地 drop 重建**——重建的空窗期里检索返回空，Agent 会直接失败 |
-| embedding 模型升版本 | 向量空间整体偏移，TopK 排序全变 | 灌库与检索共用同一个 `build_embeddings()`；模型版本随 `agent_version` 一起记进 trace，换模型视同一次发版，要重跑基线 |
-| 索引参数（nlist / ef）调整 | 召回集合抖动 | 条款只有个位数条，直接用 `FLAT` 精确检索——没有可抖的参数 |
+| 政策改版、重新灌库 | 同一条用例昨天过今天挂 | collection **按版本发布**（`refund_policy_chunks_v3`），评估固定指向某个版本；线上灰度切换，**不在原 collection 上原地 drop 重建**——重建的空窗期里检索返回空，Agent 会直接失败 |
+| embedding 模型升版本 | 向量空间整体偏移，TopK 排序全变 | 灌库与检索共用同一个 `llm.embedding.embedder()`；模型版本随 `agent_version` 一起记进 trace，换模型视同一次发版，要重跑基线 |
+| 切分参数（块大小 / 父块粒度）调整 | 召回单元变了，命中的条款跟着变 | 参数集中在 `knowledge/chunking/policy.py`，与 collection 版本绑定发布；调参必须重跑检索基线（见下） |
+| 索引参数（nlist / ef）调整 | 召回集合抖动 | 几百个块，稠密一路直接用 `FLAT` 精确检索——没有可抖的参数 |
+| 查询改写的 LLM 抖动 | 同一 query 拆出的子查询不同，召回跟着变 | 改写模型固定版本、温度 0，改写结果记进 trace；`REFUND_AGENT_REWRITE=off` 可整体关掉换取确定性（代价见 `pipeline/rewrite.py`） |
 | collection 空 / 灌库没跑 | 拿不到条款 | 检索返回空时**显式抛错**，不让 Agent 带着一句「未检索到条款」继续判定——那等于把它推回「凭记忆编政策」 |
 
 配套的两件事：
 
-- **回归报告波动时的排查顺序**：先看 trace 里 `tool.search_refund_policy` 这一 span 返回的条款变没变，再怀疑 Agent。顺序反了，就会把知识库的一次灌库归因成「prompt 改坏了」——这正是 9.1 里 ⑤ 那条反向箭头要防的事。
+- **回归报告波动时的排查顺序**：先看 trace 里 `tool.search_refund_policy` 这一 span 返回的条款变没变，再怀疑 Agent。顺序反了，就会把知识库的一次灌库归因成「prompt 改坏了」——这正是 9.1 里 ⑤ 那条反向箭头要防的事。检索内部还要再分一层——六步链路每一步的中间产物都在 trace 里（`REFUND_AGENT_RAG_TRACE=on`），「明明有条款却没召回」和「召回了但没排上来」是两种病，修法完全不同。
 - **检索质量仍然单独评估**：另建一套 retrieval 数据集（query → 应召回的 section），指标用 recall@k / MRR。它回答的是「检索器好不好」，与「Agent 这次改动有没有变差」是两个问题，不能互相顶替。
 
 > ⚠️ 直接的代价：**离线评估不再是零外部依赖**。CI 里要先拉起一个 standalone Milvus 并跑灌库脚本（`knowledge/seed_milvus.py`），评估才能跑。这是上面那些好处的价格，接受与否取决于团队 CI 环境的成本。
@@ -473,8 +478,11 @@ trace: refund-chat  [request_id=req-abc-123, user=C1001, session=sess-77]
 │   ├── span  tool.get_customer_info              120ms
 │   │   └── span  http.user_svc GET /customers/me  95ms
 │   ├── generation  llm.call#2                    760ms
-│   ├── span  tool.search_refund_policy           210ms
-│   │   └── span  milvus.search refund_policies   180ms
+│   ├── span  tool.search_refund_policy           940ms
+│   │   ├── generation  rag.rewrite (haiku)       280ms   → 2 条子查询, needs_law=false
+│   │   ├── span  rag.recall  dense+bm25 ×2 层    190ms   → 20 候选 (单路命中 4)
+│   │   ├── span  rag.rerank  cross-encoder       380ms   → 17 条过阈值
+│   │   └── span  rag.assemble 父块回填            90ms   → 4 块 / 1.2k tok
 │   ├── generation  llm.call#3                    890ms
 │   ├── span  tool.check_refund_eligibility       150ms
 │   │   └── span  http.order_svc POST /eligibility 130ms   → "不通过：超出窗口"
@@ -573,7 +581,7 @@ flowchart TB
 
 `RefundContext.request_source` 是切换点：`prod` 走真实微服务，`eval` 读 `evals/data/*.json`（详见第六章）。**同一份工具代码、同一条代码路径**，区别只在入口注入的 context。
 
-唯一的外部依赖是 **Milvus**：政策检索不切数据源，评估跑批同样连真实向量库（6.4）。所以评估环境要固定 collection 版本——政策库换了内容而基线没重跑，报告里的涨跌就不再只反映 Agent 的改动。
+唯一的外部依赖是 **Milvus**（2.5+，BM25 Function 需要）：政策检索不切数据源，评估跑批同样连真实向量库（6.4）。所以评估环境要固定 collection 版本——政策库换了内容而基线没重跑，报告里的涨跌就不再只反映 Agent 的改动。嵌入与重排跑在本地（`llm/`），CI 要预热模型缓存，否则每次跑批都要下载约 4.4 GB 权重。
 
 > ⚠️ `request_source` 决定了 Agent 读哪份数据，因此它**必须由服务端决定，不能由客户端请求携带**——否则任何调用方声明一句 `request_source=eval` 就能绕开真实数据与真实风控。取值来源限定为：进程启动的环境变量、评估流水线直接构造 context、或网关按调用方 credential 判定后注入。这与 4.2 节的信任边界是同一条原则。
 
@@ -638,13 +646,63 @@ agent = registry.select(rollout={"v1": 0.9, "v2": 0.1})
 |---|---|
 | Agent 框架 | LangChain 1.x `create_agent` + LangGraph |
 | 模型 | Claude Sonnet 5，`temperature=0` |
-| **向量库** | **Milvus**——Agent 直连（不经知识库服务），政策条款 collection，标量字段（`effective_date` / `expire_date`）支持过滤检索 |
+| **向量库** | **Milvus 2.5+**——Agent 直连（不经知识库服务），政策条款 collection，稠密 + 稀疏双向量，标量字段（`effective_date` / `expire_date` / `layer`）支持过滤检索 |
+| 嵌入 / 重排 | **BGE-M3**（稠密，1024 维）+ **bge-reranker-v2-m3**（交叉编码），本地运行，代码在 `llm/` |
 | 状态持久化 | LangGraph checkpointer（人工审批挂起 / 恢复） |
 | 可观测 | OpenTelemetry + Langfuse |
 | 评估 | Langfuse dataset run + 自建规则引擎真值锚 |
 | 下游通信 | HTTP / gRPC（**不引入 MCP**，见下） |
 
-**Milvus 使用要点**：政策条款按 `section` 切片入库（语料在 `knowledge/policies.json`，灌库脚本 `knowledge/seed_milvus.py`），检索时把「商品类目 + 签收天数 + 会员等级 + 用户诉求」拼成一次 query（不逐项分开检索），取 TopK 后由模型引用原文。条款的生效日期用标量过滤排除已废止版本——**这类过滤必须走 Milvus 的 filter 表达式，不能指望模型自己从检索结果里判断哪条还有效**。灌库与检索共用同一个嵌入模型，向量空间对不上时宁可报错，也不要悄悄返回一堆不相关的条款。
+### 10.1 离线索引：doc/policy 变成了什么
+
+**语料源就是 `doc/policy/**/*.md` 本身，没有中间产物。** 早期版本在 `knowledge/policies.json` 里手抄了一份条款摘要，那等于给同一套政策留了两份事实源——文档改了、JSON 没改（或反之），Agent 就会引用一条与线上公示规则不一致的条款，而且不报错。现在灌库脚本直接切分文档。
+
+```
+16 篇 Markdown（法规 5 + 平台 11）
+  → frontmatter 解析（doc_id / layer / effective_date / authority_level …）
+  → 按标题层级切：父块 = 一个 `##` 小节（一章 / 一条完整规则）
+  → 父块内按段落切：子块 = 检索单元，目标 320 / 硬上限 512 token
+      表格与代码块原子化（半张表会给出与完整规则相反的结论）
+      超长自然段 → 语义切分兜底
+  → 每个子块加块头：【文档】+【路径】
+  = 353 个子块 / 174 个父块，overlap = 0
+```
+
+四个决定值得单独说：
+
+- **overlap = 0**。overlap 防的是「关键句正好落在切分边界上被劈成两半」，前提是切分边界与语义边界无关。这里恰恰相反——边界是标题和自然段，本身就是语义边界。加了只会让索引变大、top-k 里出现高度重复的相邻块。省下的预算花在块头上，信息密度高得多。
+- **块头只放文档标题和标题路径**。生效日期、tags 这类**文档级常量**故意不进块头：同一篇文档的每个块都带上它们，对文档内部的区分度是零，却会稀释短块（法规层的条文块正文常常只有 100 token）。它们进标量字段，参与过滤和排查。
+- **父块粒度定在 `##` 而不是 `###`**。定在 `###`，法规层一个条文就是一个父块，父子块退化成 1:1——「小块检索、大块喂模型」就白做了。
+- **入库前硬卡 token 长度**。超过 `max_seq_length` 的部分从未进入模型，对向量的贡献严格为 0。这种块躺在库里看起来「已经索引了」，但答案落在被截掉的后半段时永远召回不到——没有异常、没有日志。所以灌库脚本在 `truncated > 0` 时直接失败（当前 p99=302，上限 1024）。
+
+### 10.2 在线检索：一次请求的六次数据形变
+
+```
+改写 → 路由 → 过滤 → 召回融合 → 重排 → 装配
+```
+
+每一步在 `services/rag/pipeline/` 下有独立模块。拆开不是为了好看，是因为**每一步都可能是坏 case 的源头，而它们在最终结果里长得一模一样**：
+
+| 步骤 | 做什么 | 出错的表现 |
+|---|---|---|
+| 1 改写 | 拆多意图、判断要不要法规层；**输出自然语言问句** | 检索到的完全是另一类问题的条款 |
+| 2 路由 | 平台层 / 法规层各给多少名额与权重 | 该引平台条款却引了法条 |
+| 3 过滤 | 生效日期 + 层级，**只做硬约束** | 明明有条款却一条没召回 |
+| 4 召回融合 | 稠密 + BM25 双路 → RRF（k=20） | 召回了但排名靠后 |
+| 5 重排 | cross-encoder + 层级/文档先验 | 候选里有正确答案但没顶上来 |
+| 6 装配 | 父块回填 + 去重 + 相邻合并 + 预算截断 | 上下文里有证据但答复没用上 |
+
+**为什么必须双路。** BM25 不可替代的是精确 term：`7 天`、`3 次`、`90 天`、`生鲜`、`运费险`。用户问「近 90 天退款几次算高风险」，`90` 和 `3` 是低频高 IDF term，BM25 直接把 P02 第五条顶到第一；稠密检索只会把它稀释成「风控相关」，和 P08 整篇都很像。反过来，用户说「拆开看了一眼就想退」，正文写的是「已开启包装，但未投入使用」，一个查询词都不重合——这时候只有稠密捞得到。**BM25 由 Milvus 服务端算**（中文分析器 + BM25 Function），不在应用层自建倒排索引：那份索引迟早会与 collection 漂移，而漂移不会报错。
+
+**融合在应用层显式做，不用 Milvus 的 `hybrid_search`。** 融合分是排查坏 case 的关键中间产物——一条条款到底是两路都召回了、还是只被 BM25 单路捞到（那它在 RRF 里天然吃亏，得靠重排救回来），黑盒融合看不出来。多几次 RPC 换全链路可观测，这个交换在几百个块的规模上稳赚。
+
+**改写必须输出问句，这是最反直觉的一处。** Agent 拼出来的 query 长这样：`金牌会员 耳机 未拆封 签收10天 无理由退货`。同一语料、同一套参数，只把它改写成「金牌会员签收 10 天的耳机未拆封，无理由退货还在窗口期内吗？」，重排 top-1 就从 P07 第三条（极速退款，与问题无关，只是「金牌会员」四个字高度匹配）变成 P02 第二条（正确答案），分数 0.947 → 0.984。原因在重排那一步：cross-encoder 判断的是「这段文字**回没回答这个问题**」，而关键词串里根本没有问题，它只能退化成算主题相似度。**「精简成关键词」这个看起来天经地义的检索预处理，在带重排的链路里是反向优化。**
+
+**不加 freshness 加权。** 政策是常青内容，一条 2024 年生效、至今未改的核心条款不会因为「旧」而不适用；加时间衰减只会让 P02 输给刚发布的边缘规则。「哪一版有效」是正确性判据，由生效日期硬过滤解决——它不是排序信号。取而代之的两个先验来自文档库自身的规则：答复消费者引用平台层（法规层默认降权），平台层内部冲突时以 P02 为准。
+
+**降级路径都是显式的**：改写失败 → 原文透传（排序掉一档，正确条款仍在 top-4）；重排模型不可用 → 融合分 + 先验加权（打一行 warn）。唯独**嵌入模型拿不到时必须硬失败**——换向量空间等于检索结果无意义，悄悄退回哈希嵌入那种兜底会让检索看起来在工作。
+
+> 权重（`0.80` 相关性 / `0.20` 先验）、阈值（`MIN_SCORE=0.30`）、RRF 的 `k=20`、法规层的 `0.5` 降权——**这些都是未经校准的起点，不是结论**。它们依赖具体的 reranker、归一化方式和问题分布，必须在标注集（query → 应召回的 section）上调。当前只有一组 8 条的冒烟用例（top-1 全对），那是「链路通了」的证据，不是「参数对了」的证据。
 
 ### 为什么不用 MCP
 
@@ -690,13 +748,33 @@ refund-agent/
 │   │   ├── prod.py               # → 订单系统（规则引擎在对侧）
 │   │   └── eval.py               # → evals/data/orders.json（含本地规则引擎副本）
 │   └── rag/
-│       ├── protocol.py
-│       ├── embeddings.py         # 灌库与检索共用的嵌入模型
-│       └── milvus.py             # → Milvus 直连，**唯一实现**，prod / eval 共用
+│       ├── protocol.py           # PolicySection（内容+来源+时间+理由）+ RetrievalTrace
+│       ├── store.py              # Milvus 连接与字段定义的单一定义点
+│       ├── milvus.py             # 六步链路的编排，**唯一实现**，prod / eval 共用
+│       └── pipeline/             # 一步一个文件，每步可单独观测（10.2）
+│           ├── rewrite.py        # ① 改写：拆多意图 → 自然语言问句
+│           ├── route.py          # ② 路由：平台层 / 法规层的名额与权重
+│           ├── filters.py        # ③ 过滤：生效日期 + 层级，只做硬约束
+│           ├── recall.py         # ④ 召回融合：稠密 + BM25 → RRF
+│           ├── rerank.py         # ⑤ 重排：cross-encoder + 层级/文档先验
+│           └── assemble.py       # ⑥ 装配：父块回填 + 去重 + 预算截断
 │
-├── knowledge/                    # 政策语料：给 Milvus 灌库用，不是 eval 数据
-│   ├── policies.json             # 条款原文 + 生效日期，单一事实源
-│   └── seed_milvus.py            # 建 collection + 灌条款
+├── llm/                          # 本地模型层：与业务无关，灌库与检索共用
+│   ├── device.py                 # cuda > mps > cpu
+│   ├── embedding/bge_m3.py       # BGE-M3 稠密向量 + tokenizer 计长（切分要用）
+│   └── rerank/bge_reranker.py    # bge-reranker-v2-m3，可关闭（降级打 warn）
+│
+├── doc/policy/                   # **政策语料的单一事实源**，直接被切片入库
+│   ├── law/                      # L01-L05 法律法规：法定底线
+│   └── platform/                 # P01-P11 平台政策：与消费者的直接约定
+│
+├── knowledge/                    # 索引管线（不是 eval 数据）
+│   ├── chunking/                 # doc/policy/*.md → 父子块（10.1）
+│   │   ├── model.py              # DocMeta / Chunk；块头拼什么、为什么
+│   │   ├── markdown.py           # frontmatter + 标题树 + 段落/表格/代码
+│   │   ├── semantic.py           # 超长段落的语义切分兜底
+│   │   └── policy.py             # 编排 + 切分参数（320 / 512 / overlap=0）
+│   └── seed_milvus.py            # 切片 + 建表 + 灌库，入库前硬卡 token 长度
 │
 ├── evals/
 │   ├── data/                     # eval 数据源（JSON）

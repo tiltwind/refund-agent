@@ -1,8 +1,11 @@
 """v1 演示入口 —— 客户档案与订单走 eval 数据源，政策检索走真实 Milvus。
 
-    bash standalone_embed.sh start     # 启 Milvus，见 doc/rag/milvus-service.md
-    python knowledge/seed_milvus.py    # 灌政策条款（只需一次）
+    bash standalone_embed.sh start     # 启 Milvus 2.5+，见 doc/rag/milvus-service.md
+    python knowledge/seed_milvus.py    # 切片 doc/policy/ 并灌库（只需一次）
     python main.py                     # 需要 ANTHROPIC_API_KEY
+
+想看检索链路每一步的中间产物（改写→路由→过滤→召回融合→重排→装配），
+加 REFUND_AGENT_RAG_TRACE=on。
 
 真正的服务入口是 app/main.py（FastAPI + 认证中间件，README 4.3），v1 还没写 ——
 先用这个脚本把「查客户 → 查政策 → 判资格 → 落库 → 答复」这条链路跑通，
