@@ -532,6 +532,24 @@ class DownstreamClient:
 
 每轮实验的原始 trace 单独归档一份（按 `run_name` 分目录），便于事后重查。Langfuse 上的数据会随保留策略过期，而"三个月前那次改动到底为什么退化"是常见诉求——完整闭环见第九章。
 
+### 8.6 当前实现进度
+
+本章其余部分是目标形态，v1 落地的是 `services/telemetry.py` 这一层：
+
+| 项 | 状态 |
+|---|---|
+| 一次请求 = 一条 trace，图节点 / 工具 / generation 自动成树 | ✅ Langfuse v3+ 底座是 OpenTelemetry，`CallbackHandler` 直接吃 LangGraph 回调，不需要自建 tracer provider |
+| trace 属性：`request_id`、`session_id`、脱敏后的 `customer_id`、`agent_version`、`prompt_version`、`request_source` | ✅ 由 `trace_config()` 组装，埋点走 `invoke` 的 `config`，与业务身份的 `context` 分开 |
+| PII 脱敏（8.4） | ✅ 挂在 SDK 的 `mask` 钩子上，所有 span 的 input/output 统一过一遍——不是让每个埋点自己记得脱敏 |
+| `rag.recall` / `rag.rerank` / `rag.assemble` 子 span | ❌ 只有改写因为走 LangChain 才自动出现，其余是纯函数，要手工包一层 |
+| 跨服务 `traceparent` 透传（8.3） | ❌ v1 全走 eval 数据源，还没有下游 HTTP 调用 |
+| scores 异步写回 | ❌ 属第九章的评估闭环 |
+
+两个实践细节，都属于「接上了但看不到数据」的常见原因：
+
+- **短命脚本必须显式 flush**。SDK 攒批异步上报，进程跑完就退，还没到发送时机的那批 span 会随进程一起消失。`main.py` 放在 `finally` 里——链路中途抛异常时，那条失败的 trace 恰恰是最该看到的。
+- **启动时打一行状态并做 auth_check**。凭据写错、Langfuse 没起这类问题，在启动时报出来只要一秒；等跑完整轮评估才发现没 trace 就晚了。缺 key 时静默降级：埋点是旁路，不该让主链路挂掉。
+
 ---
 
 ## 九、持续评估闭环
@@ -645,7 +663,7 @@ agent = registry.select(rollout={"v1": 0.9, "v2": 0.1})
 | 层 | 选型 |
 |---|---|
 | Agent 框架 | LangChain 1.x `create_agent` + LangGraph |
-| 模型 | Claude Sonnet 5，`temperature=0` |
+| 模型 | Claude Sonnet 5，`temperature=0`；同时支持 OpenAI 及其兼容网关（DeepSeek / Qwen / vLLM / one-api），选哪家由 `llm/chat.py` 统一解析，见 10.3 |
 | **向量库** | **Milvus 2.5+**——Agent 直连（不经知识库服务），政策条款 collection，稠密 + 稀疏双向量，标量字段（`effective_date` / `expire_date` / `layer`）支持过滤检索 |
 | 嵌入 / 重排 | **BGE-M3**（稠密，1024 维）+ **bge-reranker-v2-m3**（交叉编码），本地运行，代码在 `llm/` |
 | 状态持久化 | LangGraph checkpointer（人工审批挂起 / 恢复） |
@@ -704,6 +722,37 @@ agent = registry.select(rollout={"v1": 0.9, "v2": 0.1})
 
 > 权重（`0.80` 相关性 / `0.20` 先验）、阈值（`MIN_SCORE=0.30`）、RRF 的 `k=20`、法规层的 `0.5` 降权——**这些都是未经校准的起点，不是结论**。它们依赖具体的 reranker、归一化方式和问题分布，必须在标注集（query → 应召回的 section）上调。当前只有一组 8 条的冒烟用例（top-1 全对），那是「链路通了」的证据，不是「参数对了」的证据。
 
+### 10.3 模型接入：两家供应商与兼容网关
+
+项目里有两处调对话模型：Agent 主循环（`agent/v1/graph.py`）和查询改写（`pipeline/rewrite.py`）。**解析只做一次，放 `llm/chat.py`**——两处各自 `os.getenv` 拼模型名，迟早漂移成「主模型换了供应商、改写还在打上一家的端点」，而且不报错，只是改写默默走降级。
+
+**选哪家**：`REFUND_AGENT_PROVIDER` 显式指定 > 哪边的 API key 非空走哪边 > 两边都配了走 Anthropic。最后这条不是偏好，是不改变老 `.env` 的既有行为：**切换供应商必须是一个显式动作，而不是删掉某个 key 的副作用**。
+
+**用哪个模型**（优先级从高到低）：
+
+| 来源 | 说明 |
+|---|---|
+| `REFUND_AGENT_MODEL` / `REFUND_AGENT_REWRITE_MODEL` | 跨供应商的强制覆盖，可带前缀（`openai:qwen-max`） |
+| `OPENAI_MODEL` / `ANTHROPIC_MODEL` | 按当前供应商取 |
+| 调用方给的默认值 | **仅当它属于当前供应商** |
+| 兜底 | 改写回落到主模型；主模型在 openai 侧直接报错 |
+
+第三条的限定容易被忽略却很关键：`agent/v1/meta.yaml` 里写的是 `anthropic:claude-sonnet-5`，供应商切到 openai 后这个默认值必须失效，否则会拿 Claude 的模型名去打 OpenAI 的端点，报一个跟真实原因（没配 `OPENAI_MODEL`）毫不相干的 404。同理，**openai 侧不设内置默认模型名**——兼容网关的模型名各家各写各的，猜任何一个都是错的，不如直接告诉用户配 `OPENAI_MODEL`。
+
+**端点跟着模型走，不跟着当前供应商走。** `REFUND_AGENT_MODEL=openai:qwen-max` 配在一个只有 `ANTHROPIC_API_KEY` 的环境里是合法用法，这时端点必须取 `OPENAI_BASE_URL`；按「当前供应商」取就会把 OpenAI 的模型名发去 Anthropic 的地址。另外 `OPENAI_BASE_URL`（openai SDK 的变量名）与 `OPENAI_API_BASE`（langchain-openai 读的名字）两个都认、取到后显式传参——不依赖谁读谁。
+
+**兼容网关真正的能力缺口在结构化输出。** 主循环的工具调用各家都支持，但查询改写要求模型吐 Pydantic 结构，而 langchain 对 OpenAI 侧默认走 `json_schema`（strict mode），DeepSeek 这类网关直接回 400。三种方式实测：
+
+| 方式 | 结果 |
+|---|---|
+| `json_schema`（langchain 默认） | ✗ `This response_format type is unavailable now` |
+| `json_mode` | ✗ 还要求 prompt 里出现 "json" 字样 |
+| `function_calling` | ✓ 但需关掉思考模式（见下） |
+
+所以 openai 侧默认改用 `function_calling`——能提供 OpenAI 兼容接口的网关基本都支持 tools，这是三档里最通用的。第二个坑跟着来：**开着 thinking 的模型往往不接受 `tool_choice`**（DeepSeek 回 `Thinking mode does not support this tool_choice`），而 function_calling 必须靠 `tool_choice` 强制出结构。`REFUND_AGENT_REWRITE_REASONING=none` 关掉即可——改写本来就是分类式轻任务，不需要思考链。这个参数**不设默认值**：非推理模型（gpt-4o 等）收到它会直接报错。
+
+两个开关都调不通也不阻塞：改写失败一律原文透传（`REFUND_AGENT_REWRITE=off` 可整体关掉），检索照常，代价是排序质量掉一档——降级路径见 10.2 末尾。
+
 ### 为什么不用 MCP
 
 MCP 的价值在**跨边界**：跨团队复用工具、给第三方 agent 暴露能力、跨语言、工具集动态变化。本项目的工具是同一团队维护、同一发布周期、与系统提示强耦合（工具返回文案 `需补充：` / `参数错误：` 和提示词的分支处理是一份共同演进的契约）。拆成 MCP 只会把这份契约变成跨进程契约，还要付出 trace 断裂、故障域扩大、多一跳延迟的成本。
@@ -719,10 +768,9 @@ refund-agent/
 ├── app/                          # 服务外壳
 │   ├── main.py                   # FastAPI 入口 + 版本路由
 │   ├── context.py                # RefundContext 定义
-│   ├── middleware/
-│   │   ├── auth.py               # 读网关注入的身份 header → RefundContext
-│   │   └── approval.py           # 人工审批 interrupt
-│   └── telemetry.py              # OTel 埋点 → Langfuse
+│   └── middleware/
+│       ├── auth.py               # 读网关注入的身份 header → RefundContext
+│       └── approval.py           # 人工审批 interrupt
 │
 ├── agent/                        # Agent 版本并存，用于对比评估与灰度
 │   ├── v1/                       # 基线：当前线上版本
@@ -739,6 +787,7 @@ refund-agent/
 │   ├── factory.py                # 按 request_source 选实现（rag 除外，见 6.4）
 │   ├── errors.py                 # EvalDataMissError
 │   ├── eval_store.py             # 加载 evals/data + 会话隔离（并发跑批不互相污染）
+│   ├── telemetry.py              # OTel 埋点 → Langfuse：trace 属性组装 + PII 脱敏（8.6）
 │   ├── customer/
 │   │   ├── protocol.py           # CustomerService 接口 + 数据模型
 │   │   ├── prod.py               # → 用户服务
@@ -759,7 +808,8 @@ refund-agent/
 │           ├── rerank.py         # ⑤ 重排：cross-encoder + 层级/文档先验
 │           └── assemble.py       # ⑥ 装配：父块回填 + 去重 + 预算截断
 │
-├── llm/                          # 本地模型层：与业务无关，灌库与检索共用
+├── llm/                          # 模型层：与业务无关，被多条链路共用
+│   ├── chat.py                   # 供应商与模型名的唯一解析处（10.3）
 │   ├── device.py                 # cuda > mps > cpu
 │   ├── embedding/bge_m3.py       # BGE-M3 稠密向量 + tokenizer 计长（切分要用）
 │   └── rerank/bge_reranker.py    # bge-reranker-v2-m3，可关闭（降级打 warn）
@@ -789,6 +839,8 @@ refund-agent/
 │   └── archive/                  # 每轮实验的 trace 与报告归档
 │
 ├── main.py                       # 离线演示入口：跑三个典型场景
+├── run-main.sh                   # 加载 .env 后跑 main.py，顺带校验模型凭据齐不齐
+├── .env.example                  # 配置占位符（密钥只放 .env，已 gitignore）
 └── README.md
 ```
 

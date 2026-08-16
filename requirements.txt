@@ -1,7 +1,11 @@
 # 核心
 langchain>=1.0.0
 langgraph>=1.0.0
+
+# 两家供应商任配一个即可（llm/chat.py 按 key/REFUND_AGENT_PROVIDER 选）。
+# langchain-openai 那条同时覆盖所有 OpenAI 兼容网关：DeepSeek、Qwen、vLLM、one-api。
 langchain-anthropic>=1.0.0
+langchain-openai>=0.2.0
 
 # 政策检索：Agent 直连 Milvus（prod / eval 同一条路径）
 # 需要 2.5+：稀疏向量与 BM25 Function（内置全文检索）自该版本起可用
@@ -16,6 +20,12 @@ transformers>=4.45
 
 # 政策文档 frontmatter 与 agent/v1/meta.yaml
 pyyaml>=6.0
+
+# 可观测：Agent 链路上报 Langfuse（README 第八章）
+# v3 起底座是 OpenTelemetry，CallbackHandler 直接吃 LangGraph 的回调，
+# 不需要自建 tracer provider。不配 LANGFUSE_* 密钥时 services/telemetry.py
+# 静默降级 —— 链路照常跑，只是没有 trace。
+langfuse>=3.0
 
 # 说明：BM25 的分词与打分都在 Milvus 服务端（中文分析器 + BM25 Function），
 # 应用侧不需要 jieba，也就不存在「本地倒排索引与 collection 漂移」这个问题。

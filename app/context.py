@@ -23,6 +23,14 @@ class RefundContext:
     request_id: str = ""
     """贯穿全链路的追踪 ID，兼作退款执行的幂等键（README 第七章）。"""
 
+    session_id: str = ""
+    """同一通会话的多轮请求共用的 ID，随 trace 上报（README 8.2）。
+
+    和 request_id 是两个粒度：一次请求一个 request_id，一通会话一个 session_id。
+    排障时经常要看「用户在这轮之前问了什么」，只有 request_id 串不起来。
+    留空时 telemetry 回落到 request_id，trace 至少不会互相污染。
+    """
+
     request_source: str = "prod"
     """prod | eval —— 决定 services/ 选哪个实现。
 

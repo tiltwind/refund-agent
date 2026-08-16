@@ -6,11 +6,11 @@ from pathlib import Path
 
 import yaml
 from langchain.agents import create_agent
-from langchain.chat_models import init_chat_model
 
 from agent.v1.prompt import SYSTEM_PROMPT
 from agent.v1.tools import TOOLS
 from app.context import RefundContext
+from llm import chat
 
 META = yaml.safe_load((Path(__file__).parent / "meta.yaml").read_text(encoding="utf-8"))
 
@@ -27,14 +27,17 @@ META = yaml.safe_load((Path(__file__).parent / "meta.yaml").read_text(encoding="
 # 注意温度 0 不等于确定性输出：浮点非结合性、batch 组成、服务端负载均衡到不同
 # 硬件或模型版本，都会带来差异。它是降噪，不是消噪。
 TEMPERATURE = float(os.getenv("REFUND_AGENT_TEMPERATURE", str(META["temperature"])))
-MODEL = os.getenv("REFUND_AGENT_MODEL", META["model"])
+
+# meta.yaml 里的 model 是 anthropic 供应商下的默认值；切到 OPENAI_* 时它自动失效，
+# 改由 OPENAI_MODEL 决定（规则见 llm/chat.py）。
+MODEL_DEFAULT = META["model"]
 
 
 @lru_cache(maxsize=1)
 def build_agent():
     """装配并缓存 Agent。无状态，同一进程内复用同一个实例即可。"""
     return create_agent(
-        model=init_chat_model(MODEL, temperature=TEMPERATURE),
+        model=chat.build("agent", MODEL_DEFAULT, temperature=TEMPERATURE),
         tools=TOOLS,
         system_prompt=SYSTEM_PROMPT,
         # context_schema 是身份注入的入口：RefundContext 里的字段进得了工具层，

@@ -1,6 +1,6 @@
 """v1 演示入口 —— 客户档案与订单走 eval 数据源，政策检索走真实 Milvus。
 
-    bash standalone_embed.sh start     # 启 Milvus 2.5+，见 doc/rag/milvus-service.md
+    bash scripts/milvus.sh start       # 启 Milvus 2.5+，见 doc/rag/milvus-service.md
     python knowledge/seed_milvus.py    # 切片 doc/policy/ 并灌库（只需一次）
     python main.py                     # 需要 ANTHROPIC_API_KEY
 
@@ -14,7 +14,8 @@
 
 from agent import registry
 from app.context import RefundContext
-from services import eval_store
+from llm import chat
+from services import eval_store, telemetry
 
 
 def run_case(title: str, customer_id: str, request_id: str, message: str) -> None:
@@ -26,6 +27,9 @@ def run_case(title: str, customer_id: str, request_id: str, message: str) -> Non
         customer_id=customer_id,
         actor="self",
         request_id=request_id,
+        # 演示脚本每个场景各跑一轮、互不相干，因此 session 与 request 一一对应；
+        # 多轮对话下这里应该是会话 ID，同一通会话的每轮共用一个（README 8.2）。
+        session_id=request_id,
         request_source="eval",
     )
 
@@ -33,6 +37,9 @@ def run_case(title: str, customer_id: str, request_id: str, message: str) -> Non
     result = registry.get("v1").invoke(
         {"messages": [{"role": "user", "content": message}]},
         context=ctx,
+        # 埋点走 config 而不是 context：context 是给工具层的业务身份，config 是给
+        # LangGraph 运行时的回调通道，两者别混。没配 Langfuse 时这里是个空 dict。
+        config=telemetry.trace_config(ctx, registry.meta("v1"), name=f"refund-chat:{title}"),
     )
 
     # 打印工具调用轨迹，观察五步 SOP 是否被完整执行
@@ -40,7 +47,7 @@ def run_case(title: str, customer_id: str, request_id: str, message: str) -> Non
         for call in getattr(msg, "tool_calls", None) or []:
             print(f"  ▶ {call['name']}({call['args']})")
 
-    print(f"\nRefundAgent：{result['messages'][-1].text()}")
+    print(f"\nRefundAgent：{result['messages'][-1].text}")
 
     # 「说了」是否等于「做了」：答复里的单号必须来自真实落库的这一笔
     new_rows = eval_store.decision_log()[log_before:]
@@ -49,6 +56,11 @@ def run_case(title: str, customer_id: str, request_id: str, message: str) -> Non
 
 
 def main() -> None:
+    # 启动时先把「打哪个模型」「trace 报不报」两件事打出来：配错密钥、Langfuse 没起、
+    # 模型名解析成了另一个供应商的，在这里一眼可见，不用等跑完三个场景才发现。
+    print(chat.describe())
+    print(telemetry.describe())
+
     # 场景一：金牌会员，签收 10 天。普通会员窗口 7 天会被拒，金牌 15 天 → 批准。
     run_case(
         "金牌会员的窗口期优待（预期：批准）",
@@ -85,4 +97,8 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    finally:
+        # 放 finally 里：链路中途抛异常时，那条失败的 trace 恰恰是最该看到的。
+        telemetry.flush()

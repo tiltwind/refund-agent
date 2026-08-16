@@ -36,7 +36,8 @@ Agent 按 prompt 拼出来的 query 长这样：`金牌会员 耳机 未拆封 �
 改写有 100~300ms 延迟和被改坏的风险，所以**失败一律降级为原文透传**，
 绝不因为改写挂掉整条检索链路。代价要认清楚：透传时进重排的就是那个关键词串，
 排序质量按上面的实测会掉一档 —— 正确条款仍在 top-4 里（模型看得到），
-但不再稳定排第一。没有 ANTHROPIC_API_KEY 时走的就是这条路径。
+但不再稳定排第一。没有任何模型凭据（ANTHROPIC_API_KEY / OPENAI_API_KEY 都为空）时
+走的就是这条路径。
 """
 
 import os
@@ -46,12 +47,38 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
-MODEL = os.getenv("REFUND_AGENT_REWRITE_MODEL", "anthropic:claude-haiku-4-5")
-"""改写是分类式的轻任务 —— 换更便宜、更快的档次比用主模型划算得多。"""
+MODEL_DEFAULT = "anthropic:claude-haiku-4-5"
+"""改写是分类式的轻任务 —— 换更便宜、更快的档次比用主模型划算得多。
+
+只在 provider=anthropic 时生效。走 OPENAI_* 时兼容网关的模型名没法猜，除非配了
+OPENAI_REWRITE_MODEL，否则跟主模型走同一个（规则见 llm/chat.py）。
+"""
 
 ENABLED = os.getenv("REFUND_AGENT_REWRITE", "on").lower() not in ("off", "0", "false")
 
 TIMEOUT_SECONDS = float(os.getenv("REFUND_AGENT_REWRITE_TIMEOUT", "3"))
+
+STRUCTURED_METHOD = os.getenv("REFUND_AGENT_REWRITE_STRUCTURED", "").strip()
+"""结构化输出的实现方式，留空则按供应商取默认值（见 _structured_method）。
+
+改写是这条链路上唯一要求模型吐结构化结果的地方，而**结构化输出恰恰是兼容网关
+最容易缺的能力**：langchain 对 OpenAI 侧默认走 `json_schema`（strict mode），
+DeepSeek 这类网关直接回 400 `This response_format type is unavailable now`。
+所以 OpenAI 侧默认改用 `function_calling` —— 能提供 OpenAI 兼容接口的网关基本
+都支持 tools，这是三种方式里最通用的一档。可选 json_schema | function_calling |
+json_mode（json_mode 还要求 prompt 里出现 "json" 字样，一般不用）。
+"""
+
+REASONING_EFFORT = os.getenv("REFUND_AGENT_REWRITE_REASONING", "").strip()
+"""思考档位，留空则不传这个参数。
+
+第二个坑：开着 thinking 的模型往往不接受 `tool_choice`（DeepSeek 回 400
+`Thinking mode does not support this tool_choice`），而 function_calling 方式
+必须设 tool_choice 来强制出结构。把 thinking 关掉即可 —— 改写本来就是分类式
+轻任务，不需要思考链。DeepSeek 上填 `none`。
+
+不设默认值是因为这个参数不通用：非推理模型（gpt-4o 等）收到它会直接报错。
+"""
 
 Intent = Literal[
     "window",     # 退货窗口、时限        → P02 第二条 / P07
@@ -109,13 +136,29 @@ SYSTEM = """你是退款政策检索链路的查询改写器。把客服 Agent �
 5. 不要输出任何日期。生效日期由系统按当天计算，你无从判断今天是几号。"""
 
 
+def _structured_method() -> str:
+    """OpenAI 侧默认 function_calling，Anthropic 侧用 langchain 的默认值（工具调用）。"""
+    if STRUCTURED_METHOD:
+        return STRUCTURED_METHOD
+
+    from llm import chat
+
+    model = chat.model_name("rewrite", MODEL_DEFAULT)
+    return "function_calling" if chat.provider_of(model) == chat.OPENAI else ""
+
+
 @lru_cache(maxsize=1)
 def _model():
-    from langchain.chat_models import init_chat_model
+    from llm import chat
 
-    return init_chat_model(
-        MODEL, temperature=0, timeout=TIMEOUT_SECONDS, max_retries=1
-    ).with_structured_output(Rewrite)
+    kwargs = {"temperature": 0, "timeout": TIMEOUT_SECONDS, "max_retries": 1}
+    if REASONING_EFFORT:
+        kwargs["reasoning_effort"] = REASONING_EFFORT
+
+    method = _structured_method()
+    return chat.build("rewrite", MODEL_DEFAULT, **kwargs).with_structured_output(
+        Rewrite, **({"method": method} if method else {})
+    )
 
 
 def _passthrough(query: str) -> RetrievalPlan:
@@ -128,7 +171,11 @@ def _passthrough(query: str) -> RetrievalPlan:
 
 
 def rewrite(query: str) -> RetrievalPlan:
-    if not ENABLED:
+    from llm import chat
+
+    # 没凭据是「本来就没打算调模型」，不是「调用出错」—— 先探一下，省得每次检索都
+    # 从异常路径走一遍、再打一行看着像故障的 warn。
+    if not ENABLED or not chat.available():
         return _passthrough(query)
     try:
         result = _model().invoke(
