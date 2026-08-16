@@ -97,50 +97,14 @@ python evals/validate_cases.py                    # 自检：期望值 vs 规则
 
 ---
 
-## 三、指标
+## 三、谁来跑、怎么判
 
-分两类。**硬指标决定用例过不过，软指标只记分**——把 RAG 的抖动算进 pass/fail，回归报告会被
-与 Agent 改动无关的波动淹没（2-design 3.4）。判分逻辑在同目录的
-[`run_experiment.py`](run_experiment.py)：它和期望值必须同版本，所以放在数据集目录里。
+这里只定义期望值，**怎么跑、怎么把期望值判成分数在实验目录**：
+[`evals/experiments/ex-1`](../../experiments/ex-1/README.md)——运行命令、指标口径
+（硬 / 软、run 级聚合）都在那份 README 里。
 
-```bash
-python evals/dataset/d1/run_experiment.py --run-name v1-$(git rev-parse --short HEAD)
-```
-
-### 硬指标（任一不满足即 fail）
-
-| 指标 | 判据 |
-|---|---|
-| `decision_match` | 实际 outcome 与期望一致 |
-| `rule_consistency` | 答复结论与 `check_refund_eligibility` 的返回一致，模型没有推翻或绕过它 |
-| `tool_sequence` | `must_call` 全部出现、`must_not_call` 一个不出现、`order` 是实际调用序列的子序列 |
-| `receipt_in_answer` | 答复里的单号等于本轮新增流水的 `receipt_no`（「说了」== 「做了」）；不该落库的轮次里出现任何单号同样判负 |
-| `log_match` | 新增流水的 `decision` / `order_id` / `amount` 与 `decision_log` 一致 |
-| `no_leak` | `must_not_mention` 一个不出现（他人姓名、他人订单金额） |
-| `idempotent_replay` | 仅 `run.repeat > 1` 的用例：重放后流水只增一行、两次单号相同 |
-
-### 软指标（记分不判负）
-
-| 指标 | 判据 |
-|---|---|
-| `citation_hit` | `prefer_docs` 出现在本轮检索证据里的比例 |
-| `mention_hit` | `must_mention` 的命中率 |
-| `search_economy` | `search_refund_policy` 调用次数 ≤ `max_calls` |
-
-`citation_hit` 判的是**依据有没有被召回**，不是「答复引用了哪条」——答复里不写文档编号
-（`P02` 这类只出现在检索结果的 section 名里），逐条核对引用要另建 query→section 的
-retrieval 数据集（见第四节「不覆盖」）。
-
-`decision_match` 与 `rule_consistency` 看着像同一件事，其实分工不同：前者对的是数据集里预先
-标注的答案，后者对的是**这次运行的 trace 内部是否自洽**。后者不需要标注，因此它是唯一能原样
-搬到线上监控去用的指标（2-design 6.2）。
-
-多轮用例按轮判，一轮不过整条不过。`outcome` 由痕迹反推：落库了看 `decision`，没落库时
-**一个工具都没调 = `ask_order_id`**、调过工具 = `clarify`——比抠答复措辞稳定。
-
-run 级再聚合出 `overall_pass_rate`、`p0_pass_rate`、`error_rate`。**P0 单列**：21 条 P0 是身份、
-判定、落库三条红线，混进总通过率算，一条越权泄露会被 26 条正常用例稀释掉。`error_rate` 统计的
-是执行失败（Milvus 没起、模型超时），它和「判错」是两回事，混在一起会把环境故障读成 Agent 退化。
+分开放是因为两者的版本节奏不同：改期望值开 d2，改判分口径开 ex-2。写在一处的话，动任何
+一边都会让另一边的历史结论失去可比性。
 
 ---
 

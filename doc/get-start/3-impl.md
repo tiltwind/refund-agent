@@ -617,7 +617,7 @@ v1 刻意留白的部分，以及它们各自的入口：
 | HTTP 服务外壳 | `app/main.py` + `app/middleware/auth.py` | 读网关注入的身份 header → `RefundContext`；**取不到必须 401，不能降级** |
 | 人工审批 | `app/middleware/approval.py` | 高风险 case 用 LangGraph `interrupt` 挂起，状态由 checkpointer 持久化 |
 | prod 数据源 | `services/customer/prod.py`、`services/order/prod.py` | 服务身份 + `X-Acting-User` + `traceparent`，横切关注点收敛到 `services/base.py` |
-| 评估闭环 | `evals/` | 用例集 `dataset/d1` 与 `validate_cases`（数据集自检）已落地；待补 `offline`（离线回归）→ `compare`（v1/v2 对比）→ `online`（线上采样打分） |
+| 评估闭环 | `evals/` | 已有 `dataset/d1`、自检和离线实验 `experiments/ex-1`，见 [4 · 数据集与指标](https://tiltwind.github.io/refund-agent/doc/get-start/4-dataset.md)、[5 · 跑实验](https://tiltwind.github.io/refund-agent/doc/get-start/5-experiment.md)；待补版本对比与线上采样评分 |
 | 检索子 span | `services/rag/pipeline/` | `rag.recall` / `rag.rerank` / `rag.assemble` 是纯函数，要手工包一层才进 trace |
 | v2 与灰度 | `agent/v2/` + `registry.select` | 按流量比例路由，trace 里记 `agent_version` 做线上归因 |
 

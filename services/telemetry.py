@@ -60,7 +60,7 @@ def hash_customer(customer_id: str) -> str:
     return hashlib.sha256(f"{_HASH_SALT}:{customer_id}".encode()).hexdigest()[:16]
 
 
-def _base_url() -> str:
+def base_url() -> str:
     """两个变量名都认。
 
     v4 SDK 同时读 LANGFUSE_BASE_URL 和 LANGFUSE_HOST，v2/v3 只认 LANGFUSE_HOST ——
@@ -91,7 +91,7 @@ def _handler():
     Langfuse(
         public_key=public_key,
         secret_key=secret_key,
-        host=_base_url() or None,
+        host=base_url() or None,
         mask=mask,
     )
     return CallbackHandler()
@@ -156,7 +156,7 @@ def describe() -> str:
     if not enabled():
         return "Langfuse: off（未配置 LANGFUSE_PUBLIC_KEY/SECRET_KEY，链路照常跑，只是没有 trace）"
 
-    target = _base_url() or "https://cloud.langfuse.com（默认）"
+    target = base_url() or "https://cloud.langfuse.com（默认）"
     try:
         from langfuse import get_client
 

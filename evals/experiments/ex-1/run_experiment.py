@@ -1,8 +1,10 @@
-"""d1 的离线回归 —— 本地跑 Agent，分数写回 Langfuse dataset run（2-design 6.1 的 ②③）。
+"""实验 ex-1：跑数据集 d1 的离线回归 —— 本地跑 Agent，分数写回 Langfuse dataset run
+（2-design 6.1 的 ②③）。
 
-    python evals/dataset/d1/run_experiment.py                          # 全量 27 条
-    python evals/dataset/d1/run_experiment.py --cases D1-011 D1-027    # 只跑指定用例
-    python evals/dataset/d1/run_experiment.py --agent v1 --run-name v1-$(git rev-parse --short HEAD)
+    python evals/experiments/ex-1/run_experiment.py                       # 全量 27 条
+    python evals/experiments/ex-1/run_experiment.py --cases D1-011        # 只跑指定用例
+    python evals/experiments/ex-1/run_experiment.py -v                    # 逐轮打印工具链和答复
+    python evals/experiments/ex-1/run_experiment.py --agent v1 --run-name v1-$(git rev-parse --short HEAD)
 
 前置：Milvus 起着并已灌库（`bash scripts/milvus.sh start` + `python knowledge/seed_milvus.py`），
 `.env` 里配好模型与 Langfuse 密钥，数据集已推上去（`python evals/push_dataset.py`）。
@@ -10,8 +12,9 @@
 **执行必须在本地**：Langfuse UI 跑不了 LangGraph 的图和这六个工具，它只负责收 trace、
 存 dataset run、做版本对比。所以这里是 SDK 侧的 `run_experiment`，Langfuse 侧只看结果。
 
-打分器放在数据集目录里，因为它判的是 d1 的字段结构与口径（见同目录 README 第三节）——
-期望值和判分逻辑必须一起换版本，分开放两处早晚漂移。
+打分器跟着实验走：它判的是 d1 的字段结构与口径（指标表见同目录 README 第三节），`--dataset`
+默认也就指向 `refund-cases-d1`。换判分口径 = 开新实验目录，不要就地改 ex-1——历史 run 的分数
+只有在判分逻辑不动的前提下才可比。
 
 判分口径（硬指标任一不过即 fail，软指标只记分）：
 
@@ -29,11 +32,19 @@
 `case_pass` 是硬指标的合取，run 级再聚合出 `p0_pass_rate` / `overall_pass_rate` /
 `error_rate`。**P0 通过率单列**：21 条 P0 是身份、判定、落库三条红线，混进总通过率算，
 一条越权泄露会被 26 条正常用例稀释掉。
+
+跑完除了写回 Langfuse，还会把同一份指标落到 `result.json`（`--out` 改路径）：
+Langfuse 是本地实例，换台机器 run 页就打不开，报告和版本对比不该依赖它还起着。
+补拉历史 run 用同目录的 `export_result.py`。
 """
 
 import argparse
+import json
 import re
 import sys
+import threading
+import time
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -64,6 +75,68 @@ def _norm(text: str) -> str:
     return re.sub(r"\s+", "", text or "")
 
 
+# ── 进度 ──────────────────────────────────────────────────────────────────
+class Progress:
+    """并发跑批时的进度打印。
+
+    用例是多线程跑的（max_concurrency），所以每条消息都整块拿锁打完再放 ——
+    否则一条用例的工具链会插到另一条中间，日志就没法读了。
+    """
+
+    def __init__(self, total: int, verbose: bool = False) -> None:
+        self.total = total
+        self.verbose = verbose
+        self.done = 0
+        self.t0 = time.monotonic()
+        self.spent: dict[str, float] = {}  # case_id → 秒，落盘时当开销数据用
+        self._lock = threading.Lock()
+
+    def _emit(self, text: str) -> None:
+        with self._lock:
+            print(text, flush=True)
+
+    def start(self, case_id: str, title: str) -> float:
+        self._emit(f"  ▶ {case_id} {title}")
+        return time.monotonic()
+
+    def turn(self, case_id: str, idx: int, user: str, record: dict) -> None:
+        """一轮结束后的执行细节，只在 -v 下打。"""
+        if not self.verbose:
+            return
+        head = f"    {case_id} turn{idx}"
+        names = [call["name"] for call in record["tools"]] or ["（未调工具）"]
+        lines = [
+            f"{head} 用户：{_oneline(user, 60)}",
+            f"{head} 工具：{' → '.join(names)}",
+            f"{head} 答复：{_oneline(record['answer'], 80)}",
+        ]
+        for row in record["new_log"]:
+            lines.append(
+                f"{head} 落库：{row['decision']} {row['order_id']} "
+                f"{row['amount']} {row['receipt_no']}"
+            )
+        self._emit("\n".join(lines))
+
+    def finish(self, case_id: str, title: str, t0: float, note: str, ok: bool = True) -> None:
+        with self._lock:
+            self.done += 1
+            n = self.done
+            self.spent[case_id] = time.monotonic() - t0
+            print(
+                f"  [{n:>{len(str(self.total))}}/{self.total}] {'✓' if ok else '✗'} "
+                f"{case_id} {title}   {self.spent[case_id]:.1f}s · {note}",
+                flush=True,
+            )
+
+    def elapsed(self) -> float:
+        return time.monotonic() - self.t0
+
+
+def _oneline(text: str, limit: int) -> str:
+    text = re.sub(r"\s+", " ", text or "").strip()
+    return text if len(text) <= limit else text[:limit] + "…"
+
+
 # ── 执行 ──────────────────────────────────────────────────────────────────
 def _observe(new_messages: list, new_log: list) -> dict:
     """把一轮产生的消息压成打分器要的四样东西。"""
@@ -82,7 +155,7 @@ def _observe(new_messages: list, new_log: list) -> dict:
     return {"tools": calls, "tool_results": results, "answer": answer, "new_log": list(new_log)}
 
 
-def _run_turns(agent, ctx, turns: list, meta: dict, label: str) -> list[dict]:
+def _run_turns(agent, ctx, turns: list, meta: dict, label: str, progress) -> list[dict]:
     """跑完一条用例的所有轮次，累积 messages —— 多轮用例第二轮要能接着第一轮说。"""
     from services import eval_store, telemetry
 
@@ -98,11 +171,13 @@ def _run_turns(agent, ctx, turns: list, meta: dict, label: str) -> list[dict]:
             config=telemetry.trace_config(ctx, meta, name=f"eval:{label}:turn{idx + 1}"),
         )
         history = result["messages"]
-        records.append(_observe(history[msg_before:], eval_store.decision_log()[log_before:]))
+        record = _observe(history[msg_before:], eval_store.decision_log()[log_before:])
+        progress.turn(label, idx + 1, turn["user"], record)
+        records.append(record)
     return records
 
 
-def make_task(agent_version: str):
+def make_task(agent_version: str, progress: Progress):
     from agent import registry
     from app.context import RefundContext
     from services import eval_store
@@ -116,6 +191,8 @@ def make_task(agent_version: str):
         repeat = int(spec.get("repeat", 1))
         share_session = bool(spec.get("share_session", True))
         ctx = RefundContext(**src["context"], session_id=src["context"]["request_id"])
+        title = (item.metadata or {}).get("title", "")
+        t0 = progress.start(item.id, title)
 
         try:
             # 每条用例一份独立数据副本：execute_refund 会把 order["refunded"] 置成
@@ -125,12 +202,20 @@ def make_task(agent_version: str):
             for i in range(repeat):
                 if i and not share_session:
                     eval_store.begin_session()
-                passes.append(_run_turns(agent, ctx, src["turns"], meta, item.id))
+                passes.append(_run_turns(agent, ctx, src["turns"], meta, item.id, progress))
             session_log = list(eval_store.decision_log())
         except Exception as exc:  # 执行失败要和判错分开统计，见 run 级 error_rate
+            progress.finish(item.id, title, t0, f"执行失败：{type(exc).__name__}: {exc}", ok=False)
             return {"turns": [], "error": f"{type(exc).__name__}: {exc}"}
         finally:
             eval_store.end_session()
+
+        # 这里报的是「跑完了」，不是「判过了」——判分在 evaluate 里，结果见末尾汇总。
+        tools = sum(len(turn["tools"]) for turn in passes[0])
+        note = f"{len(passes[0])} 轮 · {tools} 次工具 · 落库 {len(session_log)} 笔"
+        if repeat > 1:
+            note += f" · 重放 {repeat} 次"
+        progress.finish(item.id, title, t0, note)
 
         output = {"turns": passes[0], "error": None}
         if repeat > 1:
@@ -340,6 +425,49 @@ def aggregate(*, item_results, **_):
     return out
 
 
+# ── 落盘 ──────────────────────────────────────────────────────────────────
+# 分数在 Langfuse 上也有一份，落盘是为了**不依赖那台实例还起着**：它是本地跑的，
+# 换台机器 run 页就打不开（traces/README.md 同理）。报告、版本对比都读这个文件。
+RESULT_PATH = Path(__file__).with_name("result.json")
+
+
+def case_row(*, case_id, title, priority, trace_id, elapsed_s, scores: dict, tokens=None) -> dict:
+    """一条用例在结果文件里的样子。
+
+    两个入口共用它 —— 本脚本跑完直接写，`export_result.py` 从 Langfuse 补拉历史 run
+    也写成这个形状，schema 才只有一处定义。`tokens` 只有 Langfuse 算得出，跑批时留空。
+    """
+    hard = [name for name in (*HARD, "idempotent_replay") if name in scores]
+    return {
+        "case_id": case_id,
+        "title": title,
+        "priority": priority,
+        "trace_id": trace_id,
+        "elapsed_s": round(elapsed_s, 1) if elapsed_s is not None else None,
+        "tokens": tokens,
+        "case_pass": scores.get("case_pass", {}).get("value") == 1.0,
+        "failed": [name for name in hard if scores[name]["value"] < 1],
+        "scores": scores,
+    }
+
+
+def write_result(path: Path, *, dataset, run_name, run_url, agent, elapsed_s, summary, cases) -> None:
+    payload = {
+        "experiment": "ex-1",
+        "dataset": dataset,
+        "run_name": run_name,
+        "run_url": run_url,
+        "written_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "agent": agent,
+        "cases_total": len(cases),
+        "cases_passed": sum(1 for case in cases if case["case_pass"]),
+        "elapsed_s": round(elapsed_s, 1) if elapsed_s is not None else None,
+        "summary": summary,
+        "cases": cases,
+    }
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
 # ── 入口 ──────────────────────────────────────────────────────────────────
 def main() -> None:
     parser = argparse.ArgumentParser(description="跑 d1 离线回归，结果写回 Langfuse")
@@ -350,6 +478,10 @@ def main() -> None:
     parser.add_argument("--concurrency", type=int, default=4,
                         help="并发用例数；调高会撞模型限速，也会拖慢本地重排")
     parser.add_argument("--env-file", default=str(ROOT / ".env"))
+    parser.add_argument("--out", help=f"指标落盘路径，默认 {RESULT_PATH.name}；"
+                                      "只跑子集时默认不写，免得覆盖全量结果")
+    parser.add_argument("-v", "--verbose", action="store_true",
+                        help="逐轮打印用户输入、工具链、答复和落库")
     args = parser.parse_args()
 
     load_env(Path(args.env_file))
@@ -373,19 +505,22 @@ def main() -> None:
 
     meta = registry.meta(args.agent)
     run_name = args.run_name or f"{args.agent}-{len(items)}cases"
-    print(f"→ {args.dataset}：{len(items)} 条 · agent={args.agent} · run={run_name}")
+    print(f"→ {args.dataset}：{len(items)} 条 · agent={args.agent} · run={run_name}"
+          f" · 并发 {args.concurrency}")
 
+    progress = Progress(len(items), verbose=args.verbose)
     result = client.run_experiment(
         name=args.dataset,
         run_name=run_name,
         description=f"{meta['agent_version']} / prompt {meta['prompt_version']}",
         data=items,
-        task=make_task(args.agent),
+        task=make_task(args.agent, progress),
         evaluators=[evaluate],
         run_evaluators=[aggregate],
         max_concurrency=args.concurrency,
         metadata={k: str(v) for k, v in meta.items()},
     )
+    print(f"\n跑批完成，用时 {progress.elapsed():.1f}s，正在写回 Langfuse …")
     client.flush()
 
     print(f"\n{'=' * 70}")
@@ -403,6 +538,34 @@ def main() -> None:
             print(f"  {ev.name:>18}: {ev.value:.3f}  {ev.comment or ''}")
     if result.dataset_run_url:
         print(f"\n  {result.dataset_run_url}")
+
+    out = Path(args.out) if args.out else (None if args.cases else RESULT_PATH)
+    if out:
+        cases = [
+            case_row(
+                case_id=item_result.item.id,
+                title=(item_result.item.metadata or {}).get("title", ""),
+                priority=(item_result.item.metadata or {}).get("priority"),
+                trace_id=item_result.trace_id,
+                elapsed_s=progress.spent.get(item_result.item.id),
+                scores={
+                    ev.name: {"value": ev.value, "comment": ev.comment}
+                    for ev in item_result.evaluations or []
+                },
+            )
+            for item_result in result.item_results
+        ]
+        write_result(
+            out,
+            dataset=args.dataset,
+            run_name=run_name,
+            run_url=result.dataset_run_url,
+            agent={k: str(v) for k, v in meta.items()},
+            elapsed_s=progress.elapsed(),
+            summary={ev.name: ev.value for ev in result.run_evaluations or []},
+            cases=cases,
+        )
+        print(f"  指标已写入 {out}")
 
 
 if __name__ == "__main__":

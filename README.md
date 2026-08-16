@@ -27,3 +27,5 @@ flowchart LR
 | [1 · 架构](doc/get-start/1-architecture.md) | 整体架构与组件职责、请求链路时序、目录结构与四个目录的边界 |
 | [2 · 设计](doc/get-start/2-design.md) | 身份与授权、工具设计、服务接入层与数据源切换、幂等、可观测、评估闭环、技术栈与检索链路取舍 |
 | [3 · 实现](doc/get-start/3-impl.md) | 一步步搭出 v1：环境、语料、模型层、切片灌库、检索链路、服务接入层、Agent、入口、埋点，含验收清单与故障排查 |
+| [4 · 数据集与指标](doc/get-start/4-dataset.md) | 用例集格式与设计取舍、自检与推送、指标是怎么定下来的、九个指标各自怎么算 |
+| [5 · 跑实验](doc/get-start/5-experiment.md) | 跑批与打分脚本、HTML 报告、人工读 trace、ex-1 的关键问题、指标本身的缺口与排期 |
