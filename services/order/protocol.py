@@ -1,25 +1,12 @@
-"""订单系统的接口与数据模型：资格判定 + 退款执行。
+"""订单系统的接口与数据模型：退款执行。
 
-**规则引擎在订单系统一侧，不在 Agent 服务里**（1-architecture 第一章）：
-数据在那边（窗口计算要用签收时间）、授权判定必须在数据所有者一侧、
-规则变更由订单团队独立发版而不必动 Agent。
+资格判定不在这里，在 `services/rule/` —— 规则口径的变更频率远高于订单数据与
+资金链路，拆开两边才能各自独立发版（1-architecture 第一章）。
+订单系统只保留终局动作：打款与拒绝落库。
 """
 
 from dataclasses import dataclass
-from typing import Literal, Protocol
-
-Verdict = Literal["通过", "不通过", "需补充"]
-
-
-@dataclass
-class EligibilityResult:
-    """规则引擎的判定结论 —— 这是退款决策的**唯一依据**，模型不得推翻。"""
-
-    verdict: Verdict
-    reason: str
-    """判定说明，直接给模型读，也是答复里引用的依据。"""
-    refundable_amount: float = 0.0
-    """可退金额，仅 verdict == 通过 时有意义。"""
+from typing import Protocol
 
 
 @dataclass
@@ -31,16 +18,6 @@ class RefundReceipt:
 
 
 class OrderService(Protocol):
-    def check_eligibility(
-        self,
-        order_id: str,
-        acting_user: str,
-        reason_type: str = "",
-        item_condition: str = "",
-    ) -> EligibilityResult:
-        """判定退款资格。acting_user 由 Context 注入，用于归属校验。"""
-        ...
-
     def execute_refund(
         self,
         order_id: str,

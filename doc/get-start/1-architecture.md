@@ -36,9 +36,11 @@ flowchart TD
         direction TB
         SR["rag/<br/>政策检索<br/>（不分数据源）"]
         SC["customer/<br/>客户档案"]
-        SO["order/<br/>资格判定 · 退款执行"]
+        SU["rule/<br/>资格判定"]
+        SO["order/<br/>退款执行"]
         SRC{"request_source"}
         SC --> SRC
+        SU --> SRC
         SO --> SRC
     end
 
@@ -49,7 +51,8 @@ flowchart TD
     subgraph Downstream["下游微服务 · prod"]
         direction TB
         USER["用户服务<br/>客户档案 · 会员等级"]
-        ORDER["订单系统<br/>订单数据 + 退款规则引擎 + 退款执行"]
+        RULE["规则服务<br/>退款规则引擎"]
+        ORDER["订单系统<br/>订单数据 + 退款执行"]
         PAY["支付服务"]
     end
 
@@ -62,13 +65,15 @@ flowchart TD
 
     Tools -->|"① 检索政策"| SR
     Tools -->|"② 查客户档案"| SC
-    Tools -->|"③ 判定退款资格"| SO
+    Tools -->|"③ 判定退款资格"| SU
     Tools -->|"④ 执行退款 / 记录拒绝"| SO
 
     SR -->|"prod / eval 同一条路径"| KB
     SRC -->|"prod"| USER
+    SRC -->|"prod"| RULE
     SRC -->|"prod"| ORDER
     SRC -.->|"eval"| FIX
+    RULE -->|"取订单数据"| ORDER
     ORDER -->|"打款"| PAY
 
     subgraph Obs["可观测平台"]
@@ -90,12 +95,18 @@ flowchart TD
 | 认证中间件 | 读网关注入的身份 header → 类型化 `RefundContext`；**不重复验签**，缺 header 直接 401 | 验签、授权判定 |
 | Agent Loop | 编排工具调用、管理对话状态 | 业务规则 |
 | 工具层 | schema ↔ 业务动作的双向翻译 | 业务规则、授权判定、协议细节 |
-| **服务接入层** | 下游能力的统一入口；客户档案与订单按 `request_source` 选择 prod / eval 实现，政策检索不分数据源 | 业务规则 |
+| **服务接入层** | 下游能力的统一入口；客户档案、资格判定与退款执行按 `request_source` 选择 prod / eval 实现，政策检索不分数据源 | 业务规则 |
 | Milvus 向量库 | 政策条款混合检索（稠密 + BM25）+ 生效日期过滤；**prod 与 eval 共用同一 collection** | — |
 | 用户服务 | 客户档案（**自己做归属校验**） | — |
-| 订单系统 | 订单数据 + **退款规则引擎** + 退款执行（**自己做归属校验**） | — |
+| 规则服务 | **退款规则引擎**：窗口、风控、类目黑名单、商品条件 | 订单数据的存储、资金动作 |
+| 订单系统 | 订单数据 + 退款执行（**自己做归属校验**） | 退款规则 |
 
-规则引擎放在订单系统：订单数据和授权逻辑都在该系统，规则也可独立发布。
+规则引擎独立成服务，不放在 Agent 里，也不并进订单系统：
+
+- 不放 Agent：规则口径由业务方定义并独立发版，抄进 Agent 等于每改一次窗口天数就发一次 Agent；
+- 不并进订单系统：规则的变更频率远高于订单数据与资金链路，拆开两边才能各自独立发版，「谁能改判定口径」和「谁能动钱」也才是两拨权限。
+
+规则服务本身不存订单数据，判定时带 `X-Acting-User` 向订单系统取数，归属校验仍由数据所有者执行。
 
 ---
 
@@ -110,6 +121,7 @@ sequenceDiagram
     participant M as LLM
     participant KB as Milvus
     participant US as 用户服务
+    participant RL as 规则服务
     participant OD as 订单系统
 
     U->>GW: POST /refund/chat<br/>Authorization: Bearer {JWT}
@@ -136,9 +148,12 @@ sequenceDiagram
     AG-->>M: 工具结果
 
     M-->>AG: tool_call: check_refund_eligibility(order_id, ...)
-    AG->>OD: POST /orders/{id}/refund-eligibility
-    OD->>OD: ① 归属校验 ② 规则引擎判定
-    OD-->>AG: 通过 / 不通过 / 需补充：xxx
+    AG->>RL: POST /refund-eligibility<br/>X-Acting-User: {customer_id}
+    RL->>OD: GET /orders/{id}
+    OD->>OD: 归属校验
+    OD-->>RL: 订单数据（取不到即视为不存在）
+    RL->>RL: 规则引擎判定
+    RL-->>AG: 通过 / 不通过 / 需补充：xxx
     AG-->>M: 工具结果
 
     alt 返回「需补充」
@@ -194,10 +209,14 @@ refund-agent/
 │   │   ├── protocol.py           # CustomerService 接口 + 数据模型
 │   │   ├── prod.py               # → 用户服务
 │   │   └── eval.py               # → evals/data/customers.json
+│   ├── rule/
+│   │   ├── protocol.py           # RuleService 接口 + EligibilityResult
+│   │   ├── prod.py               # → 规则服务（规则引擎在对侧）
+│   │   └── eval.py               # → 本地规则引擎副本
 │   ├── order/
-│   │   ├── protocol.py           # 资格判定 + 退款执行
-│   │   ├── prod.py               # → 订单系统（规则引擎在对侧）
-│   │   └── eval.py               # → evals/data/orders.json（含本地规则引擎副本）
+│   │   ├── protocol.py           # 退款执行 + 拒绝落库
+│   │   ├── prod.py               # → 订单系统
+│   │   └── eval.py               # → evals/data/orders.json（终局动作 stub）
 │   └── rag/
 │       ├── protocol.py           # PolicySection（内容+来源+时间+理由）+ RetrievalTrace
 │       ├── store.py              # Milvus 连接与字段定义的单一定义点

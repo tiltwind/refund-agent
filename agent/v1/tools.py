@@ -1,7 +1,7 @@
 """v1 工具层 —— schema ↔ 业务动作的双向翻译（2-design 第二章）。
 
 这一层**只做三件事**：校验模型填的参数、调 services/ 拿结果、把结果渲染成
-模型好读的文本。它不含业务规则（在订单系统）、不做授权判定（在下游）、
+模型好读的文本。它不含业务规则（在规则服务）、不做授权判定（在下游）、
 也不关心 HTTP / gRPC 协议细节（在 services/）。
 
 `runtime: ToolRuntime[RefundContext]` 不会出现在发给模型的 tool schema 里 ——
@@ -12,7 +12,7 @@ from langchain.tools import ToolRuntime, tool
 
 from app.context import RefundContext
 from services.customer.protocol import CustomerProfile
-from services.factory import customer_service, order_service, rag_service
+from services.factory import customer_service, order_service, rag_service, rule_service
 from services.rag.protocol import PolicySection
 
 # 规则引擎认的取值 —— 与 docstring 保持一致，但**由代码强制**。
@@ -115,7 +115,7 @@ def check_refund_eligibility(
         )
 
     ctx = runtime.context
-    result = order_service(ctx).check_eligibility(
+    result = rule_service(ctx).check_eligibility(
         order_id=order_id,
         acting_user=ctx.customer_id,
         reason_type=reason_type,

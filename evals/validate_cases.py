@@ -25,7 +25,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from services import eval_store  # noqa: E402
-from services.order.eval import EvalOrderService  # noqa: E402
+from services.rule.eval import EvalRuleService  # noqa: E402
 
 DEFAULT_DATASET = Path(__file__).resolve().parent / "dataset" / "d1"
 
@@ -63,7 +63,7 @@ def _load(path: Path) -> list[dict]:
     return rows
 
 
-def _check_turn(rep: Report, case: dict, idx: int, turn: dict, svc: EvalOrderService) -> None:
+def _check_turn(rep: Report, case: dict, idx: int, turn: dict, svc: EvalRuleService) -> None:
     where = f"{case['case_id']} turn{idx + 1}"
     exp = turn["expected"]
     outcome = exp["outcome"]
@@ -165,7 +165,7 @@ def _check_turn(rep: Report, case: dict, idx: int, turn: dict, svc: EvalOrderSer
 def validate(dataset: Path) -> Report:
     rep = Report()
     cases = _load(dataset)
-    svc = EvalOrderService()
+    svc = EvalRuleService()
 
     seen_ids: set[str] = set()
     seen_req: dict[str, str] = {}

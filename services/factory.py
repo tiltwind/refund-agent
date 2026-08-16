@@ -13,6 +13,9 @@ from services.order.prod import ProdOrderService
 from services.order.protocol import OrderService
 from services.rag.milvus import MilvusRagService
 from services.rag.protocol import RagService
+from services.rule.eval import EvalRuleService
+from services.rule.prod import ProdRuleService
+from services.rule.protocol import RuleService
 
 # 未知的 request_source 一律抛异常，**绝不 fallback 到 prod** ——
 # 拼错一个字母就静默连上线上库，是这类工厂函数最典型的事故（2-design 3.2）。
@@ -35,6 +38,16 @@ def order_service(ctx: RefundContext) -> OrderService:
             return ProdOrderService()
         case "eval":
             return EvalOrderService()
+        case other:
+            raise ValueError(_UNKNOWN.format(other))
+
+
+def rule_service(ctx: RefundContext) -> RuleService:
+    match ctx.request_source:
+        case "prod":
+            return ProdRuleService()
+        case "eval":
+            return EvalRuleService()
         case other:
             raise ValueError(_UNKNOWN.format(other))
 

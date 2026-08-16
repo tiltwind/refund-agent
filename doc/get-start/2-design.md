@@ -120,15 +120,15 @@ X-Request-Id:   req-abc-123
 ### 1.6 归属校验必须在下游
 
 ```python
-# 订单系统侧
+# 规则服务侧：订单数据向订单系统取，带上 acting_user
 def check_eligibility(order_id, acting_user):
-    order = db.orders.get(order_id)
+    order = order_api.get(order_id, acting_user=acting_user)
     # 不存在 与 不属于你 返回同一句话 —— 区分开会泄露订单号是否存在
-    if not order or order.customer_id != acting_user:
+    if not order:
         return Result(passed=False, reason=f"订单 {order_id} 不存在")
 ```
 
-归属校验由数据所有者执行，Agent 无权绕过。
+归属校验由数据所有者执行，Agent 无权绕过。规则服务只是把「取不到」翻译成一句业务结论。
 
 ---
 
@@ -138,7 +138,7 @@ def check_eligibility(order_id, acting_user):
 |---|---|---|---|---|
 | `search_refund_policy` | Milvus | `query` | — | 无 |
 | `get_customer_info` | 用户服务 | **无** | `customer_id` | 无 |
-| `check_refund_eligibility` | 订单系统 | `order_id`, `reason_type`, `item_condition` | `customer_id` | 无 |
+| `check_refund_eligibility` | 规则服务 | `order_id`, `reason_type`, `item_condition` | `customer_id` | 无 |
 | `execute_refund` | 订单系统 | `order_id`, `amount`, `reason` | `customer_id`, `request_id` | **打款** |
 | `record_refund_denial` | 订单系统 | `order_id`, `reason` | `customer_id`, `request_id` | 落库 |
 
@@ -156,7 +156,7 @@ if reason_type and reason_type not in REASON_TYPES:
 
 参数错误返回可纠正的提示，供模型修正后重试。
 
-`需补充` 由规则引擎返回。订单系统先检查不存在、已退款、类目黑名单、高风险和超出最宽窗口等硬否决；只有结果取决于缺失参数时才要求补充。
+`需补充` 由规则引擎返回。规则服务先检查不存在、已退款、类目黑名单、高风险和超出最宽窗口等硬否决；只有结果取决于缺失参数时才要求补充。
 
 ---
 
@@ -197,7 +197,7 @@ def get_customer_info(runtime: ToolRuntime[RefundContext]) -> str:
     return render_profile(profile)      # 渲染成 LLM 好读的文本
 ```
 
-未知的 `request_source` 直接报错，不回退到 prod。客户和订单服务各有 prod、eval 实现；RAG 只有 Milvus 实现。
+未知的 `request_source` 直接报错，不回退到 prod。客户、规则和订单服务各有 prod、eval 实现；RAG 只有 Milvus 实现。
 
 ### 3.3 eval 数据格式
 

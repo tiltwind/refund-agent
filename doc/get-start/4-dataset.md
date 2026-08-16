@@ -164,7 +164,7 @@ flowchart TB
 | 绑定项 | 当前值 | 变更后的影响 |
 |---|---|---|
 | eval 数据 fixture | `evals/data/customers.json` C1001–C1006<br>`evals/data/orders.json` O2001–O2014 | 改一个 `signed_days_ago` 就会让若干条用例的期望值静默失效 |
-| 规则引擎副本 | [`services/order/eval.py`](https://github.com/tiltwind/refund-agent/blob/main/services/order/eval.py) | 窗口 / 阈值 / 黑名单口径变了，先跑 `validate_cases` |
+| 规则引擎副本 | [`services/rule/eval.py`](https://github.com/tiltwind/refund-agent/blob/main/services/rule/eval.py) | 窗口 / 阈值 / 黑名单口径变了，先跑 `validate_cases` |
 | 政策 collection | `MILVUS_COLLECTION`（默认 `refund_policy_chunks`） | 政策改版重新灌库后，`citation_hit` 会漂移 |
 | 被测 Agent | `agent/v1`（`prompt_version` 见 `meta.yaml`） | 版本对比时保持数据集不动，只换 agent 版本 |
 

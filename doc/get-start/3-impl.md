@@ -14,7 +14,7 @@ v1 不含 HTTP 服务外壳。客户档案和订单读取本地 eval 数据，�
      └─ Agent Loop（五步 SOP 写死在系统提示里）
         ├─ get_customer_info        → services/customer/eval.py   → evals/data/customers.json
         ├─ search_refund_policy     → services/rag/milvus.py      → Milvus（六步检索链路）
-        ├─ check_refund_eligibility → services/order/eval.py      → 规则引擎副本
+        ├─ check_refund_eligibility → services/rule/eval.py       → 规则引擎副本
         └─ execute_refund / record_refund_denial → 落决策流水，返回单号
      └─ 答复（必须写明单号）
 ```
@@ -361,17 +361,20 @@ services/
 ├── eval_store.py       # 加载 evals/data + 会话隔离
 ├── errors.py           # EvalDataMissError
 ├── customer/           # protocol.py（接口）/ prod.py（留桩）/ eval.py
-├── order/              # protocol.py / prod.py（留桩）/ eval.py（含规则引擎副本）
+├── rule/               # protocol.py / prod.py（留桩）/ eval.py（含规则引擎副本）
+├── order/              # protocol.py / prod.py（留桩）/ eval.py（终局动作 stub）
 └── rag/                # 只有一个实现，不分数据源
 ```
+
+资格判定和退款执行是两个服务：规则口径的变更频率远高于资金链路，拆开才能各自独立发版（[1 · 架构](https://tiltwind.github.io/refund-agent/doc/get-start/1-architecture.md) 第一章）。
 
 工厂函数按数据源返回实现：
 
 ```python
-def order_service(ctx: RefundContext) -> OrderService:
+def rule_service(ctx: RefundContext) -> RuleService:
     match ctx.request_source:
-        case "prod": return ProdOrderService()
-        case "eval": return EvalOrderService()
+        case "prod": return ProdRuleService()
+        case "eval": return EvalRuleService()
         case other:  raise ValueError(f"unknown request_source: {other}")   # 绝不 fallback 到 prod
 ```
 
@@ -379,8 +382,8 @@ def order_service(ctx: RefundContext) -> OrderService:
 
 ### 规则引擎副本与 eval 数据
 
-线上规则引擎在订单系统里，离线连不上，所以
-[`services/order/eval.py`](https://github.com/tiltwind/refund-agent/blob/main/services/order/eval.py) 维护一份等价副本。
+线上规则引擎在规则服务里，离线连不上，所以
+[`services/rule/eval.py`](https://github.com/tiltwind/refund-agent/blob/main/services/rule/eval.py) 维护一份等价副本。
 判定分成两段，顺序不能乱：
 
 ```
@@ -410,8 +413,8 @@ def order_service(ctx: RefundContext) -> OrderService:
 
 ```bash
 python -c "
-from services.order.eval import EvalOrderService
-s = EvalOrderService()
+from services.rule.eval import EvalRuleService
+s = EvalRuleService()
 print(s.check_eligibility('O2001', 'C1001', '无理由', '未拆封'))   # 金牌 10 ≤ 15 → 通过
 print(s.check_eligibility('O2006', 'C1004'))                       # 20 > 15 → 硬否决，不该追问
 print(s.check_eligibility('O2004', 'C1004'))                       # 未命中硬否决 → 需补充
@@ -616,7 +619,7 @@ v1 刻意留白的部分，以及它们各自的入口：
 |---|---|---|
 | HTTP 服务外壳 | `app/main.py` + `app/middleware/auth.py` | 读网关注入的身份 header → `RefundContext`；**取不到必须 401，不能降级** |
 | 人工审批 | `app/middleware/approval.py` | 高风险 case 用 LangGraph `interrupt` 挂起，状态由 checkpointer 持久化 |
-| prod 数据源 | `services/customer/prod.py`、`services/order/prod.py` | 服务身份 + `X-Acting-User` + `traceparent`，横切关注点收敛到 `services/base.py` |
+| prod 数据源 | `services/customer/prod.py`、`services/rule/prod.py`、`services/order/prod.py` | 服务身份 + `X-Acting-User` + `traceparent`，横切关注点收敛到 `services/base.py` |
 | 评估闭环 | `evals/` | 已有 `dataset/d1`、自检和离线实验 `experiments/ex-1`，见 [4 · 数据集与指标](https://tiltwind.github.io/refund-agent/doc/get-start/4-dataset.md)、[5 · 跑实验](https://tiltwind.github.io/refund-agent/doc/get-start/5-experiment.md)；待补版本对比与线上采样评分 |
 | 检索子 span | `services/rag/pipeline/` | `rag.recall` / `rag.rerank` / `rag.assemble` 是纯函数，要手工包一层才进 trace |
 | v2 与灰度 | `agent/v2/` + `registry.select` | 按流量比例路由，trace 里记 `agent_version` 做线上归因 |

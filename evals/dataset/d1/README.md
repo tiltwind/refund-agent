@@ -17,7 +17,7 @@ python evals/validate_cases.py                    # 自检：期望值 vs 规则
 | 绑定项 | 当前值 | 变更后的影响 |
 |---|---|---|
 | eval 数据 fixture | [`evals/data/customers.json`](../../data/customers.json) C1001–C1006<br>[`evals/data/orders.json`](../../data/orders.json) O2001–O2014 | 改一个 `signed_days_ago` 就会让若干条用例的期望值静默失效 |
-| 规则引擎副本 | [`services/order/eval.py`](../../../services/order/eval.py) | 窗口 / 阈值 / 黑名单口径变了，先跑 `validate_cases` |
+| 规则引擎副本 | [`services/rule/eval.py`](../../../services/rule/eval.py) | 窗口 / 阈值 / 黑名单口径变了，先跑 `validate_cases` |
 | 政策 collection | `MILVUS_COLLECTION`（默认 `refund_policy_chunks`） | 政策改版重新灌库后，`citation` 这一类软指标会漂移（2-design 3.4） |
 | 被测 Agent | `agent/v1`（`prompt_version` 见 `agent/v1/meta.yaml`） | 版本对比时保持数据集不动，只换 agent 版本 |
 
@@ -110,7 +110,7 @@ python evals/validate_cases.py                    # 自检：期望值 vs 规则
 
 ## 四、覆盖矩阵
 
-### 规则引擎分支（`services/order/eval.py`）
+### 规则引擎分支（`services/rule/eval.py`）
 
 | 分支 | 用例 |
 |---|---|
