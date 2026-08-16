@@ -1,12 +1,6 @@
 # 1 · 架构：组件、链路与目录
 
-RefundAgent 的系统结构：由哪些组件构成、一次请求怎么流过它们、代码按什么边界分目录。
-
-业务口径见 [0 · 需求](https://github.com/tiltwind/refund-agent/blob/main/doc/get-start/0-requirement.md)，
-每一处取舍的理由见 [2 · 设计](https://github.com/tiltwind/refund-agent/blob/main/doc/get-start/2-design.md)，
-按步骤把 v1 搭出来见 [3 · 实现](https://github.com/tiltwind/refund-agent/blob/main/doc/get-start/3-impl.md)。
-全部代码在 [tiltwind/refund-agent](https://github.com/tiltwind/refund-agent)，文中提到的路径都可以在仓库里直接打开。
-代码注释里写的「1-architecture 第一章」这类引用，指的就是本文对应的章节。
+本文说明组件边界、请求链路和目录结构。业务口径见 [0 · 需求](https://tiltwind.github.io/refund-agent/doc/get-start/0-requirement.md)，设计取舍见 [2 · 设计](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md)，搭建步骤见 [3 · 实现](https://tiltwind.github.io/refund-agent/doc/get-start/3-impl.md)。
 
 ---
 
@@ -101,7 +95,7 @@ flowchart TD
 | 用户服务 | 客户档案（**自己做归属校验**） | — |
 | 订单系统 | 订单数据 + **退款规则引擎** + 退款执行（**自己做归属校验**） | — |
 
-**关键分工：规则引擎放在订单系统，不放在 Agent 服务。** 理由有三：数据在那边（窗口计算要用签收时间）、授权判定必须在数据所有者一侧、规则变更由订单团队独立发版而不必动 Agent。
+规则引擎放在订单系统：订单数据和授权逻辑都在该系统，规则也可独立发布。
 
 ---
 
@@ -165,7 +159,7 @@ sequenceDiagram
     AG-->>U: 最终答复
 ```
 
-**「说了」与「做了」的绑定机制**：单号只有真正调用了执行工具才拿得到，而答复里必须写明单号。这样模型无法"只在文字里宣布结果却没落库"——这是 agent 类系统最典型的一类事故。
+最终答复必须包含单号。单号由终局工具返回，用于确认退款或拒绝记录已经落库。
 
 ---
 
@@ -226,7 +220,7 @@ refund-agent/
 │   ├── policy/                   # **政策语料的单一事实源**，直接被切片入库
 │   │   ├── law/                  # L01-L05 法律法规：法定底线
 │   │   └── platform/             # P01-P11 平台政策：与消费者的直接约定
-│   ├── get-start/                # 对外教程：0 需求 / 1 设计 / 2 实现
+│   ├── get-start/                # 需求 / 架构 / 设计 / 实现
 │   └── platform/                 # 依赖服务的本地部署说明（Milvus / Langfuse）
 │
 ├── knowledge/                    # 索引管线（不是 eval 数据）
@@ -241,8 +235,10 @@ refund-agent/
 │   ├── data/                     # eval 数据源（JSON）
 │   │   ├── customers.json
 │   │   └── orders.json           # signed_days_ago 相对天数 + _note 标注守的边界
-│   ├── datasets/
-│   │   └── cases.jsonl           # 评估用例，单一事实源
+│   ├── dataset/                  # 评估用例集，按版本目录并存
+│   │   └── d1/
+│   │       ├── cases.jsonl       # 27 条用例，单一事实源
+│   │       └── README.md         # 绑定关系 / 字段口径 / 指标 / 覆盖矩阵
 │   ├── validate_cases.py         # 数据集自检：期望值 vs 规则引擎
 │   ├── offline.py                # 离线回归（单版本）
 │   ├── compare.py                # 多版本对比 v1 vs v2
@@ -258,8 +254,9 @@ refund-agent/
 └── README.md                     # 仓库索引，正文在 doc/get-start/
 ```
 
-> v1 已落地的是 `agent/v1`、`services/`、`llm/`、`knowledge/`、`doc/policy/` 与两个入口脚本；
-> `app/main.py`、`app/middleware/`、`agent/v2/`、`evals/` 下的评估流水线仍是规划。
-> 逐步搭出已落地那部分的过程见 [3 · 实现](https://github.com/tiltwind/refund-agent/blob/main/doc/get-start/3-impl.md)。
+> v1 已落地的是 `agent/v1`、`services/`、`llm/`、`knowledge/`、`doc/policy/`、两个入口脚本，
+> 以及 `evals/` 下的用例集 `dataset/d1` 与自检脚本 `validate_cases.py`；
+> `app/main.py`、`app/middleware/`、`agent/v2/`、`evals/` 的跑批与打分（`offline` / `compare` / `online`）仍是规划。
+> 逐步搭出已落地那部分的过程见 [3 · 实现](https://tiltwind.github.io/refund-agent/doc/get-start/3-impl.md)。
 
 **四个目录的边界**：`agent/` 是会变的部分（提示词、流程、工具描述），版本化；`services/` 是稳定的部分（下游能力契约），跨版本共享；`knowledge/` 是业务语料（政策条款原文），与 Agent 版本无关，改版走灌库而不是改代码；`evals/` 消费前三者——用同一套 eval 数据、同一个政策 collection 跑不同 agent 版本，这就是对比实验成立的前提。

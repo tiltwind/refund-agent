@@ -106,5 +106,23 @@
     "signed_days_ago": 16,
     "refunded": false,
     "_note": "金牌窗口边界外：16 > 15，超出一天也应拒绝"
+  },
+  "O2013": {
+    "customer_id": "C1002",
+    "product": "纯棉四件套",
+    "category": "家居",
+    "price": 329.00,
+    "signed_days_ago": 7,
+    "refunded": false,
+    "_note": "普通会员窗口边界内：7 == 7，判定条件是 > window，应通过"
+  },
+  "O2014": {
+    "customer_id": "C1002",
+    "product": "蓝牙音箱",
+    "category": "数码",
+    "price": 259.00,
+    "signed_days_ago": 8,
+    "refunded": false,
+    "_note": "普通会员窗口边界外：8 > 7，但 ≤ 质量问题 15，仍需追问原因才能定案"
   }
 }

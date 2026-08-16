@@ -25,7 +25,9 @@ pyyaml>=6.0
 # v3 起底座是 OpenTelemetry，CallbackHandler 直接吃 LangGraph 的回调，
 # 不需要自建 tracer provider。不配 LANGFUSE_* 密钥时 services/telemetry.py
 # 静默降级 —— 链路照常跑，只是没有 trace。
-langfuse>=3.0
+# 下限是 4.0 而不是 3.0：离线回归用的 run_experiment 是 v4 才有的 API，
+# v3 上跑不了（那边是 item.run() 上下文管理器）。
+langfuse>=4.0
 
 # 说明：BM25 的分词与打分都在 Milvus 服务端（中文分析器 + BM25 Function），
 # 应用侧不需要 jieba，也就不存在「本地倒排索引与 collection 漂移」这个问题。

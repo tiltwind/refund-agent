@@ -1,13 +1,8 @@
 # 2 · 设计：关键取舍
 
-身份怎么传、工具怎么定、数据源怎么切、幂等怎么保、trace 怎么埋、评估怎么闭环——本文讲**为什么这么设计**。
-核心命题是：**把「理解用户」交给模型，把「判定与执行」交给确定性系统**，让每一笔退款决策可复现、可审计、可回溯。
-模型的自由度只有两处：理解用户诉求、组织答复措辞；流程走不走、判定通不通过，都不由它决定。
+本文记录身份、工具、数据源、幂等、可观测和评估的设计。模型负责理解诉求和组织答复；确定性系统负责流程、判定和执行。
 
-系统由哪些组件构成、请求怎么流过它们，见 [1 · 架构](https://github.com/tiltwind/refund-agent/blob/main/doc/get-start/1-architecture.md)；
-业务口径见 [0 · 需求](https://github.com/tiltwind/refund-agent/blob/main/doc/get-start/0-requirement.md)；
-落地步骤见 [3 · 实现](https://github.com/tiltwind/refund-agent/blob/main/doc/get-start/3-impl.md)。
-代码注释里写的「2-design 5.2」这类引用，指的就是本文对应的小节。
+相关文档：[0 · 需求](https://tiltwind.github.io/refund-agent/doc/get-start/0-requirement.md)、[1 · 架构](https://tiltwind.github.io/refund-agent/doc/get-start/1-architecture.md)、[3 · 实现](https://tiltwind.github.io/refund-agent/doc/get-start/3-impl.md)。
 
 ---
 
@@ -21,11 +16,11 @@
 | 操作者 | `actor`（自助 / 客服代操作） | 网关注入（源自 JWT claims） | Context 注入 | ❌ |
 | 资源引用 | `order_id` | 对话文本 | 工具参数 | ✅ 但服务端必须校验归属 |
 
-**核心原则：身份来自认证，不来自对话内容。** 把 `customer_id` 放进工具 schema，等于把"访问谁的数据"的决策权交给一个可被 prompt injection 操控的组件——这是 IDOR 越权漏洞。
+身份来自认证，不来自对话。`customer_id` 不进入工具 schema，避免模型决定访问哪个客户的数据。
 
 ### 1.2 信任边界：网关与 Agent 的分工
 
-网关做完 JWT **验签**之后，Agent 服务**不再重复解析 JWT**，但它仍然需要 claims 里承载的**身份数据**——只是来源从"自己解析 token"变成"读网关注入的 header"。
+网关完成 JWT 验签并把身份写入 header；Agent 服务只读取 header。
 
 | 职责 | 网关 | Agent 服务 |
 |---|---|---|
@@ -35,10 +30,7 @@
 | 读取身份 header → `RefundContext` | — | ✅ |
 | 授权判定（能不能操作这个订单） | ❌ | ❌ 由下游服务做 |
 
-> ⚠️ **最容易踩的坑：网关必须 strip 掉客户端传入的 `X-Customer-Id` 等同名 header。**
-> 否则攻击者直接在请求里带一个 `X-Customer-Id: C9999`，网关原样透传，Agent 信以为真——认证形同虚设。这是网关注入模式的头号事故来源，必须在网关配置里显式声明「先清除、再注入」。
-
-配套的前提是**网络隔离**：Agent 服务不能直接暴露在公网，只接受来自网关的流量（VPC 内网 / mTLS / 服务网格授权策略）。否则绕过网关直连 Agent，同样能伪造 header。
+网关必须先删除客户端传入的同名身份 header，再注入可信值。Agent 服务只接受网关流量，可通过 VPC、mTLS 或服务网格策略隔离。
 
 三种方案的取舍：
 
@@ -48,7 +40,7 @@
 | B. 网关透传原始 JWT | 仍需验签（重复劳动） | 强 | 网关只做路由时 |
 | C. 网关换发内部短时 token | 验内部 token（audience=内部服务） | 最强，绕过也无效 | 零信任 / 金融级合规 |
 
-选 A 是因为内网可控且省一次验签开销；**若后续接入外部渠道或合规要求提升，切换到 C，改动只在认证中间件一处**。
+本项目使用方案 A；外部渠道或更高合规要求可改用方案 C。
 
 ### 1.3 Context 定义与注入
 
@@ -94,7 +86,7 @@ result = await agent.ainvoke(
 )
 ```
 
-**取不到 header 必须 401，不能降级。** 静默 fallback 成空值或默认租户，等于给绕过网关的请求开了后门——这类 bug 在测试环境（没配网关）最容易被引入，然后一路带到生产。
+缺少身份 header 时返回 401，不使用空值或默认租户。
 
 ### 1.4 工具侧接住身份
 
@@ -115,7 +107,7 @@ def get_customer_info(runtime: ToolRuntime[RefundContext]) -> str:
 
 ### 1.5 到下游微服务这一跳
 
-**不要把用户 JWT 原样透传给下游**（audience 不对、有效期不受控、下游被攻破即泄露用户凭证）。用**服务身份 + 显式 acting-on-behalf-of**：
+调用下游时使用服务身份和 `X-Acting-User`，不透传用户 JWT：
 
 ```
 Authorization: Bearer <agent 服务自己的 service token>
@@ -123,7 +115,7 @@ X-Acting-User:  C1001          ← 代表谁在操作
 X-Request-Id:   req-abc-123
 ```
 
-下游服务用自己的逻辑做权限判定。**Agent 只负责如实转述身份，不负责授予权限。** 合规要求高的场景改用 OAuth token exchange（RFC 8693）换取 audience 为下游的短时 token。
+下游服务负责权限判定。合规要求更高时，可用 OAuth token exchange（RFC 8693）换取面向下游的短时 token。
 
 ### 1.6 归属校验必须在下游
 
@@ -136,7 +128,7 @@ def check_eligibility(order_id, acting_user):
         return Result(passed=False, reason=f"订单 {order_id} 不存在")
 ```
 
-即便 Agent 被完全操控，它的 service token 里携带的 `X-Acting-User` 也只能是当前登录用户——**越权在数据所有者那一侧被挡住**。
+归属校验由数据所有者执行，Agent 无权绕过。
 
 ---
 
@@ -152,7 +144,7 @@ def check_eligibility(order_id, acting_user):
 
 ### 设计约束
 
-**参数取值必须由代码校验，不能只写在 docstring 里。** docstring 对模型是建议，只有代码校验才是约束：
+参数取值由代码校验，docstring 只用于说明：
 
 ```python
 REASON_TYPES = ("无理由", "质量问题")
@@ -162,9 +154,9 @@ if reason_type and reason_type not in REASON_TYPES:
             f"收到「{reason_type}」。请按用户实际诉求重新判断后再次调用。")
 ```
 
-返回**可纠正的错误提示**而不是抛异常——模型看到提示能自行改正重试，比整轮失败好。
+参数错误返回可纠正的提示，供模型修正后重试。
 
-**「需补充」由规则引擎决定，不由模型自由裁量。** 订单系统先跑完所有与 `reason_type` / `item_condition` 无关的硬否决（不存在、已退款、类目黑名单、高风险、超出最宽窗口）；只有全部通过、判定确实取决于缺失参数时，才返回 `需补充：...`。这样避免模型在"横竖都不通过"的 case 上还去追问用户，白白拖长处理时间。
+`需补充` 由规则引擎返回。订单系统先检查不存在、已退款、类目黑名单、高风险和超出最宽窗口等硬否决；只有结果取决于缺失参数时才要求补充。
 
 ---
 
@@ -172,11 +164,11 @@ if reason_type and reason_type not in REASON_TYPES:
 
 ### 3.1 为什么工具层不直接调下游
 
-工具层与下游微服务之间隔一层 `services/`，理由有三：
+工具层通过 `services/` 调用下游：
 
-1. **评估可切换数据源**——离线评估必须能在不连任何**业务**服务的前提下跑完（核心动机）。政策检索是唯一的例外：它不切数据源，prod 与 eval 都连 Milvus，理由见 3.4
-2. **协议变更不扩散**——订单系统从 REST 改 gRPC，只动 `services/order/prod.py` 一个文件
-3. **横切关注点收敛**——服务身份 token、`X-Acting-User`、`traceparent`、重试、熔断、超时，统一在 `services/base.py` 处理，工具层不用重复写
+1. 离线评估可切换到本地数据；政策检索仍连接 Milvus，见 3.4；
+2. REST、gRPC 等协议变化限制在具体实现中；
+3. 服务身份、`traceparent`、重试、熔断和超时集中在 `services/base.py`。
 
 ### 3.2 一个服务 = 一个接口 + 按需的实现
 
@@ -195,7 +187,7 @@ def customer_service(ctx: RefundContext) -> CustomerService:
         case other:     raise ValueError(f"unknown request_source: {other}")
 ```
 
-工具层拿到的永远是 `CustomerService` 这个接口，**不知道也不关心**数据从哪来：
+工具层只依赖 `CustomerService` 接口：
 
 ```python
 @tool
@@ -205,9 +197,7 @@ def get_customer_info(runtime: ToolRuntime[RefundContext]) -> str:
     return render_profile(profile)      # 渲染成 LLM 好读的文本
 ```
 
-**未知的 `request_source` 必须抛异常，不能 fallback 到 prod。** 拼错一个字母就静默连上线上库，是这类工厂函数最典型的事故。
-
-**「两个实现」是常态，不是规定。** 客户档案和订单各有 prod / eval 两个实现；政策检索只有一个 —— `rag_service()` 不看 `request_source`，直接返回 Milvus 实现（3.4）。抽象的价值在于**调用方不必知道有几个实现**：工具层拿到的永远是 `RagService` 接口，将来真要给它加一个数据源，改动仍然只在工厂函数里。
+未知的 `request_source` 直接报错，不回退到 prod。客户和订单服务各有 prod、eval 实现；RAG 只有 Milvus 实现。
 
 ### 3.3 eval 数据格式
 
@@ -233,20 +223,11 @@ def get_customer_info(runtime: ToolRuntime[RefundContext]) -> str:
 }
 ```
 
-> ⚠️ **时间必须相对化。** 用 `signed_days_ago` 而非 `signed_at` 绝对时间戳——否则数据集放三个月后，所有窗口判定全部失效，而且失效得悄无声息（用例还在跑，只是答案全错了）。
-
-**eval 数据查不到必须显式失败。** Agent 是非确定性的——改了 prompt 之后它可能用一个 eval 数据里没有的入参去查。这时候绝不能静默返回空值当作"查无此人"，否则用例会以一个**看似合理的错误结论**通过。正确做法是抛 `EvalDataMissError`，把这条用例标记为 `invalid` 而非 `failed`——它不是回归，是 eval 数据覆盖不足。
-
-> 📌 **录制回放（replay）暂不支持。** 当 eval 数据的手工维护成本变高、或需要真实数据形态（脏数据、字段缺失、异常枚举）时再引入：从线上 trace 录制下游响应、脱敏后按 `(service, method, args)` 固化查表。届时只需在 `factory.py` 增加一个 `case "replay"` 分支，`services/` 的接口和工具层都不用动——这正是这一层抽象的价值。
+时间使用 `signed_days_ago`，避免固定时间戳导致窗口用例过期。数据缺失时抛 `EvalDataMissError`，用例记为 `invalid`。当前不支持录制回放。
 
 ### 3.4 RAG 为什么不切数据源
 
-政策检索**不做 eval 实现**：`prod` 与 `eval` 都直连 Milvus，同一个 collection、同一条代码路径。这与客户档案、订单的处理方式相反，理由是**检索结果本身就是被评估的对象**：
-
-- 答复里要引用条款原文。「模型判断得对不对」和「检索给没给对条款」在真实的失败里常常是同一个问题——线上被投诉的答复，很大一部分错在引了一条不适用的政策，而不是错在规则判定。为离线评估另造一份写死的条款，等于把这段逻辑整体排除在回归之外。
-- 两份条款必然漂移。写死那份改了、Milvus 那份没改（或反之），评估全绿而线上照错——而且错得悄无声息，因为回归报告看起来一切正常。
-
-代价要认：RAG 确实是评估里的**不确定性来源**，这些变化都与 Agent 的改动无关，却会污染回归结论。不做隔离，就得逐条按住：
+`prod` 和 `eval` 使用同一个 Milvus collection，因为检索质量属于评估范围。为 eval 维护第二份政策数据会造成版本漂移。相关变量按下表控制：
 
 | 变化 | 后果 | 按住它的办法 |
 |---|---|---|
@@ -257,12 +238,7 @@ def get_customer_info(runtime: ToolRuntime[RefundContext]) -> str:
 | 查询改写的 LLM 抖动 | 同一 query 拆出的子查询不同，召回跟着变 | 改写模型固定版本、温度 0，改写结果记进 trace；`REFUND_AGENT_REWRITE=off` 可整体关掉换取确定性（代价见 [`services/rag/pipeline/rewrite.py`](https://github.com/tiltwind/refund-agent/blob/main/services/rag/pipeline/rewrite.py)） |
 | collection 空 / 灌库没跑 | 拿不到条款 | 检索返回空时**显式抛错**，不让 Agent 带着一句「未检索到条款」继续判定——那等于把它推回「凭记忆编政策」 |
 
-配套的两件事：
-
-- **回归报告波动时的排查顺序**：先看 trace 里 `tool.search_refund_policy` 这一 span 返回的条款变没变，再怀疑 Agent。顺序反了，就会把知识库的一次灌库归因成「prompt 改坏了」——这正是 6.1 里 ⑤ 那条反向箭头要防的事。检索内部还要再分一层——六步链路每一步的中间产物都在 trace 里（`REFUND_AGENT_RAG_TRACE=on`），「明明有条款却没召回」和「召回了但没排上来」是两种病，修法完全不同。
-- **检索质量仍然单独评估**：另建一套 retrieval 数据集（query → 应召回的 section），指标用 recall@k / MRR。它回答的是「检索器好不好」，与「Agent 这次改动有没有变差」是两个问题，不能互相顶替。
-
-> ⚠️ 直接的代价：**离线评估不再是零外部依赖**。CI 里要先拉起一个 standalone Milvus 并跑灌库脚本（[`knowledge/seed_milvus.py`](https://github.com/tiltwind/refund-agent/blob/main/knowledge/seed_milvus.py)），评估才能跑。这是上面那些好处的价格，接受与否取决于团队 CI 环境的成本。
+回归波动时，先检查 `tool.search_refund_policy` 的返回和六步检索 trace，再检查 Agent。检索另用 query → section 数据集计算 recall@k 和 MRR。CI 需要启动 Milvus 并运行 [`knowledge/seed_milvus.py`](https://github.com/tiltwind/refund-agent/blob/main/knowledge/seed_milvus.py)。
 
 ---
 
@@ -282,34 +258,27 @@ def get_customer_info(runtime: ToolRuntime[RefundContext]) -> str:
 
 ## 五、可观测性：Telemetry → Langfuse
 
-Agent 服务通过 OpenTelemetry SDK 埋点，以 OTLP 协议把 trace 上报到 **Langfuse**——它既是排障用的观测平台，也是评估体系的数据源（线上采样的用例、人工标注的 badcase 都从这里回流）。
+Agent 服务通过 OpenTelemetry SDK 和 OTLP 向 Langfuse 上报 trace。trace 同时用于排障和评估数据回流。
 
 ### 5.1 一次请求 = 一条 trace
 
 ```
 trace: refund-chat  [request_id=req-abc-123, user=C1001, session=sess-77]
-├── span  auth.middleware                          2ms
-├── span  agent.loop                             4.3s
-│   ├── generation  llm.call#1                    980ms   in 1.2k / out 64 tok
-│   ├── span  tool.get_customer_info              120ms
-│   │   └── span  http.user_svc GET /customers/me  95ms
-│   ├── generation  llm.call#2                    760ms
-│   ├── span  tool.search_refund_policy           940ms
-│   │   ├── generation  rag.rewrite (haiku)       280ms   → 2 条子查询, needs_law=false
-│   │   ├── span  rag.recall  dense+bm25 ×2 层    190ms   → 20 候选 (单路命中 4)
-│   │   ├── span  rag.rerank  cross-encoder       380ms   → 17 条过阈值
-│   │   └── span  rag.assemble 父块回填            90ms   → 4 块 / 1.2k tok
-│   ├── generation  llm.call#3                    890ms
-│   ├── span  tool.check_refund_eligibility       150ms
-│   │   └── span  http.order_svc POST /eligibility 130ms   → "不通过：超出窗口"
-│   ├── generation  llm.call#4                    620ms
-│   └── span  tool.record_refund_denial            98ms    → D9001
-└── span  response.render                           5ms
-
-scores (异步写回): rule_consistency=1.0  tool_sequence=1.0  citation=0.8  latency_p95=pass
+└── span  agent.loop
+    ├── generation  llm.call
+    ├── span  tool.get_customer_info
+    │   └── span  http.user_svc
+    ├── span  tool.search_refund_policy
+    │   ├── generation  rag.rewrite
+    │   ├── span  rag.recall
+    │   ├── span  rag.rerank
+    │   └── span  rag.assemble
+    ├── span  tool.check_refund_eligibility
+    │   └── span  http.order_svc
+    └── span  tool.record_refund_denial
 ```
 
-**trace 层级要和业务语义对齐**，不要平铺。`tool.*` span 套着 `http.*` span，排障时一眼能分清是「模型选错了工具」还是「下游服务慢/报错」——这两类问题的处理人完全不同。
+span 按调用关系嵌套：`tool.*` 包含对应的 `http.*`，RAG 工具包含各检索步骤。
 
 ### 5.2 埋点要素
 
@@ -320,11 +289,11 @@ scores (异步写回): rule_consistency=1.0  tool_sequence=1.0  citation=0.8  la
 | tool span | 工具名、入参、返回、耗时、是否报错、重试次数 |
 | http span | 下游服务名、路由、状态码、`traceparent` |
 
-`prompt_version` 和 `agent_version` 是评估归因的关键：线上指标掉了，要能立刻回答「是哪次发版引起的」。
+`prompt_version` 和 `agent_version` 用于把指标变化归因到具体版本。
 
 ### 5.3 跨服务传播
 
-**trace context 必须透传到所有下游**（W3C `traceparent` header），否则 trace 会断成几截——Agent 服务看到一次 130ms 的 HTTP 调用，但订单系统内部规则引擎为什么慢、查了几次库，全都看不到。
+通过 W3C `traceparent` 向下游传播 trace context。
 
 `clients/base.py` 统一处理三件事，业务代码不用管：注入服务身份 token、注入 `X-Acting-User`、注入 `traceparent`。
 
@@ -342,11 +311,11 @@ class DownstreamClient:
 
 ### 5.4 脱敏
 
-上报前统一过一层脱敏：手机号、收货地址、支付账户、真实姓名。**这一层不能只加在 Langfuse 上报路径上**——线上评估的 LLM judge 也读同一批 trace，PII 会随之进入 judge 的 prompt。脱敏做在 span 属性写入处，一处生效。
+写入 span 属性前统一脱敏手机号、地址、支付账户和真实姓名。Langfuse 与评估读取同一份脱敏数据。
 
 ### 5.5 Trace 归档
 
-每轮实验的原始 trace 单独归档一份（按 `run_name` 分目录），便于事后重查。Langfuse 上的数据会随保留策略过期，而"三个月前那次改动到底为什么退化"是常见诉求——完整闭环见第六章。
+每轮实验按 `run_name` 归档原始 trace，避免受 Langfuse 保留策略影响。
 
 ### 5.6 当前实现进度
 
@@ -361,16 +330,13 @@ class DownstreamClient:
 | 跨服务 `traceparent` 透传（5.3） | ❌ v1 全走 eval 数据源，还没有下游 HTTP 调用 |
 | scores 异步写回 | ❌ 属第六章的评估闭环 |
 
-两个实践细节，都属于「接上了但看不到数据」的常见原因：
-
-- **短命脚本必须显式 flush**。SDK 攒批异步上报，进程跑完就退，还没到发送时机的那批 span 会随进程一起消失。`main.py` 放在 `finally` 里——链路中途抛异常时，那条失败的 trace 恰恰是最该看到的。
-- **启动时打一行状态并做 auth_check**。凭据写错、Langfuse 没起这类问题，在启动时报出来只要一秒；等跑完整轮评估才发现没 trace 就晚了。缺 key 时静默降级：埋点是旁路，不该让主链路挂掉。
+短命脚本退出前显式 `flush`；启动时运行 `auth_check`。缺少 key 时关闭埋点，不影响主链路。
 
 ---
 
 ## 六、持续评估闭环
 
-Agent 不能靠人肉验收：输出是自然语言、路径是非确定性的，改一句提示词可能修好三条、同时弄坏两条。**唯一可行的办法是把「改动 → 度量 → 归因 → 回流」做成闭环。**
+评估流程覆盖改动、度量、归因和用例回流。
 
 ### 6.1 完整闭环
 
@@ -396,10 +362,7 @@ flowchart TB
     FIX -->|"转正发版"| ONLINE
 ```
 
-关键在于 **⑤ 和 ⑦ 这两条反向箭头**——大多数团队只做正向那半圈，于是评估体系会缓慢腐化：
-
-- **⑤ 评估集自身也是被测系统的一部分。** 打分器写错、期望值口径滞后于规则变更，都会让报告给出与事实相反的数字。「用例挂了」的第一反应应该是**先确认是 Agent 错了还是用例错了**，而不是直接改提示词。
-- **⑦ 线上发现的新失效模式必须回流成离线用例**，否则同一个坑会踩第二次。
+失败用例要区分 Agent 缺陷和评估口径错误；线上出现的新失效模式要加入离线数据集。
 
 ### 6.2 三层评估，各管各的事
 
@@ -407,9 +370,9 @@ flowchart TB
 |---|---|---|---|---|---|
 | **数据集自检** | 期望值和规则还对得上吗 | `cases.jsonl` | 规则引擎 | 零（不调模型） | 每次改规则 |
 | **离线回归** | 这次改动有没有让它变差 | eval 数据 + 固定用例集 + 固定版本的政策 collection | `expected_output` | 一轮几分钟 | 每次改 Agent |
-| **线上监控** | 此刻真实流量上有没有在翻车 | 生产 trace | 规则引擎返回（trace 内自洽） | 判官调用费 | 持续 |
+| **线上监控** | 真实流量是否异常 | 生产 trace | 规则引擎返回（trace 内自洽） | 判官调用费 | 持续 |
 
-**三层的指标口径不能互相搬运。** 离线的 `decision_match` 需要预先标注的答案，线上没有——硬搬只会得到一个恒为空的指标。线上要用**规则引擎返回值作为真值锚**：`check_refund_eligibility` 的结论就在 trace 里，判断"最终答复是否与它一致"不需要任何人工标注。
+离线 `decision_match` 使用预标注答案；线上以 trace 中 `check_refund_eligibility` 的返回值为真值。
 
 ### 6.3 离线评估不连线上业务服务
 
@@ -417,12 +380,12 @@ flowchart TB
 
 唯一的外部依赖是 **Milvus**（2.5+，BM25 Function 需要）：政策检索不切数据源，评估跑批同样连真实向量库（3.4）。所以评估环境要固定 collection 版本——政策库换了内容而基线没重跑，报告里的涨跌就不再只反映 Agent 的改动。嵌入与重排跑在本地（`llm/`），CI 要预热模型缓存，否则每次跑批都要下载约 4.4 GB 权重。
 
-> ⚠️ `request_source` 决定了 Agent 读哪份数据，因此它**必须由服务端决定，不能由客户端请求携带**——否则任何调用方声明一句 `request_source=eval` 就能绕开真实数据与真实风控。取值来源限定为：进程启动的环境变量、评估流水线直接构造 context、或网关按调用方 credential 判定后注入。这与 1.2 节的信任边界是同一条原则。
+`request_source` 只能由环境变量、评估流水线或可信网关注入，客户端不能指定。
 
 三条硬约束：
 
 1. **终局动作必须 stub**。`execute_refund` 在评估模式下只记录调用意图，不发起打款——断言"是否调用 + 参数是否正确"即可。
-2. **时间必须相对化**。eval 数据用 `signed_days_ago` 而非绝对时间戳，否则数据集放三个月后所有窗口判定全变，且失效得悄无声息。
+2. **时间相对化**。eval 数据使用 `signed_days_ago`，不使用绝对时间戳。
 3. **PII 脱敏**。真实客户数据不进评估日志和 LLM judge 的 prompt。
 
 ### 6.4 多版本并存与对比
@@ -489,7 +452,7 @@ agent = registry.select(rollout={"v1": 0.9, "v2": 0.1})
 
 ### 7.1 离线索引：doc/policy 变成了什么
 
-**语料源就是 [`doc/policy/`](https://github.com/tiltwind/refund-agent/tree/main/doc/policy) 下的 Markdown 本身，没有中间产物。** 早期版本在 `knowledge/policies.json` 里手抄了一份条款摘要，那等于给同一套政策留了两份事实源——文档改了、JSON 没改（或反之），Agent 就会引用一条与线上公示规则不一致的条款，而且不报错。现在灌库脚本直接切分文档。
+[`doc/policy/`](https://tiltwind.github.io/refund-agent/doc/policy) 下的 Markdown 是语料的唯一来源，灌库脚本直接切分文档。
 
 ```
 16 篇 Markdown（法规 5 + 平台 11）
@@ -502,12 +465,7 @@ agent = registry.select(rollout={"v1": 0.9, "v2": 0.1})
   = 353 个子块 / 174 个父块，overlap = 0
 ```
 
-四个决定值得单独说：
-
-- **overlap = 0**。overlap 防的是「关键句正好落在切分边界上被劈成两半」，前提是切分边界与语义边界无关。这里恰恰相反——边界是标题和自然段，本身就是语义边界。加了只会让索引变大、top-k 里出现高度重复的相邻块。省下的预算花在块头上，信息密度高得多。
-- **块头只放文档标题和标题路径**。生效日期、tags 这类**文档级常量**故意不进块头：同一篇文档的每个块都带上它们，对文档内部的区分度是零，却会稀释短块（法规层的条文块正文常常只有 100 token）。它们进标量字段，参与过滤和排查。
-- **父块粒度定在 `##` 而不是 `###`**。定在 `###`，法规层一个条文就是一个父块，父子块退化成 1:1——「小块检索、大块喂模型」就白做了。
-- **入库前硬卡 token 长度**。超过 `max_seq_length` 的部分从未进入模型，对向量的贡献严格为 0。这种块躺在库里看起来「已经索引了」，但答案落在被截掉的后半段时永远召回不到——没有异常、没有日志。所以灌库脚本在 `truncated > 0` 时直接失败（当前 p99=302，上限 1024）。
+切分采用四项约束：按语义边界切分且 `overlap=0`；块头只放文档标题和标题路径；父块粒度为 `##`；入库前检查 token 长度，`truncated > 0` 时失败。生效日期和 tags 存入标量字段。
 
 ### 7.2 在线检索：一次请求的六次数据形变
 
@@ -515,7 +473,7 @@ agent = registry.select(rollout={"v1": 0.9, "v2": 0.1})
 改写 → 路由 → 过滤 → 召回融合 → 重排 → 装配
 ```
 
-每一步在 [`services/rag/pipeline/`](https://github.com/tiltwind/refund-agent/tree/main/services/rag/pipeline) 下有独立模块。拆开不是为了好看，是因为**每一步都可能是坏 case 的源头，而它们在最终结果里长得一模一样**：
+每一步在 [`services/rag/pipeline/`](https://github.com/tiltwind/refund-agent/tree/main/services/rag/pipeline) 下有独立模块：
 
 | 步骤 | 做什么 | 出错的表现 |
 |---|---|---|
@@ -526,23 +484,17 @@ agent = registry.select(rollout={"v1": 0.9, "v2": 0.1})
 | 5 重排 | cross-encoder + 层级/文档先验 | 候选里有正确答案但没顶上来 |
 | 6 装配 | 父块回填 + 去重 + 相邻合并 + 预算截断 | 上下文里有证据但答复没用上 |
 
-**为什么必须双路。** BM25 不可替代的是精确 term：`7 天`、`3 次`、`90 天`、`生鲜`、`运费险`。用户问「近 90 天退款几次算高风险」，`90` 和 `3` 是低频高 IDF term，BM25 直接把 P02 第五条顶到第一；稠密检索只会把它稀释成「风控相关」，和 P08 整篇都很像。反过来，用户说「拆开看了一眼就想退」，正文写的是「已开启包装，但未投入使用」，一个查询词都不重合——这时候只有稠密捞得到。**BM25 由 Milvus 服务端算**（中文分析器 + BM25 Function），不在应用层自建倒排索引：那份索引迟早会与 collection 漂移，而漂移不会报错。
+BM25 负责数字、类目等精确词项，稠密检索负责语义匹配。BM25 由 Milvus 的中文分析器和 BM25 Function 计算。RRF 融合在应用层完成，以便记录各路排名。
 
-**融合在应用层显式做，不用 Milvus 的 `hybrid_search`。** 融合分是排查坏 case 的关键中间产物——一条条款到底是两路都召回了、还是只被 BM25 单路捞到（那它在 RRF 里天然吃亏，得靠重排救回来），黑盒融合看不出来。多几次 RPC 换全链路可观测，这个交换在几百个块的规模上稳赚。
+查询改写输出自然语言问句，便于 cross-encoder 判断段落是否回答问题。生效日期只用于硬过滤，不参与 freshness 加权；排序先验为平台层优先、P02 优先。
 
-**改写必须输出问句，这是最反直觉的一处。** Agent 拼出来的 query 长这样：`金牌会员 耳机 未拆封 签收10天 无理由退货`。同一语料、同一套参数，只把它改写成「金牌会员签收 10 天的耳机未拆封，无理由退货还在窗口期内吗？」，重排 top-1 就从 P07 第三条（极速退款，与问题无关，只是「金牌会员」四个字高度匹配）变成 P02 第二条（正确答案），分数 0.947 → 0.984。原因在重排那一步：cross-encoder 判断的是「这段文字**回没回答这个问题**」，而关键词串里根本没有问题，它只能退化成算主题相似度。**「精简成关键词」这个看起来天经地义的检索预处理，在带重排的链路里是反向优化。**
-
-**不加 freshness 加权。** 政策是常青内容，一条 2024 年生效、至今未改的核心条款不会因为「旧」而不适用；加时间衰减只会让 P02 输给刚发布的边缘规则。「哪一版有效」是正确性判据，由生效日期硬过滤解决——它不是排序信号。取而代之的两个先验来自文档库自身的规则：答复消费者引用平台层（法规层默认降权），平台层内部冲突时以 P02 为准。
-
-**降级路径都是显式的**：改写失败 → 原文透传（排序掉一档，正确条款仍在 top-4）；重排模型不可用 → 融合分 + 先验加权（打一行 warn）。唯独**嵌入模型拿不到时必须硬失败**——换向量空间等于检索结果无意义，悄悄退回哈希嵌入那种兜底会让检索看起来在工作。
-
-> 权重（`0.80` 相关性 / `0.20` 先验）、阈值（`MIN_SCORE=0.30`）、RRF 的 `k=20`、法规层的 `0.5` 降权——**这些都是未经校准的起点，不是结论**。它们依赖具体的 reranker、归一化方式和问题分布，必须在标注集（query → 应召回的 section）上调。当前只有一组 8 条的冒烟用例（top-1 全对），那是「链路通了」的证据，不是「参数对了」的证据。
+改写失败时使用原查询；重排不可用时使用融合分和先验；嵌入不可用或检索为空时直接报错。当前权重、阈值和 RRF 参数只是初始值，需要用 query → section 标注集校准。
 
 ### 7.3 模型接入：两家供应商与兼容网关
 
-项目里有两处调对话模型：Agent 主循环（`agent/v1/graph.py`）和查询改写（`pipeline/rewrite.py`）。**解析只做一次，放 [`llm/chat.py`](https://github.com/tiltwind/refund-agent/blob/main/llm/chat.py)**——两处各自 `os.getenv` 拼模型名，迟早漂移成「主模型换了供应商、改写还在打上一家的端点」，而且不报错，只是改写默默走降级。
+Agent 主循环和查询改写都通过 [`llm/chat.py`](https://github.com/tiltwind/refund-agent/blob/main/llm/chat.py) 解析模型配置。
 
-**选哪家**：`REFUND_AGENT_PROVIDER` 显式指定 > 哪边的 API key 非空走哪边 > 两边都配了走 Anthropic。最后这条不是偏好，是不改变老 `.env` 的既有行为：**切换供应商必须是一个显式动作，而不是删掉某个 key 的副作用**。
+供应商优先级：`REFUND_AGENT_PROVIDER` > 唯一已配置凭据的供应商 > Anthropic（两组凭据均存在时）。
 
 **用哪个模型**（优先级从高到低）：
 
@@ -553,11 +505,11 @@ agent = registry.select(rollout={"v1": 0.9, "v2": 0.1})
 | 调用方给的默认值 | **仅当它属于当前供应商** |
 | 兜底 | 改写回落到主模型；主模型在 openai 侧直接报错 |
 
-第三条的限定容易被忽略却很关键：`agent/v1/meta.yaml` 里写的是 `anthropic:claude-sonnet-5`，供应商切到 openai 后这个默认值必须失效，否则会拿 Claude 的模型名去打 OpenAI 的端点，报一个跟真实原因（没配 `OPENAI_MODEL`）毫不相干的 404。同理，**openai 侧不设内置默认模型名**——兼容网关的模型名各家各写各的，猜任何一个都是错的，不如直接告诉用户配 `OPENAI_MODEL`。
+调用方默认值只在供应商一致时生效。OpenAI 兼容网关没有统一模型名，因此 OpenAI 侧不设内置默认值。
 
-**端点跟着模型走，不跟着当前供应商走。** `REFUND_AGENT_MODEL=openai:qwen-max` 配在一个只有 `ANTHROPIC_API_KEY` 的环境里是合法用法，这时端点必须取 `OPENAI_BASE_URL`；按「当前供应商」取就会把 OpenAI 的模型名发去 Anthropic 的地址。另外 `OPENAI_BASE_URL`（openai SDK 的变量名）与 `OPENAI_API_BASE`（langchain-openai 读的名字）两个都认、取到后显式传参——不依赖谁读谁。
+端点按模型前缀选择。OpenAI 侧同时识别 `OPENAI_BASE_URL` 和 `OPENAI_API_BASE`。
 
-**兼容网关真正的能力缺口在结构化输出。** 主循环的工具调用各家都支持，但查询改写要求模型吐 Pydantic 结构，而 langchain 对 OpenAI 侧默认走 `json_schema`（strict mode），DeepSeek 这类网关直接回 400。三种方式实测：
+查询改写要求模型返回 Pydantic 结构。部分 OpenAI 兼容网关不支持 LangChain 默认的 `json_schema`：
 
 | 方式 | 结果 |
 |---|---|
@@ -565,12 +517,10 @@ agent = registry.select(rollout={"v1": 0.9, "v2": 0.1})
 | `json_mode` | ✗ 还要求 prompt 里出现 "json" 字样 |
 | `function_calling` | ✓ 但需关掉思考模式（见下） |
 
-所以 openai 侧默认改用 `function_calling`——能提供 OpenAI 兼容接口的网关基本都支持 tools，这是三档里最通用的。第二个坑跟着来：**开着 thinking 的模型往往不接受 `tool_choice`**（DeepSeek 回 `Thinking mode does not support this tool_choice`），而 function_calling 必须靠 `tool_choice` 强制出结构。`REFUND_AGENT_REWRITE_REASONING=none` 关掉即可——改写本来就是分类式轻任务，不需要思考链。这个参数**不设默认值**：非推理模型（gpt-4o 等）收到它会直接报错。
+OpenAI 侧默认使用 `function_calling`。推理模型若不接受 `tool_choice`，设置 `REFUND_AGENT_REWRITE_REASONING=none`；非推理模型不要设置该参数。
 
-两个开关都调不通也不阻塞：改写失败一律原文透传（`REFUND_AGENT_REWRITE=off` 可整体关掉），检索照常，代价是排序质量掉一档——降级路径见 7.2 末尾。
+改写失败时使用原查询；`REFUND_AGENT_REWRITE=off` 可关闭改写。
 
 ### 为什么不用 MCP
 
-MCP 的价值在**跨边界**：跨团队复用工具、给第三方 agent 暴露能力、跨语言、工具集动态变化。本项目的工具是同一团队维护、同一发布周期、与系统提示强耦合（工具返回文案 `需补充：` / `参数错误：` 和提示词的分支处理是一份共同演进的契约）。拆成 MCP 只会把这份契约变成跨进程契约，还要付出 trace 断裂、故障域扩大、多一跳延迟的成本。
-
-**保留演进空间**：若将来公司出现多个 agent 都要查客户档案，可把 `get_customer_info` 这类**只读、通用**的工具收拢成 MCP server；写操作和业务规则永远留在各自 agent 里。届时工具函数签名不变，只换实现。
+当前工具与 Agent 同团队、同周期发布，且与提示词共同演进，因此不拆为 MCP 服务。出现跨团队复用需求后，可先迁移 `get_customer_info` 等只读通用工具；写操作和业务规则仍留在业务服务内。
