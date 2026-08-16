@@ -1,6 +1,6 @@
 """把 doc/policy/ 下的政策文档灌进 Milvus。
 
-    bash scripts/milvus.sh start          # 见 doc/rag/milvus-service.md
+    bash scripts/milvus.sh start          # 见 doc/platform/milvus.md
     python knowledge/seed_milvus.py       # 建 collection + 切片 + 灌库
 
 语料源就是 `doc/policy/**/*.md` 本身 —— **没有中间产物**。以前这里读的是一份

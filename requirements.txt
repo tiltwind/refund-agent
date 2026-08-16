@@ -21,7 +21,7 @@ transformers>=4.45
 # 政策文档 frontmatter 与 agent/v1/meta.yaml
 pyyaml>=6.0
 
-# 可观测：Agent 链路上报 Langfuse（README 第八章）
+# 可观测：Agent 链路上报 Langfuse（2-design 第五章）
 # v3 起底座是 OpenTelemetry，CallbackHandler 直接吃 LangGraph 的回调，
 # 不需要自建 tracer provider。不配 LANGFUSE_* 密钥时 services/telemetry.py
 # 静默降级 —— 链路照常跑，只是没有 trace。
@@ -31,4 +31,4 @@ langfuse>=3.0
 # 应用侧不需要 jieba，也就不存在「本地倒排索引与 collection 漂移」这个问题。
 #
 # 客户档案与订单在 v1 只跑 eval 数据源（services/*/eval.py），
-# 接入 prod 实现时再补 httpx；埋点（README 第八章）与评估流水线（第九章）同理。
+# 接入 prod 实现时再补 httpx；埋点（2-design 第五章）与评估流水线（第六章）同理。

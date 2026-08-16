@@ -1,13 +1,13 @@
 """订单系统的 eval 实现 —— 读 evals/data/orders.json，内含**规则引擎副本**。
 
-线上这套规则跑在订单系统里（README 第二章）；离线评估连不上它，于是在这里
+线上这套规则跑在订单系统里（1-architecture 第一章）；离线评估连不上它，于是在这里
 维护一份等价副本。两条纪律：
 
 1. **规则变更时两边必须同步**，否则离线回归会用旧口径给出「与事实相反」的
-   报告 —— 这正是 README 9.1 里 ⑤ 那条反向箭头要防的事：用例挂了，先确认
+   报告 —— 这正是 2-design 6.1 里 ⑤ 那条反向箭头要防的事：用例挂了，先确认
    是 Agent 错了还是评估侧的口径滞后了。
 2. **终局动作必须 stub**：execute_refund 只记录调用意图，不发起任何打款，
-   断言「是否调用 + 参数是否正确」即可（README 9.3）。
+   断言「是否调用 + 参数是否正确」即可（2-design 6.3）。
 """
 
 from services import eval_store
@@ -35,7 +35,7 @@ class EvalOrderService:
     ) -> EligibilityResult:
         order = eval_store.orders().get(order_id)
 
-        # 归属校验（README 4.6）：不存在 与 不属于你 返回同一句话 ——
+        # 归属校验（2-design 1.6）：不存在 与 不属于你 返回同一句话 ——
         # 区分开会泄露「这个订单号是否存在」。这里订单号来自对话文本，模型
         # 完全可能编一个，所以「查不到」是合法业务结论，不是 eval 数据缺失。
         if not order or order["customer_id"] != acting_user:
@@ -48,7 +48,7 @@ class EvalOrderService:
 
         # ── 第一段：与 reason_type / item_condition 无关的硬否决，命中即定案 ──
         # 这一段把「何时该追问用户」从模型的自由裁量收回到规则里：这些情形下
-        # 无论用户怎么回答都不会通过，追问只会白白拖长处理时间（README 第五章）。
+        # 无论用户怎么回答都不会通过，追问只会白白拖长处理时间（2-design 第二章）。
 
         # 规则 1：风控优先于会员权益
         if customer["refund_count_90d"] > HIGH_RISK_REFUND_COUNT:
@@ -179,7 +179,7 @@ class EvalOrderService:
 
     @staticmethod
     def _replay(idempotency_key: str) -> RefundReceipt | None:
-        """同一幂等键返回同一个单号，而不是重复落一笔（README 第七章）。"""
+        """同一幂等键返回同一个单号，而不是重复落一笔（2-design 第四章）。"""
         if not idempotency_key:
             return None
         for row in eval_store.decision_log():

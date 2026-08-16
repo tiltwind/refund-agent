@@ -1,4 +1,4 @@
-"""Telemetry —— Agent 链路上报到 Langfuse（README 第八章）。
+"""Telemetry —— Agent 链路上报到 Langfuse（2-design 第五章）。
 
 Langfuse v3 起底座换成了 OpenTelemetry：CallbackHandler 把 LangGraph 的图节点、
 工具调用、LLM generation 转成 OTel span 后经 OTLP 上报。所以这里不需要自己搭
@@ -10,11 +10,11 @@ tracer provider，接一个 callback 就能拿到 8.1 那棵调用树。
    评估都可能没有 Langfuse。这时 trace_config() 返回一个不带 callbacks 的普通
    config，调用方不必写 if。
 
-2. **脱敏做在 mask 钩子里，不做在调用点**（README 8.4）。mask 是 SDK 级钩子，
+2. **脱敏做在 mask 钩子里，不做在调用点**（2-design 5.4）。mask 是 SDK 级钩子，
    所有 span 的 input/output 都要过它一遍，而不是指望每个埋点自己记得脱敏。线上
    评估的 LLM judge 读的是同一批 trace，漏一处 PII 就跟着进了 judge 的 prompt。
 
-3. **customer_id 上报哈希而非原值**（README 8.2）。要的是「同一个人的多次请求能
+3. **customer_id 上报哈希而非原值**（2-design 5.2）。要的是「同一个人的多次请求能
    串起来」，不是「知道他是谁」—— 加盐哈希两者都满足。
 """
 
@@ -56,7 +56,7 @@ def mask(*, data: Any, **_: Any) -> Any:
 
 
 def hash_customer(customer_id: str) -> str:
-    """把 customer_id 转成脱敏但稳定的 user_id（README 8.2）。"""
+    """把 customer_id 转成脱敏但稳定的 user_id（2-design 5.2）。"""
     return hashlib.sha256(f"{_HASH_SALT}:{customer_id}".encode()).hexdigest()[:16]
 
 
@@ -102,7 +102,7 @@ def enabled() -> bool:
 
 
 def trace_config(ctx: RefundContext, meta: dict | None = None, *, name: str = "refund-chat") -> dict:
-    """构造 invoke 用的 config —— 一次请求一条 trace（README 8.1）。
+    """构造 invoke 用的 config —— 一次请求一条 trace（2-design 5.1）。
 
     meta 走参数而不是在这里 import agent.registry：services 是被 agent 依赖的下层，
     反向 import 会成环。调用方本来就拿得到 registry.meta(version)。
@@ -122,7 +122,7 @@ def trace_config(ctx: RefundContext, meta: dict | None = None, *, name: str = "r
             f"agent:{meta.get('agent_version', 'unknown')}",
             f"prompt:{meta.get('prompt_version', 'unknown')}",
         ],
-        # 评估归因的关键：线上指标掉了，要能立刻回答「是哪次发版引起的」（README 8.2）
+        # 评估归因的关键：线上指标掉了，要能立刻回答「是哪次发版引起的」（2-design 5.2）
         "agent_version": meta.get("agent_version"),
         "prompt_version": meta.get("prompt_version"),
         "request_id": ctx.request_id,

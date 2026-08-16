@@ -1,6 +1,6 @@
 """订单系统的接口与数据模型：资格判定 + 退款执行。
 
-**规则引擎在订单系统一侧，不在 Agent 服务里**（README 第二章）：
+**规则引擎在订单系统一侧，不在 Agent 服务里**（1-architecture 第一章）：
 数据在那边（窗口计算要用签收时间）、授权判定必须在数据所有者一侧、
 规则变更由订单团队独立发版而不必动 Agent。
 """
@@ -24,7 +24,7 @@ class EligibilityResult:
 
 @dataclass
 class RefundReceipt:
-    """终局动作的回执 —— 单号只有真正调用了执行接口才拿得到（README 第三章）。"""
+    """终局动作的回执 —— 单号只有真正调用了执行接口才拿得到（1-architecture 第二章）。"""
 
     receipt_no: str
     amount: float = 0.0

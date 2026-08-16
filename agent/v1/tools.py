@@ -1,4 +1,4 @@
-"""v1 工具层 —— schema ↔ 业务动作的双向翻译（README 第五章）。
+"""v1 工具层 —— schema ↔ 业务动作的双向翻译（2-design 第二章）。
 
 这一层**只做三件事**：校验模型填的参数、调 services/ 拿结果、把结果渲染成
 模型好读的文本。它不含业务规则（在订单系统）、不做授权判定（在下游）、
@@ -141,7 +141,7 @@ def execute_refund(
             acting_user=ctx.customer_id,
             amount=amount,
             reason=reason,
-            idempotency_key=ctx.request_id,  # 同键不重复打款（README 第七章）
+            idempotency_key=ctx.request_id,  # 同键不重复打款（2-design 第四章）
         )
     except ValueError as exc:
         return f"操作失败：{exc}"
@@ -160,7 +160,7 @@ def record_refund_denial(
     返回的受理编号必须写进给用户的答复里。"""
     # 拒绝也要给一个可引用的编号：一来用户凭它查询和申诉，二来这个编号只有
     # 真的调用了本工具才拿得到 —— 答复里必须引用它，就把「说了」和「做了」
-    # 绑在了一起（README 第三章）。
+    # 绑在了一起（1-architecture 第二章）。
     ctx = runtime.context
     receipt = order_service(ctx).record_denial(
         order_id=order_id,

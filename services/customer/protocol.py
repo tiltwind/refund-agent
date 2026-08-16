@@ -13,7 +13,7 @@ class OrderBrief:
     category: str
     price: float
     signed_days_ago: int
-    """签收距今天数 —— 用相对天数而非绝对时间戳，见 README 6.3。"""
+    """签收距今天数 —— 用相对天数而非绝对时间戳，见 2-design 3.3。"""
     refunded: bool
 
 
@@ -31,5 +31,5 @@ class CustomerProfile:
 
 class CustomerService(Protocol):
     def get_profile(self, customer_id: str) -> CustomerProfile:
-        """查询客户档案。归属校验由下游服务自己做（README 4.6）。"""
+        """查询客户档案。归属校验由下游服务自己做（2-design 1.6）。"""
         ...

@@ -1,5 +1,5 @@
 # v1 版本元信息 —— 随 trace 上报，是评估归因的关键：
-# 线上指标掉了，要能立刻回答「是哪次发版引起的」（README 8.2）。
+# 线上指标掉了，要能立刻回答「是哪次发版引起的」（2-design 5.2）。
 agent_version: v1
 prompt_version: v1.0.0
 model: anthropic:claude-sonnet-5

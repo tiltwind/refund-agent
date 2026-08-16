@@ -1,13 +1,13 @@
 """v1 演示入口 —— 客户档案与订单走 eval 数据源，政策检索走真实 Milvus。
 
-    bash scripts/milvus.sh start       # 启 Milvus 2.5+，见 doc/rag/milvus-service.md
+    bash scripts/milvus.sh start       # 启 Milvus 2.5+，见 doc/platform/milvus.md
     python knowledge/seed_milvus.py    # 切片 doc/policy/ 并灌库（只需一次）
     python main.py                     # 需要 ANTHROPIC_API_KEY
 
 想看检索链路每一步的中间产物（改写→路由→过滤→召回融合→重排→装配），
 加 REFUND_AGENT_RAG_TRACE=on。
 
-真正的服务入口是 app/main.py（FastAPI + 认证中间件，README 4.3），v1 还没写 ——
+真正的服务入口是 app/main.py（FastAPI + 认证中间件，2-design 1.3），v1 还没写 ——
 先用这个脚本把「查客户 → 查政策 → 判资格 → 落库 → 答复」这条链路跑通，
 它和线上走的是**同一份工具代码、同一条代码路径**，区别只在入口注入的 context。
 """
@@ -22,13 +22,13 @@ def run_case(title: str, customer_id: str, request_id: str, message: str) -> Non
     print(f"\n{'=' * 70}\n场景：{title}\n用户（{customer_id}）：{message}\n{'-' * 70}")
 
     # 线上这个 context 由认证中间件从网关注入的 header 构造；这里由演示脚本
-    # 直接构造。request_source 只能由服务端决定，绝不能来自请求体（README 9.3）。
+    # 直接构造。request_source 只能由服务端决定，绝不能来自请求体（2-design 6.3）。
     ctx = RefundContext(
         customer_id=customer_id,
         actor="self",
         request_id=request_id,
         # 演示脚本每个场景各跑一轮、互不相干，因此 session 与 request 一一对应；
-        # 多轮对话下这里应该是会话 ID，同一通会话的每轮共用一个（README 8.2）。
+        # 多轮对话下这里应该是会话 ID，同一通会话的每轮共用一个（2-design 5.2）。
         session_id=request_id,
         request_source="eval",
     )
@@ -86,7 +86,7 @@ def main() -> None:
     )
 
     # 审计视角复盘所有终局动作。缺 actor 和 request_id 的流水事后追不到人、
-    # 对不上链路（README 第七章）。
+    # 对不上链路（2-design 第四章）。
     print(f"\n{'=' * 70}\n决策流水\n{'-' * 70}")
     for row in eval_store.decision_log():
         print(
