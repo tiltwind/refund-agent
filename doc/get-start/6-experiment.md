@@ -1,6 +1,6 @@
-# 5 · 跑实验与读报告
+# 6 · 跑实验与读报告
 
-本篇以实验 `ex-1`（数据集 `d1`，27 条用例，`agent/v1`）为例，说明跑批、评分、报告、人工检查和问题归因。数据集与评分规则见 [4 · 数据集与指标](https://tiltwind.github.io/refund-agent/doc/get-start/4-dataset.md)。
+本篇以实验 `ex-1`（数据集 `d1`，27 条用例，`agent/v1`）为例，说明跑批、评分、报告、人工检查和问题归因。数据集与评分规则见 [5 · 数据集与指标](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md)。
 
 | 产物 | 位置 | 作用 |
 |---|---|---|
@@ -88,11 +88,11 @@ client.flush()                                          # 短命脚本不 flush 
 |---|---|---|
 | 数据隔离 | 每条用例 `eval_store.begin_session()` 起一份独立数据副本 | `execute_refund` 会把 `order["refunded"]` 置 True，并发跑批互相污染 |
 | 多轮上下文 | `history = result["messages"]` 累积后进下一轮 | 第二轮接不上第一轮，多轮用例全成了单轮 |
-| 痕迹采集 | 只取本轮新增的 messages 与新增流水，压成[判分要的四样东西](https://tiltwind.github.io/refund-agent/doc/get-start/4-dataset.md#51-判分只看这四样东西) | 拿全量会把上一轮的工具调用算进这一轮 |
+| 痕迹采集 | 只取本轮新增的 messages 与新增流水，压成[判分要的四样东西](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md#51-判分只看这四样东西) | 拿全量会把上一轮的工具调用算进这一轮 |
 | 执行失败 | `try/except` 单独返回 `error`，判分时记 `run_error` 而非静默判 0 | 环境故障被读成 Agent 退化 |
 | 重放用例 | 按 `run.repeat` 连跑，只取第一遍的 turns 判分，流水行数与单号单独判 | 第二遍的痕迹混进来，落库断言必然挂 |
 
-`_score_turn(actual, expected)` 返回 `{指标: (分数, 说明)}`，判据见 [4 · 五](https://tiltwind.github.io/refund-agent/doc/get-start/4-dataset.md#五评分规则)。说明写入 Langfuse comment，包括缺失工具和实际调用序列。
+`_score_turn(actual, expected)` 返回 `{指标: (分数, 说明)}`，判据见 [5 · 五](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md#五评分规则)。说明写入 Langfuse comment，包括缺失工具和实际调用序列。
 
 ### 2.1 结果落盘
 
@@ -224,7 +224,7 @@ ex-1 保留四条：一条全指标通过、两条多轮评分失败、一条 SO
 
 ## 六、指标缺口
 
-对照 [4 · 4.3 的验收口径映射表](https://tiltwind.github.io/refund-agent/doc/get-start/4-dataset.md#43-验收口径--指标覆盖是不均匀的)与打分器实现，缺口分为 P0 和 P1。
+对照 [5 · 4.3 的验收口径映射表](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md#43-验收口径--指标覆盖是不均匀的)与打分器实现，缺口分为 P0 和 P1。
 
 ### 6.1 P0：漏判真实缺陷
 
@@ -277,4 +277,4 @@ P0 子集运行 k=3，报告 `pass^k` 和不稳定用例。
 
 先完成 1、2，避免证据重复和错误 metadata 影响后续 run 的可比性。3 修改 Agent，4 修改评分规则，分开执行以便归因。
 
-后续补充版本对比自动化（`evals/compare.py`，同集运行 v1/v2 并逐条 diff）和线上监控（复用不依赖标注的三个指标，见 [4 · 5.4](https://tiltwind.github.io/refund-agent/doc/get-start/4-dataset.md#54-从轮到用例从用例到-run)）。设计见 [2 · 设计 · 6.2 / 6.4](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md#六持续评估闭环)。
+后续补充版本对比自动化（`evals/compare.py`，同集运行 v1/v2 并逐条 diff）和线上监控（复用不依赖标注的三个指标，见 [5 · 5.4](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md#54-从轮到用例从用例到-run)）。设计见 [2 · 设计 · 6.2 / 6.4](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md#六持续评估闭环)。

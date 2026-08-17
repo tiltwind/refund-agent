@@ -1,6 +1,6 @@
 # 1 · 架构：组件、链路与目录
 
-本文说明组件边界、请求链路和目录结构。业务口径见 [0 · 需求](https://tiltwind.github.io/refund-agent/doc/get-start/0-requirement.md)，设计取舍见 [2 · 设计](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md)，搭建步骤见 [3 · 实现](https://tiltwind.github.io/refund-agent/doc/get-start/3-impl.md)。
+本文说明组件边界、请求链路和目录结构。业务口径见 [0 · 需求](https://tiltwind.github.io/refund-agent/doc/get-start/0-requirement.md)，设计取舍见 [2 · 设计](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md)，搭建步骤见 [3 · 政策知识库](https://tiltwind.github.io/refund-agent/doc/get-start/3-rag.md) 与 [4 · 装配 Agent](https://tiltwind.github.io/refund-agent/doc/get-start/4-agent.md)。
 
 ---
 
@@ -276,6 +276,6 @@ refund-agent/
 > v1 已落地的是 `agent/v1`、`services/`、`llm/`、`knowledge/`、`doc/policy/`、两个入口脚本，
 > 以及 `evals/` 下的用例集 `dataset/d1` 与自检脚本 `validate_cases.py`；
 > `app/main.py`、`app/middleware/`、`agent/v2/`、`evals/` 的跑批与打分（`offline` / `compare` / `online`）仍是规划。
-> 逐步搭出已落地那部分的过程见 [3 · 实现](https://tiltwind.github.io/refund-agent/doc/get-start/3-impl.md)。
+> 逐步搭出已落地那部分的过程见 [3 · 政策知识库](https://tiltwind.github.io/refund-agent/doc/get-start/3-rag.md) 与 [4 · 装配 Agent](https://tiltwind.github.io/refund-agent/doc/get-start/4-agent.md)。
 
 **四个目录的边界**：`agent/` 是会变的部分（提示词、流程、工具描述），版本化；`services/` 是稳定的部分（下游能力契约），跨版本共享；`knowledge/` 是业务语料（政策条款原文），与 Agent 版本无关，改版走灌库而不是改代码；`evals/` 消费前三者——用同一套 eval 数据、同一个政策 collection 跑不同 agent 版本，这就是对比实验成立的前提。

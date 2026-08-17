@@ -2,7 +2,7 @@
 
 本文记录身份、工具、数据源、幂等、可观测和评估的设计。模型负责理解诉求和组织答复；确定性系统负责流程、判定和执行。
 
-相关文档：[0 · 需求](https://tiltwind.github.io/refund-agent/doc/get-start/0-requirement.md)、[1 · 架构](https://tiltwind.github.io/refund-agent/doc/get-start/1-architecture.md)、[3 · 实现](https://tiltwind.github.io/refund-agent/doc/get-start/3-impl.md)。
+相关文档：[0 · 需求](https://tiltwind.github.io/refund-agent/doc/get-start/0-requirement.md)、[1 · 架构](https://tiltwind.github.io/refund-agent/doc/get-start/1-architecture.md)、[3 · 政策知识库](https://tiltwind.github.io/refund-agent/doc/get-start/3-rag.md) 与 [4 · 装配 Agent](https://tiltwind.github.io/refund-agent/doc/get-start/4-agent.md)。
 
 ---
 

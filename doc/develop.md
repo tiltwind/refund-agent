@@ -26,7 +26,7 @@ bash run-main.sh                   # 跑三个演示场景
 bash run-main.sh --trace           # 额外打印检索链路每一步的中间产物
 ```
 
-首次运行会下载约 4.4 GB 的本地嵌入与重排权重。完整步骤与验收标准见 [3 · 实现](doc/get-start/3-impl.md)。
+首次运行会下载约 4.4 GB 的本地嵌入与重排权重。完整步骤与验收标准见 [3 · 政策知识库](doc/get-start/3-rag.md) 与 [4 · 装配 Agent](doc/get-start/4-agent.md)。
 
 ## 当前进度
 
@@ -36,4 +36,4 @@ bash run-main.sh --trace           # 额外打印检索链路每一步的中间�
 
 规划中：`app/main.py` 服务外壳与认证中间件、人工审批、`services/*/prod.py` 下游接入、`evals/` 的跑批与打分、
 `agent/v2` 与灰度路由。取舍见 [2 · 设计](doc/get-start/2-design.md)，落点见
-[3 · 实现](doc/get-start/3-impl.md) 第十五节。
+[4 · 装配 Agent](doc/get-start/4-agent.md) 第八节。

@@ -1,6 +1,6 @@
-# 4 · 准备数据集与制定指标
+# 5 · 准备数据集与制定指标
 
-本篇以数据集 `d1` 为例，说明用例格式、设计约束和评分规则。实验运行与报告见 [5 · 跑实验](https://tiltwind.github.io/refund-agent/doc/get-start/5-experiment.md)，整体设计见 [2 · 设计 · 六](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md#六持续评估闭环)。
+本篇以数据集 `d1` 为例，说明用例格式、设计约束和评分规则。实验运行与报告见 [6 · 跑实验](https://tiltwind.github.io/refund-agent/doc/get-start/6-experiment.md)，整体设计见 [2 · 设计 · 六](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md#六持续评估闭环)。
 
 ---
 
@@ -249,7 +249,7 @@ Langfuse item id 使用 `case_id`。重复推送时按 id 更新，不新增副�
 | 幂等：同一 `request_id` 不重复打款 | `idempotent_replay` | 完整 |
 | 自动闭环率 ≥ 70% | 无 | 无指标 |
 
-未完整覆盖的项目及补充优先级见 [5 · 跑实验 · 六](https://tiltwind.github.io/refund-agent/doc/get-start/5-experiment.md#六指标缺口)。
+未完整覆盖的项目及补充优先级见 [6 · 跑实验 · 六](https://tiltwind.github.io/refund-agent/doc/get-start/6-experiment.md#六指标缺口)。
 
 ---
 
