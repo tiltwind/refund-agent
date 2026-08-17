@@ -2,7 +2,7 @@
 
 [3 · 政策知识库](https://tiltwind.github.io/refund-agent/doc/get-start/3-rag-impl.md)里的 RRF `k=20`、重排权重 `0.80 / 0.20`、`MIN_SCORE=0.30`、法规层 `0.5` 降权都是初始值，校准它们需要一个标注集。本篇建这个标注集 `r1`：样本怎么造、怎么校验、绑定哪些版本。
 
-> 本篇为设计稿，代码尚未实现。待建产物见[第十节](#十待建产物)。
+> 产物清单与当前实现见[第十节](#十产物)。
 
 ---
 
@@ -57,7 +57,7 @@ ID 级 Recall 的真值是「这条 query 的全部相关块」。人工穷举�
         └─ LLM 生成 → { query, reference_answer }
               └─ 自动校验（重叠率 / 可溯源 / ID 存在）
                     └─ 人工抽检 10%
-                          └─ evals/dataset/r1/cases.jsonl
+                          └─ rag/datasets/r1/cases.jsonl
 ```
 
 正向是先写 query 再找答案块，仍然要人工穷举。反向从块出发，`seed_chunk_id` 在生成时就确定，零标注成本拿到一个必定正确的 ground truth。这个 ID 不完整（不是全部相关块），但它必定为真，作为 Recall 的下界可靠。
@@ -227,14 +227,22 @@ Context Relevance 不在表里，它不需要任何标注字段，只看检回�
 
 ---
 
-## 十、待建产物
+## 十、产物
 
 | 产物 | 位置 | 作用 |
 |---|---|---|
-| 生成脚本 | `evals/dataset/r1/generate.py` | 分层抽样 + 反向生成 + 重叠率计算 |
-| 用例集 | `evals/dataset/r1/cases.jsonl` | 检索评测的单一事实源 |
-| 数据集说明 | `evals/dataset/r1/README.md` | 绑定关系、分层结果、抽检记录 |
-| 自检脚本 | `evals/validate_retrieval_cases.py` | 第八节的五项检查，不调模型 |
-| 推送脚本 | 复用 [`push_dataset.py`](https://github.com/tiltwind/refund-agent/blob/main/evals/push_dataset.py) | 加 `--dataset r1`，`input` 放 query，`expected_output` 放种子块与参考答案 |
+| 生成脚本 | [`rag/evals/generate_cases.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/evals/generate_cases.py) | 分层抽样 + 反向生成 + 重叠率计算 |
+| 用例集 | [`rag/datasets/r1/cases.jsonl`](https://github.com/tiltwind/refund-agent/blob/main/rag/datasets/r1/cases.jsonl) | 检索评测的单一事实源，102 条 |
+| 数据集说明 | [`rag/datasets/r1/README.md`](https://github.com/tiltwind/refund-agent/blob/main/rag/datasets/r1/README.md) | 绑定关系、分层结果、抽检记录 |
+| 自检脚本 | [`rag/evals/validate_cases.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/evals/validate_cases.py) | 第八节的五项检查，不调模型 |
+| 推送脚本 | [`rag/evals/push_dataset.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/evals/push_dataset.py) | `input` 放 query，`expected_output` 放种子块与参考答案 |
 
-生成脚本要能重复跑且结果稳定：固定随机种子、按 `chunk_id` 排序后抽样、生成温度设 0。否则每次跑出来的数据集不同，版本间的分数没法比。
+```bash
+python rag/evals/generate_cases.py --dry-run   # 只看抽样结果，不调模型
+python rag/evals/generate_cases.py             # 生成 rag/datasets/r1/cases.jsonl
+python rag/evals/validate_cases.py             # 第八节的五项检查
+```
+
+生成脚本重复跑，抽样稳定：随机种子固定、按 `chunk_id` 排序后抽样、生成温度设 0。稳定的是抽到哪些种子块，query 的措辞仍由模型给，两次生成会有细微出入 —— 要用重跑的结果覆盖已有样本，先确认这一版的抽检结论还成不成立。
+
+语料从 collection 读，脚本不再切一遍：`chunk_id` 由切片位置派生，脚本自己切等于在库外维护第二份切片产物，参数一改两边悄悄错开，生成时看着对、评测时全线判负。
