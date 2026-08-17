@@ -5,14 +5,14 @@
 """
 
 from app.context import RefundContext
+from rag.retrieving.milvus import MilvusRagService
+from rag.retrieving.protocol import RagService
 from services.customer.eval import EvalCustomerService
 from services.customer.prod import ProdCustomerService
 from services.customer.protocol import CustomerService
 from services.order.eval import EvalOrderService
 from services.order.prod import ProdOrderService
 from services.order.protocol import OrderService
-from services.rag.milvus import MilvusRagService
-from services.rag.protocol import RagService
 from services.rule.eval import EvalRuleService
 from services.rule.prod import ProdRuleService
 from services.rule.protocol import RuleService

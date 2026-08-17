@@ -1,7 +1,7 @@
 """对话模型接入 —— 供应商与模型名的唯一解析处。
 
 项目里有两处要调对话模型：Agent 主循环（agent/v1/graph.py）和检索链路的查询改写
-（services/rag/pipeline/rewrite.py）。两处各自 `os.getenv` 拼模型名，很快就会漂移成
+（rag/retrieving/pipeline/rewrite.py）。两处各自 `os.getenv` 拼模型名，很快就会漂移成
 「主模型换了供应商、改写还在打另一家的端点」——所以解析只做一次，放这里。
 
 ## 选哪家

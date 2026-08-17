@@ -12,7 +12,7 @@ RefundAgent 的判定依据来自 `doc/policy/` 下的 16 篇政策文档。本�
 doc/policy/*.md
   └─ 切片（父子块）→ Milvus collection（dense 稠密 + sparse BM25）
                                     ↑
-用户问句 ─→ search_refund_policy → services/rag/milvus.py
+用户问句 ─→ search_refund_policy → rag/retrieving/milvus.py
               1 改写 → 2 路由 → 3 过滤 → 4 召回融合 → 5 重排 → 6 装配
            └─ 政策条款（正文 / 来源 / 生效日期 / 层级 / 相关性分数）
 ```
@@ -24,30 +24,13 @@ doc/policy/*.md
 | 1 | 环境与依赖 | ✅ import 得动就算过 |
 | 2 | `doc/policy/` 政策语料 | ✅ frontmatter 解析 |
 | 3 | `llm/` 模型层（嵌入 / 重排 / 对话） | ✅ 编码一句话、打一次分 |
-| 4 | `knowledge/chunking/` 切片 | ✅ 打印块数与 token 分布 |
-| 5 | Milvus + `knowledge/seed_milvus.py` 灌库 | ✅ collection 行数 |
-| 6 | `services/rag/` 六步检索链路 | ✅ 单跑一次检索看 top-k |
-
-每完成一层先独立验证，再接入上层。本篇止于第 6 步。
+| 4 | `rag/chunking/` 切片 | ✅ 打印块数与 token 分布 |
+| 5 | Milvus + `rag/index/seed_milvus.py` 灌库 | ✅ collection 行数 |
+| 6 | `rag/retrieving/` 六步检索链路 | ✅ 单跑一次检索看 top-k |
 
 ---
 
-## 二、前置条件
-
-| 项 | 要求 | 说明 |
-|---|---|---|
-| Python | 3.10+ | `match` 语句与 `X \| None` 类型标注要用 |
-| Docker | 任意近版 | 只用来跑 Milvus standalone |
-| 磁盘 | ≈ 5 GB | BGE-M3（约 2.2 GB）+ bge-reranker-v2-m3（约 2.2 GB）权重 |
-| 模型凭据 | 二选一 | `ANTHROPIC_API_KEY`，或 `OPENAI_API_KEY` + `OPENAI_BASE_URL` + `OPENAI_MODEL`（DeepSeek / Qwen / vLLM / one-api 都走这条） |
-| Langfuse | 可选 | 不配则埋点静默关闭，链路照常跑 |
-
-嵌入与重排**跑在本地**，不消耗 API 额度，CPU 亦可运行。Apple Silicon 走 mps，NVIDIA 走 cuda，
-选择顺序固定在 [`llm/device.py`](https://github.com/tiltwind/refund-agent/blob/main/llm/device.py)，不做成配置项。
-
----
-
-## 三、第 1 步 · 环境与依赖
+## 二、第 1 步 · 环境与依赖
 
 ```bash
 git clone https://github.com/tiltwind/refund-agent.git
@@ -80,7 +63,7 @@ python -c "import langchain, langgraph, pymilvus, torch, transformers, yaml; pri
 
 ---
 
-## 四、第 2 步 · 政策语料 `doc/policy/`
+## 三、第 2 步 · 政策语料 `doc/policy/`
 
 `doc/policy/` 下的 Markdown 是政策语料的唯一来源。
 
@@ -115,7 +98,7 @@ tags: [退货窗口, 无理由退货, 商品条件, 高风险账户]
 
 ---
 
-## 五、第 3 步 · 模型层 `llm/`
+## 四、第 3 步 · 模型层 `llm/`
 
 四个文件，与业务无关，被灌库、检索、Agent 三条链路共用。
 
@@ -167,16 +150,16 @@ print(m.score('签收10天的耳机未拆封还能无理由退吗？',
 
 ---
 
-## 六、第 4 步 · 切片 `knowledge/chunking/`
+## 五、第 4 步 · 切片 `rag/chunking/`
 
 把 16 篇 Markdown 变成可入库的父子块。四个文件：
 
 | 文件 | 职责 |
 |---|---|
-| [`model.py`](https://github.com/tiltwind/refund-agent/blob/main/knowledge/chunking/model.py) | `DocMeta` / `Chunk`；块头拼什么 |
-| [`markdown.py`](https://github.com/tiltwind/refund-agent/blob/main/knowledge/chunking/markdown.py) | frontmatter + 标题树 + 段落/表格/代码 |
-| [`semantic.py`](https://github.com/tiltwind/refund-agent/blob/main/knowledge/chunking/semantic.py) | 超长自然段的语义切分兜底 |
-| [`policy.py`](https://github.com/tiltwind/refund-agent/blob/main/knowledge/chunking/policy.py) | 编排 + 参数（320 / 512 / overlap=0） |
+| [`model.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/chunking/model.py) | `DocMeta` / `Chunk`；块头拼什么 |
+| [`markdown.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/chunking/markdown.py) | frontmatter + 标题树 + 段落/表格/代码 |
+| [`semantic.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/chunking/semantic.py) | 超长自然段的语义切分兜底 |
+| [`policy.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/chunking/policy.py) | 编排 + 参数（320 / 512 / overlap=0） |
 
 流程：
 
@@ -194,7 +177,7 @@ frontmatter 解析 → 按标题层级切 → 父块 = 一个 ## 小节（一章
 
 ```python
 from pathlib import Path
-from knowledge.chunking import chunk_document
+from rag.chunking import chunk_document
 from llm.embedding import embedder
 
 root = Path('.').resolve(); m = embedder(); total = []
@@ -211,7 +194,7 @@ print(m.truncation_report([c.text for c in total]))
 
 ---
 
-## 七、第 5 步 · 向量库与灌库
+## 六、第 5 步 · 向量库与灌库
 
 ### 起 Milvus
 
@@ -232,7 +215,7 @@ bash scripts/milvus.sh status
 
 ### 建表与灌库
 
-[`knowledge/seed_milvus.py`](https://github.com/tiltwind/refund-agent/blob/main/knowledge/seed_milvus.py) 一个脚本做三件事：切片、建表、灌库。
+[`rag/index/seed_milvus.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/index/seed_milvus.py) 一个脚本做三件事：切片、建表、灌库。
 
 schema 上有四个要点：
 
@@ -255,7 +238,7 @@ index.add_index(field_name="sparse", index_type="SPARSE_INVERTED_INDEX", metric_
 中文 BM25 必须设置 `analyzer_params={"type": "chinese"}`。`max_length` 的单位是字节；日期存为 `YYYY-MM-DD`，可直接用于过滤表达式。
 
 ```bash
-python knowledge/seed_milvus.py
+python rag/index/seed_milvus.py
 ```
 
 脚本默认 drop 后重建，仅用于本地环境。线上按版本新建 collection，再灰度切换。
@@ -263,7 +246,7 @@ python knowledge/seed_milvus.py
 **验证**：
 
 ```python
-from services.rag import store
+from rag.retrieving import store
 print(store.COLLECTION, store.client().get_collection_stats(store.COLLECTION))
 ```
 
@@ -271,20 +254,20 @@ print(store.COLLECTION, store.client().get_collection_stats(store.COLLECTION))
 
 ---
 
-## 八、第 6 步 · 检索链路 `services/rag/`
+## 七、第 6 步 · 检索链路 `rag/retrieving/`
 
 一次 `search_refund_policy` 内部有六次数据形变，各占一个文件：
 
 | 步骤 | 文件 | 做什么 | 出错的表现 |
 |---|---|---|---|
-| 1 改写 | [`pipeline/rewrite.py`](https://github.com/tiltwind/refund-agent/blob/main/services/rag/pipeline/rewrite.py) | 拆多意图、判断要不要法规层，**输出自然语言问句** | 检索到的完全是另一类问题的条款 |
-| 2 路由 | [`pipeline/route.py`](https://github.com/tiltwind/refund-agent/blob/main/services/rag/pipeline/route.py) | 平台层 / 法规层各给多少名额与权重 | 该引平台条款却引了法条 |
-| 3 过滤 | [`pipeline/filters.py`](https://github.com/tiltwind/refund-agent/blob/main/services/rag/pipeline/filters.py) | 生效日期 + 层级，**只做硬约束** | 明明有条款却一条没召回 |
-| 4 召回融合 | [`pipeline/recall.py`](https://github.com/tiltwind/refund-agent/blob/main/services/rag/pipeline/recall.py) | 稠密 + BM25 双路 → RRF（k=20） | 召回了但排名靠后 |
-| 5 重排 | [`pipeline/rerank.py`](https://github.com/tiltwind/refund-agent/blob/main/services/rag/pipeline/rerank.py) | cross-encoder + 层级/文档先验 | 候选里有正确答案但没顶上来 |
-| 6 装配 | [`pipeline/assemble.py`](https://github.com/tiltwind/refund-agent/blob/main/services/rag/pipeline/assemble.py) | 父块回填 + 去重 + 相邻合并 + 预算截断 | 上下文里有证据但答复没用上 |
+| 1 改写 | [`pipeline/rewrite.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/pipeline/rewrite.py) | 拆多意图、判断要不要法规层，**输出自然语言问句** | 检索到的完全是另一类问题的条款 |
+| 2 路由 | [`pipeline/route.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/pipeline/route.py) | 平台层 / 法规层各给多少名额与权重 | 该引平台条款却引了法条 |
+| 3 过滤 | [`pipeline/filters.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/pipeline/filters.py) | 生效日期 + 层级，**只做硬约束** | 明明有条款却一条没召回 |
+| 4 召回融合 | [`pipeline/recall.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/pipeline/recall.py) | 稠密 + BM25 双路 → RRF（k=20） | 召回了但排名靠后 |
+| 5 重排 | [`pipeline/rerank.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/pipeline/rerank.py) | cross-encoder + 层级/文档先验 | 候选里有正确答案但没顶上来 |
+| 6 装配 | [`pipeline/assemble.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/pipeline/assemble.py) | 父块回填 + 去重 + 相邻合并 + 预算截断 | 上下文里有证据但答复没用上 |
 
-编排位于 [`milvus.py`](https://github.com/tiltwind/refund-agent/blob/main/services/rag/milvus.py)，Milvus 存取封装位于 [`store.py`](https://github.com/tiltwind/refund-agent/blob/main/services/rag/store.py)。collection 名和字段只在 `store.py` 定义。
+编排位于 [`milvus.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/milvus.py)，Milvus 存取封装位于 [`store.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/store.py)。collection 名和字段只在 `store.py` 定义。
 
 改写输出自然语言问句。召回同时使用 BM25 和稠密向量，分别覆盖精确词项和语义匹配；RRF 融合在应用层完成，各路排名记进 trace。
 
@@ -300,12 +283,12 @@ print(store.COLLECTION, store.client().get_collection_stats(store.COLLECTION))
 **验证**：
 
 ```python
-from services.rag.milvus import MilvusRagService
+from rag.retrieving.milvus import MilvusRagService
 for s in MilvusRagService().search_policy('金牌会员签收 10 天的耳机未拆封，无理由退货还在窗口期内吗？'):
     print(round(s.score, 3), s.section)
 ```
 
 期望 top-1 命中 P02 的退货窗口条款。
 
-> 权重（`0.80` 相关性 / `0.20` 先验）、阈值（`MIN_SCORE=0.30`）、RRF 的 `k=20`、法规层 `0.5` 降权——
-> 这些参数需要用 query → section 标注集校准。
+> 权重（`0.80` 相关性 / `0.20` 先验）、阈值（`MIN_SCORE=0.30`）、RRF 的 `k=20`、法规层 `0.5` 降权
+> 目前都是初始值，需要用 query → section 标注集校准。

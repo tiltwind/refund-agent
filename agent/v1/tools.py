@@ -11,9 +11,9 @@ customer_id 和 request_id 由此进入工具，模型看不见也改不了。
 from langchain.tools import ToolRuntime, tool
 
 from app.context import RefundContext
+from rag.retrieving.protocol import PolicySection
 from services.customer.protocol import CustomerProfile
 from services.factory import customer_service, order_service, rag_service, rule_service
-from services.rag.protocol import PolicySection
 
 # 规则引擎认的取值 —— 与 docstring 保持一致，但**由代码强制**。
 # docstring 对模型只是建议：模型给 item_condition 填过「未使用」，引擎当成

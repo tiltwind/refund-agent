@@ -1,6 +1,6 @@
-# 4 · 装配 RefundAgent v1
+# 6 · 装配 RefundAgent v1
 
-接着 [3 · 政策知识库](https://tiltwind.github.io/refund-agent/doc/get-start/3-rag.md) 往上搭：身份上下文、服务接入层、Agent 本体、演示入口和埋点，最后用 `bash run-main.sh` 验证三个退款场景。业务、架构和设计分别见 [0 · 需求](https://tiltwind.github.io/refund-agent/doc/get-start/0-requirement.md)、[1 · 架构](https://tiltwind.github.io/refund-agent/doc/get-start/1-architecture.md) 和 [2 · 设计](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md)。
+接着 [3 · 政策知识库](https://tiltwind.github.io/refund-agent/doc/get-start/3-rag-impl.md) 往上搭：身份上下文、服务接入层、Agent 本体、演示入口和埋点，最后用 `bash run-main.sh` 验证三个退款场景。业务、架构和设计分别见 [0 · 需求](https://tiltwind.github.io/refund-agent/doc/get-start/0-requirement.md)、[1 · 架构](https://tiltwind.github.io/refund-agent/doc/get-start/1-architecture.md) 和 [2 · 设计](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md)。
 
 ---
 
@@ -13,7 +13,7 @@
   └─ RefundContext（customer_id / request_id / request_source）—— 演示脚本直接构造，线上由认证中间件注入
      └─ Agent Loop（五步 SOP 写死在系统提示里）
         ├─ get_customer_info        → services/customer/eval.py   → evals/data/customers.json
-        ├─ search_refund_policy     → services/rag/milvus.py      → Milvus（六步检索链路）
+        ├─ search_refund_policy     → rag/retrieving/milvus.py      → Milvus（六步检索链路）
         ├─ check_refund_eligibility → services/rule/eval.py       → 规则引擎副本
         └─ execute_refund / record_refund_denial → 落决策流水，返回单号
      └─ 答复（必须写明单号）

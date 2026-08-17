@@ -1,7 +1,7 @@
 """Milvus 存取的薄封装 —— collection 常量、连接单例、三种取数方式。
 
 放在这里而不是散落在 pipeline/ 各步里，是为了让「collection 长什么样」
-只有一个定义点：灌库脚本（knowledge/seed_milvus.py）和检索链路都从这里拿
+只有一个定义点：灌库脚本（rag/index/seed_milvus.py）和检索链路都从这里拿
 COLLECTION 与字段列表，改字段时不会漏改一边。
 """
 
@@ -85,7 +85,7 @@ def search_bm25(query: str, expr: str, limit: int) -> list[dict]:
 def fetch_parent(parent_id: str) -> list[dict]:
     """取一个父块的全部子块，按 chunk_index 升序 —— 装配时拼回原文用。
 
-    父块不单独存储，它就是这些子块的有序拼接（knowledge/chunking/model.py）。
+    父块不单独存储，它就是这些子块的有序拼接（rag/chunking/model.py）。
     """
     rows = client().query(
         collection_name=COLLECTION,

@@ -225,12 +225,12 @@ def get_customer_info(runtime: ToolRuntime[RefundContext]) -> str:
 |---|---|
 | 政策改版、重新灌库 | collection **按版本发布**（`refund_policy_chunks_v3`），评估固定指向某个版本；线上灰度切换，不在原 collection 上原地 drop 重建 |
 | embedding 模型升版本 | 灌库与检索共用同一个 `llm.embedding.embedder()`；模型版本随 `agent_version` 记进 trace，换模型视同一次发版，重跑基线 |
-| 切分参数（块大小 / 父块粒度） | 参数集中在 [`knowledge/chunking/policy.py`](https://github.com/tiltwind/refund-agent/blob/main/knowledge/chunking/policy.py)，与 collection 版本绑定发布；调参后重跑检索基线 |
+| 切分参数（块大小 / 父块粒度） | 参数集中在 [`rag/chunking/policy.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/chunking/policy.py)，与 collection 版本绑定发布；调参后重跑检索基线 |
 | 索引参数（nlist / ef） | 稠密一路用 `FLAT` 精确检索，无此类参数 |
-| 查询改写的 LLM 抖动 | 改写模型固定版本、温度 0，改写结果记进 trace；`REFUND_AGENT_REWRITE=off` 可整体关闭，见 [`services/rag/pipeline/rewrite.py`](https://github.com/tiltwind/refund-agent/blob/main/services/rag/pipeline/rewrite.py) |
+| 查询改写的 LLM 抖动 | 改写模型固定版本、温度 0，改写结果记进 trace；`REFUND_AGENT_REWRITE=off` 可整体关闭，见 [`rag/retrieving/pipeline/rewrite.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/pipeline/rewrite.py) |
 | collection 空 / 灌库没跑 | 检索返回空时**显式抛错**，不让 Agent 带着「未检索到条款」继续判定 |
 
-回归波动时，先检查 `tool.search_refund_policy` 的返回和六步检索 trace，再检查 Agent。检索另用 query → section 数据集计算 recall@k 和 MRR。CI 需要启动 Milvus 并运行 [`knowledge/seed_milvus.py`](https://github.com/tiltwind/refund-agent/blob/main/knowledge/seed_milvus.py)。
+回归波动时，先检查 `tool.search_refund_policy` 的返回和六步检索 trace，再检查 Agent。检索另用 query → section 数据集计算 recall@k 和 MRR。CI 需要启动 Milvus 并运行 [`rag/index/seed_milvus.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/index/seed_milvus.py)。
 
 ---
 
@@ -465,7 +465,7 @@ agent = registry.select(rollout={"v1": 0.9, "v2": 0.1})
 改写 → 路由 → 过滤 → 召回融合 → 重排 → 装配
 ```
 
-每一步在 [`services/rag/pipeline/`](https://github.com/tiltwind/refund-agent/tree/main/services/rag/pipeline) 下有独立模块：
+每一步在 [`rag/retrieving/pipeline/`](https://github.com/tiltwind/refund-agent/tree/main/rag/retrieving/pipeline) 下有独立模块：
 
 | 步骤 | 做什么 | 出错的表现 |
 |---|---|---|

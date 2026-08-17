@@ -20,20 +20,20 @@ pip install -r requirements.txt
 
 cp .env.example .env               # 填 ANTHROPIC_API_KEY 或 OPENAI_* 三件套
 bash scripts/milvus.sh start       # 启 Milvus 2.5+
-python knowledge/seed_milvus.py    # 切片 doc/policy/ 并灌库（只需一次）
+python rag/index/seed_milvus.py    # 切片 doc/policy/ 并灌库（只需一次）
 
 bash run-main.sh                   # 跑三个演示场景
 bash run-main.sh --trace           # 额外打印检索链路每一步的中间产物
 ```
 
-首次运行会下载约 4.4 GB 的本地嵌入与重排权重。完整步骤与验收标准见 [3 · 政策知识库](doc/get-start/3-rag.md) 与 [4 · 装配 Agent](doc/get-start/4-agent.md)。
+首次运行会下载约 4.4 GB 的本地嵌入与重排权重。完整步骤与验收标准见 [3 · 政策知识库](doc/get-start/3-rag-impl.md) 与 [6 · 装配 Agent](doc/get-start/6-agent-impl.md)。
 
 ## 当前进度
 
-已落地：`agent/v1`（五步 SOP + 5 个工具）、`services/`（客户 / 订单的 eval 数据源 + RAG 六步检索链路）、
-`llm/`（BGE-M3 嵌入 + bge-reranker-v2-m3 重排 + 供应商可切换的对话模型）、`knowledge/`（政策文档切片与灌库）、
+已落地：`agent/v1`（五步 SOP + 5 个工具）、`services/`（客户 / 订单 / 规则的 eval 数据源）、
+`llm/`（BGE-M3 嵌入 + bge-reranker-v2-m3 重排 + 供应商可切换的对话模型）、`rag/`（政策文档切片、灌库与六步检索链路）、
 `services/telemetry.py`（Langfuse 埋点）、`evals/`（[用例集 d1](evals/dataset/d1/README.md) 27 条 + 数据集自检脚本）。
 
 规划中：`app/main.py` 服务外壳与认证中间件、人工审批、`services/*/prod.py` 下游接入、`evals/` 的跑批与打分、
 `agent/v2` 与灰度路由。取舍见 [2 · 设计](doc/get-start/2-design.md)，落点见
-[4 · 装配 Agent](doc/get-start/4-agent.md) 第八节。
+[6 · 装配 Agent](doc/get-start/6-agent-impl.md) 第八节。

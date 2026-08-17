@@ -35,8 +35,8 @@ import os
 from dataclasses import dataclass
 
 from llm.rerank import reranker
-from services.rag.pipeline.recall import Candidate
-from services.rag.pipeline.route import Route
+from rag.retrieving.pipeline.recall import Candidate
+from rag.retrieving.pipeline.route import Route
 
 RELEVANCE_WEIGHT = 0.80
 PRIOR_WEIGHT = 0.20

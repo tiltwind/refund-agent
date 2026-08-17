@@ -19,7 +19,7 @@ overlap = 0
 不如把预算花在块头上（model.py 的 `header`），信息密度高得多。
 
 **为什么父块不单独存**：父块 = 同 parent_id 的子块按序拼接，检索期还原
-（services/rag/pipeline/assemble.py）。overlap = 0 让这个还原是精确的。
+（rag/retrieving/pipeline/assemble.py）。overlap = 0 让这个还原是精确的。
 
 ## 参数
 
@@ -34,9 +34,9 @@ import os
 from collections.abc import Callable
 from pathlib import Path
 
-from knowledge.chunking.markdown import parse_frontmatter, split_blocks, split_sections
-from knowledge.chunking.model import Block, Chunk
-from knowledge.chunking.semantic import semantic_split
+from rag.chunking.markdown import parse_frontmatter, split_blocks, split_sections
+from rag.chunking.model import Block, Chunk
+from rag.chunking.semantic import semantic_split
 
 CHILD_TARGET_TOKENS = int(os.getenv("POLICY_CHUNK_TARGET", "320"))
 CHILD_MAX_TOKENS = int(os.getenv("POLICY_CHUNK_MAX", "512"))
@@ -87,7 +87,7 @@ def _group_by_top_heading(sections: list[Section]) -> list[list[Section]]:
     `###` 的文档，父块会退化成一条条文（子:父 = 1:1），回填拿不到更多上下文。
     这里**不做补救** —— 索引期按大小硬凑父块是在猜哪几条该在一起。真正需要
     上下文时由装配阶段处理：命中的相邻父块在那里按需合并
-    （services/rag/pipeline/assemble.py），合并的依据是「这次确实都命中了」，
+    （rag/retrieving/pipeline/assemble.py），合并的依据是「这次确实都命中了」，
     比索引期的猜测可靠。
     """
     groups: list[list[Section]] = []

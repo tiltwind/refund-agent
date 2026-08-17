@@ -19,7 +19,7 @@
 
 from dataclasses import dataclass
 
-from services.rag.pipeline.rewrite import RetrievalPlan, SubQuery
+from rag.retrieving.pipeline.rewrite import RetrievalPlan, SubQuery
 
 # 每条子查询、每一路（dense / BM25）的召回条数
 PLATFORM_K = 18

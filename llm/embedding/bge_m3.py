@@ -1,10 +1,10 @@
-"""BGE-M3 稠密嵌入 —— 本地跑，灌库（knowledge/）与检索（services/rag/）共用。
+"""BGE-M3 稠密嵌入 —— 本地跑，灌库（rag/index/）与检索（rag/retrieving/）共用。
 
 **为什么只取 dense**：BGE-M3 能同时产出 dense / sparse / colbert 三种表示，
-但本项目的字面匹配一路交给 Milvus 2.5 的原生 BM25（见 knowledge/seed_milvus.py）。
+但本项目的字面匹配一路交给 Milvus 2.5 的原生 BM25（见 rag/index/seed_milvus.py）。
 BM25 有成熟的分词器、可解释的打分、不需要额外加载 sparse_linear 权重，
 在「条款号、金额、`7 天`、`max_idle_conns` 这类精确 term」上正是它的主场。
-两路各司其职，再在应用层显式做 RRF 融合（services/rag/pipeline/recall.py）。
+两路各司其职，再在应用层显式做 RRF 融合（rag/retrieving/pipeline/recall.py）。
 
 **为什么不用 FlagEmbedding / sentence-transformers**：直接用 transformers
 是为了把 pooling 与截断长度摆在明面上。这两件事一旦在灌库与检索之间不一致，
@@ -27,7 +27,7 @@ MAX_LENGTH = int(os.getenv("BGE_M3_MAX_LENGTH", "1024"))
 """输入截断长度。
 
 BGE-M3 标称上限 8192，这里只开到 1024，两个理由：
-1. 子块目标 320 token、硬上限 512（knowledge/chunking/policy.py），1024 是三倍
+1. 子块目标 320 token、硬上限 512（rag/chunking/policy.py），1024 是三倍
    余量，`truncated == 0` 有保证；
 2. 长度外推衰减是真实存在的 —— 标称 8192 不代表在 8192 上的表示质量与 512
    一致，长文本 mean/CLS pooling 后语义会被摊平。开到用不上的长度没有收益，

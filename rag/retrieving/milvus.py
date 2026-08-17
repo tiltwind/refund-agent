@@ -3,7 +3,7 @@
     改写 → 路由 → 过滤 → 召回融合 → 重排 → 装配
 
 每一步在 pipeline/ 下有独立模块，本文件只负责编排和落 trace。
-拆开的理由与各步的取舍见 services/rag/pipeline/__init__.py。
+拆开的理由与各步的取舍见 rag/retrieving/pipeline/__init__.py。
 
 **这一层不按 request_source 分实现**：prod 与 eval 走同一条检索路径、同一个
 collection。理由与代价见 2-design 3.4，一句话：评估用的必须是线上真正会返回的
@@ -17,13 +17,13 @@ collection 按版本发布（MILVUS_COLLECTION 指向固定版本），以及检
 
 import os
 
-from services.rag.pipeline.assemble import assemble
-from services.rag.pipeline.recall import recall
-from services.rag.pipeline.rerank import rerank
-from services.rag.pipeline.rewrite import rewrite
-from services.rag.pipeline.route import route
-from services.rag.protocol import PolicySection, RetrievalTrace
-from services.rag.store import COLLECTION, MILVUS_URI
+from rag.retrieving.pipeline.assemble import assemble
+from rag.retrieving.pipeline.recall import recall
+from rag.retrieving.pipeline.rerank import rerank
+from rag.retrieving.pipeline.rewrite import rewrite
+from rag.retrieving.pipeline.route import route
+from rag.retrieving.protocol import PolicySection, RetrievalTrace
+from rag.retrieving.store import COLLECTION, MILVUS_URI
 
 DEFAULT_TOP_K = int(os.getenv("REFUND_AGENT_POLICY_K", "4"))
 """装配后注入上下文的证据块数（每块是一个回填后的完整小节，不是一个子块）。"""
@@ -67,7 +67,7 @@ class MilvusRagService:
         if not candidates:
             raise RuntimeError(
                 f"policy collection「{COLLECTION}」检索不到任何生效条款"
-                f"（uri={MILVUS_URI}）；请先执行 python knowledge/seed_milvus.py 灌库"
+                f"（uri={MILVUS_URI}）；请先执行 python rag/index/seed_milvus.py 灌库"
             )
 
         # 5 · 重排：cross-encoder + 层级/文档先验

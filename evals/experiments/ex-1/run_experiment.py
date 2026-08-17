@@ -6,7 +6,7 @@
     python evals/experiments/ex-1/run_experiment.py -v                    # 逐轮打印工具链和答复
     python evals/experiments/ex-1/run_experiment.py --agent v1 --run-name v1-$(git rev-parse --short HEAD)
 
-前置：Milvus 起着并已灌库（`bash scripts/milvus.sh start` + `python knowledge/seed_milvus.py`），
+前置：Milvus 起着并已灌库（`bash scripts/milvus.sh start` + `python rag/index/seed_milvus.py`），
 `.env` 里配好模型与 Langfuse 密钥，数据集已推上去（`python evals/push_dataset.py`）。
 
 **执行必须在本地**：Langfuse UI 跑不了 LangGraph 的图和这六个工具，它只负责收 trace、

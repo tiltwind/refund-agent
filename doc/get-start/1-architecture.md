@@ -34,7 +34,6 @@ flowchart TD
 
     subgraph SvcLayer["服务接入层 services/"]
         direction TB
-        SR["rag/<br/>政策检索<br/>（不分数据源）"]
         SC["customer/<br/>客户档案"]
         SU["rule/<br/>资格判定"]
         SO["order/<br/>退款执行"]
@@ -42,6 +41,12 @@ flowchart TD
         SC --> SRC
         SU --> SRC
         SO --> SRC
+    end
+
+    subgraph RagLayer["政策知识库 rag/"]
+        direction TB
+        SR["retrieving/<br/>六步检索链路<br/>（不分数据源）"]
+        IDX["chunking/ + index/<br/>离线切片与灌库"]
     end
 
     subgraph VectorDB["向量库 · prod 与 eval 共用"]
@@ -69,6 +74,7 @@ flowchart TD
     Tools -->|"④ 执行退款 / 记录拒绝"| SO
 
     SR -->|"prod / eval 同一条路径"| KB
+    IDX -.->|"离线灌库 doc/policy/"| KB
     SRC -->|"prod"| USER
     SRC -->|"prod"| RULE
     SRC -->|"prod"| ORDER
@@ -95,7 +101,8 @@ flowchart TD
 | 认证中间件 | 读网关注入的身份 header → 类型化 `RefundContext`；**不重复验签**，缺 header 直接 401 | 验签、授权判定 |
 | Agent Loop | 编排工具调用、管理对话状态 | 业务规则 |
 | 工具层 | schema ↔ 业务动作的双向翻译 | 业务规则、授权判定、协议细节 |
-| **服务接入层** | 下游能力的统一入口；客户档案、资格判定与退款执行按 `request_source` 选择 prod / eval 实现，政策检索不分数据源 | 业务规则 |
+| **服务接入层** | 下游能力的统一入口；客户档案、资格判定与退款执行按 `request_source` 选择 prod / eval 实现 | 业务规则、政策检索 |
+| **政策知识库** | `doc/policy/` 的切片灌库与六步检索链路；不分数据源，prod / eval 同一条路径 | 业务规则、下游数据 |
 | Milvus 向量库 | 政策条款混合检索（稠密 + BM25）+ 生效日期过滤；**prod 与 eval 共用同一 collection** | — |
 | 用户服务 | 客户档案（**自己做归属校验**） | — |
 | 规则服务 | **退款规则引擎**：窗口、风控、类目黑名单、商品条件 | 订单数据的存储、资金动作 |
@@ -208,11 +215,20 @@ refund-agent/
 │   │   ├── protocol.py           # RuleService 接口 + EligibilityResult
 │   │   ├── prod.py               # → 规则服务（规则引擎在对侧）
 │   │   └── eval.py               # → 本地规则引擎副本
-│   ├── order/
-│   │   ├── protocol.py           # 退款执行 + 拒绝落库
-│   │   ├── prod.py               # → 订单系统
-│   │   └── eval.py               # → evals/data/orders.json（终局动作 stub）
-│   └── rag/
+│   └── order/
+│       ├── protocol.py           # 退款执行 + 拒绝落库
+│       ├── prod.py               # → 订单系统
+│       └── eval.py               # → evals/data/orders.json（终局动作 stub）
+│
+├── rag/                          # 政策知识库：离线灌库 + 在线检索
+│   ├── chunking/                 # doc/policy/*.md → 父子块
+│   │   ├── model.py              # DocMeta / Chunk；块头拼装
+│   │   ├── markdown.py           # frontmatter + 标题树 + 段落/表格/代码
+│   │   ├── semantic.py           # 超长段落的语义切分兜底
+│   │   └── policy.py             # 编排 + 切分参数（320 / 512 / overlap=0）
+│   ├── index/
+│   │   └── seed_milvus.py        # 切片 + 建表 + 灌库，入库前硬卡 token 长度
+│   └── retrieving/
 │       ├── protocol.py           # PolicySection（内容+来源+时间+理由）+ RetrievalTrace
 │       ├── store.py              # Milvus 连接与字段定义的单一定义点
 │       ├── milvus.py             # 六步链路的编排，**唯一实现**，prod / eval 共用
@@ -237,14 +253,6 @@ refund-agent/
 │   ├── get-start/                # 需求 / 架构 / 设计 / 实现
 │   └── platform/                 # 依赖服务的本地部署说明（Milvus / Langfuse）
 │
-├── knowledge/                    # 索引管线（不是 eval 数据）
-│   ├── chunking/                 # doc/policy/*.md → 父子块
-│   │   ├── model.py              # DocMeta / Chunk；块头拼装
-│   │   ├── markdown.py           # frontmatter + 标题树 + 段落/表格/代码
-│   │   ├── semantic.py           # 超长段落的语义切分兜底
-│   │   └── policy.py             # 编排 + 切分参数（320 / 512 / overlap=0）
-│   └── seed_milvus.py            # 切片 + 建表 + 灌库，入库前硬卡 token 长度
-│
 ├── evals/
 │   ├── data/                     # eval 数据源（JSON）
 │   │   ├── customers.json
@@ -268,8 +276,8 @@ refund-agent/
 └── README.md                     # 仓库索引，正文在 doc/get-start/
 ```
 
-> v1 已落地的是 `agent/v1`、`services/`、`llm/`、`knowledge/`、`doc/policy/`、两个入口脚本，
+> v1 已落地的是 `agent/v1`、`services/`、`rag/`、`llm/`、`doc/policy/`、两个入口脚本，
 > 以及 `evals/` 下的用例集 `dataset/d1` 与自检脚本 `validate_cases.py`；
 > `app/main.py`、`app/middleware/`、`agent/v2/`、`evals/` 的跑批与打分（`offline` / `compare` / `online`）仍是规划。
 
-**四个目录的边界**：`agent/` 放提示词、流程与工具描述，按版本并存；`services/` 放下游能力契约，跨版本共享；`knowledge/` 放业务语料，改版走灌库而不是改代码；`evals/` 消费前三者，用同一套 eval 数据和同一个政策 collection 跑不同 agent 版本。
+**四个目录的边界**：`agent/` 放提示词、流程与工具描述，按版本并存；`services/` 放下游能力契约，跨版本共享；`rag/` 放政策知识库的灌库与检索，语料本身在 `doc/policy/`，改版走灌库而不是改代码；`evals/` 消费前三者，用同一套 eval 数据和同一个政策 collection 跑不同 agent 版本。

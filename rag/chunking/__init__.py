@@ -4,8 +4,8 @@
 切分策略与参数的完整理由见 policy.py 的模块 docstring。
 """
 
-from knowledge.chunking.model import Chunk, DocMeta
-from knowledge.chunking.policy import CHILD_MAX_TOKENS, CHILD_TARGET_TOKENS, chunk_document
+from rag.chunking.model import Chunk, DocMeta
+from rag.chunking.policy import CHILD_MAX_TOKENS, CHILD_TARGET_TOKENS, chunk_document
 
 __all__ = [
     "CHILD_MAX_TOKENS",

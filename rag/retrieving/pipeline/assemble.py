@@ -10,12 +10,12 @@
 子块还原成它所在的完整小节，让模型拿到成套的规则。
 
 父块不单独存储：它就是同 parent_id 的子块按 chunk_index 拼接
-（knowledge/chunking/model.py）。子块之间 overlap = 0，拼接精确还原原文。
+（rag/chunking/model.py）。子块之间 overlap = 0，拼接精确还原原文。
 
 ## 为什么要在这里合并相邻父块
 
 法规层的文档（L04、L05）是 `#` 直接跳到 `###`，父块退化成了单条条文
-（knowledge/chunking/policy.py 里说明了为什么不在索引期补救）。当「第九条
+（rag/chunking/policy.py 里说明了为什么不在索引期补救）。当「第九条
 售出 7 日内」和「第十条 售出 15 日内」同时命中时，它们本就是一套规则的两半，
 分开注入会让模型看到两条孤立的期限。**合并的依据是「这次确实都命中了」**，
 比索引期按大小硬凑父块可靠。
@@ -30,9 +30,9 @@
 import os
 
 from llm.embedding import embedder
-from services.rag import store
-from services.rag.pipeline.rerank import Evidence
-from services.rag.protocol import PolicySection
+from rag.retrieving import store
+from rag.retrieving.pipeline.rerank import Evidence
+from rag.retrieving.protocol import PolicySection
 
 TOKEN_BUDGET = int(os.getenv("REFUND_AGENT_POLICY_BUDGET", "3000"))
 

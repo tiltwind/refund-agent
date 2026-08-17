@@ -1,12 +1,12 @@
 """把 doc/policy/ 下的政策文档灌进 Milvus。
 
     bash scripts/milvus.sh start          # 见 doc/platform/milvus.md
-    python knowledge/seed_milvus.py       # 建 collection + 切片 + 灌库
+    python rag/index/seed_milvus.py       # 建 collection + 切片 + 灌库
 
 语料源就是 `doc/policy/**/*.md` 本身 —— **没有中间产物**。以前这里读的是一份
-手抄的 knowledge/policies.json，那等于给同一套政策留了两份事实源：文档改了、
+手抄的 rag/policies.json，那等于给同一套政策留了两份事实源：文档改了、
 JSON 没改（或反之），Agent 就会引用一条与线上公示规则不一致的条款，而且不报错。
-现在文档即语料，切片规则见 knowledge/chunking/policy.py。
+现在文档即语料，切片规则见 rag/chunking/policy.py。
 
 重复执行是安全的：默认 drop 后重建。条款是全量小语料（数百个块），增量更新
 省不了多少时间，而「旧版本块残留在库里」会让检索同时召回新旧两版，代价大得多。
@@ -18,15 +18,15 @@ JSON 没改（或反之），Agent 就会引用一条与线上公示规则不一
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from pymilvus import DataType, Function, FunctionType, MilvusClient  # noqa: E402
 
-from knowledge.chunking import CHILD_MAX_TOKENS, Chunk, chunk_document  # noqa: E402
 from llm.embedding.bge_m3 import DIMENSION, MAX_LENGTH, embedder  # noqa: E402
-from services.rag import store  # noqa: E402
+from rag.chunking import CHILD_MAX_TOKENS, Chunk, chunk_document  # noqa: E402
+from rag.retrieving import store  # noqa: E402
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parents[2]
 POLICY_DIR = ROOT / "doc" / "policy"
 INSERT_BATCH = 64
 

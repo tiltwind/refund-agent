@@ -1,7 +1,7 @@
 """切片的数据模型。
 
 只有 `Chunk` 会入库。父块**不单独存储** —— 它由「同一 parent_id 下的全部子块
-按 chunk_index 拼接」还原（services/rag/pipeline/assemble.py）。这样做的前提是
+按 chunk_index 拼接」还原（rag/retrieving/pipeline/assemble.py）。这样做的前提是
 子块之间 overlap = 0（段落边界即语义边界，见 policy.py），拼接能精确还原原文。
 
 代价换来的是：没有第二个 collection、没有旁路的 KV 存储、没有「父块存了但子块

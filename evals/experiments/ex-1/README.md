@@ -15,7 +15,7 @@ run 的分数不再可比。反过来，期望值变了（改 `cases.jsonl` 的�
 
 | 前置 | 命令 |
 |---|---|
-| Milvus 起着并已灌库 | `bash scripts/milvus.sh start` + `python knowledge/seed_milvus.py` |
+| Milvus 起着并已灌库 | `bash scripts/milvus.sh start` + `python rag/index/seed_milvus.py` |
 | `.env` 配好模型与 Langfuse 密钥 | `LANGFUSE_PUBLIC_KEY` / `LANGFUSE_SECRET_KEY` 缺了会直接退出 |
 | 数据集已推上去 | `python evals/push_dataset.py` |
 | 用例自检过 | `python evals/validate_cases.py`（零成本、不调模型，能在花钱跑批前拦下口径漂移）|

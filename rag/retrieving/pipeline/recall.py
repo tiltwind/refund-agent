@@ -32,9 +32,9 @@ BM25 分数无上界，cosine 在 [-1, 1]，两个尺度根本不可比。RRF �
 from dataclasses import dataclass, field
 
 from llm.embedding import embedder
-from services.rag import store
-from services.rag.pipeline.filters import build_filter
-from services.rag.pipeline.route import Route
+from rag.retrieving import store
+from rag.retrieving.pipeline.filters import build_filter
+from rag.retrieving.pipeline.route import Route
 
 RRF_K = 20
 CANDIDATE_LIMIT = 20

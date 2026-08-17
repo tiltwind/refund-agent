@@ -85,7 +85,7 @@ D1-001 的检索返回（[`traces/D1-001-1043dc88.md`](./traces/D1-001-1043dc88.
 
 ### 根因
 
-在 [`services/rag/pipeline/assemble.py`](../../../services/rag/pipeline/assemble.py)。装配阶段把命中的子块
+在 [`rag/retrieving/pipeline/assemble.py`](../../../rag/retrieving/pipeline/assemble.py)。装配阶段把命中的子块
 按父块分组回填，`_Group.parents` 里存的 key 是三元组：
 
 ```python
@@ -96,7 +96,7 @@ def _key(evidence):
 
 而**同一个父块下的子块，`section_path` 是不同的**——父块按顶层标题（`##`，即「第二条」）分组，
 子块的 `section_path` 记的是它自己所在的子标题（2.1 / 2.2 / 2.3，见
-[`knowledge/chunking/policy.py`](../../../knowledge/chunking/policy.py) 的 `_group_by_top_heading`）。
+[`rag/chunking/policy.py`](../../../rag/chunking/policy.py) 的 `_group_by_top_heading`）。
 于是同一个 `parent_id` 的两次命中会生成两个不同的 key：
 
 ```python

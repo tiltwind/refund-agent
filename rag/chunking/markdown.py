@@ -9,7 +9,7 @@ import re
 
 import yaml
 
-from knowledge.chunking.model import Block, DocMeta, Section
+from rag.chunking.model import Block, DocMeta, Section
 
 _FRONTMATTER = re.compile(r"^---\s*\n(.*?)\n---\s*\n", re.DOTALL)
 _HEADING = re.compile(r"^(#{1,6})\s+(.+?)\s*#*$")

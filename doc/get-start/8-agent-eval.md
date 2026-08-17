@@ -1,6 +1,6 @@
-# 6 · 跑实验与读报告
+# 8 · 跑实验与读报告
 
-本篇以实验 `ex-1`（数据集 `d1`，27 条用例，`agent/v1`）为例，说明跑批、评分、报告、人工检查和问题归因。数据集与评分规则见 [5 · 指标与数据集](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md)。
+本篇以实验 `ex-1`（数据集 `d1`，27 条用例，`agent/v1`）为例，说明跑批、评分、报告、人工检查和问题归因。数据集与评分规则见 [7 · 指标与数据集](https://tiltwind.github.io/refund-agent/doc/get-start/7-agent-dataset.md)。
 
 | 产物 | 位置 | 作用 |
 |---|---|---|
@@ -20,7 +20,7 @@
 
 | 前置 | 命令 |
 |---|---|
-| Milvus 已启动并灌库 | `bash scripts/milvus.sh start` + `python knowledge/seed_milvus.py` |
+| Milvus 已启动并灌库 | `bash scripts/milvus.sh start` + `python rag/index/seed_milvus.py` |
 | `.env` 配好模型与 Langfuse 密钥 | 缺 `LANGFUSE_PUBLIC_KEY` / `LANGFUSE_SECRET_KEY` 会直接退出 |
 | 数据集已推上去 | `python evals/push_dataset.py` |
 | 用例自检过 | `python evals/validate_cases.py` |
@@ -88,11 +88,11 @@ client.flush()                                          # 短命脚本必须显�
 |---|---|
 | 数据隔离 | 每条用例 `eval_store.begin_session()` 起一份独立数据副本 |
 | 多轮上下文 | `history = result["messages"]` 累积后进下一轮 |
-| 痕迹采集 | 只取本轮新增的 messages 与新增流水，压成[判分要的四样东西](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md#71-判分只看这四样东西) |
+| 痕迹采集 | 只取本轮新增的 messages 与新增流水，压成[判分要的四样东西](https://tiltwind.github.io/refund-agent/doc/get-start/7-agent-dataset.md#71-判分只看这四样东西) |
 | 执行失败 | `try/except` 单独返回 `error`，判分时记 `run_error`，不静默判 0 |
 | 重放用例 | 按 `run.repeat` 连跑，只取第一遍的 turns 判分，流水行数与单号单独判 |
 
-`_score_turn(actual, expected)` 返回 `{指标: (分数, 说明)}`，判据见 [5 · 七](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md#七评分规则实现)。说明写入 Langfuse comment，包括缺失工具和实际调用序列。
+`_score_turn(actual, expected)` 返回 `{指标: (分数, 说明)}`，判据见 [7 · 七](https://tiltwind.github.io/refund-agent/doc/get-start/7-agent-dataset.md#七评分规则实现)。说明写入 Langfuse comment，包括缺失工具和实际调用序列。
 
 ### 2.1 结果落盘
 
@@ -197,7 +197,7 @@ ex-1 保留四条：一条全指标通过、两条多轮评分失败、一条 SO
 | 最大重复 | 重复 3 遍；单次证据最大 4,192 字，其中 1,702 字是重复 |
 | 主要文档 | P07 占 37 块；其一个父块包含 2～4 个子标题 |
 
-根因位于 [`services/rag/pipeline/assemble.py`](https://github.com/tiltwind/refund-agent/blob/main/services/rag/pipeline/assemble.py)：装配阶段按父块回填，但分组键使用 `(parent_seq, parent_id, section_path)`。同一父块的子块具有不同 `section_path`，因此同一个 `parent_id` 会登记多次，`_render` 随后重复拼接父块正文。
+根因位于 [`rag/retrieving/pipeline/assemble.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/pipeline/assemble.py)：装配阶段按父块回填，但分组键使用 `(parent_seq, parent_id, section_path)`。同一父块的子块具有不同 `section_path`，因此同一个 `parent_id` 会登记多次，`_render` 随后重复拼接父块正文。
 
 影响：29.3% 的证据正文重复并计入 token。`TOKEN_BUDGET = 3000` 是全部证据的上限，`D1-017` 单次证据为 4,192 字，存在后续证据被截断的风险；本次 run 未观察到截断。
 
@@ -213,7 +213,7 @@ ex-1 保留四条：一条全指标通过、两条多轮评分失败、一条 SO
 | 2 | 多轮用例第 2 轮被要求重复调第 1 轮已调过的工具 | **判分口径** | `D1-020` / `D1-021` | 能，但为假阴性 | `must_call` 改为按「累计到本轮」判断；在 ex-2 中验证 |
 | 3 | run metadata 记 `anthropic:claude-sonnet-5`，实跑全在 `deepseek-v4-flash` | **埋点** | 165 次 generation | 不能 | 让 `registry.meta()` 上报实际生效的供应商与模型 |
 | 4 | 装配后的证据整段重复，占正文 29.3% | **检索链路** | 41 / 106 证据块 | **不能** | `_render` 按 `parent_id` 去重；装配后加一条「同块内不应出现完全相同段落」的断言 |
-| 5 | `citation_hit = 0.704`，7 条检索了但没召回期望条款 | **检索质量** | 召回集被 P02 / P07 占满 | 只能看趋势 | 另建 query→section retrieval 数据集，与 Agent 回归分开评估 |
+| 5 | `citation_hit = 0.704`，7 条检索了但没召回期望条款 | **检索质量** | 召回集被 P02 / P07 占满 | 只能看趋势 | 用 [`r1` 检索评测](https://tiltwind.github.io/refund-agent/doc/get-start/5-rag-eval.md)独立评估，与 Agent 回归分开跑 |
 
 问题 1 和 2 均表现为 `tool_sequence` 失败，但归因和修改对象不同：
 
@@ -224,7 +224,7 @@ ex-1 保留四条：一条全指标通过、两条多轮评分失败、一条 SO
 
 ## 六、指标缺口
 
-对照 [5 · 2.5 的验收口径映射表](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md#25-验收口径--指标覆盖是不均匀的)与打分器实现，缺口分为 P0 和 P1。
+对照 [7 · 2.5 的验收口径映射表](https://tiltwind.github.io/refund-agent/doc/get-start/7-agent-dataset.md#25-验收口径--指标)与打分器实现，缺口分为 P0 和 P1。
 
 ### 6.1 P0：漏判真实缺陷
 
@@ -240,7 +240,7 @@ ex-1 保留四条：一条全指标通过、两条多轮评分失败、一条 SO
 **④ 未检查答复中的额外数字。** `mention_hit` 只检查必需内容，未检查金额、天数和窗口是否来自工具返回。
 提取答复中的金额与天数，与本轮工具返回的数字集合比较。无需调用模型。
 
-### 6.2 P1：决策对了，但系统在退化
+### 6.2 P1：结论正确但系统退化
 
 **⑤ 成本与延迟不参与门禁。** 当前报告记录 565k token 和 P90 70.5s，但未设置阈值。
 run 级增加 `p50/p95_latency`、`tokens_per_case`，版本对比超过阈值时失败。
@@ -272,9 +272,9 @@ P0 子集运行 k=3，报告 `pass^k` 和不稳定用例。
 | 3 | 提示词增加硬否决检索要求，发布 `agent/v2` | Agent | 同集对比 v1 / v2，`D1-024` 通过且无退化 |
 | 4 | 修复多轮 `must_call` 口径及 ②④⑤⑥⑧，新建 `ex-2` | 判分 | `D1-020` / `D1-021` 通过；保留 ex-1 原始结果 |
 | 5 | 入参断言、落库 `reason`、handoff 维度 → `d2` + `ex-2` | 期望值 + 判分 | `D1-026` 这类「过程错但结论对」能被判负 |
-| 6 | 建 retrieval 数据集（query → 应召回 section） | 新数据集 | 使用 recall@k / MRR 独立评估检索质量 |
+| 6 | 建 `r1` 检索评测集（[4](https://tiltwind.github.io/refund-agent/doc/get-start/4-rag-dataset.md) + [5](https://tiltwind.github.io/refund-agent/doc/get-start/5-rag-eval.md)） | 新数据集 | Recall@k 独立评估检索质量；问题 4 的装配重复由 Context Relevance 兜住 |
 | 7 | 回流线上失败样本 | 数据集 | 保留原始表述并脱敏，不改写为标准问法 |
 
 先完成 1、2，再分别执行 3（改 Agent）和 4（改评分规则），两者不合并到同一轮实验。
 
-后续补充版本对比自动化（`evals/compare.py`，同集运行 v1/v2 并逐条 diff）和线上监控（复用不依赖标注的三个指标，见 [5 · 7.4](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md#74-从轮到用例从用例到-run)）。设计见 [2 · 设计 · 6.2 / 6.4](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md#六持续评估闭环)。
+后续补充版本对比自动化（`evals/compare.py`，同集运行 v1/v2 并逐条 diff）和线上监控（复用不依赖标注的三个指标，见 [7 · 7.4](https://tiltwind.github.io/refund-agent/doc/get-start/7-agent-dataset.md#74-从轮到用例从用例到-run)）。设计见 [2 · 设计 · 6.2 / 6.4](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md#六持续评估闭环)。

@@ -38,7 +38,7 @@ class BgeReranker:
         """返回每个 passage 的相关性分，已用 sigmoid 归一化到 (0, 1)。
 
         归一化不是为了好看：重排分要和效力位阶等特征做加权求和
-        （services/rag/pipeline/rerank.py），原始 logit 无上下界，
+        （rag/retrieving/pipeline/rerank.py），原始 logit 无上下界，
         直接加权会让权重完全失去意义。
         """
         if not passages:

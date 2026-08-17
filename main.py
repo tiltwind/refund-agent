@@ -1,7 +1,7 @@
 """v1 演示入口 —— 客户档案与订单走 eval 数据源，政策检索走真实 Milvus。
 
     bash scripts/milvus.sh start       # 启 Milvus 2.5+，见 doc/platform/milvus.md
-    python knowledge/seed_milvus.py    # 切片 doc/policy/ 并灌库（只需一次）
+    python rag/index/seed_milvus.py    # 切片 doc/policy/ 并灌库（只需一次）
     python main.py                     # 需要 ANTHROPIC_API_KEY
 
 想看检索链路每一步的中间产物（改写→路由→过滤→召回融合→重排→装配），
