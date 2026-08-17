@@ -25,8 +25,8 @@ flowchart LR
 |---|---|
 | [0 · 需求](doc/get-start/0-requirement.md) | 业务场景、五步处理 SOP、判定规则与优先级、政策语料范围、验收口径 |
 | [1 · 架构](doc/get-start/1-architecture.md) | 整体架构与组件职责、请求链路时序、目录结构与四个目录的边界 |
-| [2 · 设计](doc/get-start/2-design.md) | 身份与授权、工具设计、服务接入层与数据源切换、幂等、可观测、评估闭环、技术栈与检索链路取舍 |
+| [2 · 设计](doc/get-start/2-design.md) | 身份与授权、工具设计、服务接入层与数据源切换、幂等、可观测、评估闭环、技术栈与检索链路 |
 | [3 · 政策知识库](doc/get-start/3-rag.md) | 环境、语料、模型层、切片、Milvus 灌库、六步检索链路，含验收清单与故障排查 |
 | [4 · 装配 Agent](doc/get-start/4-agent.md) | 身份上下文、服务接入层与规则引擎副本、`agent/v1` 提示与工具、演示入口、埋点 |
-| [5 · 数据集与指标](doc/get-start/5-dataset.md) | 用例集格式与设计取舍、自检与推送、指标是怎么定下来的、九个指标各自怎么算 |
+| [5 · 指标与数据集](doc/get-start/5-dataset.md) | 从失效模式抽出五个核心指标，再由指标反推数据集覆盖、用例字段与判分实现 |
 | [6 · 跑实验](doc/get-start/6-experiment.md) | 跑批与打分脚本、HTML 报告、人工读 trace、ex-1 的关键问题、指标本身的缺口与排期 |

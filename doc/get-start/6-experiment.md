@@ -1,6 +1,6 @@
 # 6 · 跑实验与读报告
 
-本篇以实验 `ex-1`（数据集 `d1`，27 条用例，`agent/v1`）为例，说明跑批、评分、报告、人工检查和问题归因。数据集与评分规则见 [5 · 数据集与指标](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md)。
+本篇以实验 `ex-1`（数据集 `d1`，27 条用例，`agent/v1`）为例，说明跑批、评分、报告、人工检查和问题归因。数据集与评分规则见 [5 · 指标与数据集](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md)。
 
 | 产物 | 位置 | 作用 |
 |---|---|---|
@@ -40,10 +40,10 @@ python evals/experiments/ex-1/run_experiment.py --run-name v1-$(git rev-parse --
 |---|---|---|
 | `--dataset` | `refund-cases-d1` | Langfuse 上的数据集名 |
 | `--agent` | `v1` | 被测 agent 版本，做版本对比时只换这个 |
-| `--run-name` | `<agent>-<条数>cases` | 版本对比时传 git sha，UI 上才分得清哪次是哪次 |
+| `--run-name` | `<agent>-<条数>cases` | 版本对比时传 git sha |
 | `--cases` | 全量 | 只跑指定 case_id，调用例时用 |
-| `--concurrency` | 4 | 并发用例数；调高会撞模型限速，也会拖慢本地重排 |
-| `--out` | `result.json` | 指标落盘路径；只跑 `--cases` 子集时默认不写，免得覆盖全量结果 |
+| `--concurrency` | 4 | 并发用例数，上限受模型限速与本地重排制约 |
+| `--out` | `result.json` | 指标落盘路径；只跑 `--cases` 子集时默认不写 |
 | `-v` | 关 | 逐轮打印用户输入、工具链、答复、落库 |
 
 跑批时每条用例出两行：
@@ -79,24 +79,24 @@ result = client.run_experiment(
     max_concurrency=args.concurrency,
     metadata={k: str(v) for k, v in meta.items()},
 )
-client.flush()                                          # 短命脚本不 flush 就什么都没上去
+client.flush()                                          # 短命脚本必须显式 flush
 ```
 
 跑批需要处理以下五点：
 
-| 点 | 做法 | 不这样会怎样 |
-|---|---|---|
-| 数据隔离 | 每条用例 `eval_store.begin_session()` 起一份独立数据副本 | `execute_refund` 会把 `order["refunded"]` 置 True，并发跑批互相污染 |
-| 多轮上下文 | `history = result["messages"]` 累积后进下一轮 | 第二轮接不上第一轮，多轮用例全成了单轮 |
-| 痕迹采集 | 只取本轮新增的 messages 与新增流水，压成[判分要的四样东西](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md#51-判分只看这四样东西) | 拿全量会把上一轮的工具调用算进这一轮 |
-| 执行失败 | `try/except` 单独返回 `error`，判分时记 `run_error` 而非静默判 0 | 环境故障被读成 Agent 退化 |
-| 重放用例 | 按 `run.repeat` 连跑，只取第一遍的 turns 判分，流水行数与单号单独判 | 第二遍的痕迹混进来，落库断言必然挂 |
+| 点 | 做法 |
+|---|---|
+| 数据隔离 | 每条用例 `eval_store.begin_session()` 起一份独立数据副本 |
+| 多轮上下文 | `history = result["messages"]` 累积后进下一轮 |
+| 痕迹采集 | 只取本轮新增的 messages 与新增流水，压成[判分要的四样东西](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md#71-判分只看这四样东西) |
+| 执行失败 | `try/except` 单独返回 `error`，判分时记 `run_error`，不静默判 0 |
+| 重放用例 | 按 `run.repeat` 连跑，只取第一遍的 turns 判分，流水行数与单号单独判 |
 
-`_score_turn(actual, expected)` 返回 `{指标: (分数, 说明)}`，判据见 [5 · 五](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md#五评分规则)。说明写入 Langfuse comment，包括缺失工具和实际调用序列。
+`_score_turn(actual, expected)` 返回 `{指标: (分数, 说明)}`，判据见 [5 · 七](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md#七评分规则实现)。说明写入 Langfuse comment，包括缺失工具和实际调用序列。
 
 ### 2.1 结果落盘
 
-分数写回 Langfuse 的同时，跑批脚本把同一份指标写进 `result.json`。Langfuse 是本地实例，换台机器 run 页就打不开，报告和版本对比不应依赖它处于运行状态。
+分数写回 Langfuse 的同时，跑批脚本把同一份指标写进 `result.json`。报告与版本对比只读 `result.json`，不依赖 Langfuse 处于运行状态。
 
 | 层级 | 字段 |
 |---|---|
@@ -110,7 +110,7 @@ python evals/experiments/ex-1/export_result.py --run v1-0a0d3c4
 python evals/experiments/ex-1/export_result.py --run v2-abc1234 --out /tmp/v2.json   # 两份 diff 即版本对比
 ```
 
-补拉版比跑批版多 `tokens`，`elapsed_s` 也换成 trace 实测延迟——这两个数只有 Langfuse 算得出。
+补拉版比跑批版多 `tokens`，`elapsed_s` 换成 trace 实测延迟。
 
 ---
 
@@ -137,7 +137,7 @@ GET /api/public/traces/{id}     单条 trace 的全部 observation
 | run 级指标 | 九个 `avg_*` 条形图，硬软分开标 | 看趋势，与上一个 run 对齐 |
 | 用例明细 | 每行一条用例 × 十列指标，✓ / ✗ / ◐ | 定位到具体用例 |
 | 失败归因 | 逐条列期望链路 vs 实际链路，给处置建议 | 区分 Agent 缺陷与判分口径问题 |
-| 软指标专章 | `citation_hit` 拆成「没检索」和「检索了没召回」 | 混在一个数里读不出问题在哪 |
+| 软指标专章 | `citation_hit` 拆成「没检索」和「检索了没召回」 | 定位检索问题的环节 |
 | 开销 | 模型调用次数、token、并行度 | 决定下次并发怎么设 |
 | 下一步 | 每条问题指明「改 Agent」还是「开 ex-2」 | 形成后续任务 |
 
@@ -160,11 +160,11 @@ GET /api/public/traces/{id}     单条 trace 的全部 observation
 
 ## 四、人工检查
 
-现有指标不检查检索证据的内容质量，因此实验后需要抽查 trace。
+现有指标不检查检索证据的内容质量，实验后抽查 trace 补上这一层。
 
 ### 4.1 Trace 归档
 
-Langfuse 为本地实例，因此将抽样 trace 导出到仓库：
+抽样 trace 从 Langfuse 导出到仓库，一条 trace 两个文件：
 
 | 文件 | 内容 | 给谁 |
 |---|---|---|
@@ -224,7 +224,7 @@ ex-1 保留四条：一条全指标通过、两条多轮评分失败、一条 SO
 
 ## 六、指标缺口
 
-对照 [5 · 4.3 的验收口径映射表](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md#43-验收口径--指标覆盖是不均匀的)与打分器实现，缺口分为 P0 和 P1。
+对照 [5 · 2.5 的验收口径映射表](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md#25-验收口径--指标覆盖是不均匀的)与打分器实现，缺口分为 P0 和 P1。
 
 ### 6.1 P0：漏判真实缺陷
 
@@ -275,6 +275,6 @@ P0 子集运行 k=3，报告 `pass^k` 和不稳定用例。
 | 6 | 建 retrieval 数据集（query → 应召回 section） | 新数据集 | 使用 recall@k / MRR 独立评估检索质量 |
 | 7 | 回流线上失败样本 | 数据集 | 保留原始表述并脱敏，不改写为标准问法 |
 
-先完成 1、2，避免证据重复和错误 metadata 影响后续 run 的可比性。3 修改 Agent，4 修改评分规则，分开执行以便归因。
+先完成 1、2，再分别执行 3（改 Agent）和 4（改评分规则），两者不合并到同一轮实验。
 
-后续补充版本对比自动化（`evals/compare.py`，同集运行 v1/v2 并逐条 diff）和线上监控（复用不依赖标注的三个指标，见 [5 · 5.4](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md#54-从轮到用例从用例到-run)）。设计见 [2 · 设计 · 6.2 / 6.4](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md#六持续评估闭环)。
+后续补充版本对比自动化（`evals/compare.py`，同集运行 v1/v2 并逐条 diff）和线上监控（复用不依赖标注的三个指标，见 [5 · 7.4](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md#74-从轮到用例从用例到-run)）。设计见 [2 · 设计 · 6.2 / 6.4](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md#六持续评估闭环)。

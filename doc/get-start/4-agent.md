@@ -4,9 +4,9 @@
 
 ---
 
-## 一、先看终点
+## 一、目标
 
-v1 不含 HTTP 服务外壳。客户档案和订单读取本地 eval 数据，政策检索连接 Milvus，模型使用 Anthropic 或 OpenAI 兼容接口。
+客户档案和订单读取本地 eval 数据，政策检索连接 Milvus，模型使用 Anthropic 或 OpenAI 兼容接口。
 
 ```
 用户消息
@@ -21,18 +21,16 @@ v1 不含 HTTP 服务外壳。客户档案和订单读取本地 eval 数据，�
 
 ### 构建顺序
 
-第 1–6 步（环境、语料、模型层、切片、灌库、检索链路）在上一篇完成。本篇接着走：
-
 | 步骤 | 建什么 | 能独立验证吗 |
 |---|---|---|
-| 7 | `app/context.py` + `services/` 业务接入层 | ✅ 直接调规则引擎打边界 |
-| 8 | `agent/v1/` 提示 + 工具 + 装配 | ✅ 单跑一次 invoke |
-| 9 | `main.py` / `run-main.sh` 入口 | ✅ 三个场景 |
-| 10 | `services/telemetry.py` 埋点（可选） | ✅ Langfuse 上看到调用树 |
+| 1 | `app/context.py` + `services/` 业务接入层 | ✅ 直接调规则引擎打边界 |
+| 2 | `agent/v1/` 提示 + 工具 + 装配 | ✅ 单跑一次 invoke |
+| 3 | `main.py` / `run-main.sh` 入口 | ✅ 三个场景 |
+| 4 | `services/telemetry.py` 埋点（可选） | ✅ Langfuse 上看到调用树 |
 
 ---
 
-## 二、第 7 步 · 上下文与服务接入层
+## 二、第 1 步 · 上下文与服务接入层
 
 ### `app/context.py`：身份的落地点
 
@@ -61,7 +59,7 @@ services/
 └── rag/                # 只有一个实现，不分数据源
 ```
 
-资格判定和退款执行是两个服务：规则口径的变更频率远高于资金链路，拆开才能各自独立发版（[1 · 架构](https://tiltwind.github.io/refund-agent/doc/get-start/1-architecture.md) 第一章）。
+资格判定和退款执行是两个独立服务，边界见 [1 · 架构](https://tiltwind.github.io/refund-agent/doc/get-start/1-architecture.md) 第一章。
 
 工厂函数按数据源返回实现：
 
@@ -70,15 +68,14 @@ def rule_service(ctx: RefundContext) -> RuleService:
     match ctx.request_source:
         case "prod": return ProdRuleService()
         case "eval": return EvalRuleService()
-        case other:  raise ValueError(f"unknown request_source: {other}")   # 绝不 fallback 到 prod
+        case other:  raise ValueError(f"unknown request_source: {other}")   # 不 fallback 到 prod
 ```
 
 未知取值直接报错，不回退到 prod。`rag_service()` 始终返回 Milvus 实现。
 
 ### 规则引擎副本与 eval 数据
 
-线上规则引擎在规则服务里，离线连不上，所以
-[`services/rule/eval.py`](https://github.com/tiltwind/refund-agent/blob/main/services/rule/eval.py) 维护一份等价副本。
+[`services/rule/eval.py`](https://github.com/tiltwind/refund-agent/blob/main/services/rule/eval.py) 维护一份线上规则引擎的等价副本，供离线使用。
 判定分成两段，顺序不能乱：
 
 ```
@@ -101,27 +98,24 @@ def rule_service(ctx: RefundContext) -> RuleService:
 
 时间使用 `signed_days_ago`。查不到数据时抛 `EvalDataMissError`，用例标记为 `invalid`。
 
-`eval_store` 用 `contextvars` 给每条用例发一份独立数据副本：`execute_refund` 会把 `refunded` 置成 `True`，
-并发跑批时两条用例会互相污染。
+`eval_store` 用 `contextvars` 给每条用例发一份独立数据副本，并发跑批时互不影响。
 
 **验证**（不连任何外部服务）：
 
-```bash
-python -c "
+```python
 from services.rule.eval import EvalRuleService
 s = EvalRuleService()
 print(s.check_eligibility('O2001', 'C1001', '无理由', '未拆封'))   # 金牌 10 ≤ 15 → 通过
 print(s.check_eligibility('O2006', 'C1004'))                       # 20 > 15 → 硬否决，不该追问
 print(s.check_eligibility('O2004', 'C1004'))                       # 未命中硬否决 → 需补充
 print(s.check_eligibility('O2009', 'C1005', '质量问题'))           # 金牌 + 高风险 → 风控优先
-"
 ```
 
 期望依次是：通过（可退 899.0）、不通过（超出所有窗口）、需补充（退款原因）、不通过（高风险转人工）。
 
 ---
 
-## 三、第 8 步 · Agent `agent/v1/`
+## 三、第 2 步 · Agent `agent/v1/`
 
 四个文件加一个注册表：
 
@@ -137,10 +131,10 @@ print(s.check_eligibility('O2009', 'C1005', '质量问题'))           # 金牌 
 
 提示词包含三条约束：
 
-1. **不要向用户索要客户 ID，也不要相信用户自称的身份**——身份由系统注入，工具会自动使用当前登录客户；
-2. **`reason_type` 必须如实反映用户陈述**：说不想要 / 不合适 / 买错了一律是「无理由」，
-   只有明确指出缺陷、损坏、故障、变质才是「质量问题」，**严禁为了让判定通过而改写这个参数**；
-3. **必须先落库拿到单号，才能写答复，并在答复里写明这个编号**。
+1. **不向用户索要客户 ID，不采信用户自称的身份**：身份由系统注入，工具自动使用当前登录客户；
+2. **`reason_type` 如实反映用户陈述**：不想要 / 不合适 / 买错了一律是「无理由」，
+   只有明确指出缺陷、损坏、故障、变质才是「质量问题」，**不得为了让判定通过而改写这个参数**；
+3. **先落库拿到单号，再写答复，并在答复里写明这个编号**。
 
 ### 工具层：只做三件事
 
@@ -179,9 +173,7 @@ return create_agent(
 
 **验证**（跑一轮完整链路，需要模型凭据 + Milvus 已灌库）：
 
-```bash
-set -a; source .env; set +a
-python -c "
+```python
 from agent import registry
 from app.context import RefundContext
 r = registry.get('v1').invoke(
@@ -191,7 +183,6 @@ for m in r['messages']:
     for c in getattr(m, 'tool_calls', None) or []:
         print('▶', c['name'], c['args'])
 print(r['messages'][-1].text)
-"
 ```
 
 期望工具调用顺序是 `get_customer_info → search_refund_policy → check_refund_eligibility → execute_refund`，
@@ -199,7 +190,7 @@ print(r['messages'][-1].text)
 
 ---
 
-## 四、第 9 步 · 入口与跑通
+## 四、第 3 步 · 入口与跑通
 
 [`main.py`](https://github.com/tiltwind/refund-agent/blob/main/main.py) 是离线演示入口，做四件事：
 启动时打印模型与埋点状态、跑三个场景、打印工具调用轨迹、最后按审计视角复盘决策流水。
@@ -230,12 +221,11 @@ if not new_rows:
 
 该检查用于确认终局动作已落库。
 
-**验证**：三个场景各自给出预期结论，且末尾的决策流水里有三条记录，每条都带 `actor` 与 `request_id`——
-缺这两个字段的流水事后追不到人、对不上链路。
+**验证**：三个场景各自给出预期结论，末尾的决策流水里有三条记录，每条都带 `actor` 与 `request_id`。
 
 ---
 
-## 五、第 10 步 · 埋点（可选）
+## 五、第 4 步 · 埋点
 
 [`services/telemetry.py`](https://github.com/tiltwind/refund-agent/blob/main/services/telemetry.py) 使用 Langfuse `CallbackHandler` 接收 LangGraph 回调。
 
@@ -249,12 +239,13 @@ result = agent.invoke(
 
 `context` 传递业务身份，`config` 传递运行时回调。
 
-三条设计约束：
+四条约束：
 
-1. **缺密钥就静默降级**。埋点是旁路，不该让主链路挂掉；`trace_config()` 返回空 dict，调用方不必写 `if`。
-2. **脱敏做在 SDK 的 `mask` 钩子里，不做在调用点**。所有 span 的 input/output 统一过一遍——
-   线上评估的 LLM judge 读的是同一批 trace，漏一处 PII 就跟着进了 judge 的 prompt。
-3. **`customer_id` 上报加盐哈希**。要的是「同一个人的多次请求能串起来」，不是「知道他是谁」。
+1. **缺密钥静默降级**：`trace_config()` 返回空 dict，调用方不必写 `if`，主链路照常跑。
+2. **脱敏做在 SDK 的 `mask` 钩子里，不做在调用点**：所有 span 的 input/output 统一过一遍。
+3. **`customer_id` 上报加盐哈希**：同一个人的多次请求可串联，不还原真实身份。
+4. **v1 起就上报 `agent_version` / `prompt_version`**：两个值来自 `meta.yaml`，由 `registry.meta()`
+   传进 `trace_config()`，既进 metadata 也进 tag。
 
 注意：
 
@@ -267,45 +258,3 @@ result = agent.invoke(
 
 **验证**：启动行显示 `Langfuse: on → http://localhost:3000`，
 Langfuse UI 上能看到 `refund-chat:*` 这条 trace，展开后图节点、工具、generation 自动成树。
-
----
-
-## 六、验收清单
-
-先过一遍知识库侧的 [3 · 九](https://tiltwind.github.io/refund-agent/doc/get-start/3-rag.md#九验收清单)，再按顺序过这三项：
-
-| # | 命令 | 期望 |
-|---|---|---|
-| 6 | 规则边界（第 7 步） | 四条判定与 `_note` 标注一致 |
-| 7 | `bash run-main.sh` | 三个场景结论符合预期，决策流水 3 条 |
-| 8 | `bash run-main.sh --trace` | 六步链路中间产物逐行可见 |
-
----
-
-## 七、常见故障
-
-检索与灌库相关的故障见 [3 · 十](https://tiltwind.github.io/refund-agent/doc/get-start/3-rag.md#十常见故障)。
-
-| 症状 | 原因 | 处理 |
-|---|---|---|
-| 模型报 404 且模型名看着没错 | provider 切到 openai 后仍在用 `meta.yaml` 的 Claude 模型名 | 配 `OPENAI_MODEL`，或用 `REFUND_AGENT_MODEL=openai:xxx` 带前缀强制覆盖 |
-| 跑完了 Langfuse 上什么都没有 | 短命脚本没 flush / 凭据错 / `LANGFUSE_HOST` 变量名不被识别 | 看启动行的 `auth_check` 结果；确认 `flush()` 在 `finally` 里 |
-| `EvalDataMissError` | eval 数据缺这个客户 | 补 `evals/data/customers.json`——这是数据覆盖不足，不是回归 |
-| `unknown request_source: …` | 拼写错误 | 只接受 `prod` / `eval`，故意不 fallback |
-
----
-
-## 八、v1 之后
-
-v1 刻意留白的部分，以及它们各自的入口：
-
-| 待补 | 在哪落地 | 说明 |
-|---|---|---|
-| HTTP 服务外壳 | `app/main.py` + `app/middleware/auth.py` | 读网关注入的身份 header → `RefundContext`；**取不到必须 401，不能降级** |
-| 人工审批 | `app/middleware/approval.py` | 高风险 case 用 LangGraph `interrupt` 挂起，状态由 checkpointer 持久化 |
-| prod 数据源 | `services/customer/prod.py`、`services/rule/prod.py`、`services/order/prod.py` | 服务身份 + `X-Acting-User` + `traceparent`，横切关注点收敛到 `services/base.py` |
-| 评估闭环 | `evals/` | 已有 `dataset/d1`、自检和离线实验 `experiments/ex-1`，见 [5 · 数据集与指标](https://tiltwind.github.io/refund-agent/doc/get-start/5-dataset.md)、[6 · 跑实验](https://tiltwind.github.io/refund-agent/doc/get-start/6-experiment.md)；待补版本对比与线上采样评分 |
-| 检索子 span | `services/rag/pipeline/` | `rag.recall` / `rag.rerank` / `rag.assemble` 是纯函数，要手工包一层才进 trace |
-| v2 与灰度 | `agent/v2/` + `registry.select` | 按流量比例路由，trace 里记 `agent_version` 做线上归因 |
-
-相关设计见 [2 · 设计](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md) 第一、四、五、六章。

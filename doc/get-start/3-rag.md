@@ -1,14 +1,12 @@
 # 3 · 政策知识库：切片、灌库与检索
 
-RefundAgent 的判定依据来自 `doc/policy/` 下的 16 篇政策文档。本篇搭出从 Markdown 到一次可用检索的整条路：环境、语料、模型层、切片、灌库、六步检索链路。Agent 本体、服务接入层和入口在下一篇 [4 · 装配 RefundAgent v1](https://tiltwind.github.io/refund-agent/doc/get-start/4-agent.md)。
+RefundAgent 的判定依据来自 `doc/policy/` 下的 16 篇政策文档。本篇搭出从 Markdown 到一次可用检索的整条路：环境、语料、模型层、切片、灌库、六步检索链路。Agent 本体、服务接入层和入口不在本篇范围内。
 
 业务、架构和设计分别见 [0 · 需求](https://tiltwind.github.io/refund-agent/doc/get-start/0-requirement.md)、[1 · 架构](https://tiltwind.github.io/refund-agent/doc/get-start/1-architecture.md) 和 [2 · 设计](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md)。
 
 ---
 
-## 一、先看终点
-
-这半条链路的产物是 `search_refund_policy` 这一个工具：进去一句自然语言，出来一组带来源和生效日期的政策条款。
+## 一、目标
 
 ```
 doc/policy/*.md
@@ -21,8 +19,6 @@ doc/policy/*.md
 
 ### 构建顺序
 
-自底向上，每一层都能脱离上层单独验证：
-
 | 步骤 | 建什么 | 能独立验证吗 |
 |---|---|---|
 | 1 | 环境与依赖 | ✅ import 得动就算过 |
@@ -32,7 +28,7 @@ doc/policy/*.md
 | 5 | Milvus + `knowledge/seed_milvus.py` 灌库 | ✅ collection 行数 |
 | 6 | `services/rag/` 六步检索链路 | ✅ 单跑一次检索看 top-k |
 
-每完成一层先独立验证，再接入上层。第 7 步之后见下一篇。
+每完成一层先独立验证，再接入上层。本篇止于第 6 步。
 
 ---
 
@@ -46,9 +42,8 @@ doc/policy/*.md
 | 模型凭据 | 二选一 | `ANTHROPIC_API_KEY`，或 `OPENAI_API_KEY` + `OPENAI_BASE_URL` + `OPENAI_MODEL`（DeepSeek / Qwen / vLLM / one-api 都走这条） |
 | Langfuse | 可选 | 不配则埋点静默关闭，链路照常跑 |
 
-嵌入与重排**跑在本地**，不消耗 API 额度；CPU 也能跑，只是慢。Apple Silicon 自动走 mps，NVIDIA 走 cuda
-（顺序固定在 [`llm/device.py`](https://github.com/tiltwind/refund-agent/blob/main/llm/device.py)，不做成配置项——
-换设备不该成为「检索结果变了」的解释之一）。
+嵌入与重排**跑在本地**，不消耗 API 额度，CPU 亦可运行。Apple Silicon 走 mps，NVIDIA 走 cuda，
+选择顺序固定在 [`llm/device.py`](https://github.com/tiltwind/refund-agent/blob/main/llm/device.py)，不做成配置项。
 
 ---
 
@@ -75,7 +70,7 @@ cp .env.example .env      # 填入 ANTHROPIC_API_KEY 或 OPENAI_* 三件套
 | `pyyaml` | 政策文档 frontmatter、`meta.yaml` | |
 | `langfuse` | 可观测 | 缺密钥时静默降级 |
 
-BM25 的分词和打分在 Milvus 服务端完成，因此不依赖 jieba。密钥写入已被 Git 忽略的 `.env`；`.env.example` 只保留占位符。
+BM25 的分词和打分在 Milvus 服务端完成，不依赖 jieba。密钥写入已被 Git 忽略的 `.env`，`.env.example` 只保留占位符。
 
 **验证**：
 
@@ -87,7 +82,7 @@ python -c "import langchain, langgraph, pymilvus, torch, transformers, yaml; pri
 
 ## 四、第 2 步 · 政策语料 `doc/policy/`
 
-`doc/policy/` 下的 Markdown 是政策语料的唯一来源，不维护 `policies.json` 等副本。
+`doc/policy/` 下的 Markdown 是政策语料的唯一来源。
 
 语料分两层（清单见 [`doc/policy/README.md`](https://tiltwind.github.io/refund-agent/doc/policy/README.md)）：
 
@@ -116,8 +111,7 @@ tags: [退货窗口, 无理由退货, 商品条件, 高风险账户]
 
 必填项为 `doc_id`、`title`、`layer`、`effective_date` 和 `expire_date`。缺失时构建失败。
 
-正文按「第 X 条」组织标题（`##` 为章 / 条，`###` 为细则），表格用 Markdown 表格——
-下一步的切分逻辑完全依赖这个结构。
+正文按「第 X 条」组织标题（`##` 为章 / 条，`###` 为细则），表格用 Markdown 表格，切分逻辑依赖这个结构。
 
 ---
 
@@ -132,48 +126,39 @@ tags: [退货窗口, 无理由退货, 商品条件, 高风险账户]
 | [`rerank/bge_reranker.py`](https://github.com/tiltwind/refund-agent/blob/main/llm/rerank/bge_reranker.py) | cross-encoder 重排 | 打 warn 后降级 |
 | [`chat.py`](https://github.com/tiltwind/refund-agent/blob/main/llm/chat.py) | 供应商与模型名的**唯一**解析处 | 无凭据时改写降级 |
 
-### 嵌入：三处必须写死一致
+### 嵌入：三个参数灌库与检索保持一致
 
 ```python
-MAX_LENGTH = 1024      # 灌库与检索必须同一个值，否则 query 与 passage 编码不对称
+MAX_LENGTH = 1024      # 灌库与检索取同一个值
 DIMENSION  = 1024      # 由 model.config.hidden_size 自检，对不上直接抛
-# dense 表示取 [CLS]（hidden[:, 0]），不是 mean pooling —— 取错不报错，只让相似度整体失真
+# dense 表示取 [CLS]（hidden[:, 0]），不用 mean pooling
 ```
 
-灌库和检索必须使用相同的长度、维度与 pooling。嵌入模型不可用时直接报错，不切换向量空间。
+嵌入模型不可用时直接报错，不切换向量空间。
 
-### 重排：可选，但降级要出声
+### 重排：可选，降级要出声
 
 `reranker()` 不可用时返回 `None`，调用方退回“融合分 + 效力位阶加权”并记录警告。
 
-### 对话模型：解析只做一次
+### 对话模型
 
-Agent 主循环和查询改写共用 `llm/chat.py` 的模型配置：
-
-```
-选哪家：REFUND_AGENT_PROVIDER 显式指定 > 哪边 key 非空走哪边 > 两边都配走 anthropic
-用哪个：REFUND_AGENT_MODEL > OPENAI_MODEL / ANTHROPIC_MODEL > 调用方默认值（仅当同供应商）
-端点：  跟着**模型**走，不跟着当前 provider 走
-```
-
-两组凭据同时存在时默认使用 Anthropic；切换供应商应设置 `REFUND_AGENT_PROVIDER`。
+Agent 主循环和查询改写共用 `llm/chat.py` 的模型配置。
 
 **验证**（首次运行会下载权重；国内网络可设置 `HF_ENDPOINT=https://hf-mirror.com`）：
 
-```bash
-python -c "
+```python
 from llm.embedding import embedder
 e = embedder()
 print('device =', e.device, '| tokens =', e.count_tokens('金牌会员签收 10 天未拆封'),
       '| dim =', len(e.encode_query('还能退吗？')))
-"
 
-python -c "
+```
+
+```python
 from llm.rerank import reranker
 m = reranker()
 print(m.score('签收10天的耳机未拆封还能无理由退吗？',
               ['金牌会员无理由退货窗口为签收后 15 天。', '退款将原路退回，1-3 个工作日到账。']))
-"
 ```
 
 期望：`dim = 1024`；重排两条分数明显拉开（第一条高）。
@@ -198,7 +183,7 @@ print(m.score('签收10天的耳机未拆封还能无理由退吗？',
 ```
 frontmatter 解析 → 按标题层级切 → 父块 = 一个 ## 小节（一章 / 一条完整规则）
   → 父块内按段落切 → 子块 = 检索单元，目标 320 / 硬上限 512 token
-      表格与代码原子化（半张表会给出与完整规则相反的结论）
+      表格与代码原子化，不拆开
       超长自然段 → 语义切分兜底
   → 每个子块加块头：【文档】+【路径】
 ```
@@ -207,8 +192,7 @@ frontmatter 解析 → 按标题层级切 → 父块 = 一个 ## 小节（一章
 
 **验证**（不连 Milvus，只切片）：
 
-```bash
-python -c "
+```python
 from pathlib import Path
 from knowledge.chunking import chunk_document
 from llm.embedding import embedder
@@ -221,7 +205,6 @@ for p in sorted((root / 'doc/policy').rglob('*.md')):
     total += got
 print('合计', len(total), '子块')
 print(m.truncation_report([c.text for c in total]))
-"
 ```
 
 期望：353 个子块、174 个父块，`truncated == 0`，p99 约 300 token。出现截断时应调整切分。
@@ -243,8 +226,8 @@ bash scripts/milvus.sh status
 | 健康检查 / metrics | **19091** | 9091 |
 | 内嵌 etcd | 2379 | 2379 |
 
-健康端口对外映射成 19091 是为了不和本机其它服务抢 9091。数据落在 `~/.refund-agent-milvus`，
-容器删了重建不丢。完整命令见
+健康端口对外映射为 19091，避开本机 9091。数据落在 `~/.refund-agent-milvus`，
+容器删除重建不丢。完整命令见
 [`doc/platform/milvus.md`](https://tiltwind.github.io/refund-agent/doc/platform/milvus.md)。
 
 ### 建表与灌库
@@ -264,7 +247,7 @@ schema.add_field("text", DataType.VARCHAR, max_length=20480,   # 块头 + 正文
 schema.add_function(Function(name="bm25", function_type=FunctionType.BM25,
                              input_field_names=["text"], output_field_names=["sparse"]))
 
-# 4. 几百个块，稠密一路直接用 FLAT 精确检索 —— 没有 nlist / ef 可抖
+# 4. 稠密一路用 FLAT 精确检索，无 nlist / ef 参数
 index.add_index(field_name="dense",  index_type="FLAT", metric_type="COSINE")
 index.add_index(field_name="sparse", index_type="SPARSE_INVERTED_INDEX", metric_type="BM25")
 ```
@@ -279,11 +262,9 @@ python knowledge/seed_milvus.py
 
 **验证**：
 
-```bash
-python -c "
+```python
 from services.rag import store
 print(store.COLLECTION, store.client().get_collection_stats(store.COLLECTION))
-"
 ```
 
 期望 `row_count` 与上一步的子块数一致（353）。
@@ -305,63 +286,26 @@ print(store.COLLECTION, store.client().get_collection_stats(store.COLLECTION))
 
 编排位于 [`milvus.py`](https://github.com/tiltwind/refund-agent/blob/main/services/rag/milvus.py)，Milvus 存取封装位于 [`store.py`](https://github.com/tiltwind/refund-agent/blob/main/services/rag/store.py)。collection 名和字段只在 `store.py` 定义。
 
-改写输出自然语言问句，便于 cross-encoder 判断段落是否回答问题。召回同时使用 BM25 和稠密向量，分别覆盖精确词项和语义匹配；RRF 融合在应用层完成，便于记录各路排名。
+改写输出自然语言问句。召回同时使用 BM25 和稠密向量，分别覆盖精确词项和语义匹配；RRF 融合在应用层完成，各路排名记进 trace。
 
-### 降级路径都要显式
+### 降级路径
 
-| 组件 | 不可用时 | 为什么 |
-|---|---|---|
-| 改写模型 | 原文透传，排序掉一档 | 改写有延迟和改坏的风险，不该拖垮整条链路 |
-| 重排模型 | 融合分 + 先验加权，打 warn | 排序变粗但仍可用 |
-| 嵌入模型 | **硬失败** | 换向量空间等于检索结果无意义 |
-| 检索结果为空 | **抛异常** | 这是运维故障（collection 空 / 没灌库），不是「没有适用政策」；让 Agent 带着「未检索到条款」继续判定，等于把它推回「凭记忆编政策」 |
+| 组件 | 不可用时 |
+|---|---|
+| 改写模型 | 原文透传，排序掉一档 |
+| 重排模型 | 融合分 + 先验加权，打 warn |
+| 嵌入模型 | **硬失败** |
+| 检索结果为空 | **抛异常**，不返回「未检索到条款」让 Agent 继续判定 |
 
 **验证**：
 
-```bash
-REFUND_AGENT_RAG_TRACE=on python -c "
+```python
 from services.rag.milvus import MilvusRagService
 for s in MilvusRagService().search_policy('金牌会员签收 10 天的耳机未拆封，无理由退货还在窗口期内吗？'):
     print(round(s.score, 3), s.section)
-"
 ```
 
-期望 top-1 命中 P02 的退货窗口条款。`REFUND_AGENT_RAG_TRACE=on` 会打印各步中间结果。
+期望 top-1 命中 P02 的退货窗口条款。
 
 > 权重（`0.80` 相关性 / `0.20` 先验）、阈值（`MIN_SCORE=0.30`）、RRF 的 `k=20`、法规层 `0.5` 降权——
 > 这些参数需要用 query → section 标注集校准。
-
----
-
-## 九、验收清单
-
-按顺序过一遍，每一项都能单独定位问题：
-
-| # | 命令 | 期望 |
-|---|---|---|
-| 1 | `python -c "import langchain, pymilvus, torch"` | 无报错 |
-| 2 | 切片脚本（第 4 步） | 353 子块 / 174 父块，`truncated == 0` |
-| 3 | `bash scripts/milvus.sh status` | 容器 healthy，19530 可连 |
-| 4 | `python knowledge/seed_milvus.py` | 建表 + 灌库完成，行数与 #2 一致 |
-| 5 | 检索冒烟（第 6 步） | top-1 命中 P02 退货窗口条款 |
-
-Agent 侧的验收在 [4 · 装配 RefundAgent v1](https://tiltwind.github.io/refund-agent/doc/get-start/4-agent.md#六验收清单)。
-
----
-
-## 十、常见故障
-
-| 症状 | 原因 | 处理 |
-|---|---|---|
-| `policy collection「…」检索不到任何生效条款` | collection 空 / 灌库没跑 / 条款被生效日期过滤掉 | 跑 `python knowledge/seed_milvus.py`；确认 frontmatter 的 `effective_date ≤ 今天 < expire_date` |
-| 灌库报 `有 N 个块超过 1024 token` | 有超长表格未被拆开 | 调小 `POLICY_CHUNK_MAX`，或把大表拆成多张 |
-| BM25 一条都召不回中文查询 | 建表漏了 `analyzer_params={"type": "chinese"}` | 重建 collection（改 analyzer 必须重灌） |
-| 改写报 `This response_format type is unavailable now` | 兼容网关不支持 `json_schema` | 已默认走 `function_calling`；仍不行设 `REFUND_AGENT_REWRITE_STRUCTURED=json_mode` |
-| 改写报 `Thinking mode does not support this tool_choice` | 推理模式与 `tool_choice` 冲突 | `REFUND_AGENT_REWRITE_REASONING=none`（非推理模型不要设这个参数，它会直接报错） |
-| 改写始终降级、打 warn | 无凭据 / 超时 / 结构化失败 | 不影响可用性，只掉一档排序；要彻底关掉用 `REFUND_AGENT_REWRITE=off` |
-| 权重下载失败 | 网络 | `export HF_ENDPOINT=https://hf-mirror.com`，或 `BGE_M3_MODEL` / `BGE_RERANKER_MODEL` 指向本地目录 |
-| 重排 warn「模型不可用」 | 权重缺失或 `REFUND_AGENT_RERANK=off` | 链路照跑，精排缺失；要恢复精度就补上模型 |
-
----
-
-知识库能检索了，下一步把它接进 Agent：[4 · 装配 RefundAgent v1](https://tiltwind.github.io/refund-agent/doc/get-start/4-agent.md)。

@@ -1,6 +1,6 @@
 # 0 · 需求
 
-RefundAgent 处理退款申请。系统结构见 [1 · 架构](https://tiltwind.github.io/refund-agent/doc/get-start/1-architecture.md)，设计取舍见 [2 · 设计](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md)，搭建步骤见 [3 · 政策知识库](https://tiltwind.github.io/refund-agent/doc/get-start/3-rag.md) 与 [4 · 装配 Agent](https://tiltwind.github.io/refund-agent/doc/get-start/4-agent.md)。
+RefundAgent 处理退款申请。
 
 ## 一、处理范围
 
@@ -57,4 +57,4 @@ RefundAgent 处理退款申请。系统结构见 [1 · 架构](https://tiltwind.
 | 审计 | 流水包含 `actor` 和 `request_id` |
 | 幂等 | 同一 `request_id` 重试不重复打款 |
 
-单号用于约束“答复”和“执行”的一致性：没有完成终局动作，就拿不到可写入答复的单号。
+答复中的单号必须来自本次已完成的终局动作。

@@ -1,6 +1,6 @@
 # 1 · 架构：组件、链路与目录
 
-本文说明组件边界、请求链路和目录结构。业务口径见 [0 · 需求](https://tiltwind.github.io/refund-agent/doc/get-start/0-requirement.md)，设计取舍见 [2 · 设计](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md)，搭建步骤见 [3 · 政策知识库](https://tiltwind.github.io/refund-agent/doc/get-start/3-rag.md) 与 [4 · 装配 Agent](https://tiltwind.github.io/refund-agent/doc/get-start/4-agent.md)。
+本文说明组件边界、请求链路和目录结构。业务口径见 [0 · 需求](https://tiltwind.github.io/refund-agent/doc/get-start/0-requirement.md)。
 
 ---
 
@@ -101,12 +101,7 @@ flowchart TD
 | 规则服务 | **退款规则引擎**：窗口、风控、类目黑名单、商品条件 | 订单数据的存储、资金动作 |
 | 订单系统 | 订单数据 + 退款执行（**自己做归属校验**） | 退款规则 |
 
-规则引擎独立成服务，不放在 Agent 里，也不并进订单系统：
-
-- 不放 Agent：规则口径由业务方定义并独立发版，抄进 Agent 等于每改一次窗口天数就发一次 Agent；
-- 不并进订单系统：规则的变更频率远高于订单数据与资金链路，拆开两边才能各自独立发版，「谁能改判定口径」和「谁能动钱」也才是两拨权限。
-
-规则服务本身不存订单数据，判定时带 `X-Acting-User` 向订单系统取数，归属校验仍由数据所有者执行。
+规则引擎独立成服务，与 Agent、订单系统各自发版。规则服务不存订单数据，判定时带 `X-Acting-User` 向订单系统取数，归属校验由数据所有者执行。
 
 ---
 
@@ -140,7 +135,7 @@ sequenceDiagram
     AG-->>M: 工具结果
 
     M-->>AG: tool_call: search_refund_policy
-    AG->>AG: 改写 → 路由（六步链路，2-design 7.2）
+    AG->>AG: 改写 → 路由（六步链路）
     AG->>KB: 双路召回：稠密 + BM25<br/>生效日期 / 层级标量过滤
     KB-->>AG: 两份排名列表 → RRF 融合
     AG->>AG: 重排（cross-encoder）→ 装配（父块回填）
@@ -174,7 +169,7 @@ sequenceDiagram
     AG-->>U: 最终答复
 ```
 
-最终答复必须包含单号。单号由终局工具返回，用于确认退款或拒绝记录已经落库。
+最终答复必须包含单号，单号由终局工具返回。
 
 ---
 
@@ -201,10 +196,10 @@ refund-agent/
 │
 ├── services/                     # 服务接入层：下游能力的统一入口
 │   ├── base.py                   # 服务身份 + X-Acting-User + traceparent + 重试熔断
-│   ├── factory.py                # 按 request_source 选实现（rag 除外，见 2-design 3.4）
+│   ├── factory.py                # 按 request_source 选实现（rag 除外）
 │   ├── errors.py                 # EvalDataMissError
 │   ├── eval_store.py             # 加载 evals/data + 会话隔离（并发跑批不互相污染）
-│   ├── telemetry.py              # OTel 埋点 → Langfuse：trace 属性组装 + PII 脱敏（2-design 5.6）
+│   ├── telemetry.py              # OTel 埋点 → Langfuse：trace 属性组装 + PII 脱敏
 │   ├── customer/
 │   │   ├── protocol.py           # CustomerService 接口 + 数据模型
 │   │   ├── prod.py               # → 用户服务
@@ -221,7 +216,7 @@ refund-agent/
 │       ├── protocol.py           # PolicySection（内容+来源+时间+理由）+ RetrievalTrace
 │       ├── store.py              # Milvus 连接与字段定义的单一定义点
 │       ├── milvus.py             # 六步链路的编排，**唯一实现**，prod / eval 共用
-│       └── pipeline/             # 一步一个文件，每步可单独观测（2-design 7.2）
+│       └── pipeline/             # 一步一个文件，每步可单独观测
 │           ├── rewrite.py        # ① 改写：拆多意图 → 自然语言问句
 │           ├── route.py          # ② 路由：平台层 / 法规层的名额与权重
 │           ├── filters.py        # ③ 过滤：生效日期 + 层级，只做硬约束
@@ -230,7 +225,7 @@ refund-agent/
 │           └── assemble.py       # ⑥ 装配：父块回填 + 去重 + 预算截断
 │
 ├── llm/                          # 模型层：与业务无关，被多条链路共用
-│   ├── chat.py                   # 供应商与模型名的唯一解析处（2-design 7.3）
+│   ├── chat.py                   # 供应商与模型名的唯一解析处
 │   ├── device.py                 # cuda > mps > cpu
 │   ├── embedding/bge_m3.py       # BGE-M3 稠密向量 + tokenizer 计长（切分要用）
 │   └── rerank/bge_reranker.py    # bge-reranker-v2-m3，可关闭（降级打 warn）
@@ -243,8 +238,8 @@ refund-agent/
 │   └── platform/                 # 依赖服务的本地部署说明（Milvus / Langfuse）
 │
 ├── knowledge/                    # 索引管线（不是 eval 数据）
-│   ├── chunking/                 # doc/policy/*.md → 父子块（2-design 7.1）
-│   │   ├── model.py              # DocMeta / Chunk；块头拼什么、为什么
+│   ├── chunking/                 # doc/policy/*.md → 父子块
+│   │   ├── model.py              # DocMeta / Chunk；块头拼装
 │   │   ├── markdown.py           # frontmatter + 标题树 + 段落/表格/代码
 │   │   ├── semantic.py           # 超长段落的语义切分兜底
 │   │   └── policy.py             # 编排 + 切分参数（320 / 512 / overlap=0）
@@ -276,6 +271,5 @@ refund-agent/
 > v1 已落地的是 `agent/v1`、`services/`、`llm/`、`knowledge/`、`doc/policy/`、两个入口脚本，
 > 以及 `evals/` 下的用例集 `dataset/d1` 与自检脚本 `validate_cases.py`；
 > `app/main.py`、`app/middleware/`、`agent/v2/`、`evals/` 的跑批与打分（`offline` / `compare` / `online`）仍是规划。
-> 逐步搭出已落地那部分的过程见 [3 · 政策知识库](https://tiltwind.github.io/refund-agent/doc/get-start/3-rag.md) 与 [4 · 装配 Agent](https://tiltwind.github.io/refund-agent/doc/get-start/4-agent.md)。
 
-**四个目录的边界**：`agent/` 是会变的部分（提示词、流程、工具描述），版本化；`services/` 是稳定的部分（下游能力契约），跨版本共享；`knowledge/` 是业务语料（政策条款原文），与 Agent 版本无关，改版走灌库而不是改代码；`evals/` 消费前三者——用同一套 eval 数据、同一个政策 collection 跑不同 agent 版本，这就是对比实验成立的前提。
+**四个目录的边界**：`agent/` 放提示词、流程与工具描述，按版本并存；`services/` 放下游能力契约，跨版本共享；`knowledge/` 放业务语料，改版走灌库而不是改代码；`evals/` 消费前三者，用同一套 eval 数据和同一个政策 collection 跑不同 agent 版本。

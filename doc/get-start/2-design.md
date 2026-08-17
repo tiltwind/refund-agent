@@ -1,8 +1,8 @@
-# 2 · 设计：关键取舍
+# 2 · 设计
 
-本文记录身份、工具、数据源、幂等、可观测和评估的设计。模型负责理解诉求和组织答复；确定性系统负责流程、判定和执行。
+本文给出身份、工具、数据源、幂等、可观测和评估的设计口径。模型负责理解诉求和组织答复；确定性系统负责流程、判定和执行。
 
-相关文档：[0 · 需求](https://tiltwind.github.io/refund-agent/doc/get-start/0-requirement.md)、[1 · 架构](https://tiltwind.github.io/refund-agent/doc/get-start/1-architecture.md)、[3 · 政策知识库](https://tiltwind.github.io/refund-agent/doc/get-start/3-rag.md) 与 [4 · 装配 Agent](https://tiltwind.github.io/refund-agent/doc/get-start/4-agent.md)。
+相关文档：[0 · 需求](https://tiltwind.github.io/refund-agent/doc/get-start/0-requirement.md) 与 [1 · 架构](https://tiltwind.github.io/refund-agent/doc/get-start/1-architecture.md)。
 
 ---
 
@@ -16,7 +16,7 @@
 | 操作者 | `actor`（自助 / 客服代操作） | 网关注入（源自 JWT claims） | Context 注入 | ❌ |
 | 资源引用 | `order_id` | 对话文本 | 工具参数 | ✅ 但服务端必须校验归属 |
 
-身份来自认证，不来自对话。`customer_id` 不进入工具 schema，避免模型决定访问哪个客户的数据。
+身份来自认证，不来自对话。`customer_id` 不进入工具 schema。
 
 ### 1.2 信任边界：网关与 Agent 的分工
 
@@ -32,15 +32,7 @@
 
 网关必须先删除客户端传入的同名身份 header，再注入可信值。Agent 服务只接受网关流量，可通过 VPC、mTLS 或服务网格策略隔离。
 
-三种方案的取舍：
-
-| 方案 | Agent 侧做什么 | 防绕过强度 | 适用 |
-|---|---|---|---|
-| **A. 网关注入明文 header** | 读 header，零加密开销 | 依赖网络隔离 + header strip | ✅ **本项目选型**，内网可信 |
-| B. 网关透传原始 JWT | 仍需验签（重复劳动） | 强 | 网关只做路由时 |
-| C. 网关换发内部短时 token | 验内部 token（audience=内部服务） | 最强，绕过也无效 | 零信任 / 金融级合规 |
-
-本项目使用方案 A；外部渠道或更高合规要求可改用方案 C。
+本项目采用网关注入明文 header、Agent 侧只读 header 的方案，依赖网络隔离与 header strip。外部渠道或零信任、金融级合规场景改用网关换发内部短时 token，Agent 侧校验 `audience=内部服务`。
 
 ### 1.3 Context 定义与注入
 
@@ -70,7 +62,7 @@ def build_context(
     x_actor: str = Header("self"),
     x_request_id: str = Header(None),
 ) -> RefundContext:
-    # 取不到就是没经过网关 —— 直接拒绝，绝不 fallback 成匿名或默认值
+    # 缺 header 直接拒绝，不 fallback 成匿名或默认值
     if not x_customer_id or not x_request_id:
         raise HTTPException(401, "missing gateway identity headers")
     return RefundContext(
@@ -100,7 +92,7 @@ def get_customer_info(runtime: ToolRuntime[RefundContext]) -> str:
     """查询当前客户的档案：会员等级、近 90 天退款次数、名下订单。"""
     ctx = runtime.context
     return user_client.get_profile(
-        customer_id=ctx.customer_id,     # 模型无从干预
+        customer_id=ctx.customer_id,     # 来自 context，不接受模型传参
         request_id=ctx.request_id,
     )
 ```
@@ -123,12 +115,12 @@ X-Request-Id:   req-abc-123
 # 规则服务侧：订单数据向订单系统取，带上 acting_user
 def check_eligibility(order_id, acting_user):
     order = order_api.get(order_id, acting_user=acting_user)
-    # 不存在 与 不属于你 返回同一句话 —— 区分开会泄露订单号是否存在
+    # 「不存在」与「不属于当前客户」返回同一句话
     if not order:
         return Result(passed=False, reason=f"订单 {order_id} 不存在")
 ```
 
-归属校验由数据所有者执行，Agent 无权绕过。规则服务只是把「取不到」翻译成一句业务结论。
+归属校验由数据所有者执行，Agent 无权绕过。规则服务把「取不到」翻译成一句业务结论。
 
 ---
 
@@ -162,12 +154,12 @@ if reason_type and reason_type not in REASON_TYPES:
 
 ## 三、服务接入层与数据源切换
 
-### 3.1 为什么工具层不直接调下游
+### 3.1 工具层只调 `services/`
 
-工具层通过 `services/` 调用下游：
+工具层不直接访问下游，统一走 `services/`：
 
-1. 离线评估可切换到本地数据；政策检索仍连接 Milvus，见 3.4；
-2. REST、gRPC 等协议变化限制在具体实现中；
+1. 数据源由 `request_source` 切换，离线评估读本地数据；政策检索始终连 Milvus，见 3.4；
+2. REST、gRPC 等协议细节封闭在具体实现里；
 3. 服务身份、`traceparent`、重试、熔断和超时集中在 `services/base.py`。
 
 ### 3.2 一个服务 = 一个接口 + 按需的实现
@@ -225,18 +217,18 @@ def get_customer_info(runtime: ToolRuntime[RefundContext]) -> str:
 
 时间使用 `signed_days_ago`，避免固定时间戳导致窗口用例过期。数据缺失时抛 `EvalDataMissError`，用例记为 `invalid`。当前不支持录制回放。
 
-### 3.4 RAG 为什么不切数据源
+### 3.4 RAG 不切数据源
 
-`prod` 和 `eval` 使用同一个 Milvus collection，因为检索质量属于评估范围。为 eval 维护第二份政策数据会造成版本漂移。相关变量按下表控制：
+`prod` 和 `eval` 使用同一个 Milvus collection。影响检索结果的变量按下表控制：
 
-| 变化 | 后果 | 按住它的办法 |
-|---|---|---|
-| 政策改版、重新灌库 | 同一条用例昨天过今天挂 | collection **按版本发布**（`refund_policy_chunks_v3`），评估固定指向某个版本；线上灰度切换，**不在原 collection 上原地 drop 重建**——重建的空窗期里检索返回空，Agent 会直接失败 |
-| embedding 模型升版本 | 向量空间整体偏移，TopK 排序全变 | 灌库与检索共用同一个 `llm.embedding.embedder()`；模型版本随 `agent_version` 一起记进 trace，换模型视同一次发版，要重跑基线 |
-| 切分参数（块大小 / 父块粒度）调整 | 召回单元变了，命中的条款跟着变 | 参数集中在 [`knowledge/chunking/policy.py`](https://github.com/tiltwind/refund-agent/blob/main/knowledge/chunking/policy.py)，与 collection 版本绑定发布；调参必须重跑检索基线（见下） |
-| 索引参数（nlist / ef）调整 | 召回集合抖动 | 几百个块，稠密一路直接用 `FLAT` 精确检索——没有可抖的参数 |
-| 查询改写的 LLM 抖动 | 同一 query 拆出的子查询不同，召回跟着变 | 改写模型固定版本、温度 0，改写结果记进 trace；`REFUND_AGENT_REWRITE=off` 可整体关掉换取确定性（代价见 [`services/rag/pipeline/rewrite.py`](https://github.com/tiltwind/refund-agent/blob/main/services/rag/pipeline/rewrite.py)） |
-| collection 空 / 灌库没跑 | 拿不到条款 | 检索返回空时**显式抛错**，不让 Agent 带着一句「未检索到条款」继续判定——那等于把它推回「凭记忆编政策」 |
+| 变量 | 做法 |
+|---|---|
+| 政策改版、重新灌库 | collection **按版本发布**（`refund_policy_chunks_v3`），评估固定指向某个版本；线上灰度切换，不在原 collection 上原地 drop 重建 |
+| embedding 模型升版本 | 灌库与检索共用同一个 `llm.embedding.embedder()`；模型版本随 `agent_version` 记进 trace，换模型视同一次发版，重跑基线 |
+| 切分参数（块大小 / 父块粒度） | 参数集中在 [`knowledge/chunking/policy.py`](https://github.com/tiltwind/refund-agent/blob/main/knowledge/chunking/policy.py)，与 collection 版本绑定发布；调参后重跑检索基线 |
+| 索引参数（nlist / ef） | 稠密一路用 `FLAT` 精确检索，无此类参数 |
+| 查询改写的 LLM 抖动 | 改写模型固定版本、温度 0，改写结果记进 trace；`REFUND_AGENT_REWRITE=off` 可整体关闭，见 [`services/rag/pipeline/rewrite.py`](https://github.com/tiltwind/refund-agent/blob/main/services/rag/pipeline/rewrite.py) |
+| collection 空 / 灌库没跑 | 检索返回空时**显式抛错**，不让 Agent 带着「未检索到条款」继续判定 |
 
 回归波动时，先检查 `tool.search_refund_policy` 的返回和六步检索 trace，再检查 Agent。检索另用 query → section 数据集计算 recall@k 和 MRR。CI 需要启动 Milvus 并运行 [`knowledge/seed_milvus.py`](https://github.com/tiltwind/refund-agent/blob/main/knowledge/seed_milvus.py)。
 
@@ -247,12 +239,12 @@ def get_customer_info(runtime: ToolRuntime[RefundContext]) -> str:
 退款是资金操作，**必须幂等**。
 
 - 幂等键用 `request_id`（网关生成，贯穿全链路），随 `Idempotency-Key` header 发给订单系统
-- 订单系统对同一幂等键返回**同一个退款单号**，而非重复打款
-- Agent 侧重试（超时、5xx）安全：重试携带相同幂等键
+- 订单系统对同一幂等键返回**同一个退款单号**，不重复打款
+- Agent 侧重试（超时、5xx）携带相同幂等键
 
 **高风险 case 走人工审批**：金额超阈值、风控命中、判定为边界值时，用 LangGraph 的 `interrupt` 挂起，等人工确认后恢复。审批状态由 checkpointer 持久化，服务重启不丢。
 
-**审计流水字段**：`decision`、`refund_no`、`order_id`、`amount`、`reason`、`actor`、`request_id`、`trace_id`、`policy_refs`。缺 `actor` 和 `request_id` 的流水事后追不到人、对不上链路。
+**审计流水字段**：`decision`、`refund_no`、`order_id`、`amount`、`reason`、`actor`、`request_id`、`trace_id`、`policy_refs`，其中 `actor` 与 `request_id` 必填。
 
 ---
 
@@ -323,11 +315,11 @@ class DownstreamClient:
 
 | 项 | 状态 |
 |---|---|
-| 一次请求 = 一条 trace，图节点 / 工具 / generation 自动成树 | ✅ Langfuse v3+ 底座是 OpenTelemetry，`CallbackHandler` 直接吃 LangGraph 回调，不需要自建 tracer provider |
+| 一次请求 = 一条 trace，图节点 / 工具 / generation 自动成树 | ✅ Langfuse `CallbackHandler` 接 LangGraph 回调，不自建 tracer provider |
 | trace 属性：`request_id`、`session_id`、脱敏后的 `customer_id`、`agent_version`、`prompt_version`、`request_source` | ✅ 由 `trace_config()` 组装，埋点走 `invoke` 的 `config`，与业务身份的 `context` 分开 |
-| PII 脱敏（5.4） | ✅ 挂在 SDK 的 `mask` 钩子上，所有 span 的 input/output 统一过一遍——不是让每个埋点自己记得脱敏 |
-| `rag.recall` / `rag.rerank` / `rag.assemble` 子 span | ❌ 只有改写因为走 LangChain 才自动出现，其余是纯函数，要手工包一层 |
-| 跨服务 `traceparent` 透传（5.3） | ❌ v1 全走 eval 数据源，还没有下游 HTTP 调用 |
+| PII 脱敏（5.4） | ✅ 挂在 SDK 的 `mask` 钩子上，所有 span 的 input/output 统一过一遍 |
+| `rag.recall` / `rag.rerank` / `rag.assemble` 子 span | ❌ 改写走 LangChain 自动出现，其余为纯函数，需手工包一层 |
+| 跨服务 `traceparent` 透传（5.3） | ❌ v1 全走 eval 数据源，尚无下游 HTTP 调用 |
 | scores 异步写回 | ❌ 属第六章的评估闭环 |
 
 短命脚本退出前显式 `flush`；启动时运行 `auth_check`。缺少 key 时关闭埋点，不影响主链路。
@@ -378,7 +370,7 @@ flowchart TB
 
 `RefundContext.request_source` 是切换点：`prod` 走真实微服务，`eval` 读 `evals/data/*.json`（详见第三章）。**同一份工具代码、同一条代码路径**，区别只在入口注入的 context。
 
-唯一的外部依赖是 **Milvus**（2.5+，BM25 Function 需要）：政策检索不切数据源，评估跑批同样连真实向量库（3.4）。所以评估环境要固定 collection 版本——政策库换了内容而基线没重跑，报告里的涨跌就不再只反映 Agent 的改动。嵌入与重排跑在本地（`llm/`），CI 要预热模型缓存，否则每次跑批都要下载约 4.4 GB 权重。
+唯一的外部依赖是 **Milvus**（2.5+，BM25 Function 需要）：政策检索不切数据源，评估跑批同样连真实向量库（3.4），评估环境固定 collection 版本。嵌入与重排跑在本地（`llm/`），CI 预热模型缓存，约 4.4 GB 权重。
 
 `request_source` 只能由环境变量、评估流水线或可信网关注入，客户端不能指定。
 
@@ -402,17 +394,17 @@ agent/
 └── registry.py    # 版本注册与选择
 ```
 
-并存带来四个能力：
+并存后按下表使用：
 
-| 能力 | 说明 |
+| 场景 | 做法 |
 |---|---|
-| **同集对比** | 同一数据集同时跑 v1/v2，逐条 diff——只有这样才能区分「真的变好了」和「抽样噪音」 |
-| **退化定位** | v1 过、v2 挂的用例集合，就是这次改动的**代价清单** |
-| **灰度回滚** | 线上按流量比例路由，指标不对立刻切回 v1 |
-| **线上归因** | trace 里记 `agent_version`，指标掉了能立刻定位到是哪次发版 |
+| **同集对比** | 同一数据集同时跑 v1/v2，逐条 diff |
+| **退化定位** | 取 v1 过、v2 挂的用例集合 |
+| **灰度回滚** | 线上按流量比例路由，指标不对切回 v1 |
+| **线上归因** | trace 里记 `agent_version`，按版本切分指标 |
 
 ```python
-# evals/compare.py —— 跑与报告解耦，报告可随时从 Langfuse 重新生成
+# evals/compare.py —— 只负责跑，报告另从 Langfuse 生成
 for version in ("v1", "v2"):
     run_dataset(
         agent=registry.get(version),
@@ -425,15 +417,15 @@ for version in ("v1", "v2"):
 agent = registry.select(rollout={"v1": 0.9, "v2": 0.1})
 ```
 
-**实验纪律：每轮只改一处。** 同时改提示词和规则引擎，报告涨了也不知道是哪个起的作用；跌了更无从回滚。对比报告必须能回答三个问题：总通过率变了吗、哪些用例由过变挂、这些退化是真退化还是评估集口径问题。
+**实验纪律：每轮只改一处。** 对比报告必须能回答三个问题：总通过率变了吗、哪些用例由过变挂、这些退化是真退化还是评估集口径问题。
 
 ### 6.5 数据集来源与回流
 
-- **手工构造的规则边界用例**（窗口 15 vs 16、阈值 3 vs 4、类目黑名单、重复退款）——保规则分支全覆盖
-- **线上 trace 脱敏后标注**——保数据分布真实
-- **线上 badcase / 用户投诉**——按闭环 ⑦ 持续回流
+- **手工构造的规则边界用例**（窗口 15 vs 16、阈值 3 vs 4、类目黑名单、重复退款）：覆盖全部规则分支
+- **线上 trace 脱敏后标注**：补真实数据分布
+- **线上 badcase / 用户投诉**：按闭环 ⑦ 持续回流
 
-新增用例先过 `validate_cases` 自检：把期望值喂给规则引擎，不自洽的用例直接拦下。**改规则引擎时先跑这个**——它零成本、不调模型，能在跑实验前就发现口径漂移。
+新增用例先过 `validate_cases` 自检：把期望值喂给规则引擎，不自洽的用例直接拦下。改规则引擎后同样先跑它，不调模型。
 
 ---
 
@@ -448,7 +440,7 @@ agent = registry.select(rollout={"v1": 0.9, "v2": 0.1})
 | 状态持久化 | LangGraph checkpointer（人工审批挂起 / 恢复） |
 | 可观测 | OpenTelemetry + Langfuse |
 | 评估 | Langfuse dataset run + 自建规则引擎真值锚 |
-| 下游通信 | HTTP / gRPC（**不引入 MCP**，见下） |
+| 下游通信 | HTTP / gRPC，**不引入 MCP**（见 7.4） |
 
 ### 7.1 离线索引：doc/policy 变成了什么
 
@@ -459,7 +451,7 @@ agent = registry.select(rollout={"v1": 0.9, "v2": 0.1})
   → frontmatter 解析（doc_id / layer / effective_date / authority_level …）
   → 按标题层级切：父块 = 一个 `##` 小节（一章 / 一条完整规则）
   → 父块内按段落切：子块 = 检索单元，目标 320 / 硬上限 512 token
-      表格与代码块原子化（半张表会给出与完整规则相反的结论）
+      表格与代码块原子化，不拆开
       超长自然段 → 语义切分兜底
   → 每个子块加块头：【文档】+【路径】
   = 353 个子块 / 174 个父块，overlap = 0
@@ -484,9 +476,9 @@ agent = registry.select(rollout={"v1": 0.9, "v2": 0.1})
 | 5 重排 | cross-encoder + 层级/文档先验 | 候选里有正确答案但没顶上来 |
 | 6 装配 | 父块回填 + 去重 + 相邻合并 + 预算截断 | 上下文里有证据但答复没用上 |
 
-BM25 负责数字、类目等精确词项，稠密检索负责语义匹配。BM25 由 Milvus 的中文分析器和 BM25 Function 计算。RRF 融合在应用层完成，以便记录各路排名。
+BM25 负责数字、类目等精确词项，稠密检索负责语义匹配。BM25 由 Milvus 的中文分析器和 BM25 Function 计算。RRF 融合在应用层完成，各路排名记进 trace。
 
-查询改写输出自然语言问句，便于 cross-encoder 判断段落是否回答问题。生效日期只用于硬过滤，不参与 freshness 加权；排序先验为平台层优先、P02 优先。
+查询改写输出自然语言问句。生效日期只用于硬过滤，不参与 freshness 加权；排序先验为平台层优先、P02 优先。
 
 改写失败时使用原查询；重排不可用时使用融合分和先验；嵌入不可用或检索为空时直接报错。当前权重、阈值和 RRF 参数只是初始值，需要用 query → section 标注集校准。
 
@@ -505,7 +497,7 @@ Agent 主循环和查询改写都通过 [`llm/chat.py`](https://github.com/tiltw
 | 调用方给的默认值 | **仅当它属于当前供应商** |
 | 兜底 | 改写回落到主模型；主模型在 openai 侧直接报错 |
 
-调用方默认值只在供应商一致时生效。OpenAI 兼容网关没有统一模型名，因此 OpenAI 侧不设内置默认值。
+调用方默认值只在供应商一致时生效，OpenAI 侧不设内置默认值。
 
 端点按模型前缀选择。OpenAI 侧同时识别 `OPENAI_BASE_URL` 和 `OPENAI_API_BASE`。
 
@@ -521,6 +513,6 @@ OpenAI 侧默认使用 `function_calling`。推理模型若不接受 `tool_choic
 
 改写失败时使用原查询；`REFUND_AGENT_REWRITE=off` 可关闭改写。
 
-### 为什么不用 MCP
+### 7.4 MCP
 
-当前工具与 Agent 同团队、同周期发布，且与提示词共同演进，因此不拆为 MCP 服务。出现跨团队复用需求后，可先迁移 `get_customer_info` 等只读通用工具；写操作和业务规则仍留在业务服务内。
+当前不引入，工具与 Agent 同仓同周期发布。出现跨团队复用需求后，先迁移 `get_customer_info` 等只读通用工具；写操作和业务规则留在业务服务内。
