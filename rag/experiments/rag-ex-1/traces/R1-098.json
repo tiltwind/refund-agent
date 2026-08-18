@@ -1,0 +1,1022 @@
+{
+  "case": {
+    "case_id": "R1-098",
+    "type": "unanswerable",
+    "style": "colloquial",
+    "doc_id": "",
+    "layer": "",
+    "kind": "",
+    "seed_chunk_id": [],
+    "error": null,
+    "scores": {
+      "unanswerable_raised": 0.0
+    },
+    "elapsed_s": 1.9,
+    "sections": [],
+    "trace_id": "c29d2f30fbde4b5ee71b007f19005c29"
+  },
+  "trace": {
+    "id": "c29d2f30fbde4b5ee71b007f19005c29",
+    "name": "experiment-item-run",
+    "timestamp": "2026-08-18 03:21:40.468000+00:00"
+  },
+  "observations": [
+    {
+      "id": "32e8047c0dda5c8a",
+      "traceId": "c29d2f30fbde4b5ee71b007f19005c29",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 03:21:40.468000+00:00",
+      "endTime": "2026-08-18 03:21:48.967000+00:00",
+      "input": {
+        "query": "旧机器抵扣的那部分钱，退货的时候是退现金还是退回抵扣额度？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-2",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-098",
+        "kind": "",
+        "type": "unanswerable",
+        "layer": "",
+        "style": "colloquial",
+        "topic": "以旧换新",
+        "doc_id": "",
+        "section": "",
+        "reviewed": true,
+        "generated_by": "handwritten",
+        "overlap_ratio": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-098",
+        "type": "unanswerable",
+        "style": "colloquial",
+        "doc_id": "",
+        "layer": "",
+        "kind": "",
+        "seed_chunk_id": [],
+        "error": null,
+        "scores": {
+          "unanswerable_raised": 0
+        },
+        "elapsed_s": 1.9,
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 8.499,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:21:52.533Z",
+      "updatedAt": "2026-08-18T03:21:52.558Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "e7367ed75b2e064b",
+      "traceId": "c29d2f30fbde4b5ee71b007f19005c29",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 03:21:47.038000+00:00",
+      "endTime": "2026-08-18 03:21:48.967000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "旧机器抵扣的那部分钱，退货的时候是退现金还是退回抵扣额度？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "5a00d74851fa6f4e",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.929,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:21:52.533Z",
+      "updatedAt": "2026-08-18T03:21:52.557Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "44a65ddb9a3b4f8b",
+      "traceId": "c29d2f30fbde4b5ee71b007f19005c29",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 03:21:48.362000+00:00",
+      "endTime": "2026-08-18 03:21:48.967000+00:00",
+      "input": {
+        "query": "旧机器抵扣的那部分钱，退货的时候是退现金还是退回抵扣额度？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 0,
+        "min_score": 0.3,
+        "dropped": [
+          "P10#003:00",
+          "L02#003:07",
+          "L02#003:04",
+          "P10#001:01",
+          "P10#000:01",
+          "P03#001:02",
+          "P10#006:00",
+          "L02#003:05",
+          "P03#001:03",
+          "P10#002:02",
+          "L02#003:08",
+          "P10#003:01",
+          "L02#003:02",
+          "P10#003:02",
+          "L02#003:06",
+          "P10#000:00",
+          "L05#013:00",
+          "L02#002:03",
+          "P03#001:04",
+          "P03#001:01"
+        ],
+        "evidence": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "e7367ed75b2e064b",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.605,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:21:52.533Z",
+      "updatedAt": "2026-08-18T03:21:52.557Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "1c948db7a749f41f",
+      "traceId": "c29d2f30fbde4b5ee71b007f19005c29",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 03:21:48.967000+00:00",
+      "endTime": "2026-08-18 03:21:48.967000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "旧机器抵扣的那部分钱，退货的时候是退现金还是退回抵扣额度？"
+        },
+        "output": {
+          "case_id": "R1-098",
+          "type": "unanswerable",
+          "style": "colloquial",
+          "doc_id": "",
+          "layer": "",
+          "kind": "",
+          "seed_chunk_id": [],
+          "error": null,
+          "scores": {
+            "unanswerable_raised": 0
+          },
+          "elapsed_s": 1.9,
+          "sections": []
+        },
+        "expected_output": {
+          "seed_chunk_id": [],
+          "reference_answer": ""
+        },
+        "metadata": {
+          "kind": "",
+          "type": "unanswerable",
+          "layer": "",
+          "style": "colloquial",
+          "topic": "以旧换新",
+          "doc_id": "",
+          "section": "",
+          "reviewed": true,
+          "generated_by": "handwritten",
+          "overlap_ratio": 0
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "unanswerable_raised",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "707065f57bde0abe",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:21:52.533Z",
+      "updatedAt": "2026-08-18T03:21:52.556Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "707065f57bde0abe",
+      "traceId": "c29d2f30fbde4b5ee71b007f19005c29",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 03:21:48.967000+00:00",
+      "endTime": "2026-08-18 03:21:48.967000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 2,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "32e8047c0dda5c8a",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:21:52.533Z",
+      "updatedAt": "2026-08-18T03:21:52.556Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "ad166d66184825fe",
+      "traceId": "c29d2f30fbde4b5ee71b007f19005c29",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 03:21:48.967000+00:00",
+      "endTime": "2026-08-18 03:21:48.967000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": []
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "e7367ed75b2e064b",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:21:52.533Z",
+      "updatedAt": "2026-08-18T03:21:52.556Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "5a00d74851fa6f4e",
+      "traceId": "c29d2f30fbde4b5ee71b007f19005c29",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 03:21:40.468000+00:00",
+      "endTime": "2026-08-18 03:21:48.967000+00:00",
+      "input": {
+        "query": "旧机器抵扣的那部分钱，退货的时候是退现金还是退回抵扣额度？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-2",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-098",
+        "kind": "",
+        "type": "unanswerable",
+        "layer": "",
+        "style": "colloquial",
+        "topic": "以旧换新",
+        "doc_id": "",
+        "section": "",
+        "reviewed": true,
+        "generated_by": "handwritten",
+        "overlap_ratio": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-098",
+        "type": "unanswerable",
+        "style": "colloquial",
+        "doc_id": "",
+        "layer": "",
+        "kind": "",
+        "seed_chunk_id": [],
+        "error": null,
+        "scores": {
+          "unanswerable_raised": 0
+        },
+        "elapsed_s": 1.9,
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "32e8047c0dda5c8a",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 8.499,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:21:52.533Z",
+      "updatedAt": "2026-08-18T03:21:52.552Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "4c0b99871ded5be2",
+      "traceId": "c29d2f30fbde4b5ee71b007f19005c29",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-18 03:21:48.268000+00:00",
+      "endTime": "2026-08-18 03:21:48.362000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "P10#003:00",
+            "section": "P10 第四条 积分与储值 > 4.1 积分支付部分的返还",
+            "rrf": 0.0952,
+            "hits": [
+              "1/platform/dense#1",
+              "1/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:07",
+            "section": "L02 第三章 退货程序 > 第十七条 【退款金额的计算】",
+            "rrf": 0.0931,
+            "hits": [
+              "1/law/dense#2",
+              "1/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:04",
+            "section": "L02 第三章 退货程序 > 第十四条 【退款方式】",
+            "rrf": 0.0851,
+            "hits": [
+              "1/law/dense#4",
+              "1/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P10#001:01",
+            "section": "P10 第二条 满减与套装的部分退货 > 2.2 计算示例",
+            "rrf": 0.0817,
+            "hits": [
+              "1/platform/dense#5",
+              "1/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P10#000:01",
+            "section": "P10 第一条 优惠券 > 1.2 计算示例",
+            "rrf": 0.0742,
+            "hits": [
+              "1/platform/dense#8",
+              "1/platform/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "P03#001:02",
+            "section": "P03 第二条 退款金额的计算 > 2.3 部分退货导致优惠失效",
+            "rrf": 0.072,
+            "hits": [
+              "1/platform/dense#15",
+              "1/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P10#006:00",
+            "section": "P10 第七条 退款金额的构成告知",
+            "rrf": 0.0683,
+            "hits": [
+              "1/platform/dense#12",
+              "1/platform/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:05",
+            "section": "L02 第三章 退货程序 > 第十五条 【积分、代金券、优惠券的返还】",
+            "rrf": 0.0476,
+            "hits": [
+              "1/law/dense#1"
+            ]
+          },
+          {
+            "chunk_id": "P03#001:03",
+            "section": "P03 第二条 退款金额的计算 > 2.4 积分与储值",
+            "rrf": 0.0455,
+            "hits": [
+              "1/platform/dense#2"
+            ]
+          },
+          {
+            "chunk_id": "P10#002:02",
+            "section": "P10 第三条 赠品 > 3.3 部分退货时的赠品",
+            "rrf": 0.0455,
+            "hits": [
+              "1/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:08",
+            "section": "L02 第三章 退货程序 > 第十八条 【退货运费承担】",
+            "rrf": 0.0455,
+            "hits": [
+              "1/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P10#003:01",
+            "section": "P10 第四条 积分与储值 > 4.2 购物赠送的积分",
+            "rrf": 0.0435,
+            "hits": [
+              "1/platform/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:02",
+            "section": "L02 第三章 退货程序 > 第十二条 【赠品一并退回】",
+            "rrf": 0.0435,
+            "hits": [
+              "1/law/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "P10#003:02",
+            "section": "P10 第四条 积分与储值 > 4.3 储值余额",
+            "rrf": 0.0417,
+            "hits": [
+              "1/platform/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:06",
+            "section": "L02 第三章 退货程序 > 第十六条 【信用卡手续费】",
+            "rrf": 0.0417,
+            "hits": [
+              "1/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P10#000:00",
+            "section": "P10 第一条 优惠券 > 1.1 基本规则",
+            "rrf": 0.04,
+            "hits": [
+              "1/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "L05#013:00",
+            "section": "L05 第十三条 【无同型号产品时的退货与折旧】",
+            "rrf": 0.04,
+            "hits": [
+              "1/law/dense#5"
+            ]
+          },
+          {
+            "chunk_id": "L02#002:03",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第九条 【商品不完好的分类判定标准】",
+            "rrf": 0.04,
+            "hits": [
+              "1/law/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P03#001:04",
+            "section": "P03 第二条 退款金额的计算 > 2.5 赠品",
+            "rrf": 0.0385,
+            "hits": [
+              "1/platform/dense#6"
+            ]
+          },
+          {
+            "chunk_id": "P03#001:01",
+            "section": "P03 第二条 退款金额的计算 > 2.2 优惠券",
+            "rrf": 0.037,
+            "hits": [
+              "1/platform/dense#7"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "e7367ed75b2e064b",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.094,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:21:52.533Z",
+      "updatedAt": "2026-08-18T03:21:52.544Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "a9dd1f0cca750e61",
+      "traceId": "c29d2f30fbde4b5ee71b007f19005c29",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 03:21:48.267000+00:00",
+      "endTime": "2026-08-18 03:21:48.267000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "e7367ed75b2e064b",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:21:52.533Z",
+      "updatedAt": "2026-08-18T03:21:52.544Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "a5a14fd84597ffee",
+      "traceId": "c29d2f30fbde4b5ee71b007f19005c29",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 03:21:47.038000+00:00",
+      "endTime": "2026-08-18 03:21:48.267000+00:00",
+      "input": {
+        "query": "旧机器抵扣的那部分钱，退货的时候是退现金还是退回抵扣额度？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "refund",
+            "text": "使用旧机器抵扣购买的商品退货时，抵扣的那部分金额是退现金还是退回抵扣额度？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "e7367ed75b2e064b",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.229,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:21:52.533Z",
+      "updatedAt": "2026-08-18T03:21:52.543Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    }
+  ]
+}

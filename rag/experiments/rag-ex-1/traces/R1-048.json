@@ -1,0 +1,1170 @@
+{
+  "case": {
+    "case_id": "R1-048",
+    "type": "single",
+    "style": "colloquial",
+    "doc_id": "P05",
+    "layer": "platform",
+    "kind": "text",
+    "seed_chunk_id": [
+      "P05#005:01"
+    ],
+    "error": null,
+    "scores": {
+      "recall@10": 0.0,
+      "recall@3": 1.0,
+      "recall@1": 1.0,
+      "evidence_tokens": 199,
+      "duplicate_ratio": 0.0
+    },
+    "elapsed_s": 1.9,
+    "seed_rank": {
+      "candidate": {
+        "P05#005:01": 19
+      },
+      "evidence": {
+        "P05#005:01": 1
+      }
+    },
+    "sections": [
+      "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.2 消费者举证"
+    ],
+    "trace_id": "c0063b247f66ac1685439339b257cffe"
+  },
+  "trace": {
+    "id": "c0063b247f66ac1685439339b257cffe",
+    "name": "experiment-item-run",
+    "timestamp": "2026-08-18 03:23:26.708000+00:00"
+  },
+  "observations": [
+    {
+      "id": "cd3a80397df0e75d",
+      "traceId": "c0063b247f66ac1685439339b257cffe",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 03:23:26.708000+00:00",
+      "endTime": "2026-08-18 03:23:30.680000+00:00",
+      "input": {
+        "query": "我买的东西坏了，想找商家说理，是不是得先拍个照或者录个视频给他们看？那个坏的东西我自己得留着不能扔吧？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-2",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-048",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P05",
+        "section": "第五条 举证责任 > 5.2 消费者举证",
+        "reviewed": false,
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.029,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-048",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P05",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P05#005:01"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 0,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 199,
+          "duplicate_ratio": 0
+        },
+        "elapsed_s": 1.9,
+        "seed_rank": {
+          "candidate": {
+            "P05#005:01": 19
+          },
+          "evidence": {
+            "P05#005:01": 1
+          }
+        },
+        "sections": [
+          "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.2 消费者举证"
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 3.972,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:33.191Z",
+      "updatedAt": "2026-08-18T03:23:33.246Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "dcf0bf30dfbff162",
+      "traceId": "c0063b247f66ac1685439339b257cffe",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 03:23:30.679000+00:00",
+      "endTime": "2026-08-18 03:23:30.679000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "我买的东西坏了，想找商家说理，是不是得先拍个照或者录个视频给他们看？那个坏的东西我自己得留着不能扔吧？"
+        },
+        "output": {
+          "case_id": "R1-048",
+          "type": "single",
+          "style": "colloquial",
+          "doc_id": "P05",
+          "layer": "platform",
+          "kind": "text",
+          "seed_chunk_id": [
+            "P05#005:01"
+          ],
+          "error": null,
+          "scores": {
+            "recall@10": 0,
+            "recall@3": 1,
+            "recall@1": 1,
+            "evidence_tokens": 199,
+            "duplicate_ratio": 0
+          },
+          "elapsed_s": 1.9,
+          "seed_rank": {
+            "candidate": {
+              "P05#005:01": 19
+            },
+            "evidence": {
+              "P05#005:01": 1
+            }
+          },
+          "sections": [
+            "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.2 消费者举证"
+          ]
+        },
+        "expected_output": {
+          "seed_chunk_id": [
+            "P05#005:01"
+          ],
+          "reference_answer": "消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。"
+        },
+        "metadata": {
+          "kind": "text",
+          "type": "single",
+          "layer": "platform",
+          "style": "colloquial",
+          "doc_id": "P05",
+          "section": "第五条 举证责任 > 5.2 消费者举证",
+          "reviewed": false,
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.029
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 0,
+          "comment": "种子块名次 P05#005:01=19"
+        },
+        {
+          "name": "recall@3",
+          "value": 1,
+          "comment": "种子块名次 P05#005:01=1"
+        },
+        {
+          "name": "recall@1",
+          "value": 1,
+          "comment": "种子块名次 P05#005:01=1"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 199,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "51d9622e0332c9d8",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:33.191Z",
+      "updatedAt": "2026-08-18T03:23:33.243Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "c74a15883172fc32",
+      "traceId": "c0063b247f66ac1685439339b257cffe",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 03:23:30.673000+00:00",
+      "endTime": "2026-08-18 03:23:30.678000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "P05#005:01"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.2 消费者举证",
+            "text": "商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。",
+            "score": 0.47084136486053474,
+            "doc_id": "P05",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P05-商品完好标准与验收规范.md",
+            "reason": "相关性 0.364 × 先验 0.90 → 0.471；命中 1/platform/dense#1, 2/platform/bm25#18"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "b54abbf01e7a410c",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.005,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:33.191Z",
+      "updatedAt": "2026-08-18T03:23:33.243Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "e0d1f56b9578d8ca",
+      "traceId": "c0063b247f66ac1685439339b257cffe",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 03:23:29.945000+00:00",
+      "endTime": "2026-08-18 03:23:29.945000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          },
+          {
+            "sub_query": "2",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "b54abbf01e7a410c",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:33.191Z",
+      "updatedAt": "2026-08-18T03:23:33.243Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "51d9622e0332c9d8",
+      "traceId": "c0063b247f66ac1685439339b257cffe",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 03:23:30.679000+00:00",
+      "endTime": "2026-08-18 03:23:30.680000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 6,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "cd3a80397df0e75d",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:33.191Z",
+      "updatedAt": "2026-08-18T03:23:33.239Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "74901adf63fddbfe",
+      "traceId": "c0063b247f66ac1685439339b257cffe",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 03:23:26.708000+00:00",
+      "endTime": "2026-08-18 03:23:30.679000+00:00",
+      "input": {
+        "query": "我买的东西坏了，想找商家说理，是不是得先拍个照或者录个视频给他们看？那个坏的东西我自己得留着不能扔吧？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-2",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-048",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P05",
+        "section": "第五条 举证责任 > 5.2 消费者举证",
+        "reviewed": false,
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.029,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-048",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P05",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P05#005:01"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 0,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 199,
+          "duplicate_ratio": 0
+        },
+        "elapsed_s": 1.9,
+        "seed_rank": {
+          "candidate": {
+            "P05#005:01": 19
+          },
+          "evidence": {
+            "P05#005:01": 1
+          }
+        },
+        "sections": [
+          "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.2 消费者举证"
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "cd3a80397df0e75d",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 3.971,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:33.191Z",
+      "updatedAt": "2026-08-18T03:23:33.237Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "b54abbf01e7a410c",
+      "traceId": "c0063b247f66ac1685439339b257cffe",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 03:23:28.828000+00:00",
+      "endTime": "2026-08-18 03:23:30.678000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "我买的东西坏了，想找商家说理，是不是得先拍个照或者录个视频给他们看？那个坏的东西我自己得留着不能扔吧？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.2 消费者举证",
+            "text": "商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。",
+            "score": 0.47084136486053474,
+            "doc_id": "P05",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P05-商品完好标准与验收规范.md",
+            "reason": "相关性 0.364 × 先验 0.90 → 0.471；命中 1/platform/dense#1, 2/platform/bm25#18"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "74901adf63fddbfe",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.85,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:33.191Z",
+      "updatedAt": "2026-08-18T03:23:33.234Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "6683462d2d7a0171",
+      "traceId": "c0063b247f66ac1685439339b257cffe",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 03:23:28.828000+00:00",
+      "endTime": "2026-08-18 03:23:29.945000+00:00",
+      "input": {
+        "query": "我买的东西坏了，想找商家说理，是不是得先拍个照或者录个视频给他们看？那个坏的东西我自己得留着不能扔吧？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "condition",
+            "text": "商品损坏需要找商家处理时，是否必须先拍照或录视频作为凭证提供给商家？"
+          },
+          {
+            "id": "2",
+            "intent": "condition",
+            "text": "商品损坏需要找商家处理时，损坏的商品本人是否需要保留不能丢弃？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "b54abbf01e7a410c",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.117,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:33.191Z",
+      "updatedAt": "2026-08-18T03:23:33.214Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "b4e7afd4fb0d1596",
+      "traceId": "c0063b247f66ac1685439339b257cffe",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 03:23:30.027000+00:00",
+      "endTime": "2026-08-18 03:23:30.673000+00:00",
+      "input": {
+        "query": "我买的东西坏了，想找商家说理，是不是得先拍个照或者录个视频给他们看？那个坏的东西我自己得留着不能扔吧？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 1,
+        "min_score": 0.3,
+        "dropped": [
+          "P05#005:00",
+          "P09#004:00",
+          "P06#004:02",
+          "L05#017:00",
+          "L01#008:00",
+          "L01#002:00",
+          "P11#001:03",
+          "L02#002:02",
+          "P05#005:02",
+          "P05#004:00",
+          "L01#006:00",
+          "L01#003:00",
+          "P01#006:02",
+          "P11#004:04",
+          "P11#001:01",
+          "P06#005:00",
+          "P05#004:02",
+          "P11#006:00",
+          "P08#006:01"
+        ],
+        "evidence": [
+          {
+            "chunk_id": "P05#005:01",
+            "section": "P05 第五条 举证责任 > 5.2 消费者举证",
+            "score": 0.471,
+            "relevance": 0.364,
+            "prior": 0.9,
+            "excerpt": "消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "b54abbf01e7a410c",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.646,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:33.191Z",
+      "updatedAt": "2026-08-18T03:23:33.212Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "b129046d18beebf4",
+      "traceId": "c0063b247f66ac1685439339b257cffe",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-18 03:23:29.945000+00:00",
+      "endTime": "2026-08-18 03:23:30.027000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "P05#005:00",
+            "section": "P05 第五条 举证责任 > 5.1 商家举证",
+            "rrf": 0.1616,
+            "hits": [
+              "1/platform/dense#2",
+              "1/platform/bm25#1",
+              "2/platform/dense#5",
+              "2/platform/bm25#15"
+            ]
+          },
+          {
+            "chunk_id": "P09#004:00",
+            "section": "P09 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
+            "rrf": 0.1292,
+            "hits": [
+              "1/platform/dense#8",
+              "1/platform/bm25#9",
+              "2/platform/dense#12",
+              "2/platform/bm25#16"
+            ]
+          },
+          {
+            "chunk_id": "P06#004:02",
+            "section": "P06 第五条 退货物流 > 5.3 退货凭证",
+            "rrf": 0.0964,
+            "hits": [
+              "1/platform/dense#15",
+              "2/platform/dense#10",
+              "2/platform/bm25#9"
+            ]
+          },
+          {
+            "chunk_id": "L05#017:00",
+            "section": "L05 第十七条 【不实行三包的情形】",
+            "rrf": 0.0931,
+            "hits": [
+              "1/law/bm25#2",
+              "2/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L01#008:00",
+            "section": "L01 第五十二条 【财产损害责任】",
+            "rrf": 0.0893,
+            "hits": [
+              "1/law/dense#4",
+              "2/law/dense#1"
+            ]
+          },
+          {
+            "chunk_id": "L01#002:00",
+            "section": "L01 第二十三条 【瑕疵举证责任倒置】",
+            "rrf": 0.0876,
+            "hits": [
+              "1/law/dense#1",
+              "2/law/dense#5"
+            ]
+          },
+          {
+            "chunk_id": "P11#001:03",
+            "section": "P11 第一条 生鲜食品 > 1.4 有效凭证",
+            "rrf": 0.0871,
+            "hits": [
+              "1/platform/dense#4",
+              "1/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L02#002:02",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+            "rrf": 0.087,
+            "hits": [
+              "2/law/dense#3",
+              "2/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P05#005:02",
+            "section": "P05 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
+            "rrf": 0.0819,
+            "hits": [
+              "1/platform/dense#3",
+              "2/platform/dense#6"
+            ]
+          },
+          {
+            "chunk_id": "P05#004:00",
+            "section": "P05 第四条 退回商品的验收 > 4.1 验收范围",
+            "rrf": 0.0817,
+            "hits": [
+              "1/platform/bm25#4",
+              "2/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "L01#006:00",
+            "section": "L01 第四十四条 【网络交易平台提供者责任】",
+            "rrf": 0.0817,
+            "hits": [
+              "1/law/dense#5",
+              "1/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "L01#003:00",
+            "section": "L01 第二十四条 【质量不符时的退货、更换、修理】",
+            "rrf": 0.0817,
+            "hits": [
+              "1/law/bm25#5",
+              "2/law/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "P01#006:02",
+            "section": "P01 第六章 消费者的义务 > 6.3 商品的妥善保管",
+            "rrf": 0.081,
+            "hits": [
+              "1/platform/dense#10",
+              "2/platform/dense#1"
+            ]
+          },
+          {
+            "chunk_id": "P11#004:04",
+            "section": "P11 第四条 数码与家用电器 > 4.5 不实行三包的情形",
+            "rrf": 0.0777,
+            "hits": [
+              "1/platform/bm25#11",
+              "2/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P11#001:01",
+            "section": "P11 第一条 生鲜食品 > 1.2 签收时验货",
+            "rrf": 0.0755,
+            "hits": [
+              "1/platform/dense#6",
+              "1/platform/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "P06#005:00",
+            "section": "P06 第六条 物流异常的处理 > 6.1 退货途中丢失",
+            "rrf": 0.075,
+            "hits": [
+              "1/platform/bm25#10",
+              "2/platform/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "P05#004:02",
+            "section": "P05 第四条 退回商品的验收 > 4.3 验收不通过的处理",
+            "rrf": 0.0747,
+            "hits": [
+              "1/platform/dense#12",
+              "1/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P11#006:00",
+            "section": "P11 第六条 食品、保健食品、化妆品 > 6.1 密封包装",
+            "rrf": 0.0742,
+            "hits": [
+              "2/platform/dense#8",
+              "2/platform/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "P05#005:01",
+            "section": "P05 第五条 举证责任 > 5.2 消费者举证",
+            "rrf": 0.0739,
+            "hits": [
+              "1/platform/dense#1",
+              "2/platform/bm25#18"
+            ]
+          },
+          {
+            "chunk_id": "P08#006:01",
+            "section": "P08 第六条 申诉 > 6.2 申诉材料",
+            "rrf": 0.0723,
+            "hits": [
+              "1/platform/dense#11",
+              "1/platform/bm25#5"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "b54abbf01e7a410c",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.082,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:33.191Z",
+      "updatedAt": "2026-08-18T03:23:33.207Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    }
+  ]
+}

@@ -14,7 +14,7 @@
 
 ---
 
-## 一、跑
+## 一、跑批
 
 ### 1.1 前置
 
@@ -88,7 +88,7 @@ client.flush()                                          # 短命脚本必须显�
 |---|---|
 | 数据隔离 | 每条用例 `eval_store.begin_session()` 起一份独立数据副本 |
 | 多轮上下文 | `history = result["messages"]` 累积后进下一轮 |
-| 痕迹采集 | 只取本轮新增的 messages 与新增流水，压成[判分要的四样东西](https://tiltwind.github.io/refund-agent/doc/get-start/7-agent-dataset.md#71-判分只看这四样东西) |
+| 痕迹采集 | 只取本轮新增的 messages 与新增流水，压成[判分要的四样东西](https://tiltwind.github.io/refund-agent/doc/get-start/7-agent-dataset.md#71-判分的四个输入) |
 | 执行失败 | `try/except` 单独返回 `error`，判分时记 `run_error`，不静默判 0 |
 | 重放用例 | 按 `run.repeat` 连跑，只取第一遍的 turns 判分，流水行数与单号单独判 |
 
@@ -114,7 +114,7 @@ python evals/experiments/ex-1/export_result.py --run v2-abc1234 --out /tmp/v2.js
 
 ---
 
-## 三、生成 HTML 报告
+## 三、HTML 报告
 
 在 `result.json` 之上补充跨用例对比与失败归因，生成可归档的自包含 HTML。
 
@@ -175,7 +175,7 @@ GET /api/public/traces/{id}     单条 trace 的全部 observation
 
 ex-1 保留四条：一条全指标通过、两条多轮评分失败、一条 SOP 偏离。
 
-### 4.2 发现：装配后的证据整段重复
+### 4.2 装配后的证据整段重复
 
 `D1-001` 的检索返回中，同一段条文出现两次：
 

@@ -7,9 +7,8 @@
 判分逻辑跟着实验走：**换判分口径 = 开新实验目录**，就地改会让历史 run 的分数不再可比。
 期望值变了（改 `cases.jsonl` 的口径）就该开 r2。
 
-当前实现到 [9.2](https://tiltwind.github.io/refund-agent/doc/get-start/5-rag-eval.md#92-实现顺序)
-的第 2 步：三档 Recall 与两个辅助数，都是纯函数。Context Recall 与 Context Relevance 要调
-judge，等校准做完再接。
+已实现：三档 Recall 与两个辅助数（都是纯函数），六步上报 Langfuse，分数写回 dataset run。
+Context Recall 与 Context Relevance 要调 judge，[等校准做完再接](https://tiltwind.github.io/refund-agent/doc/get-start/5-rag-eval.md#七两个待接的-llm-指标)。
 
 ---
 
@@ -62,17 +61,24 @@ python rag/experiments/rag-ex-1/run_experiment.py --langfuse --run-name $(git re
 每条 item 的 trace 里，`rag.search_policy`（retriever）下面挂着六步：
 
 ```
-retriever  rag.search_policy   input={query, top_k}  output={sections}
-├── span   rag.rewrite         output={rewritten, needs_law, sub_queries}
-├── span   rag.route           output={routes}
-├── span   rag.recall          output={candidates: [全部 20 个 chunk_id], single_path}
-├── span   rag.rerank          output={passed, min_score, evidence: [{chunk_id, score, relevance, prior}]}
-└── span   rag.assemble        output={sections}
+retriever  rag.search_policy   in {query, top_k}          out {sections: 全文}
+├── span   rag.rewrite         in {query}                 out {rewritten, needs_law, sub_queries}
+├── span   rag.route                                      out {routes: 每层名额与法规层权重}
+├── span   rag.recall                                     out {candidates: 20 条 × {chunk_id, section, rrf, hits}}
+├── span   rag.rerank          in {query, candidates}     out {passed, min_score, dropped, evidence: [… + excerpt]}
+└── span   rag.assemble        in {top_k, evidence}       out {sections: 全文}
 ```
 
-`rag.recall` 记的是**完整候选序列**不是 top3 —— 「种子块排在第 13 位」这类问题只有全序列答得了。
-埋点在 [`milvus.py`](../../retrieving/milvus.py) 而不是在这个脚本里，所以线上出坏 case 翻的是
-同一棵树（`2-design 3.4`）。
+三层的粒度不一样，按各自要回答的问题定：
+
+| 层 | 记到什么程度 | 因为要回答 |
+|---|---|---|
+| `rag.recall` | 全部 20 条的 `chunk_id` + 小节名 + RRF 分 + 命中来源，无正文 | 捞没捞到、是哪一路捞的、排第几。20 条全文有几万字，这一步用不上 |
+| `rag.rerank` | 每条证据的三个分 + 120 字摘录，外加被阈值砍掉的 `dropped` | 分数为什么是 0.98 或 0.29。重排返回空时 `dropped` 是全部 20 条，一眼看出是阈值不是召回的问题 |
+| `rag.assemble` / 根节点 | `PolicySection` **全文**，含 `text`、`score`、`reason`、来源路径 | 这是真正注入模型上下文的东西。judge 接进来后判的就是这段文字，只留小节名的话掉分时无从核对；装配把同一父块拼两遍，也只有正文在场才看得出来 |
+
+一次检索的 span 合计约 19KB。埋点在 [`milvus.py`](../../retrieving/milvus.py) 而不是在这个脚本里，
+所以线上出坏 case 翻的是同一棵树（`2-design 3.4`）。
 
 ## 三、指标
 
@@ -118,10 +124,36 @@ trace 看六步。反过来不成立 —— Langfuse 是本地实例，换台机
 的分数只有在这些值相同的前提下才可比 —— 尤其是 collection，重新灌库而 `chunk_id` 漂了，
 Recall 会全线暴跌，看上去像检索退化。
 
+### 现场记录
+
+```bash
+python rag/experiments/rag-ex-1/export_traces.py                # 抽 20 条导出到 traces/
+python rag/experiments/rag-ex-1/export_traces.py --cases R1-046 # 只导指定用例
+```
+
+抽样不是随机的 —— 随机 20 条里大概率一条空证据都没有，而那恰恰是最该留档的。按报告里的每个
+结论分桶取，最后三条是三档全中的对照：只留坏 case 的话，读的人无从判断正常的一次检索长什么样。
+桶的定义在脚本的 `BUCKETS` 里，也写进 [`traces/README.md`](./traces/README.md)。
+
+每条两个文件：`.md` 人读版（六步展开，装配那步是条款全文），`.json` 机器版（全部 observation
+原样保留）。要跑批带过 `--langfuse` 才有 `trace_id` 可导。
+
+### HTML 报告
+
+```bash
+python rag/experiments/rag-ex-1/report.py                       # → rag-ex-1-report.html
+```
+
+[`rag-ex-1-report.html`](./rag-ex-1-report.html) 是同一批数据的可视化：三档、四张分档表、
+三个链路问题、run 间抖动、102 条明细（链到现场记录）。只读 `result.json`，不连 Langfuse。
+`report.py` 里的 `HISTORY` 是人填的 —— 结果文件只存最近一次，而抖动幅度要几次才看得出来。
+
 ## 五、门禁
 
-三档 Recall 是纯函数，同一份数据集跑两遍结果一致，所以它做门禁；两个 LLM 指标接进来之后
-只记录，不参与 pass / fail。
+三档 Recall 是纯函数，所以它做门禁；两个 LLM 指标接进来之后只记录，不参与 pass / fail。
+
+**打分器是纯函数，被测链路不是**：改写那一步调模型，同一份数据集跑几次会有一两条翻转，
+`recall@10` 实测抖 ±0.02。定容差之前先看[基线报告第六节](./baseline-report.md#六门禁前要解决的一件事链路不是确定性的)。
 
 门禁看**相对值**：`seed_chunk_id` 是下界，绝对值本来就偏低，定一个 `recall@3 ≥ 0.9` 之类的
 阈值没有依据。改参数后重跑，与上一版 `result.json` 对比，任一档下降超过容差即不通过。容差

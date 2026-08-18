@@ -1,0 +1,1134 @@
+{
+  "case": {
+    "case_id": "R1-040",
+    "type": "single",
+    "style": "colloquial",
+    "doc_id": "P03",
+    "layer": "platform",
+    "kind": "table",
+    "seed_chunk_id": [
+      "P03#004:02"
+    ],
+    "error": null,
+    "scores": {
+      "recall@10": 1.0,
+      "recall@3": 0.0,
+      "recall@1": 0.0,
+      "evidence_tokens": 0,
+      "duplicate_ratio": 0.0
+    },
+    "elapsed_s": 2.1,
+    "seed_rank": {
+      "candidate": {
+        "P03#004:02": 3
+      },
+      "evidence": {
+        "P03#004:02": null
+      }
+    },
+    "sections": [],
+    "trace_id": "498db5fca02adbffd3eb256b4a28e43e"
+  },
+  "trace": {
+    "id": "498db5fca02adbffd3eb256b4a28e43e",
+    "name": "experiment-item-run",
+    "timestamp": "2026-08-18 03:23:43.256000+00:00"
+  },
+  "observations": [
+    {
+      "id": "d898b20f91294912",
+      "traceId": "498db5fca02adbffd3eb256b4a28e43e",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 03:23:47.246000+00:00",
+      "endTime": "2026-08-18 03:23:47.246000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "我提交退货申请都两天多了，商家一直没动静，这单是不是就黄了？"
+        },
+        "output": {
+          "case_id": "R1-040",
+          "type": "single",
+          "style": "colloquial",
+          "doc_id": "P03",
+          "layer": "platform",
+          "kind": "table",
+          "seed_chunk_id": [
+            "P03#004:02"
+          ],
+          "error": null,
+          "scores": {
+            "recall@10": 1,
+            "recall@3": 0,
+            "recall@1": 0,
+            "evidence_tokens": 0,
+            "duplicate_ratio": 0
+          },
+          "elapsed_s": 2.1,
+          "seed_rank": {
+            "candidate": {
+              "P03#004:02": 3
+            },
+            "evidence": {
+              "P03#004:02": null
+            }
+          },
+          "sections": []
+        },
+        "expected_output": {
+          "seed_chunk_id": [
+            "P03#004:02"
+          ],
+          "reference_answer": "商家审核退货申请的时限是48小时，超时未处理视为同意退货。"
+        },
+        "metadata": {
+          "kind": "table",
+          "type": "single",
+          "layer": "platform",
+          "style": "colloquial",
+          "doc_id": "P03",
+          "section": "第五条 商家处理时效与超时机制 > 5.3 已签收订单的退货退款",
+          "reviewed": false,
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.19
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 1,
+          "comment": "种子块名次 P03#004:02=3"
+        },
+        {
+          "name": "recall@3",
+          "value": 0,
+          "comment": "种子块名次 P03#004:02=None"
+        },
+        {
+          "name": "recall@1",
+          "value": 0,
+          "comment": "种子块名次 P03#004:02=None"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "5dbeda4452aba240",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:48.190Z",
+      "updatedAt": "2026-08-18T03:23:48.232Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "5dbeda4452aba240",
+      "traceId": "498db5fca02adbffd3eb256b4a28e43e",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 03:23:47.245000+00:00",
+      "endTime": "2026-08-18 03:23:47.246000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 6,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "554e43d38235c457",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:48.190Z",
+      "updatedAt": "2026-08-18T03:23:48.232Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "f8e9e9408e8a2704",
+      "traceId": "498db5fca02adbffd3eb256b4a28e43e",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 03:23:47.245000+00:00",
+      "endTime": "2026-08-18 03:23:47.245000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": []
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "b83ee3171fc79ce7",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:48.189Z",
+      "updatedAt": "2026-08-18T03:23:48.232Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "2a3dbfbe43d27ca8",
+      "traceId": "498db5fca02adbffd3eb256b4a28e43e",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 03:23:46.534000+00:00",
+      "endTime": "2026-08-18 03:23:46.534000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          },
+          {
+            "sub_query": "2",
+            "layer_k": {
+              "platform": 12,
+              "law": 12
+            },
+            "law_weight": 1
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "b83ee3171fc79ce7",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:48.189Z",
+      "updatedAt": "2026-08-18T03:23:48.231Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "a49c52d3f1f398f2",
+      "traceId": "498db5fca02adbffd3eb256b4a28e43e",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 03:23:43.256000+00:00",
+      "endTime": "2026-08-18 03:23:47.245000+00:00",
+      "input": {
+        "query": "我提交退货申请都两天多了，商家一直没动静，这单是不是就黄了？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-2",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-040",
+        "kind": "table",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P03",
+        "section": "第五条 商家处理时效与超时机制 > 5.3 已签收订单的退货退款",
+        "reviewed": false,
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.19,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-040",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P03",
+        "layer": "platform",
+        "kind": "table",
+        "seed_chunk_id": [
+          "P03#004:02"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 0,
+          "recall@1": 0,
+          "evidence_tokens": 0,
+          "duplicate_ratio": 0
+        },
+        "elapsed_s": 2.1,
+        "seed_rank": {
+          "candidate": {
+            "P03#004:02": 3
+          },
+          "evidence": {
+            "P03#004:02": null
+          }
+        },
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "554e43d38235c457",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 3.989,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:48.190Z",
+      "updatedAt": "2026-08-18T03:23:48.231Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "554e43d38235c457",
+      "traceId": "498db5fca02adbffd3eb256b4a28e43e",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 03:23:43.256000+00:00",
+      "endTime": "2026-08-18 03:23:47.246000+00:00",
+      "input": {
+        "query": "我提交退货申请都两天多了，商家一直没动静，这单是不是就黄了？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-2",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-040",
+        "kind": "table",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P03",
+        "section": "第五条 商家处理时效与超时机制 > 5.3 已签收订单的退货退款",
+        "reviewed": false,
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.19,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-040",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P03",
+        "layer": "platform",
+        "kind": "table",
+        "seed_chunk_id": [
+          "P03#004:02"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 0,
+          "recall@1": 0,
+          "evidence_tokens": 0,
+          "duplicate_ratio": 0
+        },
+        "elapsed_s": 2.1,
+        "seed_rank": {
+          "candidate": {
+            "P03#004:02": 3
+          },
+          "evidence": {
+            "P03#004:02": null
+          }
+        },
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 3.99,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:48.190Z",
+      "updatedAt": "2026-08-18T03:23:48.230Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "1f19b724bc4509be",
+      "traceId": "498db5fca02adbffd3eb256b4a28e43e",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 03:23:45.155000+00:00",
+      "endTime": "2026-08-18 03:23:46.533000+00:00",
+      "input": {
+        "query": "我提交退货申请都两天多了，商家一直没动静，这单是不是就黄了？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "window",
+            "text": "提交退货申请两天多商家一直未处理，退货申请的处理时限是多久？"
+          },
+          {
+            "id": "2",
+            "intent": "dispute",
+            "text": "商家超时未处理退货申请，平台会如何介入处理？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "b83ee3171fc79ce7",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.378,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:48.189Z",
+      "updatedAt": "2026-08-18T03:23:48.229Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "37800c0c2d8acb21",
+      "traceId": "498db5fca02adbffd3eb256b4a28e43e",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 03:23:46.667000+00:00",
+      "endTime": "2026-08-18 03:23:47.245000+00:00",
+      "input": {
+        "query": "我提交退货申请都两天多了，商家一直没动静，这单是不是就黄了？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 0,
+        "min_score": 0.3,
+        "dropped": [
+          "P03#004:00",
+          "P03#004:01",
+          "P03#004:02",
+          "P05#004:01",
+          "P09#002:00",
+          "L02#006:01",
+          "L02#005:01",
+          "P03#004:03",
+          "L02#003:03",
+          "L05#022:00",
+          "L05#004:00",
+          "P09#002:02",
+          "P03#002:02",
+          "P06#004:00",
+          "P06#004:01",
+          "P09#002:01",
+          "P09#001:00",
+          "P09#003:05",
+          "P08#005:00",
+          "L04#014:00"
+        ],
+        "evidence": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "b83ee3171fc79ce7",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.578,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:48.189Z",
+      "updatedAt": "2026-08-18T03:23:48.229Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "f503ecd4ab029782",
+      "traceId": "498db5fca02adbffd3eb256b4a28e43e",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-18 03:23:46.534000+00:00",
+      "endTime": "2026-08-18 03:23:46.667000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "P03#004:00",
+            "section": "P03 第五条 商家处理时效与超时机制 > 5.1 未发货订单的退款",
+            "rrf": 0.177,
+            "hits": [
+              "1/platform/dense#2",
+              "1/platform/bm25#6",
+              "2/platform/dense#1",
+              "2/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P03#004:01",
+            "section": "P03 第五条 商家处理时效与超时机制 > 5.2 已发货未签收订单的退款",
+            "rrf": 0.1744,
+            "hits": [
+              "1/platform/dense#1",
+              "1/platform/bm25#4",
+              "2/platform/dense#3",
+              "2/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P03#004:02",
+            "section": "P03 第五条 商家处理时效与超时机制 > 5.3 已签收订单的退货退款",
+            "rrf": 0.1666,
+            "hits": [
+              "1/platform/dense#7",
+              "1/platform/bm25#1",
+              "2/platform/dense#6",
+              "2/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P05#004:01",
+            "section": "P05 第四条 退回商品的验收 > 4.2 验收时限",
+            "rrf": 0.1502,
+            "hits": [
+              "1/platform/dense#3",
+              "1/platform/bm25#12",
+              "2/platform/dense#7",
+              "2/platform/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "P09#002:00",
+            "section": "P09 第三条 申请平台介入 > 3.1 申请条件",
+            "rrf": 0.1385,
+            "hits": [
+              "1/platform/bm25#2",
+              "2/platform/dense#2",
+              "2/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#006:01",
+            "section": "L02 第六章 法律责任 > 第三十一条 【拒绝退货、拖延退款】",
+            "rrf": 0.1369,
+            "hits": [
+              "1/law/dense#1",
+              "1/law/bm25#4",
+              "2/law/dense#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#005:01",
+            "section": "L02 第五章 监督检查 > 第二十七条",
+            "rrf": 0.1185,
+            "hits": [
+              "1/law/dense#4",
+              "2/law/dense#3",
+              "2/law/bm25#10"
+            ]
+          },
+          {
+            "chunk_id": "P03#004:03",
+            "section": "P03 第五条 商家处理时效与超时机制 > 5.4 超时机制的性质",
+            "rrf": 0.1157,
+            "hits": [
+              "1/platform/bm25#8",
+              "2/platform/dense#5",
+              "2/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:03",
+            "section": "L02 第三章 退货程序 > 第十三条 【退款时限】",
+            "rrf": 0.0911,
+            "hits": [
+              "1/law/dense#3",
+              "1/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L05#022:00",
+            "section": "L05 第二十二条 【申诉与诉讼】",
+            "rrf": 0.087,
+            "hits": [
+              "1/law/bm25#3",
+              "2/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L05#004:00",
+            "section": "L05 第四条 【最低标准与更优承诺】",
+            "rrf": 0.0825,
+            "hits": [
+              "1/law/bm25#2",
+              "2/law/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "P09#002:02",
+            "section": "P09 第三条 申请平台介入 > 3.3 提交材料",
+            "rrf": 0.0747,
+            "hits": [
+              "1/platform/bm25#3",
+              "2/platform/bm25#12"
+            ]
+          },
+          {
+            "chunk_id": "P03#002:02",
+            "section": "P03 第三条 到账时效 > 3.3 法定时限",
+            "rrf": 0.0742,
+            "hits": [
+              "1/platform/dense#6",
+              "2/platform/dense#8"
+            ]
+          },
+          {
+            "chunk_id": "P06#004:00",
+            "section": "P06 第五条 退货物流 > 5.1 商家提供退货信息的义务",
+            "rrf": 0.0741,
+            "hits": [
+              "1/platform/bm25#7",
+              "2/platform/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "P06#004:01",
+            "section": "P06 第五条 退货物流 > 5.2 消费者寄回的时限",
+            "rrf": 0.0739,
+            "hits": [
+              "1/platform/dense#4",
+              "1/platform/bm25#11"
+            ]
+          },
+          {
+            "chunk_id": "P09#002:01",
+            "section": "P09 第三条 申请平台介入 > 3.2 申请时限",
+            "rrf": 0.0733,
+            "hits": [
+              "1/platform/bm25#5",
+              "2/platform/bm25#10"
+            ]
+          },
+          {
+            "chunk_id": "P09#001:00",
+            "section": "P09 第二条 争议解决的层级",
+            "rrf": 0.0702,
+            "hits": [
+              "1/platform/bm25#9",
+              "2/platform/bm25#8"
+            ]
+          },
+          {
+            "chunk_id": "P09#003:05",
+            "section": "P09 第四条 平台介入的处理 > 4.6 判定的执行",
+            "rrf": 0.069,
+            "hits": [
+              "2/platform/dense#9",
+              "2/platform/bm25#9"
+            ]
+          },
+          {
+            "chunk_id": "P08#005:00",
+            "section": "P08 第五条 商家侧的异常治理",
+            "rrf": 0.0604,
+            "hits": [
+              "1/platform/bm25#17",
+              "2/platform/dense#10"
+            ]
+          },
+          {
+            "chunk_id": "L04#014:00",
+            "section": "L04 相关文件",
+            "rrf": 0.0476,
+            "hits": [
+              "2/law/bm25#1"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "b83ee3171fc79ce7",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.133,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:48.189Z",
+      "updatedAt": "2026-08-18T03:23:48.229Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "b83ee3171fc79ce7",
+      "traceId": "498db5fca02adbffd3eb256b4a28e43e",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 03:23:45.154000+00:00",
+      "endTime": "2026-08-18 03:23:47.245000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "我提交退货申请都两天多了，商家一直没动静，这单是不是就黄了？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "a49c52d3f1f398f2",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 2.091,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:23:48.189Z",
+      "updatedAt": "2026-08-18T03:23:48.218Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    }
+  ]
+}

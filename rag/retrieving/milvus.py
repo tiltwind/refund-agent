@@ -17,7 +17,7 @@ collection 按版本发布（MILVUS_COLLECTION 指向固定版本），以及检
 
 import os
 from contextlib import contextmanager
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 
 from rag.retrieving.pipeline.assemble import assemble
 from rag.retrieving.pipeline.recall import recall
@@ -37,6 +37,16 @@ SPAN = os.getenv("REFUND_AGENT_RAG_SPAN", "on").lower() not in ("off", "0", "fal
 """把六步上报 Langfuse。没配密钥时它本来就是空转，这个开关是给「配了密钥但这次
 不想让 trace 进库」的场景用的 —— 主要是离线跑批，那种 trace 不挂在任何 dataset run
 上，堆在项目里只是噪音。"""
+
+
+EXCERPT_CHARS = 120
+"""重排那层每条证据的摘录长度。够判断「这段是不是在回答问题」，又不至于让一次
+检索的 span 里塞进二十份全文。"""
+
+
+def _excerpt(body: str) -> str:
+    text = " ".join(body.split())
+    return text if len(text) <= EXCERPT_CHARS else text[:EXCERPT_CHARS] + "…"
 
 
 @dataclass
@@ -138,10 +148,19 @@ class MilvusRagService:
                     f"top3={[c.chunk_id for c in candidates[:3]]}"
                 )
                 # 候选的完整序列，不截断：Recall@10 读的就是它，翻 trace 时也要能看到
-                # 「种子块排在第 13 位」这种事 —— 只记 top3 就答不了这个问题
+                # 「种子块排在第 13 位」这种事 —— 只记 top3 就答不了这个问题。
+                # 这一层不带正文：20 条候选的全文有几万字，而这一步要判的是「捞没捞到、
+                # 是哪一路捞的」，section_path 加 hits 就够，正文留给下游两步。
                 step.data = {
-                    "candidates": trace.candidate_ids,
-                    "single_path": sum(1 for c in candidates if c.single_path),
+                    "candidates": [
+                        {
+                            "chunk_id": c.chunk_id,
+                            "section": f"{c.row['doc_id']} {c.row['section_path']}",
+                            "rrf": round(c.rrf, 4),
+                            "hits": c.hits,
+                        }
+                        for c in candidates
+                    ]
                 }
 
             # 一条都没有：collection 空了 / 灌库没跑 / 条款全被生效日期过滤掉 ——
@@ -154,37 +173,48 @@ class MilvusRagService:
                 )
 
             # 5 · 重排：cross-encoder + 层级/文档先验
-            with _step(trace, "重排", "rerank") as step:
+            with _step(trace, "重排", "rerank", query=query, candidates=len(candidates)) as step:
                 evidence = rerank(query, candidates, routes)
                 trace.evidence_ids = [e.row["chunk_id"] for e in evidence]
+                passed = set(trace.evidence_ids)
                 step.text = (
                     f"{len(candidates)} → {len(evidence)} 条过阈值；"
                     + "；".join(f"{e.row['chunk_id']}={e.score:.3f}" for e in evidence[:3])
                 )
+                # 带一段摘录：分数为什么是 0.98 或 0.29，光看 chunk_id 判断不了，
+                # 要能读到这段文字才知道 cross-encoder 判得对不对。全文不放这层，
+                # 装配那一步有。
                 step.data = {
                     "passed": len(evidence),
                     "min_score": MIN_SCORE,
+                    # 被阈值砍掉的：重排返回空时这里是全部 20 条，一眼看出是阈值而不是召回的问题
+                    "dropped": [c.chunk_id for c in candidates if c.chunk_id not in passed],
                     "evidence": [
                         {
                             "chunk_id": e.row["chunk_id"],
+                            "section": f"{e.row['doc_id']} {e.row['section_path']}",
                             "score": round(e.score, 3),
                             "relevance": round(e.relevance, 3),
                             "prior": round(e.prior, 2),
+                            "excerpt": _excerpt(e.row["body"]),
                         }
                         for e in evidence
                     ],
                 }
 
             # 6 · 装配：按父块去重、相邻合并、回填原文、预算截断
-            with _step(trace, "装配", "assemble") as step:
+            with _step(trace, "装配", "assemble", top_k=top_k, evidence=trace.evidence_ids) as step:
                 sections = assemble(evidence, top_k)
                 step.text = f"{len(evidence)} → {len(sections)} 块：" + "；".join(
                     s.section for s in sections
                 )
-                step.data = {"sections": [s.section for s in sections]}
+                # 这一步带**全文**：它是真正注入模型上下文的东西。Context Recall 与
+                # Context Relevance 判的就是这段文字，trace 里只留小节名的话，judge 掉分时
+                # 无从核对；装配把同一父块拼两遍这类缺陷，也只有正文在场才看得出来。
+                step.data = {"sections": [asdict(s) for s in sections]}
 
             if root is not None:
-                root.update(output={"sections": [s.section for s in sections]})
+                root.update(output={"sections": [asdict(s) for s in sections]})
 
         if TRACE:
             print(trace.render())

@@ -1,0 +1,1244 @@
+{
+  "case": {
+    "case_id": "R1-012",
+    "type": "single",
+    "style": "colloquial",
+    "doc_id": "L03",
+    "layer": "law",
+    "kind": "text",
+    "seed_chunk_id": [
+      "L03#005:00"
+    ],
+    "error": null,
+    "scores": {
+      "recall@10": 0.0,
+      "recall@3": 0.0,
+      "recall@1": 0.0,
+      "evidence_tokens": 1283,
+      "duplicate_ratio": 0.0
+    },
+    "elapsed_s": 1.8,
+    "seed_rank": {
+      "candidate": {
+        "L03#005:00": null
+      },
+      "evidence": {
+        "L03#005:00": null
+      }
+    },
+    "sections": [
+      "L02 网络购买商品七日无理由退货暂行办法 > 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+      "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区",
+      "P02 星辰优选售后服务与退换货政策 > 第三条 商品条件",
+      "P05 星辰优选商品完好标准与验收规范 > 第二条 商品状态的三档划分"
+    ],
+    "trace_id": "ec784d907fbbb7be97e94943cd23813a"
+  },
+  "trace": {
+    "id": "ec784d907fbbb7be97e94943cd23813a",
+    "name": "experiment-item-run",
+    "timestamp": "2026-08-18 03:24:37.061000+00:00"
+  },
+  "observations": [
+    {
+      "id": "4919df2fe1087215",
+      "traceId": "ec784d907fbbb7be97e94943cd23813a",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 03:24:35.272000+00:00",
+      "endTime": "2026-08-18 03:24:38.883000+00:00",
+      "input": {
+        "query": "我就拆开包装看了一眼东西长啥样，没用过也没弄坏，这种还能退吗？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-2",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-012",
+        "kind": "text",
+        "type": "single",
+        "layer": "law",
+        "style": "colloquial",
+        "doc_id": "L03",
+        "section": "第十九条 【无理由退货的边界与滥用治理】",
+        "reviewed": false,
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.045,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-012",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "L03",
+        "layer": "law",
+        "kind": "text",
+        "seed_chunk_id": [
+          "L03#005:00"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 0,
+          "recall@3": 0,
+          "recall@1": 0,
+          "evidence_tokens": 1283,
+          "duplicate_ratio": 0
+        },
+        "elapsed_s": 1.8,
+        "seed_rank": {
+          "candidate": {
+            "L03#005:00": null
+          },
+          "evidence": {
+            "L03#005:00": null
+          }
+        },
+        "sections": [
+          "L02 网络购买商品七日无理由退货暂行办法 > 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+          "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区",
+          "P02 星辰优选售后服务与退换货政策 > 第三条 商品条件",
+          "P05 星辰优选商品完好标准与验收规范 > 第二条 商品状态的三档划分"
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "31f2dadcda48c027",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 3.611,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:43.634Z",
+      "updatedAt": "2026-08-18T03:24:43.669Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "ffc88f0794be186d",
+      "traceId": "ec784d907fbbb7be97e94943cd23813a",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 03:24:37.060000+00:00",
+      "endTime": "2026-08-18 03:24:38.882000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "我就拆开包装看了一眼东西长啥样，没用过也没弄坏，这种还能退吗？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+            "text": "下列商品不适用七日无理由退货规定：\n\n（一）消费者定作的商品；\n\n（二）鲜活易腐的商品；\n\n（三）在线下载或者消费者拆封的音像制品、计算机软件等数字化商品；\n\n（四）交付的报纸、期刊。\n\n> **判定要点**：这是**封闭清单**，四类之外的商品不得以「商品性质特殊」为由直接排除。定制商品、生鲜商品、已激活的虚拟商品分别落在第（一）（二）（三）项。\n\n下列性质的商品经消费者在购买时确认，可以不适用七日无理由退货规定：\n\n（一）拆封后易影响人身安全或者生命健康的商品，或者拆封后易导致商品品质发生改变的商品；\n\n（二）一经激活或者试用后价值贬损较大的商品；\n\n（三）销售时已明示的临近保质期的商品、有瑕疵的商品。\n\n> **判定要点**：本条商品**必须有消费者购买时的确认记录**才能排除退货。没有确认记录的，销售者不得拒绝退货（见第二十条第二款）。\n\n消费者退回的商品应当完好。\n\n商品能够保持原有品质、功能，商品本身、配件、商标标识齐全的，视为商品完好。\n\n消费者基于查验需要而打开商品包装，或者为确认商品的品质、功能而进行合理的调试不影响商品的完好。\n\n> **判定要点**：**「拆封」不等于「不完好」**。仅因买家拆开包装查验即拒绝退货，属违法。判定商品状态时须区分「拆封查验」与「超出查验需要的使用」。\n\n对超出查验和确认商品品质、功能需要而使用商品，导致商品价值贬损较大的，视为商品不完好。具体判定标准如下：\n\n（一）食品（含保健食品）、化妆品、医疗器械、计生用品：必要的一次性密封包装被损坏；\n\n（二）电子电器类：进行未经授权的维修、改动，破坏、涂改强制性产品认证标志、指示标贴、机器序列号等，有难以恢复原状的外观类使用痕迹，或者产生激活、授权信息、不合理的个人使用数据留存等数据类使用痕迹；\n\n（三）服装、鞋帽、箱包、玩具、家纺、家居类：商标标识被摘、标识被剪，商品受污、受损。",
+            "score": 0.6366129302978516,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.683 × 先验 0.45 → 0.637；命中 1/law/dense#1, 1/law/bm25#1"
+          },
+          {
+            "section": "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区",
+            "text": "以下情形**不构成**拒绝无理由退货的理由：\n\n| 常见说法 | 是否成立 | 说明 |\n|---|---|---|\n| 「特价商品概不退换」 | ❌ 不成立 | 除非属临期/瑕疵专区并经确认，否则无效 |\n| 「拆开包装就不能退」 | ❌ 不成立 | 查验性拆封不影响商品完好，见 [P05] |\n| 「已过 7 天不能退」（金牌会员） | ❌ 不成立 | 金牌会员无理由窗口为 15 天，见 [P07] |\n| 「商品页面写了不支持退货」 | ⚠️ 视情况 | 须落入第一条法定范围，或经第二条确认程序 |\n| 「大促期间商品不退」 | ❌ 不成立 | 促销不改变法定退货权 |\n| 「已使用优惠券的订单不退」 | ❌ 不成立 | 按实付金额退款，优惠券不退还，见 [P10] |",
+            "score": 0.5641511249542237,
+            "doc_id": "P04",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P04-不适用无理由退货商品清单.md",
+            "reason": "相关性 0.480 × 先验 0.90 → 0.564；命中 1/platform/dense#5, 1/platform/bm25#5"
+          },
+          {
+            "section": "P02 星辰优选售后服务与退换货政策 > 第三条 商品条件",
+            "text": "3.1 **无理由退货要求商品未拆封、不影响二次销售。** 已拆封或已使用的商品不支持无理由退货。\n\n3.2 商品状态分为三档，无理由退货仅接受「未拆封」：\n\n| 商品状态 | 含义 | 无理由退货 |\n|---|---|---|\n| 未拆封 | 外包装及密封完整，未开启 | ✅ 支持 |\n| 已拆封 | 已开启包装，但未投入使用 | ❌ 不支持 |\n| 已使用 | 已实际使用，留有使用痕迹 | ❌ 不支持 |\n\n3.3 **质量问题退货不受拆封限制**，但需保留问题商品待查验。消费者不得在申请前自行丢弃、处置问题商品。\n\n3.4 商品完好的具体判定标准（含配件、标签、包装、使用痕迹）详见 [P05]。",
+            "score": 0.38590894937515263,
+            "doc_id": "P02",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
+            "reason": "相关性 0.232 × 先验 1.00 → 0.386；命中 1/platform/dense#1, 1/platform/bm25#1"
+          },
+          {
+            "section": "P05 星辰优选商品完好标准与验收规范 > 第二条 商品状态的三档划分",
+            "text": "平台在受理无理由退货时，将商品状态划分为三档：\n\n| 状态 | 判定要素 | 无理由退货 |\n|---|---|---|\n| **未拆封** | 外包装完整，密封条、封口、塑封未破坏；商品未从原包装中取出 | ✅ 支持 |\n| **已拆封** | 包装已开启，商品已取出查验，但未投入实际使用，无使用痕迹 | ❌ 不支持 |\n| **已使用** | 商品已实际使用，存在使用痕迹、消耗、激活或数据留存 | ❌ 不支持 |\n\n2.1 无理由退货**仅接受「未拆封」**。这是平台在法定标准之上对商品二次销售价值的进一步要求，已在商品详情页与售后政策中公示。\n\n2.2 **质量问题退货不受本条限制**——商品已拆封、已使用，均不影响质量问题退货的受理。\n\n2.3 消费者对商品状态的陈述与实际退回商品不符的，按第五条处理。",
+            "score": 0.3173692870140076,
+            "doc_id": "P05",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P05-商品完好标准与验收规范.md",
+            "reason": "相关性 0.172 × 先验 0.90 → 0.317；命中 1/platform/dense#2, 1/platform/bm25#2"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "4919df2fe1087215",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.822,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:43.634Z",
+      "updatedAt": "2026-08-18T03:24:43.667Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "8e1146349ef2c186",
+      "traceId": "ec784d907fbbb7be97e94943cd23813a",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 03:24:38.883000+00:00",
+      "endTime": "2026-08-18 03:24:38.884000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "我就拆开包装看了一眼东西长啥样，没用过也没弄坏，这种还能退吗？"
+        },
+        "output": {
+          "case_id": "R1-012",
+          "type": "single",
+          "style": "colloquial",
+          "doc_id": "L03",
+          "layer": "law",
+          "kind": "text",
+          "seed_chunk_id": [
+            "L03#005:00"
+          ],
+          "error": null,
+          "scores": {
+            "recall@10": 0,
+            "recall@3": 0,
+            "recall@1": 0,
+            "evidence_tokens": 1283,
+            "duplicate_ratio": 0
+          },
+          "elapsed_s": 1.8,
+          "seed_rank": {
+            "candidate": {
+              "L03#005:00": null
+            },
+            "evidence": {
+              "L03#005:00": null
+            }
+          },
+          "sections": [
+            "L02 网络购买商品七日无理由退货暂行办法 > 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+            "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区",
+            "P02 星辰优选售后服务与退换货政策 > 第三条 商品条件",
+            "P05 星辰优选商品完好标准与验收规范 > 第二条 商品状态的三档划分"
+          ]
+        },
+        "expected_output": {
+          "seed_chunk_id": [
+            "L03#005:00"
+          ],
+          "reference_answer": "可以退。消费者基于查验需要打开商品包装，或者为确认商品品质和功能进行合理调试而不影响商品原有品质、功能和外观的，经营者应当予以退货。"
+        },
+        "metadata": {
+          "kind": "text",
+          "type": "single",
+          "layer": "law",
+          "style": "colloquial",
+          "doc_id": "L03",
+          "section": "第十九条 【无理由退货的边界与滥用治理】",
+          "reviewed": false,
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.045
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 0,
+          "comment": "种子块名次 L03#005:00=None"
+        },
+        {
+          "name": "recall@3",
+          "value": 0,
+          "comment": "种子块名次 L03#005:00=None"
+        },
+        {
+          "name": "recall@1",
+          "value": 0,
+          "comment": "种子块名次 L03#005:00=None"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 1283,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "529349558d5a7131",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:43.634Z",
+      "updatedAt": "2026-08-18T03:24:43.666Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "31f2dadcda48c027",
+      "traceId": "ec784d907fbbb7be97e94943cd23813a",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 03:24:35.271000+00:00",
+      "endTime": "2026-08-18 03:24:38.884000+00:00",
+      "input": {
+        "query": "我就拆开包装看了一眼东西长啥样，没用过也没弄坏，这种还能退吗？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-2",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-012",
+        "kind": "text",
+        "type": "single",
+        "layer": "law",
+        "style": "colloquial",
+        "doc_id": "L03",
+        "section": "第十九条 【无理由退货的边界与滥用治理】",
+        "reviewed": false,
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.045,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-012",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "L03",
+        "layer": "law",
+        "kind": "text",
+        "seed_chunk_id": [
+          "L03#005:00"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 0,
+          "recall@3": 0,
+          "recall@1": 0,
+          "evidence_tokens": 1283,
+          "duplicate_ratio": 0
+        },
+        "elapsed_s": 1.8,
+        "seed_rank": {
+          "candidate": {
+            "L03#005:00": null
+          },
+          "evidence": {
+            "L03#005:00": null
+          }
+        },
+        "sections": [
+          "L02 网络购买商品七日无理由退货暂行办法 > 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+          "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区",
+          "P02 星辰优选售后服务与退换货政策 > 第三条 商品条件",
+          "P05 星辰优选商品完好标准与验收规范 > 第二条 商品状态的三档划分"
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 3.613,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:43.634Z",
+      "updatedAt": "2026-08-18T03:24:43.661Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "f97028182724a71c",
+      "traceId": "ec784d907fbbb7be97e94943cd23813a",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 03:24:38.866000+00:00",
+      "endTime": "2026-08-18 03:24:38.882000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "L02#002:02",
+          "P04#005:00",
+          "P02#002:00",
+          "P05#002:00"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+            "text": "下列商品不适用七日无理由退货规定：\n\n（一）消费者定作的商品；\n\n（二）鲜活易腐的商品；\n\n（三）在线下载或者消费者拆封的音像制品、计算机软件等数字化商品；\n\n（四）交付的报纸、期刊。\n\n> **判定要点**：这是**封闭清单**，四类之外的商品不得以「商品性质特殊」为由直接排除。定制商品、生鲜商品、已激活的虚拟商品分别落在第（一）（二）（三）项。\n\n下列性质的商品经消费者在购买时确认，可以不适用七日无理由退货规定：\n\n（一）拆封后易影响人身安全或者生命健康的商品，或者拆封后易导致商品品质发生改变的商品；\n\n（二）一经激活或者试用后价值贬损较大的商品；\n\n（三）销售时已明示的临近保质期的商品、有瑕疵的商品。\n\n> **判定要点**：本条商品**必须有消费者购买时的确认记录**才能排除退货。没有确认记录的，销售者不得拒绝退货（见第二十条第二款）。\n\n消费者退回的商品应当完好。\n\n商品能够保持原有品质、功能，商品本身、配件、商标标识齐全的，视为商品完好。\n\n消费者基于查验需要而打开商品包装，或者为确认商品的品质、功能而进行合理的调试不影响商品的完好。\n\n> **判定要点**：**「拆封」不等于「不完好」**。仅因买家拆开包装查验即拒绝退货，属违法。判定商品状态时须区分「拆封查验」与「超出查验需要的使用」。\n\n对超出查验和确认商品品质、功能需要而使用商品，导致商品价值贬损较大的，视为商品不完好。具体判定标准如下：\n\n（一）食品（含保健食品）、化妆品、医疗器械、计生用品：必要的一次性密封包装被损坏；\n\n（二）电子电器类：进行未经授权的维修、改动，破坏、涂改强制性产品认证标志、指示标贴、机器序列号等，有难以恢复原状的外观类使用痕迹，或者产生激活、授权信息、不合理的个人使用数据留存等数据类使用痕迹；\n\n（三）服装、鞋帽、箱包、玩具、家纺、家居类：商标标识被摘、标识被剪，商品受污、受损。",
+            "score": 0.6366129302978516,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.683 × 先验 0.45 → 0.637；命中 1/law/dense#1, 1/law/bm25#1"
+          },
+          {
+            "section": "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区",
+            "text": "以下情形**不构成**拒绝无理由退货的理由：\n\n| 常见说法 | 是否成立 | 说明 |\n|---|---|---|\n| 「特价商品概不退换」 | ❌ 不成立 | 除非属临期/瑕疵专区并经确认，否则无效 |\n| 「拆开包装就不能退」 | ❌ 不成立 | 查验性拆封不影响商品完好，见 [P05] |\n| 「已过 7 天不能退」（金牌会员） | ❌ 不成立 | 金牌会员无理由窗口为 15 天，见 [P07] |\n| 「商品页面写了不支持退货」 | ⚠️ 视情况 | 须落入第一条法定范围，或经第二条确认程序 |\n| 「大促期间商品不退」 | ❌ 不成立 | 促销不改变法定退货权 |\n| 「已使用优惠券的订单不退」 | ❌ 不成立 | 按实付金额退款，优惠券不退还，见 [P10] |",
+            "score": 0.5641511249542237,
+            "doc_id": "P04",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P04-不适用无理由退货商品清单.md",
+            "reason": "相关性 0.480 × 先验 0.90 → 0.564；命中 1/platform/dense#5, 1/platform/bm25#5"
+          },
+          {
+            "section": "P02 星辰优选售后服务与退换货政策 > 第三条 商品条件",
+            "text": "3.1 **无理由退货要求商品未拆封、不影响二次销售。** 已拆封或已使用的商品不支持无理由退货。\n\n3.2 商品状态分为三档，无理由退货仅接受「未拆封」：\n\n| 商品状态 | 含义 | 无理由退货 |\n|---|---|---|\n| 未拆封 | 外包装及密封完整，未开启 | ✅ 支持 |\n| 已拆封 | 已开启包装，但未投入使用 | ❌ 不支持 |\n| 已使用 | 已实际使用，留有使用痕迹 | ❌ 不支持 |\n\n3.3 **质量问题退货不受拆封限制**，但需保留问题商品待查验。消费者不得在申请前自行丢弃、处置问题商品。\n\n3.4 商品完好的具体判定标准（含配件、标签、包装、使用痕迹）详见 [P05]。",
+            "score": 0.38590894937515263,
+            "doc_id": "P02",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
+            "reason": "相关性 0.232 × 先验 1.00 → 0.386；命中 1/platform/dense#1, 1/platform/bm25#1"
+          },
+          {
+            "section": "P05 星辰优选商品完好标准与验收规范 > 第二条 商品状态的三档划分",
+            "text": "平台在受理无理由退货时，将商品状态划分为三档：\n\n| 状态 | 判定要素 | 无理由退货 |\n|---|---|---|\n| **未拆封** | 外包装完整，密封条、封口、塑封未破坏；商品未从原包装中取出 | ✅ 支持 |\n| **已拆封** | 包装已开启，商品已取出查验，但未投入实际使用，无使用痕迹 | ❌ 不支持 |\n| **已使用** | 商品已实际使用，存在使用痕迹、消耗、激活或数据留存 | ❌ 不支持 |\n\n2.1 无理由退货**仅接受「未拆封」**。这是平台在法定标准之上对商品二次销售价值的进一步要求，已在商品详情页与售后政策中公示。\n\n2.2 **质量问题退货不受本条限制**——商品已拆封、已使用，均不影响质量问题退货的受理。\n\n2.3 消费者对商品状态的陈述与实际退回商品不符的，按第五条处理。",
+            "score": 0.3173692870140076,
+            "doc_id": "P05",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P05-商品完好标准与验收规范.md",
+            "reason": "相关性 0.172 × 先验 0.90 → 0.317；命中 1/platform/dense#2, 1/platform/bm25#2"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "ffc88f0794be186d",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.016,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:43.634Z",
+      "updatedAt": "2026-08-18T03:24:43.661Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "b91a941dc9a69828",
+      "traceId": "ec784d907fbbb7be97e94943cd23813a",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 03:24:38.117000+00:00",
+      "endTime": "2026-08-18 03:24:38.866000+00:00",
+      "input": {
+        "query": "我就拆开包装看了一眼东西长啥样，没用过也没弄坏，这种还能退吗？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 4,
+        "min_score": 0.3,
+        "dropped": [
+          "L02#002:03",
+          "P11#006:00",
+          "P05#001:00",
+          "P11#004:00",
+          "P11#008:00",
+          "P08#000:00",
+          "L02#002:01",
+          "L05#025:00",
+          "P04#002:01",
+          "P05#003:01",
+          "L01#004:00",
+          "L02#002:00",
+          "L05#017:00",
+          "L05#022:00",
+          "P10#002:04",
+          "P11#004:04"
+        ],
+        "evidence": [
+          {
+            "chunk_id": "L02#002:02",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+            "score": 0.637,
+            "relevance": 0.683,
+            "prior": 0.45,
+            "excerpt": "消费者退回的商品应当完好。 商品能够保持原有品质、功能，商品本身、配件、商标标识齐全的，视为商品完好。 消费者基于查验需要而打开商品包装，或者为确认商品的品质、功能而进行合理的调试不影响商品的完好。 > **判定要点**：**「拆封」不等于…"
+          },
+          {
+            "chunk_id": "P04#005:00",
+            "section": "P04 第五条 不属于排除范围的常见误区",
+            "score": 0.564,
+            "relevance": 0.48,
+            "prior": 0.9,
+            "excerpt": "以下情形**不构成**拒绝无理由退货的理由： | 常见说法 | 是否成立 | 说明 | |---|---|---| | 「特价商品概不退换」 | ❌ 不成立 | 除非属临期/瑕疵专区并经确认，否则无效 | | 「拆开包装就不能退」 | ❌ …"
+          },
+          {
+            "chunk_id": "P02#002:00",
+            "section": "P02 第三条 商品条件",
+            "score": 0.386,
+            "relevance": 0.232,
+            "prior": 1,
+            "excerpt": "3.1 **无理由退货要求商品未拆封、不影响二次销售。** 已拆封或已使用的商品不支持无理由退货。 3.2 商品状态分为三档，无理由退货仅接受「未拆封」： | 商品状态 | 含义 | 无理由退货 | |---|---|---| | 未拆封 …"
+          },
+          {
+            "chunk_id": "P05#002:00",
+            "section": "P05 第二条 商品状态的三档划分",
+            "score": 0.317,
+            "relevance": 0.172,
+            "prior": 0.9,
+            "excerpt": "平台在受理无理由退货时，将商品状态划分为三档： | 状态 | 判定要素 | 无理由退货 | |---|---|---| | **未拆封** | 外包装完整，密封条、封口、塑封未破坏；商品未从原包装中取出 | ✅ 支持 | | **已拆封**…"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "ffc88f0794be186d",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.749,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:43.634Z",
+      "updatedAt": "2026-08-18T03:24:43.648Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "529349558d5a7131",
+      "traceId": "ec784d907fbbb7be97e94943cd23813a",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 03:24:38.883000+00:00",
+      "endTime": "2026-08-18 03:24:38.884000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 6,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "31f2dadcda48c027",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:43.634Z",
+      "updatedAt": "2026-08-18T03:24:43.646Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "abd01e2b7c86c313",
+      "traceId": "ec784d907fbbb7be97e94943cd23813a",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-18 03:24:38.007000+00:00",
+      "endTime": "2026-08-18 03:24:38.116000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "P02#002:00",
+            "section": "P02 第三条 商品条件",
+            "rrf": 0.0952,
+            "hits": [
+              "1/platform/dense#1",
+              "1/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#002:02",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+            "rrf": 0.0952,
+            "hits": [
+              "1/law/dense#1",
+              "1/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P05#002:00",
+            "section": "P05 第二条 商品状态的三档划分",
+            "rrf": 0.0909,
+            "hits": [
+              "1/platform/dense#2",
+              "1/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L02#002:03",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第九条 【商品不完好的分类判定标准】",
+            "rrf": 0.0835,
+            "hits": [
+              "1/law/dense#5",
+              "1/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P04#005:00",
+            "section": "P04 第五条 不属于排除范围的常见误区",
+            "rrf": 0.08,
+            "hits": [
+              "1/platform/dense#5",
+              "1/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P11#006:00",
+            "section": "P11 第六条 食品、保健食品、化妆品 > 6.1 密封包装",
+            "rrf": 0.0787,
+            "hits": [
+              "1/platform/dense#7",
+              "1/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P05#001:00",
+            "section": "P05 第一条 商品完好的基本定义",
+            "rrf": 0.0729,
+            "hits": [
+              "1/platform/dense#9",
+              "1/platform/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "P11#004:00",
+            "section": "P11 第四条 数码与家用电器 > 4.1 无理由退货",
+            "rrf": 0.0711,
+            "hits": [
+              "1/platform/dense#4",
+              "1/platform/bm25#14"
+            ]
+          },
+          {
+            "chunk_id": "P11#008:00",
+            "section": "P11 第八条 珠宝、贵金属与奢侈品",
+            "rrf": 0.0608,
+            "hits": [
+              "1/platform/dense#15",
+              "1/platform/bm25#11"
+            ]
+          },
+          {
+            "chunk_id": "P08#000:00",
+            "section": "P08 ",
+            "rrf": 0.0533,
+            "hits": [
+              "1/platform/dense#18",
+              "1/platform/bm25#17"
+            ]
+          },
+          {
+            "chunk_id": "L02#002:01",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】",
+            "rrf": 0.0455,
+            "hits": [
+              "1/law/dense#2"
+            ]
+          },
+          {
+            "chunk_id": "L05#025:00",
+            "section": "L05 与无理由退货的对照",
+            "rrf": 0.0455,
+            "hits": [
+              "1/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P04#002:01",
+            "section": "P04 第二条 经消费者确认后不适用无理由退货的商品 > 2.1 拆封后影响人身安全或商品品质的商品",
+            "rrf": 0.0435,
+            "hits": [
+              "1/platform/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "P05#003:01",
+            "section": "P05 第三条 分类目的「不完好」判定标准 > 3.1 食品、保健食品、化妆品、医疗器械、计生用品",
+            "rrf": 0.0435,
+            "hits": [
+              "1/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L01#004:00",
+            "section": "L01 第二十五条 【网络购物七日无理由退货】",
+            "rrf": 0.0435,
+            "hits": [
+              "1/law/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#002:00",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第六条 【法定不适用商品（无需消费者确认）】",
+            "rrf": 0.0417,
+            "hits": [
+              "1/law/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "L05#017:00",
+            "section": "L05 第十七条 【不实行三包的情形】",
+            "rrf": 0.0417,
+            "hits": [
+              "1/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "L05#022:00",
+            "section": "L05 第二十二条 【申诉与诉讼】",
+            "rrf": 0.04,
+            "hits": [
+              "1/law/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P10#002:04",
+            "section": "P10 第三条 赠品 > 3.5 消耗类赠品",
+            "rrf": 0.0385,
+            "hits": [
+              "1/platform/dense#6"
+            ]
+          },
+          {
+            "chunk_id": "P11#004:04",
+            "section": "P11 第四条 数码与家用电器 > 4.5 不实行三包的情形",
+            "rrf": 0.037,
+            "hits": [
+              "1/platform/bm25#7"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "ffc88f0794be186d",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.109,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:38.481Z",
+      "updatedAt": "2026-08-18T03:24:38.519Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "7f927fcf2c63df2a",
+      "traceId": "ec784d907fbbb7be97e94943cd23813a",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 03:24:37.061000+00:00",
+      "endTime": "2026-08-18 03:24:38.006000+00:00",
+      "input": {
+        "query": "我就拆开包装看了一眼东西长啥样，没用过也没弄坏，这种还能退吗？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "condition",
+            "text": "商品仅拆开包装查看但未使用未损坏，还能无理由退货吗？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "ffc88f0794be186d",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.945,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:38.481Z",
+      "updatedAt": "2026-08-18T03:24:38.513Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "e72e72c5a700ec62",
+      "traceId": "ec784d907fbbb7be97e94943cd23813a",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 03:24:38.007000+00:00",
+      "endTime": "2026-08-18 03:24:38.007000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "ffc88f0794be186d",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:38.481Z",
+      "updatedAt": "2026-08-18T03:24:38.510Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    }
+  ]
+}

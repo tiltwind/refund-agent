@@ -109,7 +109,7 @@ tags: [退货窗口, 无理由退货, 商品条件, 高风险账户]
 | [`rerank/bge_reranker.py`](https://github.com/tiltwind/refund-agent/blob/main/llm/rerank/bge_reranker.py) | cross-encoder 重排 | 打 warn 后降级 |
 | [`chat.py`](https://github.com/tiltwind/refund-agent/blob/main/llm/chat.py) | 供应商与模型名的**唯一**解析处 | 无凭据时改写降级 |
 
-### 嵌入：三个参数灌库与检索保持一致
+### 嵌入：灌库与检索共用的三个参数
 
 ```python
 MAX_LENGTH = 1024      # 灌库与检索取同一个值
@@ -119,7 +119,7 @@ DIMENSION  = 1024      # 由 model.config.hidden_size 自检，对不上直接�
 
 嵌入模型不可用时直接报错，不切换向量空间。
 
-### 重排：可选，降级要出声
+### 重排：可选项与降级提示
 
 `reranker()` 不可用时返回 `None`，调用方退回“融合分 + 效力位阶加权”并记录警告。
 
@@ -196,7 +196,7 @@ print(m.truncation_report([c.text for c in total]))
 
 ## 六、第 5 步 · 向量库与灌库
 
-### 起 Milvus
+### Milvus 启动
 
 ```bash
 bash scripts/milvus.sh start     # standalone + 内嵌 etcd，等待就绪后打印状态

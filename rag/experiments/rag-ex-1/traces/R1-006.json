@@ -1,0 +1,1093 @@
+{
+  "case": {
+    "case_id": "R1-006",
+    "type": "single",
+    "style": "colloquial",
+    "doc_id": "L02",
+    "layer": "law",
+    "kind": "text",
+    "seed_chunk_id": [
+      "L02#001:03"
+    ],
+    "error": null,
+    "scores": {
+      "recall@10": 0.0,
+      "recall@3": 0.0,
+      "recall@1": 0.0,
+      "evidence_tokens": 0,
+      "duplicate_ratio": 0.0
+    },
+    "elapsed_s": 1.8,
+    "seed_rank": {
+      "candidate": {
+        "L02#001:03": 13
+      },
+      "evidence": {
+        "L02#001:03": null
+      }
+    },
+    "sections": [],
+    "trace_id": "206e74ec7d48861379808245e264f42f"
+  },
+  "trace": {
+    "id": "206e74ec7d48861379808245e264f42f",
+    "name": "experiment-item-run",
+    "timestamp": "2026-08-18 03:24:44.071000+00:00"
+  },
+  "observations": [
+    {
+      "id": "d50b4809017de3da",
+      "traceId": "206e74ec7d48861379808245e264f42f",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 03:24:52.463000+00:00",
+      "endTime": "2026-08-18 03:24:52.463000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "我退货的时候是不是也得讲点规矩，不能想怎么退就怎么退？"
+        },
+        "output": {
+          "case_id": "R1-006",
+          "type": "single",
+          "style": "colloquial",
+          "doc_id": "L02",
+          "layer": "law",
+          "kind": "text",
+          "seed_chunk_id": [
+            "L02#001:03"
+          ],
+          "error": null,
+          "scores": {
+            "recall@10": 0,
+            "recall@3": 0,
+            "recall@1": 0,
+            "evidence_tokens": 0,
+            "duplicate_ratio": 0
+          },
+          "elapsed_s": 1.8,
+          "seed_rank": {
+            "candidate": {
+              "L02#001:03": 13
+            },
+            "evidence": {
+              "L02#001:03": null
+            }
+          },
+          "sections": []
+        },
+        "expected_output": {
+          "seed_chunk_id": [
+            "L02#001:03"
+          ],
+          "reference_answer": "消费者行使七日无理由退货权利应当遵循公平、诚实信用的原则，遵守商业道德。"
+        },
+        "metadata": {
+          "kind": "text",
+          "type": "single",
+          "layer": "law",
+          "style": "colloquial",
+          "doc_id": "L02",
+          "section": "第一章 总则 > 第四条 【诚实信用原则】",
+          "reviewed": false,
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.059
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 0,
+          "comment": "种子块名次 L02#001:03=13"
+        },
+        {
+          "name": "recall@3",
+          "value": 0,
+          "comment": "种子块名次 L02#001:03=None"
+        },
+        {
+          "name": "recall@1",
+          "value": 0,
+          "comment": "种子块名次 L02#001:03=None"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "cc63f88d7a6dea1a",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:53.678Z",
+      "updatedAt": "2026-08-18T03:24:53.712Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "cc6e0df9f7359966",
+      "traceId": "206e74ec7d48861379808245e264f42f",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 03:24:50.655000+00:00",
+      "endTime": "2026-08-18 03:24:52.463000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "我退货的时候是不是也得讲点规矩，不能想怎么退就怎么退？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "1c7d63830d5f18ae",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.808,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:53.678Z",
+      "updatedAt": "2026-08-18T03:24:53.712Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "5111e64b66d322c1",
+      "traceId": "206e74ec7d48861379808245e264f42f",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-18 03:24:51.609000+00:00",
+      "endTime": "2026-08-18 03:24:51.689000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "L01#003:00",
+            "section": "L01 第二十四条 【质量不符时的退货、更换、修理】",
+            "rrf": 0.0876,
+            "hits": [
+              "1/law/dense#5",
+              "1/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P02#002:00",
+            "section": "P02 第三条 商品条件",
+            "rrf": 0.0757,
+            "hits": [
+              "1/platform/dense#3",
+              "1/platform/bm25#11"
+            ]
+          },
+          {
+            "chunk_id": "P05#002:00",
+            "section": "P05 第二条 商品状态的三档划分",
+            "rrf": 0.0526,
+            "hits": [
+              "1/platform/dense#18",
+              "1/platform/bm25#18"
+            ]
+          },
+          {
+            "chunk_id": "P01#006:00",
+            "section": "P01 第六章 消费者的义务 > 6.1 诚实信用",
+            "rrf": 0.0476,
+            "hits": [
+              "1/platform/dense#1"
+            ]
+          },
+          {
+            "chunk_id": "P07#003:02",
+            "section": "P07 第四条 会员权益的边界 > 4.3 会员权益不突破商品条件",
+            "rrf": 0.0476,
+            "hits": [
+              "1/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#002:02",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+            "rrf": 0.0476,
+            "hits": [
+              "1/law/dense#1"
+            ]
+          },
+          {
+            "chunk_id": "P11#008:00",
+            "section": "P11 第八条 珠宝、贵金属与奢侈品",
+            "rrf": 0.0455,
+            "hits": [
+              "1/platform/dense#2"
+            ]
+          },
+          {
+            "chunk_id": "P01#004:03",
+            "section": "P01 第四章 平台的角色与责任 > 4.4 平台的协助义务",
+            "rrf": 0.0455,
+            "hits": [
+              "1/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L01#004:00",
+            "section": "L01 第二十五条 【网络购物七日无理由退货】",
+            "rrf": 0.0455,
+            "hits": [
+              "1/law/dense#2"
+            ]
+          },
+          {
+            "chunk_id": "L03#006:00",
+            "section": "L03 第二十条 【押金退还】",
+            "rrf": 0.0455,
+            "hits": [
+              "1/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P05#003:00",
+            "section": "P05 第三条 分类目的「不完好」判定标准",
+            "rrf": 0.0435,
+            "hits": [
+              "1/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#002:01",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】",
+            "rrf": 0.0435,
+            "hits": [
+              "1/law/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#001:03",
+            "section": "L02 第一章 总则 > 第四条 【诚实信用原则】",
+            "rrf": 0.0435,
+            "hits": [
+              "1/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P06#004:00",
+            "section": "P06 第五条 退货物流 > 5.1 商家提供退货信息的义务",
+            "rrf": 0.0417,
+            "hits": [
+              "1/platform/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "P10#001:00",
+            "section": "P10 第二条 满减与套装的部分退货 > 2.1 部分退货导致优惠失效",
+            "rrf": 0.0417,
+            "hits": [
+              "1/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:02",
+            "section": "L02 第三章 退货程序 > 第十二条 【赠品一并退回】",
+            "rrf": 0.0417,
+            "hits": [
+              "1/law/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "L03#005:00",
+            "section": "L03 第十九条 【无理由退货的边界与滥用治理】",
+            "rrf": 0.0417,
+            "hits": [
+              "1/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P02#001:00",
+            "section": "P02 第二条 退货窗口",
+            "rrf": 0.04,
+            "hits": [
+              "1/platform/dense#5"
+            ]
+          },
+          {
+            "chunk_id": "P03#001:02",
+            "section": "P03 第二条 退款金额的计算 > 2.3 部分退货导致优惠失效",
+            "rrf": 0.04,
+            "hits": [
+              "1/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "L05#013:00",
+            "section": "L05 第十三条 【无同型号产品时的退货与折旧】",
+            "rrf": 0.04,
+            "hits": [
+              "1/law/bm25#5"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "cc6e0df9f7359966",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.08,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:53.678Z",
+      "updatedAt": "2026-08-18T03:24:53.712Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "cc63f88d7a6dea1a",
+      "traceId": "206e74ec7d48861379808245e264f42f",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 03:24:52.463000+00:00",
+      "endTime": "2026-08-18 03:24:52.463000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 6,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d592d493a26cf82a",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:53.678Z",
+      "updatedAt": "2026-08-18T03:24:53.708Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "d592d493a26cf82a",
+      "traceId": "206e74ec7d48861379808245e264f42f",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 03:24:44.071000+00:00",
+      "endTime": "2026-08-18 03:24:52.464000+00:00",
+      "input": {
+        "query": "我退货的时候是不是也得讲点规矩，不能想怎么退就怎么退？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-2",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-006",
+        "kind": "text",
+        "type": "single",
+        "layer": "law",
+        "style": "colloquial",
+        "doc_id": "L02",
+        "section": "第一章 总则 > 第四条 【诚实信用原则】",
+        "reviewed": false,
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.059,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-006",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "L02",
+        "layer": "law",
+        "kind": "text",
+        "seed_chunk_id": [
+          "L02#001:03"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 0,
+          "recall@3": 0,
+          "recall@1": 0,
+          "evidence_tokens": 0,
+          "duplicate_ratio": 0
+        },
+        "elapsed_s": 1.8,
+        "seed_rank": {
+          "candidate": {
+            "L02#001:03": 13
+          },
+          "evidence": {
+            "L02#001:03": null
+          }
+        },
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 8.393,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:53.678Z",
+      "updatedAt": "2026-08-18T03:24:53.708Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "1c7d63830d5f18ae",
+      "traceId": "206e74ec7d48861379808245e264f42f",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 03:24:44.072000+00:00",
+      "endTime": "2026-08-18 03:24:52.463000+00:00",
+      "input": {
+        "query": "我退货的时候是不是也得讲点规矩，不能想怎么退就怎么退？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-2",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-006",
+        "kind": "text",
+        "type": "single",
+        "layer": "law",
+        "style": "colloquial",
+        "doc_id": "L02",
+        "section": "第一章 总则 > 第四条 【诚实信用原则】",
+        "reviewed": false,
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.059,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-006",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "L02",
+        "layer": "law",
+        "kind": "text",
+        "seed_chunk_id": [
+          "L02#001:03"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 0,
+          "recall@3": 0,
+          "recall@1": 0,
+          "evidence_tokens": 0,
+          "duplicate_ratio": 0
+        },
+        "elapsed_s": 1.8,
+        "seed_rank": {
+          "candidate": {
+            "L02#001:03": 13
+          },
+          "evidence": {
+            "L02#001:03": null
+          }
+        },
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d592d493a26cf82a",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 8.391,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:53.678Z",
+      "updatedAt": "2026-08-18T03:24:53.706Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "71a4ad13f16b5237",
+      "traceId": "206e74ec7d48861379808245e264f42f",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 03:24:51.689000+00:00",
+      "endTime": "2026-08-18 03:24:52.462000+00:00",
+      "input": {
+        "query": "我退货的时候是不是也得讲点规矩，不能想怎么退就怎么退？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 0,
+        "min_score": 0.3,
+        "dropped": [
+          "L01#003:00",
+          "P02#002:00",
+          "P05#002:00",
+          "P01#006:00",
+          "P07#003:02",
+          "L02#002:02",
+          "P11#008:00",
+          "P01#004:03",
+          "L01#004:00",
+          "L03#006:00",
+          "P05#003:00",
+          "L02#002:01",
+          "L02#001:03",
+          "P06#004:00",
+          "P10#001:00",
+          "L02#003:02",
+          "L03#005:00",
+          "P02#001:00",
+          "P03#001:02",
+          "L05#013:00"
+        ],
+        "evidence": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "cc6e0df9f7359966",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.773,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:53.678Z",
+      "updatedAt": "2026-08-18T03:24:53.706Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "652afa597f4535b9",
+      "traceId": "206e74ec7d48861379808245e264f42f",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 03:24:51.609000+00:00",
+      "endTime": "2026-08-18 03:24:51.609000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "cc6e0df9f7359966",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:53.678Z",
+      "updatedAt": "2026-08-18T03:24:53.705Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "d2e0509311f7639e",
+      "traceId": "206e74ec7d48861379808245e264f42f",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 03:24:50.656000+00:00",
+      "endTime": "2026-08-18 03:24:51.608000+00:00",
+      "input": {
+        "query": "我退货的时候是不是也得讲点规矩，不能想怎么退就怎么退？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "condition",
+            "text": "退货时需要遵守哪些规矩和条件要求？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "cc6e0df9f7359966",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.952,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:53.678Z",
+      "updatedAt": "2026-08-18T03:24:53.705Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "a11859696f65a724",
+      "traceId": "206e74ec7d48861379808245e264f42f",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 03:24:52.463000+00:00",
+      "endTime": "2026-08-18 03:24:52.463000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": []
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "cc6e0df9f7359966",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T03:24:53.678Z",
+      "updatedAt": "2026-08-18T03:24:53.698Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    }
+  ]
+}

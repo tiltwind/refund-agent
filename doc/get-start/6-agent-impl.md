@@ -127,7 +127,7 @@ print(s.check_eligibility('O2009', 'C1005', '质量问题'))           # 金牌 
 | [`meta.yaml`](https://github.com/tiltwind/refund-agent/blob/main/agent/v1/meta.yaml) | 版本号 / 模型 / 温度，随 trace 上报 |
 | [`registry.py`](https://github.com/tiltwind/refund-agent/blob/main/agent/registry.py) | 版本注册与选择 |
 
-### 提示词：把 SOP 写死
+### 提示词：写死的 SOP
 
 提示词包含三条约束：
 
@@ -136,7 +136,7 @@ print(s.check_eligibility('O2009', 'C1005', '质量问题'))           # 金牌 
    只有明确指出缺陷、损坏、故障、变质才是「质量问题」，**不得为了让判定通过而改写这个参数**；
 3. **先落库拿到单号，再写答复，并在答复里写明这个编号**。
 
-### 工具层：只做三件事
+### 工具层的三件事
 
 校验模型填的参数、调 `services/` 拿结果、把结果渲染成模型好读的文本。不含业务规则、不做授权判定、不关心协议细节。
 

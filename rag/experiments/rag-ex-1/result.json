@@ -1,9 +1,9 @@
 {
   "experiment": "rag-ex-1",
   "dataset": "retrieval-cases-r1",
-  "run_name": "baseline-1",
-  "run_url": "http://localhost:3000/project/cmsuby8ne0001p206f942kmwm/datasets/cmsxz66b4002dlf07lvwsvuey/runs/6d84881f-83b0-4fef-b3a1-1e4117f94638",
-  "written_at": "2026-08-18T01:24:35+00:00",
+  "run_name": "baseline-2",
+  "run_url": "http://localhost:3000/project/cmsuby8ne0001p206f942kmwm/datasets/cmsxz66b4002dlf07lvwsvuey/runs/e7918c2f-cc04-4669-9f26-bbda8f4338fc",
+  "written_at": "2026-08-18T03:25:03+00:00",
   "config": {
     "collection": "refund_policy_chunks",
     "embedding_model": "BAAI/bge-m3",
@@ -19,14 +19,14 @@
   },
   "cases_total": 102,
   "cases_scored": 96,
-  "elapsed_s": 218.2,
+  "elapsed_s": 206.3,
   "summary": {
     "n": 96,
     "recall@1": 0.637,
-    "recall@3": 0.75,
-    "recall@10": 0.875,
-    "evidence_tokens": 1261.438,
-    "duplicate_ratio": 0.212,
+    "recall@3": 0.76,
+    "recall@10": 0.885,
+    "evidence_tokens": 1267.0,
+    "duplicate_ratio": 0.207,
     "counted": {
       "recall@1": 80,
       "recall@3": 96,
@@ -41,9 +41,9 @@
         "n": 48,
         "recall@1": 0.55,
         "recall@3": 0.625,
-        "recall@10": 0.812,
-        "evidence_tokens": 1090.792,
-        "duplicate_ratio": 0.169,
+        "recall@10": 0.833,
+        "evidence_tokens": 1110.646,
+        "duplicate_ratio": 0.172,
         "counted": {
           "recall@1": 40,
           "recall@3": 48,
@@ -53,10 +53,10 @@
       "formal": {
         "n": 48,
         "recall@1": 0.725,
-        "recall@3": 0.875,
+        "recall@3": 0.896,
         "recall@10": 0.938,
-        "evidence_tokens": 1432.083,
-        "duplicate_ratio": 0.256,
+        "evidence_tokens": 1423.354,
+        "duplicate_ratio": 0.243,
         "counted": {
           "recall@1": 40,
           "recall@3": 48,
@@ -68,10 +68,10 @@
       "multi_hop": {
         "n": 16,
         "recall@1": null,
-        "recall@3": 0.375,
+        "recall@3": 0.438,
         "recall@10": 0.75,
-        "evidence_tokens": 1591.375,
-        "duplicate_ratio": 0.212,
+        "evidence_tokens": 1558.75,
+        "duplicate_ratio": 0.197,
         "counted": {
           "recall@1": 0,
           "recall@3": 16,
@@ -82,9 +82,9 @@
         "n": 80,
         "recall@1": 0.637,
         "recall@3": 0.825,
-        "recall@10": 0.9,
-        "evidence_tokens": 1195.45,
-        "duplicate_ratio": 0.212,
+        "recall@10": 0.912,
+        "evidence_tokens": 1208.65,
+        "duplicate_ratio": 0.209,
         "counted": {
           "recall@1": 80,
           "recall@3": 80,
@@ -98,8 +98,8 @@
         "recall@1": 0.625,
         "recall@3": 0.731,
         "recall@10": 0.846,
-        "evidence_tokens": 1284.346,
-        "duplicate_ratio": 0.179,
+        "evidence_tokens": 1276.885,
+        "duplicate_ratio": 0.169,
         "counted": {
           "recall@1": 24,
           "recall@3": 26,
@@ -109,10 +109,10 @@
       "law+platform": {
         "n": 4,
         "recall@1": null,
-        "recall@3": 0.5,
+        "recall@3": 0.75,
         "recall@10": 1.0,
-        "evidence_tokens": 1241.75,
-        "duplicate_ratio": 0.154,
+        "evidence_tokens": 1197.25,
+        "duplicate_ratio": 0.136,
         "counted": {
           "recall@1": 0,
           "recall@3": 4,
@@ -123,9 +123,9 @@
         "n": 66,
         "recall@1": 0.643,
         "recall@3": 0.773,
-        "recall@10": 0.879,
-        "evidence_tokens": 1253.606,
-        "duplicate_ratio": 0.229,
+        "recall@10": 0.894,
+        "evidence_tokens": 1267.333,
+        "duplicate_ratio": 0.227,
         "counted": {
           "recall@1": 56,
           "recall@3": 66,
@@ -138,9 +138,9 @@
         "n": 26,
         "recall@1": 0.417,
         "recall@3": 0.615,
-        "recall@10": 0.731,
-        "evidence_tokens": 1525.154,
-        "duplicate_ratio": 0.242,
+        "recall@10": 0.769,
+        "evidence_tokens": 1542.269,
+        "duplicate_ratio": 0.245,
         "counted": {
           "recall@1": 24,
           "recall@3": 26,
@@ -152,8 +152,8 @@
         "recall@1": null,
         "recall@3": 0.375,
         "recall@10": 0.75,
-        "evidence_tokens": 2027.375,
-        "duplicate_ratio": 0.315,
+        "evidence_tokens": 1985.75,
+        "duplicate_ratio": 0.292,
         "counted": {
           "recall@1": 0,
           "recall@3": 8,
@@ -163,10 +163,10 @@
       "text": {
         "n": 62,
         "recall@1": 0.732,
-        "recall@3": 0.855,
+        "recall@3": 0.871,
         "recall@10": 0.952,
-        "evidence_tokens": 1052.016,
-        "duplicate_ratio": 0.186,
+        "evidence_tokens": 1058.823,
+        "duplicate_ratio": 0.18,
         "counted": {
           "recall@1": 56,
           "recall@3": 62,
@@ -180,8 +180,8 @@
         "recall@1": 0.75,
         "recall@3": 1.0,
         "recall@10": 1.0,
-        "evidence_tokens": 2021.25,
-        "duplicate_ratio": 0.239,
+        "evidence_tokens": 2050.5,
+        "duplicate_ratio": 0.219,
         "counted": {
           "recall@1": 4,
           "recall@3": 4,
@@ -193,8 +193,8 @@
         "recall@1": 0.333,
         "recall@3": 0.5,
         "recall@10": 0.833,
-        "evidence_tokens": 1412.333,
-        "duplicate_ratio": 0.302,
+        "evidence_tokens": 1404.167,
+        "duplicate_ratio": 0.305,
         "counted": {
           "recall@1": 6,
           "recall@3": 6,
@@ -219,8 +219,8 @@
         "recall@1": 1.0,
         "recall@3": 1.0,
         "recall@10": 1.0,
-        "evidence_tokens": 581.25,
-        "duplicate_ratio": 0.145,
+        "evidence_tokens": 556.0,
+        "duplicate_ratio": 0.104,
         "counted": {
           "recall@1": 4,
           "recall@3": 4,
@@ -232,8 +232,8 @@
         "recall@1": 0.5,
         "recall@3": 0.667,
         "recall@10": 0.667,
-        "evidence_tokens": 1135.833,
-        "duplicate_ratio": 0.126,
+        "evidence_tokens": 1110.833,
+        "duplicate_ratio": 0.121,
         "counted": {
           "recall@1": 6,
           "recall@3": 6,
@@ -245,7 +245,7 @@
         "recall@1": null,
         "recall@3": 0.5,
         "recall@10": 1.0,
-        "evidence_tokens": 1128.0,
+        "evidence_tokens": 1122.5,
         "duplicate_ratio": 0.082,
         "counted": {
           "recall@1": 0,
@@ -310,8 +310,8 @@
         "recall@1": 0.25,
         "recall@3": 0.75,
         "recall@10": 1.0,
-        "evidence_tokens": 1503.0,
-        "duplicate_ratio": 0.327,
+        "evidence_tokens": 1546.25,
+        "duplicate_ratio": 0.321,
         "counted": {
           "recall@1": 4,
           "recall@3": 4,
@@ -323,8 +323,8 @@
         "recall@1": null,
         "recall@3": 0.0,
         "recall@10": 0.5,
-        "evidence_tokens": 1828.0,
-        "duplicate_ratio": 0.226,
+        "evidence_tokens": 1344.5,
+        "duplicate_ratio": 0.089,
         "counted": {
           "recall@1": 0,
           "recall@3": 2,
@@ -362,8 +362,8 @@
         "recall@1": 0.667,
         "recall@3": 0.833,
         "recall@10": 1.0,
-        "evidence_tokens": 1375.167,
-        "duplicate_ratio": 0.364,
+        "evidence_tokens": 1493.833,
+        "duplicate_ratio": 0.366,
         "counted": {
           "recall@1": 6,
           "recall@3": 6,
@@ -388,8 +388,8 @@
         "recall@1": null,
         "recall@3": 0.5,
         "recall@10": 1.0,
-        "evidence_tokens": 2078.0,
-        "duplicate_ratio": 0.526,
+        "evidence_tokens": 2182.0,
+        "duplicate_ratio": 0.553,
         "counted": {
           "recall@1": 0,
           "recall@3": 2,
@@ -401,8 +401,8 @@
         "recall@1": 0.75,
         "recall@3": 0.75,
         "recall@10": 0.75,
-        "evidence_tokens": 1170.25,
-        "duplicate_ratio": 0.188,
+        "evidence_tokens": 1284.75,
+        "duplicate_ratio": 0.215,
         "counted": {
           "recall@1": 4,
           "recall@3": 4,
@@ -414,8 +414,8 @@
         "recall@1": null,
         "recall@3": 0.5,
         "recall@10": 1.0,
-        "evidence_tokens": 1284.5,
-        "duplicate_ratio": 0.218,
+        "evidence_tokens": 1497.5,
+        "duplicate_ratio": 0.237,
         "counted": {
           "recall@1": 0,
           "recall@3": 2,
@@ -426,9 +426,9 @@
         "n": 6,
         "recall@1": 0.5,
         "recall@3": 1.0,
-        "recall@10": 0.833,
-        "evidence_tokens": 1519.333,
-        "duplicate_ratio": 0.324,
+        "recall@10": 1.0,
+        "evidence_tokens": 1502.0,
+        "duplicate_ratio": 0.316,
         "counted": {
           "recall@1": 6,
           "recall@3": 6,
@@ -438,10 +438,10 @@
       "P09+L04": {
         "n": 2,
         "recall@1": null,
-        "recall@3": 0.0,
+        "recall@3": 0.5,
         "recall@10": 1.0,
-        "evidence_tokens": 751.5,
-        "duplicate_ratio": 0.178,
+        "evidence_tokens": 662.5,
+        "duplicate_ratio": 0.141,
         "counted": {
           "recall@1": 0,
           "recall@3": 2,
@@ -502,9 +502,9 @@
       "scores": {
         "unanswerable_raised": 0.0
       },
-      "elapsed_s": 2.1,
+      "elapsed_s": 2.3,
       "sections": [],
-      "trace_id": "02183ba0146213619b8c668057f0fe72"
+      "trace_id": "dddcdefb29380630ac5899f92beb4101"
     },
     {
       "case_id": "R1-101",
@@ -518,9 +518,9 @@
       "scores": {
         "unanswerable_raised": 0.0
       },
-      "elapsed_s": 3.4,
+      "elapsed_s": 2.2,
       "sections": [],
-      "trace_id": "d0b9e2b8b011a3d62a3404e99e3bb2f0"
+      "trace_id": "13bbc20d14f9a4e63b7d2ff1482b33f7"
     },
     {
       "case_id": "R1-100",
@@ -534,9 +534,9 @@
       "scores": {
         "unanswerable_raised": 0.0
       },
-      "elapsed_s": 1.6,
+      "elapsed_s": 3.1,
       "sections": [],
-      "trace_id": "07815a7055342e05c14ae009b8c148b1"
+      "trace_id": "cecc7bb6e2ccf2053da51462ec622ce8"
     },
     {
       "case_id": "R1-099",
@@ -550,9 +550,9 @@
       "scores": {
         "unanswerable_raised": 0.0
       },
-      "elapsed_s": 2.0,
+      "elapsed_s": 2.1,
       "sections": [],
-      "trace_id": "8a4091f75ccc1f16d87d24c1be12784e"
+      "trace_id": "21d57112d098ca4f96741af91ac73308"
     },
     {
       "case_id": "R1-098",
@@ -566,9 +566,9 @@
       "scores": {
         "unanswerable_raised": 0.0
       },
-      "elapsed_s": 2.0,
+      "elapsed_s": 1.9,
       "sections": [],
-      "trace_id": "34faa58e173e3135ec9579330f738a07"
+      "trace_id": "c29d2f30fbde4b5ee71b007f19005c29"
     },
     {
       "case_id": "R1-097",
@@ -582,11 +582,11 @@
       "scores": {
         "unanswerable_raised": 0.0
       },
-      "elapsed_s": 2.5,
+      "elapsed_s": 2.3,
       "sections": [
         "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第九条 【真实信息与禁止差别定价】"
       ],
-      "trace_id": "178ea76add7ddb4c9c48e61ef651671b"
+      "trace_id": "ce2479a3b8fa66b1ab687275cbd7734b"
     },
     {
       "case_id": "R1-096",
@@ -623,7 +623,7 @@
         "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十三条 【在线争议解决机制】",
         "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.1 申请条件"
       ],
-      "trace_id": "5fd949323a4f6307ba5c84ceac354900"
+      "trace_id": "2cd43ad494a2de7dfeb5a684779de2e2"
     },
     {
       "case_id": "R1-095",
@@ -639,28 +639,28 @@
       "error": null,
       "scores": {
         "recall@10": 1.0,
-        "recall@3": 0.0,
-        "evidence_tokens": 1147,
-        "duplicate_ratio": 0.356
+        "recall@3": 1.0,
+        "evidence_tokens": 969,
+        "duplicate_ratio": 0.283
       },
-      "elapsed_s": 1.9,
+      "elapsed_s": 2.2,
       "seed_rank": {
         "candidate": {
-          "P09#002:00": 5,
+          "P09#002:00": 4,
           "L04#011:00": 1
         },
         "evidence": {
-          "P09#002:00": 2,
-          "L04#011:00": 5
+          "P09#002:00": 3,
+          "L04#011:00": 1
         }
       },
       "sections": [
+        "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
         "P01 星辰优选用户服务协议 > 第四章 平台的角色与责任 > 4.1 平台与商家的关系 … 第四章 平台的角色与责任 > 4.4 平台的协助义务",
-        "P09 星辰优选争议处理与平台介入规则 > 第二条 争议解决的层级 … 第三条 申请平台介入 > 3.3 提交材料",
-        "P09 星辰优选争议处理与平台介入规则 > 第六条 平台的先行赔付 > 6.1 适用情形 … 第七条 外部维权途径 > 7.2 平台的协助义务",
-        "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十一条 【平台协助维权义务】"
+        "P09 星辰优选争议处理与平台介入规则 > 第二条 争议解决的层级 … 第三条 申请平台介入 > 3.2 申请时限",
+        "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.2 平台的协助义务"
       ],
-      "trace_id": "d36f752c454ff38c2dca5d6c2932eea5"
+      "trace_id": "a2d3e9608712e648d88713bfc5d798c1"
     },
     {
       "case_id": "R1-094",
@@ -677,27 +677,27 @@
       "scores": {
         "recall@10": 1.0,
         "recall@3": 0.0,
-        "evidence_tokens": 1059,
+        "evidence_tokens": 1048,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.6,
+      "elapsed_s": 2.4,
       "seed_rank": {
         "candidate": {
-          "L05#013:00": 2,
-          "L01#002:00": 3
+          "L05#013:00": 3,
+          "L01#002:00": 4
         },
         "evidence": {
           "L05#013:00": 1,
-          "L01#002:00": 4
+          "L01#002:00": 5
         }
       },
       "sections": [
         "L05 部分商品修理更换退货责任规定（三包规定） > 第十三条 【无同型号产品时的退货与折旧】",
         "P11 星辰优选特殊类目售后细则 > 第四条 数码与家用电器 > 4.4 三包退货的折旧",
         "L05 部分商品修理更换退货责任规定（三包规定） > 与无理由退货的对照",
-        "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】"
+        "L05 部分商品修理更换退货责任规定（三包规定） > 第十条 【售出 15 日内：可换可修】 … 第十一条 【修理两次仍不能正常使用】"
       ],
-      "trace_id": "c44e4e8ca85de887832cc5e206e83076"
+      "trace_id": "054fae53c615f4d8316f57dac02c6156"
     },
     {
       "case_id": "R1-093",
@@ -734,7 +734,7 @@
         "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.3 耐用商品的举证责任倒置 … 第五条 举证责任 > 5.4 举证不能的后果",
         "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十八条 【售后有效期起算与退款金额】"
       ],
-      "trace_id": "1b98a8c36077477ffe371c4c2e708114"
+      "trace_id": "2f3ba8dabc586ab86167abd60c09706c"
     },
     {
       "case_id": "R1-092",
@@ -751,26 +751,27 @@
       "scores": {
         "recall@10": 1.0,
         "recall@3": 0.0,
-        "evidence_tokens": 1143,
-        "duplicate_ratio": 0.167
+        "evidence_tokens": 1569,
+        "duplicate_ratio": 0.206
       },
-      "elapsed_s": 2.6,
+      "elapsed_s": 2.4,
       "seed_rank": {
         "candidate": {
-          "P08#001:00": 9,
+          "P08#001:00": 6,
           "P02#005:00": 5
         },
         "evidence": {
-          "P08#001:00": 4,
-          "P02#005:00": 5
+          "P08#001:00": 5,
+          "P02#005:00": 6
         }
       },
       "sections": [
-        "P03 星辰优选退款规则与到账时效 > 第六条 重复申请与幂等 > 6.1 已退款订单",
+        "P03 星辰优选退款规则与到账时效 > 第六条 重复申请与幂等 > 6.1 已退款订单 … 第六条 重复申请与幂等 > 6.2 幂等保障",
         "P02 星辰优选售后服务与退换货政策 > 第五条 高风险账户 … 第六条 判定顺序",
-        "P08 星辰优选风控与异常退款治理规则 > 第一条 高风险账户的判定 > 1.1 判定标准 … 第一条 高风险账户的判定 > 1.2 阈值口径"
+        "P08 星辰优选风控与异常退款治理规则 > 第一条 高风险账户的判定 > 1.1 判定标准 … 第二条 触发后的处理 > 2.3 风控不预设结论",
+        "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.4 复核后的恢复"
       ],
-      "trace_id": "f2d2ed84f5493f9035556aa2951484f4"
+      "trace_id": "b559f65628535503f989d0748c8e6c41"
     },
     {
       "case_id": "R1-091",
@@ -790,7 +791,7 @@
         "evidence_tokens": 1426,
         "duplicate_ratio": 0.268
       },
-      "elapsed_s": 2.0,
+      "elapsed_s": 2.1,
       "seed_rank": {
         "candidate": {
           "P08#001:00": 1,
@@ -806,7 +807,7 @@
         "P08 星辰优选风控与异常退款治理规则 > 第一条 高风险账户的判定 > 1.1 判定标准 … 第一条 高风险账户的判定 > 1.3 统计口径",
         "P03 星辰优选退款规则与到账时效 > 第四条 退款通道 > 4.2 人工审核通道"
       ],
-      "trace_id": "8ff9c26c394fd9c7368ca920bda16be6"
+      "trace_id": "cb342f3679247ca96ff7449ea56f5f0a"
     },
     {
       "case_id": "R1-090",
@@ -843,7 +844,7 @@
         "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.4 等级以申请时为准",
         "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.2 质量问题退货窗口"
       ],
-      "trace_id": "e87e1c190c0895dc5f1543aa4d969f10"
+      "trace_id": "f5294feb8cf8a22f440ecf83f59f16c7"
     },
     {
       "case_id": "R1-089",
@@ -863,7 +864,7 @@
         "evidence_tokens": 1711,
         "duplicate_ratio": 0.126
       },
-      "elapsed_s": 2.1,
+      "elapsed_s": 2.2,
       "seed_rank": {
         "candidate": {
           "P02#001:00": 1,
@@ -880,7 +881,7 @@
         "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.3 会员权益不突破商品条件 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
         "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口"
       ],
-      "trace_id": "90e0aff0ebec2cfbd54b9b80fc7ddd75"
+      "trace_id": "00e761ad926646a63e77722d957b70d3"
     },
     {
       "case_id": "R1-088",
@@ -900,7 +901,7 @@
         "evidence_tokens": 1068,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.2,
+      "elapsed_s": 2.4,
       "seed_rank": {
         "candidate": {
           "P10#006:00": 1,
@@ -917,7 +918,7 @@
         "P10 星辰优选优惠券、赠品与发票处理规则 > 第二条 满减与套装的部分退货 > 2.3 结算结果的告知",
         "P06 星辰优选运费与退货物流规则 > 第二条 无理由退货的运费 > 2.4 扣除运费的前置条件"
       ],
-      "trace_id": "37f93dcdd65aae22486f31c0aab5f9d6"
+      "trace_id": "3b102d6d26a732ccf9ab0f41c38304d4"
     },
     {
       "case_id": "R1-087",
@@ -953,7 +954,7 @@
         "P06 星辰优选运费与退货物流规则 > 第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
         "P10 星辰优选优惠券、赠品与发票处理规则 > 第二条 满减与套装的部分退货 > 2.3 结算结果的告知"
       ],
-      "trace_id": "47c637ab20630a03d15b1dfbad3ed8e2"
+      "trace_id": "a60681fc6dd4099bdf20d104d488bc38"
     },
     {
       "case_id": "R1-086",
@@ -970,14 +971,14 @@
       "scores": {
         "recall@10": 0.0,
         "recall@3": 0.0,
-        "evidence_tokens": 1049,
-        "duplicate_ratio": 0.0
+        "evidence_tokens": 1267,
+        "duplicate_ratio": 0.179
       },
-      "elapsed_s": 2.5,
+      "elapsed_s": 2.3,
       "seed_rank": {
         "candidate": {
-          "P04#001:00": 2,
-          "P11#001:00": 13
+          "P04#001:00": 1,
+          "P11#001:00": 11
         },
         "evidence": {
           "P04#001:00": 3,
@@ -985,12 +986,12 @@
         }
       },
       "sections": [
-        "P03 星辰优选退款规则与到账时效 > 第四条 退款通道 > 4.1 自动退款通道",
+        "P03 星辰优选退款规则与到账时效 > 第四条 退款通道 > 4.1 自动退款通道 … 第四条 退款通道 > 4.2 人工审核通道",
         "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
         "P04 星辰优选不适用无理由退货商品清单 > 第一条 法定不适用无理由退货的商品",
         "P04 星辰优选不适用无理由退货商品清单 > 第三条 平台特殊类目：不支持任何形式的退款 > 3.3 虚拟商品"
       ],
-      "trace_id": "9955175b2668d1bb878377bccece8462"
+      "trace_id": "9ef00535029fc1b0117cb8c2b13e5eb4"
     },
     {
       "case_id": "R1-085",
@@ -1007,14 +1008,14 @@
       "scores": {
         "recall@10": 1.0,
         "recall@3": 0.0,
-        "evidence_tokens": 2607,
-        "duplicate_ratio": 0.452
+        "evidence_tokens": 1422,
+        "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.4,
+      "elapsed_s": 2.2,
       "seed_rank": {
         "candidate": {
           "P04#001:00": 2,
-          "P11#001:00": 8
+          "P11#001:00": 3
         },
         "evidence": {
           "P04#001:00": 1,
@@ -1022,12 +1023,12 @@
         }
       },
       "sections": [
-        "P04 星辰优选不适用无理由退货商品清单 > 第一条 法定不适用无理由退货的商品 … 第二条 经消费者确认后不适用无理由退货的商品 > 2.3 销售时已明示的临期或瑕疵商品",
+        "P04 星辰优选不适用无理由退货商品清单 > 第一条 法定不适用无理由退货的商品 … 第二条 经消费者确认后不适用无理由退货的商品",
         "P02 星辰优选售后服务与退换货政策 > 第四条 特殊类目",
         "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
-        "P04 星辰优选不适用无理由退货商品清单 > 第三条 平台特殊类目：不支持任何形式的退款 … 第四条 标注与确认的前提条件"
+        "P04 星辰优选不适用无理由退货商品清单 > 第三条 平台特殊类目：不支持任何形式的退款 > 3.3 虚拟商品 … 第四条 标注与确认的前提条件"
       ],
-      "trace_id": "c11dd35f0471fa0684f0711abb05739b"
+      "trace_id": "ccb4185af42bad993f1bc7b885cca7de"
     },
     {
       "case_id": "R1-084",
@@ -1044,14 +1045,14 @@
       "scores": {
         "recall@10": 1.0,
         "recall@3": 0.0,
-        "evidence_tokens": 1801,
-        "duplicate_ratio": 0.503
+        "evidence_tokens": 2009,
+        "duplicate_ratio": 0.557
       },
-      "elapsed_s": 2.5,
+      "elapsed_s": 2.1,
       "seed_rank": {
         "candidate": {
-          "P07#001:00": 3,
-          "P02#001:00": 1
+          "P07#001:00": 1,
+          "P02#001:00": 2
         },
         "evidence": {
           "P07#001:00": 5,
@@ -1064,7 +1065,7 @@
         "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
         "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.3 权益对照"
       ],
-      "trace_id": "f56207f3dcb0f7cf74fb0dbda7cc3304"
+      "trace_id": "d86f7e5ecd32c721a99840b3e41fe063"
     },
     {
       "case_id": "R1-083",
@@ -1084,7 +1085,7 @@
         "evidence_tokens": 2355,
         "duplicate_ratio": 0.549
       },
-      "elapsed_s": 2.3,
+      "elapsed_s": 2.7,
       "seed_rank": {
         "candidate": {
           "P07#001:00": 1,
@@ -1101,7 +1102,7 @@
         "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.1 风控优先于会员权益 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
         "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺"
       ],
-      "trace_id": "568abe245f2c0f8a5ebfbdfd23c8d0ef"
+      "trace_id": "2f47998f94f4937efe30d366958a364f"
     },
     {
       "case_id": "R1-082",
@@ -1121,7 +1122,7 @@
         "evidence_tokens": 2864,
         "duplicate_ratio": 0.23
       },
-      "elapsed_s": 2.3,
+      "elapsed_s": 2.0,
       "seed_rank": {
         "candidate": {
           "P05#002:00": 9,
@@ -1138,7 +1139,7 @@
         "P06 星辰优选运费与退货物流规则 > 第二条 无理由退货的运费 > 2.1 寄回运费 … 第三条 质量问题退货的运费 > 3.3 大件商品",
         "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.6 运费"
       ],
-      "trace_id": "a692979a2b3d25a9ff81884308c9eaf7"
+      "trace_id": "7d0ce083171d227f3a0196aa2b01609a"
     },
     {
       "case_id": "R1-081",
@@ -1175,7 +1176,7 @@
         "P06 星辰优选运费与退货物流规则 > 第一条 运费承担的基本原则 … 第三条 质量问题退货的运费 > 3.1 全额承担",
         "L02 网络购买商品七日无理由退货暂行办法 > 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】 … 第三章 退货程序 > 第十八条 【退货运费承担】"
       ],
-      "trace_id": "04f9185dc9312a6a77fd3572071849e5"
+      "trace_id": "87c60df2f675edf1b767baaf6327fd18"
     },
     {
       "case_id": "R1-080",
@@ -1195,7 +1196,7 @@
         "evidence_tokens": 158,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.2,
+      "elapsed_s": 2.1,
       "seed_rank": {
         "candidate": {
           "P11#006:01": 11
@@ -1207,7 +1208,7 @@
       "sections": [
         "P11 星辰优选特殊类目售后细则 > 第六条 食品、保健食品、化妆品 > 6.2 保质期"
       ],
-      "trace_id": "02d1ff94f2613f98d7cce4a40d0d34c7"
+      "trace_id": "9e1d4f586b5588b499b9b848cf42e36b"
     },
     {
       "case_id": "R1-079",
@@ -1242,7 +1243,7 @@
         "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
         "L05 部分商品修理更换退货责任规定（三包规定） > 第二十二条 【申诉与诉讼】"
       ],
-      "trace_id": "b5d508c0ff1c29b4d72423dae788bc71"
+      "trace_id": "2b55000eb4a18049baf1ea6b84ba64e6"
     },
     {
       "case_id": "R1-078",
@@ -1262,10 +1263,10 @@
         "evidence_tokens": 808,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.1,
+      "elapsed_s": 1.9,
       "seed_rank": {
         "candidate": {
-          "P11#004:02": 5
+          "P11#004:02": 4
         },
         "evidence": {
           "P11#004:02": 3
@@ -1276,7 +1277,7 @@
         "L05 部分商品修理更换退货责任规定（三包规定） > 第十四条 【换货标准与有效期重算】",
         "P11 星辰优选特殊类目售后细则 > 第四条 数码与家用电器 > 4.3 三包有效期的计算"
       ],
-      "trace_id": "f2018ffac555ebf6a64ee022bd729e90"
+      "trace_id": "308d0fdeebce77731da433c07886d183"
     },
     {
       "case_id": "R1-077",
@@ -1296,7 +1297,7 @@
         "evidence_tokens": 1660,
         "duplicate_ratio": 0.278
       },
-      "elapsed_s": 2.1,
+      "elapsed_s": 1.8,
       "seed_rank": {
         "candidate": {
           "P11#004:02": 1
@@ -1311,7 +1312,7 @@
         "L05 部分商品修理更换退货责任规定（三包规定） > 第十二条 【超期未修好】 … 第十四条 【换货标准与有效期重算】",
         "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十八条 【售后有效期起算与退款金额】"
       ],
-      "trace_id": "05018b0c745a24a103c980c3a8e3c64e"
+      "trace_id": "eda03e638e1b3e3d5a9f62d8eb84f6d8"
     },
     {
       "case_id": "R1-076",
@@ -1331,7 +1332,7 @@
         "evidence_tokens": 243,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 1.8,
+      "elapsed_s": 2.0,
       "seed_rank": {
         "candidate": {
           "P11#002:01": 1
@@ -1343,7 +1344,7 @@
       "sections": [
         "P11 星辰优选特殊类目售后细则 > 第二条 定制商品 > 2.2 生产前可取消"
       ],
-      "trace_id": "56aa6613558db56c90284ca4252fb042"
+      "trace_id": "927d6b304899cf12eaa9b8aca4177e1a"
     },
     {
       "case_id": "R1-075",
@@ -1363,7 +1364,7 @@
         "evidence_tokens": 875,
         "duplicate_ratio": 0.27
       },
-      "elapsed_s": 1.9,
+      "elapsed_s": 2.0,
       "seed_rank": {
         "candidate": {
           "P11#002:01": 1
@@ -1377,7 +1378,7 @@
         "P01 星辰优选用户服务协议 > 第三章 订单与合同 > 3.4 订单取消",
         "P06 星辰优选运费与退货物流规则 > 第六条 物流异常的处理 > 6.4 消费者拒收包裹"
       ],
-      "trace_id": "8abe113cd45f58e5b3fc94882b94ccdc"
+      "trace_id": "6b48750aeb883b2a90143393f3ed3c28"
     },
     {
       "case_id": "R1-074",
@@ -1397,7 +1398,7 @@
         "evidence_tokens": 0,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.2,
+      "elapsed_s": 2.1,
       "seed_rank": {
         "candidate": {
           "P10#004:03": 1
@@ -1407,7 +1408,7 @@
         }
       },
       "sections": [],
-      "trace_id": "d31df8855b6090fc51cbd7fa15ff7b54"
+      "trace_id": "aed6d5202ba7789d39f85a81eb16dfac"
     },
     {
       "case_id": "R1-073",
@@ -1427,7 +1428,7 @@
         "evidence_tokens": 297,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.1,
+      "elapsed_s": 1.7,
       "seed_rank": {
         "candidate": {
           "P10#004:03": 1
@@ -1440,7 +1441,7 @@
         "P10 星辰优选优惠券、赠品与发票处理规则 > 第五条 发票 > 5.4 冲红时限",
         "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限"
       ],
-      "trace_id": "81435944698fae26db1d404ff074177b"
+      "trace_id": "7bc21a8fb1cc4c4b20ad2376f7e13bb2"
     },
     {
       "case_id": "R1-072",
@@ -1475,7 +1476,7 @@
         "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十二条 【赠品一并退回】",
         "P10 星辰优选优惠券、赠品与发票处理规则 > 第二条 满减与套装的部分退货 > 2.4 套装商品"
       ],
-      "trace_id": "73eb5e11627a1a4923ae80808f5f82fa"
+      "trace_id": "383e03d70a47e07fa01ce8e91403fee3"
     },
     {
       "case_id": "R1-071",
@@ -1495,7 +1496,7 @@
         "evidence_tokens": 1876,
         "duplicate_ratio": 0.476
       },
-      "elapsed_s": 1.5,
+      "elapsed_s": 1.7,
       "seed_rank": {
         "candidate": {
           "P10#002:02": 3
@@ -1510,7 +1511,7 @@
         "P10 星辰优选优惠券、赠品与发票处理规则 > 第五条 发票 > 5.1 退货须退回发票",
         "P10 星辰优选优惠券、赠品与发票处理规则 > 第二条 满减与套装的部分退货 > 2.4 套装商品"
       ],
-      "trace_id": "eea0adb94d4cc4c9d272c05f53262b78"
+      "trace_id": "a3ab858d326c005db534804fddd8ede1"
     },
     {
       "case_id": "R1-070",
@@ -1530,7 +1531,7 @@
         "evidence_tokens": 2577,
         "duplicate_ratio": 0.545
       },
-      "elapsed_s": 2.3,
+      "elapsed_s": 2.0,
       "seed_rank": {
         "candidate": {
           "P10#000:01": 3
@@ -1545,7 +1546,7 @@
         "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.2 优惠券 … 第二条 退款金额的计算 > 2.3 部分退货导致优惠失效",
         "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十五条 【积分、代金券、优惠券的返还】"
       ],
-      "trace_id": "104454b6df71e69ffaeaa93fa2f99e00"
+      "trace_id": "c9be64ba4eab43e268cf257a20519501"
     },
     {
       "case_id": "R1-069",
@@ -1565,7 +1566,7 @@
         "evidence_tokens": 2886,
         "duplicate_ratio": 0.561
       },
-      "elapsed_s": 1.9,
+      "elapsed_s": 2.1,
       "seed_rank": {
         "candidate": {
           "P10#000:01": 1
@@ -1580,7 +1581,7 @@
         "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十七条 【退款金额的计算】",
         "P10 星辰优选优惠券、赠品与发票处理规则 > 第七条 退款金额的构成告知"
       ],
-      "trace_id": "936f9d4b78fc7a28a37c330f2a6dddb5"
+      "trace_id": "71647028866dcac4059b3aa78510ad8e"
     },
     {
       "case_id": "R1-068",
@@ -1613,7 +1614,7 @@
         "P09 星辰优选争议处理与平台介入规则 > 第六条 平台的先行赔付 > 6.1 适用情形 … 第六条 平台的先行赔付 > 6.3 平台承诺的约束力",
         "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】"
       ],
-      "trace_id": "d6901b6399551f27e39f90f7d98c340d"
+      "trace_id": "7eb3700bdf873d6e3c96c160e7353d1d"
     },
     {
       "case_id": "R1-067",
@@ -1648,7 +1649,7 @@
         "P09 星辰优选争议处理与平台介入规则 > 第一条 适用范围 … 第二条 争议解决的层级",
         "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第四十四条 【网络交易平台提供者责任】"
       ],
-      "trace_id": "21df66ce311a304f2f8e1d277f54e945"
+      "trace_id": "a1e550c937b1e650ac81ae4ca2b9ca77"
     },
     {
       "case_id": "R1-066",
@@ -1665,10 +1666,10 @@
         "recall@10": 1.0,
         "recall@3": 1.0,
         "recall@1": 1.0,
-        "evidence_tokens": 1716,
-        "duplicate_ratio": 0.485
+        "evidence_tokens": 1566,
+        "duplicate_ratio": 0.437
       },
-      "elapsed_s": 2.3,
+      "elapsed_s": 2.2,
       "seed_rank": {
         "candidate": {
           "P09#004:01": 1
@@ -1683,7 +1684,7 @@
         "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.1 全额承担 … 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
         "L02 网络购买商品七日无理由退货暂行办法 > 第七章 附则 > 第三十五条 【质量问题退货的法律适用】"
       ],
-      "trace_id": "03e92cfdf79f45aa6a5d23a52fdfc0b8"
+      "trace_id": "8e75b3ff4f7933147a7d3f790f3ce537"
     },
     {
       "case_id": "R1-065",
@@ -1703,7 +1704,7 @@
         "evidence_tokens": 1226,
         "duplicate_ratio": 0.164
       },
-      "elapsed_s": 2.3,
+      "elapsed_s": 1.9,
       "seed_rank": {
         "candidate": {
           "P09#004:01": 1
@@ -1718,7 +1719,7 @@
         "P06 星辰优选运费与退货物流规则 > 第一条 运费承担的基本原则",
         "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】"
       ],
-      "trace_id": "e1dc53b1702d92ffdb4233e06e4fb636"
+      "trace_id": "933f15a6db532e306c878ba085a39341"
     },
     {
       "case_id": "R1-064",
@@ -1732,16 +1733,16 @@
       ],
       "error": null,
       "scores": {
-        "recall@10": 0.0,
+        "recall@10": 1.0,
         "recall@3": 1.0,
         "recall@1": 0.0,
-        "evidence_tokens": 2597,
-        "duplicate_ratio": 0.434
+        "evidence_tokens": 2643,
+        "duplicate_ratio": 0.433
       },
-      "elapsed_s": 2.4,
+      "elapsed_s": 2.3,
       "seed_rank": {
         "candidate": {
-          "P09#003:03": 11
+          "P09#003:03": 10
         },
         "evidence": {
           "P09#003:03": 3
@@ -1751,9 +1752,9 @@
         "P05 星辰优选商品完好标准与验收规范 > 第四条 退回商品的验收 > 4.3 验收不通过的处理 … 第五条 举证责任 > 5.4 举证不能的后果",
         "P09 星辰优选争议处理与平台介入规则 > 第四条 平台介入的处理 > 4.4 举证责任分配",
         "L02 网络购买商品七日无理由退货暂行办法 > 第二章 不适用退货的商品范围和商品完好标准 > 第九条 【商品不完好的分类判定标准】 … 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
-        "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】"
+        "P03 星辰优选退款规则与到账时效 > 第五条 商家处理时效与超时机制 > 5.4 超时机制的性质"
       ],
-      "trace_id": "5c7a19d64d6cb8e90af3d2c5d7245320"
+      "trace_id": "7e50f21a5951db16a98625d02620b5c5"
     },
     {
       "case_id": "R1-063",
@@ -1773,7 +1774,7 @@
         "evidence_tokens": 1490,
         "duplicate_ratio": 0.397
       },
-      "elapsed_s": 1.8,
+      "elapsed_s": 1.6,
       "seed_rank": {
         "candidate": {
           "P09#003:03": 3
@@ -1788,7 +1789,7 @@
         "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】",
         "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.3 垫付后的处理"
       ],
-      "trace_id": "52822a9bd157c3e86276092e15fd3ebd"
+      "trace_id": "261bec3940792741c2ec25360f21e6d2"
     },
     {
       "case_id": "R1-062",
@@ -1808,7 +1809,7 @@
         "evidence_tokens": 267,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 1.5,
+      "elapsed_s": 2.3,
       "seed_rank": {
         "candidate": {
           "P08#006:02": 2
@@ -1821,7 +1822,7 @@
         "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限",
         "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.3 申诉"
       ],
-      "trace_id": "e83789b389804f1858e78de016cb7804"
+      "trace_id": "4bc9721a284e0df401a0a1d2f8d31d74"
     },
     {
       "case_id": "R1-061",
@@ -1841,7 +1842,7 @@
         "evidence_tokens": 1486,
         "duplicate_ratio": 0.371
       },
-      "elapsed_s": 1.7,
+      "elapsed_s": 2.1,
       "seed_rank": {
         "candidate": {
           "P08#006:02": 1
@@ -1856,7 +1857,7 @@
         "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.3 申诉",
         "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.3 行政投诉的处理时限"
       ],
-      "trace_id": "9aa7b666238fe79c82298284ac6917d7"
+      "trace_id": "dfb53d5989730fcabd170a0fe074596a"
     },
     {
       "case_id": "R1-060",
@@ -1873,10 +1874,10 @@
         "recall@10": 0.0,
         "recall@3": 0.0,
         "recall@1": 0.0,
-        "evidence_tokens": 2156,
-        "duplicate_ratio": 0.382
+        "evidence_tokens": 2581,
+        "duplicate_ratio": 0.488
       },
-      "elapsed_s": 2.6,
+      "elapsed_s": 2.1,
       "seed_rank": {
         "candidate": {
           "P08#004:00": null
@@ -1887,11 +1888,11 @@
       },
       "sections": [
         "L02 网络购买商品七日无理由退货暂行办法 > 第六章 法律责任 > 第三十一条 【拒绝退货、拖延退款】 … 第六章 法律责任 > 第三十条 【擅自扩大不适用范围】",
+        "L02 网络购买商品七日无理由退货暂行办法 > 第四章 特别规定 > 第二十三条 【平台检查监控义务】 … 第五章 监督检查 > 第二十九条",
         "P08 星辰优选风控与异常退款治理规则 > 第二条 触发后的处理 > 2.5 法定权利不受影响",
-        "L02 网络购买商品七日无理由退货暂行办法 > 第四章 特别规定 > 第二十二条 【平台规则公示义务】 … 第五章 监督检查 > 第二十九条",
         "P08 星辰优选风控与异常退款治理规则 > 第七条 合法性依据"
       ],
-      "trace_id": "17832b83f5eb078f210792cb667869a9"
+      "trace_id": "17016401530203c30fbf6050db21a0bb"
     },
     {
       "case_id": "R1-059",
@@ -1908,10 +1909,10 @@
         "recall@10": 1.0,
         "recall@3": 1.0,
         "recall@1": 1.0,
-        "evidence_tokens": 772,
+        "evidence_tokens": 805,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.2,
+      "elapsed_s": 2.3,
       "seed_rank": {
         "candidate": {
           "P08#004:00": 1
@@ -1923,10 +1924,10 @@
       "sections": [
         "P08 星辰优选风控与异常退款治理规则 > 第四条 处置措施",
         "P08 星辰优选风控与异常退款治理规则 > 第二条 触发后的处理 > 2.5 法定权利不受影响",
-        "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】",
-        "P08 星辰优选风控与异常退款治理规则 > 第七条 合法性依据"
+        "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.2 违规导致的权益冻结",
+        "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】"
       ],
-      "trace_id": "05e17742908d764d97c5148153aa6b40"
+      "trace_id": "eddd62645dae4ad69366933e2e37db91"
     },
     {
       "case_id": "R1-058",
@@ -1946,7 +1947,7 @@
         "evidence_tokens": 771,
         "duplicate_ratio": 0.212
       },
-      "elapsed_s": 1.8,
+      "elapsed_s": 2.0,
       "seed_rank": {
         "candidate": {
           "P07#002:00": 2
@@ -1960,7 +1961,7 @@
         "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
         "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口"
       ],
-      "trace_id": "9da29283217f1813238bfc74b4fa90f2"
+      "trace_id": "bfa8f06d612ed1fc6b9d4fe301110e0a"
     },
     {
       "case_id": "R1-057",
@@ -1980,7 +1981,7 @@
         "evidence_tokens": 1116,
         "duplicate_ratio": 0.207
       },
-      "elapsed_s": 2.0,
+      "elapsed_s": 1.7,
       "seed_rank": {
         "candidate": {
           "P07#002:00": 1
@@ -1994,7 +1995,7 @@
         "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
         "P03 星辰优选退款规则与到账时效 > 第五条 商家处理时效与超时机制 > 5.2 已发货未签收订单的退款 … 第五条 商家处理时效与超时机制 > 5.3 已签收订单的退货退款"
       ],
-      "trace_id": "3ec0cc649350ea05e97e8ae4e372946d"
+      "trace_id": "62943f0c12100e0f29d1032e765f2234"
     },
     {
       "case_id": "R1-056",
@@ -2014,7 +2015,7 @@
         "evidence_tokens": 309,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 1.4,
+      "elapsed_s": 1.8,
       "seed_rank": {
         "candidate": {
           "P07#000:00": 9
@@ -2027,7 +2028,7 @@
         "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.3 会员权益不突破商品条件",
         "P07 星辰优选会员权益与售后延长规则 > 第一条 会员等级"
       ],
-      "trace_id": "6120d025b5dc4df5361d7bc5612cd54e"
+      "trace_id": "9f81573f2f0280561c8d5638cb7242d6"
     },
     {
       "case_id": "R1-055",
@@ -2047,7 +2048,7 @@
         "evidence_tokens": 274,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 1.8,
+      "elapsed_s": 1.6,
       "seed_rank": {
         "candidate": {
           "P07#000:00": 2
@@ -2060,7 +2061,7 @@
         "P07 星辰优选会员权益与售后延长规则 > 第一条 会员等级",
         "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.2 适用条件"
       ],
-      "trace_id": "211d548b727c549e9dae10d66fab17d1"
+      "trace_id": "923ce1e8f7345cd54418de96239a15f1"
     },
     {
       "case_id": "R1-054",
@@ -2080,7 +2081,7 @@
         "evidence_tokens": 976,
         "duplicate_ratio": 0.674
       },
-      "elapsed_s": 2.3,
+      "elapsed_s": 2.0,
       "seed_rank": {
         "candidate": {
           "P06#003:00": 3
@@ -2093,7 +2094,7 @@
         "P06 星辰优选运费与退货物流规则 > 第四条 运费险 > 4.1 运费险的性质 … 第四条 运费险 > 4.4 不赔付情形",
         "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.1 全额承担 … 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付"
       ],
-      "trace_id": "00077253737605b68c67023e9afb9224"
+      "trace_id": "038fb970301e0367473b2a678fb0fd65"
     },
     {
       "case_id": "R1-053",
@@ -2113,7 +2114,7 @@
         "evidence_tokens": 674,
         "duplicate_ratio": 0.75
       },
-      "elapsed_s": 1.7,
+      "elapsed_s": 1.9,
       "seed_rank": {
         "candidate": {
           "P06#003:00": 1
@@ -2125,7 +2126,7 @@
       "sections": [
         "P06 星辰优选运费与退货物流规则 > 第四条 运费险 > 4.1 运费险的性质 … 第四条 运费险 > 4.4 不赔付情形"
       ],
-      "trace_id": "7804294513d2179b8f4ef42355ca407b"
+      "trace_id": "babc0840b0b78a1eb6c7115d70733a2c"
     },
     {
       "case_id": "R1-052",
@@ -2145,7 +2146,7 @@
         "evidence_tokens": 1443,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.6,
+      "elapsed_s": 2.5,
       "seed_rank": {
         "candidate": {
           "P06#001:03": 2
@@ -2160,7 +2161,7 @@
         "P10 星辰优选优惠券、赠品与发票处理规则 > 第七条 退款金额的构成告知",
         "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十八条 【退货运费承担】"
       ],
-      "trace_id": "662609e53fa544c0d3b0ec27958cd80b"
+      "trace_id": "21d10719ce6076c294bc2e8e50f29daf"
     },
     {
       "case_id": "R1-051",
@@ -2177,13 +2178,13 @@
         "recall@10": 1.0,
         "recall@3": 1.0,
         "recall@1": 1.0,
-        "evidence_tokens": 766,
+        "evidence_tokens": 1560,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.4,
+      "elapsed_s": 2.1,
       "seed_rank": {
         "candidate": {
-          "P06#001:03": 1
+          "P06#001:03": 6
         },
         "evidence": {
           "P06#001:03": 1
@@ -2192,9 +2193,10 @@
       "sections": [
         "P06 星辰优选运费与退货物流规则 > 第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
         "P10 星辰优选优惠券、赠品与发票处理规则 > 第二条 满减与套装的部分退货 > 2.3 结算结果的告知",
-        "P10 星辰优选优惠券、赠品与发票处理规则 > 第七条 退款金额的构成告知"
+        "P10 星辰优选优惠券、赠品与发票处理规则 > 第七条 退款金额的构成告知",
+        "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十八条 【退货运费承担】"
       ],
-      "trace_id": "a2a07b830f9bf7704823c8fa30ab6bab"
+      "trace_id": "84b113043dcf364226185e1bbd338b12"
     },
     {
       "case_id": "R1-050",
@@ -2211,25 +2213,25 @@
         "recall@10": 1.0,
         "recall@3": 0.0,
         "recall@1": 0.0,
-        "evidence_tokens": 2212,
-        "duplicate_ratio": 0.328
+        "evidence_tokens": 2130,
+        "duplicate_ratio": 0.341
       },
-      "elapsed_s": 2.2,
+      "elapsed_s": 2.1,
       "seed_rank": {
         "candidate": {
           "P06#000:00": 3
         },
         "evidence": {
-          "P06#000:00": 11
+          "P06#000:00": 12
         }
       },
       "sections": [
         "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十八条 【退货运费承担】",
         "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.6 运费",
         "P06 星辰优选运费与退货物流规则 > 第二条 无理由退货的运费 > 2.1 寄回运费 … 第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
-        "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】"
+        "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第二十条 【交付与运输风险】"
       ],
-      "trace_id": "755f5e068cb4b595a871ec2bb610bcb5"
+      "trace_id": "ff0963dce766910c46d0f1a46c76eedf"
     },
     {
       "case_id": "R1-049",
@@ -2249,7 +2251,7 @@
         "evidence_tokens": 2180,
         "duplicate_ratio": 0.434
       },
-      "elapsed_s": 1.9,
+      "elapsed_s": 1.8,
       "seed_rank": {
         "candidate": {
           "P06#000:00": 4
@@ -2264,7 +2266,7 @@
         "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.6 运费",
         "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】"
       ],
-      "trace_id": "48778cf66a85c7826506fd77c5b78c48"
+      "trace_id": "dd63658083fc5b0bd49a9f0c05b5d551"
     },
     {
       "case_id": "R1-048",
@@ -2284,7 +2286,7 @@
         "evidence_tokens": 199,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.4,
+      "elapsed_s": 1.9,
       "seed_rank": {
         "candidate": {
           "P05#005:01": 19
@@ -2296,7 +2298,7 @@
       "sections": [
         "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.2 消费者举证"
       ],
-      "trace_id": "040baebb0045f04e6ff694b983994038"
+      "trace_id": "c0063b247f66ac1685439339b257cffe"
     },
     {
       "case_id": "R1-047",
@@ -2316,7 +2318,7 @@
         "evidence_tokens": 1708,
         "duplicate_ratio": 0.467
       },
-      "elapsed_s": 2.0,
+      "elapsed_s": 2.3,
       "seed_rank": {
         "candidate": {
           "P05#005:01": 1
@@ -2331,7 +2333,7 @@
         "P01 星辰优选用户服务协议 > 第三章 订单与合同 > 3.2 商品信息",
         "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.2 商品与描述不符 … 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题"
       ],
-      "trace_id": "c592cfa8c30e579507e67aa20648decf"
+      "trace_id": "43b059c3819e5dcbdeb64a6032ccede0"
     },
     {
       "case_id": "R1-046",
@@ -2351,13 +2353,13 @@
         "evidence_tokens": 2604,
         "duplicate_ratio": 0.434
       },
-      "elapsed_s": 2.7,
+      "elapsed_s": 2.1,
       "seed_rank": {
         "candidate": {
           "P05#002:00": 2
         },
         "evidence": {
-          "P05#002:00": 12
+          "P05#002:00": 13
         }
       },
       "sections": [
@@ -2366,7 +2368,7 @@
         "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区",
         "P04 星辰优选不适用无理由退货商品清单 > 第一条 法定不适用无理由退货的商品 … 第二条 经消费者确认后不适用无理由退货的商品 > 2.1 拆封后影响人身安全或商品品质的商品"
       ],
-      "trace_id": "2d6df8af68b7f65e7d00e7d251daccd1"
+      "trace_id": "307f7a3406ab4a7e829ce943b42044a9"
     },
     {
       "case_id": "R1-045",
@@ -2386,7 +2388,7 @@
         "evidence_tokens": 1650,
         "duplicate_ratio": 0.083
       },
-      "elapsed_s": 2.3,
+      "elapsed_s": 2.2,
       "seed_rank": {
         "candidate": {
           "P05#002:00": 2
@@ -2401,7 +2403,7 @@
         "P02 星辰优选售后服务与退换货政策 > 第六条 判定顺序",
         "P11 星辰优选特殊类目售后细则 > 第四条 数码与家用电器 > 4.1 无理由退货 … 第五条 服装、鞋帽、箱包 > 5.2 试穿的界限"
       ],
-      "trace_id": "7b1f21e40469786ecd5f0cfca1596cdd"
+      "trace_id": "24d9353d7a4b64d93dc46f00c8484f9b"
     },
     {
       "case_id": "R1-044",
@@ -2418,10 +2420,10 @@
         "recall@10": 1.0,
         "recall@3": 1.0,
         "recall@1": 1.0,
-        "evidence_tokens": 1110,
-        "duplicate_ratio": 0.195
+        "evidence_tokens": 1283,
+        "duplicate_ratio": 0.171
       },
-      "elapsed_s": 2.3,
+      "elapsed_s": 2.4,
       "seed_rank": {
         "candidate": {
           "P04#005:00": 4
@@ -2432,11 +2434,11 @@
       },
       "sections": [
         "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区",
-        "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.3 会员权益不突破商品条件 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
+        "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.1 服务内容 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
         "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
         "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口"
       ],
-      "trace_id": "d8852f7898d94d3c1739efbb2e3e9f25"
+      "trace_id": "cf5622c3f5f23b30eb2a94ec3d9a1699"
     },
     {
       "case_id": "R1-043",
@@ -2456,7 +2458,7 @@
         "evidence_tokens": 1526,
         "duplicate_ratio": 0.422
       },
-      "elapsed_s": 2.5,
+      "elapsed_s": 1.7,
       "seed_rank": {
         "candidate": {
           "P04#005:00": 7
@@ -2471,7 +2473,7 @@
         "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.1 风控优先于会员权益 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
         "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区"
       ],
-      "trace_id": "3a4d1144b50639e2a3fc7d4932a56ed8"
+      "trace_id": "b20bdf5c4efd2ba2dedef5617c44a5dc"
     },
     {
       "case_id": "R1-042",
@@ -2491,7 +2493,7 @@
         "evidence_tokens": 1544,
         "duplicate_ratio": 0.307
       },
-      "elapsed_s": 2.3,
+      "elapsed_s": 1.9,
       "seed_rank": {
         "candidate": {
           "P04#003:02": 2
@@ -2506,7 +2508,7 @@
         "P02 星辰优选售后服务与退换货政策 > 第四条 特殊类目",
         "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题"
       ],
-      "trace_id": "c0af33329bbe512db0b677319b3ac3aa"
+      "trace_id": "6200550ab9b312df83051ecdc7c45336"
     },
     {
       "case_id": "R1-041",
@@ -2526,7 +2528,7 @@
         "evidence_tokens": 1832,
         "duplicate_ratio": 0.384
       },
-      "elapsed_s": 1.9,
+      "elapsed_s": 1.8,
       "seed_rank": {
         "candidate": {
           "P04#003:02": 3
@@ -2541,7 +2543,7 @@
         "P02 星辰优选售后服务与退换货政策 > 第四条 特殊类目",
         "P04 星辰优选不适用无理由退货商品清单 > 第一条 法定不适用无理由退货的商品"
       ],
-      "trace_id": "62f12e7e0ee910bfd0e84410740f3122"
+      "trace_id": "065dbd5b4bc140375942ba0169e3f904"
     },
     {
       "case_id": "R1-040",
@@ -2561,7 +2563,7 @@
         "evidence_tokens": 0,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.2,
+      "elapsed_s": 2.1,
       "seed_rank": {
         "candidate": {
           "P03#004:02": 3
@@ -2571,7 +2573,7 @@
         }
       },
       "sections": [],
-      "trace_id": "6d61bc891a9e8780b2c5520f8bca5b48"
+      "trace_id": "498db5fca02adbffd3eb256b4a28e43e"
     },
     {
       "case_id": "R1-039",
@@ -2605,7 +2607,7 @@
         "P03 星辰优选退款规则与到账时效 > 第五条 商家处理时效与超时机制 > 5.1 未发货订单的退款 … 第五条 商家处理时效与超时机制 > 5.3 已签收订单的退货退款",
         "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.1 申请条件"
       ],
-      "trace_id": "636498b0e34d9d17f6efceff4d068e41"
+      "trace_id": "fc7afa6b8f1a1c3bfaee9aab69752903"
     },
     {
       "case_id": "R1-038",
@@ -2639,7 +2641,7 @@
         "P08 星辰优选风控与异常退款治理规则 > 第二条 触发后的处理 > 2.1 关闭自动退款通道 … 第二条 触发后的处理 > 2.3 风控不预设结论",
         "P02 星辰优选售后服务与退换货政策 > 第五条 高风险账户 … 第六条 判定顺序"
       ],
-      "trace_id": "70c0941dc3add59a0fe9085a6bb94603"
+      "trace_id": "0bfbacf1286b6d21d9748dbc483cebf4"
     },
     {
       "case_id": "R1-037",
@@ -2659,10 +2661,10 @@
         "evidence_tokens": 1661,
         "duplicate_ratio": 0.237
       },
-      "elapsed_s": 2.2,
+      "elapsed_s": 2.0,
       "seed_rank": {
         "candidate": {
-          "P03#003:02": 1
+          "P03#003:02": 2
         },
         "evidence": {
           "P03#003:02": 1
@@ -2674,7 +2676,7 @@
         "P02 星辰优选售后服务与退换货政策 > 第五条 高风险账户 … 第六条 判定顺序",
         "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】"
       ],
-      "trace_id": "4a13e758ec1f56b87c35f7e70617da3b"
+      "trace_id": "366a2762d8284d101b0434803945bbe6"
     },
     {
       "case_id": "R1-036",
@@ -2694,7 +2696,7 @@
         "evidence_tokens": 708,
         "duplicate_ratio": 0.339
       },
-      "elapsed_s": 2.0,
+      "elapsed_s": 1.8,
       "seed_rank": {
         "candidate": {
           "P03#000:01": 2
@@ -2707,7 +2709,7 @@
         "P03 星辰优选退款规则与到账时效 > 第一条 退款方式 > 1.2 组合支付的退款 … 第二条 退款金额的计算 > 2.4 积分与储值",
         "P10 星辰优选优惠券、赠品与发票处理规则 > 第四条 积分与储值 > 4.1 积分支付部分的返还 … 第四条 积分与储值 > 4.3 储值余额"
       ],
-      "trace_id": "0492faeccaf58f856dc072746438d463"
+      "trace_id": "a5863e9364b6ab1c266e9fc10673cf4d"
     },
     {
       "case_id": "R1-035",
@@ -2727,7 +2729,7 @@
         "evidence_tokens": 1040,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 1.9,
+      "elapsed_s": 1.5,
       "seed_rank": {
         "candidate": {
           "P03#000:01": 1
@@ -2741,7 +2743,7 @@
         "P02 星辰优选售后服务与退换货政策 > 第七条 退款方式与时效",
         "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十四条 【退款方式】"
       ],
-      "trace_id": "27de30e050ef89f00d6b1adca4667527"
+      "trace_id": "cc95979ed0aa1de41394b353c9fd4d36"
     },
     {
       "case_id": "R1-034",
@@ -2761,7 +2763,7 @@
         "evidence_tokens": 1260,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.4,
+      "elapsed_s": 2.1,
       "seed_rank": {
         "candidate": {
           "P02#002:00": 1
@@ -2776,7 +2778,7 @@
         "P02 星辰优选售后服务与退换货政策 > 第三条 商品条件",
         "P10 星辰优选优惠券、赠品与发票处理规则 > 第三条 赠品 > 3.5 消耗类赠品"
       ],
-      "trace_id": "895854f57cc48b21abf439910558430d"
+      "trace_id": "ae00c5faa6c41feab1ccbca5799d5972"
     },
     {
       "case_id": "R1-033",
@@ -2796,7 +2798,7 @@
         "evidence_tokens": 2625,
         "duplicate_ratio": 0.619
       },
-      "elapsed_s": 2.1,
+      "elapsed_s": 2.0,
       "seed_rank": {
         "candidate": {
           "P02#002:00": 1
@@ -2810,7 +2812,7 @@
         "P05 星辰优选商品完好标准与验收规范 > 第二条 商品状态的三档划分",
         "L02 网络购买商品七日无理由退货暂行办法 > 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】 … 第二章 不适用退货的商品范围和商品完好标准 > 第六条 【法定不适用商品（无需消费者确认）】"
       ],
-      "trace_id": "d671fc1d971e896862eb32aa138d811e"
+      "trace_id": "62e03d2dfef987a7b0817366bce314b7"
     },
     {
       "case_id": "R1-032",
@@ -2830,10 +2832,10 @@
         "evidence_tokens": 531,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.2,
+      "elapsed_s": 2.5,
       "seed_rank": {
         "candidate": {
-          "P02#000:00": 1
+          "P02#000:00": 3
         },
         "evidence": {
           "P02#000:00": 1
@@ -2843,7 +2845,7 @@
         "P02 星辰优选售后服务与退换货政策 > 第一条 适用范围与基本原则",
         "P05 星辰优选商品完好标准与验收规范 > 第二条 商品状态的三档划分"
       ],
-      "trace_id": "083a2ddf86551e9198e10147902c823a"
+      "trace_id": "9092fd6ec400c206fab9ebf057ec427c"
     },
     {
       "case_id": "R1-031",
@@ -2863,7 +2865,7 @@
         "evidence_tokens": 943,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.2,
+      "elapsed_s": 1.7,
       "seed_rank": {
         "candidate": {
           "P02#000:00": 5
@@ -2877,7 +2879,7 @@
         "P06 星辰优选运费与退货物流规则 > 第一条 运费承担的基本原则",
         "P02 星辰优选售后服务与退换货政策 > 第六条 判定顺序"
       ],
-      "trace_id": "7f16c21f22ef8aef5d1a5587cf64b74f"
+      "trace_id": "93c5222142a1fce1cd82547b477ee7f6"
     },
     {
       "case_id": "R1-030",
@@ -2897,7 +2899,7 @@
         "evidence_tokens": 257,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.6,
+      "elapsed_s": 2.3,
       "seed_rank": {
         "candidate": {
           "P01#002:04": 1
@@ -2909,7 +2911,7 @@
       "sections": [
         "P01 星辰优选用户服务协议 > 第二章 账户与身份 > 2.5 账户安全"
       ],
-      "trace_id": "d4bf153f668c88b1830149935855fbf2"
+      "trace_id": "914076facc9838259afd2806b50897c4"
     },
     {
       "case_id": "R1-029",
@@ -2929,7 +2931,7 @@
         "evidence_tokens": 257,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.4,
+      "elapsed_s": 2.3,
       "seed_rank": {
         "candidate": {
           "P01#002:04": 1
@@ -2941,7 +2943,7 @@
       "sections": [
         "P01 星辰优选用户服务协议 > 第二章 账户与身份 > 2.5 账户安全"
       ],
-      "trace_id": "55cb3ebb6f88bae66f542845ce66f0a4"
+      "trace_id": "dee2a4c9806ffda4761e4c7651a205a2"
     },
     {
       "case_id": "R1-028",
@@ -2961,7 +2963,7 @@
         "evidence_tokens": 211,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.5,
+      "elapsed_s": 1.9,
       "seed_rank": {
         "candidate": {
           "P01#001:02": 1
@@ -2973,7 +2975,7 @@
       "sections": [
         "P01 星辰优选用户服务协议 > 第一章 协议的接受与变更 > 1.3 协议的变更"
       ],
-      "trace_id": "5f1d083f6689d6a3f5225f6fd66004e3"
+      "trace_id": "5b3fde63e596ae08bac7d480767ece50"
     },
     {
       "case_id": "R1-027",
@@ -2993,7 +2995,7 @@
         "evidence_tokens": 347,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.3,
+      "elapsed_s": 1.6,
       "seed_rank": {
         "candidate": {
           "P01#001:02": 1
@@ -3006,7 +3008,7 @@
         "P01 星辰优选用户服务协议 > 第一章 协议的接受与变更 > 1.3 协议的变更",
         "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第三十四条 【规则变更的征求意见程序】"
       ],
-      "trace_id": "d87646cbf53c1c7c5421b0df376421f3"
+      "trace_id": "822b46cb4132dbe2612f199e80ab0e74"
     },
     {
       "case_id": "R1-026",
@@ -3026,7 +3028,7 @@
         "evidence_tokens": 0,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.2,
+      "elapsed_s": 1.7,
       "seed_rank": {
         "candidate": {
           "P01#001:00": 1
@@ -3036,7 +3038,7 @@
         }
       },
       "sections": [],
-      "trace_id": "46125282a40a65f5d4f3b5ac9183acfa"
+      "trace_id": "bad76229abe424882c1456d893bad808"
     },
     {
       "case_id": "R1-025",
@@ -3056,7 +3058,7 @@
         "evidence_tokens": 645,
         "duplicate_ratio": 0.319
       },
-      "elapsed_s": 1.8,
+      "elapsed_s": 1.4,
       "seed_rank": {
         "candidate": {
           "P01#001:00": 1
@@ -3069,7 +3071,7 @@
         "P01 星辰优选用户服务协议 > 第一章 协议的接受与变更 > 1.1 协议范围 … 第一章 协议的接受与变更 > 1.4 规则的公示与查阅",
         "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第三十三条 【平台规则的公示义务】 … 第三十四条 【规则变更的征求意见程序】"
       ],
-      "trace_id": "42468dc53ac9080ec2b3b1f20f4cde4d"
+      "trace_id": "4a3947ea8983dce6d0854a65ee2cffbb"
     },
     {
       "case_id": "R1-024",
@@ -3086,10 +3088,10 @@
         "recall@10": 0.0,
         "recall@3": 0.0,
         "recall@1": 0.0,
-        "evidence_tokens": 2818,
-        "duplicate_ratio": 0.49
+        "evidence_tokens": 2668,
+        "duplicate_ratio": 0.46
       },
-      "elapsed_s": 2.3,
+      "elapsed_s": 2.0,
       "seed_rank": {
         "candidate": {
           "L05#025:00": null
@@ -3104,7 +3106,7 @@
         "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.1 全额承担 … 第四条 运费险 > 4.3 赔付不足",
         "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.2 商品与描述不符"
       ],
-      "trace_id": "a3b10e35144834df24624c487a69597b"
+      "trace_id": "fa02a229f70e4ed26d14409b6b8c5385"
     },
     {
       "case_id": "R1-023",
@@ -3124,7 +3126,7 @@
         "evidence_tokens": 2909,
         "duplicate_ratio": 0.266
       },
-      "elapsed_s": 2.5,
+      "elapsed_s": 1.8,
       "seed_rank": {
         "candidate": {
           "L05#025:00": 11
@@ -3139,7 +3141,7 @@
         "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十八条 【退货运费承担】",
         "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】 … 第二十五条 【网络购物七日无理由退货】"
       ],
-      "trace_id": "4ed750b94d55a0141007474c97b6f2a5"
+      "trace_id": "79aabe40f729e1e4e3beefd81236e4dd"
     },
     {
       "case_id": "R1-022",
@@ -3159,7 +3161,7 @@
         "evidence_tokens": 104,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.2,
+      "elapsed_s": 1.6,
       "seed_rank": {
         "candidate": {
           "L05#018:00": 1
@@ -3171,7 +3173,7 @@
       "sections": [
         "L05 部分商品修理更换退货责任规定（三包规定） > 第十八条 【修理费用来源】 … 第十九条 【修理费用的支付形式】"
       ],
-      "trace_id": "90ff950b4ba193695e9c3516fe72760f"
+      "trace_id": "40dab98452c96d6c2bd9caebcfe3ce20"
     },
     {
       "case_id": "R1-021",
@@ -3191,7 +3193,7 @@
         "evidence_tokens": 498,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.1,
+      "elapsed_s": 1.4,
       "seed_rank": {
         "candidate": {
           "L05#018:00": 5
@@ -3206,7 +3208,7 @@
         "L05 部分商品修理更换退货责任规定（三包规定） > 第十八条 【修理费用来源】 … 第十九条 【修理费用的支付形式】",
         "L05 部分商品修理更换退货责任规定（三包规定） > 第三条 【谁经销谁负责】"
       ],
-      "trace_id": "15d8305f1633322c0a08e67dcef891cc"
+      "trace_id": "afc212399ed8f4c573d2bb0af2d243d6"
     },
     {
       "case_id": "R1-020",
@@ -3226,7 +3228,7 @@
         "evidence_tokens": 102,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.9,
+      "elapsed_s": 2.3,
       "seed_rank": {
         "candidate": {
           "L05#004:00": 1
@@ -3238,7 +3240,7 @@
       "sections": [
         "L05 部分商品修理更换退货责任规定（三包规定） > 第四条 【最低标准与更优承诺】"
       ],
-      "trace_id": "06158fceef27b95ce952b3534d2c1fd1"
+      "trace_id": "78af2b07b58c09d5645c018a58297187"
     },
     {
       "case_id": "R1-019",
@@ -3258,7 +3260,7 @@
         "evidence_tokens": 384,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.4,
+      "elapsed_s": 1.9,
       "seed_rank": {
         "candidate": {
           "L05#004:00": 2
@@ -3272,7 +3274,7 @@
         "P09 星辰优选争议处理与平台介入规则 > 第六条 平台的先行赔付 > 6.3 平台承诺的约束力",
         "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第四十四条 【网络交易平台提供者责任】"
       ],
-      "trace_id": "66a30cf6162ded7c3dd04c78bf9dcc0d"
+      "trace_id": "ad4c8b531a7167b6c86492da68271c78"
     },
     {
       "case_id": "R1-018",
@@ -3289,13 +3291,13 @@
         "recall@10": 1.0,
         "recall@3": 1.0,
         "recall@1": 1.0,
-        "evidence_tokens": 776,
-        "duplicate_ratio": 0.364
+        "evidence_tokens": 675,
+        "duplicate_ratio": 0.202
       },
-      "elapsed_s": 1.7,
+      "elapsed_s": 1.6,
       "seed_rank": {
         "candidate": {
-          "L04#011:00": 3
+          "L04#011:00": 5
         },
         "evidence": {
           "L04#011:00": 1
@@ -3303,11 +3305,11 @@
       },
       "sections": [
         "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
-        "P01 星辰优选用户服务协议 > 第四章 平台的角色与责任 > 4.1 平台与商家的关系 … 第四章 平台的角色与责任 > 4.4 平台的协助义务",
+        "P01 星辰优选用户服务协议 > 第四章 平台的角色与责任 > 4.3 平台的连带责任 … 第四章 平台的角色与责任 > 4.4 平台的协助义务",
         "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十三条 【在线争议解决机制】 … 相关文件",
-        "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第四十四条 【网络交易平台提供者责任】"
+        "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第三十八条 【平台连带责任】 … 第五十八条 【质量担保机制】"
       ],
-      "trace_id": "513952d5ea5ab3a7563b3b5907e6f8f6"
+      "trace_id": "72099f0bebe78909d1632f8694154efc"
     },
     {
       "case_id": "R1-017",
@@ -3342,7 +3344,7 @@
         "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第三十八条 【平台连带责任】 … 第五十八条 【质量担保机制】",
         "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.2 平台的协助义务"
       ],
-      "trace_id": "6997d2e19fbfde4c5d95baf100256c94"
+      "trace_id": "4a58b31130e8b68af73bebaaa79909b6"
     },
     {
       "case_id": "R1-016",
@@ -3362,7 +3364,7 @@
         "evidence_tokens": 138,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 1.8,
+      "elapsed_s": 1.5,
       "seed_rank": {
         "candidate": {
           "L04#008:00": 1
@@ -3374,7 +3376,7 @@
       "sections": [
         "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】"
       ],
-      "trace_id": "6bb56a08a4bcd98c785ac8ded9d54a92"
+      "trace_id": "2667d84950151d8392eb980fe02be962"
     },
     {
       "case_id": "R1-015",
@@ -3408,7 +3410,7 @@
         "P01 星辰优选用户服务协议 > 第三章 订单与合同 > 3.2 商品信息 … 第四章 平台的角色与责任 > 4.4 平台的协助义务",
         "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第三十二条 【平台交易规则的制定】"
       ],
-      "trace_id": "52329b8305c99ffd4da52bbe8fc8a4d7"
+      "trace_id": "c1453e9d9784db9e28339de80115d7db"
     },
     {
       "case_id": "R1-014",
@@ -3428,7 +3430,7 @@
         "evidence_tokens": 563,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.1,
+      "elapsed_s": 1.8,
       "seed_rank": {
         "candidate": {
           "L03#009:00": 2
@@ -3443,7 +3445,7 @@
         "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】",
         "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.1 途径"
       ],
-      "trace_id": "dead537e0f1f50ecd63c9d4a7fde2d86"
+      "trace_id": "1ec29c3962a550daaec96834967bd7ab"
     },
     {
       "case_id": "R1-013",
@@ -3463,7 +3465,7 @@
         "evidence_tokens": 732,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 1.5,
+      "elapsed_s": 1.6,
       "seed_rank": {
         "candidate": {
           "L03#009:00": 2
@@ -3478,7 +3480,7 @@
         "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
         "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.1 途径"
       ],
-      "trace_id": "6e0a541a3c1048e1ad9adcd3e537e567"
+      "trace_id": "54ae1806dabbe782c758cc7959a834f5"
     },
     {
       "case_id": "R1-012",
@@ -3513,7 +3515,7 @@
         "P02 星辰优选售后服务与退换货政策 > 第三条 商品条件",
         "P05 星辰优选商品完好标准与验收规范 > 第二条 商品状态的三档划分"
       ],
-      "trace_id": "0890bbd38ee8c6577fcf9ac88cf255e1"
+      "trace_id": "ec784d907fbbb7be97e94943cd23813a"
     },
     {
       "case_id": "R1-011",
@@ -3533,7 +3535,7 @@
         "evidence_tokens": 2860,
         "duplicate_ratio": 0.379
       },
-      "elapsed_s": 2.0,
+      "elapsed_s": 1.9,
       "seed_rank": {
         "candidate": {
           "L03#005:00": 3
@@ -3548,7 +3550,7 @@
         "P05 星辰优选商品完好标准与验收规范 > 第一条 商品完好的基本定义 … 第二条 商品状态的三档划分",
         "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】 … 第二十五条 【网络购物七日无理由退货】"
       ],
-      "trace_id": "d2812b39aea3afb71f895c50e853b4da"
+      "trace_id": "cea17be3eac5887ba663f5f4e3a7cf62"
     },
     {
       "case_id": "R1-010",
@@ -3565,10 +3567,10 @@
         "recall@10": 1.0,
         "recall@3": 1.0,
         "recall@1": 0.0,
-        "evidence_tokens": 1695,
-        "duplicate_ratio": 0.505
+        "evidence_tokens": 1646,
+        "duplicate_ratio": 0.524
       },
-      "elapsed_s": 2.1,
+      "elapsed_s": 1.7,
       "seed_rank": {
         "candidate": {
           "L02#004:04": 1
@@ -3580,10 +3582,10 @@
       "sections": [
         "L02 网络购买商品七日无理由退货暂行办法 > 第一章 总则 > 第三条 【销售者与平台的义务分工】",
         "L02 网络购买商品七日无理由退货暂行办法 > 第四章 特别规定 > 第二十一条 【平台与商家的协议义务】 … 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
-        "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
-        "P01 星辰优选用户服务协议 > 第八章 争议解决 > 8.2 平台调解"
+        "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十一条 【平台协助维权义务】",
+        "P09 星辰优选争议处理与平台介入规则 > 第一条 适用范围"
       ],
-      "trace_id": "b513c0891ab7cc5142d1bdc47c1549b4"
+      "trace_id": "c2cab41b0dd240a458955be02d18e257"
     },
     {
       "case_id": "R1-009",
@@ -3603,7 +3605,7 @@
         "evidence_tokens": 1602,
         "duplicate_ratio": 0.533
       },
-      "elapsed_s": 1.7,
+      "elapsed_s": 2.0,
       "seed_rank": {
         "candidate": {
           "L02#004:04": 2
@@ -3618,7 +3620,7 @@
         "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
         "P01 星辰优选用户服务协议 > 第四章 平台的角色与责任 > 4.4 平台的协助义务"
       ],
-      "trace_id": "b4f5802e37d12242978dc6c2d379c7c5"
+      "trace_id": "ca44701575facf9e4fb3794a02915b6f"
     },
     {
       "case_id": "R1-008",
@@ -3651,7 +3653,7 @@
         "L02 网络购买商品七日无理由退货暂行办法 > 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
         "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区"
       ],
-      "trace_id": "42f2cc144fb97e9856a03f33b3438e96"
+      "trace_id": "213f00a710dff3cfd67584539cd84ba3"
     },
     {
       "case_id": "R1-007",
@@ -3685,7 +3687,7 @@
         "L02 网络购买商品七日无理由退货暂行办法 > 第一章 总则 > 第二条 【适用范围】 … 第二章 不适用退货的商品范围和商品完好标准 > 第六条 【法定不适用商品（无需消费者确认）】",
         "P04 星辰优选不适用无理由退货商品清单"
       ],
-      "trace_id": "9e68fb63b9646ac53bba2bc79131613e"
+      "trace_id": "9cdb1c3aaadc37f3499fb6c55372dc83"
     },
     {
       "case_id": "R1-006",
@@ -3715,7 +3717,7 @@
         }
       },
       "sections": [],
-      "trace_id": "8ec825d67db1640c6cde60c68bdcdc85"
+      "trace_id": "206e74ec7d48861379808245e264f42f"
     },
     {
       "case_id": "R1-005",
@@ -3735,7 +3737,7 @@
         "evidence_tokens": 1774,
         "duplicate_ratio": 0.278
       },
-      "elapsed_s": 1.7,
+      "elapsed_s": 2.1,
       "seed_rank": {
         "candidate": {
           "L02#001:03": 1
@@ -3750,7 +3752,7 @@
         "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】",
         "P08 星辰优选风控与异常退款治理规则 > 第七条 合法性依据"
       ],
-      "trace_id": "a4f3e8140bebeb26bb07f8f4407d3f54"
+      "trace_id": "81c7708b8b4f65fb910dbce91016eb4d"
     },
     {
       "case_id": "R1-004",
@@ -3770,7 +3772,7 @@
         "evidence_tokens": 1656,
         "duplicate_ratio": 0.258
       },
-      "elapsed_s": 2.1,
+      "elapsed_s": 2.3,
       "seed_rank": {
         "candidate": {
           "L01#007:00": 3
@@ -3785,7 +3787,7 @@
         "P08 星辰优选风控与异常退款治理规则 > 第五条 商家侧的异常治理",
         "P06 星辰优选运费与退货物流规则 > 第六条 物流异常的处理 > 6.3 商家拒收退货"
       ],
-      "trace_id": "6580a3b77936beeee3c6d52f1ba7dfce"
+      "trace_id": "ed08ada9f292bb227f6d2ccf8b1037af"
     },
     {
       "case_id": "R1-003",
@@ -3805,7 +3807,7 @@
         "evidence_tokens": 1192,
         "duplicate_ratio": 0.0
       },
-      "elapsed_s": 2.0,
+      "elapsed_s": 1.9,
       "seed_rank": {
         "candidate": {
           "L01#007:00": 2
@@ -3820,7 +3822,7 @@
         "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第二十条 【交付与运输风险】",
         "P08 星辰优选风控与异常退款治理规则 > 第五条 商家侧的异常治理"
       ],
-      "trace_id": "ec949337901919351f429eb87eff7358"
+      "trace_id": "b6801fc3ed80c450266c1c62a129130b"
     },
     {
       "case_id": "R1-002",
@@ -3840,10 +3842,10 @@
         "evidence_tokens": 2461,
         "duplicate_ratio": 0.227
       },
-      "elapsed_s": 2.4,
+      "elapsed_s": 2.1,
       "seed_rank": {
         "candidate": {
-          "L01#004:00": 1
+          "L01#004:00": 2
         },
         "evidence": {
           "L01#004:00": 1
@@ -3855,7 +3857,7 @@
         "P04 星辰优选不适用无理由退货商品清单 > 第一条 法定不适用无理由退货的商品 … 第二条 经消费者确认后不适用无理由退货的商品",
         "L02 网络购买商品七日无理由退货暂行办法 > 第四章 特别规定 > 第二十条 【不适用商品的标注与确认程序】"
       ],
-      "trace_id": "68bd76b65d1d45951bb3c41b93e65766"
+      "trace_id": "0f704cb0ced2490fb07f5e03c5d3f2d3"
     },
     {
       "case_id": "R1-001",
@@ -3872,13 +3874,13 @@
         "recall@10": 1.0,
         "recall@3": 1.0,
         "recall@1": 0.0,
-        "evidence_tokens": 2776,
-        "duplicate_ratio": 0.473
+        "evidence_tokens": 2893,
+        "duplicate_ratio": 0.39
       },
-      "elapsed_s": 1.9,
+      "elapsed_s": 2.0,
       "seed_rank": {
         "candidate": {
-          "L01#004:00": 4
+          "L01#004:00": 3
         },
         "evidence": {
           "L01#004:00": 2
@@ -3887,9 +3889,10 @@
       "sections": [
         "L02 网络购买商品七日无理由退货暂行办法 > 第一章 总则 > 第二条 【适用范围】 … 第二章 不适用退货的商品范围和商品完好标准 > 第六条 【法定不适用商品（无需消费者确认）】",
         "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十五条 【网络购物七日无理由退货】",
-        "P04 星辰优选不适用无理由退货商品清单 > 第一条 法定不适用无理由退货的商品 … 第二条 经消费者确认后不适用无理由退货的商品 > 2.3 销售时已明示的临期或瑕疵商品"
+        "P04 星辰优选不适用无理由退货商品清单 > 第一条 法定不适用无理由退货的商品 … 第二条 经消费者确认后不适用无理由退货的商品 > 2.3 销售时已明示的临期或瑕疵商品",
+        "L02 网络购买商品七日无理由退货暂行办法 > 第四章 特别规定 > 第二十五条 【退货商品的检验与再销售】 … 第四章 特别规定 > 第二十条 【不适用商品的标注与确认程序】"
       ],
-      "trace_id": "f39f28a4487a119400bff546bf66d922"
+      "trace_id": "2cd8b7bcf24fafcea2b9738ee9393b91"
     }
   ]
 }

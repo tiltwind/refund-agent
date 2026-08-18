@@ -8,7 +8,7 @@
 
 ## 一、身份与授权
 
-### 1.1 三类标识，传法不同
+### 1.1 三类标识与传法差异
 
 | 类型 | 例子 | 来源 | 传递方式 | 模型可见 |
 |---|---|---|---|---|
@@ -80,7 +80,7 @@ result = await agent.ainvoke(
 
 缺少身份 header 时返回 401，不使用空值或默认租户。
 
-### 1.4 工具侧接住身份
+### 1.4 工具侧的身份接收
 
 `runtime` 参数**不会出现在发给模型的 tool schema 里**：
 
@@ -97,7 +97,7 @@ def get_customer_info(runtime: ToolRuntime[RefundContext]) -> str:
     )
 ```
 
-### 1.5 到下游微服务这一跳
+### 1.5 下游微服务这一跳
 
 调用下游时使用服务身份和 `X-Acting-User`，不透传用户 JWT：
 
@@ -109,7 +109,7 @@ X-Request-Id:   req-abc-123
 
 下游服务负责权限判定。合规要求更高时，可用 OAuth token exchange（RFC 8693）换取面向下游的短时 token。
 
-### 1.6 归属校验必须在下游
+### 1.6 归属校验的位置
 
 ```python
 # 规则服务侧：订单数据向订单系统取，带上 acting_user
@@ -154,7 +154,7 @@ if reason_type and reason_type not in REASON_TYPES:
 
 ## 三、服务接入层与数据源切换
 
-### 3.1 工具层只调 `services/`
+### 3.1 工具层的依赖边界
 
 工具层不直接访问下游，统一走 `services/`：
 
@@ -217,7 +217,7 @@ def get_customer_info(runtime: ToolRuntime[RefundContext]) -> str:
 
 时间使用 `signed_days_ago`，避免固定时间戳导致窗口用例过期。数据缺失时抛 `EvalDataMissError`，用例记为 `invalid`。当前不支持录制回放。
 
-### 3.4 RAG 不切数据源
+### 3.4 RAG 的数据源口径
 
 `prod` 和 `eval` 使用同一个 Milvus collection。影响检索结果的变量按下表控制：
 
@@ -359,7 +359,7 @@ flowchart TB
 
 失败用例要区分 Agent 缺陷和评估口径错误；线上出现的新失效模式要加入离线数据集。
 
-### 6.2 三层评估，各管各的事
+### 6.2 三层评估的分工
 
 | 层 | 回答的问题 | 数据来源 | 真值来源 | 成本 | 频率 |
 |---|---|---|---|---|---|
@@ -369,7 +369,7 @@ flowchart TB
 
 离线 `decision_match` 使用预标注答案；线上以 trace 中 `check_refund_eligibility` 的返回值为真值。
 
-### 6.3 离线评估不连线上业务服务
+### 6.3 离线评估的服务边界
 
 `RefundContext.request_source` 是切换点：`prod` 走真实微服务，`eval` 读 `evals/data/*.json`（详见第三章）。**同一份工具代码、同一条代码路径**，区别只在入口注入的 context。
 
@@ -445,7 +445,7 @@ agent = registry.select(rollout={"v1": 0.9, "v2": 0.1})
 | 评估 | Langfuse dataset run + 自建规则引擎真值锚 |
 | 下游通信 | HTTP / gRPC，**不引入 MCP**（见 7.4） |
 
-### 7.1 离线索引：doc/policy 变成了什么
+### 7.1 离线索引：doc/policy 的形变
 
 [`doc/policy/`](https://tiltwind.github.io/refund-agent/doc/policy) 下的 Markdown 是语料的唯一来源，灌库脚本直接切分文档。
 
