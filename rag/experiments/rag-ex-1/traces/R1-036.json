@@ -1,0 +1,1437 @@
+{
+  "case": {
+    "case_id": "R1-036",
+    "type": "single",
+    "style": "colloquial",
+    "doc_id": "P03",
+    "layer": "platform",
+    "kind": "text",
+    "seed_chunk_id": [
+      "P03#000:01"
+    ],
+    "error": null,
+    "scores": {
+      "recall@10": 1.0,
+      "recall@3": 1.0,
+      "recall@1": 1.0,
+      "evidence_tokens": 708,
+      "duplicate_ratio": 0.339,
+      "context_recall": 1.0,
+      "context_relevance": 0.29
+    },
+    "elapsed_s": 1.7,
+    "seed_rank": {
+      "candidate": {
+        "P03#000:01": 1
+      },
+      "evidence": {
+        "P03#000:01": 1
+      }
+    },
+    "sections": [
+      "P03 星辰优选退款规则与到账时效 > 第一条 退款方式 > 1.2 组合支付的退款 … 第二条 退款金额的计算 > 2.4 积分与储值",
+      "P10 星辰优选优惠券、赠品与发票处理规则 > 第四条 积分与储值 > 4.1 积分支付部分的返还 … 第四条 积分与储值 > 4.3 储值余额"
+    ],
+    "judge": {
+      "context_recall": {
+        "score": 1.0,
+        "n": 4,
+        "hit": 4,
+        "detail": [
+          {
+            "claim": "按各支付方式实际支付的金额分别原路退回。",
+            "supported": true,
+            "reason": "上下文明确写明组合支付按实际支付金额分别原路退回。"
+          },
+          {
+            "claim": "银行卡支付的金额退回银行卡。",
+            "supported": true,
+            "reason": "上下文提到银行卡支付部分原路退回，银行卡属于原支付账户。"
+          },
+          {
+            "claim": "余额支付的金额退回余额。",
+            "supported": true,
+            "reason": "上下文提到余额支付部分原路退回，余额属于原支付账户。"
+          },
+          {
+            "claim": "积分支付的金额退回积分。",
+            "supported": true,
+            "reason": "上下文明确积分支付部分以积分形式原额返还。"
+          }
+        ],
+        "error": null
+      },
+      "context_relevance": {
+        "score": 0.29,
+        "n": 31,
+        "hit": 9,
+        "truncated": false,
+        "note": "不相关的多为运费、赠品、优惠券及重复内容。",
+        "irrelevant": [
+          "未经消费者明确同意，平台不以余额、储值卡、优惠券等形式替代原路退款。",
+          "原支付账户已注销、银行卡已销户等导致原路退回失败的，平台联系消费者确认替代退款方式，并留存确认记录。",
+          "**此情形下的处理不进入自动通道。",
+          "**",
+          "**退款金额以消费者实际支付的金额为准**，不是商品标价。",
+          "使用优惠券的订单，**按实付金额退款，优惠券不予退还**。",
+          "套装商品或满减活动订单中部分商品退货，导致剩余订单不再满足优惠条件的，按购买时各商品的原价重新结算，**多退少补**。",
+          "退货时须将商品本身、配件及赠品一并退回。",
+          "赠品不能一并退回的，平台可按事先标明的赠品价格从退款中扣除相应价款。",
+          "详见 [P10]。"
+        ],
+        "error": null
+      }
+    },
+    "trace_id": "610994ba4f589a0f59b3ce2facfd649f"
+  },
+  "trace": {
+    "id": "610994ba4f589a0f59b3ce2facfd649f",
+    "name": "experiment-item-run",
+    "timestamp": "2026-08-18 11:49:28.882000+00:00"
+  },
+  "observations": [
+    {
+      "id": "eeae3e8c1e2fe349",
+      "traceId": "610994ba4f589a0f59b3ce2facfd649f",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 11:48:51.459000+00:00",
+      "endTime": "2026-08-18 11:49:34.774000+00:00",
+      "input": {
+        "query": "我下单的时候又是银行卡又是余额又是积分凑着付的，那退钱的时候是咋退的？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-036",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P03",
+        "section": "第一条 退款方式 > 1.2 组合支付的退款",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.185,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-036",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P03",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P03#000:01"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 708,
+          "duplicate_ratio": 0.339,
+          "context_recall": 1,
+          "context_relevance": 0.29
+        },
+        "elapsed_s": 1.7,
+        "seed_rank": {
+          "candidate": {
+            "P03#000:01": 1
+          },
+          "evidence": {
+            "P03#000:01": 1
+          }
+        },
+        "sections": [
+          "P03 星辰优选退款规则与到账时效 > 第一条 退款方式 > 1.2 组合支付的退款 … 第二条 退款金额的计算 > 2.4 积分与储值",
+          "P10 星辰优选优惠券、赠品与发票处理规则 > 第四条 积分与储值 > 4.1 积分支付部分的返还 … 第四条 积分与储值 > 4.3 储值余额"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 4,
+            "hit": 4,
+            "detail": [
+              {
+                "claim": "按各支付方式实际支付的金额分别原路退回。",
+                "supported": true,
+                "reason": "上下文明确写明组合支付按实际支付金额分别原路退回。"
+              },
+              {
+                "claim": "银行卡支付的金额退回银行卡。",
+                "supported": true,
+                "reason": "上下文提到银行卡支付部分原路退回，银行卡属于原支付账户。"
+              },
+              {
+                "claim": "余额支付的金额退回余额。",
+                "supported": true,
+                "reason": "上下文提到余额支付部分原路退回，余额属于原支付账户。"
+              },
+              {
+                "claim": "积分支付的金额退回积分。",
+                "supported": true,
+                "reason": "上下文明确积分支付部分以积分形式原额返还。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.29,
+            "n": 31,
+            "hit": 9,
+            "truncated": false,
+            "note": "不相关的多为运费、赠品、优惠券及重复内容。",
+            "irrelevant": [
+              "未经消费者明确同意，平台不以余额、储值卡、优惠券等形式替代原路退款。",
+              "原支付账户已注销、银行卡已销户等导致原路退回失败的，平台联系消费者确认替代退款方式，并留存确认记录。",
+              "**此情形下的处理不进入自动通道。",
+              "**",
+              "**退款金额以消费者实际支付的金额为准**，不是商品标价。",
+              "使用优惠券的订单，**按实付金额退款，优惠券不予退还**。",
+              "套装商品或满减活动订单中部分商品退货，导致剩余订单不再满足优惠条件的，按购买时各商品的原价重新结算，**多退少补**。",
+              "退货时须将商品本身、配件及赠品一并退回。",
+              "赠品不能一并退回的，平台可按事先标明的赠品价格从退款中扣除相应价款。",
+              "详见 [P10]。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 43.315,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:38.570Z",
+      "updatedAt": "2026-08-18T11:49:38.594Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "e3c1f1bea52703e3",
+      "traceId": "610994ba4f589a0f59b3ce2facfd649f",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 11:49:34.772000+00:00",
+      "endTime": "2026-08-18 11:49:34.774000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "eeae3e8c1e2fe349",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.002,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:38.570Z",
+      "updatedAt": "2026-08-18T11:49:38.588Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "58e967fd27dbc7f4",
+      "traceId": "610994ba4f589a0f59b3ce2facfd649f",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 11:49:34.773000+00:00",
+      "endTime": "2026-08-18 11:49:34.773000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "我下单的时候又是银行卡又是余额又是积分凑着付的，那退钱的时候是咋退的？"
+        },
+        "output": {
+          "case_id": "R1-036",
+          "type": "single",
+          "style": "colloquial",
+          "doc_id": "P03",
+          "layer": "platform",
+          "kind": "text",
+          "seed_chunk_id": [
+            "P03#000:01"
+          ],
+          "error": null,
+          "scores": {
+            "recall@10": 1,
+            "recall@3": 1,
+            "recall@1": 1,
+            "evidence_tokens": 708,
+            "duplicate_ratio": 0.339,
+            "context_recall": 1,
+            "context_relevance": 0.29
+          },
+          "elapsed_s": 1.7,
+          "seed_rank": {
+            "candidate": {
+              "P03#000:01": 1
+            },
+            "evidence": {
+              "P03#000:01": 1
+            }
+          },
+          "sections": [
+            "P03 星辰优选退款规则与到账时效 > 第一条 退款方式 > 1.2 组合支付的退款 … 第二条 退款金额的计算 > 2.4 积分与储值",
+            "P10 星辰优选优惠券、赠品与发票处理规则 > 第四条 积分与储值 > 4.1 积分支付部分的返还 … 第四条 积分与储值 > 4.3 储值余额"
+          ],
+          "judge": {
+            "context_recall": {
+              "score": 1,
+              "n": 4,
+              "hit": 4,
+              "detail": [
+                {
+                  "claim": "按各支付方式实际支付的金额分别原路退回。",
+                  "supported": true,
+                  "reason": "上下文明确写明组合支付按实际支付金额分别原路退回。"
+                },
+                {
+                  "claim": "银行卡支付的金额退回银行卡。",
+                  "supported": true,
+                  "reason": "上下文提到银行卡支付部分原路退回，银行卡属于原支付账户。"
+                },
+                {
+                  "claim": "余额支付的金额退回余额。",
+                  "supported": true,
+                  "reason": "上下文提到余额支付部分原路退回，余额属于原支付账户。"
+                },
+                {
+                  "claim": "积分支付的金额退回积分。",
+                  "supported": true,
+                  "reason": "上下文明确积分支付部分以积分形式原额返还。"
+                }
+              ],
+              "error": null
+            },
+            "context_relevance": {
+              "score": 0.29,
+              "n": 31,
+              "hit": 9,
+              "truncated": false,
+              "note": "不相关的多为运费、赠品、优惠券及重复内容。",
+              "irrelevant": [
+                "未经消费者明确同意，平台不以余额、储值卡、优惠券等形式替代原路退款。",
+                "原支付账户已注销、银行卡已销户等导致原路退回失败的，平台联系消费者确认替代退款方式，并留存确认记录。",
+                "**此情形下的处理不进入自动通道。",
+                "**",
+                "**退款金额以消费者实际支付的金额为准**，不是商品标价。",
+                "使用优惠券的订单，**按实付金额退款，优惠券不予退还**。",
+                "套装商品或满减活动订单中部分商品退货，导致剩余订单不再满足优惠条件的，按购买时各商品的原价重新结算，**多退少补**。",
+                "退货时须将商品本身、配件及赠品一并退回。",
+                "赠品不能一并退回的，平台可按事先标明的赠品价格从退款中扣除相应价款。",
+                "详见 [P10]。"
+              ],
+              "error": null
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [
+            "按各支付方式实际支付的金额分别原路退回。",
+            "银行卡支付的金额退回银行卡。",
+            "余额支付的金额退回余额。",
+            "积分支付的金额退回积分。"
+          ],
+          "seed_chunk_id": [
+            "P03#000:01"
+          ],
+          "reference_answer": "按各支付方式实际支付的金额分别原路退回，即银行卡退回银行卡、余额退回余额、积分退回积分。"
+        },
+        "metadata": {
+          "kind": "text",
+          "type": "single",
+          "layer": "platform",
+          "style": "colloquial",
+          "doc_id": "P03",
+          "section": "第一条 退款方式 > 1.2 组合支付的退款",
+          "reviewed": false,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.185
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 1,
+          "comment": "种子块名次 P03#000:01=1"
+        },
+        {
+          "name": "recall@3",
+          "value": 1,
+          "comment": "种子块名次 P03#000:01=1"
+        },
+        {
+          "name": "recall@1",
+          "value": 1,
+          "comment": "种子块名次 P03#000:01=1"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 708,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0.339,
+          "comment": ""
+        },
+        {
+          "name": "context_recall",
+          "value": 1,
+          "comment": "4/4 条 claim 被支撑"
+        },
+        {
+          "name": "context_relevance",
+          "value": 0.29,
+          "comment": "9/31 个内容单元相关；不相关的多为运费、赠品、优惠券及重复内容。"
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "e3c1f1bea52703e3",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:38.570Z",
+      "updatedAt": "2026-08-18T11:49:38.582Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "6aaacbb5eda1507f",
+      "traceId": "610994ba4f589a0f59b3ce2facfd649f",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 11:48:51.460000+00:00",
+      "endTime": "2026-08-18 11:49:34.771000+00:00",
+      "input": {
+        "query": "我下单的时候又是银行卡又是余额又是积分凑着付的，那退钱的时候是咋退的？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-036",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P03",
+        "section": "第一条 退款方式 > 1.2 组合支付的退款",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.185,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-036",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P03",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P03#000:01"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 708,
+          "duplicate_ratio": 0.339,
+          "context_recall": 1,
+          "context_relevance": 0.29
+        },
+        "elapsed_s": 1.7,
+        "seed_rank": {
+          "candidate": {
+            "P03#000:01": 1
+          },
+          "evidence": {
+            "P03#000:01": 1
+          }
+        },
+        "sections": [
+          "P03 星辰优选退款规则与到账时效 > 第一条 退款方式 > 1.2 组合支付的退款 … 第二条 退款金额的计算 > 2.4 积分与储值",
+          "P10 星辰优选优惠券、赠品与发票处理规则 > 第四条 积分与储值 > 4.1 积分支付部分的返还 … 第四条 积分与储值 > 4.3 储值余额"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 4,
+            "hit": 4,
+            "detail": [
+              {
+                "claim": "按各支付方式实际支付的金额分别原路退回。",
+                "supported": true,
+                "reason": "上下文明确写明组合支付按实际支付金额分别原路退回。"
+              },
+              {
+                "claim": "银行卡支付的金额退回银行卡。",
+                "supported": true,
+                "reason": "上下文提到银行卡支付部分原路退回，银行卡属于原支付账户。"
+              },
+              {
+                "claim": "余额支付的金额退回余额。",
+                "supported": true,
+                "reason": "上下文提到余额支付部分原路退回，余额属于原支付账户。"
+              },
+              {
+                "claim": "积分支付的金额退回积分。",
+                "supported": true,
+                "reason": "上下文明确积分支付部分以积分形式原额返还。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.29,
+            "n": 31,
+            "hit": 9,
+            "truncated": false,
+            "note": "不相关的多为运费、赠品、优惠券及重复内容。",
+            "irrelevant": [
+              "未经消费者明确同意，平台不以余额、储值卡、优惠券等形式替代原路退款。",
+              "原支付账户已注销、银行卡已销户等导致原路退回失败的，平台联系消费者确认替代退款方式，并留存确认记录。",
+              "**此情形下的处理不进入自动通道。",
+              "**",
+              "**退款金额以消费者实际支付的金额为准**，不是商品标价。",
+              "使用优惠券的订单，**按实付金额退款，优惠券不予退还**。",
+              "套装商品或满减活动订单中部分商品退货，导致剩余订单不再满足优惠条件的，按购买时各商品的原价重新结算，**多退少补**。",
+              "退货时须将商品本身、配件及赠品一并退回。",
+              "赠品不能一并退回的，平台可按事先标明的赠品价格从退款中扣除相应价款。",
+              "详见 [P10]。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "eeae3e8c1e2fe349",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 43.311,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:38.570Z",
+      "updatedAt": "2026-08-18T11:49:38.582Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "d340e008b7185cdc",
+      "traceId": "610994ba4f589a0f59b3ce2facfd649f",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 11:49:28.882000+00:00",
+      "endTime": "2026-08-18 11:49:30.613000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "我下单的时候又是银行卡又是余额又是积分凑着付的，那退钱的时候是咋退的？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P03 星辰优选退款规则与到账时效 > 第一条 退款方式 > 1.2 组合支付的退款 … 第二条 退款金额的计算 > 2.4 积分与储值",
+            "text": "退款审核通过后，款项**原路退回至原支付账户**。未经消费者明确同意，平台不以余额、储值卡、优惠券等形式替代原路退款。\n\n订单采用多种方式组合支付的（如「银行卡 + 余额 + 积分」），按各支付方式的**实际支付金额分别原路退回**。\n\n原支付账户已注销、银行卡已销户等导致原路退回失败的，平台联系消费者确认替代退款方式，并留存确认记录。**此情形下的处理不进入自动通道。**\n\n**退款金额以消费者实际支付的金额为准**，不是商品标价。\n\n使用优惠券的订单，**按实付金额退款，优惠券不予退还**。\n\n套装商品或满减活动订单中部分商品退货，导致剩余订单不再满足优惠条件的，按购买时各商品的原价重新结算，**多退少补**。\n\n以积分、储值余额支付的部分，退款时以相同形式返还至原账户。\n\n退货时须将商品本身、配件及赠品一并退回。赠品不能一并退回的，平台可按事先标明的赠品价格从退款中扣除相应价款。详见 [P10]。\n\n运费的承担与扣除规则详见 [P06]。核心区别：**无理由退货的退回运费由消费者承担，质量问题退货的运费由平台或商家承担。**",
+            "score": 0.884510259628296,
+            "doc_id": "P03",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P03-退款规则与到账时效.md",
+            "reason": "相关性 0.881 × 先验 0.90 → 0.885；命中 1/platform/dense#1, 1/platform/bm25#1"
+          },
+          {
+            "section": "P10 星辰优选优惠券、赠品与发票处理规则 > 第四条 积分与储值 > 4.1 积分支付部分的返还 … 第四条 积分与储值 > 4.3 储值余额",
+            "text": "以积分抵扣支付的部分，退款时**以积分形式原额返还**至消费者账户。\n\n订单赠送的积分在退款时**扣回**。积分余额不足扣回的，账户积分置零，不作负值处理，也不折现追缴。\n\n以平台储值余额支付的部分，退款时原额返还至储值账户，**实时到账**。\n\n返还的积分有效期按原积分的剩余有效期计算，剩余不足 30 天的按 30 天计。\n\n以积分抵扣支付的部分，退款时**以积分形式原额返还**至消费者账户。\n\n订单赠送的积分在退款时**扣回**。积分余额不足扣回的，账户积分置零，不作负值处理，也不折现追缴。\n\n以平台储值余额支付的部分，退款时原额返还至储值账户，**实时到账**。\n\n返还的积分有效期按原积分的剩余有效期计算，剩余不足 30 天的按 30 天计。\n\n以积分抵扣支付的部分，退款时**以积分形式原额返还**至消费者账户。\n\n订单赠送的积分在退款时**扣回**。积分余额不足扣回的，账户积分置零，不作负值处理，也不折现追缴。\n\n以平台储值余额支付的部分，退款时原额返还至储值账户，**实时到账**。\n\n返还的积分有效期按原积分的剩余有效期计算，剩余不足 30 天的按 30 天计。",
+            "score": 0.5714988994598389,
+            "doc_id": "P10",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P10-优惠券赠品与发票处理规则.md",
+            "reason": "相关性 0.489 × 先验 0.90 → 0.571；命中 1/platform/dense#4, 1/platform/bm25#6"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "6aaacbb5eda1507f",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.731,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:33.493Z",
+      "updatedAt": "2026-08-18T11:49:33.517Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "65a187d376bbf45e",
+      "traceId": "610994ba4f589a0f59b3ce2facfd649f",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 11:49:30.598000+00:00",
+      "endTime": "2026-08-18 11:49:30.613000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "P03#000:01",
+          "P03#001:03",
+          "P10#003:02",
+          "P10#003:00",
+          "P10#003:01"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P03 星辰优选退款规则与到账时效 > 第一条 退款方式 > 1.2 组合支付的退款 … 第二条 退款金额的计算 > 2.4 积分与储值",
+            "text": "退款审核通过后，款项**原路退回至原支付账户**。未经消费者明确同意，平台不以余额、储值卡、优惠券等形式替代原路退款。\n\n订单采用多种方式组合支付的（如「银行卡 + 余额 + 积分」），按各支付方式的**实际支付金额分别原路退回**。\n\n原支付账户已注销、银行卡已销户等导致原路退回失败的，平台联系消费者确认替代退款方式，并留存确认记录。**此情形下的处理不进入自动通道。**\n\n**退款金额以消费者实际支付的金额为准**，不是商品标价。\n\n使用优惠券的订单，**按实付金额退款，优惠券不予退还**。\n\n套装商品或满减活动订单中部分商品退货，导致剩余订单不再满足优惠条件的，按购买时各商品的原价重新结算，**多退少补**。\n\n以积分、储值余额支付的部分，退款时以相同形式返还至原账户。\n\n退货时须将商品本身、配件及赠品一并退回。赠品不能一并退回的，平台可按事先标明的赠品价格从退款中扣除相应价款。详见 [P10]。\n\n运费的承担与扣除规则详见 [P06]。核心区别：**无理由退货的退回运费由消费者承担，质量问题退货的运费由平台或商家承担。**",
+            "score": 0.884510259628296,
+            "doc_id": "P03",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P03-退款规则与到账时效.md",
+            "reason": "相关性 0.881 × 先验 0.90 → 0.885；命中 1/platform/dense#1, 1/platform/bm25#1"
+          },
+          {
+            "section": "P10 星辰优选优惠券、赠品与发票处理规则 > 第四条 积分与储值 > 4.1 积分支付部分的返还 … 第四条 积分与储值 > 4.3 储值余额",
+            "text": "以积分抵扣支付的部分，退款时**以积分形式原额返还**至消费者账户。\n\n订单赠送的积分在退款时**扣回**。积分余额不足扣回的，账户积分置零，不作负值处理，也不折现追缴。\n\n以平台储值余额支付的部分，退款时原额返还至储值账户，**实时到账**。\n\n返还的积分有效期按原积分的剩余有效期计算，剩余不足 30 天的按 30 天计。\n\n以积分抵扣支付的部分，退款时**以积分形式原额返还**至消费者账户。\n\n订单赠送的积分在退款时**扣回**。积分余额不足扣回的，账户积分置零，不作负值处理，也不折现追缴。\n\n以平台储值余额支付的部分，退款时原额返还至储值账户，**实时到账**。\n\n返还的积分有效期按原积分的剩余有效期计算，剩余不足 30 天的按 30 天计。\n\n以积分抵扣支付的部分，退款时**以积分形式原额返还**至消费者账户。\n\n订单赠送的积分在退款时**扣回**。积分余额不足扣回的，账户积分置零，不作负值处理，也不折现追缴。\n\n以平台储值余额支付的部分，退款时原额返还至储值账户，**实时到账**。\n\n返还的积分有效期按原积分的剩余有效期计算，剩余不足 30 天的按 30 天计。",
+            "score": 0.5714988994598389,
+            "doc_id": "P10",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P10-优惠券赠品与发票处理规则.md",
+            "reason": "相关性 0.489 × 先验 0.90 → 0.571；命中 1/platform/dense#4, 1/platform/bm25#6"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d340e008b7185cdc",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.015,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:33.493Z",
+      "updatedAt": "2026-08-18T11:49:33.517Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "7a84d7a4d9ce6145",
+      "traceId": "610994ba4f589a0f59b3ce2facfd649f",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 11:49:29.940000+00:00",
+      "endTime": "2026-08-18 11:49:30.598000+00:00",
+      "input": {
+        "query": "我下单的时候又是银行卡又是余额又是积分凑着付的，那退钱的时候是咋退的？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 5,
+        "min_score": 0.3,
+        "dropped": [
+          "L02#003:04",
+          "L02#003:05",
+          "L02#003:02",
+          "P03#000:00",
+          "L02#003:06",
+          "P03#000:02",
+          "P02#006:00",
+          "P03#002:03",
+          "P10#005:00",
+          "P03#002:01",
+          "L03#006:00",
+          "L02#003:03",
+          "P11#003:00",
+          "P02#005:00",
+          "P11#003:01"
+        ],
+        "evidence": [
+          {
+            "chunk_id": "P03#000:01",
+            "section": "P03 第一条 退款方式 > 1.2 组合支付的退款",
+            "score": 0.885,
+            "relevance": 0.881,
+            "prior": 0.9,
+            "excerpt": "订单采用多种方式组合支付的（如「银行卡 + 余额 + 积分」），按各支付方式的**实际支付金额分别原路退回**。"
+          },
+          {
+            "chunk_id": "P03#001:03",
+            "section": "P03 第二条 退款金额的计算 > 2.4 积分与储值",
+            "score": 0.671,
+            "relevance": 0.614,
+            "prior": 0.9,
+            "excerpt": "以积分、储值余额支付的部分，退款时以相同形式返还至原账户。"
+          },
+          {
+            "chunk_id": "P10#003:02",
+            "section": "P10 第四条 积分与储值 > 4.3 储值余额",
+            "score": 0.571,
+            "relevance": 0.489,
+            "prior": 0.9,
+            "excerpt": "以平台储值余额支付的部分，退款时原额返还至储值账户，**实时到账**。"
+          },
+          {
+            "chunk_id": "P10#003:00",
+            "section": "P10 第四条 积分与储值 > 4.1 积分支付部分的返还",
+            "score": 0.484,
+            "relevance": 0.38,
+            "prior": 0.9,
+            "excerpt": "以积分抵扣支付的部分，退款时**以积分形式原额返还**至消费者账户。"
+          },
+          {
+            "chunk_id": "P10#003:01",
+            "section": "P10 第四条 积分与储值 > 4.2 购物赠送的积分",
+            "score": 0.386,
+            "relevance": 0.258,
+            "prior": 0.9,
+            "excerpt": "订单赠送的积分在退款时**扣回**。积分余额不足扣回的，账户积分置零，不作负值处理，也不折现追缴。"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d340e008b7185cdc",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.658,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:33.493Z",
+      "updatedAt": "2026-08-18T11:49:33.515Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "1d50605cf2cb46f8",
+      "traceId": "610994ba4f589a0f59b3ce2facfd649f",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-18 11:49:29.869000+00:00",
+      "endTime": "2026-08-18 11:49:29.939000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "P03#000:01",
+            "section": "P03 第一条 退款方式 > 1.2 组合支付的退款",
+            "rrf": 0.0952,
+            "hits": [
+              "1/platform/dense#1",
+              "1/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:04",
+            "section": "L02 第三章 退货程序 > 第十四条 【退款方式】",
+            "rrf": 0.0931,
+            "hits": [
+              "1/law/dense#2",
+              "1/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:05",
+            "section": "L02 第三章 退货程序 > 第十五条 【积分、代金券、优惠券的返还】",
+            "rrf": 0.0911,
+            "hits": [
+              "1/law/dense#1",
+              "1/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:02",
+            "section": "L02 第三章 退货程序 > 第十二条 【赠品一并退回】",
+            "rrf": 0.0889,
+            "hits": [
+              "1/law/dense#3",
+              "1/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P03#000:00",
+            "section": "P03 第一条 退款方式 > 1.1 原路退回",
+            "rrf": 0.0835,
+            "hits": [
+              "1/platform/dense#5",
+              "1/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:06",
+            "section": "L02 第三章 退货程序 > 第十六条 【信用卡手续费】",
+            "rrf": 0.0833,
+            "hits": [
+              "1/law/dense#4",
+              "1/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P03#000:02",
+            "section": "P03 第一条 退款方式 > 1.3 原支付渠道失效",
+            "rrf": 0.0825,
+            "hits": [
+              "1/platform/dense#7",
+              "1/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P03#001:03",
+            "section": "P03 第二条 退款金额的计算 > 2.4 积分与储值",
+            "rrf": 0.0812,
+            "hits": [
+              "1/platform/dense#2",
+              "1/platform/bm25#8"
+            ]
+          },
+          {
+            "chunk_id": "P10#003:02",
+            "section": "P10 第四条 积分与储值 > 4.3 储值余额",
+            "rrf": 0.0801,
+            "hits": [
+              "1/platform/dense#4",
+              "1/platform/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "P10#003:00",
+            "section": "P10 第四条 积分与储值 > 4.1 积分支付部分的返还",
+            "rrf": 0.078,
+            "hits": [
+              "1/platform/dense#3",
+              "1/platform/bm25#9"
+            ]
+          },
+          {
+            "chunk_id": "P10#003:01",
+            "section": "P10 第四条 积分与储值 > 4.2 购物赠送的积分",
+            "rrf": 0.0755,
+            "hits": [
+              "1/platform/dense#6",
+              "1/platform/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "P02#006:00",
+            "section": "P02 第七条 退款方式与时效",
+            "rrf": 0.0694,
+            "hits": [
+              "1/platform/dense#16",
+              "1/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P03#002:03",
+            "section": "P03 第三条 到账时效 > 3.4 手续费",
+            "rrf": 0.0678,
+            "hits": [
+              "1/platform/dense#9",
+              "1/platform/bm25#10"
+            ]
+          },
+          {
+            "chunk_id": "P10#005:00",
+            "section": "P10 第六条 手续费 > 6.1 信用卡手续费",
+            "rrf": 0.0645,
+            "hits": [
+              "1/platform/dense#11",
+              "1/platform/bm25#11"
+            ]
+          },
+          {
+            "chunk_id": "P03#002:01",
+            "section": "P03 第三条 到账时效 > 3.2 各渠道的实际到账参考",
+            "rrf": 0.04,
+            "hits": [
+              "1/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "L03#006:00",
+            "section": "L03 第二十条 【押金退还】",
+            "rrf": 0.04,
+            "hits": [
+              "1/law/dense#5"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:03",
+            "section": "L02 第三章 退货程序 > 第十三条 【退款时限】",
+            "rrf": 0.04,
+            "hits": [
+              "1/law/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P11#003:00",
+            "section": "P11 第三条 虚拟商品 > 3.1 退款限制",
+            "rrf": 0.0357,
+            "hits": [
+              "1/platform/dense#8"
+            ]
+          },
+          {
+            "chunk_id": "P02#005:00",
+            "section": "P02 第六条 判定顺序",
+            "rrf": 0.0333,
+            "hits": [
+              "1/platform/dense#10"
+            ]
+          },
+          {
+            "chunk_id": "P11#003:01",
+            "section": "P11 第三条 虚拟商品 > 3.2 未核销可退",
+            "rrf": 0.0312,
+            "hits": [
+              "1/platform/dense#12"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d340e008b7185cdc",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.07,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:33.493Z",
+      "updatedAt": "2026-08-18T11:49:33.509Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "5260d79adcce8c64",
+      "traceId": "610994ba4f589a0f59b3ce2facfd649f",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 11:49:29.868000+00:00",
+      "endTime": "2026-08-18 11:49:29.869000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d340e008b7185cdc",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:33.493Z",
+      "updatedAt": "2026-08-18T11:49:33.509Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "767b31a7c71719ee",
+      "traceId": "610994ba4f589a0f59b3ce2facfd649f",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 11:49:28.882000+00:00",
+      "endTime": "2026-08-18 11:49:29.868000+00:00",
+      "input": {
+        "query": "我下单的时候又是银行卡又是余额又是积分凑着付的，那退钱的时候是咋退的？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "refund",
+            "text": "订单使用银行卡、余额、积分混合支付，退款时钱款如何原路退回？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d340e008b7185cdc",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.986,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:33.493Z",
+      "updatedAt": "2026-08-18T11:49:33.506Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    }
+  ]
+}

@@ -9,7 +9,7 @@
 | 字段 | 放什么 | 谁读它 |
 |---|---|---|
 | `input` | `query`，直接喂 `search_policy` | 跑批的 task 函数 |
-| `expected_output` | `seed_chunk_id` + `reference_answer` | 两个 Recall 打分器 |
+| `expected_output` | `seed_chunk_id` + `reference_answer` + `claims` | 两个 Recall 打分器 |
 | `metadata` | style / type / doc_id / layer / kind / 重叠率 | 报告分档（5-rag-eval 8.2） |
 
 item id 直接用 `case_id`，Langfuse 按 id upsert：改完 cases.jsonl 重推是覆盖同一条。
@@ -34,6 +34,9 @@ def to_item(case: dict) -> dict:
         "expected_output": {
             "seed_chunk_id": case["seed_chunk_id"],
             "reference_answer": case["reference_answer"],
+            # claim 一起推：dataset run 里判 Context Recall 时读的是 item 自己带的这份，
+            # 不回头读本地文件，两边不一致的风险就没了
+            "claims": case.get("claims") or [],
         },
         "metadata": {"style": case["style"], "type": case["type"], **case["meta"]},
     }

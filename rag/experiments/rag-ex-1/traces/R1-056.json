@@ -1,0 +1,1411 @@
+{
+  "case": {
+    "case_id": "R1-056",
+    "type": "single",
+    "style": "colloquial",
+    "doc_id": "P07",
+    "layer": "platform",
+    "kind": "table",
+    "seed_chunk_id": [
+      "P07#000:00"
+    ],
+    "error": null,
+    "scores": {
+      "recall@10": 1.0,
+      "recall@3": 1.0,
+      "recall@1": 0.0,
+      "evidence_tokens": 309,
+      "duplicate_ratio": 0.0,
+      "context_recall": 1.0,
+      "context_relevance": 0.375
+    },
+    "elapsed_s": 1.7,
+    "seed_rank": {
+      "candidate": {
+        "P07#000:00": 9
+      },
+      "evidence": {
+        "P07#000:00": 2
+      }
+    },
+    "sections": [
+      "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.3 会员权益不突破商品条件",
+      "P07 星辰优选会员权益与售后延长规则 > 第一条 会员等级"
+    ],
+    "judge": {
+      "context_recall": {
+        "score": 1.0,
+        "n": 4,
+        "hit": 4,
+        "detail": [
+          {
+            "claim": "金牌会员需满足近12个月累计消费达标。",
+            "supported": true,
+            "reason": "第一条表格中金牌会员评定标准包含近12个月累计消费达标"
+          },
+          {
+            "claim": "金牌会员需满足账户无严重违规记录。",
+            "supported": true,
+            "reason": "第一条表格中金牌会员评定标准包含账户无严重违规记录"
+          },
+          {
+            "claim": "会员等级按月评定。",
+            "supported": true,
+            "reason": "第一条末尾写明会员等级按月评定"
+          },
+          {
+            "claim": "会员等级变化在次月生效。",
+            "supported": true,
+            "reason": "第一条末尾写明等级变化在次月生效"
+          }
+        ],
+        "error": null
+      },
+      "context_relevance": {
+        "score": 0.375,
+        "n": 16,
+        "hit": 6,
+        "truncated": false,
+        "note": "不相关的主要是金牌会员的退款权益和风控规则，而非升级条件。",
+        "irrelevant": [
+          "**账户被判定为高风险账户的，会员等级不产生豁免效力。",
+          "** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。",
+          "> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。",
+          "两者独立生效，风控不改变窗口，会员不豁免风控。",
+          "生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。",
+          "无理由退货「须未拆封」的要求对所有会员等级一律适用。",
+          "金牌会员延长的是**时间窗口**，不是商品状态要求。",
+          "退款申请的窗口按**消费者提交退款申请时**的会员等级判定。",
+          "下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；",
+          "反之适用 7 天窗口。"
+        ],
+        "error": null
+      }
+    },
+    "trace_id": "073bf2e867e273df9923d66a972835f6"
+  },
+  "trace": {
+    "id": "073bf2e867e273df9923d66a972835f6",
+    "name": "experiment-item-run",
+    "timestamp": "2026-08-18 11:46:52.476000+00:00"
+  },
+  "observations": [
+    {
+      "id": "7913c9a2881c92c3",
+      "traceId": "073bf2e867e273df9923d66a972835f6",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 11:46:31.020000+00:00",
+      "endTime": "2026-08-18 11:46:57.862000+00:00",
+      "input": {
+        "query": "我想升金牌会员，得满足啥条件才行啊？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-056",
+        "kind": "table",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P07",
+        "section": "第一条 会员等级",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.214,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-056",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P07",
+        "layer": "platform",
+        "kind": "table",
+        "seed_chunk_id": [
+          "P07#000:00"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 0,
+          "evidence_tokens": 309,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.375
+        },
+        "elapsed_s": 1.7,
+        "seed_rank": {
+          "candidate": {
+            "P07#000:00": 9
+          },
+          "evidence": {
+            "P07#000:00": 2
+          }
+        },
+        "sections": [
+          "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.3 会员权益不突破商品条件",
+          "P07 星辰优选会员权益与售后延长规则 > 第一条 会员等级"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 4,
+            "hit": 4,
+            "detail": [
+              {
+                "claim": "金牌会员需满足近12个月累计消费达标。",
+                "supported": true,
+                "reason": "第一条表格中金牌会员评定标准包含近12个月累计消费达标"
+              },
+              {
+                "claim": "金牌会员需满足账户无严重违规记录。",
+                "supported": true,
+                "reason": "第一条表格中金牌会员评定标准包含账户无严重违规记录"
+              },
+              {
+                "claim": "会员等级按月评定。",
+                "supported": true,
+                "reason": "第一条末尾写明会员等级按月评定"
+              },
+              {
+                "claim": "会员等级变化在次月生效。",
+                "supported": true,
+                "reason": "第一条末尾写明等级变化在次月生效"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.375,
+            "n": 16,
+            "hit": 6,
+            "truncated": false,
+            "note": "不相关的主要是金牌会员的退款权益和风控规则，而非升级条件。",
+            "irrelevant": [
+              "**账户被判定为高风险账户的，会员等级不产生豁免效力。",
+              "** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。",
+              "> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。",
+              "两者独立生效，风控不改变窗口，会员不豁免风控。",
+              "生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。",
+              "无理由退货「须未拆封」的要求对所有会员等级一律适用。",
+              "金牌会员延长的是**时间窗口**，不是商品状态要求。",
+              "退款申请的窗口按**消费者提交退款申请时**的会员等级判定。",
+              "下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；",
+              "反之适用 7 天窗口。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 26.842,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:47:02.454Z",
+      "updatedAt": "2026-08-18T11:47:02.474Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "c3fbf0d337748ec0",
+      "traceId": "073bf2e867e273df9923d66a972835f6",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 11:46:31.020000+00:00",
+      "endTime": "2026-08-18 11:46:57.860000+00:00",
+      "input": {
+        "query": "我想升金牌会员，得满足啥条件才行啊？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-056",
+        "kind": "table",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P07",
+        "section": "第一条 会员等级",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.214,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-056",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P07",
+        "layer": "platform",
+        "kind": "table",
+        "seed_chunk_id": [
+          "P07#000:00"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 0,
+          "evidence_tokens": 309,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.375
+        },
+        "elapsed_s": 1.7,
+        "seed_rank": {
+          "candidate": {
+            "P07#000:00": 9
+          },
+          "evidence": {
+            "P07#000:00": 2
+          }
+        },
+        "sections": [
+          "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.3 会员权益不突破商品条件",
+          "P07 星辰优选会员权益与售后延长规则 > 第一条 会员等级"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 4,
+            "hit": 4,
+            "detail": [
+              {
+                "claim": "金牌会员需满足近12个月累计消费达标。",
+                "supported": true,
+                "reason": "第一条表格中金牌会员评定标准包含近12个月累计消费达标"
+              },
+              {
+                "claim": "金牌会员需满足账户无严重违规记录。",
+                "supported": true,
+                "reason": "第一条表格中金牌会员评定标准包含账户无严重违规记录"
+              },
+              {
+                "claim": "会员等级按月评定。",
+                "supported": true,
+                "reason": "第一条末尾写明会员等级按月评定"
+              },
+              {
+                "claim": "会员等级变化在次月生效。",
+                "supported": true,
+                "reason": "第一条末尾写明等级变化在次月生效"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.375,
+            "n": 16,
+            "hit": 6,
+            "truncated": false,
+            "note": "不相关的主要是金牌会员的退款权益和风控规则，而非升级条件。",
+            "irrelevant": [
+              "**账户被判定为高风险账户的，会员等级不产生豁免效力。",
+              "** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。",
+              "> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。",
+              "两者独立生效，风控不改变窗口，会员不豁免风控。",
+              "生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。",
+              "无理由退货「须未拆封」的要求对所有会员等级一律适用。",
+              "金牌会员延长的是**时间窗口**，不是商品状态要求。",
+              "退款申请的窗口按**消费者提交退款申请时**的会员等级判定。",
+              "下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；",
+              "反之适用 7 天窗口。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "7913c9a2881c92c3",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 26.84,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:47:02.454Z",
+      "updatedAt": "2026-08-18T11:47:02.474Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "cd383c18ff84ad1a",
+      "traceId": "073bf2e867e273df9923d66a972835f6",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 11:46:57.861000+00:00",
+      "endTime": "2026-08-18 11:46:57.862000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "7913c9a2881c92c3",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:47:02.454Z",
+      "updatedAt": "2026-08-18T11:47:02.471Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "6cd7d87990516bbb",
+      "traceId": "073bf2e867e273df9923d66a972835f6",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 11:46:57.861000+00:00",
+      "endTime": "2026-08-18 11:46:57.862000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "我想升金牌会员，得满足啥条件才行啊？"
+        },
+        "output": {
+          "case_id": "R1-056",
+          "type": "single",
+          "style": "colloquial",
+          "doc_id": "P07",
+          "layer": "platform",
+          "kind": "table",
+          "seed_chunk_id": [
+            "P07#000:00"
+          ],
+          "error": null,
+          "scores": {
+            "recall@10": 1,
+            "recall@3": 1,
+            "recall@1": 0,
+            "evidence_tokens": 309,
+            "duplicate_ratio": 0,
+            "context_recall": 1,
+            "context_relevance": 0.375
+          },
+          "elapsed_s": 1.7,
+          "seed_rank": {
+            "candidate": {
+              "P07#000:00": 9
+            },
+            "evidence": {
+              "P07#000:00": 2
+            }
+          },
+          "sections": [
+            "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.3 会员权益不突破商品条件",
+            "P07 星辰优选会员权益与售后延长规则 > 第一条 会员等级"
+          ],
+          "judge": {
+            "context_recall": {
+              "score": 1,
+              "n": 4,
+              "hit": 4,
+              "detail": [
+                {
+                  "claim": "金牌会员需满足近12个月累计消费达标。",
+                  "supported": true,
+                  "reason": "第一条表格中金牌会员评定标准包含近12个月累计消费达标"
+                },
+                {
+                  "claim": "金牌会员需满足账户无严重违规记录。",
+                  "supported": true,
+                  "reason": "第一条表格中金牌会员评定标准包含账户无严重违规记录"
+                },
+                {
+                  "claim": "会员等级按月评定。",
+                  "supported": true,
+                  "reason": "第一条末尾写明会员等级按月评定"
+                },
+                {
+                  "claim": "会员等级变化在次月生效。",
+                  "supported": true,
+                  "reason": "第一条末尾写明等级变化在次月生效"
+                }
+              ],
+              "error": null
+            },
+            "context_relevance": {
+              "score": 0.375,
+              "n": 16,
+              "hit": 6,
+              "truncated": false,
+              "note": "不相关的主要是金牌会员的退款权益和风控规则，而非升级条件。",
+              "irrelevant": [
+                "**账户被判定为高风险账户的，会员等级不产生豁免效力。",
+                "** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。",
+                "> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。",
+                "两者独立生效，风控不改变窗口，会员不豁免风控。",
+                "生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。",
+                "无理由退货「须未拆封」的要求对所有会员等级一律适用。",
+                "金牌会员延长的是**时间窗口**，不是商品状态要求。",
+                "退款申请的窗口按**消费者提交退款申请时**的会员等级判定。",
+                "下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；",
+                "反之适用 7 天窗口。"
+              ],
+              "error": null
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [
+            "金牌会员需满足近12个月累计消费达标。",
+            "金牌会员需满足账户无严重违规记录。",
+            "会员等级按月评定。",
+            "会员等级变化在次月生效。"
+          ],
+          "seed_chunk_id": [
+            "P07#000:00"
+          ],
+          "reference_answer": "金牌会员需满足近12个月累计消费达标，且账户无严重违规记录。会员等级按月评定，等级变化在次月生效。"
+        },
+        "metadata": {
+          "kind": "table",
+          "type": "single",
+          "layer": "platform",
+          "style": "colloquial",
+          "doc_id": "P07",
+          "section": "第一条 会员等级",
+          "reviewed": false,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.214
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 1,
+          "comment": "种子块名次 P07#000:00=9"
+        },
+        {
+          "name": "recall@3",
+          "value": 1,
+          "comment": "种子块名次 P07#000:00=2"
+        },
+        {
+          "name": "recall@1",
+          "value": 0,
+          "comment": "种子块名次 P07#000:00=2"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 309,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "context_recall",
+          "value": 1,
+          "comment": "4/4 条 claim 被支撑"
+        },
+        {
+          "name": "context_relevance",
+          "value": 0.375,
+          "comment": "6/16 个内容单元相关；不相关的主要是金牌会员的退款权益和风控规则，而非升级条件。"
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "cd383c18ff84ad1a",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:47:02.454Z",
+      "updatedAt": "2026-08-18T11:47:02.466Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "168b430afb3e0715",
+      "traceId": "073bf2e867e273df9923d66a972835f6",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 11:46:52.475000+00:00",
+      "endTime": "2026-08-18 11:46:54.216000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "我想升金牌会员，得满足啥条件才行啊？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.3 会员权益不突破商品条件",
+            "text": "**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。\n\n> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。两者独立生效，风控不改变窗口，会员不豁免风控。\n\n生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。\n\n无理由退货「须未拆封」的要求对所有会员等级一律适用。金牌会员延长的是**时间窗口**，不是商品状态要求。\n\n退款申请的窗口按**消费者提交退款申请时**的会员等级判定。下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；反之适用 7 天窗口。",
+            "score": 0.564996247291565,
+            "doc_id": "P07",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
+            "reason": "相关性 0.481 × 先验 0.90 → 0.565；命中 1/platform/dense#1, 1/platform/bm25#3"
+          },
+          {
+            "section": "P07 星辰优选会员权益与售后延长规则 > 第一条 会员等级",
+            "text": "星辰优选设两个会员等级，等级由累计消费金额与账户状态综合评定：\n\n| 等级 | 评定标准 |\n|---|---|\n| **普通会员** | 完成注册的全部消费者 |\n| **金牌会员** | 近 12 个月累计消费达标，且账户无严重违规记录 |\n\n会员等级按月评定，等级变化在次月生效。",
+            "score": 0.34398550271987915,
+            "doc_id": "P07",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
+            "reason": "相关性 0.205 × 先验 0.90 → 0.344；命中 1/platform/dense#5, 1/platform/bm25#10"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "c3fbf0d337748ec0",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.741,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:46:57.518Z",
+      "updatedAt": "2026-08-18T11:46:57.538Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "b33812dbf735c1e7",
+      "traceId": "073bf2e867e273df9923d66a972835f6",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 11:46:54.207000+00:00",
+      "endTime": "2026-08-18 11:46:54.216000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "P07#003:02",
+          "P07#000:00"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.3 会员权益不突破商品条件",
+            "text": "**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。\n\n> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。两者独立生效，风控不改变窗口，会员不豁免风控。\n\n生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。\n\n无理由退货「须未拆封」的要求对所有会员等级一律适用。金牌会员延长的是**时间窗口**，不是商品状态要求。\n\n退款申请的窗口按**消费者提交退款申请时**的会员等级判定。下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；反之适用 7 天窗口。",
+            "score": 0.564996247291565,
+            "doc_id": "P07",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
+            "reason": "相关性 0.481 × 先验 0.90 → 0.565；命中 1/platform/dense#1, 1/platform/bm25#3"
+          },
+          {
+            "section": "P07 星辰优选会员权益与售后延长规则 > 第一条 会员等级",
+            "text": "星辰优选设两个会员等级，等级由累计消费金额与账户状态综合评定：\n\n| 等级 | 评定标准 |\n|---|---|\n| **普通会员** | 完成注册的全部消费者 |\n| **金牌会员** | 近 12 个月累计消费达标，且账户无严重违规记录 |\n\n会员等级按月评定，等级变化在次月生效。",
+            "score": 0.34398550271987915,
+            "doc_id": "P07",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
+            "reason": "相关性 0.205 × 先验 0.90 → 0.344；命中 1/platform/dense#5, 1/platform/bm25#10"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "168b430afb3e0715",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.009,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:46:57.518Z",
+      "updatedAt": "2026-08-18T11:46:57.538Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "55fef3a35e574ab5",
+      "traceId": "073bf2e867e273df9923d66a972835f6",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-18 11:46:53.489000+00:00",
+      "endTime": "2026-08-18 11:46:53.564000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "P07#003:02",
+            "section": "P07 第四条 会员权益的边界 > 4.3 会员权益不突破商品条件",
+            "rrf": 0.0911,
+            "hits": [
+              "1/platform/dense#1",
+              "1/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P07#002:01",
+            "section": "P07 第三条 极速退款 > 3.2 适用条件",
+            "rrf": 0.0871,
+            "hits": [
+              "1/platform/dense#4",
+              "1/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P07#003:01",
+            "section": "P07 第四条 会员权益的边界 > 4.2 会员权益不突破特殊类目限制",
+            "rrf": 0.0825,
+            "hits": [
+              "1/platform/dense#2",
+              "1/platform/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "P07#003:03",
+            "section": "P07 第四条 会员权益的边界 > 4.4 等级以申请时为准",
+            "rrf": 0.0821,
+            "hits": [
+              "1/platform/dense#9",
+              "1/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P07#001:00",
+            "section": "P07 第二条 售后权益差异 > 2.1 无理由退货窗口",
+            "rrf": 0.0819,
+            "hits": [
+              "1/platform/dense#3",
+              "1/platform/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "P07#003:00",
+            "section": "P07 第四条 会员权益的边界 > 4.1 风控优先于会员权益",
+            "rrf": 0.077,
+            "hits": [
+              "1/platform/dense#7",
+              "1/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P02#001:00",
+            "section": "P02 第二条 退货窗口",
+            "rrf": 0.075,
+            "hits": [
+              "1/platform/dense#10",
+              "1/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P08#002:03",
+            "section": "P08 第二条 触发后的处理 > 2.4 风控优先于会员权益",
+            "rrf": 0.0742,
+            "hits": [
+              "1/platform/dense#6",
+              "1/platform/bm25#8"
+            ]
+          },
+          {
+            "chunk_id": "P07#000:00",
+            "section": "P07 第一条 会员等级",
+            "rrf": 0.0733,
+            "hits": [
+              "1/platform/dense#5",
+              "1/platform/bm25#10"
+            ]
+          },
+          {
+            "chunk_id": "P07#002:00",
+            "section": "P07 第三条 极速退款 > 3.1 服务内容",
+            "rrf": 0.066,
+            "hits": [
+              "1/platform/dense#8",
+              "1/platform/bm25#13"
+            ]
+          },
+          {
+            "chunk_id": "P02#004:00",
+            "section": "P02 第五条 高风险账户",
+            "rrf": 0.0635,
+            "hits": [
+              "1/platform/dense#12",
+              "1/platform/bm25#11"
+            ]
+          },
+          {
+            "chunk_id": "P07#001:02",
+            "section": "P07 第二条 售后权益差异 > 2.3 权益对照",
+            "rrf": 0.0597,
+            "hits": [
+              "1/platform/dense#13",
+              "1/platform/bm25#14"
+            ]
+          },
+          {
+            "chunk_id": "L05#004:00",
+            "section": "L05 第四条 【最低标准与更优承诺】",
+            "rrf": 0.0476,
+            "hits": [
+              "1/law/dense#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#001:01",
+            "section": "L02 第一章 总则 > 第二条 【适用范围】",
+            "rrf": 0.0476,
+            "hits": [
+              "1/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L03#002:00",
+            "section": "L03 第十条 【明码标价与自动续费告知】",
+            "rrf": 0.0455,
+            "hits": [
+              "1/law/dense#2"
+            ]
+          },
+          {
+            "chunk_id": "L02#002:02",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+            "rrf": 0.0455,
+            "hits": [
+              "1/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L05#014:00",
+            "section": "L05 第十四条 【换货标准与有效期重算】",
+            "rrf": 0.0435,
+            "hits": [
+              "1/law/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:08",
+            "section": "L02 第三章 退货程序 > 第十八条 【退货运费承担】",
+            "rrf": 0.0435,
+            "hits": [
+              "1/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L05#017:00",
+            "section": "L05 第十七条 【不实行三包的情形】",
+            "rrf": 0.0417,
+            "hits": [
+              "1/law/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "L05#000:00",
+            "section": "L05 ",
+            "rrf": 0.0417,
+            "hits": [
+              "1/law/bm25#4"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "168b430afb3e0715",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.075,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:46:57.518Z",
+      "updatedAt": "2026-08-18T11:46:57.537Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "a905341cc3520e46",
+      "traceId": "073bf2e867e273df9923d66a972835f6",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 11:46:53.564000+00:00",
+      "endTime": "2026-08-18 11:46:54.207000+00:00",
+      "input": {
+        "query": "我想升金牌会员，得满足啥条件才行啊？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 2,
+        "min_score": 0.3,
+        "dropped": [
+          "P07#002:01",
+          "P07#003:01",
+          "P07#003:03",
+          "P07#001:00",
+          "P07#003:00",
+          "P02#001:00",
+          "P08#002:03",
+          "P07#002:00",
+          "P02#004:00",
+          "P07#001:02",
+          "L05#004:00",
+          "L02#001:01",
+          "L03#002:00",
+          "L02#002:02",
+          "L05#014:00",
+          "L02#003:08",
+          "L05#017:00",
+          "L05#000:00"
+        ],
+        "evidence": [
+          {
+            "chunk_id": "P07#003:02",
+            "section": "P07 第四条 会员权益的边界 > 4.3 会员权益不突破商品条件",
+            "score": 0.565,
+            "relevance": 0.481,
+            "prior": 0.9,
+            "excerpt": "无理由退货「须未拆封」的要求对所有会员等级一律适用。金牌会员延长的是**时间窗口**，不是商品状态要求。"
+          },
+          {
+            "chunk_id": "P07#000:00",
+            "section": "P07 第一条 会员等级",
+            "score": 0.344,
+            "relevance": 0.205,
+            "prior": 0.9,
+            "excerpt": "星辰优选设两个会员等级，等级由累计消费金额与账户状态综合评定： | 等级 | 评定标准 | |---|---| | **普通会员** | 完成注册的全部消费者 | | **金牌会员** | 近 12 个月累计消费达标，且账户无严重违规记录 …"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "168b430afb3e0715",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.643,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:46:57.518Z",
+      "updatedAt": "2026-08-18T11:46:57.537Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "cef121271a48892f",
+      "traceId": "073bf2e867e273df9923d66a972835f6",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 11:46:52.476000+00:00",
+      "endTime": "2026-08-18 11:46:53.488000+00:00",
+      "input": {
+        "query": "我想升金牌会员，得满足啥条件才行啊？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "condition",
+            "text": "升级为金牌会员需要满足什么条件？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "168b430afb3e0715",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.012,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:46:57.518Z",
+      "updatedAt": "2026-08-18T11:46:57.536Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "80bbbcd884b87ea6",
+      "traceId": "073bf2e867e273df9923d66a972835f6",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 11:46:53.488000+00:00",
+      "endTime": "2026-08-18 11:46:53.489000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "168b430afb3e0715",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:46:57.518Z",
+      "updatedAt": "2026-08-18T11:46:57.534Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    }
+  ]
+}

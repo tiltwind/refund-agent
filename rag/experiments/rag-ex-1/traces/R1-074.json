@@ -15,9 +15,10 @@
       "recall@3": 0.0,
       "recall@1": 0.0,
       "evidence_tokens": 0,
-      "duplicate_ratio": 0.0
+      "duplicate_ratio": 0.0,
+      "context_recall": 0.0
     },
-    "elapsed_s": 2.1,
+    "elapsed_s": 2.3,
     "seed_rank": {
       "candidate": {
         "P10#004:03": 1
@@ -27,32 +28,52 @@
       }
     },
     "sections": [],
-    "trace_id": "aed6d5202ba7789d39f85a81eb16dfac"
+    "judge": {
+      "context_recall": {
+        "score": 0.0,
+        "n": 2,
+        "hit": 0,
+        "error": null,
+        "detail": [
+          {
+            "claim": "平台在退款完成后7个工作日内完成发票冲红。",
+            "supported": false,
+            "reason": "上下文为空"
+          },
+          {
+            "claim": "平台向消费者推送冲红结果。",
+            "supported": false,
+            "reason": "上下文为空"
+          }
+        ]
+      },
+      "context_relevance": {
+        "score": null,
+        "error": null,
+        "skipped": "上下文为空"
+      }
+    },
+    "trace_id": "94eaf0feedb119dacb79082929bca60a"
   },
   "trace": {
-    "id": "aed6d5202ba7789d39f85a81eb16dfac",
+    "id": "94eaf0feedb119dacb79082929bca60a",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 03:22:33.307000+00:00"
+    "timestamp": "2026-08-18 11:44:57.309000+00:00"
   },
   "observations": [
     {
-      "id": "e1b161389c86a059",
-      "traceId": "aed6d5202ba7789d39f85a81eb16dfac",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 03:22:39.184000+00:00",
-      "endTime": "2026-08-18 03:22:41.318000+00:00",
-      "modelParameters": {},
-      "input": {
-        "query": "钱都退给我了，那发票什么时候能给我作废掉？会告诉我一声吗？",
-        "top_k": 4
-      },
+      "id": "8967940785fa9dd1",
+      "traceId": "94eaf0feedb119dacb79082929bca60a",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 11:45:39.581000+00:00",
+      "endTime": "2026-08-18 11:45:39.581000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -64,7 +85,10 @@
         }
       },
       "output": {
-        "sections": []
+        "evaluator_count": 1,
+        "evaluation_count": 7,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
       },
       "usage": {
         "input": 0,
@@ -73,7 +97,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "0dd1f0c7b344bfb6",
+      "parentObservationId": "b9be607754c8d8c5",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -81,16 +105,18 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 2.134,
+      "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:22:42.862Z",
-      "updatedAt": "2026-08-18T03:22:42.894Z",
+      "createdAt": "2026-08-18T11:45:42.018Z",
+      "updatedAt": "2026-08-18T11:45:42.047Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
       "totalTokens": 0,
       "completionStartTime": null,
       "model": null,
+      "modelParameters": null,
+      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -104,12 +130,159 @@
       "usagePricingTierName": null
     },
     {
-      "id": "3a1601526300fb0e",
-      "traceId": "aed6d5202ba7789d39f85a81eb16dfac",
+      "id": "b9be607754c8d8c5",
+      "traceId": "94eaf0feedb119dacb79082929bca60a",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 11:44:57.309000+00:00",
+      "endTime": "2026-08-18 11:45:39.581000+00:00",
+      "input": {
+        "query": "钱都退给我了，那发票什么时候能给我作废掉？会告诉我一声吗？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-074",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P10",
+        "section": "第五条 发票 > 5.4 冲红时限",
+        "reviewed": true,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.053,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-074",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P10",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P10#004:03"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 0,
+          "recall@1": 0,
+          "evidence_tokens": 0,
+          "duplicate_ratio": 0,
+          "context_recall": 0
+        },
+        "elapsed_s": 2.3,
+        "seed_rank": {
+          "candidate": {
+            "P10#004:03": 1
+          },
+          "evidence": {
+            "P10#004:03": null
+          }
+        },
+        "sections": [],
+        "judge": {
+          "context_recall": {
+            "score": 0,
+            "n": 2,
+            "hit": 0,
+            "error": null,
+            "detail": [
+              {
+                "claim": "平台在退款完成后7个工作日内完成发票冲红。",
+                "supported": false,
+                "reason": "上下文为空"
+              },
+              {
+                "claim": "平台向消费者推送冲红结果。",
+                "supported": false,
+                "reason": "上下文为空"
+              }
+            ]
+          },
+          "context_relevance": {
+            "score": null,
+            "error": null,
+            "skipped": "上下文为空"
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 42.272,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:45:42.018Z",
+      "updatedAt": "2026-08-18T11:45:42.046Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "187b239057f7447c",
+      "traceId": "94eaf0feedb119dacb79082929bca60a",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 03:22:41.318000+00:00",
-      "endTime": "2026-08-18 03:22:41.319000+00:00",
+      "startTime": "2026-08-18 11:45:39.581000+00:00",
+      "endTime": "2026-08-18 11:45:39.581000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -131,9 +304,10 @@
             "recall@3": 0,
             "recall@1": 0,
             "evidence_tokens": 0,
-            "duplicate_ratio": 0
+            "duplicate_ratio": 0,
+            "context_recall": 0
           },
-          "elapsed_s": 2.1,
+          "elapsed_s": 2.3,
           "seed_rank": {
             "candidate": {
               "P10#004:03": 1
@@ -142,9 +316,38 @@
               "P10#004:03": null
             }
           },
-          "sections": []
+          "sections": [],
+          "judge": {
+            "context_recall": {
+              "score": 0,
+              "n": 2,
+              "hit": 0,
+              "error": null,
+              "detail": [
+                {
+                  "claim": "平台在退款完成后7个工作日内完成发票冲红。",
+                  "supported": false,
+                  "reason": "上下文为空"
+                },
+                {
+                  "claim": "平台向消费者推送冲红结果。",
+                  "supported": false,
+                  "reason": "上下文为空"
+                }
+              ]
+            },
+            "context_relevance": {
+              "score": null,
+              "error": null,
+              "skipped": "上下文为空"
+            }
+          }
         },
         "expected_output": {
+          "claims": [
+            "平台在退款完成后7个工作日内完成发票冲红。",
+            "平台向消费者推送冲红结果。"
+          ],
           "seed_chunk_id": [
             "P10#004:03"
           ],
@@ -158,6 +361,7 @@
           "doc_id": "P10",
           "section": "第五条 发票 > 5.4 冲红时限",
           "reviewed": true,
+          "claims_by": "openai:deepseek-v4-pro",
           "generated_by": "openai:deepseek-v4-flash",
           "overlap_ratio": 0.053
         }
@@ -169,7 +373,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -207,6 +411,11 @@
           "comment": ""
         },
         {
+          "name": "context_recall",
+          "value": 0,
+          "comment": "0/2 条 claim 被支撑；没撑住：平台在退款完成后7个工作日内完成发票冲红。｜平台向消费者推送冲红结果。"
+        },
+        {
           "name": "run_error",
           "value": 0,
           "comment": "ok"
@@ -219,7 +428,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "2f4943afceec4bbd",
+      "parentObservationId": "8967940785fa9dd1",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -227,10 +436,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.001,
+      "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:22:42.862Z",
-      "updatedAt": "2026-08-18T03:22:42.892Z",
+      "createdAt": "2026-08-18T11:45:42.018Z",
+      "updatedAt": "2026-08-18T11:45:42.043Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -250,21 +459,23 @@
       "usagePricingTierName": null
     },
     {
-      "id": "8c857a9204296cee",
-      "traceId": "aed6d5202ba7789d39f85a81eb16dfac",
-      "type": "SPAN",
-      "name": "rag.rewrite",
-      "startTime": "2026-08-18 03:22:39.184000+00:00",
-      "endTime": "2026-08-18 03:22:40.482000+00:00",
+      "id": "413ef067f63ccdc5",
+      "traceId": "94eaf0feedb119dacb79082929bca60a",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 11:45:37.307000+00:00",
+      "endTime": "2026-08-18 11:45:39.580000+00:00",
+      "modelParameters": {},
       "input": {
-        "query": "钱都退给我了，那发票什么时候能给我作废掉？会告诉我一声吗？"
+        "query": "钱都退给我了，那发票什么时候能给我作废掉？会告诉我一声吗？",
+        "top_k": 4
       },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -276,15 +487,7 @@
         }
       },
       "output": {
-        "rewritten": true,
-        "needs_law": false,
-        "sub_queries": [
-          {
-            "id": "1",
-            "intent": "other",
-            "text": "退款完成后，发票什么时候会作废？平台会通知用户发票作废的结果吗？"
-          }
-        ]
+        "sections": []
       },
       "usage": {
         "input": 0,
@@ -293,7 +496,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "e1b161389c86a059",
+      "parentObservationId": "f6f3a93b76d23e0a",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -301,17 +504,16 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.298,
+      "latency": 2.273,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:22:42.862Z",
-      "updatedAt": "2026-08-18T03:22:42.892Z",
+      "createdAt": "2026-08-18T11:45:42.018Z",
+      "updatedAt": "2026-08-18T11:45:42.043Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
       "totalTokens": 0,
       "completionStartTime": null,
       "model": null,
-      "modelParameters": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -325,18 +527,21 @@
       "usagePricingTierName": null
     },
     {
-      "id": "eb89f723fd58ef13",
-      "traceId": "aed6d5202ba7789d39f85a81eb16dfac",
+      "id": "f6f3a93b76d23e0a",
+      "traceId": "94eaf0feedb119dacb79082929bca60a",
       "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 03:22:33.307000+00:00",
-      "endTime": "2026-08-18 03:22:41.319000+00:00",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 11:44:57.309000+00:00",
+      "endTime": "2026-08-18 11:45:39.580000+00:00",
       "input": {
         "query": "钱都退给我了，那发票什么时候能给我作废掉？会告诉我一声吗？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-2",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
         "collection": "refund_policy_chunks",
         "embedding_model": "BAAI/bge-m3",
         "reranker": "BAAI/bge-reranker-v2-m3",
@@ -357,13 +562,14 @@
         "doc_id": "P10",
         "section": "第五条 发票 > 5.4 冲红时限",
         "reviewed": true,
+        "claims_by": "openai:deepseek-v4-pro",
         "generated_by": "openai:deepseek-v4-flash",
         "overlap_ratio": 0.053,
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -390,9 +596,10 @@
           "recall@3": 0,
           "recall@1": 0,
           "evidence_tokens": 0,
-          "duplicate_ratio": 0
+          "duplicate_ratio": 0,
+          "context_recall": 0
         },
-        "elapsed_s": 2.1,
+        "elapsed_s": 2.3,
         "seed_rank": {
           "candidate": {
             "P10#004:03": 1
@@ -401,7 +608,32 @@
             "P10#004:03": null
           }
         },
-        "sections": []
+        "sections": [],
+        "judge": {
+          "context_recall": {
+            "score": 0,
+            "n": 2,
+            "hit": 0,
+            "error": null,
+            "detail": [
+              {
+                "claim": "平台在退款完成后7个工作日内完成发票冲红。",
+                "supported": false,
+                "reason": "上下文为空"
+              },
+              {
+                "claim": "平台向消费者推送冲红结果。",
+                "supported": false,
+                "reason": "上下文为空"
+              }
+            ]
+          },
+          "context_relevance": {
+            "score": null,
+            "error": null,
+            "skipped": "上下文为空"
+          }
+        }
       },
       "usage": {
         "input": 0,
@@ -410,6 +642,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
+      "parentObservationId": "b9be607754c8d8c5",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -417,10 +650,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 8.012,
+      "latency": 42.271,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:22:42.862Z",
-      "updatedAt": "2026-08-18T03:22:42.892Z",
+      "createdAt": "2026-08-18T11:45:42.018Z",
+      "updatedAt": "2026-08-18T11:45:42.035Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -430,7 +663,6 @@
       "modelParameters": null,
       "version": null,
       "statusMessage": null,
-      "parentObservationId": null,
       "promptId": null,
       "promptName": null,
       "promptVersion": null,
@@ -442,12 +674,80 @@
       "usagePricingTierName": null
     },
     {
-      "id": "19be09ca79c94338",
-      "traceId": "aed6d5202ba7789d39f85a81eb16dfac",
+      "id": "434ad59cfdded460",
+      "traceId": "94eaf0feedb119dacb79082929bca60a",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 11:45:39.580000+00:00",
+      "endTime": "2026-08-18 11:45:39.580000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": []
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "413ef067f63ccdc5",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:45:42.018Z",
+      "updatedAt": "2026-08-18T11:45:42.034Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "7227755d823fde07",
+      "traceId": "94eaf0feedb119dacb79082929bca60a",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 03:22:40.556000+00:00",
-      "endTime": "2026-08-18 03:22:41.317000+00:00",
+      "startTime": "2026-08-18 11:45:38.825000+00:00",
+      "endTime": "2026-08-18 11:45:39.580000+00:00",
       "input": {
         "query": "钱都退给我了，那发票什么时候能给我作废掉？会告诉我一声吗？",
         "candidates": 20
@@ -457,7 +757,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -502,7 +802,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "e1b161389c86a059",
+      "parentObservationId": "413ef067f63ccdc5",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -510,10 +810,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.761,
+      "latency": 0.755,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:22:42.862Z",
-      "updatedAt": "2026-08-18T03:22:42.891Z",
+      "createdAt": "2026-08-18T11:45:42.018Z",
+      "updatedAt": "2026-08-18T11:45:42.034Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -534,18 +834,21 @@
       "usagePricingTierName": null
     },
     {
-      "id": "2f4943afceec4bbd",
-      "traceId": "aed6d5202ba7789d39f85a81eb16dfac",
+      "id": "979b572dca5a92ce",
+      "traceId": "94eaf0feedb119dacb79082929bca60a",
       "type": "SPAN",
-      "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 03:22:41.318000+00:00",
-      "endTime": "2026-08-18 03:22:41.319000+00:00",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 11:45:37.307000+00:00",
+      "endTime": "2026-08-18 11:45:38.736000+00:00",
+      "input": {
+        "query": "钱都退给我了，那发票什么时候能给我作废掉？会告诉我一声吗？"
+      },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -557,10 +860,15 @@
         }
       },
       "output": {
-        "evaluator_count": 1,
-        "evaluation_count": 6,
-        "failed_evaluator_count": 0,
-        "skipped_evaluator_count": 0
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "other",
+            "text": "退款完成后，发票什么时候会作废？平台会通知用户发票作废的结果吗？"
+          }
+        ]
       },
       "usage": {
         "input": 0,
@@ -569,7 +877,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "eb89f723fd58ef13",
+      "parentObservationId": "413ef067f63ccdc5",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -577,10 +885,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.001,
+      "latency": 1.429,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:22:42.862Z",
-      "updatedAt": "2026-08-18T03:22:42.891Z",
+      "createdAt": "2026-08-18T11:45:42.018Z",
+      "updatedAt": "2026-08-18T11:45:42.033Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -588,7 +896,6 @@
       "completionStartTime": null,
       "model": null,
       "modelParameters": null,
-      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -602,18 +909,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "c06415b668416b89",
-      "traceId": "aed6d5202ba7789d39f85a81eb16dfac",
+      "id": "0c983c419d3797ae",
+      "traceId": "94eaf0feedb119dacb79082929bca60a",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 03:22:40.483000+00:00",
-      "endTime": "2026-08-18 03:22:40.555000+00:00",
+      "startTime": "2026-08-18 11:45:38.737000+00:00",
+      "endTime": "2026-08-18 11:45:38.825000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -804,7 +1111,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "e1b161389c86a059",
+      "parentObservationId": "413ef067f63ccdc5",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -812,10 +1119,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.072,
+      "latency": 0.088,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:22:42.862Z",
-      "updatedAt": "2026-08-18T03:22:42.888Z",
+      "createdAt": "2026-08-18T11:45:42.018Z",
+      "updatedAt": "2026-08-18T11:45:42.032Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -837,18 +1144,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "a99a9b700647f515",
-      "traceId": "aed6d5202ba7789d39f85a81eb16dfac",
+      "id": "944f161a961422dd",
+      "traceId": "94eaf0feedb119dacb79082929bca60a",
       "type": "SPAN",
       "name": "rag.route",
-      "startTime": "2026-08-18 03:22:40.482000+00:00",
-      "endTime": "2026-08-18 03:22:40.483000+00:00",
+      "startTime": "2026-08-18 11:45:38.736000+00:00",
+      "endTime": "2026-08-18 11:45:38.737000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -878,7 +1185,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "e1b161389c86a059",
+      "parentObservationId": "413ef067f63ccdc5",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -888,8 +1195,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:22:42.862Z",
-      "updatedAt": "2026-08-18T03:22:42.885Z",
+      "createdAt": "2026-08-18T11:45:42.018Z",
+      "updatedAt": "2026-08-18T11:45:42.032Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -898,191 +1205,6 @@
       "model": null,
       "modelParameters": null,
       "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "f17fa657775f8a79",
-      "traceId": "aed6d5202ba7789d39f85a81eb16dfac",
-      "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 03:22:41.318000+00:00",
-      "endTime": "2026-08-18 03:22:41.318000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": []
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": []
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "e1b161389c86a059",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.0,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:22:42.862Z",
-      "updatedAt": "2026-08-18T03:22:42.885Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "0dd1f0c7b344bfb6",
-      "traceId": "aed6d5202ba7789d39f85a81eb16dfac",
-      "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 03:22:33.307000+00:00",
-      "endTime": "2026-08-18 03:22:41.318000+00:00",
-      "input": {
-        "query": "钱都退给我了，那发票什么时候能给我作废掉？会告诉我一声吗？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-2",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-074",
-        "kind": "text",
-        "type": "single",
-        "layer": "platform",
-        "style": "colloquial",
-        "doc_id": "P10",
-        "section": "第五条 发票 > 5.4 冲红时限",
-        "reviewed": true,
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.053,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-074",
-        "type": "single",
-        "style": "colloquial",
-        "doc_id": "P10",
-        "layer": "platform",
-        "kind": "text",
-        "seed_chunk_id": [
-          "P10#004:03"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 0,
-          "recall@1": 0,
-          "evidence_tokens": 0,
-          "duplicate_ratio": 0
-        },
-        "elapsed_s": 2.1,
-        "seed_rank": {
-          "candidate": {
-            "P10#004:03": 1
-          },
-          "evidence": {
-            "P10#004:03": null
-          }
-        },
-        "sections": []
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "eb89f723fd58ef13",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 8.011,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:22:42.862Z",
-      "updatedAt": "2026-08-18T03:22:42.883Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,

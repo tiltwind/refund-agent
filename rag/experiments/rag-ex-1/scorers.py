@@ -1,8 +1,8 @@
 """rag-ex-1 的打分器。
 
-这一版只有**不调模型**的部分：三档 Recall 加两个辅助数。它们是纯函数，同一份
-数据集跑两遍结果一致，因此能进门禁（5-rag-eval 3.3）。Context Recall 与
-Context Relevance 要调 judge，等 judge 校准做完再接进来（5-rag-eval 9.2）。
+这里只放**不调模型**的部分：三档 Recall 加两个辅助数。它们是纯函数，同一份数据集
+跑两遍结果一致，因此能进门禁（5-rag-eval 六）。要调 judge 的 Context Recall 与
+Context Relevance 在 `judge.py`，那两个有噪声，只进报告不进门禁。
 
 三档取自链路的三个位置，读的不是同一个序列：
 

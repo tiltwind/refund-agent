@@ -70,6 +70,7 @@ ID 级 Recall 的真值是「这条 query 的全部相关块」。
 | 只给 `chunk.body`，不给 `chunk.header` | 块头是`【文档】P02 …【路径】第二条 退货窗口`，模型会照抄进 query，直接给了 BM25 一个精确命中 |
 | 要求 query 是消费者会问出口的话 | 见 5.2 |
 | 参考答案只能用给定块里的信息，不许补常识 | 答案里混进块外信息，Context Recall 会把检索判负，实际是生成阶段的问题 |
+| 顺带把参考答案拆成 claim | claim 是 Context Recall 的分母。跟答案一次生成，比事后再调一轮模型便宜，也保证同一条答案的拆分只有一份 |
 
 ---
 
@@ -167,6 +168,7 @@ P02 是核心政策，日常检索里本来就占多数命中。抽样时要提�
 | `query` | 直接喂 `search_policy` | — |
 | `seed_chunk_id` | `recall_at_k` | 算不了 ID 级 Recall |
 | `reference_answer` | `context_recall`（LLM judge） | 算不了内容级 Recall |
+| `claims` | `context_recall` 的分母 | 同上。它是参考答案拆成的原子事实，与答案同一次生成，不在跑批时现拆 |
 | `style` / `overlap_ratio` | 报告分档 | 只剩一个混合数，读不出对字面匹配的依赖程度 |
 | `type` | 聚合口径（`multi_hop` 全中才算命中） | 部分召回被误判为通过 |
 | `meta.doc_id` / `layer` / `kind` | 报告切片 | 定位不到是哪类文档或哪类块出问题 |

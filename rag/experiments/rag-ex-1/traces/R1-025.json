@@ -1,0 +1,1386 @@
+{
+  "case": {
+    "case_id": "R1-025",
+    "type": "single",
+    "style": "formal",
+    "doc_id": "P01",
+    "layer": "platform",
+    "kind": "text",
+    "seed_chunk_id": [
+      "P01#001:00"
+    ],
+    "error": null,
+    "scores": {
+      "recall@10": 1.0,
+      "recall@3": 1.0,
+      "recall@1": 1.0,
+      "evidence_tokens": 645,
+      "duplicate_ratio": 0.319,
+      "context_recall": 1.0,
+      "context_relevance": 0.077
+    },
+    "elapsed_s": 1.5,
+    "seed_rank": {
+      "candidate": {
+        "P01#001:00": 1
+      },
+      "evidence": {
+        "P01#001:00": 1
+      }
+    },
+    "sections": [
+      "P01 星辰优选用户服务协议 > 第一章 协议的接受与变更 > 1.1 协议范围 … 第一章 协议的接受与变更 > 1.4 规则的公示与查阅",
+      "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第三十三条 【平台规则的公示义务】 … 第三十四条 【规则变更的征求意见程序】"
+    ],
+    "judge": {
+      "context_recall": {
+        "score": 1.0,
+        "n": 2,
+        "hit": 2,
+        "detail": [
+          {
+            "claim": "本协议与平台公示的各项交易规则共同构成完整约定。",
+            "supported": true,
+            "reason": "P01 明确写明本协议与公示交易规则共同构成完整约定。"
+          },
+          {
+            "claim": "各规则文件与本协议不一致的，以专门规则文件为准。",
+            "supported": true,
+            "reason": "P01 明确写明不一致时以专门规则文件为准。"
+          }
+        ],
+        "error": null
+      },
+      "context_relevance": {
+        "score": 0.077,
+        "n": 26,
+        "hit": 2,
+        "truncated": false,
+        "note": "其他单元涉及规则公示、修改程序、订单适用版本等，未直接回答冲突时的优先规则。",
+        "irrelevant": [
+          "本协议及平台在首页显著位置公示的各项交易规则（含《售后服务与退换货政策》《退款规则与到账时效》《争议处理规则》等），共同",
+          "消费者注册账户、下单或使用平台任一服务，即视为已阅读、理解并同意本协议及各项交易规则。",
+          "平台修改本协议或交易规则的，将在首页显著位置公开征求意见，并**在实施前至少 7 日予以公示**。",
+          "**已生效订单适用下单时的规则版本，不适用变更后的新规则。",
+          "** 处理售后申请时须核对订单创建时间与条款生效日期，不得以新版本条款判定旧订单。",
+          "平台服务协议与全部交易规则在首页持续公示，消费者可随时完整阅览和下载。",
+          "**未经公示的内部规则不得作为对消费者不利判定的依据。",
+          "**",
+          "本协议及平台在首页显著位置公示的各项交易规则（含《售后服务与退换货政策》《退款规则与到账时效》《争议处理规则》等），共同",
+          "消费者注册账户、下单或使用平台任一服务，即视为已阅读、理解并同意本协议及各项交易规则。"
+        ],
+        "error": null
+      }
+    },
+    "trace_id": "e1a9c361ebd8d6d080b1a175d6af45df"
+  },
+  "trace": {
+    "id": "e1a9c361ebd8d6d080b1a175d6af45df",
+    "name": "experiment-item-run",
+    "timestamp": "2026-08-18 11:49:51.805000+00:00"
+  },
+  "observations": [
+    {
+      "id": "778ca17f4c36bb2d",
+      "traceId": "e1a9c361ebd8d6d080b1a175d6af45df",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 11:49:56.590000+00:00",
+      "endTime": "2026-08-18 11:49:56.591000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "4db2fcfd8a774605",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:58.687Z",
+      "updatedAt": "2026-08-18T11:49:58.702Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "dadecf4b559b28ab",
+      "traceId": "e1a9c361ebd8d6d080b1a175d6af45df",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 11:49:40.806000+00:00",
+      "endTime": "2026-08-18 11:49:56.588000+00:00",
+      "input": {
+        "query": "当本协议与平台公示的专门交易规则文件内容存在冲突时，应以哪一方的规定为准？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-025",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "formal",
+        "doc_id": "P01",
+        "section": "第一章 协议的接受与变更 > 1.1 协议范围",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.394,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-025",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "P01",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P01#001:00"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 645,
+          "duplicate_ratio": 0.319,
+          "context_recall": 1,
+          "context_relevance": 0.077
+        },
+        "elapsed_s": 1.5,
+        "seed_rank": {
+          "candidate": {
+            "P01#001:00": 1
+          },
+          "evidence": {
+            "P01#001:00": 1
+          }
+        },
+        "sections": [
+          "P01 星辰优选用户服务协议 > 第一章 协议的接受与变更 > 1.1 协议范围 … 第一章 协议的接受与变更 > 1.4 规则的公示与查阅",
+          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第三十三条 【平台规则的公示义务】 … 第三十四条 【规则变更的征求意见程序】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "本协议与平台公示的各项交易规则共同构成完整约定。",
+                "supported": true,
+                "reason": "P01 明确写明本协议与公示交易规则共同构成完整约定。"
+              },
+              {
+                "claim": "各规则文件与本协议不一致的，以专门规则文件为准。",
+                "supported": true,
+                "reason": "P01 明确写明不一致时以专门规则文件为准。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.077,
+            "n": 26,
+            "hit": 2,
+            "truncated": false,
+            "note": "其他单元涉及规则公示、修改程序、订单适用版本等，未直接回答冲突时的优先规则。",
+            "irrelevant": [
+              "本协议及平台在首页显著位置公示的各项交易规则（含《售后服务与退换货政策》《退款规则与到账时效》《争议处理规则》等），共同",
+              "消费者注册账户、下单或使用平台任一服务，即视为已阅读、理解并同意本协议及各项交易规则。",
+              "平台修改本协议或交易规则的，将在首页显著位置公开征求意见，并**在实施前至少 7 日予以公示**。",
+              "**已生效订单适用下单时的规则版本，不适用变更后的新规则。",
+              "** 处理售后申请时须核对订单创建时间与条款生效日期，不得以新版本条款判定旧订单。",
+              "平台服务协议与全部交易规则在首页持续公示，消费者可随时完整阅览和下载。",
+              "**未经公示的内部规则不得作为对消费者不利判定的依据。",
+              "**",
+              "本协议及平台在首页显著位置公示的各项交易规则（含《售后服务与退换货政策》《退款规则与到账时效》《争议处理规则》等），共同",
+              "消费者注册账户、下单或使用平台任一服务，即视为已阅读、理解并同意本协议及各项交易规则。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "4db2fcfd8a774605",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 15.782,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:58.687Z",
+      "updatedAt": "2026-08-18T11:49:58.700Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "1da1649964a04f7f",
+      "traceId": "e1a9c361ebd8d6d080b1a175d6af45df",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 11:49:56.590000+00:00",
+      "endTime": "2026-08-18 11:49:56.590000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "当本协议与平台公示的专门交易规则文件内容存在冲突时，应以哪一方的规定为准？"
+        },
+        "output": {
+          "case_id": "R1-025",
+          "type": "single",
+          "style": "formal",
+          "doc_id": "P01",
+          "layer": "platform",
+          "kind": "text",
+          "seed_chunk_id": [
+            "P01#001:00"
+          ],
+          "error": null,
+          "scores": {
+            "recall@10": 1,
+            "recall@3": 1,
+            "recall@1": 1,
+            "evidence_tokens": 645,
+            "duplicate_ratio": 0.319,
+            "context_recall": 1,
+            "context_relevance": 0.077
+          },
+          "elapsed_s": 1.5,
+          "seed_rank": {
+            "candidate": {
+              "P01#001:00": 1
+            },
+            "evidence": {
+              "P01#001:00": 1
+            }
+          },
+          "sections": [
+            "P01 星辰优选用户服务协议 > 第一章 协议的接受与变更 > 1.1 协议范围 … 第一章 协议的接受与变更 > 1.4 规则的公示与查阅",
+            "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第三十三条 【平台规则的公示义务】 … 第三十四条 【规则变更的征求意见程序】"
+          ],
+          "judge": {
+            "context_recall": {
+              "score": 1,
+              "n": 2,
+              "hit": 2,
+              "detail": [
+                {
+                  "claim": "本协议与平台公示的各项交易规则共同构成完整约定。",
+                  "supported": true,
+                  "reason": "P01 明确写明本协议与公示交易规则共同构成完整约定。"
+                },
+                {
+                  "claim": "各规则文件与本协议不一致的，以专门规则文件为准。",
+                  "supported": true,
+                  "reason": "P01 明确写明不一致时以专门规则文件为准。"
+                }
+              ],
+              "error": null
+            },
+            "context_relevance": {
+              "score": 0.077,
+              "n": 26,
+              "hit": 2,
+              "truncated": false,
+              "note": "其他单元涉及规则公示、修改程序、订单适用版本等，未直接回答冲突时的优先规则。",
+              "irrelevant": [
+                "本协议及平台在首页显著位置公示的各项交易规则（含《售后服务与退换货政策》《退款规则与到账时效》《争议处理规则》等），共同",
+                "消费者注册账户、下单或使用平台任一服务，即视为已阅读、理解并同意本协议及各项交易规则。",
+                "平台修改本协议或交易规则的，将在首页显著位置公开征求意见，并**在实施前至少 7 日予以公示**。",
+                "**已生效订单适用下单时的规则版本，不适用变更后的新规则。",
+                "** 处理售后申请时须核对订单创建时间与条款生效日期，不得以新版本条款判定旧订单。",
+                "平台服务协议与全部交易规则在首页持续公示，消费者可随时完整阅览和下载。",
+                "**未经公示的内部规则不得作为对消费者不利判定的依据。",
+                "**",
+                "本协议及平台在首页显著位置公示的各项交易规则（含《售后服务与退换货政策》《退款规则与到账时效》《争议处理规则》等），共同",
+                "消费者注册账户、下单或使用平台任一服务，即视为已阅读、理解并同意本协议及各项交易规则。"
+              ],
+              "error": null
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [
+            "本协议与平台公示的各项交易规则共同构成完整约定。",
+            "各规则文件与本协议不一致的，以专门规则文件为准。"
+          ],
+          "seed_chunk_id": [
+            "P01#001:00"
+          ],
+          "reference_answer": "本协议与平台公示的各项交易规则共同构成完整约定，各规则文件与本协议不一致的，以专门规则文件为准。"
+        },
+        "metadata": {
+          "kind": "text",
+          "type": "single",
+          "layer": "platform",
+          "style": "formal",
+          "doc_id": "P01",
+          "section": "第一章 协议的接受与变更 > 1.1 协议范围",
+          "reviewed": false,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.394
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 1,
+          "comment": "种子块名次 P01#001:00=1"
+        },
+        {
+          "name": "recall@3",
+          "value": 1,
+          "comment": "种子块名次 P01#001:00=1"
+        },
+        {
+          "name": "recall@1",
+          "value": 1,
+          "comment": "种子块名次 P01#001:00=1"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 645,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0.319,
+          "comment": ""
+        },
+        {
+          "name": "context_recall",
+          "value": 1,
+          "comment": "2/2 条 claim 被支撑"
+        },
+        {
+          "name": "context_relevance",
+          "value": 0.077,
+          "comment": "2/26 个内容单元相关；其他单元涉及规则公示、修改程序、订单适用版本等，未直接回答冲突时的优先规则。"
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "778ca17f4c36bb2d",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:58.687Z",
+      "updatedAt": "2026-08-18T11:49:58.696Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "4db2fcfd8a774605",
+      "traceId": "e1a9c361ebd8d6d080b1a175d6af45df",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 11:49:40.806000+00:00",
+      "endTime": "2026-08-18 11:49:56.591000+00:00",
+      "input": {
+        "query": "当本协议与平台公示的专门交易规则文件内容存在冲突时，应以哪一方的规定为准？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-025",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "formal",
+        "doc_id": "P01",
+        "section": "第一章 协议的接受与变更 > 1.1 协议范围",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.394,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-025",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "P01",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P01#001:00"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 645,
+          "duplicate_ratio": 0.319,
+          "context_recall": 1,
+          "context_relevance": 0.077
+        },
+        "elapsed_s": 1.5,
+        "seed_rank": {
+          "candidate": {
+            "P01#001:00": 1
+          },
+          "evidence": {
+            "P01#001:00": 1
+          }
+        },
+        "sections": [
+          "P01 星辰优选用户服务协议 > 第一章 协议的接受与变更 > 1.1 协议范围 … 第一章 协议的接受与变更 > 1.4 规则的公示与查阅",
+          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第三十三条 【平台规则的公示义务】 … 第三十四条 【规则变更的征求意见程序】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "本协议与平台公示的各项交易规则共同构成完整约定。",
+                "supported": true,
+                "reason": "P01 明确写明本协议与公示交易规则共同构成完整约定。"
+              },
+              {
+                "claim": "各规则文件与本协议不一致的，以专门规则文件为准。",
+                "supported": true,
+                "reason": "P01 明确写明不一致时以专门规则文件为准。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.077,
+            "n": 26,
+            "hit": 2,
+            "truncated": false,
+            "note": "其他单元涉及规则公示、修改程序、订单适用版本等，未直接回答冲突时的优先规则。",
+            "irrelevant": [
+              "本协议及平台在首页显著位置公示的各项交易规则（含《售后服务与退换货政策》《退款规则与到账时效》《争议处理规则》等），共同",
+              "消费者注册账户、下单或使用平台任一服务，即视为已阅读、理解并同意本协议及各项交易规则。",
+              "平台修改本协议或交易规则的，将在首页显著位置公开征求意见，并**在实施前至少 7 日予以公示**。",
+              "**已生效订单适用下单时的规则版本，不适用变更后的新规则。",
+              "** 处理售后申请时须核对订单创建时间与条款生效日期，不得以新版本条款判定旧订单。",
+              "平台服务协议与全部交易规则在首页持续公示，消费者可随时完整阅览和下载。",
+              "**未经公示的内部规则不得作为对消费者不利判定的依据。",
+              "**",
+              "本协议及平台在首页显著位置公示的各项交易规则（含《售后服务与退换货政策》《退款规则与到账时效》《争议处理规则》等），共同",
+              "消费者注册账户、下单或使用平台任一服务，即视为已阅读、理解并同意本协议及各项交易规则。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 15.785,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:58.687Z",
+      "updatedAt": "2026-08-18T11:49:58.695Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "2c47d0fca9ea290a",
+      "traceId": "e1a9c361ebd8d6d080b1a175d6af45df",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-18 11:49:52.690000+00:00",
+      "endTime": "2026-08-18 11:49:52.784000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "P01#001:00",
+            "section": "P01 第一章 协议的接受与变更 > 1.1 协议范围",
+            "rrf": 0.0931,
+            "hits": [
+              "1/platform/dense#2",
+              "1/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L04#005:00",
+            "section": "L04 第三十三条 【平台规则的公示义务】",
+            "rrf": 0.0931,
+            "hits": [
+              "1/law/dense#1",
+              "1/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L04#006:00",
+            "section": "L04 第三十四条 【规则变更的征求意见程序】",
+            "rrf": 0.0911,
+            "hits": [
+              "1/law/dense#3",
+              "1/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P01#001:03",
+            "section": "P01 第一章 协议的接受与变更 > 1.4 规则的公示与查阅",
+            "rrf": 0.0889,
+            "hits": [
+              "1/platform/dense#3",
+              "1/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L04#004:00",
+            "section": "L04 第三十二条 【平台交易规则的制定】",
+            "rrf": 0.0889,
+            "hits": [
+              "1/law/dense#2",
+              "1/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P09#003:02",
+            "section": "P09 第四条 平台介入的处理 > 4.3 判定依据",
+            "rrf": 0.0876,
+            "hits": [
+              "1/platform/dense#1",
+              "1/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P01#001:02",
+            "section": "P01 第一章 协议的接受与变更 > 1.3 协议的变更",
+            "rrf": 0.0851,
+            "hits": [
+              "1/platform/dense#4",
+              "1/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#006:02",
+            "section": "L02 第六章 法律责任 > 第三十二条 【平台未公示规则】",
+            "rrf": 0.0785,
+            "hits": [
+              "1/law/dense#5",
+              "1/law/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "L04#000:00",
+            "section": "L04 ",
+            "rrf": 0.0774,
+            "hits": [
+              "1/law/dense#4",
+              "1/law/bm25#8"
+            ]
+          },
+          {
+            "chunk_id": "L02#004:02",
+            "section": "L02 第四章 特别规定 > 第二十二条 【平台规则公示义务】",
+            "rrf": 0.0757,
+            "hits": [
+              "1/law/dense#8",
+              "1/law/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P01#001:01",
+            "section": "P01 第一章 协议的接受与变更 > 1.2 协议的接受",
+            "rrf": 0.0729,
+            "hits": [
+              "1/platform/dense#9",
+              "1/platform/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "L02#004:01",
+            "section": "L02 第四章 特别规定 > 第二十一条 【平台与商家的协议义务】",
+            "rrf": 0.0715,
+            "hits": [
+              "1/law/dense#9",
+              "1/law/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "P01#009:00",
+            "section": "P01 相关文件",
+            "rrf": 0.0645,
+            "hits": [
+              "1/platform/dense#11",
+              "1/platform/bm25#11"
+            ]
+          },
+          {
+            "chunk_id": "P01#005:02",
+            "section": "P01 第五章 售后与退款 > 5.3 判定依据的唯一性",
+            "rrf": 0.0417,
+            "hits": [
+              "1/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "L03#000:00",
+            "section": "L03 ",
+            "rrf": 0.0417,
+            "hits": [
+              "1/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P01#008:02",
+            "section": "P01 第八章 争议解决 > 8.3 交易记录的保存",
+            "rrf": 0.04,
+            "hits": [
+              "1/platform/dense#5"
+            ]
+          },
+          {
+            "chunk_id": "P09#007:00",
+            "section": "P09 第八条 争议记录",
+            "rrf": 0.0385,
+            "hits": [
+              "1/platform/dense#6"
+            ]
+          },
+          {
+            "chunk_id": "L03#001:00",
+            "section": "L03 第九条 【真实信息与禁止差别定价】",
+            "rrf": 0.0385,
+            "hits": [
+              "1/law/dense#6"
+            ]
+          },
+          {
+            "chunk_id": "P01#008:01",
+            "section": "P01 第八章 争议解决 > 8.2 平台调解",
+            "rrf": 0.037,
+            "hits": [
+              "1/platform/dense#7"
+            ]
+          },
+          {
+            "chunk_id": "P11#000:00",
+            "section": "P11 ",
+            "rrf": 0.037,
+            "hits": [
+              "1/platform/bm25#7"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "28b4ed7a767af9de",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.094,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:53.620Z",
+      "updatedAt": "2026-08-18T11:49:53.645Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "e30a9d54f5e13834",
+      "traceId": "e1a9c361ebd8d6d080b1a175d6af45df",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 11:49:53.251000+00:00",
+      "endTime": "2026-08-18 11:49:53.264000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "P01#001:00",
+          "L04#005:00",
+          "P01#001:03",
+          "L04#006:00"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P01 星辰优选用户服务协议 > 第一章 协议的接受与变更 > 1.1 协议范围 … 第一章 协议的接受与变更 > 1.4 规则的公示与查阅",
+            "text": "本协议及平台在首页显著位置公示的各项交易规则（含《售后服务与退换货政策》《退款规则与到账时效》《争议处理规则》等），共同构成消费者与平台之间的完整约定。各规则文件与本协议不一致的，以专门规则文件为准。\n\n消费者注册账户、下单或使用平台任一服务，即视为已阅读、理解并同意本协议及各项交易规则。\n\n平台修改本协议或交易规则的，将在首页显著位置公开征求意见，并**在实施前至少 7 日予以公示**。\n\n**已生效订单适用下单时的规则版本，不适用变更后的新规则。** 处理售后申请时须核对订单创建时间与条款生效日期，不得以新版本条款判定旧订单。\n\n平台服务协议与全部交易规则在首页持续公示，消费者可随时完整阅览和下载。**未经公示的内部规则不得作为对消费者不利判定的依据。**\n\n本协议及平台在首页显著位置公示的各项交易规则（含《售后服务与退换货政策》《退款规则与到账时效》《争议处理规则》等），共同构成消费者与平台之间的完整约定。各规则文件与本协议不一致的，以专门规则文件为准。\n\n消费者注册账户、下单或使用平台任一服务，即视为已阅读、理解并同意本协议及各项交易规则。\n\n平台修改本协议或交易规则的，将在首页显著位置公开征求意见，并**在实施前至少 7 日予以公示**。\n\n**已生效订单适用下单时的规则版本，不适用变更后的新规则。** 处理售后申请时须核对订单创建时间与条款生效日期，不得以新版本条款判定旧订单。\n\n平台服务协议与全部交易规则在首页持续公示，消费者可随时完整阅览和下载。**未经公示的内部规则不得作为对消费者不利判定的依据。**",
+            "score": 0.9635902690887452,
+            "doc_id": "P01",
+            "layer": "platform",
+            "doc_type": "平台服务协议",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P01-用户服务协议.md",
+            "reason": "相关性 0.979 × 先验 0.90 → 0.964；命中 1/platform/dense#2, 1/platform/bm25#1"
+          },
+          {
+            "section": "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第三十三条 【平台规则的公示义务】 … 第三十四条 【规则变更的征求意见程序】",
+            "text": "电子商务平台经营者应当在其首页显著位置持续公示平台服务协议和交易规则信息或者上述信息的链接标识，并保证经营者和消费者能够便利、完整地阅览和下载。\n\n> **适用要点**：未经公示的内部规则**不能作为对消费者不利判定的依据**。本文档库中平台层文档的「公示版本」字段即对应此项义务。\n\n电子商务平台经营者修改平台服务协议和交易规则，应当在其首页显著位置公开征求意见，采取合理措施确保有关各方能够及时充分表达意见。修改内容应当在实施前至少七日予以公示。\n\n平台内经营者不接受修改内容，要求退出平台的，电子商务平台经营者不得阻止，并按照修改前的服务协议和交易规则承担相关责任。\n\n> **适用要点**：**政策变更须提前至少 7 日公示**。这是政策文档必须带 `effective_date` 且旧版本不能直接覆盖的法律原因——变更前后的订单适用不同版本条款。",
+            "score": 0.4094893026351929,
+            "doc_id": "L04",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2019-01-01",
+            "source_path": "doc/policy/law/L04-电子商务法-平台责任条款摘录.md",
+            "reason": "相关性 0.287 × 先验 0.90 → 0.409；命中 1/law/dense#1, 1/law/bm25#2"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "28b4ed7a767af9de",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.013,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:53.620Z",
+      "updatedAt": "2026-08-18T11:49:53.645Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "28b4ed7a767af9de",
+      "traceId": "e1a9c361ebd8d6d080b1a175d6af45df",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 11:49:51.805000+00:00",
+      "endTime": "2026-08-18 11:49:53.264000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "当本协议与平台公示的专门交易规则文件内容存在冲突时，应以哪一方的规定为准？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P01 星辰优选用户服务协议 > 第一章 协议的接受与变更 > 1.1 协议范围 … 第一章 协议的接受与变更 > 1.4 规则的公示与查阅",
+            "text": "本协议及平台在首页显著位置公示的各项交易规则（含《售后服务与退换货政策》《退款规则与到账时效》《争议处理规则》等），共同构成消费者与平台之间的完整约定。各规则文件与本协议不一致的，以专门规则文件为准。\n\n消费者注册账户、下单或使用平台任一服务，即视为已阅读、理解并同意本协议及各项交易规则。\n\n平台修改本协议或交易规则的，将在首页显著位置公开征求意见，并**在实施前至少 7 日予以公示**。\n\n**已生效订单适用下单时的规则版本，不适用变更后的新规则。** 处理售后申请时须核对订单创建时间与条款生效日期，不得以新版本条款判定旧订单。\n\n平台服务协议与全部交易规则在首页持续公示，消费者可随时完整阅览和下载。**未经公示的内部规则不得作为对消费者不利判定的依据。**\n\n本协议及平台在首页显著位置公示的各项交易规则（含《售后服务与退换货政策》《退款规则与到账时效》《争议处理规则》等），共同构成消费者与平台之间的完整约定。各规则文件与本协议不一致的，以专门规则文件为准。\n\n消费者注册账户、下单或使用平台任一服务，即视为已阅读、理解并同意本协议及各项交易规则。\n\n平台修改本协议或交易规则的，将在首页显著位置公开征求意见，并**在实施前至少 7 日予以公示**。\n\n**已生效订单适用下单时的规则版本，不适用变更后的新规则。** 处理售后申请时须核对订单创建时间与条款生效日期，不得以新版本条款判定旧订单。\n\n平台服务协议与全部交易规则在首页持续公示，消费者可随时完整阅览和下载。**未经公示的内部规则不得作为对消费者不利判定的依据。**",
+            "score": 0.9635902690887452,
+            "doc_id": "P01",
+            "layer": "platform",
+            "doc_type": "平台服务协议",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P01-用户服务协议.md",
+            "reason": "相关性 0.979 × 先验 0.90 → 0.964；命中 1/platform/dense#2, 1/platform/bm25#1"
+          },
+          {
+            "section": "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第三十三条 【平台规则的公示义务】 … 第三十四条 【规则变更的征求意见程序】",
+            "text": "电子商务平台经营者应当在其首页显著位置持续公示平台服务协议和交易规则信息或者上述信息的链接标识，并保证经营者和消费者能够便利、完整地阅览和下载。\n\n> **适用要点**：未经公示的内部规则**不能作为对消费者不利判定的依据**。本文档库中平台层文档的「公示版本」字段即对应此项义务。\n\n电子商务平台经营者修改平台服务协议和交易规则，应当在其首页显著位置公开征求意见，采取合理措施确保有关各方能够及时充分表达意见。修改内容应当在实施前至少七日予以公示。\n\n平台内经营者不接受修改内容，要求退出平台的，电子商务平台经营者不得阻止，并按照修改前的服务协议和交易规则承担相关责任。\n\n> **适用要点**：**政策变更须提前至少 7 日公示**。这是政策文档必须带 `effective_date` 且旧版本不能直接覆盖的法律原因——变更前后的订单适用不同版本条款。",
+            "score": 0.4094893026351929,
+            "doc_id": "L04",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2019-01-01",
+            "source_path": "doc/policy/law/L04-电子商务法-平台责任条款摘录.md",
+            "reason": "相关性 0.287 × 先验 0.90 → 0.409；命中 1/law/dense#1, 1/law/bm25#2"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "dadecf4b559b28ab",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.459,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:53.620Z",
+      "updatedAt": "2026-08-18T11:49:53.643Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "330f89eafcf35c4a",
+      "traceId": "e1a9c361ebd8d6d080b1a175d6af45df",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 11:49:52.784000+00:00",
+      "endTime": "2026-08-18 11:49:53.251000+00:00",
+      "input": {
+        "query": "当本协议与平台公示的专门交易规则文件内容存在冲突时，应以哪一方的规定为准？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 4,
+        "min_score": 0.3,
+        "dropped": [
+          "L04#004:00",
+          "P09#003:02",
+          "P01#001:02",
+          "L02#006:02",
+          "L04#000:00",
+          "L02#004:02",
+          "P01#001:01",
+          "L02#004:01",
+          "P01#009:00",
+          "P01#005:02",
+          "L03#000:00",
+          "P01#008:02",
+          "P09#007:00",
+          "L03#001:00",
+          "P01#008:01",
+          "P11#000:00"
+        ],
+        "evidence": [
+          {
+            "chunk_id": "P01#001:00",
+            "section": "P01 第一章 协议的接受与变更 > 1.1 协议范围",
+            "score": 0.964,
+            "relevance": 0.979,
+            "prior": 0.9,
+            "excerpt": "本协议及平台在首页显著位置公示的各项交易规则（含《售后服务与退换货政策》《退款规则与到账时效》《争议处理规则》等），共同构成消费者与平台之间的完整约定。各规则文件与本协议不一致的，以专门规则文件为准。"
+          },
+          {
+            "chunk_id": "L04#005:00",
+            "section": "L04 第三十三条 【平台规则的公示义务】",
+            "score": 0.409,
+            "relevance": 0.287,
+            "prior": 0.9,
+            "excerpt": "电子商务平台经营者应当在其首页显著位置持续公示平台服务协议和交易规则信息或者上述信息的链接标识，并保证经营者和消费者能够便利、完整地阅览和下载。 > **适用要点**：未经公示的内部规则**不能作为对消费者不利判定的依据**。本文档库中平台…"
+          },
+          {
+            "chunk_id": "P01#001:03",
+            "section": "P01 第一章 协议的接受与变更 > 1.4 规则的公示与查阅",
+            "score": 0.331,
+            "relevance": 0.189,
+            "prior": 0.9,
+            "excerpt": "平台服务协议与全部交易规则在首页持续公示，消费者可随时完整阅览和下载。**未经公示的内部规则不得作为对消费者不利判定的依据。**"
+          },
+          {
+            "chunk_id": "L04#006:00",
+            "section": "L04 第三十四条 【规则变更的征求意见程序】",
+            "score": 0.309,
+            "relevance": 0.161,
+            "prior": 0.9,
+            "excerpt": "电子商务平台经营者修改平台服务协议和交易规则，应当在其首页显著位置公开征求意见，采取合理措施确保有关各方能够及时充分表达意见。修改内容应当在实施前至少七日予以公示。 平台内经营者不接受修改内容，要求退出平台的，电子商务平台经营者不得阻止，并…"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "28b4ed7a767af9de",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.467,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:53.620Z",
+      "updatedAt": "2026-08-18T11:49:53.643Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "9a3f8e0768fcc5bf",
+      "traceId": "e1a9c361ebd8d6d080b1a175d6af45df",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 11:49:52.690000+00:00",
+      "endTime": "2026-08-18 11:49:52.690000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 12,
+              "law": 12
+            },
+            "law_weight": 1
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "28b4ed7a767af9de",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:53.620Z",
+      "updatedAt": "2026-08-18T11:49:53.641Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "d73f4e2f35f2c3b9",
+      "traceId": "e1a9c361ebd8d6d080b1a175d6af45df",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 11:49:51.805000+00:00",
+      "endTime": "2026-08-18 11:49:52.689000+00:00",
+      "input": {
+        "query": "当本协议与平台公示的专门交易规则文件内容存在冲突时，应以哪一方的规定为准？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "validity",
+            "text": "当本协议与平台公示的专门交易规则文件内容存在冲突时，应以哪一方的规定为准？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "28b4ed7a767af9de",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.884,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:53.620Z",
+      "updatedAt": "2026-08-18T11:49:53.638Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    }
+  ]
+}

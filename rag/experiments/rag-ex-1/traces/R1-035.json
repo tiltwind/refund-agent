@@ -1,0 +1,1444 @@
+{
+  "case": {
+    "case_id": "R1-035",
+    "type": "single",
+    "style": "formal",
+    "doc_id": "P03",
+    "layer": "platform",
+    "kind": "text",
+    "seed_chunk_id": [
+      "P03#000:01"
+    ],
+    "error": null,
+    "scores": {
+      "recall@10": 1.0,
+      "recall@3": 1.0,
+      "recall@1": 1.0,
+      "evidence_tokens": 1040,
+      "duplicate_ratio": 0.0,
+      "context_recall": 1.0,
+      "context_relevance": 0.068
+    },
+    "elapsed_s": 1.7,
+    "seed_rank": {
+      "candidate": {
+        "P03#000:01": 1
+      },
+      "evidence": {
+        "P03#000:01": 1
+      }
+    },
+    "sections": [
+      "P03 星辰优选退款规则与到账时效 > 第一条 退款方式 > 1.2 组合支付的退款",
+      "P02 星辰优选售后服务与退换货政策 > 第七条 退款方式与时效",
+      "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十四条 【退款方式】"
+    ],
+    "judge": {
+      "context_recall": {
+        "score": 1.0,
+        "n": 4,
+        "hit": 4,
+        "detail": [
+          {
+            "claim": "按各支付方式实际支付的金额分别原路退回。",
+            "supported": true,
+            "reason": "P03 1.2 和 P02 7.3 均明确按实际支付金额分别原路退回。"
+          },
+          {
+            "claim": "银行卡支付的金额退回银行卡。",
+            "supported": true,
+            "reason": "P03 1.2 示例含银行卡，原路退回即退回银行卡。"
+          },
+          {
+            "claim": "余额支付的金额退回余额。",
+            "supported": true,
+            "reason": "P03 1.2 示例含余额，原路退回即退回余额。"
+          },
+          {
+            "claim": "积分支付的金额退回积分。",
+            "supported": true,
+            "reason": "L02 第十四条：积分支付应以相应形式返还。"
+          }
+        ],
+        "error": null
+      },
+      "context_relevance": {
+        "score": 0.068,
+        "n": 44,
+        "hit": 3,
+        "truncated": false,
+        "note": "不相关的主要是退款时限、优惠券、运费、无理由退货规则等",
+        "irrelevant": [
+          "退款审核通过后，款项**原路退回至原支付账户**。",
+          "未经消费者明确同意，平台不以余额、储值卡、优惠券等形式替代原路退款。",
+          "原支付账户已注销、银行卡已销户等导致原路退回失败的，平台联系消费者确认替代退款方式，并留存确认记录。",
+          "**此情形下的处理不进入自动通道。",
+          "**",
+          "7.1 退款审核通过后**原路退回支付账户**，**1-3 个工作日**到账。",
+          "7.2 使用优惠券的订单**按实付金额退款，优惠券不予退还**。",
+          "7.4 退款金额、赠品、发票、运费的完整处理规则，详见 [P03]、[P06]、[P10]。",
+          "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。",
+          "七日期间自消费者签收商品的次日开始起算。"
+        ],
+        "error": null
+      }
+    },
+    "trace_id": "3b970a29e10e60db1d3dd2d724a5d3fc"
+  },
+  "trace": {
+    "id": "3b970a29e10e60db1d3dd2d724a5d3fc",
+    "name": "experiment-item-run",
+    "timestamp": "2026-08-18 11:49:23.174000+00:00"
+  },
+  "observations": [
+    {
+      "id": "f0617068faef0ae4",
+      "traceId": "3b970a29e10e60db1d3dd2d724a5d3fc",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 11:48:51.460000+00:00",
+      "endTime": "2026-08-18 11:49:28.881000+00:00",
+      "input": {
+        "query": "订单使用多种支付方式组合支付时，各支付方式的款项如何退回？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-035",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "formal",
+        "doc_id": "P03",
+        "section": "第一条 退款方式 > 1.2 组合支付的退款",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.571,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-035",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "P03",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P03#000:01"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 1040,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.068
+        },
+        "elapsed_s": 1.7,
+        "seed_rank": {
+          "candidate": {
+            "P03#000:01": 1
+          },
+          "evidence": {
+            "P03#000:01": 1
+          }
+        },
+        "sections": [
+          "P03 星辰优选退款规则与到账时效 > 第一条 退款方式 > 1.2 组合支付的退款",
+          "P02 星辰优选售后服务与退换货政策 > 第七条 退款方式与时效",
+          "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十四条 【退款方式】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 4,
+            "hit": 4,
+            "detail": [
+              {
+                "claim": "按各支付方式实际支付的金额分别原路退回。",
+                "supported": true,
+                "reason": "P03 1.2 和 P02 7.3 均明确按实际支付金额分别原路退回。"
+              },
+              {
+                "claim": "银行卡支付的金额退回银行卡。",
+                "supported": true,
+                "reason": "P03 1.2 示例含银行卡，原路退回即退回银行卡。"
+              },
+              {
+                "claim": "余额支付的金额退回余额。",
+                "supported": true,
+                "reason": "P03 1.2 示例含余额，原路退回即退回余额。"
+              },
+              {
+                "claim": "积分支付的金额退回积分。",
+                "supported": true,
+                "reason": "L02 第十四条：积分支付应以相应形式返还。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.068,
+            "n": 44,
+            "hit": 3,
+            "truncated": false,
+            "note": "不相关的主要是退款时限、优惠券、运费、无理由退货规则等",
+            "irrelevant": [
+              "退款审核通过后，款项**原路退回至原支付账户**。",
+              "未经消费者明确同意，平台不以余额、储值卡、优惠券等形式替代原路退款。",
+              "原支付账户已注销、银行卡已销户等导致原路退回失败的，平台联系消费者确认替代退款方式，并留存确认记录。",
+              "**此情形下的处理不进入自动通道。",
+              "**",
+              "7.1 退款审核通过后**原路退回支付账户**，**1-3 个工作日**到账。",
+              "7.2 使用优惠券的订单**按实付金额退款，优惠券不予退还**。",
+              "7.4 退款金额、赠品、发票、运费的完整处理规则，详见 [P03]、[P06]、[P10]。",
+              "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。",
+              "七日期间自消费者签收商品的次日开始起算。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 37.421,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:33.493Z",
+      "updatedAt": "2026-08-18T11:49:33.508Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "8d95eb334395beb5",
+      "traceId": "3b970a29e10e60db1d3dd2d724a5d3fc",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 11:48:51.460000+00:00",
+      "endTime": "2026-08-18 11:49:28.879000+00:00",
+      "input": {
+        "query": "订单使用多种支付方式组合支付时，各支付方式的款项如何退回？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-035",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "formal",
+        "doc_id": "P03",
+        "section": "第一条 退款方式 > 1.2 组合支付的退款",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.571,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-035",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "P03",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P03#000:01"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 1040,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.068
+        },
+        "elapsed_s": 1.7,
+        "seed_rank": {
+          "candidate": {
+            "P03#000:01": 1
+          },
+          "evidence": {
+            "P03#000:01": 1
+          }
+        },
+        "sections": [
+          "P03 星辰优选退款规则与到账时效 > 第一条 退款方式 > 1.2 组合支付的退款",
+          "P02 星辰优选售后服务与退换货政策 > 第七条 退款方式与时效",
+          "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十四条 【退款方式】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 4,
+            "hit": 4,
+            "detail": [
+              {
+                "claim": "按各支付方式实际支付的金额分别原路退回。",
+                "supported": true,
+                "reason": "P03 1.2 和 P02 7.3 均明确按实际支付金额分别原路退回。"
+              },
+              {
+                "claim": "银行卡支付的金额退回银行卡。",
+                "supported": true,
+                "reason": "P03 1.2 示例含银行卡，原路退回即退回银行卡。"
+              },
+              {
+                "claim": "余额支付的金额退回余额。",
+                "supported": true,
+                "reason": "P03 1.2 示例含余额，原路退回即退回余额。"
+              },
+              {
+                "claim": "积分支付的金额退回积分。",
+                "supported": true,
+                "reason": "L02 第十四条：积分支付应以相应形式返还。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.068,
+            "n": 44,
+            "hit": 3,
+            "truncated": false,
+            "note": "不相关的主要是退款时限、优惠券、运费、无理由退货规则等",
+            "irrelevant": [
+              "退款审核通过后，款项**原路退回至原支付账户**。",
+              "未经消费者明确同意，平台不以余额、储值卡、优惠券等形式替代原路退款。",
+              "原支付账户已注销、银行卡已销户等导致原路退回失败的，平台联系消费者确认替代退款方式，并留存确认记录。",
+              "**此情形下的处理不进入自动通道。",
+              "**",
+              "7.1 退款审核通过后**原路退回支付账户**，**1-3 个工作日**到账。",
+              "7.2 使用优惠券的订单**按实付金额退款，优惠券不予退还**。",
+              "7.4 退款金额、赠品、发票、运费的完整处理规则，详见 [P03]、[P06]、[P10]。",
+              "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。",
+              "七日期间自消费者签收商品的次日开始起算。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "f0617068faef0ae4",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 37.419,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:33.493Z",
+      "updatedAt": "2026-08-18T11:49:33.507Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "d5b8284bd3e6553f",
+      "traceId": "3b970a29e10e60db1d3dd2d724a5d3fc",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 11:49:28.880000+00:00",
+      "endTime": "2026-08-18 11:49:28.881000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "f0617068faef0ae4",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:33.493Z",
+      "updatedAt": "2026-08-18T11:49:33.507Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "592e3cdf573700e4",
+      "traceId": "3b970a29e10e60db1d3dd2d724a5d3fc",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 11:49:28.880000+00:00",
+      "endTime": "2026-08-18 11:49:28.881000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "订单使用多种支付方式组合支付时，各支付方式的款项如何退回？"
+        },
+        "output": {
+          "case_id": "R1-035",
+          "type": "single",
+          "style": "formal",
+          "doc_id": "P03",
+          "layer": "platform",
+          "kind": "text",
+          "seed_chunk_id": [
+            "P03#000:01"
+          ],
+          "error": null,
+          "scores": {
+            "recall@10": 1,
+            "recall@3": 1,
+            "recall@1": 1,
+            "evidence_tokens": 1040,
+            "duplicate_ratio": 0,
+            "context_recall": 1,
+            "context_relevance": 0.068
+          },
+          "elapsed_s": 1.7,
+          "seed_rank": {
+            "candidate": {
+              "P03#000:01": 1
+            },
+            "evidence": {
+              "P03#000:01": 1
+            }
+          },
+          "sections": [
+            "P03 星辰优选退款规则与到账时效 > 第一条 退款方式 > 1.2 组合支付的退款",
+            "P02 星辰优选售后服务与退换货政策 > 第七条 退款方式与时效",
+            "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十四条 【退款方式】"
+          ],
+          "judge": {
+            "context_recall": {
+              "score": 1,
+              "n": 4,
+              "hit": 4,
+              "detail": [
+                {
+                  "claim": "按各支付方式实际支付的金额分别原路退回。",
+                  "supported": true,
+                  "reason": "P03 1.2 和 P02 7.3 均明确按实际支付金额分别原路退回。"
+                },
+                {
+                  "claim": "银行卡支付的金额退回银行卡。",
+                  "supported": true,
+                  "reason": "P03 1.2 示例含银行卡，原路退回即退回银行卡。"
+                },
+                {
+                  "claim": "余额支付的金额退回余额。",
+                  "supported": true,
+                  "reason": "P03 1.2 示例含余额，原路退回即退回余额。"
+                },
+                {
+                  "claim": "积分支付的金额退回积分。",
+                  "supported": true,
+                  "reason": "L02 第十四条：积分支付应以相应形式返还。"
+                }
+              ],
+              "error": null
+            },
+            "context_relevance": {
+              "score": 0.068,
+              "n": 44,
+              "hit": 3,
+              "truncated": false,
+              "note": "不相关的主要是退款时限、优惠券、运费、无理由退货规则等",
+              "irrelevant": [
+                "退款审核通过后，款项**原路退回至原支付账户**。",
+                "未经消费者明确同意，平台不以余额、储值卡、优惠券等形式替代原路退款。",
+                "原支付账户已注销、银行卡已销户等导致原路退回失败的，平台联系消费者确认替代退款方式，并留存确认记录。",
+                "**此情形下的处理不进入自动通道。",
+                "**",
+                "7.1 退款审核通过后**原路退回支付账户**，**1-3 个工作日**到账。",
+                "7.2 使用优惠券的订单**按实付金额退款，优惠券不予退还**。",
+                "7.4 退款金额、赠品、发票、运费的完整处理规则，详见 [P03]、[P06]、[P10]。",
+                "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。",
+                "七日期间自消费者签收商品的次日开始起算。"
+              ],
+              "error": null
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [
+            "按各支付方式实际支付的金额分别原路退回。",
+            "银行卡支付的金额退回银行卡。",
+            "余额支付的金额退回余额。",
+            "积分支付的金额退回积分。"
+          ],
+          "seed_chunk_id": [
+            "P03#000:01"
+          ],
+          "reference_answer": "按各支付方式实际支付的金额分别原路退回，即银行卡退回银行卡、余额退回余额、积分退回积分。"
+        },
+        "metadata": {
+          "kind": "text",
+          "type": "single",
+          "layer": "platform",
+          "style": "formal",
+          "doc_id": "P03",
+          "section": "第一条 退款方式 > 1.2 组合支付的退款",
+          "reviewed": false,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.571
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 1,
+          "comment": "种子块名次 P03#000:01=1"
+        },
+        {
+          "name": "recall@3",
+          "value": 1,
+          "comment": "种子块名次 P03#000:01=1"
+        },
+        {
+          "name": "recall@1",
+          "value": 1,
+          "comment": "种子块名次 P03#000:01=1"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 1040,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "context_recall",
+          "value": 1,
+          "comment": "4/4 条 claim 被支撑"
+        },
+        {
+          "name": "context_relevance",
+          "value": 0.068,
+          "comment": "3/44 个内容单元相关；不相关的主要是退款时限、优惠券、运费、无理由退货规则等"
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d5b8284bd3e6553f",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:33.493Z",
+      "updatedAt": "2026-08-18T11:49:33.505Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "9656a819f3a767c9",
+      "traceId": "3b970a29e10e60db1d3dd2d724a5d3fc",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 11:49:23.173000+00:00",
+      "endTime": "2026-08-18 11:49:24.836000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "订单使用多种支付方式组合支付时，各支付方式的款项如何退回？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P03 星辰优选退款规则与到账时效 > 第一条 退款方式 > 1.2 组合支付的退款",
+            "text": "退款审核通过后，款项**原路退回至原支付账户**。未经消费者明确同意，平台不以余额、储值卡、优惠券等形式替代原路退款。\n\n订单采用多种方式组合支付的（如「银行卡 + 余额 + 积分」），按各支付方式的**实际支付金额分别原路退回**。\n\n原支付账户已注销、银行卡已销户等导致原路退回失败的，平台联系消费者确认替代退款方式，并留存确认记录。**此情形下的处理不进入自动通道。**",
+            "score": 0.9736500072479249,
+            "doc_id": "P03",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P03-退款规则与到账时效.md",
+            "reason": "相关性 0.992 × 先验 0.90 → 0.974；命中 1/platform/dense#1, 1/platform/bm25#1"
+          },
+          {
+            "section": "P02 星辰优选售后服务与退换货政策 > 第七条 退款方式与时效",
+            "text": "7.1 退款审核通过后**原路退回支付账户**，**1-3 个工作日**到账。\n\n7.2 使用优惠券的订单**按实付金额退款，优惠券不予退还**。\n\n7.3 多种支付方式组合支付的订单，按各支付方式的实际支付金额分别原路退回。\n\n7.4 退款金额、赠品、发票、运费的完整处理规则，详见 [P03]、[P06]、[P10]。",
+            "score": 0.9571630001068117,
+            "doc_id": "P02",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
+            "reason": "相关性 0.946 × 先验 1.00 → 0.957；命中 1/platform/dense#2, 1/platform/bm25#2"
+          },
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十四条 【退款方式】",
+            "text": "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。\n\n七日期间自消费者签收商品的次日开始起算。\n\n> **判定要点**：窗口期以**发出退货通知**的时间为准，不是商品寄回或卖家收到的时间；起算点是**签收次日**，签收当天不计入。\n\n网络商品销售者收到退货通知后应当及时向消费者提供真实、准确的退货地址、退货联系人、退货联系电话等有效联系信息。\n\n消费者获得上述信息后应当及时退回商品，并保留退货凭证。\n\n消费者退货时应当将商品本身、配件及赠品一并退回。\n\n赠品包括赠送的实物、积分、代金券、优惠券等形式。如果赠品不能一并退回，经营者可以要求消费者按照事先标明的赠品价格支付赠品价款。\n\n消费者退回的商品完好的，网络商品销售者应当在收到退回商品之日起七日内向消费者返还已支付的商品价款。\n\n> **判定要点**：法定退款时限是**收到退货之日起 7 日内**。平台承诺的「1-3 个工作日到账」快于法定要求，属于更优承诺。\n\n退款方式比照购买商品的支付方式。经营者与消费者另有约定的，从其约定。\n\n购买商品时采用多种方式支付价款的，一般应当按照各种支付方式的实际支付价款以相应方式退款。\n\n除征得消费者明确表示同意的以外，网络商品销售者不应当自行指定其他退款方式。\n\n> **判定要点**：**「原路退回」是法定默认方式**。未经消费者明确同意，不得以store credit、平台余额、优惠券等形式替代原路退款。\n\n消费者采用积分、代金券、优惠券等形式支付价款的，网络商品销售者在消费者退还商品后应当以相应形式返还消费者。对积分、代金券、优惠券的使用和返还有约定的，可以从其约定。\n\n消费者购买商品时采用信用卡支付方式并支付手续费的，网络商品销售者退款时可以不退回手续费。\n\n消费者购买商品时采用信用卡支付方式并被网络商品销售者免除手续费的，网络商品销售者可以在退款时扣除手续费。\n\n退货价款以消费者实际支出的价款为准。\n\n套装或者满减优惠活动中的部分商品退货，导致不能再享受优惠的，根据购买时各商品价格进行结算，多退少补。\n\n> **判定要点**：**退款基数是实付金额，不是商品标价**。部分退货导致优惠失效的，剩余订单需重新结算，可能出现「多退少补」。\n\n商品退回所产生的运费依法由消费者承担。经营者与消费者另有约定的，按照约定。\n\n消费者参加满足一定条件免运费活动，但退货后已不能达到免运费活动要求的，网络商品销售者在退款时可以扣除运费。\n\n> **判定要点**：**无理由退货运费由消费者承担**（本条）；**质量问题退货运费由经营者承担**（消保法第二十四条）。这是区分退款原因的直接后果之一。\n\n网络商品销售者可以与消费者约定退货方式，但不应当限制消费者的退货方式。\n\n网络商品销售者可以免费上门取货，也可以征得消费者同意后有偿上门取货。",
+            "score": 0.8032215499877929,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.892 × 先验 0.45 → 0.803；命中 1/law/dense#1, 1/law/bm25#1"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "8d95eb334395beb5",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.663,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:28.536Z",
+      "updatedAt": "2026-08-18T11:49:28.550Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "d3d9b604e896d471",
+      "traceId": "3b970a29e10e60db1d3dd2d724a5d3fc",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 11:49:24.824000+00:00",
+      "endTime": "2026-08-18 11:49:24.836000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "P03#000:01",
+          "P02#006:00",
+          "L02#003:04"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P03 星辰优选退款规则与到账时效 > 第一条 退款方式 > 1.2 组合支付的退款",
+            "text": "退款审核通过后，款项**原路退回至原支付账户**。未经消费者明确同意，平台不以余额、储值卡、优惠券等形式替代原路退款。\n\n订单采用多种方式组合支付的（如「银行卡 + 余额 + 积分」），按各支付方式的**实际支付金额分别原路退回**。\n\n原支付账户已注销、银行卡已销户等导致原路退回失败的，平台联系消费者确认替代退款方式，并留存确认记录。**此情形下的处理不进入自动通道。**",
+            "score": 0.9736500072479249,
+            "doc_id": "P03",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P03-退款规则与到账时效.md",
+            "reason": "相关性 0.992 × 先验 0.90 → 0.974；命中 1/platform/dense#1, 1/platform/bm25#1"
+          },
+          {
+            "section": "P02 星辰优选售后服务与退换货政策 > 第七条 退款方式与时效",
+            "text": "7.1 退款审核通过后**原路退回支付账户**，**1-3 个工作日**到账。\n\n7.2 使用优惠券的订单**按实付金额退款，优惠券不予退还**。\n\n7.3 多种支付方式组合支付的订单，按各支付方式的实际支付金额分别原路退回。\n\n7.4 退款金额、赠品、发票、运费的完整处理规则，详见 [P03]、[P06]、[P10]。",
+            "score": 0.9571630001068117,
+            "doc_id": "P02",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
+            "reason": "相关性 0.946 × 先验 1.00 → 0.957；命中 1/platform/dense#2, 1/platform/bm25#2"
+          },
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十四条 【退款方式】",
+            "text": "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。\n\n七日期间自消费者签收商品的次日开始起算。\n\n> **判定要点**：窗口期以**发出退货通知**的时间为准，不是商品寄回或卖家收到的时间；起算点是**签收次日**，签收当天不计入。\n\n网络商品销售者收到退货通知后应当及时向消费者提供真实、准确的退货地址、退货联系人、退货联系电话等有效联系信息。\n\n消费者获得上述信息后应当及时退回商品，并保留退货凭证。\n\n消费者退货时应当将商品本身、配件及赠品一并退回。\n\n赠品包括赠送的实物、积分、代金券、优惠券等形式。如果赠品不能一并退回，经营者可以要求消费者按照事先标明的赠品价格支付赠品价款。\n\n消费者退回的商品完好的，网络商品销售者应当在收到退回商品之日起七日内向消费者返还已支付的商品价款。\n\n> **判定要点**：法定退款时限是**收到退货之日起 7 日内**。平台承诺的「1-3 个工作日到账」快于法定要求，属于更优承诺。\n\n退款方式比照购买商品的支付方式。经营者与消费者另有约定的，从其约定。\n\n购买商品时采用多种方式支付价款的，一般应当按照各种支付方式的实际支付价款以相应方式退款。\n\n除征得消费者明确表示同意的以外，网络商品销售者不应当自行指定其他退款方式。\n\n> **判定要点**：**「原路退回」是法定默认方式**。未经消费者明确同意，不得以store credit、平台余额、优惠券等形式替代原路退款。\n\n消费者采用积分、代金券、优惠券等形式支付价款的，网络商品销售者在消费者退还商品后应当以相应形式返还消费者。对积分、代金券、优惠券的使用和返还有约定的，可以从其约定。\n\n消费者购买商品时采用信用卡支付方式并支付手续费的，网络商品销售者退款时可以不退回手续费。\n\n消费者购买商品时采用信用卡支付方式并被网络商品销售者免除手续费的，网络商品销售者可以在退款时扣除手续费。\n\n退货价款以消费者实际支出的价款为准。\n\n套装或者满减优惠活动中的部分商品退货，导致不能再享受优惠的，根据购买时各商品价格进行结算，多退少补。\n\n> **判定要点**：**退款基数是实付金额，不是商品标价**。部分退货导致优惠失效的，剩余订单需重新结算，可能出现「多退少补」。\n\n商品退回所产生的运费依法由消费者承担。经营者与消费者另有约定的，按照约定。\n\n消费者参加满足一定条件免运费活动，但退货后已不能达到免运费活动要求的，网络商品销售者在退款时可以扣除运费。\n\n> **判定要点**：**无理由退货运费由消费者承担**（本条）；**质量问题退货运费由经营者承担**（消保法第二十四条）。这是区分退款原因的直接后果之一。\n\n网络商品销售者可以与消费者约定退货方式，但不应当限制消费者的退货方式。\n\n网络商品销售者可以免费上门取货，也可以征得消费者同意后有偿上门取货。",
+            "score": 0.8032215499877929,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.892 × 先验 0.45 → 0.803；命中 1/law/dense#1, 1/law/bm25#1"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "9656a819f3a767c9",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.012,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:28.536Z",
+      "updatedAt": "2026-08-18T11:49:28.549Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "3d4cb72af96adfc8",
+      "traceId": "3b970a29e10e60db1d3dd2d724a5d3fc",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-18 11:49:24.212000+00:00",
+      "endTime": "2026-08-18 11:49:24.303000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "P03#000:01",
+            "section": "P03 第一条 退款方式 > 1.2 组合支付的退款",
+            "rrf": 0.0952,
+            "hits": [
+              "1/platform/dense#1",
+              "1/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:04",
+            "section": "L02 第三章 退货程序 > 第十四条 【退款方式】",
+            "rrf": 0.0952,
+            "hits": [
+              "1/law/dense#1",
+              "1/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P02#006:00",
+            "section": "P02 第七条 退款方式与时效",
+            "rrf": 0.0909,
+            "hits": [
+              "1/platform/dense#2",
+              "1/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:06",
+            "section": "L02 第三章 退货程序 > 第十六条 【信用卡手续费】",
+            "rrf": 0.0871,
+            "hits": [
+              "1/law/dense#4",
+              "1/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:02",
+            "section": "L02 第三章 退货程序 > 第十二条 【赠品一并退回】",
+            "rrf": 0.0851,
+            "hits": [
+              "1/law/dense#3",
+              "1/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P03#000:02",
+            "section": "P03 第一条 退款方式 > 1.3 原支付渠道失效",
+            "rrf": 0.0833,
+            "hits": [
+              "1/platform/dense#4",
+              "1/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P03#000:00",
+            "section": "P03 第一条 退款方式 > 1.1 原路退回",
+            "rrf": 0.0819,
+            "hits": [
+              "1/platform/dense#6",
+              "1/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P10#003:00",
+            "section": "P10 第四条 积分与储值 > 4.1 积分支付部分的返还",
+            "rrf": 0.0792,
+            "hits": [
+              "1/platform/dense#3",
+              "1/platform/bm25#8"
+            ]
+          },
+          {
+            "chunk_id": "P03#001:03",
+            "section": "P03 第二条 退款金额的计算 > 2.4 积分与储值",
+            "rrf": 0.0635,
+            "hits": [
+              "1/platform/dense#8",
+              "1/platform/bm25#16"
+            ]
+          },
+          {
+            "chunk_id": "P10#003:02",
+            "section": "P10 第四条 积分与储值 > 4.3 储值余额",
+            "rrf": 0.0625,
+            "hits": [
+              "1/platform/dense#12",
+              "1/platform/bm25#12"
+            ]
+          },
+          {
+            "chunk_id": "P10#005:02",
+            "section": "P10 第六条 手续费 > 6.3 第三方支付通道费",
+            "rrf": 0.06,
+            "hits": [
+              "1/platform/dense#16",
+              "1/platform/bm25#11"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:05",
+            "section": "L02 第三章 退货程序 > 第十五条 【积分、代金券、优惠券的返还】",
+            "rrf": 0.0455,
+            "hits": [
+              "1/law/dense#2"
+            ]
+          },
+          {
+            "chunk_id": "L05#019:00",
+            "section": "L05 第十九条 【修理费用的支付形式】",
+            "rrf": 0.0435,
+            "hits": [
+              "1/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P03#005:00",
+            "section": "P03 第六条 重复申请与幂等 > 6.1 已退款订单",
+            "rrf": 0.04,
+            "hits": [
+              "1/platform/dense#5"
+            ]
+          },
+          {
+            "chunk_id": "P03#002:03",
+            "section": "P03 第三条 到账时效 > 3.4 手续费",
+            "rrf": 0.04,
+            "hits": [
+              "1/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:07",
+            "section": "L02 第三章 退货程序 > 第十七条 【退款金额的计算】",
+            "rrf": 0.04,
+            "hits": [
+              "1/law/dense#5"
+            ]
+          },
+          {
+            "chunk_id": "L03#004:00",
+            "section": "L03 第十八条 【售后有效期起算与退款金额】",
+            "rrf": 0.04,
+            "hits": [
+              "1/law/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P10#005:00",
+            "section": "P10 第六条 手续费 > 6.1 信用卡手续费",
+            "rrf": 0.0385,
+            "hits": [
+              "1/platform/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "P03#005:01",
+            "section": "P03 第六条 重复申请与幂等 > 6.2 幂等保障",
+            "rrf": 0.037,
+            "hits": [
+              "1/platform/dense#7"
+            ]
+          },
+          {
+            "chunk_id": "P03#002:01",
+            "section": "P03 第三条 到账时效 > 3.2 各渠道的实际到账参考",
+            "rrf": 0.037,
+            "hits": [
+              "1/platform/bm25#7"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "9656a819f3a767c9",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.091,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:28.536Z",
+      "updatedAt": "2026-08-18T11:49:28.547Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "71191e706c56f409",
+      "traceId": "3b970a29e10e60db1d3dd2d724a5d3fc",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 11:49:23.174000+00:00",
+      "endTime": "2026-08-18 11:49:24.211000+00:00",
+      "input": {
+        "query": "订单使用多种支付方式组合支付时，各支付方式的款项如何退回？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "refund",
+            "text": "订单使用多种支付方式组合支付时，各支付方式的款项分别如何退回？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "9656a819f3a767c9",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.037,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:28.536Z",
+      "updatedAt": "2026-08-18T11:49:28.547Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "ff01f8718218dfbb",
+      "traceId": "3b970a29e10e60db1d3dd2d724a5d3fc",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 11:49:24.303000+00:00",
+      "endTime": "2026-08-18 11:49:24.824000+00:00",
+      "input": {
+        "query": "订单使用多种支付方式组合支付时，各支付方式的款项如何退回？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 3,
+        "min_score": 0.3,
+        "dropped": [
+          "L02#003:06",
+          "L02#003:02",
+          "P03#000:02",
+          "P03#000:00",
+          "P10#003:00",
+          "P03#001:03",
+          "P10#003:02",
+          "P10#005:02",
+          "L02#003:05",
+          "L05#019:00",
+          "P03#005:00",
+          "P03#002:03",
+          "L02#003:07",
+          "L03#004:00",
+          "P10#005:00",
+          "P03#005:01",
+          "P03#002:01"
+        ],
+        "evidence": [
+          {
+            "chunk_id": "P03#000:01",
+            "section": "P03 第一条 退款方式 > 1.2 组合支付的退款",
+            "score": 0.974,
+            "relevance": 0.992,
+            "prior": 0.9,
+            "excerpt": "订单采用多种方式组合支付的（如「银行卡 + 余额 + 积分」），按各支付方式的**实际支付金额分别原路退回**。"
+          },
+          {
+            "chunk_id": "P02#006:00",
+            "section": "P02 第七条 退款方式与时效",
+            "score": 0.957,
+            "relevance": 0.946,
+            "prior": 1,
+            "excerpt": "7.1 退款审核通过后**原路退回支付账户**，**1-3 个工作日**到账。 7.2 使用优惠券的订单**按实付金额退款，优惠券不予退还**。 7.3 多种支付方式组合支付的订单，按各支付方式的实际支付金额分别原路退回。 7.4 退款金额…"
+          },
+          {
+            "chunk_id": "L02#003:04",
+            "section": "L02 第三章 退货程序 > 第十四条 【退款方式】",
+            "score": 0.803,
+            "relevance": 0.892,
+            "prior": 0.45,
+            "excerpt": "退款方式比照购买商品的支付方式。经营者与消费者另有约定的，从其约定。 购买商品时采用多种方式支付价款的，一般应当按照各种支付方式的实际支付价款以相应方式退款。 除征得消费者明确表示同意的以外，网络商品销售者不应当自行指定其他退款方式。 > …"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "9656a819f3a767c9",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.521,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:28.536Z",
+      "updatedAt": "2026-08-18T11:49:28.547Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "363f414dbcd6ab2d",
+      "traceId": "3b970a29e10e60db1d3dd2d724a5d3fc",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 11:49:24.212000+00:00",
+      "endTime": "2026-08-18 11:49:24.212000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "9656a819f3a767c9",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:28.536Z",
+      "updatedAt": "2026-08-18T11:49:28.546Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    }
+  ]
+}

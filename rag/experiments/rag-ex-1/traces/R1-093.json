@@ -1,0 +1,1591 @@
+{
+  "case": {
+    "case_id": "R1-093",
+    "type": "multi_hop",
+    "style": "formal",
+    "doc_id": "L05+L01",
+    "layer": "law",
+    "kind": "text",
+    "seed_chunk_id": [
+      "L05#013:00",
+      "L01#002:00"
+    ],
+    "error": null,
+    "scores": {
+      "recall@10": 1.0,
+      "recall@3": 1.0,
+      "evidence_tokens": 1197,
+      "duplicate_ratio": 0.164,
+      "context_recall": 1.0,
+      "context_relevance": 0.222
+    },
+    "elapsed_s": 2.3,
+    "seed_rank": {
+      "candidate": {
+        "L05#013:00": 5,
+        "L01#002:00": 7
+      },
+      "evidence": {
+        "L05#013:00": 2,
+        "L01#002:00": 1
+      }
+    },
+    "sections": [
+      "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】",
+      "L05 部分商品修理更换退货责任规定（三包规定） > 第十二条 【超期未修好】 … 第十四条 【换货标准与有效期重算】",
+      "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.3 耐用商品的举证责任倒置 … 第五条 举证责任 > 5.4 举证不能的后果",
+      "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十八条 【售后有效期起算与退款金额】"
+    ],
+    "judge": {
+      "context_recall": {
+        "score": 1.0,
+        "n": 4,
+        "hit": 4,
+        "detail": [
+          {
+            "claim": "在三包有效期内符合换货条件、销售者无同型号同规格产品且消费者不愿调换其他型号而要求退货的，销售者应予以退货。",
+            "supported": true,
+            "reason": "L05第十四条明确该情形应退货"
+          },
+          {
+            "claim": "销售者对已使用过的商品按本规定收取折旧费。",
+            "supported": true,
+            "reason": "L05第十四条规定可收取折旧费"
+          },
+          {
+            "claim": "折旧费自开具发票之日起算至退货之日止，并扣除修理占用和待修时间。",
+            "supported": true,
+            "reason": "L05第十四条明确折旧费计算方式"
+          },
+          {
+            "claim": "若商品属于机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自接受商品之日起六个月内发现瑕疵发生争议的，由经营者承担有关瑕疵的举证责任。",
+            "supported": true,
+            "reason": "L01第二十三条及P05 5.3均规定耐用商品六个月内举证责任倒置"
+          }
+        ],
+        "error": null
+      },
+      "context_relevance": {
+        "score": 0.222,
+        "n": 45,
+        "hit": 10,
+        "truncated": false,
+        "note": "不相关的主要是其他情形条款、举证材料细节和重复内容。",
+        "irrelevant": [
+          "经营者应当保证在正常使用商品或者接受服务的情况下其提供的商品或者服务应当具有的质量、性能、用途和有效期限；",
+          "但消费者在购买该商品或者接受该服务前已经知道其存在瑕疵，且存在该瑕疵不违反法律强制性规定的除外。",
+          "经营者以广告、产品说明、实物样品或者其他方式表明商品或者服务的质量状况的，应当保证其提供的商品或者服务的实际质量与表明的",
+          "**经营者提供的机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品或者装饰装修等服务，消费者自接受商品或者服务之日",
+          "**",
+          "> **售后适用要点**：耐用商品六个月内的质量争议，举证责任在经营者一方，不能要求消费者自证商品有质量问题。",
+          "在三包有效期内，因生产者未供应零配件，自送修之日起超过90日未修好的，修理者应当在修理状况中注明，销售者凭此据免费为消费",
+          "然后依法向生产者、供货者追偿或者按购销合同办理。",
+          "因修理者自身原因使修理期超过30日的，由其免费为消费者调换同型号同规格产品。",
+          "费用由修理者承担。"
+        ],
+        "error": null
+      }
+    },
+    "trace_id": "2a7fc05eb8e07e19cceb538534f4db59"
+  },
+  "trace": {
+    "id": "2a7fc05eb8e07e19cceb538534f4db59",
+    "name": "experiment-item-run",
+    "timestamp": "2026-08-18 11:43:37.466000+00:00"
+  },
+  "observations": [
+    {
+      "id": "35a43daefdaf18c4",
+      "traceId": "2a7fc05eb8e07e19cceb538534f4db59",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 11:43:00.144000+00:00",
+      "endTime": "2026-08-18 11:43:43.955000+00:00",
+      "input": {
+        "query": "在三包有效期内符合换货条件、但销售者无同型号同规格产品且消费者不愿调换其他型号而要求退货时，退货金额应如何计算？若该商品属于耐用商品且消费者在六个月内发现瑕疵发生争议，举证责任由谁承担？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-093",
+        "kind": "text",
+        "type": "multi_hop",
+        "layer": "law",
+        "style": "formal",
+        "topic": "质量有问题该谁举证、怎么修换退",
+        "doc_id": "L05+L01",
+        "section": "第十三条 【无同型号产品时的退货与折旧】 / 第二十三条 【瑕疵举证责任倒置】",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.72,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-093",
+        "type": "multi_hop",
+        "style": "formal",
+        "doc_id": "L05+L01",
+        "layer": "law",
+        "kind": "text",
+        "seed_chunk_id": [
+          "L05#013:00",
+          "L01#002:00"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "evidence_tokens": 1197,
+          "duplicate_ratio": 0.164,
+          "context_recall": 1,
+          "context_relevance": 0.222
+        },
+        "elapsed_s": 2.3,
+        "seed_rank": {
+          "candidate": {
+            "L05#013:00": 5,
+            "L01#002:00": 7
+          },
+          "evidence": {
+            "L05#013:00": 2,
+            "L01#002:00": 1
+          }
+        },
+        "sections": [
+          "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】",
+          "L05 部分商品修理更换退货责任规定（三包规定） > 第十二条 【超期未修好】 … 第十四条 【换货标准与有效期重算】",
+          "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.3 耐用商品的举证责任倒置 … 第五条 举证责任 > 5.4 举证不能的后果",
+          "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十八条 【售后有效期起算与退款金额】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 4,
+            "hit": 4,
+            "detail": [
+              {
+                "claim": "在三包有效期内符合换货条件、销售者无同型号同规格产品且消费者不愿调换其他型号而要求退货的，销售者应予以退货。",
+                "supported": true,
+                "reason": "L05第十四条明确该情形应退货"
+              },
+              {
+                "claim": "销售者对已使用过的商品按本规定收取折旧费。",
+                "supported": true,
+                "reason": "L05第十四条规定可收取折旧费"
+              },
+              {
+                "claim": "折旧费自开具发票之日起算至退货之日止，并扣除修理占用和待修时间。",
+                "supported": true,
+                "reason": "L05第十四条明确折旧费计算方式"
+              },
+              {
+                "claim": "若商品属于机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自接受商品之日起六个月内发现瑕疵发生争议的，由经营者承担有关瑕疵的举证责任。",
+                "supported": true,
+                "reason": "L01第二十三条及P05 5.3均规定耐用商品六个月内举证责任倒置"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.222,
+            "n": 45,
+            "hit": 10,
+            "truncated": false,
+            "note": "不相关的主要是其他情形条款、举证材料细节和重复内容。",
+            "irrelevant": [
+              "经营者应当保证在正常使用商品或者接受服务的情况下其提供的商品或者服务应当具有的质量、性能、用途和有效期限；",
+              "但消费者在购买该商品或者接受该服务前已经知道其存在瑕疵，且存在该瑕疵不违反法律强制性规定的除外。",
+              "经营者以广告、产品说明、实物样品或者其他方式表明商品或者服务的质量状况的，应当保证其提供的商品或者服务的实际质量与表明的",
+              "**经营者提供的机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品或者装饰装修等服务，消费者自接受商品或者服务之日",
+              "**",
+              "> **售后适用要点**：耐用商品六个月内的质量争议，举证责任在经营者一方，不能要求消费者自证商品有质量问题。",
+              "在三包有效期内，因生产者未供应零配件，自送修之日起超过90日未修好的，修理者应当在修理状况中注明，销售者凭此据免费为消费",
+              "然后依法向生产者、供货者追偿或者按购销合同办理。",
+              "因修理者自身原因使修理期超过30日的，由其免费为消费者调换同型号同规格产品。",
+              "费用由修理者承担。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 43.811,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:43:46.122Z",
+      "updatedAt": "2026-08-18T11:43:46.139Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "fe29b9ff3ad89c8f",
+      "traceId": "2a7fc05eb8e07e19cceb538534f4db59",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 11:43:43.954000+00:00",
+      "endTime": "2026-08-18 11:43:43.955000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 7,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "35a43daefdaf18c4",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:43:46.122Z",
+      "updatedAt": "2026-08-18T11:43:46.139Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "a743c9e2c1387863",
+      "traceId": "2a7fc05eb8e07e19cceb538534f4db59",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 11:43:43.954000+00:00",
+      "endTime": "2026-08-18 11:43:43.955000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "在三包有效期内符合换货条件、但销售者无同型号同规格产品且消费者不愿调换其他型号而要求退货时，退货金额应如何计算？若该商品属于耐用商品且消费者在六个月内发现瑕疵发生争议，举证责任由谁承担？"
+        },
+        "output": {
+          "case_id": "R1-093",
+          "type": "multi_hop",
+          "style": "formal",
+          "doc_id": "L05+L01",
+          "layer": "law",
+          "kind": "text",
+          "seed_chunk_id": [
+            "L05#013:00",
+            "L01#002:00"
+          ],
+          "error": null,
+          "scores": {
+            "recall@10": 1,
+            "recall@3": 1,
+            "evidence_tokens": 1197,
+            "duplicate_ratio": 0.164,
+            "context_recall": 1,
+            "context_relevance": 0.222
+          },
+          "elapsed_s": 2.3,
+          "seed_rank": {
+            "candidate": {
+              "L05#013:00": 5,
+              "L01#002:00": 7
+            },
+            "evidence": {
+              "L05#013:00": 2,
+              "L01#002:00": 1
+            }
+          },
+          "sections": [
+            "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】",
+            "L05 部分商品修理更换退货责任规定（三包规定） > 第十二条 【超期未修好】 … 第十四条 【换货标准与有效期重算】",
+            "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.3 耐用商品的举证责任倒置 … 第五条 举证责任 > 5.4 举证不能的后果",
+            "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十八条 【售后有效期起算与退款金额】"
+          ],
+          "judge": {
+            "context_recall": {
+              "score": 1,
+              "n": 4,
+              "hit": 4,
+              "detail": [
+                {
+                  "claim": "在三包有效期内符合换货条件、销售者无同型号同规格产品且消费者不愿调换其他型号而要求退货的，销售者应予以退货。",
+                  "supported": true,
+                  "reason": "L05第十四条明确该情形应退货"
+                },
+                {
+                  "claim": "销售者对已使用过的商品按本规定收取折旧费。",
+                  "supported": true,
+                  "reason": "L05第十四条规定可收取折旧费"
+                },
+                {
+                  "claim": "折旧费自开具发票之日起算至退货之日止，并扣除修理占用和待修时间。",
+                  "supported": true,
+                  "reason": "L05第十四条明确折旧费计算方式"
+                },
+                {
+                  "claim": "若商品属于机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自接受商品之日起六个月内发现瑕疵发生争议的，由经营者承担有关瑕疵的举证责任。",
+                  "supported": true,
+                  "reason": "L01第二十三条及P05 5.3均规定耐用商品六个月内举证责任倒置"
+                }
+              ],
+              "error": null
+            },
+            "context_relevance": {
+              "score": 0.222,
+              "n": 45,
+              "hit": 10,
+              "truncated": false,
+              "note": "不相关的主要是其他情形条款、举证材料细节和重复内容。",
+              "irrelevant": [
+                "经营者应当保证在正常使用商品或者接受服务的情况下其提供的商品或者服务应当具有的质量、性能、用途和有效期限；",
+                "但消费者在购买该商品或者接受该服务前已经知道其存在瑕疵，且存在该瑕疵不违反法律强制性规定的除外。",
+                "经营者以广告、产品说明、实物样品或者其他方式表明商品或者服务的质量状况的，应当保证其提供的商品或者服务的实际质量与表明的",
+                "**经营者提供的机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品或者装饰装修等服务，消费者自接受商品或者服务之日",
+                "**",
+                "> **售后适用要点**：耐用商品六个月内的质量争议，举证责任在经营者一方，不能要求消费者自证商品有质量问题。",
+                "在三包有效期内，因生产者未供应零配件，自送修之日起超过90日未修好的，修理者应当在修理状况中注明，销售者凭此据免费为消费",
+                "然后依法向生产者、供货者追偿或者按购销合同办理。",
+                "因修理者自身原因使修理期超过30日的，由其免费为消费者调换同型号同规格产品。",
+                "费用由修理者承担。"
+              ],
+              "error": null
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [
+            "在三包有效期内符合换货条件、销售者无同型号同规格产品且消费者不愿调换其他型号而要求退货的，销售者应予以退货。",
+            "销售者对已使用过的商品按本规定收取折旧费。",
+            "折旧费自开具发票之日起算至退货之日止，并扣除修理占用和待修时间。",
+            "若商品属于机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自接受商品之日起六个月内发现瑕疵发生争议的，由经营者承担有关瑕疵的举证责任。"
+          ],
+          "seed_chunk_id": [
+            "L05#013:00",
+            "L01#002:00"
+          ],
+          "reference_answer": "在三包有效期内符合换货条件、销售者无同型号同规格产品且消费者不愿调换其他型号而要求退货的，销售者应予以退货，对已使用过的商品按本规定收取折旧费，折旧费自开具发票之日起算至退货之日止，并扣除修理占用和待修时间。若该商品属于机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自接受商品之日起六个月内发现瑕疵发生争议的，由经营者承担有关瑕疵的举证责任。"
+        },
+        "metadata": {
+          "kind": "text",
+          "type": "multi_hop",
+          "layer": "law",
+          "style": "formal",
+          "topic": "质量有问题该谁举证、怎么修换退",
+          "doc_id": "L05+L01",
+          "section": "第十三条 【无同型号产品时的退货与折旧】 / 第二十三条 【瑕疵举证责任倒置】",
+          "reviewed": false,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.72
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 1,
+          "comment": "种子块名次 L05#013:00=5、L01#002:00=7"
+        },
+        {
+          "name": "recall@3",
+          "value": 1,
+          "comment": "种子块名次 L05#013:00=2、L01#002:00=1"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 1197,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0.164,
+          "comment": ""
+        },
+        {
+          "name": "context_recall",
+          "value": 1,
+          "comment": "4/4 条 claim 被支撑"
+        },
+        {
+          "name": "context_relevance",
+          "value": 0.222,
+          "comment": "10/45 个内容单元相关；不相关的主要是其他情形条款、举证材料细节和重复内容。"
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "fe29b9ff3ad89c8f",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:43:46.122Z",
+      "updatedAt": "2026-08-18T11:43:46.133Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "0c3cc14b53745e6e",
+      "traceId": "2a7fc05eb8e07e19cceb538534f4db59",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 11:43:00.144000+00:00",
+      "endTime": "2026-08-18 11:43:43.953000+00:00",
+      "input": {
+        "query": "在三包有效期内符合换货条件、但销售者无同型号同规格产品且消费者不愿调换其他型号而要求退货时，退货金额应如何计算？若该商品属于耐用商品且消费者在六个月内发现瑕疵发生争议，举证责任由谁承担？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-093",
+        "kind": "text",
+        "type": "multi_hop",
+        "layer": "law",
+        "style": "formal",
+        "topic": "质量有问题该谁举证、怎么修换退",
+        "doc_id": "L05+L01",
+        "section": "第十三条 【无同型号产品时的退货与折旧】 / 第二十三条 【瑕疵举证责任倒置】",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.72,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-093",
+        "type": "multi_hop",
+        "style": "formal",
+        "doc_id": "L05+L01",
+        "layer": "law",
+        "kind": "text",
+        "seed_chunk_id": [
+          "L05#013:00",
+          "L01#002:00"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "evidence_tokens": 1197,
+          "duplicate_ratio": 0.164,
+          "context_recall": 1,
+          "context_relevance": 0.222
+        },
+        "elapsed_s": 2.3,
+        "seed_rank": {
+          "candidate": {
+            "L05#013:00": 5,
+            "L01#002:00": 7
+          },
+          "evidence": {
+            "L05#013:00": 2,
+            "L01#002:00": 1
+          }
+        },
+        "sections": [
+          "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】",
+          "L05 部分商品修理更换退货责任规定（三包规定） > 第十二条 【超期未修好】 … 第十四条 【换货标准与有效期重算】",
+          "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.3 耐用商品的举证责任倒置 … 第五条 举证责任 > 5.4 举证不能的后果",
+          "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十八条 【售后有效期起算与退款金额】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 4,
+            "hit": 4,
+            "detail": [
+              {
+                "claim": "在三包有效期内符合换货条件、销售者无同型号同规格产品且消费者不愿调换其他型号而要求退货的，销售者应予以退货。",
+                "supported": true,
+                "reason": "L05第十四条明确该情形应退货"
+              },
+              {
+                "claim": "销售者对已使用过的商品按本规定收取折旧费。",
+                "supported": true,
+                "reason": "L05第十四条规定可收取折旧费"
+              },
+              {
+                "claim": "折旧费自开具发票之日起算至退货之日止，并扣除修理占用和待修时间。",
+                "supported": true,
+                "reason": "L05第十四条明确折旧费计算方式"
+              },
+              {
+                "claim": "若商品属于机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自接受商品之日起六个月内发现瑕疵发生争议的，由经营者承担有关瑕疵的举证责任。",
+                "supported": true,
+                "reason": "L01第二十三条及P05 5.3均规定耐用商品六个月内举证责任倒置"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.222,
+            "n": 45,
+            "hit": 10,
+            "truncated": false,
+            "note": "不相关的主要是其他情形条款、举证材料细节和重复内容。",
+            "irrelevant": [
+              "经营者应当保证在正常使用商品或者接受服务的情况下其提供的商品或者服务应当具有的质量、性能、用途和有效期限；",
+              "但消费者在购买该商品或者接受该服务前已经知道其存在瑕疵，且存在该瑕疵不违反法律强制性规定的除外。",
+              "经营者以广告、产品说明、实物样品或者其他方式表明商品或者服务的质量状况的，应当保证其提供的商品或者服务的实际质量与表明的",
+              "**经营者提供的机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品或者装饰装修等服务，消费者自接受商品或者服务之日",
+              "**",
+              "> **售后适用要点**：耐用商品六个月内的质量争议，举证责任在经营者一方，不能要求消费者自证商品有质量问题。",
+              "在三包有效期内，因生产者未供应零配件，自送修之日起超过90日未修好的，修理者应当在修理状况中注明，销售者凭此据免费为消费",
+              "然后依法向生产者、供货者追偿或者按购销合同办理。",
+              "因修理者自身原因使修理期超过30日的，由其免费为消费者调换同型号同规格产品。",
+              "费用由修理者承担。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "35a43daefdaf18c4",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 43.809,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:43:46.122Z",
+      "updatedAt": "2026-08-18T11:43:46.133Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "93f78fa6e58e1933",
+      "traceId": "2a7fc05eb8e07e19cceb538534f4db59",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 11:43:37.466000+00:00",
+      "endTime": "2026-08-18 11:43:39.738000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "在三包有效期内符合换货条件、但销售者无同型号同规格产品且消费者不愿调换其他型号而要求退货时，退货金额应如何计算？若该商品属于耐用商品且消费者在六个月内发现瑕疵发生争议，举证责任由谁承担？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】",
+            "text": "经营者应当保证在正常使用商品或者接受服务的情况下其提供的商品或者服务应当具有的质量、性能、用途和有效期限；但消费者在购买该商品或者接受该服务前已经知道其存在瑕疵，且存在该瑕疵不违反法律强制性规定的除外。\n\n经营者以广告、产品说明、实物样品或者其他方式表明商品或者服务的质量状况的，应当保证其提供的商品或者服务的实际质量与表明的质量状况相符。\n\n**经营者提供的机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品或者装饰装修等服务，消费者自接受商品或者服务之日起六个月内发现瑕疵，发生争议的，由经营者承担有关瑕疵的举证责任。**\n\n> **售后适用要点**：耐用商品六个月内的质量争议，举证责任在经营者一方，不能要求消费者自证商品有质量问题。",
+            "score": 0.9772081661224367,
+            "doc_id": "L01",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2014-03-15",
+            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
+            "reason": "相关性 0.997 × 先验 0.90 → 0.977；命中 2/law/dense#1, 2/law/bm25#1"
+          },
+          {
+            "section": "L05 部分商品修理更换退货责任规定（三包规定） > 第十二条 【超期未修好】 … 第十四条 【换货标准与有效期重算】",
+            "text": "在三包有效期内，因生产者未供应零配件，自送修之日起超过90日未修好的，修理者应当在修理状况中注明，销售者凭此据免费为消费者调换同型号同规格产品。然后依法向生产者、供货者追偿或者按购销合同办理。\n\n因修理者自身原因使修理期超过30日的，由其免费为消费者调换同型号同规格产品。费用由修理者承担。\n\n在三包有效期内，符合换货条件的，销售者因无同型号同规格产品，消费者不愿调换其他型号、规格产品而要求退货的，销售者应予以退货；有同型号同规格产品，消费者不愿调换而要求退货的，销售者应当予以退货，对已使用过的商品按本规定收取折旧费。\n\n折旧费计算自开具发票之日起至退货之日止，其中应当扣除修理占用和待修的时间。\n\n> **判定要点**：三包退货**可以扣折旧费**，这与无理由退货「按实付金额全额退还」有本质区别，退款金额计算逻辑不同。\n\n换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。\n\n换货后的三包有效期自换货之日起重新计算。由销售者在发票背面加盖更换章并提供新的三包凭证或者在三包凭证背面加盖更换章。",
+            "score": 0.9762496757507325,
+            "doc_id": "L05",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "1995-08-25",
+            "source_path": "doc/policy/law/L05-部分商品修理更换退货责任规定.md",
+            "reason": "相关性 0.995 × 先验 0.90 → 0.976；命中 1/law/dense#1, 1/law/bm25#1"
+          },
+          {
+            "section": "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.3 耐用商品的举证责任倒置 … 第五条 举证责任 > 5.4 举证不能的后果",
+            "text": "商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。\n\n商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。",
+            "score": 0.946691017150879,
+            "doc_id": "P05",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P05-商品完好标准与验收规范.md",
+            "reason": "相关性 0.958 × 先验 0.90 → 0.947；命中 2/platform/dense#1, 2/platform/bm25#1"
+          },
+          {
+            "section": "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十八条 【售后有效期起算与退款金额】",
+            "text": "经营者与消费者约定承担退货、更换、修理等义务的有效期限不得低于国家有关规定的要求。有效期限自经营者向消费者交付商品或者提供服务完结之日起计算，需要经营者另行安装的商品，有效期限自商品安装完成之日起计算。经营者向消费者履行更换义务后，承担更换、修理等义务的有效期限自更换完成之日起重新计算。经营者修理的时间不计入上述有效期限。\n\n经营者依照国家有关规定或者与消费者约定履行退货义务的，应当按照发票等购货凭证或者服务单据上显示的价格一次性退清相关款项。经营者能够证明消费者实际支付的价格与发票等购货凭证或者服务单据上显示的价格不一致的，按照消费者实际支付的价格退清相关款项。\n\n> **适用要点**：三条与判定直接相关的规则——\n> ① **需安装的商品，售后期从安装完成之日起算**，不是签收日；\n> ② **换货后售后期重新计算**，修理占用时间不计入；\n> ③ 退款金额以**实际支付价格**为准，凭证价格与实付不一致时以实付为准。",
+            "score": 0.7757926750183106,
+            "doc_id": "L03",
+            "layer": "law",
+            "doc_type": "行政法规",
+            "effective_date": "2024-07-01",
+            "source_path": "doc/policy/law/L03-消费者权益保护法实施条例-摘录.md",
+            "reason": "相关性 0.745 × 先验 0.90 → 0.776；命中 1/law/dense#5, 1/law/bm25#10, 2/law/dense#6"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "0c3cc14b53745e6e",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 2.272,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:43:41.101Z",
+      "updatedAt": "2026-08-18T11:43:41.134Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "81df23bfa165060f",
+      "traceId": "2a7fc05eb8e07e19cceb538534f4db59",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 11:43:38.931000+00:00",
+      "endTime": "2026-08-18 11:43:39.716000+00:00",
+      "input": {
+        "query": "在三包有效期内符合换货条件、但销售者无同型号同规格产品且消费者不愿调换其他型号而要求退货时，退货金额应如何计算？若该商品属于耐用商品且消费者在六个月内发现瑕疵发生争议，举证责任由谁承担？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 14,
+        "min_score": 0.3,
+        "dropped": [
+          "P05#005:00",
+          "P11#004:02",
+          "P05#005:01",
+          "P11#004:04",
+          "L01#003:00",
+          "P11#004:01"
+        ],
+        "evidence": [
+          {
+            "chunk_id": "L01#002:00",
+            "section": "L01 第二十三条 【瑕疵举证责任倒置】",
+            "score": 0.977,
+            "relevance": 0.997,
+            "prior": 0.9,
+            "excerpt": "经营者应当保证在正常使用商品或者接受服务的情况下其提供的商品或者服务应当具有的质量、性能、用途和有效期限；但消费者在购买该商品或者接受该服务前已经知道其存在瑕疵，且存在该瑕疵不违反法律强制性规定的除外。 经营者以广告、产品说明、实物样品或者…"
+          },
+          {
+            "chunk_id": "L05#013:00",
+            "section": "L05 第十三条 【无同型号产品时的退货与折旧】",
+            "score": 0.976,
+            "relevance": 0.995,
+            "prior": 0.9,
+            "excerpt": "在三包有效期内，符合换货条件的，销售者因无同型号同规格产品，消费者不愿调换其他型号、规格产品而要求退货的，销售者应予以退货；有同型号同规格产品，消费者不愿调换而要求退货的，销售者应当予以退货，对已使用过的商品按本规定收取折旧费。 折旧费计算…"
+          },
+          {
+            "chunk_id": "P05#005:02",
+            "section": "P05 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
+            "score": 0.947,
+            "relevance": 0.958,
+            "prior": 0.9,
+            "excerpt": "**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。"
+          },
+          {
+            "chunk_id": "L03#004:00",
+            "section": "L03 第十八条 【售后有效期起算与退款金额】",
+            "score": 0.776,
+            "relevance": 0.745,
+            "prior": 0.9,
+            "excerpt": "经营者与消费者约定承担退货、更换、修理等义务的有效期限不得低于国家有关规定的要求。有效期限自经营者向消费者交付商品或者提供服务完结之日起计算，需要经营者另行安装的商品，有效期限自商品安装完成之日起计算。经营者向消费者履行更换义务后，承担更换…"
+          },
+          {
+            "chunk_id": "P11#004:03",
+            "section": "P11 第四条 数码与家用电器 > 4.4 三包退货的折旧",
+            "score": 0.756,
+            "relevance": 0.72,
+            "prior": 0.9,
+            "excerpt": "符合换货条件但消费者要求退货的，对已使用过的商品可收取折旧费。折旧费自开票之日计算至退货之日，扣除修理占用与待修时间。 > 这与无理由退货「按实付金额全额退还」不同——三包退货可扣折旧。"
+          },
+          {
+            "chunk_id": "L05#011:00",
+            "section": "L05 第十一条 【修理两次仍不能正常使用】",
+            "score": 0.753,
+            "relevance": 0.716,
+            "prior": 0.9,
+            "excerpt": "在三包有效期内，修理两次，仍不能正常使用的产品，凭修理者提供的修理记录和证明，由销售者负责为消费者免费调换同型号同规格的产品或者按本规定第十三条的规定退货，然后依法向生产者、供货者追偿或者按购销合同办理。"
+          },
+          {
+            "chunk_id": "L05#012:00",
+            "section": "L05 第十二条 【超期未修好】",
+            "score": 0.727,
+            "relevance": 0.684,
+            "prior": 0.9,
+            "excerpt": "在三包有效期内，因生产者未供应零配件，自送修之日起超过90日未修好的，修理者应当在修理状况中注明，销售者凭此据免费为消费者调换同型号同规格产品。然后依法向生产者、供货者追偿或者按购销合同办理。 因修理者自身原因使修理期超过30日的，由其免费…"
+          },
+          {
+            "chunk_id": "P09#003:03",
+            "section": "P09 第四条 平台介入的处理 > 4.4 举证责任分配",
+            "score": 0.718,
+            "relevance": 0.672,
+            "prior": 0.9,
+            "excerpt": "| 争议事项 | 举证责任方 | |---|---| | 退回商品不完好、缺件、调包 | 商家 | | 商品存在质量问题 | 消费者（耐用商品 6 个月内除外） | | 耐用商品签收 6 个月内的瑕疵 | **商家** | | 已履行发货义…"
+          },
+          {
+            "chunk_id": "L05#010:00",
+            "section": "L05 第十条 【售出 15 日内：可换可修】",
+            "score": 0.584,
+            "relevance": 0.505,
+            "prior": 0.9,
+            "excerpt": "产品自售出之日起15日内，发生性能故障，消费者可以选择换货或者修理。换货时，销售者应当免费为消费者调换同型号同规模的产品，然后依法向生产者、供货者追偿或者按购销合同办理。 > **判定要点**：**7 日内退货、15 日内换货**——这是三…"
+          },
+          {
+            "chunk_id": "L05#014:00",
+            "section": "L05 第十四条 【换货标准与有效期重算】",
+            "score": 0.535,
+            "relevance": 0.444,
+            "prior": 0.9,
+            "excerpt": "换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。 换货后的三包有效期自换货之日起重新计算。由销售者在发票背面加盖更换章并提供新的三包凭证或者在三包凭证背面加盖更换章。"
+          },
+          {
+            "chunk_id": "L04#012:00",
+            "section": "L04 第六十二条 【交易记录的举证责任】",
+            "score": 0.456,
+            "relevance": 0.345,
+            "prior": 0.9,
+            "excerpt": "在电子商务争议处理中，电子商务经营者应当提供原始合同和交易记录。因电子商务经营者丢失、伪造、篡改、销毁、隐匿或者拒绝提供前述资料，致使人民法院、仲裁机构或者有关机关无法查明事实的，电子商务经营者应当承担相应的法律责任。 > **适用要点**…"
+          },
+          {
+            "chunk_id": "L05#008:00",
+            "section": "L05 第八条 【三包有效期的计算】",
+            "score": 0.441,
+            "relevance": 0.327,
+            "prior": 0.9,
+            "excerpt": "三包有效期自开具发票之日起计算，扣除因修理占用和无零配件待修的时间。 三包有效期内消费者凭发票及三包凭证办理修理、换货、退货。 > **判定要点**：三包期从**开票日**起算（对比：无理由退货从**签收次日**起算），且修理占用的时间要从…"
+          },
+          {
+            "chunk_id": "P09#004:04",
+            "section": "P09 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
+            "score": 0.362,
+            "relevance": 0.228,
+            "prior": 0.9,
+            "excerpt": "超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。"
+          },
+          {
+            "chunk_id": "P05#005:03",
+            "section": "P05 第五条 举证责任 > 5.4 举证不能的后果",
+            "score": 0.318,
+            "relevance": 0.172,
+            "prior": 0.9,
+            "excerpt": "争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "93f78fa6e58e1933",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.785,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:43:41.101Z",
+      "updatedAt": "2026-08-18T11:43:41.134Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "3cd977d867924498",
+      "traceId": "2a7fc05eb8e07e19cceb538534f4db59",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-18 11:43:38.788000+00:00",
+      "endTime": "2026-08-18 11:43:38.931000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "P09#004:04",
+            "section": "P09 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
+            "rrf": 0.1276,
+            "hits": [
+              "1/platform/dense#2",
+              "1/platform/bm25#1",
+              "2/platform/dense#9"
+            ]
+          },
+          {
+            "chunk_id": "L05#010:00",
+            "section": "L05 第十条 【售出 15 日内：可换可修】",
+            "rrf": 0.1129,
+            "hits": [
+              "1/law/dense#12",
+              "1/law/bm25#4",
+              "2/law/dense#5"
+            ]
+          },
+          {
+            "chunk_id": "L03#004:00",
+            "section": "L03 第十八条 【售后有效期起算与退款金额】",
+            "rrf": 0.1118,
+            "hits": [
+              "1/law/dense#5",
+              "1/law/bm25#10",
+              "2/law/dense#6"
+            ]
+          },
+          {
+            "chunk_id": "L05#012:00",
+            "section": "L05 第十二条 【超期未修好】",
+            "rrf": 0.1112,
+            "hits": [
+              "1/law/bm25#2",
+              "2/law/dense#12",
+              "2/law/bm25#9"
+            ]
+          },
+          {
+            "chunk_id": "L05#013:00",
+            "section": "L05 第十三条 【无同型号产品时的退货与折旧】",
+            "rrf": 0.0952,
+            "hits": [
+              "1/law/dense#1",
+              "1/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P05#005:02",
+            "section": "P05 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
+            "rrf": 0.0952,
+            "hits": [
+              "2/platform/dense#1",
+              "2/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L01#002:00",
+            "section": "L01 第二十三条 【瑕疵举证责任倒置】",
+            "rrf": 0.0952,
+            "hits": [
+              "2/law/dense#1",
+              "2/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P11#004:03",
+            "section": "P11 第四条 数码与家用电器 > 4.4 三包退货的折旧",
+            "rrf": 0.0911,
+            "hits": [
+              "1/platform/dense#1",
+              "1/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P09#003:03",
+            "section": "P09 第四条 平台介入的处理 > 4.4 举证责任分配",
+            "rrf": 0.0909,
+            "hits": [
+              "2/platform/dense#2",
+              "2/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L04#012:00",
+            "section": "L04 第六十二条 【交易记录的举证责任】",
+            "rrf": 0.0909,
+            "hits": [
+              "2/law/dense#2",
+              "2/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P05#005:00",
+            "section": "P05 第五条 举证责任 > 5.1 商家举证",
+            "rrf": 0.087,
+            "hits": [
+              "2/platform/dense#3",
+              "2/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L05#014:00",
+            "section": "L05 第十四条 【换货标准与有效期重算】",
+            "rrf": 0.0835,
+            "hits": [
+              "1/law/dense#3",
+              "1/law/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "L05#011:00",
+            "section": "L05 第十一条 【修理两次仍不能正常使用】",
+            "rrf": 0.0819,
+            "hits": [
+              "1/law/dense#6",
+              "1/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L05#008:00",
+            "section": "L05 第八条 【三包有效期的计算】",
+            "rrf": 0.0801,
+            "hits": [
+              "1/law/dense#4",
+              "1/law/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "P11#004:02",
+            "section": "P11 第四条 数码与家用电器 > 4.3 三包有效期的计算",
+            "rrf": 0.0799,
+            "hits": [
+              "1/platform/dense#9",
+              "1/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P05#005:01",
+            "section": "P05 第五条 举证责任 > 5.2 消费者举证",
+            "rrf": 0.0787,
+            "hits": [
+              "2/platform/dense#4",
+              "2/platform/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "P11#004:04",
+            "section": "P11 第四条 数码与家用电器 > 4.5 不实行三包的情形",
+            "rrf": 0.0785,
+            "hits": [
+              "1/platform/dense#6",
+              "1/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P05#005:03",
+            "section": "P05 第五条 举证责任 > 5.4 举证不能的后果",
+            "rrf": 0.0785,
+            "hits": [
+              "2/platform/dense#5",
+              "2/platform/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "L01#003:00",
+            "section": "L01 第二十四条 【质量不符时的退货、更换、修理】",
+            "rrf": 0.075,
+            "hits": [
+              "2/law/dense#4",
+              "2/law/bm25#10"
+            ]
+          },
+          {
+            "chunk_id": "P11#004:01",
+            "section": "P11 第四条 数码与家用电器 > 4.2 三包服务",
+            "rrf": 0.0739,
+            "hits": [
+              "1/platform/dense#11",
+              "1/platform/bm25#4"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "93f78fa6e58e1933",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.143,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:43:41.101Z",
+      "updatedAt": "2026-08-18T11:43:41.133Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "fdfb78eacb18768f",
+      "traceId": "2a7fc05eb8e07e19cceb538534f4db59",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 11:43:39.716000+00:00",
+      "endTime": "2026-08-18 11:43:39.738000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "L01#002:00",
+          "L05#013:00",
+          "P05#005:02",
+          "L03#004:00",
+          "P11#004:03",
+          "L05#011:00",
+          "L05#012:00",
+          "P09#003:03",
+          "L05#010:00",
+          "L05#014:00",
+          "L04#012:00",
+          "L05#008:00",
+          "P09#004:04",
+          "P05#005:03"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】",
+            "text": "经营者应当保证在正常使用商品或者接受服务的情况下其提供的商品或者服务应当具有的质量、性能、用途和有效期限；但消费者在购买该商品或者接受该服务前已经知道其存在瑕疵，且存在该瑕疵不违反法律强制性规定的除外。\n\n经营者以广告、产品说明、实物样品或者其他方式表明商品或者服务的质量状况的，应当保证其提供的商品或者服务的实际质量与表明的质量状况相符。\n\n**经营者提供的机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品或者装饰装修等服务，消费者自接受商品或者服务之日起六个月内发现瑕疵，发生争议的，由经营者承担有关瑕疵的举证责任。**\n\n> **售后适用要点**：耐用商品六个月内的质量争议，举证责任在经营者一方，不能要求消费者自证商品有质量问题。",
+            "score": 0.9772081661224367,
+            "doc_id": "L01",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2014-03-15",
+            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
+            "reason": "相关性 0.997 × 先验 0.90 → 0.977；命中 2/law/dense#1, 2/law/bm25#1"
+          },
+          {
+            "section": "L05 部分商品修理更换退货责任规定（三包规定） > 第十二条 【超期未修好】 … 第十四条 【换货标准与有效期重算】",
+            "text": "在三包有效期内，因生产者未供应零配件，自送修之日起超过90日未修好的，修理者应当在修理状况中注明，销售者凭此据免费为消费者调换同型号同规格产品。然后依法向生产者、供货者追偿或者按购销合同办理。\n\n因修理者自身原因使修理期超过30日的，由其免费为消费者调换同型号同规格产品。费用由修理者承担。\n\n在三包有效期内，符合换货条件的，销售者因无同型号同规格产品，消费者不愿调换其他型号、规格产品而要求退货的，销售者应予以退货；有同型号同规格产品，消费者不愿调换而要求退货的，销售者应当予以退货，对已使用过的商品按本规定收取折旧费。\n\n折旧费计算自开具发票之日起至退货之日止，其中应当扣除修理占用和待修的时间。\n\n> **判定要点**：三包退货**可以扣折旧费**，这与无理由退货「按实付金额全额退还」有本质区别，退款金额计算逻辑不同。\n\n换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。\n\n换货后的三包有效期自换货之日起重新计算。由销售者在发票背面加盖更换章并提供新的三包凭证或者在三包凭证背面加盖更换章。",
+            "score": 0.9762496757507325,
+            "doc_id": "L05",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "1995-08-25",
+            "source_path": "doc/policy/law/L05-部分商品修理更换退货责任规定.md",
+            "reason": "相关性 0.995 × 先验 0.90 → 0.976；命中 1/law/dense#1, 1/law/bm25#1"
+          },
+          {
+            "section": "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.3 耐用商品的举证责任倒置 … 第五条 举证责任 > 5.4 举证不能的后果",
+            "text": "商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。\n\n商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。",
+            "score": 0.946691017150879,
+            "doc_id": "P05",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P05-商品完好标准与验收规范.md",
+            "reason": "相关性 0.958 × 先验 0.90 → 0.947；命中 2/platform/dense#1, 2/platform/bm25#1"
+          },
+          {
+            "section": "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十八条 【售后有效期起算与退款金额】",
+            "text": "经营者与消费者约定承担退货、更换、修理等义务的有效期限不得低于国家有关规定的要求。有效期限自经营者向消费者交付商品或者提供服务完结之日起计算，需要经营者另行安装的商品，有效期限自商品安装完成之日起计算。经营者向消费者履行更换义务后，承担更换、修理等义务的有效期限自更换完成之日起重新计算。经营者修理的时间不计入上述有效期限。\n\n经营者依照国家有关规定或者与消费者约定履行退货义务的，应当按照发票等购货凭证或者服务单据上显示的价格一次性退清相关款项。经营者能够证明消费者实际支付的价格与发票等购货凭证或者服务单据上显示的价格不一致的，按照消费者实际支付的价格退清相关款项。\n\n> **适用要点**：三条与判定直接相关的规则——\n> ① **需安装的商品，售后期从安装完成之日起算**，不是签收日；\n> ② **换货后售后期重新计算**，修理占用时间不计入；\n> ③ 退款金额以**实际支付价格**为准，凭证价格与实付不一致时以实付为准。",
+            "score": 0.7757926750183106,
+            "doc_id": "L03",
+            "layer": "law",
+            "doc_type": "行政法规",
+            "effective_date": "2024-07-01",
+            "source_path": "doc/policy/law/L03-消费者权益保护法实施条例-摘录.md",
+            "reason": "相关性 0.745 × 先验 0.90 → 0.776；命中 1/law/dense#5, 1/law/bm25#10, 2/law/dense#6"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "93f78fa6e58e1933",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.022,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:43:41.101Z",
+      "updatedAt": "2026-08-18T11:43:41.133Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "b0904ff0d798d17e",
+      "traceId": "2a7fc05eb8e07e19cceb538534f4db59",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 11:43:38.787000+00:00",
+      "endTime": "2026-08-18 11:43:38.788000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 12,
+              "law": 12
+            },
+            "law_weight": 1
+          },
+          {
+            "sub_query": "2",
+            "layer_k": {
+              "platform": 12,
+              "law": 12
+            },
+            "law_weight": 1
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "93f78fa6e58e1933",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:43:41.101Z",
+      "updatedAt": "2026-08-18T11:43:41.124Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "37f168a1a29a44dd",
+      "traceId": "2a7fc05eb8e07e19cceb538534f4db59",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 11:43:37.466000+00:00",
+      "endTime": "2026-08-18 11:43:38.787000+00:00",
+      "input": {
+        "query": "在三包有效期内符合换货条件、但销售者无同型号同规格产品且消费者不愿调换其他型号而要求退货时，退货金额应如何计算？若该商品属于耐用商品且消费者在六个月内发现瑕疵发生争议，举证责任由谁承担？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": true,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "refund",
+            "text": "三包有效期内符合换货条件但销售者无同型号同规格产品且消费者不愿调换其他型号而要求退货时，退货金额应如何计算？"
+          },
+          {
+            "id": "2",
+            "intent": "dispute",
+            "text": "耐用商品在六个月内发现瑕疵发生争议时，举证责任由谁承担？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "93f78fa6e58e1933",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.321,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:43:41.101Z",
+      "updatedAt": "2026-08-18T11:43:41.123Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    }
+  ]
+}

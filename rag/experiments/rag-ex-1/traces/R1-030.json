@@ -1,0 +1,1376 @@
+{
+  "case": {
+    "case_id": "R1-030",
+    "type": "single",
+    "style": "colloquial",
+    "doc_id": "P01",
+    "layer": "platform",
+    "kind": "text",
+    "seed_chunk_id": [
+      "P01#002:04"
+    ],
+    "error": null,
+    "scores": {
+      "recall@10": 1.0,
+      "recall@3": 1.0,
+      "recall@1": 1.0,
+      "evidence_tokens": 257,
+      "duplicate_ratio": 0.0,
+      "context_recall": 1.0,
+      "context_relevance": 0.091
+    },
+    "elapsed_s": 2.3,
+    "seed_rank": {
+      "candidate": {
+        "P01#002:04": 1
+      },
+      "evidence": {
+        "P01#002:04": 1
+      }
+    },
+    "sections": [
+      "P01 星辰优选用户服务协议 > 第二章 账户与身份 > 2.5 账户安全"
+    ],
+    "judge": {
+      "context_recall": {
+        "score": 1.0,
+        "n": 2,
+        "hit": 2,
+        "detail": [
+          {
+            "claim": "因消费者自身原因导致账户密码泄露、被盗用而产生的损失，由消费者自行承担。",
+            "supported": true,
+            "reason": "P01 2.5 明确写明该损失由消费者自行承担。"
+          },
+          {
+            "claim": "平台在收到消费者挂失通知后应及时采取冻结措施。",
+            "supported": true,
+            "reason": "P01 2.5 写明平台收到挂失通知后应及时冻结。"
+          }
+        ],
+        "error": null
+      },
+      "context_relevance": {
+        "score": 0.091,
+        "n": 11,
+        "hit": 1,
+        "truncated": false,
+        "note": "其余多为账户使用规则、身份认定和客服操作规范，未直接回答损失归属。",
+        "irrelevant": [
+          "消费者应提供真实、准确、完整的注册信息。",
+          "账户仅限本人使用，不得出借、出租、转让。",
+          "**平台以账户登录状态确定操作主体身份。",
+          "** 所有订单查询、售后申请、退款操作，其权限范围严格限于当前登录账户名下的订单。",
+          "任何情况下，平台不依据对话中声称的身份提供服务——**消费者在会话中提及的姓名、手机号、他人订单号，均不构成身份凭证**",
+          "对不属于当前账户的订单发起的任何查询或售后申请，平台一律答复「订单不存在」，**不区分「订单确实不存在」与「订单存在但不",
+          "此项规定用于防止通过试探订单号探知他人交易信息。",
+          "平台客服代消费者操作的，须在处理流水中如实记录操作者身份及客服工号。",
+          "代操作不改变权限范围——客服代操作时可查阅的信息，仍限于被代理消费者名下的订单。",
+          "平台在收到消费者挂失通知后应及时采取冻结措施。"
+        ],
+        "error": null
+      }
+    },
+    "trace_id": "6973c94f439f1ccc455f282edfb2cee0"
+  },
+  "trace": {
+    "id": "6973c94f439f1ccc455f282edfb2cee0",
+    "name": "experiment-item-run",
+    "timestamp": "2026-08-18 11:49:40.810000+00:00"
+  },
+  "observations": [
+    {
+      "id": "8a9ea9b97347b93a",
+      "traceId": "6973c94f439f1ccc455f282edfb2cee0",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 11:48:57.291000+00:00",
+      "endTime": "2026-08-18 11:49:46.230000+00:00",
+      "input": {
+        "query": "我自己不小心把密码告诉别人了，账号被人盗了，里面的钱没了，这损失算谁的？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-030",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P01",
+        "section": "第二章 账户与身份 > 2.5 账户安全",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.071,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-030",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P01",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P01#002:04"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 257,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.091
+        },
+        "elapsed_s": 2.3,
+        "seed_rank": {
+          "candidate": {
+            "P01#002:04": 1
+          },
+          "evidence": {
+            "P01#002:04": 1
+          }
+        },
+        "sections": [
+          "P01 星辰优选用户服务协议 > 第二章 账户与身份 > 2.5 账户安全"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "因消费者自身原因导致账户密码泄露、被盗用而产生的损失，由消费者自行承担。",
+                "supported": true,
+                "reason": "P01 2.5 明确写明该损失由消费者自行承担。"
+              },
+              {
+                "claim": "平台在收到消费者挂失通知后应及时采取冻结措施。",
+                "supported": true,
+                "reason": "P01 2.5 写明平台收到挂失通知后应及时冻结。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.091,
+            "n": 11,
+            "hit": 1,
+            "truncated": false,
+            "note": "其余多为账户使用规则、身份认定和客服操作规范，未直接回答损失归属。",
+            "irrelevant": [
+              "消费者应提供真实、准确、完整的注册信息。",
+              "账户仅限本人使用，不得出借、出租、转让。",
+              "**平台以账户登录状态确定操作主体身份。",
+              "** 所有订单查询、售后申请、退款操作，其权限范围严格限于当前登录账户名下的订单。",
+              "任何情况下，平台不依据对话中声称的身份提供服务——**消费者在会话中提及的姓名、手机号、他人订单号，均不构成身份凭证**",
+              "对不属于当前账户的订单发起的任何查询或售后申请，平台一律答复「订单不存在」，**不区分「订单确实不存在」与「订单存在但不",
+              "此项规定用于防止通过试探订单号探知他人交易信息。",
+              "平台客服代消费者操作的，须在处理流水中如实记录操作者身份及客服工号。",
+              "代操作不改变权限范围——客服代操作时可查阅的信息，仍限于被代理消费者名下的订单。",
+              "平台在收到消费者挂失通知后应及时采取冻结措施。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "4be78d84a8efc310",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 48.939,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:48.650Z",
+      "updatedAt": "2026-08-18T11:49:48.664Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "fb0b86385051882b",
+      "traceId": "6973c94f439f1ccc455f282edfb2cee0",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 11:49:46.231000+00:00",
+      "endTime": "2026-08-18 11:49:46.232000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "4be78d84a8efc310",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:48.650Z",
+      "updatedAt": "2026-08-18T11:49:48.664Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "4be78d84a8efc310",
+      "traceId": "6973c94f439f1ccc455f282edfb2cee0",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 11:48:57.291000+00:00",
+      "endTime": "2026-08-18 11:49:46.232000+00:00",
+      "input": {
+        "query": "我自己不小心把密码告诉别人了，账号被人盗了，里面的钱没了，这损失算谁的？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-030",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P01",
+        "section": "第二章 账户与身份 > 2.5 账户安全",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.071,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-030",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P01",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P01#002:04"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 257,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.091
+        },
+        "elapsed_s": 2.3,
+        "seed_rank": {
+          "candidate": {
+            "P01#002:04": 1
+          },
+          "evidence": {
+            "P01#002:04": 1
+          }
+        },
+        "sections": [
+          "P01 星辰优选用户服务协议 > 第二章 账户与身份 > 2.5 账户安全"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "因消费者自身原因导致账户密码泄露、被盗用而产生的损失，由消费者自行承担。",
+                "supported": true,
+                "reason": "P01 2.5 明确写明该损失由消费者自行承担。"
+              },
+              {
+                "claim": "平台在收到消费者挂失通知后应及时采取冻结措施。",
+                "supported": true,
+                "reason": "P01 2.5 写明平台收到挂失通知后应及时冻结。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.091,
+            "n": 11,
+            "hit": 1,
+            "truncated": false,
+            "note": "其余多为账户使用规则、身份认定和客服操作规范，未直接回答损失归属。",
+            "irrelevant": [
+              "消费者应提供真实、准确、完整的注册信息。",
+              "账户仅限本人使用，不得出借、出租、转让。",
+              "**平台以账户登录状态确定操作主体身份。",
+              "** 所有订单查询、售后申请、退款操作，其权限范围严格限于当前登录账户名下的订单。",
+              "任何情况下，平台不依据对话中声称的身份提供服务——**消费者在会话中提及的姓名、手机号、他人订单号，均不构成身份凭证**",
+              "对不属于当前账户的订单发起的任何查询或售后申请，平台一律答复「订单不存在」，**不区分「订单确实不存在」与「订单存在但不",
+              "此项规定用于防止通过试探订单号探知他人交易信息。",
+              "平台客服代消费者操作的，须在处理流水中如实记录操作者身份及客服工号。",
+              "代操作不改变权限范围——客服代操作时可查阅的信息，仍限于被代理消费者名下的订单。",
+              "平台在收到消费者挂失通知后应及时采取冻结措施。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 48.941,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:48.650Z",
+      "updatedAt": "2026-08-18T11:49:48.660Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "75675490790502ce",
+      "traceId": "6973c94f439f1ccc455f282edfb2cee0",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 11:49:46.231000+00:00",
+      "endTime": "2026-08-18 11:49:46.232000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "我自己不小心把密码告诉别人了，账号被人盗了，里面的钱没了，这损失算谁的？"
+        },
+        "output": {
+          "case_id": "R1-030",
+          "type": "single",
+          "style": "colloquial",
+          "doc_id": "P01",
+          "layer": "platform",
+          "kind": "text",
+          "seed_chunk_id": [
+            "P01#002:04"
+          ],
+          "error": null,
+          "scores": {
+            "recall@10": 1,
+            "recall@3": 1,
+            "recall@1": 1,
+            "evidence_tokens": 257,
+            "duplicate_ratio": 0,
+            "context_recall": 1,
+            "context_relevance": 0.091
+          },
+          "elapsed_s": 2.3,
+          "seed_rank": {
+            "candidate": {
+              "P01#002:04": 1
+            },
+            "evidence": {
+              "P01#002:04": 1
+            }
+          },
+          "sections": [
+            "P01 星辰优选用户服务协议 > 第二章 账户与身份 > 2.5 账户安全"
+          ],
+          "judge": {
+            "context_recall": {
+              "score": 1,
+              "n": 2,
+              "hit": 2,
+              "detail": [
+                {
+                  "claim": "因消费者自身原因导致账户密码泄露、被盗用而产生的损失，由消费者自行承担。",
+                  "supported": true,
+                  "reason": "P01 2.5 明确写明该损失由消费者自行承担。"
+                },
+                {
+                  "claim": "平台在收到消费者挂失通知后应及时采取冻结措施。",
+                  "supported": true,
+                  "reason": "P01 2.5 写明平台收到挂失通知后应及时冻结。"
+                }
+              ],
+              "error": null
+            },
+            "context_relevance": {
+              "score": 0.091,
+              "n": 11,
+              "hit": 1,
+              "truncated": false,
+              "note": "其余多为账户使用规则、身份认定和客服操作规范，未直接回答损失归属。",
+              "irrelevant": [
+                "消费者应提供真实、准确、完整的注册信息。",
+                "账户仅限本人使用，不得出借、出租、转让。",
+                "**平台以账户登录状态确定操作主体身份。",
+                "** 所有订单查询、售后申请、退款操作，其权限范围严格限于当前登录账户名下的订单。",
+                "任何情况下，平台不依据对话中声称的身份提供服务——**消费者在会话中提及的姓名、手机号、他人订单号，均不构成身份凭证**",
+                "对不属于当前账户的订单发起的任何查询或售后申请，平台一律答复「订单不存在」，**不区分「订单确实不存在」与「订单存在但不",
+                "此项规定用于防止通过试探订单号探知他人交易信息。",
+                "平台客服代消费者操作的，须在处理流水中如实记录操作者身份及客服工号。",
+                "代操作不改变权限范围——客服代操作时可查阅的信息，仍限于被代理消费者名下的订单。",
+                "平台在收到消费者挂失通知后应及时采取冻结措施。"
+              ],
+              "error": null
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [
+            "因消费者自身原因导致账户密码泄露、被盗用而产生的损失，由消费者自行承担。",
+            "平台在收到消费者挂失通知后应及时采取冻结措施。"
+          ],
+          "seed_chunk_id": [
+            "P01#002:04"
+          ],
+          "reference_answer": "因消费者自身原因导致账户密码泄露、被盗用而产生的损失，由消费者自行承担。平台在收到消费者挂失通知后应及时采取冻结措施。"
+        },
+        "metadata": {
+          "kind": "text",
+          "type": "single",
+          "layer": "platform",
+          "style": "colloquial",
+          "doc_id": "P01",
+          "section": "第二章 账户与身份 > 2.5 账户安全",
+          "reviewed": false,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.071
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 1,
+          "comment": "种子块名次 P01#002:04=1"
+        },
+        {
+          "name": "recall@3",
+          "value": 1,
+          "comment": "种子块名次 P01#002:04=1"
+        },
+        {
+          "name": "recall@1",
+          "value": 1,
+          "comment": "种子块名次 P01#002:04=1"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 257,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "context_recall",
+          "value": 1,
+          "comment": "2/2 条 claim 被支撑"
+        },
+        {
+          "name": "context_relevance",
+          "value": 0.091,
+          "comment": "1/11 个内容单元相关；其余多为账户使用规则、身份认定和客服操作规范，未直接回答损失归属。"
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "fb0b86385051882b",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:48.650Z",
+      "updatedAt": "2026-08-18T11:49:48.657Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "bff5cc8f576881a6",
+      "traceId": "6973c94f439f1ccc455f282edfb2cee0",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 11:49:40.810000+00:00",
+      "endTime": "2026-08-18 11:49:43.142000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "我自己不小心把密码告诉别人了，账号被人盗了，里面的钱没了，这损失算谁的？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P01 星辰优选用户服务协议 > 第二章 账户与身份 > 2.5 账户安全",
+            "text": "消费者应提供真实、准确、完整的注册信息。账户仅限本人使用，不得出借、出租、转让。\n\n**平台以账户登录状态确定操作主体身份。** 所有订单查询、售后申请、退款操作，其权限范围严格限于当前登录账户名下的订单。\n\n任何情况下，平台不依据对话中声称的身份提供服务——**消费者在会话中提及的姓名、手机号、他人订单号，均不构成身份凭证**。\n\n对不属于当前账户的订单发起的任何查询或售后申请，平台一律答复「订单不存在」，**不区分「订单确实不存在」与「订单存在但不属于当前账户」**。此项规定用于防止通过试探订单号探知他人交易信息。\n\n平台客服代消费者操作的，须在处理流水中如实记录操作者身份及客服工号。代操作不改变权限范围——客服代操作时可查阅的信息，仍限于被代理消费者名下的订单。\n\n因消费者自身原因导致账户密码泄露、被盗用而产生的损失，由消费者自行承担；平台在收到消费者挂失通知后应及时采取冻结措施。",
+            "score": 0.39085312366485603,
+            "doc_id": "P01",
+            "layer": "platform",
+            "doc_type": "平台服务协议",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P01-用户服务协议.md",
+            "reason": "相关性 0.264 × 先验 0.90 → 0.391；命中 1/platform/dense#1, 1/platform/bm25#1, 2/platform/dense#1, 2/platform/bm25#1"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "8a9ea9b97347b93a",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 2.332,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:43.611Z",
+      "updatedAt": "2026-08-18T11:49:43.627Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "306e91c45d7d444e",
+      "traceId": "6973c94f439f1ccc455f282edfb2cee0",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 11:49:42.432000+00:00",
+      "endTime": "2026-08-18 11:49:43.136000+00:00",
+      "input": {
+        "query": "我自己不小心把密码告诉别人了，账号被人盗了，里面的钱没了，这损失算谁的？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 1,
+        "min_score": 0.3,
+        "dropped": [
+          "L01#009:00",
+          "L01#008:00",
+          "L01#006:00",
+          "L04#008:00",
+          "P09#004:03",
+          "P01#004:01",
+          "L04#007:00",
+          "P09#005:01",
+          "P01#002:01",
+          "P11#003:02",
+          "L01#007:00",
+          "L04#012:00",
+          "P01#002:02",
+          "P01#004:02",
+          "L05#006:00",
+          "L03#008:00",
+          "P01#003:02",
+          "L04#002:00",
+          "L04#003:00"
+        ],
+        "evidence": [
+          {
+            "chunk_id": "P01#002:04",
+            "section": "P01 第二章 账户与身份 > 2.5 账户安全",
+            "score": 0.391,
+            "relevance": 0.264,
+            "prior": 0.9,
+            "excerpt": "因消费者自身原因导致账户密码泄露、被盗用而产生的损失，由消费者自行承担；平台在收到消费者挂失通知后应及时采取冻结措施。"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "bff5cc8f576881a6",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.704,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:43.611Z",
+      "updatedAt": "2026-08-18T11:49:43.627Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "597394f4a30d0643",
+      "traceId": "6973c94f439f1ccc455f282edfb2cee0",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 11:49:43.136000+00:00",
+      "endTime": "2026-08-18 11:49:43.142000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "P01#002:04"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P01 星辰优选用户服务协议 > 第二章 账户与身份 > 2.5 账户安全",
+            "text": "消费者应提供真实、准确、完整的注册信息。账户仅限本人使用，不得出借、出租、转让。\n\n**平台以账户登录状态确定操作主体身份。** 所有订单查询、售后申请、退款操作，其权限范围严格限于当前登录账户名下的订单。\n\n任何情况下，平台不依据对话中声称的身份提供服务——**消费者在会话中提及的姓名、手机号、他人订单号，均不构成身份凭证**。\n\n对不属于当前账户的订单发起的任何查询或售后申请，平台一律答复「订单不存在」，**不区分「订单确实不存在」与「订单存在但不属于当前账户」**。此项规定用于防止通过试探订单号探知他人交易信息。\n\n平台客服代消费者操作的，须在处理流水中如实记录操作者身份及客服工号。代操作不改变权限范围——客服代操作时可查阅的信息，仍限于被代理消费者名下的订单。\n\n因消费者自身原因导致账户密码泄露、被盗用而产生的损失，由消费者自行承担；平台在收到消费者挂失通知后应及时采取冻结措施。",
+            "score": 0.39085312366485603,
+            "doc_id": "P01",
+            "layer": "platform",
+            "doc_type": "平台服务协议",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P01-用户服务协议.md",
+            "reason": "相关性 0.264 × 先验 0.90 → 0.391；命中 1/platform/dense#1, 1/platform/bm25#1, 2/platform/dense#1, 2/platform/bm25#1"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "bff5cc8f576881a6",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.006,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:43.611Z",
+      "updatedAt": "2026-08-18T11:49:43.627Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "0170abc2b47478bc",
+      "traceId": "6973c94f439f1ccc455f282edfb2cee0",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 11:49:42.315000+00:00",
+      "endTime": "2026-08-18 11:49:42.315000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 12,
+              "law": 12
+            },
+            "law_weight": 1
+          },
+          {
+            "sub_query": "2",
+            "layer_k": {
+              "platform": 12,
+              "law": 12
+            },
+            "law_weight": 1
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "bff5cc8f576881a6",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:43.611Z",
+      "updatedAt": "2026-08-18T11:49:43.626Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "05988a02893966bc",
+      "traceId": "6973c94f439f1ccc455f282edfb2cee0",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-18 11:49:42.315000+00:00",
+      "endTime": "2026-08-18 11:49:42.432000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "P01#002:04",
+            "section": "P01 第二章 账户与身份 > 2.5 账户安全",
+            "rrf": 0.1905,
+            "hits": [
+              "1/platform/dense#1",
+              "1/platform/bm25#1",
+              "2/platform/dense#1",
+              "2/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L01#009:00",
+            "section": "L01 第五十五条 【惩罚性赔偿】",
+            "rrf": 0.1782,
+            "hits": [
+              "1/law/dense#4",
+              "1/law/bm25#2",
+              "2/law/dense#3",
+              "2/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L01#008:00",
+            "section": "L01 第五十二条 【财产损害责任】",
+            "rrf": 0.1732,
+            "hits": [
+              "1/law/dense#6",
+              "1/law/bm25#1",
+              "2/law/dense#4",
+              "2/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L01#006:00",
+            "section": "L01 第四十四条 【网络交易平台提供者责任】",
+            "rrf": 0.17,
+            "hits": [
+              "1/law/dense#1",
+              "1/law/bm25#3",
+              "2/law/dense#1",
+              "2/law/bm25#12"
+            ]
+          },
+          {
+            "chunk_id": "L04#008:00",
+            "section": "L04 第五十八条 【质量担保机制】",
+            "rrf": 0.1671,
+            "hits": [
+              "1/law/dense#5",
+              "1/law/bm25#4",
+              "2/law/dense#2",
+              "2/law/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P09#004:03",
+            "section": "P09 第五条 特定场景的处理口径 > 5.4 商品导致人身或财产损害",
+            "rrf": 0.1654,
+            "hits": [
+              "1/platform/dense#9",
+              "1/platform/bm25#2",
+              "2/platform/dense#5",
+              "2/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P01#004:01",
+            "section": "P01 第四章 平台的角色与责任 > 4.2 平台的先行赔付承诺",
+            "rrf": 0.1239,
+            "hits": [
+              "1/platform/dense#2",
+              "2/platform/dense#6",
+              "2/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "L04#007:00",
+            "section": "L04 第三十八条 【平台连带责任】",
+            "rrf": 0.121,
+            "hits": [
+              "1/law/dense#2",
+              "1/law/bm25#7",
+              "2/law/dense#6"
+            ]
+          },
+          {
+            "chunk_id": "P09#005:01",
+            "section": "P09 第六条 平台的先行赔付 > 6.2 赔付与追偿",
+            "rrf": 0.1195,
+            "hits": [
+              "1/platform/dense#7",
+              "2/platform/dense#2",
+              "2/platform/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "P01#002:01",
+            "section": "P01 第二章 账户与身份 > 2.2 账户即身份",
+            "rrf": 0.1132,
+            "hits": [
+              "1/platform/dense#4",
+              "1/platform/bm25#9",
+              "2/platform/dense#7"
+            ]
+          },
+          {
+            "chunk_id": "P11#003:02",
+            "section": "P11 第三条 虚拟商品 > 3.3 交付异常的处理",
+            "rrf": 0.1115,
+            "hits": [
+              "1/platform/bm25#8",
+              "2/platform/dense#11",
+              "2/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L01#007:00",
+            "section": "L01 第四十八条 【经营者民事责任】",
+            "rrf": 0.1112,
+            "hits": [
+              "1/law/dense#8",
+              "1/law/bm25#6",
+              "2/law/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "L04#012:00",
+            "section": "L04 第六十二条 【交易记录的举证责任】",
+            "rrf": 0.0991,
+            "hits": [
+              "1/law/dense#9",
+              "1/law/bm25#10",
+              "2/law/dense#12"
+            ]
+          },
+          {
+            "chunk_id": "P01#002:02",
+            "section": "P01 第二章 账户与身份 > 2.3 越权访问的处理",
+            "rrf": 0.0989,
+            "hits": [
+              "1/platform/dense#11",
+              "1/platform/bm25#10",
+              "2/platform/bm25#10"
+            ]
+          },
+          {
+            "chunk_id": "P01#004:02",
+            "section": "P01 第四章 平台的角色与责任 > 4.3 平台的连带责任",
+            "rrf": 0.0835,
+            "hits": [
+              "1/platform/dense#3",
+              "1/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "L05#006:00",
+            "section": "L05 第六条 【修理者义务】",
+            "rrf": 0.0817,
+            "hits": [
+              "1/law/bm25#5",
+              "2/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "L03#008:00",
+            "section": "L03 第二十三条 【个人信息保护】",
+            "rrf": 0.0805,
+            "hits": [
+              "1/law/dense#3",
+              "2/law/dense#7"
+            ]
+          },
+          {
+            "chunk_id": "P01#003:02",
+            "section": "P01 第三章 订单与合同 > 3.3 交付与运输风险",
+            "rrf": 0.0768,
+            "hits": [
+              "1/platform/dense#10",
+              "1/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L04#002:00",
+            "section": "L04 第二十条 【交付与运输风险】",
+            "rrf": 0.0715,
+            "hits": [
+              "1/law/dense#7",
+              "1/law/bm25#9"
+            ]
+          },
+          {
+            "chunk_id": "L04#003:00",
+            "section": "L04 第二十一条 【押金退还】",
+            "rrf": 0.0714,
+            "hits": [
+              "2/law/dense#8",
+              "2/law/bm25#8"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "bff5cc8f576881a6",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.117,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:43.611Z",
+      "updatedAt": "2026-08-18T11:49:43.626Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "6679b735b1b1e654",
+      "traceId": "6973c94f439f1ccc455f282edfb2cee0",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 11:49:40.810000+00:00",
+      "endTime": "2026-08-18 11:49:42.314000+00:00",
+      "input": {
+        "query": "我自己不小心把密码告诉别人了，账号被人盗了，里面的钱没了，这损失算谁的？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": true,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "risk",
+            "text": "用户自己泄露密码导致账号被盗、账户资金损失，平台是否承担赔偿责任？"
+          },
+          {
+            "id": "2",
+            "intent": "dispute",
+            "text": "账号被盗导致资金损失，用户能否向平台申请赔付或追回损失？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "bff5cc8f576881a6",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.504,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:49:43.611Z",
+      "updatedAt": "2026-08-18T11:49:43.626Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    }
+  ]
+}

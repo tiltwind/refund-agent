@@ -7,8 +7,9 @@
 判分逻辑跟着实验走：**换判分口径 = 开新实验目录**，就地改会让历史 run 的分数不再可比。
 期望值变了（改 `cases.jsonl` 的口径）就该开 r2。
 
-已实现：三档 Recall 与两个辅助数（都是纯函数），六步上报 Langfuse，分数写回 dataset run。
-Context Recall 与 Context Relevance 要调 judge，[等校准做完再接](https://tiltwind.github.io/refund-agent/doc/get-start/5-rag-eval.md#七两个待接的-llm-指标)。
+打分器分两处：`scorers.py` 是纯函数（三档 Recall + 两个辅助数，进门禁），`judge.py` 要调 LLM
+（Context Recall + Context Relevance，默认关，`--judge` 打开，只进报告）。六步上报 Langfuse，
+分数写回 dataset run。
 
 ---
 
@@ -18,15 +19,25 @@ Context Recall 与 Context Relevance 要调 judge，[等校准做完再接](http
 |---|---|
 | Milvus 起着并已灌库 | `bash scripts/milvus.sh start` + `python rag/index/seed_milvus.py` |
 | 数据集自检过 | `python rag/evals/validate_cases.py` |
+| 样本带 `claims`（只有 `--judge` 要） | `python rag/evals/generate_claims.py` |
 
 改写那一步会调一次模型（`.env` 里没配凭据就原文透传，检索照跑，排序质量掉一档）。其余
 两个模型是本地的：BGE-M3 嵌入、bge-reranker-v2-m3 重排。
+
+`--judge` 另外要一个 judge 模型，从 `.env` 取，与改写模型分开配 —— 没单独配就回落到主模型，
+那是自己评自己，跑批时会打一行警告：
+
+```bash
+OPENAI_JUDGE_MODEL="deepseek-v4-pro"          # 或 ANTHROPIC_JUDGE_MODEL
+REFUND_AGENT_JUDGE_STRUCTURED="json_mode"     # DeepSeek 上留着思考模式的那一档
+```
 
 ## 二、跑
 
 ```bash
 python rag/experiments/rag-ex-1/run_experiment.py                        # 离线，全量 102 条
 python rag/experiments/rag-ex-1/run_experiment.py --cases R1-001 R1-082  # 只跑指定用例
+python rag/experiments/rag-ex-1/run_experiment.py --judge --concurrency 8  # 加两个 LLM 指标
 python rag/experiments/rag-ex-1/run_experiment.py --langfuse --run-name $(git rev-parse --short HEAD)
 ```
 
@@ -37,11 +48,16 @@ python rag/experiments/rag-ex-1/run_experiment.py --langfuse --run-name $(git re
 | `--dataset-name` | `retrieval-cases-r1` | Langfuse 上的数据集名 |
 | `--run-name` | `<数据集>-<条数>cases` | 版本对比时传 git sha |
 | `--cases` | 全量 | 只跑指定 case_id |
-| `--concurrency` | 4 | 嵌入和重排是本地模型，调太高只会互相抢算力 |
+| `--judge` | 关 | 加算 Context Recall 与 Context Relevance，每条多两次 judge 调用 |
+| `--concurrency` | 4 | 嵌入和重排的前向是串行的（同一块 GPU，且 MPS 后端不是线程安全的，见 `llm/device.py`），调高它并行的是改写和 judge 那些网络调用 —— 带 `--judge` 时值得调到 8 |
 | `--out` | `result.json` | 只跑 `--cases` 子集时默认不写，免得覆盖全量结果 |
 
 每条一行，`@1/@3/@10=001` 是三档的命中位：只有候选里有，重排后前 3 里没有。`-` 表示这一档
-不适用（`multi_hop` 没有 `recall@1`）。
+不适用（`multi_hop` 没有 `recall@1`）。带 `--judge` 时行尾多出 `CR`（Context Recall）与
+`CRel`（Context Relevance）。
+
+`--judge` 默认关，因为调参迭代要的是三档 Recall：多付两百多次 judge 调用、慢一个量级，而那
+两个数不进门禁。出报告、做版本留档时再带上。
 
 ### 两条路径
 
@@ -89,6 +105,14 @@ retriever  rag.search_policy   in {query, top_k}          out {sections: 全文}
 | `recall@1` | 重排后第 1 | 头部精度，对 `MIN_SCORE` 最敏感 |
 | `evidence_tokens` | 装配后证据的 token 用量 | `TOKEN_BUDGET = 3000` 的实际占用 |
 | `duplicate_ratio` | 重复正文的字符占比 | 装配把同一父块拼了两遍，Recall 看不见 |
+| `context_recall` | 参考答案的 claim 有几条被检回的上下文支撑 | 种子 ID 判负而它高 = 召回了等价条款，是标注不全不是检索坏 |
+| `context_relevance` | 检回内容里跟 query 相关的句子占比 | 惩罚「多召回」。`top_k` 调大时它下降，与 Recall 一起读才知道净赚还是净亏 |
+
+后两个挂在 `PolicySection.text` 上（那是真正注入模型上下文的东西），逐条判定理由落在
+`result.json` 的 `judge` 字段里。它们调模型、有噪声，所以只记录不进门禁；judge 校准做完
+之前结论不采信。claim 不在跑批时现拆，是 `cases.jsonl` 里的一个字段 —— 分母得在两次 run
+之间保持一致。judge 调用失败的那条不写分数（写 0 会被均值当成检索没召回），失败清单进
+`summary.judge_errors`。
 
 命中口径是**全部种子块都进前 k 才算命中**，`multi_hop` 不给部分分：只召回一半，答案照样是错的。
 
@@ -128,6 +152,7 @@ Recall 会全线暴跌，看上去像检索退化。
 
 ```bash
 python rag/experiments/rag-ex-1/export_traces.py                # 抽 20 条导出到 traces/
+python rag/experiments/rag-ex-1/export_traces.py --all          # 全量 102 条
 python rag/experiments/rag-ex-1/export_traces.py --cases R1-046 # 只导指定用例
 ```
 
@@ -135,8 +160,13 @@ python rag/experiments/rag-ex-1/export_traces.py --cases R1-046 # 只导指定�
 结论分桶取，最后三条是三档全中的对照：只留坏 case 的话，读的人无从判断正常的一次检索长什么样。
 桶的定义在脚本的 `BUCKETS` 里，也写进 [`traces/README.md`](./traces/README.md)。
 
+`--all` 是同一套分组、不截断，剩下的进「其余」。留全量的理由是报告的分档表：口语档、表格档
+指到的是一批用例，只留 20 条抽样的话点进去多半没有对应的那一条。代价是 102 条约 6MB。
+
 每条两个文件：`.md` 人读版（六步展开，装配那步是条款全文），`.json` 机器版（全部 observation
-原样保留）。要跑批带过 `--langfuse` 才有 `trace_id` 可导。
+原样保留）。跑批带过 `--judge` 的话，`.md` 末尾还有一段 judge 判定：逐条 claim 支不支撑、
+哪些内容单元被判为不相关 —— 就跟在装配的正文后面，对着看的。要跑批带过 `--langfuse`
+才有 `trace_id` 可导。
 
 ### HTML 报告
 
@@ -145,7 +175,10 @@ python rag/experiments/rag-ex-1/report.py                       # → rag-ex-1-r
 ```
 
 [`rag-ex-1-report.html`](./rag-ex-1-report.html) 是同一批数据的可视化：三档、四张分档表、
-三个链路问题、run 间抖动、102 条明细（链到现场记录）。只读 `result.json`，不连 Langfuse。
+两个 LLM 指标、四个链路问题、run 间抖动、102 条明细（链到现场记录）。只读 `result.json`，
+不连 Langfuse。结果文件里带 `--judge` 那两个键时，分档表和明细表各多两列，第三节多出
+`recall@3` × `Context Recall` 的四象限 —— 那张表是这两个指标存在的理由：种子 ID 判负而
+上下文撑得住，说明召回的是等价条款，只报 Recall 的话它和真的没召回长得一样。
 `report.py` 里的 `HISTORY` 是人填的 —— 结果文件只存最近一次，而抖动幅度要几次才看得出来。
 
 ## 五、门禁

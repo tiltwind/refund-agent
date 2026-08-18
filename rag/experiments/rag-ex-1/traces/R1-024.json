@@ -15,7 +15,9 @@
       "recall@3": 0.0,
       "recall@1": 0.0,
       "evidence_tokens": 2668,
-      "duplicate_ratio": 0.46
+      "duplicate_ratio": 0.46,
+      "context_recall": 1.0,
+      "context_relevance": 0.77
     },
     "elapsed_s": 2.0,
     "seed_rank": {
@@ -32,21 +34,673 @@
       "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.1 全额承担 … 第四条 运费险 > 4.3 赔付不足",
       "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.2 商品与描述不符"
     ],
-    "trace_id": "fa02a229f70e4ed26d14409b6b8c5385"
+    "judge": {
+      "context_recall": {
+        "score": 1.0,
+        "n": 2,
+        "hit": 2,
+        "detail": [
+          {
+            "claim": "七日无理由退货的运费由消费者承担。",
+            "supported": true,
+            "reason": "P06 表格明确无理由退货寄回运费消费者承担"
+          },
+          {
+            "claim": "三包质量问题退货的运费由经营者承担。",
+            "supported": true,
+            "reason": "P06 表格明确质量问题退货运费经营者承担"
+          }
+        ],
+        "error": null
+      },
+      "context_relevance": {
+        "score": 0.77,
+        "n": 113,
+        "hit": 87,
+        "truncated": false,
+        "note": "不相关的主要是退款金额、优惠券、赠品、特殊类目等与运费承担无关的内容。",
+        "irrelevant": [
+          "**退款金额以消费者实际支付的金额为准**，不是商品标价。",
+          "使用优惠券的订单，**按实付金额退款，优惠券不予退还**。",
+          "套装商品或满减活动订单中部分商品退货，导致剩余订单不再满足优惠条件的，按购买时各商品的原价重新结算，**多退少补**。",
+          "以积分、储值余额支付的部分，退款时以相同形式返还至原账户。",
+          "退货时须将商品本身、配件及赠品一并退回。",
+          "赠品不能一并退回的，平台可按事先标明的赠品价格从退款中扣除相应价款。",
+          "详见 [P10]。",
+          "运费的承担与扣除规则详见 [P06]。",
+          "**",
+          "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**："
+        ],
+        "error": null
+      }
+    },
+    "trace_id": "f33c706a78ae5b21737281b43bc03218"
   },
   "trace": {
-    "id": "fa02a229f70e4ed26d14409b6b8c5385",
+    "id": "f33c706a78ae5b21737281b43bc03218",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 03:24:14.715000+00:00"
+    "timestamp": "2026-08-18 11:50:11.577000+00:00"
   },
   "observations": [
     {
-      "id": "431e93de02c90ca0",
-      "traceId": "fa02a229f70e4ed26d14409b6b8c5385",
+      "id": "0edff2cc97134af2",
+      "traceId": "f33c706a78ae5b21737281b43bc03218",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 11:50:19.418000+00:00",
+      "endTime": "2026-08-18 11:50:19.419000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "e01e256283bd664f",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:50:23.760Z",
+      "updatedAt": "2026-08-18T11:50:23.790Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "4b14f6de51f3b9ec",
+      "traceId": "f33c706a78ae5b21737281b43bc03218",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 11:50:19.418000+00:00",
+      "endTime": "2026-08-18 11:50:19.419000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "我买的东西想退，要是走无理由退货，运费是不是得我自己掏？要是因为质量问题退，是不是就不用我出运费了？"
+        },
+        "output": {
+          "case_id": "R1-024",
+          "type": "single",
+          "style": "colloquial",
+          "doc_id": "L05",
+          "layer": "law",
+          "kind": "table",
+          "seed_chunk_id": [
+            "L05#025:00"
+          ],
+          "error": null,
+          "scores": {
+            "recall@10": 0,
+            "recall@3": 0,
+            "recall@1": 0,
+            "evidence_tokens": 2668,
+            "duplicate_ratio": 0.46,
+            "context_recall": 1,
+            "context_relevance": 0.77
+          },
+          "elapsed_s": 2,
+          "seed_rank": {
+            "candidate": {
+              "L05#025:00": null
+            },
+            "evidence": {
+              "L05#025:00": null
+            }
+          },
+          "sections": [
+            "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.6 运费",
+            "P06 星辰优选运费与退货物流规则 > 第一条 运费承担的基本原则 … 第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
+            "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.1 全额承担 … 第四条 运费险 > 4.3 赔付不足",
+            "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.2 商品与描述不符"
+          ],
+          "judge": {
+            "context_recall": {
+              "score": 1,
+              "n": 2,
+              "hit": 2,
+              "detail": [
+                {
+                  "claim": "七日无理由退货的运费由消费者承担。",
+                  "supported": true,
+                  "reason": "P06 表格明确无理由退货寄回运费消费者承担"
+                },
+                {
+                  "claim": "三包质量问题退货的运费由经营者承担。",
+                  "supported": true,
+                  "reason": "P06 表格明确质量问题退货运费经营者承担"
+                }
+              ],
+              "error": null
+            },
+            "context_relevance": {
+              "score": 0.77,
+              "n": 113,
+              "hit": 87,
+              "truncated": false,
+              "note": "不相关的主要是退款金额、优惠券、赠品、特殊类目等与运费承担无关的内容。",
+              "irrelevant": [
+                "**退款金额以消费者实际支付的金额为准**，不是商品标价。",
+                "使用优惠券的订单，**按实付金额退款，优惠券不予退还**。",
+                "套装商品或满减活动订单中部分商品退货，导致剩余订单不再满足优惠条件的，按购买时各商品的原价重新结算，**多退少补**。",
+                "以积分、储值余额支付的部分，退款时以相同形式返还至原账户。",
+                "退货时须将商品本身、配件及赠品一并退回。",
+                "赠品不能一并退回的，平台可按事先标明的赠品价格从退款中扣除相应价款。",
+                "详见 [P10]。",
+                "运费的承担与扣除规则详见 [P06]。",
+                "**",
+                "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**："
+              ],
+              "error": null
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [
+            "七日无理由退货的运费由消费者承担。",
+            "三包质量问题退货的运费由经营者承担。"
+          ],
+          "seed_chunk_id": [
+            "L05#025:00"
+          ],
+          "reference_answer": "七日无理由退货的运费由消费者承担；三包质量问题退货的运费由经营者承担。"
+        },
+        "metadata": {
+          "kind": "table",
+          "type": "single",
+          "layer": "law",
+          "style": "colloquial",
+          "doc_id": "L05",
+          "section": "与无理由退货的对照",
+          "reviewed": false,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.258
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 0,
+          "comment": "种子块名次 L05#025:00=None"
+        },
+        {
+          "name": "recall@3",
+          "value": 0,
+          "comment": "种子块名次 L05#025:00=None"
+        },
+        {
+          "name": "recall@1",
+          "value": 0,
+          "comment": "种子块名次 L05#025:00=None"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 2668,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0.46,
+          "comment": ""
+        },
+        {
+          "name": "context_recall",
+          "value": 1,
+          "comment": "2/2 条 claim 被支撑"
+        },
+        {
+          "name": "context_relevance",
+          "value": 0.77,
+          "comment": "87/113 个内容单元相关；不相关的主要是退款金额、优惠券、赠品、特殊类目等与运费承担无关的内容。"
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "0edff2cc97134af2",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:50:23.760Z",
+      "updatedAt": "2026-08-18T11:50:23.779Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "e01e256283bd664f",
+      "traceId": "f33c706a78ae5b21737281b43bc03218",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 11:49:40.806000+00:00",
+      "endTime": "2026-08-18 11:50:19.419000+00:00",
+      "input": {
+        "query": "我买的东西想退，要是走无理由退货，运费是不是得我自己掏？要是因为质量问题退，是不是就不用我出运费了？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-024",
+        "kind": "table",
+        "type": "single",
+        "layer": "law",
+        "style": "colloquial",
+        "doc_id": "L05",
+        "section": "与无理由退货的对照",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.258,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-024",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "L05",
+        "layer": "law",
+        "kind": "table",
+        "seed_chunk_id": [
+          "L05#025:00"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 0,
+          "recall@3": 0,
+          "recall@1": 0,
+          "evidence_tokens": 2668,
+          "duplicate_ratio": 0.46,
+          "context_recall": 1,
+          "context_relevance": 0.77
+        },
+        "elapsed_s": 2,
+        "seed_rank": {
+          "candidate": {
+            "L05#025:00": null
+          },
+          "evidence": {
+            "L05#025:00": null
+          }
+        },
+        "sections": [
+          "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.6 运费",
+          "P06 星辰优选运费与退货物流规则 > 第一条 运费承担的基本原则 … 第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
+          "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.1 全额承担 … 第四条 运费险 > 4.3 赔付不足",
+          "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.2 商品与描述不符"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "七日无理由退货的运费由消费者承担。",
+                "supported": true,
+                "reason": "P06 表格明确无理由退货寄回运费消费者承担"
+              },
+              {
+                "claim": "三包质量问题退货的运费由经营者承担。",
+                "supported": true,
+                "reason": "P06 表格明确质量问题退货运费经营者承担"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.77,
+            "n": 113,
+            "hit": 87,
+            "truncated": false,
+            "note": "不相关的主要是退款金额、优惠券、赠品、特殊类目等与运费承担无关的内容。",
+            "irrelevant": [
+              "**退款金额以消费者实际支付的金额为准**，不是商品标价。",
+              "使用优惠券的订单，**按实付金额退款，优惠券不予退还**。",
+              "套装商品或满减活动订单中部分商品退货，导致剩余订单不再满足优惠条件的，按购买时各商品的原价重新结算，**多退少补**。",
+              "以积分、储值余额支付的部分，退款时以相同形式返还至原账户。",
+              "退货时须将商品本身、配件及赠品一并退回。",
+              "赠品不能一并退回的，平台可按事先标明的赠品价格从退款中扣除相应价款。",
+              "详见 [P10]。",
+              "运费的承担与扣除规则详见 [P06]。",
+              "**",
+              "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**："
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 38.613,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:50:23.760Z",
+      "updatedAt": "2026-08-18T11:50:23.778Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "ad9827c0a6cb6509",
+      "traceId": "f33c706a78ae5b21737281b43bc03218",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 11:49:40.806000+00:00",
+      "endTime": "2026-08-18 11:50:19.417000+00:00",
+      "input": {
+        "query": "我买的东西想退，要是走无理由退货，运费是不是得我自己掏？要是因为质量问题退，是不是就不用我出运费了？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-024",
+        "kind": "table",
+        "type": "single",
+        "layer": "law",
+        "style": "colloquial",
+        "doc_id": "L05",
+        "section": "与无理由退货的对照",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.258,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-024",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "L05",
+        "layer": "law",
+        "kind": "table",
+        "seed_chunk_id": [
+          "L05#025:00"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 0,
+          "recall@3": 0,
+          "recall@1": 0,
+          "evidence_tokens": 2668,
+          "duplicate_ratio": 0.46,
+          "context_recall": 1,
+          "context_relevance": 0.77
+        },
+        "elapsed_s": 2,
+        "seed_rank": {
+          "candidate": {
+            "L05#025:00": null
+          },
+          "evidence": {
+            "L05#025:00": null
+          }
+        },
+        "sections": [
+          "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.6 运费",
+          "P06 星辰优选运费与退货物流规则 > 第一条 运费承担的基本原则 … 第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
+          "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.1 全额承担 … 第四条 运费险 > 4.3 赔付不足",
+          "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.2 商品与描述不符"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "七日无理由退货的运费由消费者承担。",
+                "supported": true,
+                "reason": "P06 表格明确无理由退货寄回运费消费者承担"
+              },
+              {
+                "claim": "三包质量问题退货的运费由经营者承担。",
+                "supported": true,
+                "reason": "P06 表格明确质量问题退货运费经营者承担"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.77,
+            "n": 113,
+            "hit": 87,
+            "truncated": false,
+            "note": "不相关的主要是退款金额、优惠券、赠品、特殊类目等与运费承担无关的内容。",
+            "irrelevant": [
+              "**退款金额以消费者实际支付的金额为准**，不是商品标价。",
+              "使用优惠券的订单，**按实付金额退款，优惠券不予退还**。",
+              "套装商品或满减活动订单中部分商品退货，导致剩余订单不再满足优惠条件的，按购买时各商品的原价重新结算，**多退少补**。",
+              "以积分、储值余额支付的部分，退款时以相同形式返还至原账户。",
+              "退货时须将商品本身、配件及赠品一并退回。",
+              "赠品不能一并退回的，平台可按事先标明的赠品价格从退款中扣除相应价款。",
+              "详见 [P10]。",
+              "运费的承担与扣除规则详见 [P06]。",
+              "**",
+              "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**："
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "e01e256283bd664f",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 38.611,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:50:23.760Z",
+      "updatedAt": "2026-08-18T11:50:23.773Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "926457e0aeae11e5",
+      "traceId": "f33c706a78ae5b21737281b43bc03218",
       "type": "RETRIEVER",
       "name": "rag.search_policy",
-      "startTime": "2026-08-18 03:24:19.625000+00:00",
-      "endTime": "2026-08-18 03:24:21.623000+00:00",
+      "startTime": "2026-08-18 11:50:11.577000+00:00",
+      "endTime": "2026-08-18 11:50:13.576000+00:00",
       "modelParameters": {},
       "input": {
         "query": "我买的东西想退，要是走无理由退货，运费是不是得我自己掏？要是因为质量问题退，是不是就不用我出运费了？",
@@ -57,7 +711,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -123,7 +777,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "5a3a9f6a330467cd",
+      "parentObservationId": "ad9827c0a6cb6509",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -131,10 +785,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.998,
+      "latency": 1.999,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:24:23.537Z",
-      "updatedAt": "2026-08-18T03:24:23.576Z",
+      "createdAt": "2026-08-18T11:50:13.698Z",
+      "updatedAt": "2026-08-18T11:50:13.727Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -154,18 +808,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "6d6befb214bae35a",
-      "traceId": "fa02a229f70e4ed26d14409b6b8c5385",
+      "id": "4b1d321cf8d22225",
+      "traceId": "f33c706a78ae5b21737281b43bc03218",
       "type": "SPAN",
       "name": "rag.route",
-      "startTime": "2026-08-18 03:24:20.822000+00:00",
-      "endTime": "2026-08-18 03:24:20.822000+00:00",
+      "startTime": "2026-08-18 11:50:12.800000+00:00",
+      "endTime": "2026-08-18 11:50:12.801000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -203,7 +857,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "431e93de02c90ca0",
+      "parentObservationId": "926457e0aeae11e5",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -211,10 +865,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.0,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:24:23.537Z",
-      "updatedAt": "2026-08-18T03:24:23.575Z",
+      "createdAt": "2026-08-18T11:50:13.698Z",
+      "updatedAt": "2026-08-18T11:50:13.727Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -236,12 +890,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "0fd88e10aebe1823",
-      "traceId": "fa02a229f70e4ed26d14409b6b8c5385",
+      "id": "e57bf34546c5d393",
+      "traceId": "f33c706a78ae5b21737281b43bc03218",
       "type": "SPAN",
       "name": "rag.rewrite",
-      "startTime": "2026-08-18 03:24:19.626000+00:00",
-      "endTime": "2026-08-18 03:24:20.821000+00:00",
+      "startTime": "2026-08-18 11:50:11.577000+00:00",
+      "endTime": "2026-08-18 11:50:12.800000+00:00",
       "input": {
         "query": "我买的东西想退，要是走无理由退货，运费是不是得我自己掏？要是因为质量问题退，是不是就不用我出运费了？"
       },
@@ -250,7 +904,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -284,7 +938,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "431e93de02c90ca0",
+      "parentObservationId": "926457e0aeae11e5",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -292,10 +946,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.195,
+      "latency": 1.223,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:24:23.537Z",
-      "updatedAt": "2026-08-18T03:24:23.574Z",
+      "createdAt": "2026-08-18T11:50:13.698Z",
+      "updatedAt": "2026-08-18T11:50:13.726Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -316,208 +970,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "5a3a9f6a330467cd",
-      "traceId": "fa02a229f70e4ed26d14409b6b8c5385",
-      "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 03:24:14.715000+00:00",
-      "endTime": "2026-08-18 03:24:21.625000+00:00",
-      "input": {
-        "query": "我买的东西想退，要是走无理由退货，运费是不是得我自己掏？要是因为质量问题退，是不是就不用我出运费了？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-2",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-024",
-        "kind": "table",
-        "type": "single",
-        "layer": "law",
-        "style": "colloquial",
-        "doc_id": "L05",
-        "section": "与无理由退货的对照",
-        "reviewed": false,
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.258,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-024",
-        "type": "single",
-        "style": "colloquial",
-        "doc_id": "L05",
-        "layer": "law",
-        "kind": "table",
-        "seed_chunk_id": [
-          "L05#025:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 0,
-          "recall@3": 0,
-          "recall@1": 0,
-          "evidence_tokens": 2668,
-          "duplicate_ratio": 0.46
-        },
-        "elapsed_s": 2,
-        "seed_rank": {
-          "candidate": {
-            "L05#025:00": null
-          },
-          "evidence": {
-            "L05#025:00": null
-          }
-        },
-        "sections": [
-          "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.6 运费",
-          "P06 星辰优选运费与退货物流规则 > 第一条 运费承担的基本原则 … 第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
-          "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.1 全额承担 … 第四条 运费险 > 4.3 赔付不足",
-          "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.2 商品与描述不符"
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "b5f45557ccc53cf9",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 6.91,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:24:23.537Z",
-      "updatedAt": "2026-08-18T03:24:23.574Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "7b5b1454865f31f3",
-      "traceId": "fa02a229f70e4ed26d14409b6b8c5385",
-      "type": "SPAN",
-      "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 03:24:21.625000+00:00",
-      "endTime": "2026-08-18 03:24:21.626000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "evaluator_count": 1,
-        "evaluation_count": 6,
-        "failed_evaluator_count": 0,
-        "skipped_evaluator_count": 0
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "b5f45557ccc53cf9",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.001,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:24:23.537Z",
-      "updatedAt": "2026-08-18T03:24:23.573Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "b37841cc0d5e1ce7",
-      "traceId": "fa02a229f70e4ed26d14409b6b8c5385",
+      "id": "ba03e7770b664c25",
+      "traceId": "f33c706a78ae5b21737281b43bc03218",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 03:24:20.822000+00:00",
-      "endTime": "2026-08-18 03:24:20.961000+00:00",
+      "startTime": "2026-08-18 11:50:12.801000+00:00",
+      "endTime": "2026-08-18 11:50:12.920000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -746,7 +1210,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "431e93de02c90ca0",
+      "parentObservationId": "926457e0aeae11e5",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -754,10 +1218,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.139,
+      "latency": 0.119,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:24:23.537Z",
-      "updatedAt": "2026-08-18T03:24:23.573Z",
+      "createdAt": "2026-08-18T11:50:13.698Z",
+      "updatedAt": "2026-08-18T11:50:13.725Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -779,12 +1243,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "fa39fb007356ad3c",
-      "traceId": "fa02a229f70e4ed26d14409b6b8c5385",
+      "id": "9afdfd9b16a5f8f4",
+      "traceId": "f33c706a78ae5b21737281b43bc03218",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 03:24:20.961000+00:00",
-      "endTime": "2026-08-18 03:24:21.593000+00:00",
+      "startTime": "2026-08-18 11:50:12.920000+00:00",
+      "endTime": "2026-08-18 11:50:13.540000+00:00",
       "input": {
         "query": "我买的东西想退，要是走无理由退货，运费是不是得我自己掏？要是因为质量问题退，是不是就不用我出运费了？",
         "candidates": 20
@@ -794,7 +1258,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -973,7 +1437,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "431e93de02c90ca0",
+      "parentObservationId": "926457e0aeae11e5",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -981,10 +1445,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.632,
+      "latency": 0.62,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:24:23.537Z",
-      "updatedAt": "2026-08-18T03:24:23.573Z",
+      "createdAt": "2026-08-18T11:50:13.698Z",
+      "updatedAt": "2026-08-18T11:50:13.724Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1005,285 +1469,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "cf3c8aaded501c21",
-      "traceId": "fa02a229f70e4ed26d14409b6b8c5385",
-      "type": "EVALUATOR",
-      "name": "evaluate",
-      "startTime": "2026-08-18 03:24:21.625000+00:00",
-      "endTime": "2026-08-18 03:24:21.625000+00:00",
-      "modelParameters": {},
-      "input": {
-        "input": {
-          "query": "我买的东西想退，要是走无理由退货，运费是不是得我自己掏？要是因为质量问题退，是不是就不用我出运费了？"
-        },
-        "output": {
-          "case_id": "R1-024",
-          "type": "single",
-          "style": "colloquial",
-          "doc_id": "L05",
-          "layer": "law",
-          "kind": "table",
-          "seed_chunk_id": [
-            "L05#025:00"
-          ],
-          "error": null,
-          "scores": {
-            "recall@10": 0,
-            "recall@3": 0,
-            "recall@1": 0,
-            "evidence_tokens": 2668,
-            "duplicate_ratio": 0.46
-          },
-          "elapsed_s": 2,
-          "seed_rank": {
-            "candidate": {
-              "L05#025:00": null
-            },
-            "evidence": {
-              "L05#025:00": null
-            }
-          },
-          "sections": [
-            "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.6 运费",
-            "P06 星辰优选运费与退货物流规则 > 第一条 运费承担的基本原则 … 第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
-            "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.1 全额承担 … 第四条 运费险 > 4.3 赔付不足",
-            "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.2 商品与描述不符"
-          ]
-        },
-        "expected_output": {
-          "seed_chunk_id": [
-            "L05#025:00"
-          ],
-          "reference_answer": "七日无理由退货的运费由消费者承担；三包质量问题退货的运费由经营者承担。"
-        },
-        "metadata": {
-          "kind": "table",
-          "type": "single",
-          "layer": "law",
-          "style": "colloquial",
-          "doc_id": "L05",
-          "section": "与无理由退货的对照",
-          "reviewed": false,
-          "generated_by": "openai:deepseek-v4-flash",
-          "overlap_ratio": 0.258
-        }
-      },
-      "metadata": {
-        "evaluator_kind": "item",
-        "evaluator_index": 0,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": [
-        {
-          "name": "recall@10",
-          "value": 0,
-          "comment": "种子块名次 L05#025:00=None"
-        },
-        {
-          "name": "recall@3",
-          "value": 0,
-          "comment": "种子块名次 L05#025:00=None"
-        },
-        {
-          "name": "recall@1",
-          "value": 0,
-          "comment": "种子块名次 L05#025:00=None"
-        },
-        {
-          "name": "evidence_tokens",
-          "value": 2668,
-          "comment": ""
-        },
-        {
-          "name": "duplicate_ratio",
-          "value": 0.46,
-          "comment": ""
-        },
-        {
-          "name": "run_error",
-          "value": 0,
-          "comment": "ok"
-        }
-      ],
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "7b5b1454865f31f3",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.0,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:24:23.537Z",
-      "updatedAt": "2026-08-18T03:24:23.571Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "b5f45557ccc53cf9",
-      "traceId": "fa02a229f70e4ed26d14409b6b8c5385",
-      "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 03:24:14.715000+00:00",
-      "endTime": "2026-08-18 03:24:21.626000+00:00",
-      "input": {
-        "query": "我买的东西想退，要是走无理由退货，运费是不是得我自己掏？要是因为质量问题退，是不是就不用我出运费了？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-2",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-024",
-        "kind": "table",
-        "type": "single",
-        "layer": "law",
-        "style": "colloquial",
-        "doc_id": "L05",
-        "section": "与无理由退货的对照",
-        "reviewed": false,
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.258,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-024",
-        "type": "single",
-        "style": "colloquial",
-        "doc_id": "L05",
-        "layer": "law",
-        "kind": "table",
-        "seed_chunk_id": [
-          "L05#025:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 0,
-          "recall@3": 0,
-          "recall@1": 0,
-          "evidence_tokens": 2668,
-          "duplicate_ratio": 0.46
-        },
-        "elapsed_s": 2,
-        "seed_rank": {
-          "candidate": {
-            "L05#025:00": null
-          },
-          "evidence": {
-            "L05#025:00": null
-          }
-        },
-        "sections": [
-          "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.6 运费",
-          "P06 星辰优选运费与退货物流规则 > 第一条 运费承担的基本原则 … 第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
-          "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.1 全额承担 … 第四条 运费险 > 4.3 赔付不足",
-          "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.2 商品与描述不符"
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 6.911,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:24:23.537Z",
-      "updatedAt": "2026-08-18T03:24:23.565Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "parentObservationId": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "d316b75d4f7616ca",
-      "traceId": "fa02a229f70e4ed26d14409b6b8c5385",
+      "id": "9f98d95f323640b0",
+      "traceId": "f33c706a78ae5b21737281b43bc03218",
       "type": "SPAN",
       "name": "rag.assemble",
-      "startTime": "2026-08-18 03:24:21.594000+00:00",
-      "endTime": "2026-08-18 03:24:21.623000+00:00",
+      "startTime": "2026-08-18 11:50:13.540000+00:00",
+      "endTime": "2026-08-18 11:50:13.576000+00:00",
       "input": {
         "top_k": 4,
         "evidence": [
@@ -1313,7 +1504,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1379,7 +1570,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "431e93de02c90ca0",
+      "parentObservationId": "926457e0aeae11e5",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1387,10 +1578,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.029,
+      "latency": 0.036,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:24:23.537Z",
-      "updatedAt": "2026-08-18T03:24:23.563Z",
+      "createdAt": "2026-08-18T11:50:13.698Z",
+      "updatedAt": "2026-08-18T11:50:13.724Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,

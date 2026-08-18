@@ -1,0 +1,1086 @@
+{
+  "case": {
+    "case_id": "R1-099",
+    "type": "unanswerable",
+    "style": "colloquial",
+    "doc_id": "",
+    "layer": "",
+    "kind": "",
+    "seed_chunk_id": [],
+    "error": null,
+    "scores": {
+      "unanswerable_raised": 0.0
+    },
+    "elapsed_s": 1.8,
+    "sections": [],
+    "judge": {
+      "context_relevance": {
+        "score": null,
+        "error": null,
+        "skipped": "上下文为空"
+      }
+    },
+    "trace_id": "785c28dba2694f604fe1657d1e1e502b"
+  },
+  "trace": {
+    "id": "785c28dba2694f604fe1657d1e1e502b",
+    "name": "experiment-item-run",
+    "timestamp": "2026-08-18 11:42:34.046000+00:00"
+  },
+  "observations": [
+    {
+      "id": "675a34ae5acdff00",
+      "traceId": "785c28dba2694f604fe1657d1e1e502b",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 11:42:30.730000+00:00",
+      "endTime": "2026-08-18 11:42:35.871000+00:00",
+      "input": {
+        "query": "想再买两年的延保服务，多少钱，怎么买？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-099",
+        "kind": "",
+        "type": "unanswerable",
+        "layer": "",
+        "style": "colloquial",
+        "topic": "延长保修",
+        "doc_id": "",
+        "section": "",
+        "reviewed": true,
+        "generated_by": "handwritten",
+        "overlap_ratio": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-099",
+        "type": "unanswerable",
+        "style": "colloquial",
+        "doc_id": "",
+        "layer": "",
+        "kind": "",
+        "seed_chunk_id": [],
+        "error": null,
+        "scores": {
+          "unanswerable_raised": 0
+        },
+        "elapsed_s": 1.8,
+        "sections": [],
+        "judge": {
+          "context_relevance": {
+            "score": null,
+            "error": null,
+            "skipped": "上下文为空"
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 5.141,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:40.822Z",
+      "updatedAt": "2026-08-18T11:42:40.848Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "22e0ebb5fd133062",
+      "traceId": "785c28dba2694f604fe1657d1e1e502b",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 11:42:30.730000+00:00",
+      "endTime": "2026-08-18 11:42:35.870000+00:00",
+      "input": {
+        "query": "想再买两年的延保服务，多少钱，怎么买？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-099",
+        "kind": "",
+        "type": "unanswerable",
+        "layer": "",
+        "style": "colloquial",
+        "topic": "延长保修",
+        "doc_id": "",
+        "section": "",
+        "reviewed": true,
+        "generated_by": "handwritten",
+        "overlap_ratio": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-099",
+        "type": "unanswerable",
+        "style": "colloquial",
+        "doc_id": "",
+        "layer": "",
+        "kind": "",
+        "seed_chunk_id": [],
+        "error": null,
+        "scores": {
+          "unanswerable_raised": 0
+        },
+        "elapsed_s": 1.8,
+        "sections": [],
+        "judge": {
+          "context_relevance": {
+            "score": null,
+            "error": null,
+            "skipped": "上下文为空"
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "675a34ae5acdff00",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 5.14,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:40.822Z",
+      "updatedAt": "2026-08-18T11:42:40.846Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "82ab76fad9878b55",
+      "traceId": "785c28dba2694f604fe1657d1e1e502b",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 11:42:35.871000+00:00",
+      "endTime": "2026-08-18 11:42:35.871000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 2,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "675a34ae5acdff00",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:40.822Z",
+      "updatedAt": "2026-08-18T11:42:40.844Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "94c2c1bb4a6c0520",
+      "traceId": "785c28dba2694f604fe1657d1e1e502b",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 11:42:35.870000+00:00",
+      "endTime": "2026-08-18 11:42:35.870000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": []
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "6461b6870ff14075",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:40.822Z",
+      "updatedAt": "2026-08-18T11:42:40.844Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "6461b6870ff14075",
+      "traceId": "785c28dba2694f604fe1657d1e1e502b",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 11:42:34.046000+00:00",
+      "endTime": "2026-08-18 11:42:35.870000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "想再买两年的延保服务，多少钱，怎么买？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "22e0ebb5fd133062",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.824,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:40.822Z",
+      "updatedAt": "2026-08-18T11:42:40.837Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "4017353038ec646a",
+      "traceId": "785c28dba2694f604fe1657d1e1e502b",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 11:42:35.871000+00:00",
+      "endTime": "2026-08-18 11:42:35.871000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "想再买两年的延保服务，多少钱，怎么买？"
+        },
+        "output": {
+          "case_id": "R1-099",
+          "type": "unanswerable",
+          "style": "colloquial",
+          "doc_id": "",
+          "layer": "",
+          "kind": "",
+          "seed_chunk_id": [],
+          "error": null,
+          "scores": {
+            "unanswerable_raised": 0
+          },
+          "elapsed_s": 1.8,
+          "sections": [],
+          "judge": {
+            "context_relevance": {
+              "score": null,
+              "error": null,
+              "skipped": "上下文为空"
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [],
+          "seed_chunk_id": [],
+          "reference_answer": ""
+        },
+        "metadata": {
+          "kind": "",
+          "type": "unanswerable",
+          "layer": "",
+          "style": "colloquial",
+          "topic": "延长保修",
+          "doc_id": "",
+          "section": "",
+          "reviewed": true,
+          "generated_by": "handwritten",
+          "overlap_ratio": 0
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "unanswerable_raised",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "82ab76fad9878b55",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:40.822Z",
+      "updatedAt": "2026-08-18T11:42:40.834Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "a9c6412c0550a495",
+      "traceId": "785c28dba2694f604fe1657d1e1e502b",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 11:42:35.227000+00:00",
+      "endTime": "2026-08-18 11:42:35.870000+00:00",
+      "input": {
+        "query": "想再买两年的延保服务，多少钱，怎么买？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 0,
+        "min_score": 0.3,
+        "dropped": [
+          "P11#003:03",
+          "P07#001:00",
+          "P07#003:02",
+          "P01#005:00",
+          "P07#001:02",
+          "P01#004:00",
+          "P11#004:01",
+          "L02#000:00",
+          "L02#003:07",
+          "P01#000:00",
+          "P02#000:00",
+          "P07#005:00",
+          "P04#002:03",
+          "P06#003:01",
+          "P08#000:00",
+          "P02#001:00",
+          "P01#001:03",
+          "P11#004:05",
+          "P07#003:03",
+          "P06#001:00"
+        ],
+        "evidence": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "6461b6870ff14075",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.643,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:40.822Z",
+      "updatedAt": "2026-08-18T11:42:40.834Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "9d5e592e9484d1e4",
+      "traceId": "785c28dba2694f604fe1657d1e1e502b",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-18 11:42:35.117000+00:00",
+      "endTime": "2026-08-18 11:42:35.227000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "P11#003:03",
+            "section": "P11 第三条 虚拟商品 > 3.4 自动续费服务",
+            "rrf": 0.1235,
+            "hits": [
+              "1/platform/dense#5",
+              "1/platform/bm25#3",
+              "2/platform/dense#5"
+            ]
+          },
+          {
+            "chunk_id": "P07#001:00",
+            "section": "P07 第二条 售后权益差异 > 2.1 无理由退货窗口",
+            "rrf": 0.1122,
+            "hits": [
+              "1/platform/dense#3",
+              "1/platform/bm25#13",
+              "2/platform/dense#6"
+            ]
+          },
+          {
+            "chunk_id": "P07#003:02",
+            "section": "P07 第四条 会员权益的边界 > 4.3 会员权益不突破商品条件",
+            "rrf": 0.111,
+            "hits": [
+              "1/platform/dense#11",
+              "1/platform/bm25#7",
+              "2/platform/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "P01#005:00",
+            "section": "P01 第五章 售后与退款 > 5.1 售后服务承诺",
+            "rrf": 0.0929,
+            "hits": [
+              "1/platform/dense#8",
+              "1/platform/bm25#16",
+              "2/platform/dense#14"
+            ]
+          },
+          {
+            "chunk_id": "P07#001:02",
+            "section": "P07 第二条 售后权益差异 > 2.3 权益对照",
+            "rrf": 0.0909,
+            "hits": [
+              "1/platform/dense#2",
+              "2/platform/dense#2"
+            ]
+          },
+          {
+            "chunk_id": "P01#004:00",
+            "section": "P01 第四章 平台的角色与责任 > 4.1 平台与商家的关系",
+            "rrf": 0.0871,
+            "hits": [
+              "1/platform/bm25#2",
+              "2/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P11#004:01",
+            "section": "P11 第四条 数码与家用电器 > 4.2 三包服务",
+            "rrf": 0.0847,
+            "hits": [
+              "1/platform/dense#1",
+              "2/platform/dense#7"
+            ]
+          },
+          {
+            "chunk_id": "L02#000:00",
+            "section": "L02 ",
+            "rrf": 0.0835,
+            "hits": [
+              "1/law/bm25#3",
+              "2/law/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:07",
+            "section": "L02 第三章 退货程序 > 第十七条 【退款金额的计算】",
+            "rrf": 0.0833,
+            "hits": [
+              "1/law/bm25#4",
+              "2/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P01#000:00",
+            "section": "P01 ",
+            "rrf": 0.0801,
+            "hits": [
+              "1/platform/bm25#4",
+              "2/platform/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "P02#000:00",
+            "section": "P02 第一条 适用范围与基本原则",
+            "rrf": 0.0799,
+            "hits": [
+              "1/platform/bm25#9",
+              "2/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P07#005:00",
+            "section": "P07 相关文件",
+            "rrf": 0.0789,
+            "hits": [
+              "1/platform/dense#12",
+              "2/platform/dense#1"
+            ]
+          },
+          {
+            "chunk_id": "P04#002:03",
+            "section": "P04 第二条 经消费者确认后不适用无理由退货的商品 > 2.3 销售时已明示的临期或瑕疵商品",
+            "rrf": 0.0762,
+            "hits": [
+              "1/platform/bm25#15",
+              "2/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P06#003:01",
+            "section": "P06 第四条 运费险 > 4.2 赔付触发",
+            "rrf": 0.0761,
+            "hits": [
+              "1/platform/dense#4",
+              "2/platform/dense#9"
+            ]
+          },
+          {
+            "chunk_id": "P08#000:00",
+            "section": "P08 ",
+            "rrf": 0.0757,
+            "hits": [
+              "1/platform/bm25#5",
+              "2/platform/bm25#8"
+            ]
+          },
+          {
+            "chunk_id": "P02#001:00",
+            "section": "P02 第二条 退货窗口",
+            "rrf": 0.0693,
+            "hits": [
+              "1/platform/dense#7",
+              "2/platform/dense#11"
+            ]
+          },
+          {
+            "chunk_id": "P01#001:03",
+            "section": "P01 第一章 协议的接受与变更 > 1.4 规则的公示与查阅",
+            "rrf": 0.067,
+            "hits": [
+              "2/platform/dense#8",
+              "2/platform/bm25#12"
+            ]
+          },
+          {
+            "chunk_id": "P11#004:05",
+            "section": "P11 第四条 数码与家用电器 > 4.6 需安装的商品",
+            "rrf": 0.0583,
+            "hits": [
+              "1/platform/dense#17",
+              "2/platform/dense#12"
+            ]
+          },
+          {
+            "chunk_id": "P07#003:03",
+            "section": "P07 第四条 会员权益的边界 > 4.4 等级以申请时为准",
+            "rrf": 0.0549,
+            "hits": [
+              "1/platform/dense#15",
+              "2/platform/dense#18"
+            ]
+          },
+          {
+            "chunk_id": "P06#001:00",
+            "section": "P06 第二条 无理由退货的运费 > 2.1 寄回运费",
+            "rrf": 0.0476,
+            "hits": [
+              "1/platform/bm25#1"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "6461b6870ff14075",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.11,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:35.772Z",
+      "updatedAt": "2026-08-18T11:42:35.803Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "c33d8eab561904b4",
+      "traceId": "785c28dba2694f604fe1657d1e1e502b",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 11:42:34.046000+00:00",
+      "endTime": "2026-08-18 11:42:35.116000+00:00",
+      "input": {
+        "query": "想再买两年的延保服务，多少钱，怎么买？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "other",
+            "text": "延保服务购买两年的费用是多少？"
+          },
+          {
+            "id": "2",
+            "intent": "other",
+            "text": "延保服务怎么购买，购买流程和入口是什么？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "6461b6870ff14075",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.07,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:35.772Z",
+      "updatedAt": "2026-08-18T11:42:35.798Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "a1d4c6a849a561e5",
+      "traceId": "785c28dba2694f604fe1657d1e1e502b",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 11:42:35.116000+00:00",
+      "endTime": "2026-08-18 11:42:35.116000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          },
+          {
+            "sub_query": "2",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "6461b6870ff14075",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:35.772Z",
+      "updatedAt": "2026-08-18T11:42:35.797Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    }
+  ]
+}

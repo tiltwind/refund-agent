@@ -1,6 +1,7 @@
 """把跑批的 trace 导出成文件，留在仓库里。
 
     python rag/experiments/rag-ex-1/export_traces.py                # 按下面的口径抽 20 条
+    python rag/experiments/rag-ex-1/export_traces.py --all          # 全量导出，每条都留档
     python rag/experiments/rag-ex-1/export_traces.py --cases R1-046 # 只导指定用例
 
 Langfuse 是本地实例，链接换台机器就打不开，而报告里每条结论都要能对上现场 ——
@@ -12,6 +13,9 @@ Langfuse 是本地实例，链接换台机器就打不开，而报告里每条�
 
 每条两个文件：`.md` 人读版（六步展开，装配那步是条款全文），`.json` 机器版（trace 元信息
 加全部 observation，原样保留，重新统计或做 diff 用）。
+
+跑批带了 `--judge` 的话，`.md` 末尾多一段 judge 判定：逐条 claim 支不支撑、哪些内容单元
+被判为不相关 —— 就跟在装配的正文后面，对着看的。
 """
 
 import argparse
@@ -54,16 +58,25 @@ BUCKETS = (
 )
 
 
-def pick(cases: list[dict]) -> list[tuple[str, dict]]:
-    """按桶取样，先到先得。桶内按 case_id 排序，同一份 result.json 抽出来的永远是同一批。"""
+REST = ("其余", "@3 命中、@1 未中的常规样本，不属于上面任何一类")
+
+
+def pick(cases: list[dict], every: bool = False) -> list[tuple[str, dict]]:
+    """按桶取样，先到先得。桶内按 case_id 排序，同一份 result.json 抽出来的永远是同一批。
+
+    `every` 是 `--all`：桶的口径照旧（分组和读点都还在），只是不再截断，剩下不入桶的
+    进 REST。分档表指到的用例、报告里没提到的用例，翻现场时都能找到对应的一份。
+    """
     taken: set[str] = set()
     out: list[tuple[str, dict]] = []
+    ordered = [r for r in sorted(cases, key=lambda r: r["case_id"]) if r.get("trace_id")]
     for name, _, match, count in BUCKETS:
-        hit = [r for r in sorted(cases, key=lambda r: r["case_id"])
-               if r["case_id"] not in taken and r.get("trace_id") and match(r)]
-        for row in hit[:count]:
+        hit = [r for r in ordered if r["case_id"] not in taken and match(r)]
+        for row in (hit if every else hit[:count]):
             taken.add(row["case_id"])
             out.append((name, row))
+    if every:
+        out += [(REST[0], r) for r in ordered if r["case_id"] not in taken]
     return out
 
 
@@ -168,21 +181,67 @@ def render(row: dict, bucket: str, spans: dict, run_name: str) -> str:
         lines += [f"### [E{i}] {sec['section']}", "",
                   f"`score={sec['score']:.3f}` · {sec['reason']} · {sec['source_path']}", "",
                   "```text", sec["text"], "```", ""]
+    lines += judge_section(row)
     return "\n".join(lines) + "\n"
 
 
+def judge_section(row: dict) -> list[str]:
+    """两个 LLM 指标的逐条判定。跑批没带 `--judge` 时整段不出现。
+
+    落在装配那步后面是有意的：上面刚看完注入模型的全文，下面就是 judge 对着这段文字
+    给出的判定 —— 一个 0.6 分说明不了改哪里，要能对着正文看是哪条 claim 没撑住。
+    """
+    judged = row.get("judge") or {}
+    if not judged:
+        return []
+    lines = ["", "## 6 · judge 判定", ""]
+
+    result = judged.get("context_recall") or {}
+    if result.get("skipped"):
+        lines += [f"**Context Recall** —— 未判定（{result['skipped']}）", ""]
+    elif result.get("error"):
+        lines += [f"**Context Recall** —— judge 调用失败：`{result['error']}`，这条不计入均值", ""]
+    elif result.get("detail"):
+        lines += [f"**Context Recall = {result['score']}**（{result['hit']}/{result['n']} 条 claim 被支撑）", ""]
+        lines += _table(["", "claim", "判定理由"], [
+            ["✓" if d["supported"] else "✗", d["claim"].replace("|", "\\|"),
+             d["reason"].replace("|", "\\|")]
+            for d in result["detail"]
+        ])
+        lines.append("")
+
+    result = judged.get("context_relevance") or {}
+    if result.get("skipped"):
+        lines += [f"**Context Relevance** —— 未判定（{result['skipped']}）", ""]
+    elif result.get("error"):
+        lines += [f"**Context Relevance** —— judge 调用失败：`{result['error']}`，这条不计入均值", ""]
+    elif result.get("score") is not None:
+        lines += [f"**Context Relevance = {result['score']}**（{result['hit']}/{result['n']} 个内容单元相关"
+                  + ("，超过 MAX_UNITS 已截断" if result.get("truncated") else "") + f"）：{result.get('note', '')}", ""]
+        if result.get("irrelevant"):
+            lines += ["判为不相关的（最多列 10 条）：", ""]
+            lines += [f"- {text}" for text in result["irrelevant"]]
+            lines.append("")
+    return lines
+
+
 # ── 入口 ──────────────────────────────────────────────────────────────────
-def write_index(picked: list[tuple[str, dict]], run_name: str) -> None:
+def write_index(picked: list[tuple[str, dict]], run_name: str, every: bool = False) -> None:
     lines = [
         "# traces —— 现场记录", "",
         f"从 run `{run_name}` 导出的 {len(picked)} 条，供[基线报告](../baseline-report.md)逐条引用。",
         "Langfuse 是本地实例，链接换台机器就打不开，所以现场留一份在仓库里。", "",
-        "重新导出：`python rag/experiments/rag-ex-1/export_traces.py`。", "",
+        f"重新导出：`python rag/experiments/rag-ex-1/export_traces.py{' --all' if every else ''}`。", "",
+    ]
+    lines += [
+        "全量导出，每条用例一份。下面的分组是按报告里的结论分的，先到先得，一条只入一个组 ——",
+        "空证据、召回层丢失这些是报告逐条引用的那批，`其余` 是 `@3` 命中的常规样本。", "",
+    ] if every else [
         "抽样不是随机的 —— 随机 20 条里大概率一条空证据都没有，而那恰恰是最该留档的。",
         "按报告里的每个结论分桶取，最后三条是三档全中的对照：只留坏 case 的话，读的人无从",
         "判断正常的一次检索长什么样。", "",
     ]
-    for name, why, _, _ in BUCKETS:
+    for name, why in [(b[0], b[1]) for b in BUCKETS] + [REST]:
         rows = [row for bucket, row in picked if bucket == name]
         if not rows:
             continue
@@ -207,6 +266,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="导出 rag-ex-1 的 trace 现场记录")
     parser.add_argument("--result", default=str(RESULT_PATH), help="读哪份结果文件")
     parser.add_argument("--cases", nargs="*", help="只导这些 case_id，跳过抽样")
+    parser.add_argument("--all", action="store_true", dest="every",
+                        help="全量导出，不按桶截断；分组照旧，剩下的进「其余」")
     args = parser.parse_args()
 
     load_env()
@@ -218,7 +279,7 @@ def main() -> None:
         wanted = set(args.cases)
         picked = [("指定", r) for r in cases if r["case_id"] in wanted and r.get("trace_id")]
     else:
-        picked = pick(cases)
+        picked = pick(cases, args.every)
     if not picked:
         raise SystemExit("没有可导出的用例（结果文件里没有 trace_id？跑批要加 --langfuse）")
 
@@ -249,7 +310,7 @@ def main() -> None:
         print(f"  {row['case_id']:<8} {bucket:<12} {headline(row)}")
 
     if not args.cases:
-        write_index(picked, run_name)
+        write_index(picked, run_name, args.every)
     print(f"\n{len(picked)} 条 → {TRACES}")
 
 

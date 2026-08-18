@@ -2,6 +2,7 @@
 
     python rag/experiments/rag-ex-1/run_experiment.py                    # 离线，全量 102 条
     python rag/experiments/rag-ex-1/run_experiment.py --cases R1-001     # 只跑指定用例
+    python rag/experiments/rag-ex-1/run_experiment.py --judge            # 加两个 LLM 指标
     python rag/experiments/rag-ex-1/run_experiment.py --langfuse --run-name $(git rev-parse --short HEAD)
 
 被测对象是 [`search_policy`](rag/retrieving/milvus.py) 的六步链路，不经过 Agent。
@@ -13,10 +14,13 @@
 | 默认 | `rag/datasets/r1/cases.jsonl` | 无。三档 Recall 是要进门禁的数，不该被一个本地 Langfuse 实例的死活卡住 |
 | `--langfuse` | Langfuse 数据集 `retrieval-cases-r1` | 分数写回 dataset run，六步中间产物随 trace 上报 |
 
-这一版只算三档 Recall 与两个辅助数，不调 judge，因此不花模型钱（改写那一步除外）。
+默认只算三档 Recall 与两个辅助数（纯函数，不花模型钱，改写那一步除外）。加 `--judge`
+才算 Context Recall 与 Context Relevance —— 那两个每条要多调两次 judge，慢一个量级，
+而且是观察指标不进门禁（judge.py）。调参迭代跑默认路径，出报告时再带上 `--judge`。
 
 前置：Milvus 起着并已灌库（`bash scripts/milvus.sh start` + `python rag/index/seed_milvus.py`），
-数据集自检过（`python rag/evals/validate_cases.py`）；`--langfuse` 还要先推数据集
+数据集自检过（`python rag/evals/validate_cases.py`）；`--judge` 要先拆好 claim
+（`python rag/evals/generate_claims.py`）；`--langfuse` 还要先推数据集
 （`python rag/evals/push_dataset.py`）。
 """
 
@@ -42,6 +46,9 @@ RESULT_PATH = HERE / "result.json"
 
 RECALL = ("recall@1", "recall@3", "recall@10")
 AUX = ("evidence_tokens", "duplicate_ratio")
+OBS = ("context_recall", "context_relevance")
+"""两个 LLM 指标。跟 RECALL 分开列是因为它们不进门禁：judge 有噪声，校准之前
+只记录、看趋势（5-rag-eval 七）。"""
 
 
 # ── 跑批 ──────────────────────────────────────────────────────────────────
@@ -61,12 +68,21 @@ class Progress:
             if row["error"] and row["type"] != "unanswerable":
                 note = row["error"]
             elif row["type"] == "unanswerable":
-                note = "按预期抛异常" if scores.get("unanswerable_raised") else "未抛异常，返回了证据"
+                # 「没抛异常」与「返回了证据」是两回事：实测 6 条里 5 条是重排全滤后
+                # 拿到空列表 —— 兜底行为没生效，但也确实没给出不相关的条款，两者要分开报
+                note = ("按预期抛异常" if scores.get("unanswerable_raised")
+                        else f"未抛异常，{len(row.get('sections') or [])} 条证据")
             else:
                 # `-` 是这一档不适用（multi_hop 的 recall@1），与判负分开显示
                 marks = {1.0: "1", 0.0: "0", None: "-"}
                 hit = "".join(marks[scores.get(name)] for name in RECALL)
                 note = f"@1/@3/@10={hit} · {scores['evidence_tokens']} token"
+                judged = "".join(
+                    f" · {short}={scores[name]}"
+                    for name, short in zip(OBS, ("CR", "CRel"))
+                    if name in scores
+                )
+                note += judged
             print(
                 f"  [{self.done:>{len(str(self.total))}}/{self.total}] "
                 f"{row['case_id']} {row['elapsed_s']:.1f}s · {note}",
@@ -77,7 +93,8 @@ class Progress:
         return time.monotonic() - self.t0
 
 
-def run_case(service, case: dict) -> dict:
+def run_case(service, case: dict, judge_on: bool = False) -> dict:
+    """跑一条用例并判分。`judge_on` 是 `--judge`，多算两个 LLM 指标。"""
     seeds = case["seed_chunk_id"]
     meta = case["meta"]
     row = {
@@ -110,6 +127,11 @@ def run_case(service, case: dict) -> dict:
         # 子集），混进均值就是白送的分。这类样本只判兜底行为。
         row["scores"]["unanswerable_raised"] = 0.0
         row["sections"] = [s.section for s in sections]
+        # 没抛异常时才有东西可判。Context Relevance 不要标注，正好用来量化 6.2 说的
+        # 那件事：实测 6 条里 5 条被重排全滤成空证据，剩下一条返回了不相关的条款，
+        # 它的相关度判出来是 0 —— 这个数正是「无适用条款」那条兜底判据的候选
+        if judge_on:
+            _judge_relevance(row, case, sections)
         return row
 
     # k < 种子块数的档次不计分：命中要求全中，两个种子块不可能同时排第 1，
@@ -132,7 +154,59 @@ def run_case(service, case: dict) -> dict:
         "evidence": scorers.seed_ranks(trace.evidence_ids, seeds),
     }
     row["sections"] = [s.section for s in sections]
+    if judge_on:
+        # claim 跟样本走（cases.jsonl 的 claims 字段），不在这里现拆：分母要在两次
+        # run 之间保持一致，否则 Context Recall 的涨跌读不出是链路变了还是拆分变了
+        _judge_recall(row, case.get("claims") or [], sections)
+        _judge_relevance(row, case, sections)
     return row
+
+
+def _judge_recall(row: dict, claims: list[str], sections) -> None:
+    import judge
+
+    result = judge.context_recall(claims, sections)
+    _record(row, "context_recall", result)
+
+
+def _judge_relevance(row: dict, case: dict, sections) -> None:
+    import judge
+
+    result = judge.context_relevance(case["query"], sections)
+    _record(row, "context_relevance", result)
+
+
+def _record(row: dict, name: str, result: dict) -> None:
+    """判定结果落两处：分数进 `scores` 参与聚合，逐条理由进 `judge` 供翻查。
+
+    judge 调用失败不写分数 —— 写个 0 会被均值当成「检索没召回」，把模型故障记到
+    检索头上。失败的那条留在 `judge` 里，跑批末尾按数量汇报；「没有可判的东西」
+    （空证据、没有 claim）走的是 `skipped`，不算故障。
+    """
+    row.setdefault("judge", {})[name] = result
+    if result["score"] is not None:
+        row["scores"][name] = result["score"]
+
+
+# ── claim ────────────────────────────────────────────────────────────────
+def check_claims(dataset: Path, wanted: set | None = None) -> int:
+    """跑批前确认要判的样本都带 claim。
+
+    缺了就退出，不是跳过那几条 —— 少几条样本的 Context Recall 仍然算得出一个数，
+    看着正常，实际分母已经不是数据集那个了。补：`python rag/evals/generate_claims.py`。
+    """
+    from rag.evals.generate_claims import needs_claims
+
+    cases = [
+        c for c in read_cases(dataset)
+        if needs_claims(c) and (not wanted or c["case_id"] in wanted)
+    ]
+    if missing := [c["case_id"] for c in cases if not c.get("claims")]:
+        raise SystemExit(
+            f"{len(missing)} 条样本还没有 claims：{missing[:5]}…\n"
+            "跑 python rag/evals/generate_claims.py 补上"
+        )
+    return len(cases)
 
 
 # ── Langfuse：dataset run ─────────────────────────────────────────────────
@@ -143,6 +217,7 @@ def case_of(item) -> dict:
         "case_id": item.id,
         "query": item.input["query"],
         "seed_chunk_id": item.expected_output["seed_chunk_id"],
+        "claims": item.expected_output.get("claims") or [],
         "type": meta.get("type", ""),
         "style": meta.get("style", ""),
         "meta": meta,
@@ -169,7 +244,15 @@ def evaluate(*, output, **_):
 
 
 def _why(row: dict, name: str) -> str:
-    """Recall 判负时，把种子块的名次带上 —— 光一个 0 在 UI 上说明不了改哪里。"""
+    """判负时把归因材料带上 —— 光一个 0 在 UI 上说明不了改哪里。"""
+    if name in OBS:
+        result = (row.get("judge") or {}).get(name, {})
+        if name == "context_recall":
+            missed = [d["claim"] for d in result.get("detail", []) if not d["supported"]]
+            return f"{result.get('hit')}/{result.get('n')} 条 claim 被支撑" + (
+                "；没撑住：" + "｜".join(missed[:3]) if missed else ""
+            )
+        return f"{result.get('hit')}/{result.get('n')} 个内容单元相关；{result.get('note', '')}"
     if not name.startswith("recall"):
         return ""
     ranks = (row.get("seed_rank") or {}).get("candidate" if name == "recall@10" else "evidence", {})
@@ -187,11 +270,15 @@ def aggregate(*, item_results, **_):
         for name in RECALL
         if stats[name] is not None
     ]
-    out += [Evaluation(name=name, value=stats[name]) for name in AUX if stats[name] is not None]
+    out += [
+        Evaluation(name=name, value=stats[name])
+        for name in AUX + OBS
+        if stats[name] is not None
+    ]
     return out
 
 
-def run_dataset_run(args, service, wanted: set | None) -> tuple[list[dict], str | None, Progress]:
+def run_dataset_run(args, service, wanted: set | None, judge_on: bool) -> tuple[list[dict], str | None, Progress]:
     """走 Langfuse 的 run_experiment：样本从 dataset 拉，分数写回 dataset run。
 
     样本不从本地 jsonl 读 —— dataset run 要挂在 Langfuse 那份数据集上，版本对比才有
@@ -217,20 +304,20 @@ def run_dataset_run(args, service, wanted: set | None) -> tuple[list[dict], str 
     print(f"→ {args.dataset_name}：{len(items)} 条 · 并发 {args.concurrency} · run={run_name}")
 
     def task(*, item, **_):
-        row = run_case(service, case_of(item))
+        row = run_case(service, case_of(item), judge_on)
         progress.emit(row)
         return row
 
     result = client.run_experiment(
         name=args.dataset_name,
         run_name=run_name,
-        description="rag-ex-1 · 三档 Recall + 辅助数",
+        description="rag-ex-1 · 三档 Recall + 辅助数" + ("＋两个 LLM 指标" if judge_on else ""),
         data=items,
         task=task,
         evaluators=[evaluate],
         run_evaluators=[aggregate],
         max_concurrency=args.concurrency,
-        metadata={key: str(value) for key, value in config().items()},
+        metadata={key: str(value) for key, value in config(judge_on).items()},
     )
     client.flush()
 
@@ -257,6 +344,7 @@ def summarize(rows: list[dict]) -> dict:
     out = {"n": len(rows)}
     out |= {name: _mean(rows, name) for name in RECALL}
     out |= {name: _mean(rows, name) for name in AUX}
+    out |= {name: _mean(rows, name) for name in OBS}
     # 三档的分母不一样（recall@1 不含 multi_hop），不记下来就没法判断一档的涨跌
     # 是链路变了还是样本构成变了
     out["counted"] = {name: sum(1 for row in rows if name in row["scores"]) for name in RECALL}
@@ -271,7 +359,7 @@ def breakdown(rows: list[dict], key: str) -> dict:
     return {k: summarize(v) for k, v in sorted(groups.items())}
 
 
-def config() -> dict:
+def config(judge_on: bool = False) -> dict:
     """被测参数的快照。
 
     两次 run 的分数只有在这些值相同的前提下才可比 —— 尤其是 collection：
@@ -282,7 +370,15 @@ def config() -> dict:
     from rag.retrieving import milvus, store
     from rag.retrieving.pipeline import assemble, recall, rerank
 
+    from rag.evals.common import judge_name, judge_reasoning, judge_structured
+
     return {
+        # judge 换了模型，两个 LLM 指标的历史分数就不可比（5-rag-eval 七）。
+        # 思考档位同理：关掉思考判出来的分与开着思考的不是一回事，实测一次判定
+        # 99% 的输出 token 花在思考上，它不可能不影响判定结果
+        "judge_model": judge_name() if judge_on else "off",
+        "judge_reasoning": (judge_reasoning() or "模型默认") if judge_on else "off",
+        "judge_structured": (judge_structured() or "默认") if judge_on else "off",
         "collection": store.COLLECTION,
         "embedding_model": bge_m3.MODEL_ID,
         "reranker": bge_reranker.MODEL_ID if bge_reranker.ENABLED else "off",
@@ -297,8 +393,19 @@ def config() -> dict:
     }
 
 
+def judge_errors(rows: list[dict]) -> list[str]:
+    """judge 调用失败的清单。这些条目没写分数，均值的分母也就少一条 —— 不报出来的话
+    一次网关抖动会静悄悄地把指标算在少一半样本上。"""
+    return [
+        f"{row['case_id']}/{name}: {result['error']}"
+        for row in rows
+        for name, result in (row.get("judge") or {}).items()
+        if result.get("error")
+    ]
+
+
 def write_result(path: Path, *, dataset: str, run_name: str, run_url: str | None,
-                 elapsed_s: float, rows: list[dict]) -> None:
+                 elapsed_s: float, rows: list[dict], judge_on: bool) -> None:
     scored = [row for row in rows if row["type"] != "unanswerable" and not row["error"]]
     unanswerable = [row for row in rows if row["type"] == "unanswerable"]
     errors = [row for row in rows if row["error"] and row["type"] != "unanswerable"]
@@ -309,7 +416,7 @@ def write_result(path: Path, *, dataset: str, run_name: str, run_url: str | None
         "run_name": run_name,
         "run_url": run_url,
         "written_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "config": config(),
+        "config": config(judge_on),
         "cases_total": len(rows),
         "cases_scored": len(scored),
         "elapsed_s": round(elapsed_s, 1),
@@ -317,6 +424,10 @@ def write_result(path: Path, *, dataset: str, run_name: str, run_url: str | None
         | {
             "unanswerable_raised": _mean(unanswerable, "unanswerable_raised"),
             "error_rate": round(len(errors) / len(rows), 3) if rows else 0.0,
+            # unanswerable 不进 Recall 均值，但它的 Context Relevance 有用：
+            # 语料里没有的问题，检回的东西相关度应当明显低于正常样本（6.2）
+            "unanswerable_relevance": _mean(unanswerable, "context_relevance"),
+            "judge_errors": judge_errors(rows),
         },
         "breakdown": {key: breakdown(scored, key) for key in ("style", "type", "layer", "kind", "doc_id")},
         "cases": rows,
@@ -324,7 +435,7 @@ def write_result(path: Path, *, dataset: str, run_name: str, run_url: str | None
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def run_local(args, service, wanted: set | None) -> tuple[list[dict], None, Progress]:
+def run_local(args, service, wanted: set | None, judge_on: bool) -> tuple[list[dict], None, Progress]:
     """离线跑批：样本从 jsonl 读，什么都不上报。三档 Recall 是要进门禁的数，
     不该被一个本地 Langfuse 实例的死活卡住。"""
     from concurrent.futures import ThreadPoolExecutor
@@ -340,7 +451,7 @@ def run_local(args, service, wanted: set | None) -> tuple[list[dict], None, Prog
     print(f"→ {dataset.name}：{len(cases)} 条 · 并发 {args.concurrency}")
 
     def task(case: dict) -> dict:
-        row = run_case(service, case)
+        row = run_case(service, case, judge_on)
         progress.emit(row)
         return row
 
@@ -359,6 +470,9 @@ def main() -> None:
                         help="Langfuse 上的数据集名，配合 --langfuse")
     parser.add_argument("--run-name", help="默认 <数据集>-<条数>cases；版本对比时传 git sha")
     parser.add_argument("--cases", nargs="*", help="只跑这些 case_id")
+    parser.add_argument("--judge", action="store_true",
+                        help="加算 Context Recall 与 Context Relevance，每条多两次 judge 调用；"
+                             "先跑 python rag/evals/generate_claims.py 拆好 claim")
     parser.add_argument("--concurrency", type=int, default=4,
                         help="并发用例数；嵌入和重排是本地模型，调太高只会互相抢算力")
     parser.add_argument("--out", help=f"指标落盘路径，默认 {RESULT_PATH.name}；"
@@ -372,6 +486,15 @@ def main() -> None:
     if not args.langfuse:
         os.environ["REFUND_AGENT_RAG_SPAN"] = "off"
 
+    # claim 先查：缺了就该立刻退出，别等几个 G 的模型权重加载完再报错。
+    # 只跑子集时只查子集 —— 调一条用例不该被另外 95 条挡住
+    wanted = set(args.cases) if args.cases else None
+    if args.judge:
+        from rag.evals.common import judge_name
+
+        n = check_claims(Path(args.dataset).resolve(), wanted)
+        print(f"→ judge：{judge_name()}，{n} 条样本带 claim")
+
     from llm.embedding import embedder
     from llm.rerank import reranker
     from rag.retrieving.milvus import MilvusRagService
@@ -383,9 +506,8 @@ def main() -> None:
     reranker()
 
     service = MilvusRagService()
-    wanted = set(args.cases) if args.cases else None
     runner = run_dataset_run if args.langfuse else run_local
-    rows, run_url, progress = runner(args, service, wanted)
+    rows, run_url, progress = runner(args, service, wanted, args.judge)
 
     scored = [row for row in rows if row["type"] != "unanswerable" and not row["error"]]
     summary = summarize(scored)
@@ -395,6 +517,13 @@ def main() -> None:
         print(f"  {name:>16}: {_fmt(summary[name])}   n={summary['counted'][name]}")
     for name in AUX:
         print(f"  {name:>16}: {summary[name]}")
+    for name in OBS:
+        if summary[name] is not None:
+            print(f"  {name:>16}: {_fmt(summary[name])}   n={sum(1 for r in scored if name in r['scores'])}")
+    if failures := judge_errors(rows):
+        print(f"\n  judge 失败 {len(failures)} 次（这些条目不计入均值）")
+        for line in failures[:5]:
+            print(f"    {line}")
 
     for key in ("style", "layer", "kind"):
         print(f"\n  按 {key} 分档")
@@ -415,6 +544,7 @@ def main() -> None:
             run_url=run_url,
             elapsed_s=progress.elapsed(),
             rows=rows,
+            judge_on=args.judge,
         )
         print(f"\n  指标已写入 {out}")
 

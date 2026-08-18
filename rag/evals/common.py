@@ -9,6 +9,7 @@
 import json
 import os
 import re
+from functools import lru_cache
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -114,3 +115,84 @@ def write_cases(dataset: Path, cases: list[dict]) -> None:
     with (dataset / "cases.jsonl").open("w", encoding="utf-8") as f:
         for case in cases:
             f.write(json.dumps(case, ensure_ascii=False) + "\n")
+
+
+# ── judge 模型 ────────────────────────────────────────────────────────────
+JUDGE_DEFAULT = "anthropic:claude-sonnet-5"
+"""judge 的兜底模型，只在 provider=anthropic 时生效（规则见 llm/chat.py）。
+
+不跟改写共用便宜档：改写判错顶多让排序掉一档，judge 判错直接把指标变成噪声。
+走 OPENAI_* 时配 OPENAI_JUDGE_MODEL —— 兼容网关的模型名猜不出来。
+"""
+
+def judge_structured() -> str:
+    """结构化输出的实现方式，留空则 OpenAI 侧走 function_calling、Anthropic 侧走默认。
+
+    与改写那边同一个坑：langchain 对 OpenAI 侧默认 `json_schema`（strict mode），
+    DeepSeek 这类网关回 400。可选 json_schema | function_calling | json_mode。
+
+    这几个开关**读的时候才取环境变量**，不写成模块常量：评估脚本是直接 python 跑的，
+    `.env` 由 `load_env()` 在 main 里补进 os.environ，那时 import 早就发生过了。
+    """
+    return os.getenv("REFUND_AGENT_JUDGE_STRUCTURED", "").strip()
+
+
+def judge_reasoning() -> str:
+    """思考档位，留空不传。
+
+    开着 thinking 的模型往往不接受 function_calling 需要的 `tool_choice`
+    （DeepSeek 回 400），填 `none` 关掉。非推理模型收到这个参数会报错，所以不设默认值。
+    """
+    return os.getenv("REFUND_AGENT_JUDGE_REASONING", "").strip()
+
+
+@lru_cache(maxsize=1)
+def judge_name() -> str:
+    """judge 用哪个模型。同时检查它有没有跟链路的改写模型撞车。
+
+    撞车了指标仍然算得出来，但那是同一个模型给自己的检索结果打分，方向性偏差
+    没法从分数上看出来 —— 所以在跑批一开始就说清楚，而不是等报告出来再解释。
+    """
+    from llm import chat
+    from rag.retrieving.pipeline.rewrite import MODEL_DEFAULT as REWRITE_DEFAULT
+
+    name = chat.model_name("judge", JUDGE_DEFAULT)
+    if name == chat.model_name("rewrite", REWRITE_DEFAULT):
+        print(
+            f"[warn] judge 与链路的改写模型同为 {name}：自己评自己。"
+            "配 OPENAI_JUDGE_MODEL / ANTHROPIC_JUDGE_MODEL 分开。"
+        )
+    return name
+
+
+def judge_json_hint(schema) -> str:
+    """json_mode 下要追加到提示词末尾的一段：字段结构。
+
+    `json_mode` 是 DeepSeek 这类网关上**唯一能同时开着思考模式**的结构化方式
+    （function_calling 要设 tool_choice，与 thinking 冲突），而判定 claim 正是该让
+    模型多想一步的活。代价是它只保证「输出是合法 JSON」：langchain 不会像
+    function_calling 那样把 schema 传给模型，字段名得自己写进提示词，否则模型自由
+    发挥（实测吐过 `{"useful": [...]}`），解析直接失败。
+
+    schema 由 pydantic 模型现生成，不手写 —— 手写的那份迟早跟类定义对不上。
+    """
+    if judge_structured() != "json_mode":
+        return ""
+    fields = json.dumps(schema.model_json_schema(), ensure_ascii=False)
+    return f"\n\n以 JSON 对象输出结果，且必须符合这个 JSON Schema：\n{fields}"
+
+
+def build_judge(schema, **kwargs):
+    """构造吐结构化结果的 judge 模型。温度 0 是硬要求：判定要可复现。"""
+    from llm import chat
+
+    name = judge_name()
+    kwargs.setdefault("temperature", 0)
+    if effort := judge_reasoning():
+        kwargs["reasoning_effort"] = effort
+
+    method = judge_structured() or (
+        "function_calling" if chat.provider_of(name) == chat.OPENAI else ""
+    )
+    model = chat.build("judge", JUDGE_DEFAULT, **kwargs)
+    return model.with_structured_output(schema, **({"method": method} if method else {}))

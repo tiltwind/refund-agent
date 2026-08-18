@@ -1,0 +1,1440 @@
+{
+  "case": {
+    "case_id": "R1-058",
+    "type": "single",
+    "style": "colloquial",
+    "doc_id": "P07",
+    "layer": "platform",
+    "kind": "text",
+    "seed_chunk_id": [
+      "P07#002:00"
+    ],
+    "error": null,
+    "scores": {
+      "recall@10": 1.0,
+      "recall@3": 1.0,
+      "recall@1": 1.0,
+      "evidence_tokens": 923,
+      "duplicate_ratio": 0.179,
+      "context_recall": 1.0,
+      "context_relevance": 0.263
+    },
+    "elapsed_s": 1.8,
+    "seed_rank": {
+      "candidate": {
+        "P07#002:00": 1
+      },
+      "evidence": {
+        "P07#002:00": 1
+      }
+    },
+    "sections": [
+      "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.1 服务内容 … 第三条 极速退款 > 3.2 适用条件",
+      "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
+      "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.2 垫付与返还",
+      "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口"
+    ],
+    "judge": {
+      "context_recall": {
+        "score": 1.0,
+        "n": 2,
+        "hit": 2,
+        "detail": [
+          {
+            "claim": "金牌会员发起退货退款申请并填写有效退货物流单号后，平台会在商家收到退货前先行垫付退款。",
+            "supported": true,
+            "reason": "P07 第三条 3.1 明确写明该内容。"
+          },
+          {
+            "claim": "平台先行垫付的退款款项即时到账。",
+            "supported": true,
+            "reason": "P07 第三条 3.1 写明款项即时到账。"
+          }
+        ],
+        "error": null
+      },
+      "context_relevance": {
+        "score": 0.263,
+        "n": 38,
+        "hit": 10,
+        "truncated": false,
+        "note": "不相关的多为商家验收、追回款项、违规处罚、运费承担、退货窗口等条款。",
+        "irrelevant": [
+          "商家收货验收不通过的，平台按 [P09] 的争议规则处理。",
+          "经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。",
+          "消费者出现调包退货、退空包裹、虚构退货物流等行为的，**平台暂停其极速退款资格**，恢复需人工审核。",
+          "商家收货验收不通过的，平台按 [P09] 的争议规则处理。",
+          "经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。",
+          "消费者出现调包退货、退空包裹、虚构退货物流等行为的，**平台暂停其极速退款资格**，恢复需人工审核。",
+          "平台支持七日无理由退货，并在法定标准之上向金牌会员提供延长至 15 天的无理由退货服务（[P07]）。",
+          "退款申请的受理条件、判定标准、处理时效，适用《售后服务与退换货政策》（[P02]）。",
+          "**退款是否通过，以平台依据本协议及各项交易规则作出的正式审核结论为准。",
+          "** 接待人员不得自行裁量退款是否通过，其职责限于理解消费者诉求、如实转述审核结论、说明所适用的政策条款。"
+        ],
+        "error": null
+      }
+    },
+    "trace_id": "9ff9f2f99bb4327894c5ce0ddc596520"
+  },
+  "trace": {
+    "id": "9ff9f2f99bb4327894c5ce0ddc596520",
+    "name": "experiment-item-run",
+    "timestamp": "2026-08-18 11:46:36.227000+00:00"
+  },
+  "observations": [
+    {
+      "id": "aebf0eee6d5ea8f4",
+      "traceId": "9ff9f2f99bb4327894c5ce0ddc596520",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 11:46:41.680000+00:00",
+      "endTime": "2026-08-18 11:46:41.681000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "我是金牌会员，东西刚寄回去，快递还在路上呢，钱能不能先退到我账上？"
+        },
+        "output": {
+          "case_id": "R1-058",
+          "type": "single",
+          "style": "colloquial",
+          "doc_id": "P07",
+          "layer": "platform",
+          "kind": "text",
+          "seed_chunk_id": [
+            "P07#002:00"
+          ],
+          "error": null,
+          "scores": {
+            "recall@10": 1,
+            "recall@3": 1,
+            "recall@1": 1,
+            "evidence_tokens": 923,
+            "duplicate_ratio": 0.179,
+            "context_recall": 1,
+            "context_relevance": 0.263
+          },
+          "elapsed_s": 1.8,
+          "seed_rank": {
+            "candidate": {
+              "P07#002:00": 1
+            },
+            "evidence": {
+              "P07#002:00": 1
+            }
+          },
+          "sections": [
+            "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.1 服务内容 … 第三条 极速退款 > 3.2 适用条件",
+            "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
+            "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.2 垫付与返还",
+            "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口"
+          ],
+          "judge": {
+            "context_recall": {
+              "score": 1,
+              "n": 2,
+              "hit": 2,
+              "detail": [
+                {
+                  "claim": "金牌会员发起退货退款申请并填写有效退货物流单号后，平台会在商家收到退货前先行垫付退款。",
+                  "supported": true,
+                  "reason": "P07 第三条 3.1 明确写明该内容。"
+                },
+                {
+                  "claim": "平台先行垫付的退款款项即时到账。",
+                  "supported": true,
+                  "reason": "P07 第三条 3.1 写明款项即时到账。"
+                }
+              ],
+              "error": null
+            },
+            "context_relevance": {
+              "score": 0.263,
+              "n": 38,
+              "hit": 10,
+              "truncated": false,
+              "note": "不相关的多为商家验收、追回款项、违规处罚、运费承担、退货窗口等条款。",
+              "irrelevant": [
+                "商家收货验收不通过的，平台按 [P09] 的争议规则处理。",
+                "经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。",
+                "消费者出现调包退货、退空包裹、虚构退货物流等行为的，**平台暂停其极速退款资格**，恢复需人工审核。",
+                "商家收货验收不通过的，平台按 [P09] 的争议规则处理。",
+                "经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。",
+                "消费者出现调包退货、退空包裹、虚构退货物流等行为的，**平台暂停其极速退款资格**，恢复需人工审核。",
+                "平台支持七日无理由退货，并在法定标准之上向金牌会员提供延长至 15 天的无理由退货服务（[P07]）。",
+                "退款申请的受理条件、判定标准、处理时效，适用《售后服务与退换货政策》（[P02]）。",
+                "**退款是否通过，以平台依据本协议及各项交易规则作出的正式审核结论为准。",
+                "** 接待人员不得自行裁量退款是否通过，其职责限于理解消费者诉求、如实转述审核结论、说明所适用的政策条款。"
+              ],
+              "error": null
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [
+            "金牌会员发起退货退款申请并填写有效退货物流单号后，平台会在商家收到退货前先行垫付退款。",
+            "平台先行垫付的退款款项即时到账。"
+          ],
+          "seed_chunk_id": [
+            "P07#002:00"
+          ],
+          "reference_answer": "可以。金牌会员发起退货退款申请并填写有效退货物流单号后，平台会在商家收到退货前先行垫付退款，款项即时到账。"
+        },
+        "metadata": {
+          "kind": "text",
+          "type": "single",
+          "layer": "platform",
+          "style": "colloquial",
+          "doc_id": "P07",
+          "section": "第三条 极速退款 > 3.1 服务内容",
+          "reviewed": false,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.15
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 1,
+          "comment": "种子块名次 P07#002:00=1"
+        },
+        {
+          "name": "recall@3",
+          "value": 1,
+          "comment": "种子块名次 P07#002:00=1"
+        },
+        {
+          "name": "recall@1",
+          "value": 1,
+          "comment": "种子块名次 P07#002:00=1"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 923,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0.179,
+          "comment": ""
+        },
+        {
+          "name": "context_recall",
+          "value": 1,
+          "comment": "2/2 条 claim 被支撑"
+        },
+        {
+          "name": "context_relevance",
+          "value": 0.263,
+          "comment": "10/38 个内容单元相关；不相关的多为商家验收、追回款项、违规处罚、运费承担、退货窗口等条款。"
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "c3a3dbc6cc412516",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:46:42.294Z",
+      "updatedAt": "2026-08-18T11:46:42.308Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "8afec35537e2f206",
+      "traceId": "9ff9f2f99bb4327894c5ce0ddc596520",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 11:46:37.259000+00:00",
+      "endTime": "2026-08-18 11:46:37.921000+00:00",
+      "input": {
+        "query": "我是金牌会员，东西刚寄回去，快递还在路上呢，钱能不能先退到我账上？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 5,
+        "min_score": 0.3,
+        "dropped": [
+          "L02#003:03",
+          "P06#005:00",
+          "P06#005:01",
+          "L02#003:02",
+          "L02#003:00",
+          "P03#000:00",
+          "L02#003:05",
+          "L02#003:04",
+          "L02#000:00",
+          "P11#003:01",
+          "P07#001:00",
+          "L03#006:00",
+          "L02#006:01",
+          "P03#004:00",
+          "L05#022:00"
+        ],
+        "evidence": [
+          {
+            "chunk_id": "P07#002:00",
+            "section": "P07 第三条 极速退款 > 3.1 服务内容",
+            "score": 0.914,
+            "relevance": 0.917,
+            "prior": 0.9,
+            "excerpt": "金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款项即时到账。"
+          },
+          {
+            "chunk_id": "P07#002:01",
+            "section": "P07 第三条 极速退款 > 3.2 适用条件",
+            "score": 0.413,
+            "relevance": 0.291,
+            "prior": 0.9,
+            "excerpt": "（一）会员等级为金牌会员； （二）账户未被判定为高风险账户； （三）订单金额未超过极速退款额度上限； （四）商品类目不属于特殊类目。"
+          },
+          {
+            "chunk_id": "P01#005:00",
+            "section": "P01 第五章 售后与退款 > 5.1 售后服务承诺",
+            "score": 0.354,
+            "relevance": 0.217,
+            "prior": 0.9,
+            "excerpt": "平台支持七日无理由退货，并在法定标准之上向金牌会员提供延长至 15 天的无理由退货服务（[P07]）。"
+          },
+          {
+            "chunk_id": "P06#002:01",
+            "section": "P06 第三条 质量问题退货的运费 > 3.2 垫付与返还",
+            "score": 0.35,
+            "relevance": 0.213,
+            "prior": 0.9,
+            "excerpt": "消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。"
+          },
+          {
+            "chunk_id": "P02#001:00",
+            "section": "P02 第二条 退货窗口",
+            "score": 0.313,
+            "relevance": 0.141,
+            "prior": 1,
+            "excerpt": "2.1 **无理由退货**： - 普通会员：自签收之日起 **7 天**内可申请； - 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。 2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 …"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "1ebe3c9c026a2954",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.662,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:46:42.294Z",
+      "updatedAt": "2026-08-18T11:46:42.307Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "1ebe3c9c026a2954",
+      "traceId": "9ff9f2f99bb4327894c5ce0ddc596520",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 11:46:36.117000+00:00",
+      "endTime": "2026-08-18 11:46:37.938000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "我是金牌会员，东西刚寄回去，快递还在路上呢，钱能不能先退到我账上？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.1 服务内容 … 第三条 极速退款 > 3.2 适用条件",
+            "text": "金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款项即时到账。\n\n（一）会员等级为金牌会员；\n（二）账户未被判定为高风险账户；\n（三）订单金额未超过极速退款额度上限；\n（四）商品类目不属于特殊类目。\n\n商家收货验收不通过的，平台按 [P09] 的争议规则处理。经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。\n\n消费者出现调包退货、退空包裹、虚构退货物流等行为的，**平台暂停其极速退款资格**，恢复需人工审核。\n\n金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款项即时到账。\n\n（一）会员等级为金牌会员；\n（二）账户未被判定为高风险账户；\n（三）订单金额未超过极速退款额度上限；\n（四）商品类目不属于特殊类目。\n\n商家收货验收不通过的，平台按 [P09] 的争议规则处理。经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。\n\n消费者出现调包退货、退空包裹、虚构退货物流等行为的，**平台暂停其极速退款资格**，恢复需人工审核。",
+            "score": 0.9139388370513917,
+            "doc_id": "P07",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
+            "reason": "相关性 0.917 × 先验 0.90 → 0.914；命中 1/platform/dense#1, 1/platform/bm25#3"
+          },
+          {
+            "section": "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
+            "text": "平台支持七日无理由退货，并在法定标准之上向金牌会员提供延长至 15 天的无理由退货服务（[P07]）。\n\n退款申请的受理条件、判定标准、处理时效，适用《售后服务与退换货政策》（[P02]）。\n\n**退款是否通过，以平台依据本协议及各项交易规则作出的正式审核结论为准。** 接待人员不得自行裁量退款是否通过，其职责限于理解消费者诉求、如实转述审核结论、说明所适用的政策条款。\n\n任何退款批准或拒绝的答复，均须以实际生成的退款单号或受理编号为前提。**未生成单号的口头承诺不构成平台的处理结论**，消费者可据此要求重新处理。",
+            "score": 0.3538118410110474,
+            "doc_id": "P01",
+            "layer": "platform",
+            "doc_type": "平台服务协议",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P01-用户服务协议.md",
+            "reason": "相关性 0.217 × 先验 0.90 → 0.354；命中 1/platform/dense#13, 1/platform/bm25#7"
+          },
+          {
+            "section": "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.2 垫付与返还",
+            "text": "商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。",
+            "score": 0.3504105615615845,
+            "doc_id": "P06",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P06-运费与退货物流规则.md",
+            "reason": "相关性 0.213 × 先验 0.90 → 0.350；命中 1/platform/dense#3, 1/platform/bm25#14"
+          },
+          {
+            "section": "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
+            "text": "2.1 **无理由退货**：\n\n- 普通会员：自签收之日起 **7 天**内可申请；\n- 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。\n\n2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 15 天**内可申请，需描述具体问题。\n\n2.3 **窗口判定为「大于即超出」**：签收天数**等于**窗口值的当天仍在窗口内，可以申请；签收天数**大于**窗口值即为超出。\n\n> 例：金牌会员无理由退货，签收第 15 天 → 在窗口内，可申请；签收第 16 天 → 超出，不予受理。\n\n2.4 **超出窗口的申请一律不予受理**，不因会员等级、商品金额、历史消费而例外。\n\n2.5 **最宽窗口为 15 天**。签收超过 15 天的订单，无论退款原因为何、商品状态如何，判定结论均为不通过——此时无需再向消费者追问退款原因或商品状态。",
+            "score": 0.3128292202949524,
+            "doc_id": "P02",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
+            "reason": "相关性 0.141 × 先验 1.00 → 0.313；命中 1/platform/dense#17, 1/platform/bm25#5"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "32b64bdc17cd50ed",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.821,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:46:42.294Z",
+      "updatedAt": "2026-08-18T11:46:42.306Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "2fd990ffaa102d2e",
+      "traceId": "9ff9f2f99bb4327894c5ce0ddc596520",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 11:46:37.921000+00:00",
+      "endTime": "2026-08-18 11:46:37.938000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "P07#002:00",
+          "P07#002:01",
+          "P01#005:00",
+          "P06#002:01",
+          "P02#001:00"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.1 服务内容 … 第三条 极速退款 > 3.2 适用条件",
+            "text": "金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款项即时到账。\n\n（一）会员等级为金牌会员；\n（二）账户未被判定为高风险账户；\n（三）订单金额未超过极速退款额度上限；\n（四）商品类目不属于特殊类目。\n\n商家收货验收不通过的，平台按 [P09] 的争议规则处理。经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。\n\n消费者出现调包退货、退空包裹、虚构退货物流等行为的，**平台暂停其极速退款资格**，恢复需人工审核。\n\n金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款项即时到账。\n\n（一）会员等级为金牌会员；\n（二）账户未被判定为高风险账户；\n（三）订单金额未超过极速退款额度上限；\n（四）商品类目不属于特殊类目。\n\n商家收货验收不通过的，平台按 [P09] 的争议规则处理。经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。\n\n消费者出现调包退货、退空包裹、虚构退货物流等行为的，**平台暂停其极速退款资格**，恢复需人工审核。",
+            "score": 0.9139388370513917,
+            "doc_id": "P07",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
+            "reason": "相关性 0.917 × 先验 0.90 → 0.914；命中 1/platform/dense#1, 1/platform/bm25#3"
+          },
+          {
+            "section": "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
+            "text": "平台支持七日无理由退货，并在法定标准之上向金牌会员提供延长至 15 天的无理由退货服务（[P07]）。\n\n退款申请的受理条件、判定标准、处理时效，适用《售后服务与退换货政策》（[P02]）。\n\n**退款是否通过，以平台依据本协议及各项交易规则作出的正式审核结论为准。** 接待人员不得自行裁量退款是否通过，其职责限于理解消费者诉求、如实转述审核结论、说明所适用的政策条款。\n\n任何退款批准或拒绝的答复，均须以实际生成的退款单号或受理编号为前提。**未生成单号的口头承诺不构成平台的处理结论**，消费者可据此要求重新处理。",
+            "score": 0.3538118410110474,
+            "doc_id": "P01",
+            "layer": "platform",
+            "doc_type": "平台服务协议",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P01-用户服务协议.md",
+            "reason": "相关性 0.217 × 先验 0.90 → 0.354；命中 1/platform/dense#13, 1/platform/bm25#7"
+          },
+          {
+            "section": "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.2 垫付与返还",
+            "text": "商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。",
+            "score": 0.3504105615615845,
+            "doc_id": "P06",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P06-运费与退货物流规则.md",
+            "reason": "相关性 0.213 × 先验 0.90 → 0.350；命中 1/platform/dense#3, 1/platform/bm25#14"
+          },
+          {
+            "section": "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
+            "text": "2.1 **无理由退货**：\n\n- 普通会员：自签收之日起 **7 天**内可申请；\n- 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。\n\n2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 15 天**内可申请，需描述具体问题。\n\n2.3 **窗口判定为「大于即超出」**：签收天数**等于**窗口值的当天仍在窗口内，可以申请；签收天数**大于**窗口值即为超出。\n\n> 例：金牌会员无理由退货，签收第 15 天 → 在窗口内，可申请；签收第 16 天 → 超出，不予受理。\n\n2.4 **超出窗口的申请一律不予受理**，不因会员等级、商品金额、历史消费而例外。\n\n2.5 **最宽窗口为 15 天**。签收超过 15 天的订单，无论退款原因为何、商品状态如何，判定结论均为不通过——此时无需再向消费者追问退款原因或商品状态。",
+            "score": 0.3128292202949524,
+            "doc_id": "P02",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
+            "reason": "相关性 0.141 × 先验 1.00 → 0.313；命中 1/platform/dense#17, 1/platform/bm25#5"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "1ebe3c9c026a2954",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.017,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:46:42.294Z",
+      "updatedAt": "2026-08-18T11:46:42.306Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "a2fe0a23308bebad",
+      "traceId": "9ff9f2f99bb4327894c5ce0ddc596520",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 11:46:31.018000+00:00",
+      "endTime": "2026-08-18 11:46:41.681000+00:00",
+      "input": {
+        "query": "我是金牌会员，东西刚寄回去，快递还在路上呢，钱能不能先退到我账上？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-058",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P07",
+        "section": "第三条 极速退款 > 3.1 服务内容",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.15,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-058",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P07",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P07#002:00"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 923,
+          "duplicate_ratio": 0.179,
+          "context_recall": 1,
+          "context_relevance": 0.263
+        },
+        "elapsed_s": 1.8,
+        "seed_rank": {
+          "candidate": {
+            "P07#002:00": 1
+          },
+          "evidence": {
+            "P07#002:00": 1
+          }
+        },
+        "sections": [
+          "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.1 服务内容 … 第三条 极速退款 > 3.2 适用条件",
+          "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
+          "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.2 垫付与返还",
+          "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "金牌会员发起退货退款申请并填写有效退货物流单号后，平台会在商家收到退货前先行垫付退款。",
+                "supported": true,
+                "reason": "P07 第三条 3.1 明确写明该内容。"
+              },
+              {
+                "claim": "平台先行垫付的退款款项即时到账。",
+                "supported": true,
+                "reason": "P07 第三条 3.1 写明款项即时到账。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.263,
+            "n": 38,
+            "hit": 10,
+            "truncated": false,
+            "note": "不相关的多为商家验收、追回款项、违规处罚、运费承担、退货窗口等条款。",
+            "irrelevant": [
+              "商家收货验收不通过的，平台按 [P09] 的争议规则处理。",
+              "经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。",
+              "消费者出现调包退货、退空包裹、虚构退货物流等行为的，**平台暂停其极速退款资格**，恢复需人工审核。",
+              "商家收货验收不通过的，平台按 [P09] 的争议规则处理。",
+              "经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。",
+              "消费者出现调包退货、退空包裹、虚构退货物流等行为的，**平台暂停其极速退款资格**，恢复需人工审核。",
+              "平台支持七日无理由退货，并在法定标准之上向金牌会员提供延长至 15 天的无理由退货服务（[P07]）。",
+              "退款申请的受理条件、判定标准、处理时效，适用《售后服务与退换货政策》（[P02]）。",
+              "**退款是否通过，以平台依据本协议及各项交易规则作出的正式审核结论为准。",
+              "** 接待人员不得自行裁量退款是否通过，其职责限于理解消费者诉求、如实转述审核结论、说明所适用的政策条款。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 10.663,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:46:42.294Z",
+      "updatedAt": "2026-08-18T11:46:42.306Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "c3a3dbc6cc412516",
+      "traceId": "9ff9f2f99bb4327894c5ce0ddc596520",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 11:46:41.679000+00:00",
+      "endTime": "2026-08-18 11:46:41.681000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "a2fe0a23308bebad",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.002,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:46:42.294Z",
+      "updatedAt": "2026-08-18T11:46:42.306Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "32b64bdc17cd50ed",
+      "traceId": "9ff9f2f99bb4327894c5ce0ddc596520",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 11:46:31.018000+00:00",
+      "endTime": "2026-08-18 11:46:41.678000+00:00",
+      "input": {
+        "query": "我是金牌会员，东西刚寄回去，快递还在路上呢，钱能不能先退到我账上？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-058",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P07",
+        "section": "第三条 极速退款 > 3.1 服务内容",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.15,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-058",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P07",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P07#002:00"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 923,
+          "duplicate_ratio": 0.179,
+          "context_recall": 1,
+          "context_relevance": 0.263
+        },
+        "elapsed_s": 1.8,
+        "seed_rank": {
+          "candidate": {
+            "P07#002:00": 1
+          },
+          "evidence": {
+            "P07#002:00": 1
+          }
+        },
+        "sections": [
+          "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.1 服务内容 … 第三条 极速退款 > 3.2 适用条件",
+          "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
+          "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.2 垫付与返还",
+          "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "金牌会员发起退货退款申请并填写有效退货物流单号后，平台会在商家收到退货前先行垫付退款。",
+                "supported": true,
+                "reason": "P07 第三条 3.1 明确写明该内容。"
+              },
+              {
+                "claim": "平台先行垫付的退款款项即时到账。",
+                "supported": true,
+                "reason": "P07 第三条 3.1 写明款项即时到账。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.263,
+            "n": 38,
+            "hit": 10,
+            "truncated": false,
+            "note": "不相关的多为商家验收、追回款项、违规处罚、运费承担、退货窗口等条款。",
+            "irrelevant": [
+              "商家收货验收不通过的，平台按 [P09] 的争议规则处理。",
+              "经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。",
+              "消费者出现调包退货、退空包裹、虚构退货物流等行为的，**平台暂停其极速退款资格**，恢复需人工审核。",
+              "商家收货验收不通过的，平台按 [P09] 的争议规则处理。",
+              "经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。",
+              "消费者出现调包退货、退空包裹、虚构退货物流等行为的，**平台暂停其极速退款资格**，恢复需人工审核。",
+              "平台支持七日无理由退货，并在法定标准之上向金牌会员提供延长至 15 天的无理由退货服务（[P07]）。",
+              "退款申请的受理条件、判定标准、处理时效，适用《售后服务与退换货政策》（[P02]）。",
+              "**退款是否通过，以平台依据本协议及各项交易规则作出的正式审核结论为准。",
+              "** 接待人员不得自行裁量退款是否通过，其职责限于理解消费者诉求、如实转述审核结论、说明所适用的政策条款。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "a2fe0a23308bebad",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 10.66,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:46:42.294Z",
+      "updatedAt": "2026-08-18T11:46:42.305Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "6339cc8b2f8f31bd",
+      "traceId": "9ff9f2f99bb4327894c5ce0ddc596520",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-18 11:46:37.177000+00:00",
+      "endTime": "2026-08-18 11:46:37.259000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "P07#002:00",
+            "section": "P07 第三条 极速退款 > 3.1 服务内容",
+            "rrf": 0.0911,
+            "hits": [
+              "1/platform/dense#1",
+              "1/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:03",
+            "section": "L02 第三章 退货程序 > 第十三条 【退款时限】",
+            "rrf": 0.0855,
+            "hits": [
+              "1/law/dense#5",
+              "1/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P06#005:00",
+            "section": "P06 第六条 物流异常的处理 > 6.1 退货途中丢失",
+            "rrf": 0.0825,
+            "hits": [
+              "1/platform/dense#7",
+              "1/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P06#002:01",
+            "section": "P06 第三条 质量问题退货的运费 > 3.2 垫付与返还",
+            "rrf": 0.0729,
+            "hits": [
+              "1/platform/dense#3",
+              "1/platform/bm25#14"
+            ]
+          },
+          {
+            "chunk_id": "P01#005:00",
+            "section": "P01 第五章 售后与退款 > 5.1 售后服务承诺",
+            "rrf": 0.0673,
+            "hits": [
+              "1/platform/dense#13",
+              "1/platform/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "P02#001:00",
+            "section": "P02 第二条 退货窗口",
+            "rrf": 0.067,
+            "hits": [
+              "1/platform/dense#17",
+              "1/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P07#002:01",
+            "section": "P07 第三条 极速退款 > 3.2 适用条件",
+            "rrf": 0.0643,
+            "hits": [
+              "1/platform/dense#8",
+              "1/platform/bm25#15"
+            ]
+          },
+          {
+            "chunk_id": "P06#005:01",
+            "section": "P06 第六条 物流异常的处理 > 6.2 退货途中破损",
+            "rrf": 0.0476,
+            "hits": [
+              "1/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:02",
+            "section": "L02 第三章 退货程序 > 第十二条 【赠品一并退回】",
+            "rrf": 0.0476,
+            "hits": [
+              "1/law/dense#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:00",
+            "section": "L02 第三章 退货程序 > 第十条 【退货通知期限与起算点】",
+            "rrf": 0.0476,
+            "hits": [
+              "1/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P03#000:00",
+            "section": "P03 第一条 退款方式 > 1.1 原路退回",
+            "rrf": 0.0455,
+            "hits": [
+              "1/platform/dense#2"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:05",
+            "section": "L02 第三章 退货程序 > 第十五条 【积分、代金券、优惠券的返还】",
+            "rrf": 0.0455,
+            "hits": [
+              "1/law/dense#2"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:04",
+            "section": "L02 第三章 退货程序 > 第十四条 【退款方式】",
+            "rrf": 0.0435,
+            "hits": [
+              "1/law/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#000:00",
+            "section": "L02 ",
+            "rrf": 0.0435,
+            "hits": [
+              "1/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P11#003:01",
+            "section": "P11 第三条 虚拟商品 > 3.2 未核销可退",
+            "rrf": 0.0417,
+            "hits": [
+              "1/platform/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "P07#001:00",
+            "section": "P07 第二条 售后权益差异 > 2.1 无理由退货窗口",
+            "rrf": 0.0417,
+            "hits": [
+              "1/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "L03#006:00",
+            "section": "L03 第二十条 【押金退还】",
+            "rrf": 0.0417,
+            "hits": [
+              "1/law/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "L02#006:01",
+            "section": "L02 第六章 法律责任 > 第三十一条 【拒绝退货、拖延退款】",
+            "rrf": 0.0417,
+            "hits": [
+              "1/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P03#004:00",
+            "section": "P03 第五条 商家处理时效与超时机制 > 5.1 未发货订单的退款",
+            "rrf": 0.04,
+            "hits": [
+              "1/platform/dense#5"
+            ]
+          },
+          {
+            "chunk_id": "L05#022:00",
+            "section": "L05 第二十二条 【申诉与诉讼】",
+            "rrf": 0.04,
+            "hits": [
+              "1/law/bm25#5"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "1ebe3c9c026a2954",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.082,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:46:42.294Z",
+      "updatedAt": "2026-08-18T11:46:42.305Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "87199beaaca7763e",
+      "traceId": "9ff9f2f99bb4327894c5ce0ddc596520",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 11:46:36.227000+00:00",
+      "endTime": "2026-08-18 11:46:37.176000+00:00",
+      "input": {
+        "query": "我是金牌会员，东西刚寄回去，快递还在路上呢，钱能不能先退到我账上？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "refund",
+            "text": "金牌会员退货商品还在寄回途中，钱款能否在收到退货前先退到账上？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "1ebe3c9c026a2954",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.949,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:46:37.372Z",
+      "updatedAt": "2026-08-18T11:46:37.394Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "668e3a1c9d9a6b15",
+      "traceId": "9ff9f2f99bb4327894c5ce0ddc596520",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 11:46:37.176000+00:00",
+      "endTime": "2026-08-18 11:46:37.176000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "1ebe3c9c026a2954",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:46:37.372Z",
+      "updatedAt": "2026-08-18T11:46:37.393Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    }
+  ]
+}

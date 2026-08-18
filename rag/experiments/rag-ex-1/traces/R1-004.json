@@ -15,9 +15,11 @@
       "recall@3": 1.0,
       "recall@1": 1.0,
       "evidence_tokens": 1656,
-      "duplicate_ratio": 0.258
+      "duplicate_ratio": 0.258,
+      "context_recall": 1.0,
+      "context_relevance": 0.2
     },
-    "elapsed_s": 2.3,
+    "elapsed_s": 2.1,
     "seed_rank": {
       "candidate": {
         "L01#007:00": 3
@@ -32,149 +34,67 @@
       "P08 星辰优选风控与异常退款治理规则 > 第五条 商家侧的异常治理",
       "P06 星辰优选运费与退货物流规则 > 第六条 物流异常的处理 > 6.3 商家拒收退货"
     ],
-    "trace_id": "ed08ada9f292bb227f6d2ccf8b1037af"
+    "judge": {
+      "context_recall": {
+        "score": 1.0,
+        "n": 2,
+        "hit": 2,
+        "detail": [
+          {
+            "claim": "经营者对消费者提出的退货要求故意拖延或者无理拒绝的，应当依照有关法律、法规的规定承担民事责任。",
+            "supported": true,
+            "reason": "L01第四十八条第八项明确列出该情形应承担民事责任。"
+          },
+          {
+            "claim": "故意拖延或无理拒绝退款请求本身即构成违法，而不只是服务态度问题。",
+            "supported": true,
+            "reason": "L01售后适用要点明确表述该观点。"
+          }
+        ],
+        "error": null
+      },
+      "context_relevance": {
+        "score": 0.2,
+        "n": 55,
+        "hit": 11,
+        "truncated": false,
+        "note": "不相关的多为其他违法情形、平台责任、物流责任等。",
+        "irrelevant": [
+          "经营者提供商品或者服务有下列情形之一的，除本法另有规定外，应当依照其他有关法律、法规的规定，承担民事责任：",
+          "（一）商品或者服务存在缺陷的；",
+          "（二）不具备商品应当具备的使用性能而出售时未作说明的；",
+          "（三）不符合在商品或者其包装上注明采用的商品标准的；",
+          "（四）不符合商品说明、实物样品等方式表明的质量状况的；",
+          "（五）生产国家明令淘汰的商品或者销售失效、变质的商品的；",
+          "（六）销售的商品数量不足的；",
+          "（七）服务的内容和费用违反约定的；",
+          "（九）法律、法规规定的其他损害消费者权益的情形。",
+          "经营者对消费者未尽到安全保障义务，造成消费者损害的，应当承担侵权责任。"
+        ],
+        "error": null
+      }
+    },
+    "trace_id": "83d6cb82f392d2d097b30aceee5bfe5d"
   },
   "trace": {
-    "id": "ed08ada9f292bb227f6d2ccf8b1037af",
+    "id": "83d6cb82f392d2d097b30aceee5bfe5d",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 03:24:56.383000+00:00"
+    "timestamp": "2026-08-18 11:51:58.069000+00:00"
   },
   "observations": [
     {
-      "id": "de0a8866f266afe5",
-      "traceId": "ed08ada9f292bb227f6d2ccf8b1037af",
-      "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 03:24:50.655000+00:00",
-      "endTime": "2026-08-18 03:24:58.650000+00:00",
-      "input": {
-        "query": "我要求退货，商家一直拖着不给办，或者干脆找借口拒绝，这种情况商家是不是违法了？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-2",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-004",
-        "kind": "text",
-        "type": "single",
-        "layer": "law",
-        "style": "colloquial",
-        "doc_id": "L01",
-        "section": "第四十八条 【经营者民事责任】",
-        "reviewed": false,
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.2,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-004",
-        "type": "single",
-        "style": "colloquial",
-        "doc_id": "L01",
-        "layer": "law",
-        "kind": "text",
-        "seed_chunk_id": [
-          "L01#007:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 1656,
-          "duplicate_ratio": 0.258
-        },
-        "elapsed_s": 2.3,
-        "seed_rank": {
-          "candidate": {
-            "L01#007:00": 3
-          },
-          "evidence": {
-            "L01#007:00": 1
-          }
-        },
-        "sections": [
-          "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第四十八条 【经营者民事责任】",
-          "L02 网络购买商品七日无理由退货暂行办法 > 第五章 监督检查 > 第二十九条 … 第六章 法律责任 > 第三十四条 【平台拒绝协助调查】",
-          "P08 星辰优选风控与异常退款治理规则 > 第五条 商家侧的异常治理",
-          "P06 星辰优选运费与退货物流规则 > 第六条 物流异常的处理 > 6.3 商家拒收退货"
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 7.995,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:25:02.969Z",
-      "updatedAt": "2026-08-18T03:25:03.004Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "parentObservationId": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "c824ffcf3749201a",
-      "traceId": "ed08ada9f292bb227f6d2ccf8b1037af",
+      "id": "5f7a756cc548b1df",
+      "traceId": "83d6cb82f392d2d097b30aceee5bfe5d",
       "type": "SPAN",
       "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 03:24:58.650000+00:00",
-      "endTime": "2026-08-18 03:24:58.650000+00:00",
+      "startTime": "2026-08-18 11:52:04.381000+00:00",
+      "endTime": "2026-08-18 11:52:04.383000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -187,7 +107,7 @@
       },
       "output": {
         "evaluator_count": 1,
-        "evaluation_count": 6,
+        "evaluation_count": 8,
         "failed_evaluator_count": 0,
         "skipped_evaluator_count": 0
       },
@@ -198,7 +118,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "de0a8866f266afe5",
+      "parentObservationId": "430021e59e16db61",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -206,10 +126,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.0,
+      "latency": 0.002,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:25:02.969Z",
-      "updatedAt": "2026-08-18T03:25:02.998Z",
+      "createdAt": "2026-08-18T11:52:04.447Z",
+      "updatedAt": "2026-08-18T11:52:04.470Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -231,77 +151,29 @@
       "usagePricingTierName": null
     },
     {
-      "id": "7b203db1e8024117",
-      "traceId": "ed08ada9f292bb227f6d2ccf8b1037af",
-      "type": "EVALUATOR",
-      "name": "evaluate",
-      "startTime": "2026-08-18 03:24:58.650000+00:00",
-      "endTime": "2026-08-18 03:24:58.650000+00:00",
-      "modelParameters": {},
+      "id": "34f332ff190ec662",
+      "traceId": "83d6cb82f392d2d097b30aceee5bfe5d",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 11:52:00.167000+00:00",
+      "endTime": "2026-08-18 11:52:00.191000+00:00",
       "input": {
-        "input": {
-          "query": "我要求退货，商家一直拖着不给办，或者干脆找借口拒绝，这种情况商家是不是违法了？"
-        },
-        "output": {
-          "case_id": "R1-004",
-          "type": "single",
-          "style": "colloquial",
-          "doc_id": "L01",
-          "layer": "law",
-          "kind": "text",
-          "seed_chunk_id": [
-            "L01#007:00"
-          ],
-          "error": null,
-          "scores": {
-            "recall@10": 1,
-            "recall@3": 1,
-            "recall@1": 1,
-            "evidence_tokens": 1656,
-            "duplicate_ratio": 0.258
-          },
-          "elapsed_s": 2.3,
-          "seed_rank": {
-            "candidate": {
-              "L01#007:00": 3
-            },
-            "evidence": {
-              "L01#007:00": 1
-            }
-          },
-          "sections": [
-            "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第四十八条 【经营者民事责任】",
-            "L02 网络购买商品七日无理由退货暂行办法 > 第五章 监督检查 > 第二十九条 … 第六章 法律责任 > 第三十四条 【平台拒绝协助调查】",
-            "P08 星辰优选风控与异常退款治理规则 > 第五条 商家侧的异常治理",
-            "P06 星辰优选运费与退货物流规则 > 第六条 物流异常的处理 > 6.3 商家拒收退货"
-          ]
-        },
-        "expected_output": {
-          "seed_chunk_id": [
-            "L01#007:00"
-          ],
-          "reference_answer": "经营者对消费者提出的退货要求故意拖延或者无理拒绝的，应当依照有关法律、法规的规定承担民事责任。也就是说，故意拖延或无理拒绝退款请求本身即构成违法，而不只是服务态度问题。"
-        },
-        "metadata": {
-          "kind": "text",
-          "type": "single",
-          "layer": "law",
-          "style": "colloquial",
-          "doc_id": "L01",
-          "section": "第四十八条 【经营者民事责任】",
-          "reviewed": false,
-          "generated_by": "openai:deepseek-v4-flash",
-          "overlap_ratio": 0.2
-        }
+        "top_k": 4,
+        "evidence": [
+          "L01#007:00",
+          "L02#006:01",
+          "P08#005:00",
+          "L02#005:03",
+          "L02#006:04",
+          "P06#005:02"
+        ]
       },
       "metadata": {
-        "evaluator_kind": "item",
-        "evaluator_index": 0,
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -312,38 +184,54 @@
           }
         }
       },
-      "output": [
-        {
-          "name": "recall@10",
-          "value": 1,
-          "comment": "种子块名次 L01#007:00=3"
-        },
-        {
-          "name": "recall@3",
-          "value": 1,
-          "comment": "种子块名次 L01#007:00=1"
-        },
-        {
-          "name": "recall@1",
-          "value": 1,
-          "comment": "种子块名次 L01#007:00=1"
-        },
-        {
-          "name": "evidence_tokens",
-          "value": 1656,
-          "comment": ""
-        },
-        {
-          "name": "duplicate_ratio",
-          "value": 0.258,
-          "comment": ""
-        },
-        {
-          "name": "run_error",
-          "value": 0,
-          "comment": "ok"
-        }
-      ],
+      "output": {
+        "sections": [
+          {
+            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第四十八条 【经营者民事责任】",
+            "text": "经营者提供商品或者服务有下列情形之一的，除本法另有规定外，应当依照其他有关法律、法规的规定，承担民事责任：\n\n（一）商品或者服务存在缺陷的；\n\n（二）不具备商品应当具备的使用性能而出售时未作说明的；\n\n（三）不符合在商品或者其包装上注明采用的商品标准的；\n\n（四）不符合商品说明、实物样品等方式表明的质量状况的；\n\n（五）生产国家明令淘汰的商品或者销售失效、变质的商品的；\n\n（六）销售的商品数量不足的；\n\n（七）服务的内容和费用违反约定的；\n\n（八）对消费者提出的修理、重作、更换、退货、补足商品数量、退还货款和服务费用或者赔偿损失的要求，故意拖延或者无理拒绝的；\n\n（九）法律、法规规定的其他损害消费者权益的情形。\n\n经营者对消费者未尽到安全保障义务，造成消费者损害的，应当承担侵权责任。\n\n> **售后适用要点**：第（八）项直接指向售后场景——**对符合条件的退款请求故意拖延或无理拒绝，本身即构成违法**，不只是服务态度问题。",
+            "score": 0.9656267452239992,
+            "doc_id": "L01",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2014-03-15",
+            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
+            "reason": "相关性 0.982 × 先验 0.90 → 0.966；命中 1/law/dense#3, 1/law/bm25#5, 2/law/dense#3, 2/law/bm25#3"
+          },
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第五章 监督检查 > 第二十九条 … 第六章 法律责任 > 第三十四条 【平台拒绝协助调查】",
+            "text": "市场监督管理部门应当加强对网络商品销售者和网络交易平台提供者经营行为的监督检查，督促和引导其建立健全经营者首问和赔偿先付制度，依法履行网络购买商品七日无理由退货义务。\n\n市场监督管理部门应当及时受理和依法处理消费者有关七日无理由退货的投诉、举报。\n\n市场监督管理部门应当依照公正、公开、及时的原则，综合运用建议、约谈、示范等方式，加强对网络商品销售者和网络交易平台提供者履行七日无理由退货法定义务的行政指导。\n\n市场监督管理部门在对网络商品交易的监督检查中，发现经营者存在拒不履行七日无理由退货义务，侵害消费者合法权益行为的，应当依法进行查处，同时将相关处罚信息计入信用档案，向社会公布。\n\n网络商品销售者违反本办法第六条、第七条规定，擅自扩大不适用七日无理由退货的商品范围的，按照《消费者权益保护法》第五十六条第一款第（八）项规定予以处罚。\n\n网络商品销售者违反本办法规定，有下列情形之一的，依照《消费者权益保护法》第五十六条第一款第（八）项规定予以处罚：\n\n（一）未经消费者在购买时确认，擅自以商品不适用七日无理由退货为由拒绝退货，或者以消费者已拆封、查验影响商品完好为由拒绝退货的；\n\n（二）自收到消费者退货要求之日起超过十五日未办理退货手续，或者未向消费者提供真实、准确的退货地址、退货联系人等有效联系信息，致使消费者无法办理退货手续的；\n\n（三）在收到退回商品之日起超过十五日未向消费者返还已支付的商品价款的。\n\n> **判定要点**：**15 日是行政处罚的红线**——超过 15 日未办理退货手续或未退款即触发处罚，而第十三条的 7 日是应当履行的义务期限。\n\n网络交易平台提供者违反本办法第二十二条规定的，依照《电子商务法》第八十一条第一款第（一）项规定予以处罚。\n\n网络商品销售者违反本办法第二十五条规定，销售不能够完全恢复到初始状态的无理由退货商品，且未通过显著的方式明确标注商品实际情况的，违反其他法律、行政法规的，依照有关法律、行政法规的规定处罚；法律、行政法规未作规定的，予以警告，责令改正，并处一万元以上三万元以下的罚款。\n\n网络交易平台提供者拒绝协助市场监督管理部门对涉嫌违法行为采取措施、开展调查的，予以警告，责令改正；拒不改正的，处三万元以下的罚款。\n\n网络商品销售者违反本办法第六条、第七条规定，擅自扩大不适用七日无理由退货的商品范围的，按照《消费者权益保护法》第五十六条第一款第（八）项规定予以处罚。\n\n网络商品销售者违反本办法规定，有下列情形之一的，依照《消费者权益保护法》第五十六条第一款第（八）项规定予以处罚：\n\n（一）未经消费者在购买时确认，擅自以商品不适用七日无理由退货为由拒绝退货，或者以消费者已拆封、查验影响商品完好为由拒绝退货的；\n\n（二）自收到消费者退货要求之日起超过十五日未办理退货手续，或者未向消费者提供真实、准确的退货地址、退货联系人等有效联系信息，致使消费者无法办理退货手续的；\n\n（三）在收到退回商品之日起超过十五日未向消费者返还已支付的商品价款的。\n\n> **判定要点**：**15 日是行政处罚的红线**——超过 15 日未办理退货手续或未退款即触发处罚，而第十三条的 7 日是应当履行的义务期限。\n\n网络交易平台提供者违反本办法第二十二条规定的，依照《电子商务法》第八十一条第一款第（一）项规定予以处罚。\n\n网络商品销售者违反本办法第二十五条规定，销售不能够完全恢复到初始状态的无理由退货商品，且未通过显著的方式明确标注商品实际情况的，违反其他法律、行政法规的，依照有关法律、行政法规的规定处罚；法律、行政法规未作规定的，予以警告，责令改正，并处一万元以上三万元以下的罚款。\n\n网络交易平台提供者拒绝协助市场监督管理部门对涉嫌违法行为采取措施、开展调查的，予以警告，责令改正；拒不改正的，处三万元以下的罚款。",
+            "score": 0.7219801235198975,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.677 × 先验 0.90 → 0.722；命中 1/law/dense#1, 1/law/bm25#1, 2/law/dense#1, 2/law/bm25#1"
+          },
+          {
+            "section": "P08 星辰优选风控与异常退款治理规则 > 第五条 商家侧的异常治理",
+            "text": "风控不只针对消费者。以下商家行为同样纳入治理：\n\n| 商家行为 | 处置 |\n|---|---|\n| 无正当理由拒绝合规退货申请 | 判定退款，计入服务考核 |\n| 拖延退款超过承诺时限 | 系统自动退款，扣减服务分 |\n| 提供虚假退货地址致使无法退货 | 直接判定退款 |\n| 虚假发货 | 直接判定退款，处以违约金 |\n| 擅自扩大不适用无理由退货的商品范围 | 责令整改，情节严重的下架商品 |\n| 以「已拆封」为由拒绝合规退货 | 判定退款，计入违规记录 |",
+            "score": 0.6603802967071534,
+            "doc_id": "P08",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
+            "reason": "相关性 0.600 × 先验 0.90 → 0.660；命中 1/platform/dense#5, 1/platform/bm25#3, 2/platform/dense#2, 2/platform/bm25#1"
+          },
+          {
+            "section": "P06 星辰优选运费与退货物流规则 > 第六条 物流异常的处理 > 6.3 商家拒收退货",
+            "text": "退回商品在物流途中丢失的，由承运方按其承运协议赔付。消费者已履行寄回义务并提供有效物流凭证的，**不因商家未收到货而拒绝退款**——平台先行为消费者办理退款，再由平台与承运方结算。\n\n退回商品在寄回途中破损，责任在承运方的，不计入消费者的商品完好责任。\n\n商家无正当理由拒收退回商品的，平台可直接判定退款，并计入商家服务考核。\n\n消费者在签收前拒收包裹的，视为订单取消，全额退款；此时**不适用退货窗口与商品条件的限制**，因为商品未曾签收。\n\n商家上传虚假物流单号、长时间无揽收记录的，消费者可申请退款，平台核实后直接判定退款并追究商家责任。",
+            "score": 0.4045023012161255,
+            "doc_id": "P06",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P06-运费与退货物流规则.md",
+            "reason": "相关性 0.281 × 先验 0.90 → 0.405；命中 2/platform/dense#8, 2/platform/bm25#2"
+          }
+        ]
+      },
       "usage": {
         "input": 0,
         "output": 0,
@@ -351,7 +239,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "c824ffcf3749201a",
+      "parentObservationId": "f997939e7dd93f45",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -359,16 +247,17 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.0,
+      "latency": 0.024,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:25:02.969Z",
-      "updatedAt": "2026-08-18T03:25:02.993Z",
+      "createdAt": "2026-08-18T11:52:04.447Z",
+      "updatedAt": "2026-08-18T11:52:04.469Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
       "totalTokens": 0,
       "completionStartTime": null,
       "model": null,
+      "modelParameters": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -382,18 +271,21 @@
       "usagePricingTierName": null
     },
     {
-      "id": "77894e5f253e9c6c",
-      "traceId": "ed08ada9f292bb227f6d2ccf8b1037af",
+      "id": "430021e59e16db61",
+      "traceId": "83d6cb82f392d2d097b30aceee5bfe5d",
       "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 03:24:50.655000+00:00",
-      "endTime": "2026-08-18 03:24:58.650000+00:00",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 11:51:56.328000+00:00",
+      "endTime": "2026-08-18 11:52:04.383000+00:00",
       "input": {
         "query": "我要求退货，商家一直拖着不给办，或者干脆找借口拒绝，这种情况商家是不是违法了？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-2",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
         "collection": "refund_policy_chunks",
         "embedding_model": "BAAI/bge-m3",
         "reranker": "BAAI/bge-reranker-v2-m3",
@@ -414,13 +306,14 @@
         "doc_id": "L01",
         "section": "第四十八条 【经营者民事责任】",
         "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
         "generated_by": "openai:deepseek-v4-flash",
         "overlap_ratio": 0.2,
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -447,9 +340,11 @@
           "recall@3": 1,
           "recall@1": 1,
           "evidence_tokens": 1656,
-          "duplicate_ratio": 0.258
+          "duplicate_ratio": 0.258,
+          "context_recall": 1,
+          "context_relevance": 0.2
         },
-        "elapsed_s": 2.3,
+        "elapsed_s": 2.1,
         "seed_rank": {
           "candidate": {
             "L01#007:00": 3
@@ -463,376 +358,48 @@
           "L02 网络购买商品七日无理由退货暂行办法 > 第五章 监督检查 > 第二十九条 … 第六章 法律责任 > 第三十四条 【平台拒绝协助调查】",
           "P08 星辰优选风控与异常退款治理规则 > 第五条 商家侧的异常治理",
           "P06 星辰优选运费与退货物流规则 > 第六条 物流异常的处理 > 6.3 商家拒收退货"
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "de0a8866f266afe5",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 7.995,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:25:02.969Z",
-      "updatedAt": "2026-08-18T03:25:02.986Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "0e269ba644d77161",
-      "traceId": "ed08ada9f292bb227f6d2ccf8b1037af",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 03:24:56.383000+00:00",
-      "endTime": "2026-08-18 03:24:58.648000+00:00",
-      "modelParameters": {},
-      "input": {
-        "query": "我要求退货，商家一直拖着不给办，或者干脆找借口拒绝，这种情况商家是不是违法了？",
-        "top_k": 4
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第四十八条 【经营者民事责任】",
-            "text": "经营者提供商品或者服务有下列情形之一的，除本法另有规定外，应当依照其他有关法律、法规的规定，承担民事责任：\n\n（一）商品或者服务存在缺陷的；\n\n（二）不具备商品应当具备的使用性能而出售时未作说明的；\n\n（三）不符合在商品或者其包装上注明采用的商品标准的；\n\n（四）不符合商品说明、实物样品等方式表明的质量状况的；\n\n（五）生产国家明令淘汰的商品或者销售失效、变质的商品的；\n\n（六）销售的商品数量不足的；\n\n（七）服务的内容和费用违反约定的；\n\n（八）对消费者提出的修理、重作、更换、退货、补足商品数量、退还货款和服务费用或者赔偿损失的要求，故意拖延或者无理拒绝的；\n\n（九）法律、法规规定的其他损害消费者权益的情形。\n\n经营者对消费者未尽到安全保障义务，造成消费者损害的，应当承担侵权责任。\n\n> **售后适用要点**：第（八）项直接指向售后场景——**对符合条件的退款请求故意拖延或无理拒绝，本身即构成违法**，不只是服务态度问题。",
-            "score": 0.9656267452239992,
-            "doc_id": "L01",
-            "layer": "law",
-            "doc_type": "法律",
-            "effective_date": "2014-03-15",
-            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
-            "reason": "相关性 0.982 × 先验 0.90 → 0.966；命中 1/law/dense#3, 1/law/bm25#5, 2/law/dense#3, 2/law/bm25#3"
-          },
-          {
-            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第五章 监督检查 > 第二十九条 … 第六章 法律责任 > 第三十四条 【平台拒绝协助调查】",
-            "text": "市场监督管理部门应当加强对网络商品销售者和网络交易平台提供者经营行为的监督检查，督促和引导其建立健全经营者首问和赔偿先付制度，依法履行网络购买商品七日无理由退货义务。\n\n市场监督管理部门应当及时受理和依法处理消费者有关七日无理由退货的投诉、举报。\n\n市场监督管理部门应当依照公正、公开、及时的原则，综合运用建议、约谈、示范等方式，加强对网络商品销售者和网络交易平台提供者履行七日无理由退货法定义务的行政指导。\n\n市场监督管理部门在对网络商品交易的监督检查中，发现经营者存在拒不履行七日无理由退货义务，侵害消费者合法权益行为的，应当依法进行查处，同时将相关处罚信息计入信用档案，向社会公布。\n\n网络商品销售者违反本办法第六条、第七条规定，擅自扩大不适用七日无理由退货的商品范围的，按照《消费者权益保护法》第五十六条第一款第（八）项规定予以处罚。\n\n网络商品销售者违反本办法规定，有下列情形之一的，依照《消费者权益保护法》第五十六条第一款第（八）项规定予以处罚：\n\n（一）未经消费者在购买时确认，擅自以商品不适用七日无理由退货为由拒绝退货，或者以消费者已拆封、查验影响商品完好为由拒绝退货的；\n\n（二）自收到消费者退货要求之日起超过十五日未办理退货手续，或者未向消费者提供真实、准确的退货地址、退货联系人等有效联系信息，致使消费者无法办理退货手续的；\n\n（三）在收到退回商品之日起超过十五日未向消费者返还已支付的商品价款的。\n\n> **判定要点**：**15 日是行政处罚的红线**——超过 15 日未办理退货手续或未退款即触发处罚，而第十三条的 7 日是应当履行的义务期限。\n\n网络交易平台提供者违反本办法第二十二条规定的，依照《电子商务法》第八十一条第一款第（一）项规定予以处罚。\n\n网络商品销售者违反本办法第二十五条规定，销售不能够完全恢复到初始状态的无理由退货商品，且未通过显著的方式明确标注商品实际情况的，违反其他法律、行政法规的，依照有关法律、行政法规的规定处罚；法律、行政法规未作规定的，予以警告，责令改正，并处一万元以上三万元以下的罚款。\n\n网络交易平台提供者拒绝协助市场监督管理部门对涉嫌违法行为采取措施、开展调查的，予以警告，责令改正；拒不改正的，处三万元以下的罚款。\n\n网络商品销售者违反本办法第六条、第七条规定，擅自扩大不适用七日无理由退货的商品范围的，按照《消费者权益保护法》第五十六条第一款第（八）项规定予以处罚。\n\n网络商品销售者违反本办法规定，有下列情形之一的，依照《消费者权益保护法》第五十六条第一款第（八）项规定予以处罚：\n\n（一）未经消费者在购买时确认，擅自以商品不适用七日无理由退货为由拒绝退货，或者以消费者已拆封、查验影响商品完好为由拒绝退货的；\n\n（二）自收到消费者退货要求之日起超过十五日未办理退货手续，或者未向消费者提供真实、准确的退货地址、退货联系人等有效联系信息，致使消费者无法办理退货手续的；\n\n（三）在收到退回商品之日起超过十五日未向消费者返还已支付的商品价款的。\n\n> **判定要点**：**15 日是行政处罚的红线**——超过 15 日未办理退货手续或未退款即触发处罚，而第十三条的 7 日是应当履行的义务期限。\n\n网络交易平台提供者违反本办法第二十二条规定的，依照《电子商务法》第八十一条第一款第（一）项规定予以处罚。\n\n网络商品销售者违反本办法第二十五条规定，销售不能够完全恢复到初始状态的无理由退货商品，且未通过显著的方式明确标注商品实际情况的，违反其他法律、行政法规的，依照有关法律、行政法规的规定处罚；法律、行政法规未作规定的，予以警告，责令改正，并处一万元以上三万元以下的罚款。\n\n网络交易平台提供者拒绝协助市场监督管理部门对涉嫌违法行为采取措施、开展调查的，予以警告，责令改正；拒不改正的，处三万元以下的罚款。",
-            "score": 0.7219801235198975,
-            "doc_id": "L02",
-            "layer": "law",
-            "doc_type": "部门规章",
-            "effective_date": "2017-03-15",
-            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
-            "reason": "相关性 0.677 × 先验 0.90 → 0.722；命中 1/law/dense#1, 1/law/bm25#1, 2/law/dense#1, 2/law/bm25#1"
-          },
-          {
-            "section": "P08 星辰优选风控与异常退款治理规则 > 第五条 商家侧的异常治理",
-            "text": "风控不只针对消费者。以下商家行为同样纳入治理：\n\n| 商家行为 | 处置 |\n|---|---|\n| 无正当理由拒绝合规退货申请 | 判定退款，计入服务考核 |\n| 拖延退款超过承诺时限 | 系统自动退款，扣减服务分 |\n| 提供虚假退货地址致使无法退货 | 直接判定退款 |\n| 虚假发货 | 直接判定退款，处以违约金 |\n| 擅自扩大不适用无理由退货的商品范围 | 责令整改，情节严重的下架商品 |\n| 以「已拆封」为由拒绝合规退货 | 判定退款，计入违规记录 |",
-            "score": 0.6603802967071534,
-            "doc_id": "P08",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
-            "reason": "相关性 0.600 × 先验 0.90 → 0.660；命中 1/platform/dense#5, 1/platform/bm25#3, 2/platform/dense#2, 2/platform/bm25#1"
-          },
-          {
-            "section": "P06 星辰优选运费与退货物流规则 > 第六条 物流异常的处理 > 6.3 商家拒收退货",
-            "text": "退回商品在物流途中丢失的，由承运方按其承运协议赔付。消费者已履行寄回义务并提供有效物流凭证的，**不因商家未收到货而拒绝退款**——平台先行为消费者办理退款，再由平台与承运方结算。\n\n退回商品在寄回途中破损，责任在承运方的，不计入消费者的商品完好责任。\n\n商家无正当理由拒收退回商品的，平台可直接判定退款，并计入商家服务考核。\n\n消费者在签收前拒收包裹的，视为订单取消，全额退款；此时**不适用退货窗口与商品条件的限制**，因为商品未曾签收。\n\n商家上传虚假物流单号、长时间无揽收记录的，消费者可申请退款，平台核实后直接判定退款并追究商家责任。",
-            "score": 0.4045023012161255,
-            "doc_id": "P06",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P06-运费与退货物流规则.md",
-            "reason": "相关性 0.281 × 先验 0.90 → 0.405；命中 2/platform/dense#8, 2/platform/bm25#2"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "77894e5f253e9c6c",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 2.265,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:25:02.969Z",
-      "updatedAt": "2026-08-18T03:25:02.985Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "8d9e3abd60156c5c",
-      "traceId": "ed08ada9f292bb227f6d2ccf8b1037af",
-      "type": "SPAN",
-      "name": "rag.rerank",
-      "startTime": "2026-08-18 03:24:57.903000+00:00",
-      "endTime": "2026-08-18 03:24:58.631000+00:00",
-      "input": {
-        "query": "我要求退货，商家一直拖着不给办，或者干脆找借口拒绝，这种情况商家是不是违法了？",
-        "candidates": 20
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "passed": 6,
-        "min_score": 0.3,
-        "dropped": [
-          "P09#002:00",
-          "P09#006:00",
-          "P03#004:00",
-          "L02#004:04",
-          "L02#006:00",
-          "P09#004:04",
-          "L01#003:00",
-          "L05#022:00",
-          "P03#004:01",
-          "P08#007:00",
-          "L02#006:03",
-          "P09#004:01",
-          "L01#004:00",
-          "L02#004:00"
         ],
-        "evidence": [
-          {
-            "chunk_id": "L01#007:00",
-            "section": "L01 第四十八条 【经营者民事责任】",
-            "score": 0.966,
-            "relevance": 0.982,
-            "prior": 0.9,
-            "excerpt": "经营者提供商品或者服务有下列情形之一的，除本法另有规定外，应当依照其他有关法律、法规的规定，承担民事责任： （一）商品或者服务存在缺陷的； （二）不具备商品应当具备的使用性能而出售时未作说明的； （三）不符合在商品或者其包装上注明采用的商品…"
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "经营者对消费者提出的退货要求故意拖延或者无理拒绝的，应当依照有关法律、法规的规定承担民事责任。",
+                "supported": true,
+                "reason": "L01第四十八条第八项明确列出该情形应承担民事责任。"
+              },
+              {
+                "claim": "故意拖延或无理拒绝退款请求本身即构成违法，而不只是服务态度问题。",
+                "supported": true,
+                "reason": "L01售后适用要点明确表述该观点。"
+              }
+            ],
+            "error": null
           },
-          {
-            "chunk_id": "L02#006:01",
-            "section": "L02 第六章 法律责任 > 第三十一条 【拒绝退货、拖延退款】",
-            "score": 0.722,
-            "relevance": 0.677,
-            "prior": 0.9,
-            "excerpt": "网络商品销售者违反本办法规定，有下列情形之一的，依照《消费者权益保护法》第五十六条第一款第（八）项规定予以处罚： （一）未经消费者在购买时确认，擅自以商品不适用七日无理由退货为由拒绝退货，或者以消费者已拆封、查验影响商品完好为由拒绝退货的；…"
-          },
-          {
-            "chunk_id": "P08#005:00",
-            "section": "P08 第五条 商家侧的异常治理",
-            "score": 0.66,
-            "relevance": 0.6,
-            "prior": 0.9,
-            "excerpt": "风控不只针对消费者。以下商家行为同样纳入治理： | 商家行为 | 处置 | |---|---| | 无正当理由拒绝合规退货申请 | 判定退款，计入服务考核 | | 拖延退款超过承诺时限 | 系统自动退款，扣减服务分 | | 提供虚假退货地址…"
-          },
-          {
-            "chunk_id": "L02#005:03",
-            "section": "L02 第五章 监督检查 > 第二十九条",
-            "score": 0.635,
-            "relevance": 0.569,
-            "prior": 0.9,
-            "excerpt": "市场监督管理部门在对网络商品交易的监督检查中，发现经营者存在拒不履行七日无理由退货义务，侵害消费者合法权益行为的，应当依法进行查处，同时将相关处罚信息计入信用档案，向社会公布。"
-          },
-          {
-            "chunk_id": "L02#006:04",
-            "section": "L02 第六章 法律责任 > 第三十四条 【平台拒绝协助调查】",
-            "score": 0.479,
-            "relevance": 0.374,
-            "prior": 0.9,
-            "excerpt": "网络交易平台提供者拒绝协助市场监督管理部门对涉嫌违法行为采取措施、开展调查的，予以警告，责令改正；拒不改正的，处三万元以下的罚款。"
-          },
-          {
-            "chunk_id": "P06#005:02",
-            "section": "P06 第六条 物流异常的处理 > 6.3 商家拒收退货",
-            "score": 0.405,
-            "relevance": 0.281,
-            "prior": 0.9,
-            "excerpt": "商家无正当理由拒收退回商品的，平台可直接判定退款，并计入商家服务考核。"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "0e269ba644d77161",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.728,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:25:02.968Z",
-      "updatedAt": "2026-08-18T03:25:02.984Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "62cabed8d97f9b77",
-      "traceId": "ed08ada9f292bb227f6d2ccf8b1037af",
-      "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 03:24:58.631000+00:00",
-      "endTime": "2026-08-18 03:24:58.648000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": [
-          "L01#007:00",
-          "L02#006:01",
-          "P08#005:00",
-          "L02#005:03",
-          "L02#006:04",
-          "P06#005:02"
-        ]
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          "context_relevance": {
+            "score": 0.2,
+            "n": 55,
+            "hit": 11,
+            "truncated": false,
+            "note": "不相关的多为其他违法情形、平台责任、物流责任等。",
+            "irrelevant": [
+              "经营者提供商品或者服务有下列情形之一的，除本法另有规定外，应当依照其他有关法律、法规的规定，承担民事责任：",
+              "（一）商品或者服务存在缺陷的；",
+              "（二）不具备商品应当具备的使用性能而出售时未作说明的；",
+              "（三）不符合在商品或者其包装上注明采用的商品标准的；",
+              "（四）不符合商品说明、实物样品等方式表明的质量状况的；",
+              "（五）生产国家明令淘汰的商品或者销售失效、变质的商品的；",
+              "（六）销售的商品数量不足的；",
+              "（七）服务的内容和费用违反约定的；",
+              "（九）法律、法规规定的其他损害消费者权益的情形。",
+              "经营者对消费者未尽到安全保障义务，造成消费者损害的，应当承担侵权责任。"
+            ],
+            "error": null
           }
         }
       },
-      "output": {
-        "sections": [
-          {
-            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第四十八条 【经营者民事责任】",
-            "text": "经营者提供商品或者服务有下列情形之一的，除本法另有规定外，应当依照其他有关法律、法规的规定，承担民事责任：\n\n（一）商品或者服务存在缺陷的；\n\n（二）不具备商品应当具备的使用性能而出售时未作说明的；\n\n（三）不符合在商品或者其包装上注明采用的商品标准的；\n\n（四）不符合商品说明、实物样品等方式表明的质量状况的；\n\n（五）生产国家明令淘汰的商品或者销售失效、变质的商品的；\n\n（六）销售的商品数量不足的；\n\n（七）服务的内容和费用违反约定的；\n\n（八）对消费者提出的修理、重作、更换、退货、补足商品数量、退还货款和服务费用或者赔偿损失的要求，故意拖延或者无理拒绝的；\n\n（九）法律、法规规定的其他损害消费者权益的情形。\n\n经营者对消费者未尽到安全保障义务，造成消费者损害的，应当承担侵权责任。\n\n> **售后适用要点**：第（八）项直接指向售后场景——**对符合条件的退款请求故意拖延或无理拒绝，本身即构成违法**，不只是服务态度问题。",
-            "score": 0.9656267452239992,
-            "doc_id": "L01",
-            "layer": "law",
-            "doc_type": "法律",
-            "effective_date": "2014-03-15",
-            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
-            "reason": "相关性 0.982 × 先验 0.90 → 0.966；命中 1/law/dense#3, 1/law/bm25#5, 2/law/dense#3, 2/law/bm25#3"
-          },
-          {
-            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第五章 监督检查 > 第二十九条 … 第六章 法律责任 > 第三十四条 【平台拒绝协助调查】",
-            "text": "市场监督管理部门应当加强对网络商品销售者和网络交易平台提供者经营行为的监督检查，督促和引导其建立健全经营者首问和赔偿先付制度，依法履行网络购买商品七日无理由退货义务。\n\n市场监督管理部门应当及时受理和依法处理消费者有关七日无理由退货的投诉、举报。\n\n市场监督管理部门应当依照公正、公开、及时的原则，综合运用建议、约谈、示范等方式，加强对网络商品销售者和网络交易平台提供者履行七日无理由退货法定义务的行政指导。\n\n市场监督管理部门在对网络商品交易的监督检查中，发现经营者存在拒不履行七日无理由退货义务，侵害消费者合法权益行为的，应当依法进行查处，同时将相关处罚信息计入信用档案，向社会公布。\n\n网络商品销售者违反本办法第六条、第七条规定，擅自扩大不适用七日无理由退货的商品范围的，按照《消费者权益保护法》第五十六条第一款第（八）项规定予以处罚。\n\n网络商品销售者违反本办法规定，有下列情形之一的，依照《消费者权益保护法》第五十六条第一款第（八）项规定予以处罚：\n\n（一）未经消费者在购买时确认，擅自以商品不适用七日无理由退货为由拒绝退货，或者以消费者已拆封、查验影响商品完好为由拒绝退货的；\n\n（二）自收到消费者退货要求之日起超过十五日未办理退货手续，或者未向消费者提供真实、准确的退货地址、退货联系人等有效联系信息，致使消费者无法办理退货手续的；\n\n（三）在收到退回商品之日起超过十五日未向消费者返还已支付的商品价款的。\n\n> **判定要点**：**15 日是行政处罚的红线**——超过 15 日未办理退货手续或未退款即触发处罚，而第十三条的 7 日是应当履行的义务期限。\n\n网络交易平台提供者违反本办法第二十二条规定的，依照《电子商务法》第八十一条第一款第（一）项规定予以处罚。\n\n网络商品销售者违反本办法第二十五条规定，销售不能够完全恢复到初始状态的无理由退货商品，且未通过显著的方式明确标注商品实际情况的，违反其他法律、行政法规的，依照有关法律、行政法规的规定处罚；法律、行政法规未作规定的，予以警告，责令改正，并处一万元以上三万元以下的罚款。\n\n网络交易平台提供者拒绝协助市场监督管理部门对涉嫌违法行为采取措施、开展调查的，予以警告，责令改正；拒不改正的，处三万元以下的罚款。\n\n网络商品销售者违反本办法第六条、第七条规定，擅自扩大不适用七日无理由退货的商品范围的，按照《消费者权益保护法》第五十六条第一款第（八）项规定予以处罚。\n\n网络商品销售者违反本办法规定，有下列情形之一的，依照《消费者权益保护法》第五十六条第一款第（八）项规定予以处罚：\n\n（一）未经消费者在购买时确认，擅自以商品不适用七日无理由退货为由拒绝退货，或者以消费者已拆封、查验影响商品完好为由拒绝退货的；\n\n（二）自收到消费者退货要求之日起超过十五日未办理退货手续，或者未向消费者提供真实、准确的退货地址、退货联系人等有效联系信息，致使消费者无法办理退货手续的；\n\n（三）在收到退回商品之日起超过十五日未向消费者返还已支付的商品价款的。\n\n> **判定要点**：**15 日是行政处罚的红线**——超过 15 日未办理退货手续或未退款即触发处罚，而第十三条的 7 日是应当履行的义务期限。\n\n网络交易平台提供者违反本办法第二十二条规定的，依照《电子商务法》第八十一条第一款第（一）项规定予以处罚。\n\n网络商品销售者违反本办法第二十五条规定，销售不能够完全恢复到初始状态的无理由退货商品，且未通过显著的方式明确标注商品实际情况的，违反其他法律、行政法规的，依照有关法律、行政法规的规定处罚；法律、行政法规未作规定的，予以警告，责令改正，并处一万元以上三万元以下的罚款。\n\n网络交易平台提供者拒绝协助市场监督管理部门对涉嫌违法行为采取措施、开展调查的，予以警告，责令改正；拒不改正的，处三万元以下的罚款。",
-            "score": 0.7219801235198975,
-            "doc_id": "L02",
-            "layer": "law",
-            "doc_type": "部门规章",
-            "effective_date": "2017-03-15",
-            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
-            "reason": "相关性 0.677 × 先验 0.90 → 0.722；命中 1/law/dense#1, 1/law/bm25#1, 2/law/dense#1, 2/law/bm25#1"
-          },
-          {
-            "section": "P08 星辰优选风控与异常退款治理规则 > 第五条 商家侧的异常治理",
-            "text": "风控不只针对消费者。以下商家行为同样纳入治理：\n\n| 商家行为 | 处置 |\n|---|---|\n| 无正当理由拒绝合规退货申请 | 判定退款，计入服务考核 |\n| 拖延退款超过承诺时限 | 系统自动退款，扣减服务分 |\n| 提供虚假退货地址致使无法退货 | 直接判定退款 |\n| 虚假发货 | 直接判定退款，处以违约金 |\n| 擅自扩大不适用无理由退货的商品范围 | 责令整改，情节严重的下架商品 |\n| 以「已拆封」为由拒绝合规退货 | 判定退款，计入违规记录 |",
-            "score": 0.6603802967071534,
-            "doc_id": "P08",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
-            "reason": "相关性 0.600 × 先验 0.90 → 0.660；命中 1/platform/dense#5, 1/platform/bm25#3, 2/platform/dense#2, 2/platform/bm25#1"
-          },
-          {
-            "section": "P06 星辰优选运费与退货物流规则 > 第六条 物流异常的处理 > 6.3 商家拒收退货",
-            "text": "退回商品在物流途中丢失的，由承运方按其承运协议赔付。消费者已履行寄回义务并提供有效物流凭证的，**不因商家未收到货而拒绝退款**——平台先行为消费者办理退款，再由平台与承运方结算。\n\n退回商品在寄回途中破损，责任在承运方的，不计入消费者的商品完好责任。\n\n商家无正当理由拒收退回商品的，平台可直接判定退款，并计入商家服务考核。\n\n消费者在签收前拒收包裹的，视为订单取消，全额退款；此时**不适用退货窗口与商品条件的限制**，因为商品未曾签收。\n\n商家上传虚假物流单号、长时间无揽收记录的，消费者可申请退款，平台核实后直接判定退款并追究商家责任。",
-            "score": 0.4045023012161255,
-            "doc_id": "P06",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P06-运费与退货物流规则.md",
-            "reason": "相关性 0.281 × 先验 0.90 → 0.405；命中 2/platform/dense#8, 2/platform/bm25#2"
-          }
-        ]
-      },
       "usage": {
         "input": 0,
         "output": 0,
@@ -840,7 +407,6 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "0e269ba644d77161",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -848,10 +414,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.017,
+      "latency": 8.055,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:25:02.969Z",
-      "updatedAt": "2026-08-18T03:25:02.980Z",
+      "createdAt": "2026-08-18T11:52:04.447Z",
+      "updatedAt": "2026-08-18T11:52:04.469Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -861,6 +427,7 @@
       "modelParameters": null,
       "version": null,
       "statusMessage": null,
+      "parentObservationId": null,
       "promptId": null,
       "promptName": null,
       "promptVersion": null,
@@ -872,18 +439,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "81f51ed5b0922292",
-      "traceId": "ed08ada9f292bb227f6d2ccf8b1037af",
+      "id": "69f64a6b7c02e715",
+      "traceId": "83d6cb82f392d2d097b30aceee5bfe5d",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 03:24:57.786000+00:00",
-      "endTime": "2026-08-18 03:24:57.903000+00:00",
+      "startTime": "2026-08-18 11:51:59.315000+00:00",
+      "endTime": "2026-08-18 11:51:59.433000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1092,7 +659,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "0e269ba644d77161",
+      "parentObservationId": "f997939e7dd93f45",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1100,10 +667,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.117,
+      "latency": 0.118,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:24:58.618Z",
-      "updatedAt": "2026-08-18T03:24:58.674Z",
+      "createdAt": "2026-08-18T11:52:04.447Z",
+      "updatedAt": "2026-08-18T11:52:04.469Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1125,21 +692,49 @@
       "usagePricingTierName": null
     },
     {
-      "id": "94a4638852bf6574",
-      "traceId": "ed08ada9f292bb227f6d2ccf8b1037af",
+      "id": "329a22b68ec8f0d3",
+      "traceId": "83d6cb82f392d2d097b30aceee5bfe5d",
       "type": "SPAN",
-      "name": "rag.rewrite",
-      "startTime": "2026-08-18 03:24:56.383000+00:00",
-      "endTime": "2026-08-18 03:24:57.785000+00:00",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 11:51:56.328000+00:00",
+      "endTime": "2026-08-18 11:52:04.380000+00:00",
       "input": {
         "query": "我要求退货，商家一直拖着不给办，或者干脆找借口拒绝，这种情况商家是不是违法了？"
       },
       "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-004",
+        "kind": "text",
+        "type": "single",
+        "layer": "law",
+        "style": "colloquial",
+        "doc_id": "L01",
+        "section": "第四十八条 【经营者民事责任】",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.2,
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1151,20 +746,80 @@
         }
       },
       "output": {
-        "rewritten": true,
-        "needs_law": true,
-        "sub_queries": [
-          {
-            "id": "1",
-            "intent": "dispute",
-            "text": "商家拖延或拒绝办理退货，消费者可以采取哪些维权途径？"
+        "case_id": "R1-004",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "L01",
+        "layer": "law",
+        "kind": "text",
+        "seed_chunk_id": [
+          "L01#007:00"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 1656,
+          "duplicate_ratio": 0.258,
+          "context_recall": 1,
+          "context_relevance": 0.2
+        },
+        "elapsed_s": 2.1,
+        "seed_rank": {
+          "candidate": {
+            "L01#007:00": 3
           },
-          {
-            "id": "2",
-            "intent": "validity",
-            "text": "商家无正当理由拖延或拒绝退货是否违反法律规定？"
+          "evidence": {
+            "L01#007:00": 1
           }
-        ]
+        },
+        "sections": [
+          "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第四十八条 【经营者民事责任】",
+          "L02 网络购买商品七日无理由退货暂行办法 > 第五章 监督检查 > 第二十九条 … 第六章 法律责任 > 第三十四条 【平台拒绝协助调查】",
+          "P08 星辰优选风控与异常退款治理规则 > 第五条 商家侧的异常治理",
+          "P06 星辰优选运费与退货物流规则 > 第六条 物流异常的处理 > 6.3 商家拒收退货"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "经营者对消费者提出的退货要求故意拖延或者无理拒绝的，应当依照有关法律、法规的规定承担民事责任。",
+                "supported": true,
+                "reason": "L01第四十八条第八项明确列出该情形应承担民事责任。"
+              },
+              {
+                "claim": "故意拖延或无理拒绝退款请求本身即构成违法，而不只是服务态度问题。",
+                "supported": true,
+                "reason": "L01售后适用要点明确表述该观点。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.2,
+            "n": 55,
+            "hit": 11,
+            "truncated": false,
+            "note": "不相关的多为其他违法情形、平台责任、物流责任等。",
+            "irrelevant": [
+              "经营者提供商品或者服务有下列情形之一的，除本法另有规定外，应当依照其他有关法律、法规的规定，承担民事责任：",
+              "（一）商品或者服务存在缺陷的；",
+              "（二）不具备商品应当具备的使用性能而出售时未作说明的；",
+              "（三）不符合在商品或者其包装上注明采用的商品标准的；",
+              "（四）不符合商品说明、实物样品等方式表明的质量状况的；",
+              "（五）生产国家明令淘汰的商品或者销售失效、变质的商品的；",
+              "（六）销售的商品数量不足的；",
+              "（七）服务的内容和费用违反约定的；",
+              "（九）法律、法规规定的其他损害消费者权益的情形。",
+              "经营者对消费者未尽到安全保障义务，造成消费者损害的，应当承担侵权责任。"
+            ],
+            "error": null
+          }
+        }
       },
       "usage": {
         "input": 0,
@@ -1173,7 +828,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "0e269ba644d77161",
+      "parentObservationId": "430021e59e16db61",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1181,10 +836,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.402,
+      "latency": 8.052,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:24:58.618Z",
-      "updatedAt": "2026-08-18T03:24:58.674Z",
+      "createdAt": "2026-08-18T11:52:04.447Z",
+      "updatedAt": "2026-08-18T11:52:04.467Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1205,18 +860,474 @@
       "usagePricingTierName": null
     },
     {
-      "id": "11c56d6f82fc1ce9",
-      "traceId": "ed08ada9f292bb227f6d2ccf8b1037af",
-      "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 03:24:57.785000+00:00",
-      "endTime": "2026-08-18 03:24:57.785000+00:00",
+      "id": "f997939e7dd93f45",
+      "traceId": "83d6cb82f392d2d097b30aceee5bfe5d",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 11:51:58.069000+00:00",
+      "endTime": "2026-08-18 11:52:00.192000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "我要求退货，商家一直拖着不给办，或者干脆找借口拒绝，这种情况商家是不是违法了？",
+        "top_k": 4
+      },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "b84ab9ea-1974-46e3-92b4-a9f6bf703334",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第四十八条 【经营者民事责任】",
+            "text": "经营者提供商品或者服务有下列情形之一的，除本法另有规定外，应当依照其他有关法律、法规的规定，承担民事责任：\n\n（一）商品或者服务存在缺陷的；\n\n（二）不具备商品应当具备的使用性能而出售时未作说明的；\n\n（三）不符合在商品或者其包装上注明采用的商品标准的；\n\n（四）不符合商品说明、实物样品等方式表明的质量状况的；\n\n（五）生产国家明令淘汰的商品或者销售失效、变质的商品的；\n\n（六）销售的商品数量不足的；\n\n（七）服务的内容和费用违反约定的；\n\n（八）对消费者提出的修理、重作、更换、退货、补足商品数量、退还货款和服务费用或者赔偿损失的要求，故意拖延或者无理拒绝的；\n\n（九）法律、法规规定的其他损害消费者权益的情形。\n\n经营者对消费者未尽到安全保障义务，造成消费者损害的，应当承担侵权责任。\n\n> **售后适用要点**：第（八）项直接指向售后场景——**对符合条件的退款请求故意拖延或无理拒绝，本身即构成违法**，不只是服务态度问题。",
+            "score": 0.9656267452239992,
+            "doc_id": "L01",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2014-03-15",
+            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
+            "reason": "相关性 0.982 × 先验 0.90 → 0.966；命中 1/law/dense#3, 1/law/bm25#5, 2/law/dense#3, 2/law/bm25#3"
+          },
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第五章 监督检查 > 第二十九条 … 第六章 法律责任 > 第三十四条 【平台拒绝协助调查】",
+            "text": "市场监督管理部门应当加强对网络商品销售者和网络交易平台提供者经营行为的监督检查，督促和引导其建立健全经营者首问和赔偿先付制度，依法履行网络购买商品七日无理由退货义务。\n\n市场监督管理部门应当及时受理和依法处理消费者有关七日无理由退货的投诉、举报。\n\n市场监督管理部门应当依照公正、公开、及时的原则，综合运用建议、约谈、示范等方式，加强对网络商品销售者和网络交易平台提供者履行七日无理由退货法定义务的行政指导。\n\n市场监督管理部门在对网络商品交易的监督检查中，发现经营者存在拒不履行七日无理由退货义务，侵害消费者合法权益行为的，应当依法进行查处，同时将相关处罚信息计入信用档案，向社会公布。\n\n网络商品销售者违反本办法第六条、第七条规定，擅自扩大不适用七日无理由退货的商品范围的，按照《消费者权益保护法》第五十六条第一款第（八）项规定予以处罚。\n\n网络商品销售者违反本办法规定，有下列情形之一的，依照《消费者权益保护法》第五十六条第一款第（八）项规定予以处罚：\n\n（一）未经消费者在购买时确认，擅自以商品不适用七日无理由退货为由拒绝退货，或者以消费者已拆封、查验影响商品完好为由拒绝退货的；\n\n（二）自收到消费者退货要求之日起超过十五日未办理退货手续，或者未向消费者提供真实、准确的退货地址、退货联系人等有效联系信息，致使消费者无法办理退货手续的；\n\n（三）在收到退回商品之日起超过十五日未向消费者返还已支付的商品价款的。\n\n> **判定要点**：**15 日是行政处罚的红线**——超过 15 日未办理退货手续或未退款即触发处罚，而第十三条的 7 日是应当履行的义务期限。\n\n网络交易平台提供者违反本办法第二十二条规定的，依照《电子商务法》第八十一条第一款第（一）项规定予以处罚。\n\n网络商品销售者违反本办法第二十五条规定，销售不能够完全恢复到初始状态的无理由退货商品，且未通过显著的方式明确标注商品实际情况的，违反其他法律、行政法规的，依照有关法律、行政法规的规定处罚；法律、行政法规未作规定的，予以警告，责令改正，并处一万元以上三万元以下的罚款。\n\n网络交易平台提供者拒绝协助市场监督管理部门对涉嫌违法行为采取措施、开展调查的，予以警告，责令改正；拒不改正的，处三万元以下的罚款。\n\n网络商品销售者违反本办法第六条、第七条规定，擅自扩大不适用七日无理由退货的商品范围的，按照《消费者权益保护法》第五十六条第一款第（八）项规定予以处罚。\n\n网络商品销售者违反本办法规定，有下列情形之一的，依照《消费者权益保护法》第五十六条第一款第（八）项规定予以处罚：\n\n（一）未经消费者在购买时确认，擅自以商品不适用七日无理由退货为由拒绝退货，或者以消费者已拆封、查验影响商品完好为由拒绝退货的；\n\n（二）自收到消费者退货要求之日起超过十五日未办理退货手续，或者未向消费者提供真实、准确的退货地址、退货联系人等有效联系信息，致使消费者无法办理退货手续的；\n\n（三）在收到退回商品之日起超过十五日未向消费者返还已支付的商品价款的。\n\n> **判定要点**：**15 日是行政处罚的红线**——超过 15 日未办理退货手续或未退款即触发处罚，而第十三条的 7 日是应当履行的义务期限。\n\n网络交易平台提供者违反本办法第二十二条规定的，依照《电子商务法》第八十一条第一款第（一）项规定予以处罚。\n\n网络商品销售者违反本办法第二十五条规定，销售不能够完全恢复到初始状态的无理由退货商品，且未通过显著的方式明确标注商品实际情况的，违反其他法律、行政法规的，依照有关法律、行政法规的规定处罚；法律、行政法规未作规定的，予以警告，责令改正，并处一万元以上三万元以下的罚款。\n\n网络交易平台提供者拒绝协助市场监督管理部门对涉嫌违法行为采取措施、开展调查的，予以警告，责令改正；拒不改正的，处三万元以下的罚款。",
+            "score": 0.7219801235198975,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.677 × 先验 0.90 → 0.722；命中 1/law/dense#1, 1/law/bm25#1, 2/law/dense#1, 2/law/bm25#1"
+          },
+          {
+            "section": "P08 星辰优选风控与异常退款治理规则 > 第五条 商家侧的异常治理",
+            "text": "风控不只针对消费者。以下商家行为同样纳入治理：\n\n| 商家行为 | 处置 |\n|---|---|\n| 无正当理由拒绝合规退货申请 | 判定退款，计入服务考核 |\n| 拖延退款超过承诺时限 | 系统自动退款，扣减服务分 |\n| 提供虚假退货地址致使无法退货 | 直接判定退款 |\n| 虚假发货 | 直接判定退款，处以违约金 |\n| 擅自扩大不适用无理由退货的商品范围 | 责令整改，情节严重的下架商品 |\n| 以「已拆封」为由拒绝合规退货 | 判定退款，计入违规记录 |",
+            "score": 0.6603802967071534,
+            "doc_id": "P08",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
+            "reason": "相关性 0.600 × 先验 0.90 → 0.660；命中 1/platform/dense#5, 1/platform/bm25#3, 2/platform/dense#2, 2/platform/bm25#1"
+          },
+          {
+            "section": "P06 星辰优选运费与退货物流规则 > 第六条 物流异常的处理 > 6.3 商家拒收退货",
+            "text": "退回商品在物流途中丢失的，由承运方按其承运协议赔付。消费者已履行寄回义务并提供有效物流凭证的，**不因商家未收到货而拒绝退款**——平台先行为消费者办理退款，再由平台与承运方结算。\n\n退回商品在寄回途中破损，责任在承运方的，不计入消费者的商品完好责任。\n\n商家无正当理由拒收退回商品的，平台可直接判定退款，并计入商家服务考核。\n\n消费者在签收前拒收包裹的，视为订单取消，全额退款；此时**不适用退货窗口与商品条件的限制**，因为商品未曾签收。\n\n商家上传虚假物流单号、长时间无揽收记录的，消费者可申请退款，平台核实后直接判定退款并追究商家责任。",
+            "score": 0.4045023012161255,
+            "doc_id": "P06",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P06-运费与退货物流规则.md",
+            "reason": "相关性 0.281 × 先验 0.90 → 0.405；命中 2/platform/dense#8, 2/platform/bm25#2"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "329a22b68ec8f0d3",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 2.123,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:52:04.447Z",
+      "updatedAt": "2026-08-18T11:52:04.465Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "0bf4eee02670831d",
+      "traceId": "83d6cb82f392d2d097b30aceee5bfe5d",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 11:51:59.434000+00:00",
+      "endTime": "2026-08-18 11:52:00.167000+00:00",
+      "input": {
+        "query": "我要求退货，商家一直拖着不给办，或者干脆找借口拒绝，这种情况商家是不是违法了？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 6,
+        "min_score": 0.3,
+        "dropped": [
+          "P09#002:00",
+          "P09#006:00",
+          "P03#004:00",
+          "L02#004:04",
+          "L02#006:00",
+          "P09#004:04",
+          "L01#003:00",
+          "L05#022:00",
+          "P03#004:01",
+          "P08#007:00",
+          "L02#006:03",
+          "P09#004:01",
+          "L01#004:00",
+          "L02#004:00"
+        ],
+        "evidence": [
+          {
+            "chunk_id": "L01#007:00",
+            "section": "L01 第四十八条 【经营者民事责任】",
+            "score": 0.966,
+            "relevance": 0.982,
+            "prior": 0.9,
+            "excerpt": "经营者提供商品或者服务有下列情形之一的，除本法另有规定外，应当依照其他有关法律、法规的规定，承担民事责任： （一）商品或者服务存在缺陷的； （二）不具备商品应当具备的使用性能而出售时未作说明的； （三）不符合在商品或者其包装上注明采用的商品…"
+          },
+          {
+            "chunk_id": "L02#006:01",
+            "section": "L02 第六章 法律责任 > 第三十一条 【拒绝退货、拖延退款】",
+            "score": 0.722,
+            "relevance": 0.677,
+            "prior": 0.9,
+            "excerpt": "网络商品销售者违反本办法规定，有下列情形之一的，依照《消费者权益保护法》第五十六条第一款第（八）项规定予以处罚： （一）未经消费者在购买时确认，擅自以商品不适用七日无理由退货为由拒绝退货，或者以消费者已拆封、查验影响商品完好为由拒绝退货的；…"
+          },
+          {
+            "chunk_id": "P08#005:00",
+            "section": "P08 第五条 商家侧的异常治理",
+            "score": 0.66,
+            "relevance": 0.6,
+            "prior": 0.9,
+            "excerpt": "风控不只针对消费者。以下商家行为同样纳入治理： | 商家行为 | 处置 | |---|---| | 无正当理由拒绝合规退货申请 | 判定退款，计入服务考核 | | 拖延退款超过承诺时限 | 系统自动退款，扣减服务分 | | 提供虚假退货地址…"
+          },
+          {
+            "chunk_id": "L02#005:03",
+            "section": "L02 第五章 监督检查 > 第二十九条",
+            "score": 0.635,
+            "relevance": 0.569,
+            "prior": 0.9,
+            "excerpt": "市场监督管理部门在对网络商品交易的监督检查中，发现经营者存在拒不履行七日无理由退货义务，侵害消费者合法权益行为的，应当依法进行查处，同时将相关处罚信息计入信用档案，向社会公布。"
+          },
+          {
+            "chunk_id": "L02#006:04",
+            "section": "L02 第六章 法律责任 > 第三十四条 【平台拒绝协助调查】",
+            "score": 0.479,
+            "relevance": 0.374,
+            "prior": 0.9,
+            "excerpt": "网络交易平台提供者拒绝协助市场监督管理部门对涉嫌违法行为采取措施、开展调查的，予以警告，责令改正；拒不改正的，处三万元以下的罚款。"
+          },
+          {
+            "chunk_id": "P06#005:02",
+            "section": "P06 第六条 物流异常的处理 > 6.3 商家拒收退货",
+            "score": 0.405,
+            "relevance": 0.281,
+            "prior": 0.9,
+            "excerpt": "商家无正当理由拒收退回商品的，平台可直接判定退款，并计入商家服务考核。"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "f997939e7dd93f45",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.733,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:52:04.447Z",
+      "updatedAt": "2026-08-18T11:52:04.465Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "44604d89a359e8ec",
+      "traceId": "83d6cb82f392d2d097b30aceee5bfe5d",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 11:52:04.382000+00:00",
+      "endTime": "2026-08-18 11:52:04.382000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "我要求退货，商家一直拖着不给办，或者干脆找借口拒绝，这种情况商家是不是违法了？"
+        },
+        "output": {
+          "case_id": "R1-004",
+          "type": "single",
+          "style": "colloquial",
+          "doc_id": "L01",
+          "layer": "law",
+          "kind": "text",
+          "seed_chunk_id": [
+            "L01#007:00"
+          ],
+          "error": null,
+          "scores": {
+            "recall@10": 1,
+            "recall@3": 1,
+            "recall@1": 1,
+            "evidence_tokens": 1656,
+            "duplicate_ratio": 0.258,
+            "context_recall": 1,
+            "context_relevance": 0.2
+          },
+          "elapsed_s": 2.1,
+          "seed_rank": {
+            "candidate": {
+              "L01#007:00": 3
+            },
+            "evidence": {
+              "L01#007:00": 1
+            }
+          },
+          "sections": [
+            "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第四十八条 【经营者民事责任】",
+            "L02 网络购买商品七日无理由退货暂行办法 > 第五章 监督检查 > 第二十九条 … 第六章 法律责任 > 第三十四条 【平台拒绝协助调查】",
+            "P08 星辰优选风控与异常退款治理规则 > 第五条 商家侧的异常治理",
+            "P06 星辰优选运费与退货物流规则 > 第六条 物流异常的处理 > 6.3 商家拒收退货"
+          ],
+          "judge": {
+            "context_recall": {
+              "score": 1,
+              "n": 2,
+              "hit": 2,
+              "detail": [
+                {
+                  "claim": "经营者对消费者提出的退货要求故意拖延或者无理拒绝的，应当依照有关法律、法规的规定承担民事责任。",
+                  "supported": true,
+                  "reason": "L01第四十八条第八项明确列出该情形应承担民事责任。"
+                },
+                {
+                  "claim": "故意拖延或无理拒绝退款请求本身即构成违法，而不只是服务态度问题。",
+                  "supported": true,
+                  "reason": "L01售后适用要点明确表述该观点。"
+                }
+              ],
+              "error": null
+            },
+            "context_relevance": {
+              "score": 0.2,
+              "n": 55,
+              "hit": 11,
+              "truncated": false,
+              "note": "不相关的多为其他违法情形、平台责任、物流责任等。",
+              "irrelevant": [
+                "经营者提供商品或者服务有下列情形之一的，除本法另有规定外，应当依照其他有关法律、法规的规定，承担民事责任：",
+                "（一）商品或者服务存在缺陷的；",
+                "（二）不具备商品应当具备的使用性能而出售时未作说明的；",
+                "（三）不符合在商品或者其包装上注明采用的商品标准的；",
+                "（四）不符合商品说明、实物样品等方式表明的质量状况的；",
+                "（五）生产国家明令淘汰的商品或者销售失效、变质的商品的；",
+                "（六）销售的商品数量不足的；",
+                "（七）服务的内容和费用违反约定的；",
+                "（九）法律、法规规定的其他损害消费者权益的情形。",
+                "经营者对消费者未尽到安全保障义务，造成消费者损害的，应当承担侵权责任。"
+              ],
+              "error": null
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [
+            "经营者对消费者提出的退货要求故意拖延或者无理拒绝的，应当依照有关法律、法规的规定承担民事责任。",
+            "故意拖延或无理拒绝退款请求本身即构成违法，而不只是服务态度问题。"
+          ],
+          "seed_chunk_id": [
+            "L01#007:00"
+          ],
+          "reference_answer": "经营者对消费者提出的退货要求故意拖延或者无理拒绝的，应当依照有关法律、法规的规定承担民事责任。也就是说，故意拖延或无理拒绝退款请求本身即构成违法，而不只是服务态度问题。"
+        },
+        "metadata": {
+          "kind": "text",
+          "type": "single",
+          "layer": "law",
+          "style": "colloquial",
+          "doc_id": "L01",
+          "section": "第四十八条 【经营者民事责任】",
+          "reviewed": false,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.2
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 1,
+          "comment": "种子块名次 L01#007:00=3"
+        },
+        {
+          "name": "recall@3",
+          "value": 1,
+          "comment": "种子块名次 L01#007:00=1"
+        },
+        {
+          "name": "recall@1",
+          "value": 1,
+          "comment": "种子块名次 L01#007:00=1"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 1656,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0.258,
+          "comment": ""
+        },
+        {
+          "name": "context_recall",
+          "value": 1,
+          "comment": "2/2 条 claim 被支撑"
+        },
+        {
+          "name": "context_relevance",
+          "value": 0.2,
+          "comment": "11/55 个内容单元相关；不相关的多为其他违法情形、平台责任、物流责任等。"
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "5f7a756cc548b1df",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:52:04.447Z",
+      "updatedAt": "2026-08-18T11:52:04.464Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "8f373cad49e20347",
+      "traceId": "83d6cb82f392d2d097b30aceee5bfe5d",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 11:51:59.314000+00:00",
+      "endTime": "2026-08-18 11:51:59.314000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1254,7 +1365,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "0e269ba644d77161",
+      "parentObservationId": "f997939e7dd93f45",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1264,8 +1375,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T03:24:58.618Z",
-      "updatedAt": "2026-08-18T03:24:58.650Z",
+      "createdAt": "2026-08-18T11:51:59.412Z",
+      "updatedAt": "2026-08-18T11:51:59.440Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1274,6 +1385,86 @@
       "model": null,
       "modelParameters": null,
       "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "58c0fdc20c3a1dda",
+      "traceId": "83d6cb82f392d2d097b30aceee5bfe5d",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 11:51:58.069000+00:00",
+      "endTime": "2026-08-18 11:51:59.314000+00:00",
+      "input": {
+        "query": "我要求退货，商家一直拖着不给办，或者干脆找借口拒绝，这种情况商家是不是违法了？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": true,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "dispute",
+            "text": "商家拖延或拒绝办理退货，消费者可以采取哪些维权途径？"
+          },
+          {
+            "id": "2",
+            "intent": "validity",
+            "text": "商家无正当理由拖延或拒绝退货是否违反法律规定？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "f997939e7dd93f45",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.245,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:51:59.412Z",
+      "updatedAt": "2026-08-18T11:51:59.439Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,

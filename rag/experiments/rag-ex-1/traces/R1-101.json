@@ -1,0 +1,1088 @@
+{
+  "case": {
+    "case_id": "R1-101",
+    "type": "unanswerable",
+    "style": "colloquial",
+    "doc_id": "",
+    "layer": "",
+    "kind": "",
+    "seed_chunk_id": [],
+    "error": null,
+    "scores": {
+      "unanswerable_raised": 0.0
+    },
+    "elapsed_s": 2.3,
+    "sections": [],
+    "judge": {
+      "context_relevance": {
+        "score": null,
+        "error": null,
+        "skipped": "上下文为空"
+      }
+    },
+    "trace_id": "d09eb4de5e6832321864a1b518d18558"
+  },
+  "trace": {
+    "id": "d09eb4de5e6832321864a1b518d18558",
+    "name": "experiment-item-run",
+    "timestamp": "2026-08-18 11:42:30.727000+00:00"
+  },
+  "observations": [
+    {
+      "id": "4a9962117a2e40a2",
+      "traceId": "d09eb4de5e6832321864a1b518d18558",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 11:42:44.248000+00:00",
+      "endTime": "2026-08-18 11:42:44.248000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          },
+          {
+            "sub_query": "2",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "a87aea8110c27e03",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:45.794Z",
+      "updatedAt": "2026-08-18T11:42:45.824Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "727762101262afdc",
+      "traceId": "d09eb4de5e6832321864a1b518d18558",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 11:42:30.727000+00:00",
+      "endTime": "2026-08-18 11:42:45.115000+00:00",
+      "input": {
+        "query": "我是到线下门店自提的，能直接拿去门店退掉吗？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-101",
+        "kind": "",
+        "type": "unanswerable",
+        "layer": "",
+        "style": "colloquial",
+        "topic": "门店自提",
+        "doc_id": "",
+        "section": "",
+        "reviewed": true,
+        "generated_by": "handwritten",
+        "overlap_ratio": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-101",
+        "type": "unanswerable",
+        "style": "colloquial",
+        "doc_id": "",
+        "layer": "",
+        "kind": "",
+        "seed_chunk_id": [],
+        "error": null,
+        "scores": {
+          "unanswerable_raised": 0
+        },
+        "elapsed_s": 2.3,
+        "sections": [],
+        "judge": {
+          "context_relevance": {
+            "score": null,
+            "error": null,
+            "skipped": "上下文为空"
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 14.388,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:45.794Z",
+      "updatedAt": "2026-08-18T11:42:45.823Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "c2a20dbbeb486870",
+      "traceId": "d09eb4de5e6832321864a1b518d18558",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 11:42:45.114000+00:00",
+      "endTime": "2026-08-18 11:42:45.115000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "我是到线下门店自提的，能直接拿去门店退掉吗？"
+        },
+        "output": {
+          "case_id": "R1-101",
+          "type": "unanswerable",
+          "style": "colloquial",
+          "doc_id": "",
+          "layer": "",
+          "kind": "",
+          "seed_chunk_id": [],
+          "error": null,
+          "scores": {
+            "unanswerable_raised": 0
+          },
+          "elapsed_s": 2.3,
+          "sections": [],
+          "judge": {
+            "context_relevance": {
+              "score": null,
+              "error": null,
+              "skipped": "上下文为空"
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [],
+          "seed_chunk_id": [],
+          "reference_answer": ""
+        },
+        "metadata": {
+          "kind": "",
+          "type": "unanswerable",
+          "layer": "",
+          "style": "colloquial",
+          "topic": "门店自提",
+          "doc_id": "",
+          "section": "",
+          "reviewed": true,
+          "generated_by": "handwritten",
+          "overlap_ratio": 0
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "unanswerable_raised",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "4cacfb58f9efc964",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:45.794Z",
+      "updatedAt": "2026-08-18T11:42:45.822Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "163132da33d40a16",
+      "traceId": "d09eb4de5e6832321864a1b518d18558",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 11:42:42.858000+00:00",
+      "endTime": "2026-08-18 11:42:44.248000+00:00",
+      "input": {
+        "query": "我是到线下门店自提的，能直接拿去门店退掉吗？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "condition",
+            "text": "线下门店自提的商品，可以直接拿到门店办理退货吗？"
+          },
+          {
+            "id": "2",
+            "intent": "refund",
+            "text": "线下门店自提的商品退货，退款流程和运费如何处理？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "a87aea8110c27e03",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.39,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:45.794Z",
+      "updatedAt": "2026-08-18T11:42:45.822Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "c8e003433e15cbe1",
+      "traceId": "d09eb4de5e6832321864a1b518d18558",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 11:42:30.727000+00:00",
+      "endTime": "2026-08-18 11:42:45.114000+00:00",
+      "input": {
+        "query": "我是到线下门店自提的，能直接拿去门店退掉吗？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-101",
+        "kind": "",
+        "type": "unanswerable",
+        "layer": "",
+        "style": "colloquial",
+        "topic": "门店自提",
+        "doc_id": "",
+        "section": "",
+        "reviewed": true,
+        "generated_by": "handwritten",
+        "overlap_ratio": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-101",
+        "type": "unanswerable",
+        "style": "colloquial",
+        "doc_id": "",
+        "layer": "",
+        "kind": "",
+        "seed_chunk_id": [],
+        "error": null,
+        "scores": {
+          "unanswerable_raised": 0
+        },
+        "elapsed_s": 2.3,
+        "sections": [],
+        "judge": {
+          "context_relevance": {
+            "score": null,
+            "error": null,
+            "skipped": "上下文为空"
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "727762101262afdc",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 14.387,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:45.794Z",
+      "updatedAt": "2026-08-18T11:42:45.822Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "e1aa81e2f2fae207",
+      "traceId": "d09eb4de5e6832321864a1b518d18558",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 11:42:44.352000+00:00",
+      "endTime": "2026-08-18 11:42:45.114000+00:00",
+      "input": {
+        "query": "我是到线下门店自提的，能直接拿去门店退掉吗？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 0,
+        "min_score": 0.3,
+        "dropped": [
+          "L02#003:09",
+          "L02#003:08",
+          "P06#004:00",
+          "P06#005:00",
+          "P06#005:02",
+          "P06#004:04",
+          "P06#002:02",
+          "P09#004:00",
+          "L02#003:02",
+          "L02#003:04",
+          "P03#001:05",
+          "P06#001:02",
+          "P01#003:03",
+          "P03#004:01",
+          "P07#002:00",
+          "P06#000:00",
+          "P06#001:00",
+          "P06#002:01",
+          "P02#001:00",
+          "P06#005:04"
+        ],
+        "evidence": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "a87aea8110c27e03",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.762,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:45.794Z",
+      "updatedAt": "2026-08-18T11:42:45.822Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "be740821b5c8e8e0",
+      "traceId": "d09eb4de5e6832321864a1b518d18558",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 11:42:45.114000+00:00",
+      "endTime": "2026-08-18 11:42:45.114000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": []
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "a87aea8110c27e03",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:45.794Z",
+      "updatedAt": "2026-08-18T11:42:45.819Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "a87aea8110c27e03",
+      "traceId": "d09eb4de5e6832321864a1b518d18558",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 11:42:42.858000+00:00",
+      "endTime": "2026-08-18 11:42:45.114000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "我是到线下门店自提的，能直接拿去门店退掉吗？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "c8e003433e15cbe1",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 2.256,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:45.794Z",
+      "updatedAt": "2026-08-18T11:42:45.818Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "959d2ea33cf2228c",
+      "traceId": "d09eb4de5e6832321864a1b518d18558",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-18 11:42:44.249000+00:00",
+      "endTime": "2026-08-18 11:42:44.352000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "L02#003:09",
+            "section": "L02 第三章 退货程序 > 第十九条 【退货方式】",
+            "rrf": 0.1369,
+            "hits": [
+              "1/law/dense#1",
+              "1/law/bm25#4",
+              "2/law/dense#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:08",
+            "section": "L02 第三章 退货程序 > 第十八条 【退货运费承担】",
+            "rrf": 0.1309,
+            "hits": [
+              "1/law/bm25#5",
+              "2/law/dense#2",
+              "2/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P06#004:00",
+            "section": "P06 第五条 退货物流 > 5.1 商家提供退货信息的义务",
+            "rrf": 0.1167,
+            "hits": [
+              "1/platform/dense#8",
+              "1/platform/bm25#1",
+              "2/platform/dense#10"
+            ]
+          },
+          {
+            "chunk_id": "P06#005:00",
+            "section": "P06 第六条 物流异常的处理 > 6.1 退货途中丢失",
+            "rrf": 0.112,
+            "hits": [
+              "1/platform/bm25#5",
+              "2/platform/dense#4",
+              "2/platform/bm25#13"
+            ]
+          },
+          {
+            "chunk_id": "P06#005:02",
+            "section": "P06 第六条 物流异常的处理 > 6.3 商家拒收退货",
+            "rrf": 0.1096,
+            "hits": [
+              "1/platform/bm25#4",
+              "2/platform/dense#18",
+              "2/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P06#004:04",
+            "section": "P06 第五条 退货物流 > 5.5 上门取件",
+            "rrf": 0.0931,
+            "hits": [
+              "1/platform/dense#1",
+              "2/platform/dense#2"
+            ]
+          },
+          {
+            "chunk_id": "P06#002:02",
+            "section": "P06 第三条 质量问题退货的运费 > 3.3 大件商品",
+            "rrf": 0.0911,
+            "hits": [
+              "1/platform/dense#3",
+              "2/platform/dense#1"
+            ]
+          },
+          {
+            "chunk_id": "P09#004:00",
+            "section": "P09 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
+            "rrf": 0.0889,
+            "hits": [
+              "1/platform/dense#2",
+              "2/platform/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:02",
+            "section": "L02 第三章 退货程序 > 第十二条 【赠品一并退回】",
+            "rrf": 0.0871,
+            "hits": [
+              "1/law/dense#2",
+              "2/law/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:04",
+            "section": "L02 第三章 退货程序 > 第十四条 【退款方式】",
+            "rrf": 0.0851,
+            "hits": [
+              "1/law/dense#4",
+              "2/law/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "P03#001:05",
+            "section": "P03 第二条 退款金额的计算 > 2.6 运费",
+            "rrf": 0.0755,
+            "hits": [
+              "2/platform/dense#6",
+              "2/platform/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "P06#001:02",
+            "section": "P06 第二条 无理由退货的运费 > 2.3 包邮订单的处理",
+            "rrf": 0.0754,
+            "hits": [
+              "2/platform/dense#16",
+              "2/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P01#003:03",
+            "section": "P01 第三章 订单与合同 > 3.4 订单取消",
+            "rrf": 0.0729,
+            "hits": [
+              "1/platform/dense#9",
+              "2/platform/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "P03#004:01",
+            "section": "P03 第五条 商家处理时效与超时机制 > 5.2 已发货未签收订单的退款",
+            "rrf": 0.0697,
+            "hits": [
+              "1/platform/dense#6",
+              "2/platform/dense#12"
+            ]
+          },
+          {
+            "chunk_id": "P07#002:00",
+            "section": "P07 第三条 极速退款 > 3.1 服务内容",
+            "rrf": 0.0694,
+            "hits": [
+              "1/platform/dense#5",
+              "2/platform/dense#14"
+            ]
+          },
+          {
+            "chunk_id": "P06#000:00",
+            "section": "P06 第一条 运费承担的基本原则",
+            "rrf": 0.0678,
+            "hits": [
+              "1/platform/bm25#16",
+              "2/platform/dense#5"
+            ]
+          },
+          {
+            "chunk_id": "P06#001:00",
+            "section": "P06 第二条 无理由退货的运费 > 2.1 寄回运费",
+            "rrf": 0.0657,
+            "hits": [
+              "2/platform/dense#9",
+              "2/platform/bm25#12"
+            ]
+          },
+          {
+            "chunk_id": "P06#002:01",
+            "section": "P06 第三条 质量问题退货的运费 > 3.2 垫付与返还",
+            "rrf": 0.0648,
+            "hits": [
+              "2/platform/dense#7",
+              "2/platform/bm25#16"
+            ]
+          },
+          {
+            "chunk_id": "P02#001:00",
+            "section": "P02 第二条 退货窗口",
+            "rrf": 0.0635,
+            "hits": [
+              "1/platform/dense#11",
+              "1/platform/bm25#12"
+            ]
+          },
+          {
+            "chunk_id": "P06#005:04",
+            "section": "P06 第六条 物流异常的处理 > 6.5 虚假发货",
+            "rrf": 0.0596,
+            "hits": [
+              "1/platform/bm25#10",
+              "2/platform/bm25#18"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "a87aea8110c27e03",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.103,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:45.794Z",
+      "updatedAt": "2026-08-18T11:42:45.816Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "4cacfb58f9efc964",
+      "traceId": "d09eb4de5e6832321864a1b518d18558",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 11:42:45.114000+00:00",
+      "endTime": "2026-08-18 11:42:45.115000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 2,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "727762101262afdc",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:45.794Z",
+      "updatedAt": "2026-08-18T11:42:45.815Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    }
+  ]
+}

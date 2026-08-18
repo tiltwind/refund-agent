@@ -1,0 +1,1368 @@
+{
+  "case": {
+    "case_id": "R1-073",
+    "type": "single",
+    "style": "formal",
+    "doc_id": "P10",
+    "layer": "platform",
+    "kind": "text",
+    "seed_chunk_id": [
+      "P10#004:03"
+    ],
+    "error": null,
+    "scores": {
+      "recall@10": 1.0,
+      "recall@3": 1.0,
+      "recall@1": 1.0,
+      "evidence_tokens": 297,
+      "duplicate_ratio": 0.0,
+      "context_recall": 1.0,
+      "context_relevance": 0.077
+    },
+    "elapsed_s": 1.8,
+    "seed_rank": {
+      "candidate": {
+        "P10#004:03": 1
+      },
+      "evidence": {
+        "P10#004:03": 1
+      }
+    },
+    "sections": [
+      "P10 星辰优选优惠券、赠品与发票处理规则 > 第五条 发票 > 5.4 冲红时限",
+      "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限"
+    ],
+    "judge": {
+      "context_recall": {
+        "score": 1.0,
+        "n": 2,
+        "hit": 2,
+        "detail": [
+          {
+            "claim": "平台在退款完成后7个工作日内完成发票冲红。",
+            "supported": true,
+            "reason": "P10 5.4 明确写明退款完成后7个工作日内完成发票冲红。"
+          },
+          {
+            "claim": "平台向消费者推送冲红结果。",
+            "supported": true,
+            "reason": "P10 5.4 写明平台向消费者推送冲红结果。"
+          }
+        ],
+        "error": null
+      },
+      "context_relevance": {
+        "score": 0.077,
+        "n": 13,
+        "hit": 1,
+        "truncated": false,
+        "note": "其他单元涉及发票退回、遗失、部分退货、退款前置条件、申诉等，与冲红完成时限无关。",
+        "irrelevant": [
+          "订单已开具发票的，消费者应在退货时将发票原件一并退回；",
+          "电子发票由平台系统直接冲红，无需消费者操作。",
+          "纸质发票遗失的，消费者需提供情况说明。",
+          "**平台不得因发票遗失而拒绝退款**，但可要求消费者配合完成税务冲红手续。",
+          "部分退货的，原发票冲红后按剩余商品的实际金额重新开具。",
+          "**发票处理不是退款的前置条件。",
+          "** 退款审核通过后即发起退款，发票冲红手续并行办理，不因发票未退回而延迟打款。",
+          "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
+          "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。",
+          "平台在收到申诉后 **3 个工作日**内完成复核并告知结论。"
+        ],
+        "error": null
+      }
+    },
+    "trace_id": "15fd182ff756898c7665f1f21543916c"
+  },
+  "trace": {
+    "id": "15fd182ff756898c7665f1f21543916c",
+    "name": "experiment-item-run",
+    "timestamp": "2026-08-18 11:45:03.048000+00:00"
+  },
+  "observations": [
+    {
+      "id": "7e0f8de40a4586fc",
+      "traceId": "15fd182ff756898c7665f1f21543916c",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 11:44:57.309000+00:00",
+      "endTime": "2026-08-18 11:45:08.636000+00:00",
+      "input": {
+        "query": "退款完成后，平台需要多长时间完成发票冲红并通知消费者结果？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-073",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "formal",
+        "doc_id": "P10",
+        "section": "第五条 发票 > 5.4 冲红时限",
+        "reviewed": true,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.5,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-073",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "P10",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P10#004:03"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 297,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.077
+        },
+        "elapsed_s": 1.8,
+        "seed_rank": {
+          "candidate": {
+            "P10#004:03": 1
+          },
+          "evidence": {
+            "P10#004:03": 1
+          }
+        },
+        "sections": [
+          "P10 星辰优选优惠券、赠品与发票处理规则 > 第五条 发票 > 5.4 冲红时限",
+          "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "平台在退款完成后7个工作日内完成发票冲红。",
+                "supported": true,
+                "reason": "P10 5.4 明确写明退款完成后7个工作日内完成发票冲红。"
+              },
+              {
+                "claim": "平台向消费者推送冲红结果。",
+                "supported": true,
+                "reason": "P10 5.4 写明平台向消费者推送冲红结果。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.077,
+            "n": 13,
+            "hit": 1,
+            "truncated": false,
+            "note": "其他单元涉及发票退回、遗失、部分退货、退款前置条件、申诉等，与冲红完成时限无关。",
+            "irrelevant": [
+              "订单已开具发票的，消费者应在退货时将发票原件一并退回；",
+              "电子发票由平台系统直接冲红，无需消费者操作。",
+              "纸质发票遗失的，消费者需提供情况说明。",
+              "**平台不得因发票遗失而拒绝退款**，但可要求消费者配合完成税务冲红手续。",
+              "部分退货的，原发票冲红后按剩余商品的实际金额重新开具。",
+              "**发票处理不是退款的前置条件。",
+              "** 退款审核通过后即发起退款，发票冲红手续并行办理，不因发票未退回而延迟打款。",
+              "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
+              "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。",
+              "平台在收到申诉后 **3 个工作日**内完成复核并告知结论。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "f69074c3a1d384ce",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 11.327,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:45:11.803Z",
+      "updatedAt": "2026-08-18T11:45:11.824Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "bc45bf71d39cac93",
+      "traceId": "15fd182ff756898c7665f1f21543916c",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 11:45:08.637000+00:00",
+      "endTime": "2026-08-18 11:45:08.638000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "f69074c3a1d384ce",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:45:11.803Z",
+      "updatedAt": "2026-08-18T11:45:11.825Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "f69074c3a1d384ce",
+      "traceId": "15fd182ff756898c7665f1f21543916c",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 11:44:57.309000+00:00",
+      "endTime": "2026-08-18 11:45:08.638000+00:00",
+      "input": {
+        "query": "退款完成后，平台需要多长时间完成发票冲红并通知消费者结果？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-073",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "formal",
+        "doc_id": "P10",
+        "section": "第五条 发票 > 5.4 冲红时限",
+        "reviewed": true,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.5,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-073",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "P10",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P10#004:03"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 297,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.077
+        },
+        "elapsed_s": 1.8,
+        "seed_rank": {
+          "candidate": {
+            "P10#004:03": 1
+          },
+          "evidence": {
+            "P10#004:03": 1
+          }
+        },
+        "sections": [
+          "P10 星辰优选优惠券、赠品与发票处理规则 > 第五条 发票 > 5.4 冲红时限",
+          "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "平台在退款完成后7个工作日内完成发票冲红。",
+                "supported": true,
+                "reason": "P10 5.4 明确写明退款完成后7个工作日内完成发票冲红。"
+              },
+              {
+                "claim": "平台向消费者推送冲红结果。",
+                "supported": true,
+                "reason": "P10 5.4 写明平台向消费者推送冲红结果。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.077,
+            "n": 13,
+            "hit": 1,
+            "truncated": false,
+            "note": "其他单元涉及发票退回、遗失、部分退货、退款前置条件、申诉等，与冲红完成时限无关。",
+            "irrelevant": [
+              "订单已开具发票的，消费者应在退货时将发票原件一并退回；",
+              "电子发票由平台系统直接冲红，无需消费者操作。",
+              "纸质发票遗失的，消费者需提供情况说明。",
+              "**平台不得因发票遗失而拒绝退款**，但可要求消费者配合完成税务冲红手续。",
+              "部分退货的，原发票冲红后按剩余商品的实际金额重新开具。",
+              "**发票处理不是退款的前置条件。",
+              "** 退款审核通过后即发起退款，发票冲红手续并行办理，不因发票未退回而延迟打款。",
+              "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
+              "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。",
+              "平台在收到申诉后 **3 个工作日**内完成复核并告知结论。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 11.329,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:45:11.803Z",
+      "updatedAt": "2026-08-18T11:45:11.824Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "27249c5b0458bc9f",
+      "traceId": "15fd182ff756898c7665f1f21543916c",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 11:45:08.637000+00:00",
+      "endTime": "2026-08-18 11:45:08.638000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "退款完成后，平台需要多长时间完成发票冲红并通知消费者结果？"
+        },
+        "output": {
+          "case_id": "R1-073",
+          "type": "single",
+          "style": "formal",
+          "doc_id": "P10",
+          "layer": "platform",
+          "kind": "text",
+          "seed_chunk_id": [
+            "P10#004:03"
+          ],
+          "error": null,
+          "scores": {
+            "recall@10": 1,
+            "recall@3": 1,
+            "recall@1": 1,
+            "evidence_tokens": 297,
+            "duplicate_ratio": 0,
+            "context_recall": 1,
+            "context_relevance": 0.077
+          },
+          "elapsed_s": 1.8,
+          "seed_rank": {
+            "candidate": {
+              "P10#004:03": 1
+            },
+            "evidence": {
+              "P10#004:03": 1
+            }
+          },
+          "sections": [
+            "P10 星辰优选优惠券、赠品与发票处理规则 > 第五条 发票 > 5.4 冲红时限",
+            "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限"
+          ],
+          "judge": {
+            "context_recall": {
+              "score": 1,
+              "n": 2,
+              "hit": 2,
+              "detail": [
+                {
+                  "claim": "平台在退款完成后7个工作日内完成发票冲红。",
+                  "supported": true,
+                  "reason": "P10 5.4 明确写明退款完成后7个工作日内完成发票冲红。"
+                },
+                {
+                  "claim": "平台向消费者推送冲红结果。",
+                  "supported": true,
+                  "reason": "P10 5.4 写明平台向消费者推送冲红结果。"
+                }
+              ],
+              "error": null
+            },
+            "context_relevance": {
+              "score": 0.077,
+              "n": 13,
+              "hit": 1,
+              "truncated": false,
+              "note": "其他单元涉及发票退回、遗失、部分退货、退款前置条件、申诉等，与冲红完成时限无关。",
+              "irrelevant": [
+                "订单已开具发票的，消费者应在退货时将发票原件一并退回；",
+                "电子发票由平台系统直接冲红，无需消费者操作。",
+                "纸质发票遗失的，消费者需提供情况说明。",
+                "**平台不得因发票遗失而拒绝退款**，但可要求消费者配合完成税务冲红手续。",
+                "部分退货的，原发票冲红后按剩余商品的实际金额重新开具。",
+                "**发票处理不是退款的前置条件。",
+                "** 退款审核通过后即发起退款，发票冲红手续并行办理，不因发票未退回而延迟打款。",
+                "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
+                "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。",
+                "平台在收到申诉后 **3 个工作日**内完成复核并告知结论。"
+              ],
+              "error": null
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [
+            "平台在退款完成后7个工作日内完成发票冲红。",
+            "平台向消费者推送冲红结果。"
+          ],
+          "seed_chunk_id": [
+            "P10#004:03"
+          ],
+          "reference_answer": "平台在退款完成后7个工作日内完成发票冲红，并向消费者推送冲红结果。"
+        },
+        "metadata": {
+          "kind": "text",
+          "type": "single",
+          "layer": "platform",
+          "style": "formal",
+          "doc_id": "P10",
+          "section": "第五条 发票 > 5.4 冲红时限",
+          "reviewed": true,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.5
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 1,
+          "comment": "种子块名次 P10#004:03=1"
+        },
+        {
+          "name": "recall@3",
+          "value": 1,
+          "comment": "种子块名次 P10#004:03=1"
+        },
+        {
+          "name": "recall@1",
+          "value": 1,
+          "comment": "种子块名次 P10#004:03=1"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 297,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "context_recall",
+          "value": 1,
+          "comment": "2/2 条 claim 被支撑"
+        },
+        {
+          "name": "context_relevance",
+          "value": 0.077,
+          "comment": "1/13 个内容单元相关；其他单元涉及发票退回、遗失、部分退货、退款前置条件、申诉等，与冲红完成时限无关。"
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "bc45bf71d39cac93",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:45:11.803Z",
+      "updatedAt": "2026-08-18T11:45:11.823Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "d410d5821ba1c3bc",
+      "traceId": "15fd182ff756898c7665f1f21543916c",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 11:45:03.048000+00:00",
+      "endTime": "2026-08-18 11:45:04.877000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "退款完成后，平台需要多长时间完成发票冲红并通知消费者结果？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P10 星辰优选优惠券、赠品与发票处理规则 > 第五条 发票 > 5.4 冲红时限",
+            "text": "订单已开具发票的，消费者应在退货时将发票原件一并退回；电子发票由平台系统直接冲红，无需消费者操作。\n\n纸质发票遗失的，消费者需提供情况说明。**平台不得因发票遗失而拒绝退款**，但可要求消费者配合完成税务冲红手续。\n\n部分退货的，原发票冲红后按剩余商品的实际金额重新开具。\n\n平台在退款完成后 **7 个工作日**内完成发票冲红，并向消费者推送冲红结果。\n\n**发票处理不是退款的前置条件。** 退款审核通过后即发起退款，发票冲红手续并行办理，不因发票未退回而延迟打款。",
+            "score": 0.9788662719726563,
+            "doc_id": "P10",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P10-优惠券赠品与发票处理规则.md",
+            "reason": "相关性 0.999 × 先验 0.90 → 0.979；命中 1/platform/dense#1, 1/platform/bm25#1"
+          },
+          {
+            "section": "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限",
+            "text": "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
+            "score": 0.5698918151855469,
+            "doc_id": "P08",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
+            "reason": "相关性 0.487 × 先验 0.90 → 0.570；命中 1/platform/dense#10, 1/platform/bm25#5"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "7e0f8de40a4586fc",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.829,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:45:06.758Z",
+      "updatedAt": "2026-08-18T11:45:06.780Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "ad3532f042e8b030",
+      "traceId": "15fd182ff756898c7665f1f21543916c",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 11:45:04.867000+00:00",
+      "endTime": "2026-08-18 11:45:04.876000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "P10#004:03",
+          "P08#006:02"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P10 星辰优选优惠券、赠品与发票处理规则 > 第五条 发票 > 5.4 冲红时限",
+            "text": "订单已开具发票的，消费者应在退货时将发票原件一并退回；电子发票由平台系统直接冲红，无需消费者操作。\n\n纸质发票遗失的，消费者需提供情况说明。**平台不得因发票遗失而拒绝退款**，但可要求消费者配合完成税务冲红手续。\n\n部分退货的，原发票冲红后按剩余商品的实际金额重新开具。\n\n平台在退款完成后 **7 个工作日**内完成发票冲红，并向消费者推送冲红结果。\n\n**发票处理不是退款的前置条件。** 退款审核通过后即发起退款，发票冲红手续并行办理，不因发票未退回而延迟打款。",
+            "score": 0.9788662719726563,
+            "doc_id": "P10",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P10-优惠券赠品与发票处理规则.md",
+            "reason": "相关性 0.999 × 先验 0.90 → 0.979；命中 1/platform/dense#1, 1/platform/bm25#1"
+          },
+          {
+            "section": "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限",
+            "text": "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
+            "score": 0.5698918151855469,
+            "doc_id": "P08",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
+            "reason": "相关性 0.487 × 先验 0.90 → 0.570；命中 1/platform/dense#10, 1/platform/bm25#5"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d410d5821ba1c3bc",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.009,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:45:06.758Z",
+      "updatedAt": "2026-08-18T11:45:06.779Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "0395260afc8fccf7",
+      "traceId": "15fd182ff756898c7665f1f21543916c",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-18 11:45:04.066000+00:00",
+      "endTime": "2026-08-18 11:45:04.127000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "P10#004:03",
+            "section": "P10 第五条 发票 > 5.4 冲红时限",
+            "rrf": 0.0952,
+            "hits": [
+              "1/platform/dense#1",
+              "1/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:00",
+            "section": "L02 第三章 退货程序 > 第十条 【退货通知期限与起算点】",
+            "rrf": 0.0909,
+            "hits": [
+              "1/law/dense#2",
+              "1/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L03#004:00",
+            "section": "L03 第十八条 【售后有效期起算与退款金额】",
+            "rrf": 0.0893,
+            "hits": [
+              "1/law/dense#4",
+              "1/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:01",
+            "section": "L02 第三章 退货程序 > 第十一条 【销售者提供退货信息的义务】",
+            "rrf": 0.0835,
+            "hits": [
+              "1/law/dense#5",
+              "1/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P03#004:01",
+            "section": "P03 第五条 商家处理时效与超时机制 > 5.2 已发货未签收订单的退款",
+            "rrf": 0.0788,
+            "hits": [
+              "1/platform/dense#2",
+              "1/platform/bm25#10"
+            ]
+          },
+          {
+            "chunk_id": "P10#004:00",
+            "section": "P10 第五条 发票 > 5.1 退货须退回发票",
+            "rrf": 0.077,
+            "hits": [
+              "1/platform/dense#5",
+              "1/platform/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "P06#003:01",
+            "section": "P06 第四条 运费险 > 4.2 赔付触发",
+            "rrf": 0.0761,
+            "hits": [
+              "1/platform/dense#4",
+              "1/platform/bm25#9"
+            ]
+          },
+          {
+            "chunk_id": "P10#004:04",
+            "section": "P10 第五条 发票 > 5.5 发票与退款的关系",
+            "rrf": 0.0755,
+            "hits": [
+              "1/platform/dense#7",
+              "1/platform/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "P08#006:02",
+            "section": "P08 第六条 申诉 > 6.3 处理时限",
+            "rrf": 0.0733,
+            "hits": [
+              "1/platform/dense#10",
+              "1/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P10#001:02",
+            "section": "P10 第二条 满减与套装的部分退货 > 2.3 结算结果的告知",
+            "rrf": 0.066,
+            "hits": [
+              "1/platform/dense#13",
+              "1/platform/bm25#8"
+            ]
+          },
+          {
+            "chunk_id": "P05#004:01",
+            "section": "P05 第四条 退回商品的验收 > 4.2 验收时限",
+            "rrf": 0.059,
+            "hits": [
+              "1/platform/dense#16",
+              "1/platform/bm25#12"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:03",
+            "section": "L02 第三章 退货程序 > 第十三条 【退款时限】",
+            "rrf": 0.0476,
+            "hits": [
+              "1/law/dense#1"
+            ]
+          },
+          {
+            "chunk_id": "P10#004:01",
+            "section": "P10 第五条 发票 > 5.2 纸质发票遗失",
+            "rrf": 0.0455,
+            "hits": [
+              "1/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P03#004:00",
+            "section": "P03 第五条 商家处理时效与超时机制 > 5.1 未发货订单的退款",
+            "rrf": 0.0435,
+            "hits": [
+              "1/platform/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "P06#005:04",
+            "section": "P06 第六条 物流异常的处理 > 6.5 虚假发货",
+            "rrf": 0.0435,
+            "hits": [
+              "1/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#006:01",
+            "section": "L02 第六章 法律责任 > 第三十一条 【拒绝退货、拖延退款】",
+            "rrf": 0.0435,
+            "hits": [
+              "1/law/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "P10#006:00",
+            "section": "P10 第七条 退款金额的构成告知",
+            "rrf": 0.0417,
+            "hits": [
+              "1/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "L05#008:00",
+            "section": "L05 第八条 【三包有效期的计算】",
+            "rrf": 0.0417,
+            "hits": [
+              "1/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "L03#012:00",
+            "section": "L03 第四十六条 【行政投诉处理时限】",
+            "rrf": 0.04,
+            "hits": [
+              "1/law/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P03#002:02",
+            "section": "P03 第三条 到账时效 > 3.3 法定时限",
+            "rrf": 0.0385,
+            "hits": [
+              "1/platform/dense#6"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d410d5821ba1c3bc",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.061,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:45:06.758Z",
+      "updatedAt": "2026-08-18T11:45:06.775Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "3211025a56d5f005",
+      "traceId": "15fd182ff756898c7665f1f21543916c",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 11:45:04.066000+00:00",
+      "endTime": "2026-08-18 11:45:04.066000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d410d5821ba1c3bc",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:45:06.758Z",
+      "updatedAt": "2026-08-18T11:45:06.775Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "fa59284968f30ccc",
+      "traceId": "15fd182ff756898c7665f1f21543916c",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 11:45:04.127000+00:00",
+      "endTime": "2026-08-18 11:45:04.867000+00:00",
+      "input": {
+        "query": "退款完成后，平台需要多长时间完成发票冲红并通知消费者结果？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 2,
+        "min_score": 0.3,
+        "dropped": [
+          "L02#003:00",
+          "L03#004:00",
+          "L02#003:01",
+          "P03#004:01",
+          "P10#004:00",
+          "P06#003:01",
+          "P10#004:04",
+          "P10#001:02",
+          "P05#004:01",
+          "L02#003:03",
+          "P10#004:01",
+          "P03#004:00",
+          "P06#005:04",
+          "L02#006:01",
+          "P10#006:00",
+          "L05#008:00",
+          "L03#012:00",
+          "P03#002:02"
+        ],
+        "evidence": [
+          {
+            "chunk_id": "P10#004:03",
+            "section": "P10 第五条 发票 > 5.4 冲红时限",
+            "score": 0.979,
+            "relevance": 0.999,
+            "prior": 0.9,
+            "excerpt": "平台在退款完成后 **7 个工作日**内完成发票冲红，并向消费者推送冲红结果。"
+          },
+          {
+            "chunk_id": "P08#006:02",
+            "section": "P08 第六条 申诉 > 6.3 处理时限",
+            "score": 0.57,
+            "relevance": 0.487,
+            "prior": 0.9,
+            "excerpt": "平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d410d5821ba1c3bc",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.74,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:45:06.758Z",
+      "updatedAt": "2026-08-18T11:45:06.775Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "3f2eb744270c65fa",
+      "traceId": "15fd182ff756898c7665f1f21543916c",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 11:45:03.048000+00:00",
+      "endTime": "2026-08-18 11:45:04.065000+00:00",
+      "input": {
+        "query": "退款完成后，平台需要多长时间完成发票冲红并通知消费者结果？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "refund",
+            "text": "退款完成后，平台需要多长时间完成发票冲红并通知消费者结果？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d410d5821ba1c3bc",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.017,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:45:06.758Z",
+      "updatedAt": "2026-08-18T11:45:06.770Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    }
+  ]
+}

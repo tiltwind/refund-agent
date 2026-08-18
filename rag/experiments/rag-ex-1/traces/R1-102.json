@@ -1,0 +1,1084 @@
+{
+  "case": {
+    "case_id": "R1-102",
+    "type": "unanswerable",
+    "style": "colloquial",
+    "doc_id": "",
+    "layer": "",
+    "kind": "",
+    "seed_chunk_id": [],
+    "error": null,
+    "scores": {
+      "unanswerable_raised": 0.0
+    },
+    "elapsed_s": 3.3,
+    "sections": [],
+    "judge": {
+      "context_relevance": {
+        "score": null,
+        "error": null,
+        "skipped": "上下文为空"
+      }
+    },
+    "trace_id": "77f5e8878684977541d83e54d36deef5"
+  },
+  "trace": {
+    "id": "77f5e8878684977541d83e54d36deef5",
+    "name": "experiment-item-run",
+    "timestamp": "2026-08-18 11:42:30.723000+00:00"
+  },
+  "observations": [
+    {
+      "id": "68dcaf6324ac582b",
+      "traceId": "77f5e8878684977541d83e54d36deef5",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 11:42:34.044000+00:00",
+      "endTime": "2026-08-18 11:42:34.045000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 2,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "58fb18c3d56bde46",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:35.772Z",
+      "updatedAt": "2026-08-18T11:42:35.802Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "58fb18c3d56bde46",
+      "traceId": "77f5e8878684977541d83e54d36deef5",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 11:42:30.723000+00:00",
+      "endTime": "2026-08-18 11:42:34.045000+00:00",
+      "input": {
+        "query": "直播间一时冲动打赏出去的钱，能申请退回来吗？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-102",
+        "kind": "",
+        "type": "unanswerable",
+        "layer": "",
+        "style": "colloquial",
+        "topic": "直播打赏",
+        "doc_id": "",
+        "section": "",
+        "reviewed": true,
+        "generated_by": "handwritten",
+        "overlap_ratio": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-102",
+        "type": "unanswerable",
+        "style": "colloquial",
+        "doc_id": "",
+        "layer": "",
+        "kind": "",
+        "seed_chunk_id": [],
+        "error": null,
+        "scores": {
+          "unanswerable_raised": 0
+        },
+        "elapsed_s": 3.3,
+        "sections": [],
+        "judge": {
+          "context_relevance": {
+            "score": null,
+            "error": null,
+            "skipped": "上下文为空"
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 3.322,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:35.772Z",
+      "updatedAt": "2026-08-18T11:42:35.797Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "d8fc61f240dc547d",
+      "traceId": "77f5e8878684977541d83e54d36deef5",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-18 11:42:32.731000+00:00",
+      "endTime": "2026-08-18 11:42:33.183000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "L02#003:03",
+            "section": "L02 第三章 退货程序 > 第十三条 【退款时限】",
+            "rrf": 0.1289,
+            "hits": [
+              "1/law/dense#5",
+              "1/law/bm25#3",
+              "2/law/dense#2"
+            ]
+          },
+          {
+            "chunk_id": "P09#002:00",
+            "section": "P09 第三条 申请平台介入 > 3.1 申请条件",
+            "rrf": 0.127,
+            "hits": [
+              "1/platform/dense#12",
+              "1/platform/bm25#18",
+              "2/platform/dense#4",
+              "2/platform/bm25#16"
+            ]
+          },
+          {
+            "chunk_id": "L03#003:00",
+            "section": "L03 第十四条 【网络直播带货】",
+            "rrf": 0.0952,
+            "hits": [
+              "1/law/bm25#1",
+              "2/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:02",
+            "section": "L02 第三章 退货程序 > 第十二条 【赠品一并退回】",
+            "rrf": 0.0889,
+            "hits": [
+              "1/law/dense#3",
+              "1/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P11#003:00",
+            "section": "P11 第三条 虚拟商品 > 3.1 退款限制",
+            "rrf": 0.0851,
+            "hits": [
+              "1/platform/dense#4",
+              "2/platform/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "P11#003:01",
+            "section": "P11 第三条 虚拟商品 > 3.2 未核销可退",
+            "rrf": 0.0847,
+            "hits": [
+              "1/platform/dense#1",
+              "2/platform/dense#7"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:04",
+            "section": "L02 第三章 退货程序 > 第十四条 【退款方式】",
+            "rrf": 0.0833,
+            "hits": [
+              "1/law/dense#4",
+              "2/law/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "P02#005:00",
+            "section": "P02 第六条 判定顺序",
+            "rrf": 0.0799,
+            "hits": [
+              "1/platform/dense#11",
+              "2/platform/dense#1"
+            ]
+          },
+          {
+            "chunk_id": "P07#002:01",
+            "section": "P07 第三条 极速退款 > 3.2 适用条件",
+            "rrf": 0.0788,
+            "hits": [
+              "2/platform/dense#2",
+              "2/platform/bm25#10"
+            ]
+          },
+          {
+            "chunk_id": "P03#003:00",
+            "section": "P03 第四条 退款通道 > 4.1 自动退款通道",
+            "rrf": 0.077,
+            "hits": [
+              "2/platform/dense#14",
+              "2/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P07#002:00",
+            "section": "P07 第三条 极速退款 > 3.1 服务内容",
+            "rrf": 0.0755,
+            "hits": [
+              "1/platform/dense#7",
+              "2/platform/dense#6"
+            ]
+          },
+          {
+            "chunk_id": "P07#003:03",
+            "section": "P07 第四条 会员权益的边界 > 4.4 等级以申请时为准",
+            "rrf": 0.0745,
+            "hits": [
+              "1/platform/bm25#9",
+              "2/platform/dense#5"
+            ]
+          },
+          {
+            "chunk_id": "P07#002:03",
+            "section": "P07 第三条 极速退款 > 3.4 服务的暂停",
+            "rrf": 0.0738,
+            "hits": [
+              "1/platform/dense#3",
+              "2/platform/dense#13"
+            ]
+          },
+          {
+            "chunk_id": "P09#004:00",
+            "section": "P09 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
+            "rrf": 0.0723,
+            "hits": [
+              "1/platform/dense#5",
+              "2/platform/dense#11"
+            ]
+          },
+          {
+            "chunk_id": "P11#008:00",
+            "section": "P11 第八条 珠宝、贵金属与奢侈品",
+            "rrf": 0.0703,
+            "hits": [
+              "1/platform/dense#13",
+              "1/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P02#004:00",
+            "section": "P02 第五条 高风险账户",
+            "rrf": 0.0631,
+            "hits": [
+              "1/platform/dense#9",
+              "2/platform/dense#15"
+            ]
+          },
+          {
+            "chunk_id": "P08#001:01",
+            "section": "P08 第一条 高风险账户的判定 > 1.2 阈值口径",
+            "rrf": 0.0625,
+            "hits": [
+              "2/platform/dense#12",
+              "2/platform/bm25#12"
+            ]
+          },
+          {
+            "chunk_id": "P02#003:00",
+            "section": "P02 第四条 特殊类目",
+            "rrf": 0.0541,
+            "hits": [
+              "1/platform/dense#18",
+              "2/platform/dense#16"
+            ]
+          },
+          {
+            "chunk_id": "P07#003:00",
+            "section": "P07 第四条 会员权益的边界 > 4.1 风控优先于会员权益",
+            "rrf": 0.0476,
+            "hits": [
+              "1/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L04#003:00",
+            "section": "L04 第二十一条 【押金退还】",
+            "rrf": 0.0476,
+            "hits": [
+              "1/law/dense#1"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d92f6827de1cb3d0",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.452,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:35.772Z",
+      "updatedAt": "2026-08-18T11:42:35.797Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "fb56738cdf8b42ff",
+      "traceId": "77f5e8878684977541d83e54d36deef5",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 11:42:30.723000+00:00",
+      "endTime": "2026-08-18 11:42:34.044000+00:00",
+      "input": {
+        "query": "直播间一时冲动打赏出去的钱，能申请退回来吗？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-102",
+        "kind": "",
+        "type": "unanswerable",
+        "layer": "",
+        "style": "colloquial",
+        "topic": "直播打赏",
+        "doc_id": "",
+        "section": "",
+        "reviewed": true,
+        "generated_by": "handwritten",
+        "overlap_ratio": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-102",
+        "type": "unanswerable",
+        "style": "colloquial",
+        "doc_id": "",
+        "layer": "",
+        "kind": "",
+        "seed_chunk_id": [],
+        "error": null,
+        "scores": {
+          "unanswerable_raised": 0
+        },
+        "elapsed_s": 3.3,
+        "sections": [],
+        "judge": {
+          "context_relevance": {
+            "score": null,
+            "error": null,
+            "skipped": "上下文为空"
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "58fb18c3d56bde46",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 3.321,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:35.772Z",
+      "updatedAt": "2026-08-18T11:42:35.797Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "53046e1c26b6a32c",
+      "traceId": "77f5e8878684977541d83e54d36deef5",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 11:42:32.731000+00:00",
+      "endTime": "2026-08-18 11:42:32.731000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          },
+          {
+            "sub_query": "2",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d92f6827de1cb3d0",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:35.772Z",
+      "updatedAt": "2026-08-18T11:42:35.796Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "48862b8aaafb5aa9",
+      "traceId": "77f5e8878684977541d83e54d36deef5",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 11:42:34.040000+00:00",
+      "endTime": "2026-08-18 11:42:34.040000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": []
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d92f6827de1cb3d0",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:35.772Z",
+      "updatedAt": "2026-08-18T11:42:35.792Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "b9581e9936f5c58c",
+      "traceId": "77f5e8878684977541d83e54d36deef5",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 11:42:34.044000+00:00",
+      "endTime": "2026-08-18 11:42:34.044000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "直播间一时冲动打赏出去的钱，能申请退回来吗？"
+        },
+        "output": {
+          "case_id": "R1-102",
+          "type": "unanswerable",
+          "style": "colloquial",
+          "doc_id": "",
+          "layer": "",
+          "kind": "",
+          "seed_chunk_id": [],
+          "error": null,
+          "scores": {
+            "unanswerable_raised": 0
+          },
+          "elapsed_s": 3.3,
+          "sections": [],
+          "judge": {
+            "context_relevance": {
+              "score": null,
+              "error": null,
+              "skipped": "上下文为空"
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [],
+          "seed_chunk_id": [],
+          "reference_answer": ""
+        },
+        "metadata": {
+          "kind": "",
+          "type": "unanswerable",
+          "layer": "",
+          "style": "colloquial",
+          "topic": "直播打赏",
+          "doc_id": "",
+          "section": "",
+          "reviewed": true,
+          "generated_by": "handwritten",
+          "overlap_ratio": 0
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "unanswerable_raised",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "68dcaf6324ac582b",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:35.772Z",
+      "updatedAt": "2026-08-18T11:42:35.791Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "cf5f625e19cb050b",
+      "traceId": "77f5e8878684977541d83e54d36deef5",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 11:42:33.183000+00:00",
+      "endTime": "2026-08-18 11:42:34.040000+00:00",
+      "input": {
+        "query": "直播间一时冲动打赏出去的钱，能申请退回来吗？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 0,
+        "min_score": 0.3,
+        "dropped": [
+          "L02#003:03",
+          "P09#002:00",
+          "L03#003:00",
+          "L02#003:02",
+          "P11#003:00",
+          "P11#003:01",
+          "L02#003:04",
+          "P02#005:00",
+          "P07#002:01",
+          "P03#003:00",
+          "P07#002:00",
+          "P07#003:03",
+          "P07#002:03",
+          "P09#004:00",
+          "P11#008:00",
+          "P02#004:00",
+          "P08#001:01",
+          "P02#003:00",
+          "P07#003:00",
+          "L04#003:00"
+        ],
+        "evidence": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d92f6827de1cb3d0",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.857,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:35.772Z",
+      "updatedAt": "2026-08-18T11:42:35.791Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "d92f6827de1cb3d0",
+      "traceId": "77f5e8878684977541d83e54d36deef5",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 11:42:30.751000+00:00",
+      "endTime": "2026-08-18 11:42:34.040000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "直播间一时冲动打赏出去的钱，能申请退回来吗？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "fb56738cdf8b42ff",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 3.289,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:35.772Z",
+      "updatedAt": "2026-08-18T11:42:35.790Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "13d2322386d45956",
+      "traceId": "77f5e8878684977541d83e54d36deef5",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 11:42:30.752000+00:00",
+      "endTime": "2026-08-18 11:42:32.730000+00:00",
+      "input": {
+        "query": "直播间一时冲动打赏出去的钱，能申请退回来吗？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "refund",
+            "text": "直播间打赏出去的钱能申请退回吗？"
+          },
+          {
+            "id": "2",
+            "intent": "condition",
+            "text": "直播间打赏退款需要满足什么条件？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d92f6827de1cb3d0",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.978,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:35.772Z",
+      "updatedAt": "2026-08-18T11:42:35.790Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    }
+  ]
+}

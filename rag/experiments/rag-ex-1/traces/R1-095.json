@@ -1,0 +1,1692 @@
+{
+  "case": {
+    "case_id": "R1-095",
+    "type": "multi_hop",
+    "style": "formal",
+    "doc_id": "P09+L04",
+    "layer": "law+platform",
+    "kind": "text",
+    "seed_chunk_id": [
+      "P09#002:00",
+      "L04#011:00"
+    ],
+    "error": null,
+    "scores": {
+      "recall@10": 1.0,
+      "recall@3": 1.0,
+      "evidence_tokens": 969,
+      "duplicate_ratio": 0.283,
+      "context_recall": 1.0,
+      "context_relevance": 0.375
+    },
+    "elapsed_s": 1.7,
+    "seed_rank": {
+      "candidate": {
+        "P09#002:00": 4,
+        "L04#011:00": 1
+      },
+      "evidence": {
+        "P09#002:00": 3,
+        "L04#011:00": 1
+      }
+    },
+    "sections": [
+      "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
+      "P01 星辰优选用户服务协议 > 第四章 平台的角色与责任 > 4.1 平台与商家的关系 … 第四章 平台的角色与责任 > 4.4 平台的协助义务",
+      "P09 星辰优选争议处理与平台介入规则 > 第二条 争议解决的层级 … 第三条 申请平台介入 > 3.2 申请时限",
+      "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.2 平台的协助义务"
+    ],
+    "judge": {
+      "context_recall": {
+        "score": 1.0,
+        "n": 6,
+        "hit": 6,
+        "detail": [
+          {
+            "claim": "消费者与平台内经营者发生争议时，平台应当积极协助消费者维护合法权益。",
+            "supported": true,
+            "reason": "L04第六十一条和P01均明确平台应积极协助消费者维权。"
+          },
+          {
+            "claim": "商家拒绝退款时，消费者可申请平台介入。",
+            "supported": true,
+            "reason": "P09第三条情形（一）明确商家拒绝退款可申请介入。"
+          },
+          {
+            "claim": "商家超过48小时未响应时，消费者可申请平台介入。",
+            "supported": true,
+            "reason": "P09第三条情形（一）明确超过48小时未响应可申请介入。"
+          },
+          {
+            "claim": "商家提出的处理方案消费者不接受时，消费者可申请平台介入。",
+            "supported": true,
+            "reason": "P09第三条情形（二）明确方案不接受可申请介入。"
+          },
+          {
+            "claim": "商家验收结论消费者有异议时，消费者可申请平台介入。",
+            "supported": true,
+            "reason": "P09第三条情形（三）明确验收结论有异议可申请介入。"
+          },
+          {
+            "claim": "双方协商超过3个自然日仍未达成一致时，消费者可申请平台介入。",
+            "supported": true,
+            "reason": "P09第三条情形（四）明确协商超3日未一致可申请介入。"
+          }
+        ],
+        "error": null
+      },
+      "context_relevance": {
+        "score": 0.375,
+        "n": 48,
+        "hit": 18,
+        "truncated": false,
+        "note": "不相关的多为平台责任、外部维权途径和时限等",
+        "irrelevant": [
+          "电子商务争议可以通过协商和解，请求消费者组织、行业协会或者其他依法成立的调解组织调解，向有关部门投诉，提请仲裁，或者提起",
+          "平台为交易提供技术服务与规则保障。",
+          "商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。",
+          "**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。",
+          "** 平台先行赔付后，有权向商家追偿。",
+          "平台知道或应当知道商家销售的商品不符合保障人身、财产安全要求，或有其他侵害消费者合法权益行为而未采取必要措施的，依法与该",
+          "平台为交易提供技术服务与规则保障。",
+          "商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。",
+          "**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。",
+          "** 平台先行赔付后，有权向商家追偿。"
+        ],
+        "error": null
+      }
+    },
+    "trace_id": "5eac5fc19c91f0eb193c430d0df5ce7e"
+  },
+  "trace": {
+    "id": "5eac5fc19c91f0eb193c430d0df5ce7e",
+    "name": "experiment-item-run",
+    "timestamp": "2026-08-18 11:42:45.115000+00:00"
+  },
+  "observations": [
+    {
+      "id": "3b51f2c76bf8fbe6",
+      "traceId": "5eac5fc19c91f0eb193c430d0df5ce7e",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 11:42:30.732000+00:00",
+      "endTime": "2026-08-18 11:42:52.950000+00:00",
+      "input": {
+        "query": "当消费者与平台内经营者发生争议时，平台负有哪些协助义务？在哪些具体情形下消费者可以申请平台介入处理？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-095",
+        "kind": "text",
+        "type": "multi_hop",
+        "layer": "law+platform",
+        "style": "formal",
+        "topic": "平台不给退、我还能找谁",
+        "doc_id": "P09+L04",
+        "section": "第三条 申请平台介入 > 3.1 申请条件 / 第六十一条 【平台协助维权义务】",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.553,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-095",
+        "type": "multi_hop",
+        "style": "formal",
+        "doc_id": "P09+L04",
+        "layer": "law+platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P09#002:00",
+          "L04#011:00"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "evidence_tokens": 969,
+          "duplicate_ratio": 0.283,
+          "context_recall": 1,
+          "context_relevance": 0.375
+        },
+        "elapsed_s": 1.7,
+        "seed_rank": {
+          "candidate": {
+            "P09#002:00": 4,
+            "L04#011:00": 1
+          },
+          "evidence": {
+            "P09#002:00": 3,
+            "L04#011:00": 1
+          }
+        },
+        "sections": [
+          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
+          "P01 星辰优选用户服务协议 > 第四章 平台的角色与责任 > 4.1 平台与商家的关系 … 第四章 平台的角色与责任 > 4.4 平台的协助义务",
+          "P09 星辰优选争议处理与平台介入规则 > 第二条 争议解决的层级 … 第三条 申请平台介入 > 3.2 申请时限",
+          "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.2 平台的协助义务"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 6,
+            "hit": 6,
+            "detail": [
+              {
+                "claim": "消费者与平台内经营者发生争议时，平台应当积极协助消费者维护合法权益。",
+                "supported": true,
+                "reason": "L04第六十一条和P01均明确平台应积极协助消费者维权。"
+              },
+              {
+                "claim": "商家拒绝退款时，消费者可申请平台介入。",
+                "supported": true,
+                "reason": "P09第三条情形（一）明确商家拒绝退款可申请介入。"
+              },
+              {
+                "claim": "商家超过48小时未响应时，消费者可申请平台介入。",
+                "supported": true,
+                "reason": "P09第三条情形（一）明确超过48小时未响应可申请介入。"
+              },
+              {
+                "claim": "商家提出的处理方案消费者不接受时，消费者可申请平台介入。",
+                "supported": true,
+                "reason": "P09第三条情形（二）明确方案不接受可申请介入。"
+              },
+              {
+                "claim": "商家验收结论消费者有异议时，消费者可申请平台介入。",
+                "supported": true,
+                "reason": "P09第三条情形（三）明确验收结论有异议可申请介入。"
+              },
+              {
+                "claim": "双方协商超过3个自然日仍未达成一致时，消费者可申请平台介入。",
+                "supported": true,
+                "reason": "P09第三条情形（四）明确协商超3日未一致可申请介入。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.375,
+            "n": 48,
+            "hit": 18,
+            "truncated": false,
+            "note": "不相关的多为平台责任、外部维权途径和时限等",
+            "irrelevant": [
+              "电子商务争议可以通过协商和解，请求消费者组织、行业协会或者其他依法成立的调解组织调解，向有关部门投诉，提请仲裁，或者提起",
+              "平台为交易提供技术服务与规则保障。",
+              "商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。",
+              "**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。",
+              "** 平台先行赔付后，有权向商家追偿。",
+              "平台知道或应当知道商家销售的商品不符合保障人身、财产安全要求，或有其他侵害消费者合法权益行为而未采取必要措施的，依法与该",
+              "平台为交易提供技术服务与规则保障。",
+              "商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。",
+              "**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。",
+              "** 平台先行赔付后，有权向商家追偿。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "804f1405cb4297ae",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 22.218,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:55.915Z",
+      "updatedAt": "2026-08-18T11:42:55.943Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "bb573096c6db452a",
+      "traceId": "5eac5fc19c91f0eb193c430d0df5ce7e",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 11:42:52.952000+00:00",
+      "endTime": "2026-08-18 11:42:52.953000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "当消费者与平台内经营者发生争议时，平台负有哪些协助义务？在哪些具体情形下消费者可以申请平台介入处理？"
+        },
+        "output": {
+          "case_id": "R1-095",
+          "type": "multi_hop",
+          "style": "formal",
+          "doc_id": "P09+L04",
+          "layer": "law+platform",
+          "kind": "text",
+          "seed_chunk_id": [
+            "P09#002:00",
+            "L04#011:00"
+          ],
+          "error": null,
+          "scores": {
+            "recall@10": 1,
+            "recall@3": 1,
+            "evidence_tokens": 969,
+            "duplicate_ratio": 0.283,
+            "context_recall": 1,
+            "context_relevance": 0.375
+          },
+          "elapsed_s": 1.7,
+          "seed_rank": {
+            "candidate": {
+              "P09#002:00": 4,
+              "L04#011:00": 1
+            },
+            "evidence": {
+              "P09#002:00": 3,
+              "L04#011:00": 1
+            }
+          },
+          "sections": [
+            "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
+            "P01 星辰优选用户服务协议 > 第四章 平台的角色与责任 > 4.1 平台与商家的关系 … 第四章 平台的角色与责任 > 4.4 平台的协助义务",
+            "P09 星辰优选争议处理与平台介入规则 > 第二条 争议解决的层级 … 第三条 申请平台介入 > 3.2 申请时限",
+            "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.2 平台的协助义务"
+          ],
+          "judge": {
+            "context_recall": {
+              "score": 1,
+              "n": 6,
+              "hit": 6,
+              "detail": [
+                {
+                  "claim": "消费者与平台内经营者发生争议时，平台应当积极协助消费者维护合法权益。",
+                  "supported": true,
+                  "reason": "L04第六十一条和P01均明确平台应积极协助消费者维权。"
+                },
+                {
+                  "claim": "商家拒绝退款时，消费者可申请平台介入。",
+                  "supported": true,
+                  "reason": "P09第三条情形（一）明确商家拒绝退款可申请介入。"
+                },
+                {
+                  "claim": "商家超过48小时未响应时，消费者可申请平台介入。",
+                  "supported": true,
+                  "reason": "P09第三条情形（一）明确超过48小时未响应可申请介入。"
+                },
+                {
+                  "claim": "商家提出的处理方案消费者不接受时，消费者可申请平台介入。",
+                  "supported": true,
+                  "reason": "P09第三条情形（二）明确方案不接受可申请介入。"
+                },
+                {
+                  "claim": "商家验收结论消费者有异议时，消费者可申请平台介入。",
+                  "supported": true,
+                  "reason": "P09第三条情形（三）明确验收结论有异议可申请介入。"
+                },
+                {
+                  "claim": "双方协商超过3个自然日仍未达成一致时，消费者可申请平台介入。",
+                  "supported": true,
+                  "reason": "P09第三条情形（四）明确协商超3日未一致可申请介入。"
+                }
+              ],
+              "error": null
+            },
+            "context_relevance": {
+              "score": 0.375,
+              "n": 48,
+              "hit": 18,
+              "truncated": false,
+              "note": "不相关的多为平台责任、外部维权途径和时限等",
+              "irrelevant": [
+                "电子商务争议可以通过协商和解，请求消费者组织、行业协会或者其他依法成立的调解组织调解，向有关部门投诉，提请仲裁，或者提起",
+                "平台为交易提供技术服务与规则保障。",
+                "商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。",
+                "**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。",
+                "** 平台先行赔付后，有权向商家追偿。",
+                "平台知道或应当知道商家销售的商品不符合保障人身、财产安全要求，或有其他侵害消费者合法权益行为而未采取必要措施的，依法与该",
+                "平台为交易提供技术服务与规则保障。",
+                "商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。",
+                "**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。",
+                "** 平台先行赔付后，有权向商家追偿。"
+              ],
+              "error": null
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [
+            "消费者与平台内经营者发生争议时，平台应当积极协助消费者维护合法权益。",
+            "商家拒绝退款时，消费者可申请平台介入。",
+            "商家超过48小时未响应时，消费者可申请平台介入。",
+            "商家提出的处理方案消费者不接受时，消费者可申请平台介入。",
+            "商家验收结论消费者有异议时，消费者可申请平台介入。",
+            "双方协商超过3个自然日仍未达成一致时，消费者可申请平台介入。"
+          ],
+          "seed_chunk_id": [
+            "P09#002:00",
+            "L04#011:00"
+          ],
+          "reference_answer": "消费者与平台内经营者发生争议时，平台应当积极协助消费者维护合法权益。出现以下任一情形消费者可申请平台介入：商家拒绝退款或超过48小时未响应、商家提出的处理方案消费者不接受、商家验收结论消费者有异议、双方协商超过3个自然日仍未达成一致。"
+        },
+        "metadata": {
+          "kind": "text",
+          "type": "multi_hop",
+          "layer": "law+platform",
+          "style": "formal",
+          "topic": "平台不给退、我还能找谁",
+          "doc_id": "P09+L04",
+          "section": "第三条 申请平台介入 > 3.1 申请条件 / 第六十一条 【平台协助维权义务】",
+          "reviewed": false,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.553
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 1,
+          "comment": "种子块名次 P09#002:00=4、L04#011:00=1"
+        },
+        {
+          "name": "recall@3",
+          "value": 1,
+          "comment": "种子块名次 P09#002:00=3、L04#011:00=1"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 969,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0.283,
+          "comment": ""
+        },
+        {
+          "name": "context_recall",
+          "value": 1,
+          "comment": "6/6 条 claim 被支撑"
+        },
+        {
+          "name": "context_relevance",
+          "value": 0.375,
+          "comment": "18/48 个内容单元相关；不相关的多为平台责任、外部维权途径和时限等"
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "ef6ec128a285d05b",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:55.916Z",
+      "updatedAt": "2026-08-18T11:42:55.942Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "804f1405cb4297ae",
+      "traceId": "5eac5fc19c91f0eb193c430d0df5ce7e",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 11:42:30.732000+00:00",
+      "endTime": "2026-08-18 11:42:52.953000+00:00",
+      "input": {
+        "query": "当消费者与平台内经营者发生争议时，平台负有哪些协助义务？在哪些具体情形下消费者可以申请平台介入处理？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-095",
+        "kind": "text",
+        "type": "multi_hop",
+        "layer": "law+platform",
+        "style": "formal",
+        "topic": "平台不给退、我还能找谁",
+        "doc_id": "P09+L04",
+        "section": "第三条 申请平台介入 > 3.1 申请条件 / 第六十一条 【平台协助维权义务】",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.553,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-095",
+        "type": "multi_hop",
+        "style": "formal",
+        "doc_id": "P09+L04",
+        "layer": "law+platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P09#002:00",
+          "L04#011:00"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "evidence_tokens": 969,
+          "duplicate_ratio": 0.283,
+          "context_recall": 1,
+          "context_relevance": 0.375
+        },
+        "elapsed_s": 1.7,
+        "seed_rank": {
+          "candidate": {
+            "P09#002:00": 4,
+            "L04#011:00": 1
+          },
+          "evidence": {
+            "P09#002:00": 3,
+            "L04#011:00": 1
+          }
+        },
+        "sections": [
+          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
+          "P01 星辰优选用户服务协议 > 第四章 平台的角色与责任 > 4.1 平台与商家的关系 … 第四章 平台的角色与责任 > 4.4 平台的协助义务",
+          "P09 星辰优选争议处理与平台介入规则 > 第二条 争议解决的层级 … 第三条 申请平台介入 > 3.2 申请时限",
+          "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.2 平台的协助义务"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 6,
+            "hit": 6,
+            "detail": [
+              {
+                "claim": "消费者与平台内经营者发生争议时，平台应当积极协助消费者维护合法权益。",
+                "supported": true,
+                "reason": "L04第六十一条和P01均明确平台应积极协助消费者维权。"
+              },
+              {
+                "claim": "商家拒绝退款时，消费者可申请平台介入。",
+                "supported": true,
+                "reason": "P09第三条情形（一）明确商家拒绝退款可申请介入。"
+              },
+              {
+                "claim": "商家超过48小时未响应时，消费者可申请平台介入。",
+                "supported": true,
+                "reason": "P09第三条情形（一）明确超过48小时未响应可申请介入。"
+              },
+              {
+                "claim": "商家提出的处理方案消费者不接受时，消费者可申请平台介入。",
+                "supported": true,
+                "reason": "P09第三条情形（二）明确方案不接受可申请介入。"
+              },
+              {
+                "claim": "商家验收结论消费者有异议时，消费者可申请平台介入。",
+                "supported": true,
+                "reason": "P09第三条情形（三）明确验收结论有异议可申请介入。"
+              },
+              {
+                "claim": "双方协商超过3个自然日仍未达成一致时，消费者可申请平台介入。",
+                "supported": true,
+                "reason": "P09第三条情形（四）明确协商超3日未一致可申请介入。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.375,
+            "n": 48,
+            "hit": 18,
+            "truncated": false,
+            "note": "不相关的多为平台责任、外部维权途径和时限等",
+            "irrelevant": [
+              "电子商务争议可以通过协商和解，请求消费者组织、行业协会或者其他依法成立的调解组织调解，向有关部门投诉，提请仲裁，或者提起",
+              "平台为交易提供技术服务与规则保障。",
+              "商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。",
+              "**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。",
+              "** 平台先行赔付后，有权向商家追偿。",
+              "平台知道或应当知道商家销售的商品不符合保障人身、财产安全要求，或有其他侵害消费者合法权益行为而未采取必要措施的，依法与该",
+              "平台为交易提供技术服务与规则保障。",
+              "商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。",
+              "**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。",
+              "** 平台先行赔付后，有权向商家追偿。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 22.221,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:55.916Z",
+      "updatedAt": "2026-08-18T11:42:55.936Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "ef6ec128a285d05b",
+      "traceId": "5eac5fc19c91f0eb193c430d0df5ce7e",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 11:42:52.952000+00:00",
+      "endTime": "2026-08-18 11:42:52.953000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 7,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "804f1405cb4297ae",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:55.916Z",
+      "updatedAt": "2026-08-18T11:42:55.936Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "051c717d9e098c03",
+      "traceId": "5eac5fc19c91f0eb193c430d0df5ce7e",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 11:42:46.817000+00:00",
+      "endTime": "2026-08-18 11:42:46.845000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "L04#011:00",
+          "P01#004:03",
+          "P09#002:00",
+          "P09#006:01",
+          "P09#002:01",
+          "P09#001:00",
+          "P09#004:03",
+          "L04#007:00",
+          "P09#000:00",
+          "L04#008:00",
+          "L03#009:00",
+          "L04#014:00",
+          "P09#003:03",
+          "L02#004:04",
+          "L04#004:00",
+          "L04#010:00",
+          "L04#013:00",
+          "P01#008:01",
+          "L03#012:00",
+          "P01#004:00"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
+            "text": "电子商务争议可以通过协商和解，请求消费者组织、行业协会或者其他依法成立的调解组织调解，向有关部门投诉，提请仲裁，或者提起诉讼等方式解决。\n\n消费者在电子商务平台购买商品或者接受服务，与平台内经营者发生争议时，电子商务平台经营者应当积极协助消费者维护合法权益。",
+            "score": 0.9791596698760987,
+            "doc_id": "L04",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2019-01-01",
+            "source_path": "doc/policy/law/L04-电子商务法-平台责任条款摘录.md",
+            "reason": "相关性 0.999 × 先验 0.90 → 0.979；命中 1/law/dense#1, 1/law/bm25#1, 2/law/dense#1, 2/law/bm25#9"
+          },
+          {
+            "section": "P01 星辰优选用户服务协议 > 第四章 平台的角色与责任 > 4.1 平台与商家的关系 … 第四章 平台的角色与责任 > 4.4 平台的协助义务",
+            "text": "平台为交易提供技术服务与规则保障。商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。\n\n**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。** 平台先行赔付后，有权向商家追偿。\n\n平台知道或应当知道商家销售的商品不符合保障人身、财产安全要求，或有其他侵害消费者合法权益行为而未采取必要措施的，依法与该商家承担连带责任。\n\n消费者与商家发生争议时，平台应积极协助消费者维权，并应消费者要求提供商家的真实名称、地址和有效联系方式。\n\n平台为交易提供技术服务与规则保障。商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。\n\n**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。** 平台先行赔付后，有权向商家追偿。\n\n平台知道或应当知道商家销售的商品不符合保障人身、财产安全要求，或有其他侵害消费者合法权益行为而未采取必要措施的，依法与该商家承担连带责任。\n\n消费者与商家发生争议时，平台应积极协助消费者维权，并应消费者要求提供商家的真实名称、地址和有效联系方式。",
+            "score": 0.978371696472168,
+            "doc_id": "P01",
+            "layer": "platform",
+            "doc_type": "平台服务协议",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P01-用户服务协议.md",
+            "reason": "相关性 0.998 × 先验 0.90 → 0.978；命中 1/platform/dense#1, 1/platform/bm25#1, 2/platform/dense#6"
+          },
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第二条 争议解决的层级 … 第三条 申请平台介入 > 3.2 申请时限",
+            "text": "平台采用三层递进的处理机制：\n\n| 层级 | 处理方式 | 时限 |\n|---|---|---|\n| 第一层 | **双方自主协商** | 商家须在 48 小时内响应 |\n| 第二层 | **申请平台介入** | 平台 72 小时内出具判定 |\n| 第三层 | **外部维权** | 投诉、调解、仲裁、诉讼 |\n\n**平台鼓励双方通过自主协商解决争议**，但消费者申请介入的，平台不得以「请先自行协商」为由拒绝受理。\n\n出现以下任一情形，消费者可申请平台介入：\n\n（一）商家拒绝退款申请或超过 48 小时未响应；\n（二）商家提出的处理方案消费者不接受；\n（三）商家验收结论消费者有异议；\n（四）双方协商超过 3 个自然日仍未达成一致。\n\n消费者应在争议产生后 **15 日**内申请介入。超过时限的，平台仍可受理，但举证难度增加。\n\n申请方须提交：订单信息、争议诉求、支持诉求的凭证（照片、视频、聊天记录、检测报告、物流凭证）。\n\n出现以下任一情形，消费者可申请平台介入：\n\n（一）商家拒绝退款申请或超过 48 小时未响应；\n（二）商家提出的处理方案消费者不接受；\n（三）商家验收结论消费者有异议；\n（四）双方协商超过 3 个自然日仍未达成一致。\n\n消费者应在争议产生后 **15 日**内申请介入。超过时限的，平台仍可受理，但举证难度增加。\n\n申请方须提交：订单信息、争议诉求、支持诉求的凭证（照片、视频、聊天记录、检测报告、物流凭证）。",
+            "score": 0.9730619716644288,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.991 × 先验 0.90 → 0.973；命中 1/platform/dense#9, 2/platform/dense#1, 2/platform/bm25#1"
+          },
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.2 平台的协助义务",
+            "text": "消费者对平台判定结论仍有异议的，可通过以下途径维权：\n\n（一）向平台所在地或商家所在地市场监督管理部门投诉；\n（二）请求消费者协会或其他依法成立的调解组织调解；\n（三）拨打 12315 投诉举报；\n（四）按约定申请仲裁；\n（五）向人民法院提起诉讼。\n\n消费者通过外部途径维权的，平台应**提供商家的真实名称、地址和有效联系方式**，并提供订单原始记录与交易凭证，积极协助消费者维权。\n\n行政部门应自收到投诉之日起 **7 个工作日**内予以处理并告知消费者；受理后双方同意调解的，应在受理之日起 **60 日**内调解完毕（鉴定、检测时间不计入）。\n\n争议需对商品质量进行鉴定、检测的，双方可协商确定鉴定机构；无法协商一致的，由受理投诉的行政部门指定。",
+            "score": 0.965319757461548,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.982 × 先验 0.90 → 0.965；命中 1/platform/dense#2, 1/platform/bm25#2, 2/platform/dense#10"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "ca086293a8bfae29",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.028,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:50.866Z",
+      "updatedAt": "2026-08-18T11:42:50.879Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "edf6396f7e05d402",
+      "traceId": "5eac5fc19c91f0eb193c430d0df5ce7e",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 11:42:46.279000+00:00",
+      "endTime": "2026-08-18 11:42:46.817000+00:00",
+      "input": {
+        "query": "当消费者与平台内经营者发生争议时，平台负有哪些协助义务？在哪些具体情形下消费者可以申请平台介入处理？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 20,
+        "min_score": 0.3,
+        "dropped": [],
+        "evidence": [
+          {
+            "chunk_id": "L04#011:00",
+            "section": "L04 第六十一条 【平台协助维权义务】",
+            "score": 0.979,
+            "relevance": 0.999,
+            "prior": 0.9,
+            "excerpt": "消费者在电子商务平台购买商品或者接受服务，与平台内经营者发生争议时，电子商务平台经营者应当积极协助消费者维护合法权益。"
+          },
+          {
+            "chunk_id": "P01#004:03",
+            "section": "P01 第四章 平台的角色与责任 > 4.4 平台的协助义务",
+            "score": 0.978,
+            "relevance": 0.998,
+            "prior": 0.9,
+            "excerpt": "消费者与商家发生争议时，平台应积极协助消费者维权，并应消费者要求提供商家的真实名称、地址和有效联系方式。"
+          },
+          {
+            "chunk_id": "P09#002:00",
+            "section": "P09 第三条 申请平台介入 > 3.1 申请条件",
+            "score": 0.973,
+            "relevance": 0.991,
+            "prior": 0.9,
+            "excerpt": "出现以下任一情形，消费者可申请平台介入： （一）商家拒绝退款申请或超过 48 小时未响应； （二）商家提出的处理方案消费者不接受； （三）商家验收结论消费者有异议； （四）双方协商超过 3 个自然日仍未达成一致。"
+          },
+          {
+            "chunk_id": "P09#006:01",
+            "section": "P09 第七条 外部维权途径 > 7.2 平台的协助义务",
+            "score": 0.965,
+            "relevance": 0.982,
+            "prior": 0.9,
+            "excerpt": "消费者通过外部途径维权的，平台应**提供商家的真实名称、地址和有效联系方式**，并提供订单原始记录与交易凭证，积极协助消费者维权。"
+          },
+          {
+            "chunk_id": "P09#002:01",
+            "section": "P09 第三条 申请平台介入 > 3.2 申请时限",
+            "score": 0.915,
+            "relevance": 0.919,
+            "prior": 0.9,
+            "excerpt": "消费者应在争议产生后 **15 日**内申请介入。超过时限的，平台仍可受理，但举证难度增加。"
+          },
+          {
+            "chunk_id": "P09#001:00",
+            "section": "P09 第二条 争议解决的层级",
+            "score": 0.876,
+            "relevance": 0.87,
+            "prior": 0.9,
+            "excerpt": "平台采用三层递进的处理机制： | 层级 | 处理方式 | 时限 | |---|---|---| | 第一层 | **双方自主协商** | 商家须在 48 小时内响应 | | 第二层 | **申请平台介入** | 平台 72 小时内出具判定 …"
+          },
+          {
+            "chunk_id": "P09#004:03",
+            "section": "P09 第五条 特定场景的处理口径 > 5.4 商品导致人身或财产损害",
+            "score": 0.874,
+            "relevance": 0.868,
+            "prior": 0.9,
+            "excerpt": "涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。"
+          },
+          {
+            "chunk_id": "L04#007:00",
+            "section": "L04 第三十八条 【平台连带责任】",
+            "score": 0.836,
+            "relevance": 0.82,
+            "prior": 0.9,
+            "excerpt": "电子商务平台经营者知道或者应当知道平台内经营者销售的商品或者提供的服务不符合保障人身、财产安全的要求，或者有其他侵害消费者合法权益行为，未采取必要措施的，依法与该平台内经营者承担连带责任。 对关系消费者生命健康的商品或者服务，电子商务平台经…"
+          },
+          {
+            "chunk_id": "P09#000:00",
+            "section": "P09 第一条 适用范围",
+            "score": 0.814,
+            "relevance": 0.792,
+            "prior": 0.9,
+            "excerpt": "本规则适用于消费者与商家在退款、退货、售后赔付过程中产生的全部争议，包括： - 商家拒绝退款申请，消费者有异议的； - 商家验收退回商品不通过，消费者有异议的； - 退款金额、运费扣除有异议的； - 特殊类目商品的质量问题诉求； - 涉及假…"
+          },
+          {
+            "chunk_id": "L04#008:00",
+            "section": "L04 第五十八条 【质量担保机制】",
+            "score": 0.804,
+            "relevance": 0.78,
+            "prior": 0.9,
+            "excerpt": "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。 电子商务平台经营者与平台内经营者协议设立消费者权益保证金的，双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。 消费者要求电…"
+          },
+          {
+            "chunk_id": "L03#009:00",
+            "section": "L03 第二十六条 【投诉与举报渠道】",
+            "score": 0.707,
+            "relevance": 0.659,
+            "prior": 0.9,
+            "excerpt": "消费者与经营者发生消费者权益争议的，可以向市场监督管理部门或者其他有关行政部门投诉。 自然人、法人或者其他组织可以向市场监督管理部门或者其他有关行政部门举报，反映经营者涉嫌违法的线索。"
+          },
+          {
+            "chunk_id": "L04#014:00",
+            "section": "L04 相关文件",
+            "score": 0.662,
+            "relevance": 0.602,
+            "prior": 0.9,
+            "excerpt": "- [L01] 消费者权益保护法第四十四条——平台责任的另一法律依据 - [P09] 平台争议处理与平台介入规则——本法第六十三条的平台落地"
+          },
+          {
+            "chunk_id": "P09#003:03",
+            "section": "P09 第四条 平台介入的处理 > 4.4 举证责任分配",
+            "score": 0.661,
+            "relevance": 0.602,
+            "prior": 0.9,
+            "excerpt": "| 争议事项 | 举证责任方 | |---|---| | 退回商品不完好、缺件、调包 | 商家 | | 商品存在质量问题 | 消费者（耐用商品 6 个月内除外） | | 耐用商品签收 6 个月内的瑕疵 | **商家** | | 已履行发货义…"
+          },
+          {
+            "chunk_id": "L02#004:04",
+            "section": "L02 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
+            "score": 0.658,
+            "relevance": 0.597,
+            "prior": 0.9,
+            "excerpt": "网络交易平台提供者应当建立消费纠纷和解和消费维权自律制度。消费者在网络交易平台上购买商品，因退货而发生消费纠纷或其合法权益受到损害时，要求网络交易平台提供者调解的，网络交易平台提供者应当调解；消费者通过其他渠道维权的，网络交易平台提供者应当…"
+          },
+          {
+            "chunk_id": "L04#004:00",
+            "section": "L04 第三十二条 【平台交易规则的制定】",
+            "score": 0.619,
+            "relevance": 0.549,
+            "prior": 0.9,
+            "excerpt": "电子商务平台经营者应当遵循公开、公平、公正的原则，制定平台服务协议和交易规则，明确进入和退出平台、商品和服务质量保障、消费者权益保护、个人信息保护等方面的权利和义务。"
+          },
+          {
+            "chunk_id": "L04#010:00",
+            "section": "L04 第六十条 【争议解决途径】",
+            "score": 0.568,
+            "relevance": 0.484,
+            "prior": 0.9,
+            "excerpt": "电子商务争议可以通过协商和解，请求消费者组织、行业协会或者其他依法成立的调解组织调解，向有关部门投诉，提请仲裁，或者提起诉讼等方式解决。"
+          },
+          {
+            "chunk_id": "L04#013:00",
+            "section": "L04 第六十三条 【在线争议解决机制】",
+            "score": 0.554,
+            "relevance": 0.467,
+            "prior": 0.9,
+            "excerpt": "电子商务平台经营者可以建立争议在线解决机制，制定并公示争议解决规则，根据自愿原则，公平、公正地解决当事人的争议。"
+          },
+          {
+            "chunk_id": "P01#008:01",
+            "section": "P01 第八章 争议解决 > 8.2 平台调解",
+            "score": 0.527,
+            "relevance": 0.433,
+            "prior": 0.9,
+            "excerpt": "消费者要求平台调解的，平台应当调解，具体规则见 [P09]。"
+          },
+          {
+            "chunk_id": "L03#012:00",
+            "section": "L03 第四十六条 【行政投诉处理时限】",
+            "score": 0.5,
+            "relevance": 0.4,
+            "prior": 0.9,
+            "excerpt": "消费者和经营者发生消费争议向市场监督管理部门或者其他有关行政部门投诉的，应当提供真实身份信息，有明确的被投诉人、具体的投诉请求和事实依据。 有关行政部门应当自收到投诉之日起7个工作日内，予以处理并告知消费者。对不符合规定的投诉决定不予受理的…"
+          },
+          {
+            "chunk_id": "P01#004:00",
+            "section": "P01 第四章 平台的角色与责任 > 4.1 平台与商家的关系",
+            "score": 0.362,
+            "relevance": 0.228,
+            "prior": 0.9,
+            "excerpt": "平台为交易提供技术服务与规则保障。商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "ca086293a8bfae29",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.538,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:50.866Z",
+      "updatedAt": "2026-08-18T11:42:50.878Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "ca086293a8bfae29",
+      "traceId": "5eac5fc19c91f0eb193c430d0df5ce7e",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 11:42:45.115000+00:00",
+      "endTime": "2026-08-18 11:42:46.845000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "当消费者与平台内经营者发生争议时，平台负有哪些协助义务？在哪些具体情形下消费者可以申请平台介入处理？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
+            "text": "电子商务争议可以通过协商和解，请求消费者组织、行业协会或者其他依法成立的调解组织调解，向有关部门投诉，提请仲裁，或者提起诉讼等方式解决。\n\n消费者在电子商务平台购买商品或者接受服务，与平台内经营者发生争议时，电子商务平台经营者应当积极协助消费者维护合法权益。",
+            "score": 0.9791596698760987,
+            "doc_id": "L04",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2019-01-01",
+            "source_path": "doc/policy/law/L04-电子商务法-平台责任条款摘录.md",
+            "reason": "相关性 0.999 × 先验 0.90 → 0.979；命中 1/law/dense#1, 1/law/bm25#1, 2/law/dense#1, 2/law/bm25#9"
+          },
+          {
+            "section": "P01 星辰优选用户服务协议 > 第四章 平台的角色与责任 > 4.1 平台与商家的关系 … 第四章 平台的角色与责任 > 4.4 平台的协助义务",
+            "text": "平台为交易提供技术服务与规则保障。商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。\n\n**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。** 平台先行赔付后，有权向商家追偿。\n\n平台知道或应当知道商家销售的商品不符合保障人身、财产安全要求，或有其他侵害消费者合法权益行为而未采取必要措施的，依法与该商家承担连带责任。\n\n消费者与商家发生争议时，平台应积极协助消费者维权，并应消费者要求提供商家的真实名称、地址和有效联系方式。\n\n平台为交易提供技术服务与规则保障。商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。\n\n**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。** 平台先行赔付后，有权向商家追偿。\n\n平台知道或应当知道商家销售的商品不符合保障人身、财产安全要求，或有其他侵害消费者合法权益行为而未采取必要措施的，依法与该商家承担连带责任。\n\n消费者与商家发生争议时，平台应积极协助消费者维权，并应消费者要求提供商家的真实名称、地址和有效联系方式。",
+            "score": 0.978371696472168,
+            "doc_id": "P01",
+            "layer": "platform",
+            "doc_type": "平台服务协议",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P01-用户服务协议.md",
+            "reason": "相关性 0.998 × 先验 0.90 → 0.978；命中 1/platform/dense#1, 1/platform/bm25#1, 2/platform/dense#6"
+          },
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第二条 争议解决的层级 … 第三条 申请平台介入 > 3.2 申请时限",
+            "text": "平台采用三层递进的处理机制：\n\n| 层级 | 处理方式 | 时限 |\n|---|---|---|\n| 第一层 | **双方自主协商** | 商家须在 48 小时内响应 |\n| 第二层 | **申请平台介入** | 平台 72 小时内出具判定 |\n| 第三层 | **外部维权** | 投诉、调解、仲裁、诉讼 |\n\n**平台鼓励双方通过自主协商解决争议**，但消费者申请介入的，平台不得以「请先自行协商」为由拒绝受理。\n\n出现以下任一情形，消费者可申请平台介入：\n\n（一）商家拒绝退款申请或超过 48 小时未响应；\n（二）商家提出的处理方案消费者不接受；\n（三）商家验收结论消费者有异议；\n（四）双方协商超过 3 个自然日仍未达成一致。\n\n消费者应在争议产生后 **15 日**内申请介入。超过时限的，平台仍可受理，但举证难度增加。\n\n申请方须提交：订单信息、争议诉求、支持诉求的凭证（照片、视频、聊天记录、检测报告、物流凭证）。\n\n出现以下任一情形，消费者可申请平台介入：\n\n（一）商家拒绝退款申请或超过 48 小时未响应；\n（二）商家提出的处理方案消费者不接受；\n（三）商家验收结论消费者有异议；\n（四）双方协商超过 3 个自然日仍未达成一致。\n\n消费者应在争议产生后 **15 日**内申请介入。超过时限的，平台仍可受理，但举证难度增加。\n\n申请方须提交：订单信息、争议诉求、支持诉求的凭证（照片、视频、聊天记录、检测报告、物流凭证）。",
+            "score": 0.9730619716644288,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.991 × 先验 0.90 → 0.973；命中 1/platform/dense#9, 2/platform/dense#1, 2/platform/bm25#1"
+          },
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.2 平台的协助义务",
+            "text": "消费者对平台判定结论仍有异议的，可通过以下途径维权：\n\n（一）向平台所在地或商家所在地市场监督管理部门投诉；\n（二）请求消费者协会或其他依法成立的调解组织调解；\n（三）拨打 12315 投诉举报；\n（四）按约定申请仲裁；\n（五）向人民法院提起诉讼。\n\n消费者通过外部途径维权的，平台应**提供商家的真实名称、地址和有效联系方式**，并提供订单原始记录与交易凭证，积极协助消费者维权。\n\n行政部门应自收到投诉之日起 **7 个工作日**内予以处理并告知消费者；受理后双方同意调解的，应在受理之日起 **60 日**内调解完毕（鉴定、检测时间不计入）。\n\n争议需对商品质量进行鉴定、检测的，双方可协商确定鉴定机构；无法协商一致的，由受理投诉的行政部门指定。",
+            "score": 0.965319757461548,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.982 × 先验 0.90 → 0.965；命中 1/platform/dense#2, 1/platform/bm25#2, 2/platform/dense#10"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "3b51f2c76bf8fbe6",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.73,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:50.866Z",
+      "updatedAt": "2026-08-18T11:42:50.876Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "0e9a6f370961b56f",
+      "traceId": "5eac5fc19c91f0eb193c430d0df5ce7e",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-18 11:42:46.166000+00:00",
+      "endTime": "2026-08-18 11:42:46.278000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "L04#011:00",
+            "section": "L04 第六十一条 【平台协助维权义务】",
+            "rrf": 0.1773,
+            "hits": [
+              "1/law/dense#1",
+              "1/law/bm25#1",
+              "2/law/dense#1",
+              "2/law/bm25#9"
+            ]
+          },
+          {
+            "chunk_id": "P09#001:00",
+            "section": "P09 第二条 争议解决的层级",
+            "rrf": 0.1544,
+            "hits": [
+              "1/platform/dense#7",
+              "1/platform/bm25#8",
+              "2/platform/dense#4",
+              "2/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P01#004:03",
+            "section": "P01 第四章 平台的角色与责任 > 4.4 平台的协助义务",
+            "rrf": 0.1337,
+            "hits": [
+              "1/platform/dense#1",
+              "1/platform/bm25#1",
+              "2/platform/dense#6"
+            ]
+          },
+          {
+            "chunk_id": "P09#002:00",
+            "section": "P09 第三条 申请平台介入 > 3.1 申请条件",
+            "rrf": 0.1297,
+            "hits": [
+              "1/platform/dense#9",
+              "2/platform/dense#1",
+              "2/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P09#002:01",
+            "section": "P09 第三条 申请平台介入 > 3.2 申请时限",
+            "rrf": 0.1279,
+            "hits": [
+              "1/platform/bm25#7",
+              "2/platform/dense#2",
+              "2/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L02#004:04",
+            "section": "L02 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
+            "rrf": 0.1274,
+            "hits": [
+              "1/law/dense#2",
+              "1/law/bm25#6",
+              "2/law/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "P09#006:01",
+            "section": "P09 第七条 外部维权途径 > 7.2 平台的协助义务",
+            "rrf": 0.1242,
+            "hits": [
+              "1/platform/dense#2",
+              "1/platform/bm25#2",
+              "2/platform/dense#10"
+            ]
+          },
+          {
+            "chunk_id": "L04#013:00",
+            "section": "L04 第六十三条 【在线争议解决机制】",
+            "rrf": 0.1222,
+            "hits": [
+              "1/law/dense#3",
+              "2/law/dense#4",
+              "2/law/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "P09#003:03",
+            "section": "P09 第四条 平台介入的处理 > 4.4 举证责任分配",
+            "rrf": 0.1217,
+            "hits": [
+              "1/platform/dense#5",
+              "1/platform/bm25#4",
+              "2/platform/dense#5"
+            ]
+          },
+          {
+            "chunk_id": "L04#008:00",
+            "section": "L04 第五十八条 【质量担保机制】",
+            "rrf": 0.1144,
+            "hits": [
+              "1/law/dense#7",
+              "1/law/bm25#4",
+              "2/law/dense#8"
+            ]
+          },
+          {
+            "chunk_id": "L04#014:00",
+            "section": "L04 相关文件",
+            "rrf": 0.1102,
+            "hits": [
+              "1/law/dense#11",
+              "2/law/dense#9",
+              "2/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P09#004:03",
+            "section": "P09 第五条 特定场景的处理口径 > 5.4 商品导致人身或财产损害",
+            "rrf": 0.108,
+            "hits": [
+              "1/platform/dense#11",
+              "1/platform/bm25#5",
+              "2/platform/dense#8"
+            ]
+          },
+          {
+            "chunk_id": "L03#009:00",
+            "section": "L03 第二十六条 【投诉与举报渠道】",
+            "rrf": 0.1061,
+            "hits": [
+              "1/law/bm25#10",
+              "2/law/dense#7",
+              "2/law/bm25#8"
+            ]
+          },
+          {
+            "chunk_id": "P09#000:00",
+            "section": "P09 第一条 适用范围",
+            "rrf": 0.1059,
+            "hits": [
+              "1/platform/dense#8",
+              "2/platform/dense#9",
+              "2/platform/bm25#8"
+            ]
+          },
+          {
+            "chunk_id": "L04#010:00",
+            "section": "L04 第六十条 【争议解决途径】",
+            "rrf": 0.0871,
+            "hits": [
+              "2/law/dense#2",
+              "2/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "L04#007:00",
+            "section": "L04 第三十八条 【平台连带责任】",
+            "rrf": 0.0855,
+            "hits": [
+              "1/law/dense#5",
+              "1/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P01#008:01",
+            "section": "P01 第八章 争议解决 > 8.2 平台调解",
+            "rrf": 0.0851,
+            "hits": [
+              "1/platform/dense#4",
+              "2/platform/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "L03#012:00",
+            "section": "L03 第四十六条 【行政投诉处理时限】",
+            "rrf": 0.0767,
+            "hits": [
+              "2/law/dense#12",
+              "2/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L04#004:00",
+            "section": "L04 第三十二条 【平台交易规则的制定】",
+            "rrf": 0.0761,
+            "hits": [
+              "1/law/dense#4",
+              "1/law/bm25#9"
+            ]
+          },
+          {
+            "chunk_id": "P01#004:00",
+            "section": "P01 第四章 平台的角色与责任 > 4.1 平台与商家的关系",
+            "rrf": 0.0757,
+            "hits": [
+              "1/platform/dense#3",
+              "1/platform/bm25#11"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "ca086293a8bfae29",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.112,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:50.866Z",
+      "updatedAt": "2026-08-18T11:42:50.875Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "429b512a5a71bc5d",
+      "traceId": "5eac5fc19c91f0eb193c430d0df5ce7e",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 11:42:46.166000+00:00",
+      "endTime": "2026-08-18 11:42:46.166000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 12,
+              "law": 12
+            },
+            "law_weight": 1
+          },
+          {
+            "sub_query": "2",
+            "layer_k": {
+              "platform": 12,
+              "law": 12
+            },
+            "law_weight": 1
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "ca086293a8bfae29",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:50.866Z",
+      "updatedAt": "2026-08-18T11:42:50.875Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "714a529380adcf0a",
+      "traceId": "5eac5fc19c91f0eb193c430d0df5ce7e",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 11:42:45.115000+00:00",
+      "endTime": "2026-08-18 11:42:46.165000+00:00",
+      "input": {
+        "query": "当消费者与平台内经营者发生争议时，平台负有哪些协助义务？在哪些具体情形下消费者可以申请平台介入处理？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": true,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "other",
+            "text": "消费者与平台内经营者发生争议时，平台负有哪些协助义务？"
+          },
+          {
+            "id": "2",
+            "intent": "dispute",
+            "text": "在哪些具体情形下消费者可以申请平台介入处理争议？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "ca086293a8bfae29",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.05,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:42:50.866Z",
+      "updatedAt": "2026-08-18T11:42:50.875Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    }
+  ]
+}

@@ -1,0 +1,1510 @@
+{
+  "case": {
+    "case_id": "R1-011",
+    "type": "single",
+    "style": "formal",
+    "doc_id": "L03",
+    "layer": "law",
+    "kind": "text",
+    "seed_chunk_id": [
+      "L03#005:00"
+    ],
+    "error": null,
+    "scores": {
+      "recall@10": 1.0,
+      "recall@3": 1.0,
+      "recall@1": 1.0,
+      "evidence_tokens": 2860,
+      "duplicate_ratio": 0.379,
+      "context_recall": 1.0,
+      "context_relevance": 0.041
+    },
+    "elapsed_s": 2.0,
+    "seed_rank": {
+      "candidate": {
+        "L03#005:00": 3
+      },
+      "evidence": {
+        "L03#005:00": 1
+      }
+    },
+    "sections": [
+      "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】",
+      "L02 网络购买商品七日无理由退货暂行办法 > 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】 … 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+      "P05 星辰优选商品完好标准与验收规范 > 第一条 商品完好的基本定义 … 第二条 商品状态的三档划分",
+      "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】 … 第二十五条 【网络购物七日无理由退货】"
+    ],
+    "judge": {
+      "context_recall": {
+        "score": 1.0,
+        "n": 2,
+        "hit": 2,
+        "detail": [
+          {
+            "claim": "消费者基于查验需要打开商品包装的，经营者应当予以退货。",
+            "supported": true,
+            "reason": "L03第十九条第三款明确消费者基于查验需要打开商品包装，经营者应当予以退货。"
+          },
+          {
+            "claim": "消费者为确认商品品质和功能进行合理调试，且不影响商品原有品质、功能和外观的，经营者应当予以退货。",
+            "supported": true,
+            "reason": "L03第十九条第三款明确合理调试且不影响商品原有品质、功能和外观的，经营者应当予以退货。"
+          }
+        ],
+        "error": null
+      },
+      "context_relevance": {
+        "score": 0.041,
+        "n": 121,
+        "hit": 5,
+        "truncated": false,
+        "note": "不相关的多为重复条款、不适用商品清单及平台内部规则。",
+        "irrelevant": [
+          "经营者通过网络、电视、电话、邮购等方式销售商品的，应当遵守消费者权益保护法第二十五条规定，不得擅自扩大不适用无理由退货的",
+          "经营者应当以显著方式对不适用无理由退货的商品进行标注，提示消费者在购买时进行确认，不得将不适用无理由退货作为消费者默认同",
+          "未经消费者确认，经营者不得拒绝无理由退货。",
+          "消费者退货的商品应当完好。",
+          "消费者无理由退货应当遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。",
+          "> **适用要点**：本条是**平台风控规则的法律依据**。",
+          "第四款首次在行政法规层面确立「无理由退货不得滥用」，平台对高频异常退款账户采取限制自动通道、转人工审核等措施，据此具备合",
+          "下列商品不适用七日无理由退货规定：",
+          "（一）消费者定作的商品；",
+          "（二）鲜活易腐的商品；"
+        ],
+        "error": null
+      }
+    },
+    "trace_id": "5b3a54257cce0532d0bd68d2320a7594"
+  },
+  "trace": {
+    "id": "5b3a54257cce0532d0bd68d2320a7594",
+    "name": "experiment-item-run",
+    "timestamp": "2026-08-18 11:51:40.631000+00:00"
+  },
+  "observations": [
+    {
+      "id": "af49f1621f660feb",
+      "traceId": "5b3a54257cce0532d0bd68d2320a7594",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 11:51:09.224000+00:00",
+      "endTime": "2026-08-18 11:51:45.899000+00:00",
+      "input": {
+        "query": "消费者基于查验需要打开商品包装，但未影响商品原有品质、功能和外观的，经营者是否应当予以退货？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-011",
+        "kind": "text",
+        "type": "single",
+        "layer": "law",
+        "style": "formal",
+        "doc_id": "L03",
+        "section": "第十九条 【无理由退货的边界与滥用治理】",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.861,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-011",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "L03",
+        "layer": "law",
+        "kind": "text",
+        "seed_chunk_id": [
+          "L03#005:00"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 2860,
+          "duplicate_ratio": 0.379,
+          "context_recall": 1,
+          "context_relevance": 0.041
+        },
+        "elapsed_s": 2,
+        "seed_rank": {
+          "candidate": {
+            "L03#005:00": 3
+          },
+          "evidence": {
+            "L03#005:00": 1
+          }
+        },
+        "sections": [
+          "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】",
+          "L02 网络购买商品七日无理由退货暂行办法 > 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】 … 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+          "P05 星辰优选商品完好标准与验收规范 > 第一条 商品完好的基本定义 … 第二条 商品状态的三档划分",
+          "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】 … 第二十五条 【网络购物七日无理由退货】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "消费者基于查验需要打开商品包装的，经营者应当予以退货。",
+                "supported": true,
+                "reason": "L03第十九条第三款明确消费者基于查验需要打开商品包装，经营者应当予以退货。"
+              },
+              {
+                "claim": "消费者为确认商品品质和功能进行合理调试，且不影响商品原有品质、功能和外观的，经营者应当予以退货。",
+                "supported": true,
+                "reason": "L03第十九条第三款明确合理调试且不影响商品原有品质、功能和外观的，经营者应当予以退货。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.041,
+            "n": 121,
+            "hit": 5,
+            "truncated": false,
+            "note": "不相关的多为重复条款、不适用商品清单及平台内部规则。",
+            "irrelevant": [
+              "经营者通过网络、电视、电话、邮购等方式销售商品的，应当遵守消费者权益保护法第二十五条规定，不得擅自扩大不适用无理由退货的",
+              "经营者应当以显著方式对不适用无理由退货的商品进行标注，提示消费者在购买时进行确认，不得将不适用无理由退货作为消费者默认同",
+              "未经消费者确认，经营者不得拒绝无理由退货。",
+              "消费者退货的商品应当完好。",
+              "消费者无理由退货应当遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。",
+              "> **适用要点**：本条是**平台风控规则的法律依据**。",
+              "第四款首次在行政法规层面确立「无理由退货不得滥用」，平台对高频异常退款账户采取限制自动通道、转人工审核等措施，据此具备合",
+              "下列商品不适用七日无理由退货规定：",
+              "（一）消费者定作的商品；",
+              "（二）鲜活易腐的商品；"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 36.675,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:51:49.452Z",
+      "updatedAt": "2026-08-18T11:51:49.473Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "1b4e4421e3968315",
+      "traceId": "5b3a54257cce0532d0bd68d2320a7594",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 11:51:09.224000+00:00",
+      "endTime": "2026-08-18 11:51:45.897000+00:00",
+      "input": {
+        "query": "消费者基于查验需要打开商品包装，但未影响商品原有品质、功能和外观的，经营者是否应当予以退货？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-011",
+        "kind": "text",
+        "type": "single",
+        "layer": "law",
+        "style": "formal",
+        "doc_id": "L03",
+        "section": "第十九条 【无理由退货的边界与滥用治理】",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.861,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-011",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "L03",
+        "layer": "law",
+        "kind": "text",
+        "seed_chunk_id": [
+          "L03#005:00"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 2860,
+          "duplicate_ratio": 0.379,
+          "context_recall": 1,
+          "context_relevance": 0.041
+        },
+        "elapsed_s": 2,
+        "seed_rank": {
+          "candidate": {
+            "L03#005:00": 3
+          },
+          "evidence": {
+            "L03#005:00": 1
+          }
+        },
+        "sections": [
+          "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】",
+          "L02 网络购买商品七日无理由退货暂行办法 > 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】 … 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+          "P05 星辰优选商品完好标准与验收规范 > 第一条 商品完好的基本定义 … 第二条 商品状态的三档划分",
+          "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】 … 第二十五条 【网络购物七日无理由退货】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "消费者基于查验需要打开商品包装的，经营者应当予以退货。",
+                "supported": true,
+                "reason": "L03第十九条第三款明确消费者基于查验需要打开商品包装，经营者应当予以退货。"
+              },
+              {
+                "claim": "消费者为确认商品品质和功能进行合理调试，且不影响商品原有品质、功能和外观的，经营者应当予以退货。",
+                "supported": true,
+                "reason": "L03第十九条第三款明确合理调试且不影响商品原有品质、功能和外观的，经营者应当予以退货。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.041,
+            "n": 121,
+            "hit": 5,
+            "truncated": false,
+            "note": "不相关的多为重复条款、不适用商品清单及平台内部规则。",
+            "irrelevant": [
+              "经营者通过网络、电视、电话、邮购等方式销售商品的，应当遵守消费者权益保护法第二十五条规定，不得擅自扩大不适用无理由退货的",
+              "经营者应当以显著方式对不适用无理由退货的商品进行标注，提示消费者在购买时进行确认，不得将不适用无理由退货作为消费者默认同",
+              "未经消费者确认，经营者不得拒绝无理由退货。",
+              "消费者退货的商品应当完好。",
+              "消费者无理由退货应当遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。",
+              "> **适用要点**：本条是**平台风控规则的法律依据**。",
+              "第四款首次在行政法规层面确立「无理由退货不得滥用」，平台对高频异常退款账户采取限制自动通道、转人工审核等措施，据此具备合",
+              "下列商品不适用七日无理由退货规定：",
+              "（一）消费者定作的商品；",
+              "（二）鲜活易腐的商品；"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "af49f1621f660feb",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 36.673,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:51:49.452Z",
+      "updatedAt": "2026-08-18T11:51:49.472Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "f1ab6591b09d4382",
+      "traceId": "5b3a54257cce0532d0bd68d2320a7594",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 11:51:45.898000+00:00",
+      "endTime": "2026-08-18 11:51:45.899000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "af49f1621f660feb",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:51:49.452Z",
+      "updatedAt": "2026-08-18T11:51:49.472Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "4ad948b2ab0c08a3",
+      "traceId": "5b3a54257cce0532d0bd68d2320a7594",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 11:51:45.898000+00:00",
+      "endTime": "2026-08-18 11:51:45.899000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "消费者基于查验需要打开商品包装，但未影响商品原有品质、功能和外观的，经营者是否应当予以退货？"
+        },
+        "output": {
+          "case_id": "R1-011",
+          "type": "single",
+          "style": "formal",
+          "doc_id": "L03",
+          "layer": "law",
+          "kind": "text",
+          "seed_chunk_id": [
+            "L03#005:00"
+          ],
+          "error": null,
+          "scores": {
+            "recall@10": 1,
+            "recall@3": 1,
+            "recall@1": 1,
+            "evidence_tokens": 2860,
+            "duplicate_ratio": 0.379,
+            "context_recall": 1,
+            "context_relevance": 0.041
+          },
+          "elapsed_s": 2,
+          "seed_rank": {
+            "candidate": {
+              "L03#005:00": 3
+            },
+            "evidence": {
+              "L03#005:00": 1
+            }
+          },
+          "sections": [
+            "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】",
+            "L02 网络购买商品七日无理由退货暂行办法 > 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】 … 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+            "P05 星辰优选商品完好标准与验收规范 > 第一条 商品完好的基本定义 … 第二条 商品状态的三档划分",
+            "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】 … 第二十五条 【网络购物七日无理由退货】"
+          ],
+          "judge": {
+            "context_recall": {
+              "score": 1,
+              "n": 2,
+              "hit": 2,
+              "detail": [
+                {
+                  "claim": "消费者基于查验需要打开商品包装的，经营者应当予以退货。",
+                  "supported": true,
+                  "reason": "L03第十九条第三款明确消费者基于查验需要打开商品包装，经营者应当予以退货。"
+                },
+                {
+                  "claim": "消费者为确认商品品质和功能进行合理调试，且不影响商品原有品质、功能和外观的，经营者应当予以退货。",
+                  "supported": true,
+                  "reason": "L03第十九条第三款明确合理调试且不影响商品原有品质、功能和外观的，经营者应当予以退货。"
+                }
+              ],
+              "error": null
+            },
+            "context_relevance": {
+              "score": 0.041,
+              "n": 121,
+              "hit": 5,
+              "truncated": false,
+              "note": "不相关的多为重复条款、不适用商品清单及平台内部规则。",
+              "irrelevant": [
+                "经营者通过网络、电视、电话、邮购等方式销售商品的，应当遵守消费者权益保护法第二十五条规定，不得擅自扩大不适用无理由退货的",
+                "经营者应当以显著方式对不适用无理由退货的商品进行标注，提示消费者在购买时进行确认，不得将不适用无理由退货作为消费者默认同",
+                "未经消费者确认，经营者不得拒绝无理由退货。",
+                "消费者退货的商品应当完好。",
+                "消费者无理由退货应当遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。",
+                "> **适用要点**：本条是**平台风控规则的法律依据**。",
+                "第四款首次在行政法规层面确立「无理由退货不得滥用」，平台对高频异常退款账户采取限制自动通道、转人工审核等措施，据此具备合",
+                "下列商品不适用七日无理由退货规定：",
+                "（一）消费者定作的商品；",
+                "（二）鲜活易腐的商品；"
+              ],
+              "error": null
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [
+            "消费者基于查验需要打开商品包装的，经营者应当予以退货。",
+            "消费者为确认商品品质和功能进行合理调试，且不影响商品原有品质、功能和外观的，经营者应当予以退货。"
+          ],
+          "seed_chunk_id": [
+            "L03#005:00"
+          ],
+          "reference_answer": "可以退。消费者基于查验需要打开商品包装，或者为确认商品品质和功能进行合理调试而不影响商品原有品质、功能和外观的，经营者应当予以退货。"
+        },
+        "metadata": {
+          "kind": "text",
+          "type": "single",
+          "layer": "law",
+          "style": "formal",
+          "doc_id": "L03",
+          "section": "第十九条 【无理由退货的边界与滥用治理】",
+          "reviewed": false,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.861
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 1,
+          "comment": "种子块名次 L03#005:00=3"
+        },
+        {
+          "name": "recall@3",
+          "value": 1,
+          "comment": "种子块名次 L03#005:00=1"
+        },
+        {
+          "name": "recall@1",
+          "value": 1,
+          "comment": "种子块名次 L03#005:00=1"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 2860,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0.379,
+          "comment": ""
+        },
+        {
+          "name": "context_recall",
+          "value": 1,
+          "comment": "2/2 条 claim 被支撑"
+        },
+        {
+          "name": "context_relevance",
+          "value": 0.041,
+          "comment": "5/121 个内容单元相关；不相关的多为重复条款、不适用商品清单及平台内部规则。"
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "f1ab6591b09d4382",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:51:49.452Z",
+      "updatedAt": "2026-08-18T11:51:49.464Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "e4d2c3b9eac451c3",
+      "traceId": "5b3a54257cce0532d0bd68d2320a7594",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 11:51:41.804000+00:00",
+      "endTime": "2026-08-18 11:51:42.609000+00:00",
+      "input": {
+        "query": "消费者基于查验需要打开商品包装，但未影响商品原有品质、功能和外观的，经营者是否应当予以退货？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 13,
+        "min_score": 0.3,
+        "dropped": [
+          "P11#008:00",
+          "P04#002:01",
+          "P05#004:00",
+          "P05#003:00",
+          "P11#006:00",
+          "L03#002:00",
+          "L02#004:05"
+        ],
+        "evidence": [
+          {
+            "chunk_id": "L03#005:00",
+            "section": "L03 第十九条 【无理由退货的边界与滥用治理】",
+            "score": 0.979,
+            "relevance": 0.999,
+            "prior": 0.9,
+            "excerpt": "经营者通过网络、电视、电话、邮购等方式销售商品的，应当遵守消费者权益保护法第二十五条规定，不得擅自扩大不适用无理由退货的商品范围。 经营者应当以显著方式对不适用无理由退货的商品进行标注，提示消费者在购买时进行确认，不得将不适用无理由退货作为…"
+          },
+          {
+            "chunk_id": "L02#002:02",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+            "score": 0.971,
+            "relevance": 0.988,
+            "prior": 0.9,
+            "excerpt": "消费者退回的商品应当完好。 商品能够保持原有品质、功能，商品本身、配件、商标标识齐全的，视为商品完好。 消费者基于查验需要而打开商品包装，或者为确认商品的品质、功能而进行合理的调试不影响商品的完好。 > **判定要点**：**「拆封」不等于…"
+          },
+          {
+            "chunk_id": "P05#001:00",
+            "section": "P05 第一条 商品完好的基本定义",
+            "score": 0.961,
+            "relevance": 0.976,
+            "prior": 0.9,
+            "excerpt": "1.1 **商品能够保持原有品质、功能，商品本身、配件、商标标识齐全的，视为商品完好。** 1.2 **消费者基于查验需要而打开商品包装，或者为确认商品的品质、功能而进行合理的调试，不影响商品的完好。** 1.3 **「拆封」不等于「不完好…"
+          },
+          {
+            "chunk_id": "P05#002:00",
+            "section": "P05 第二条 商品状态的三档划分",
+            "score": 0.715,
+            "relevance": 0.669,
+            "prior": 0.9,
+            "excerpt": "平台在受理无理由退货时，将商品状态划分为三档： | 状态 | 判定要素 | 无理由退货 | |---|---|---| | **未拆封** | 外包装完整，密封条、封口、塑封未破坏；商品未从原包装中取出 | ✅ 支持 | | **已拆封**…"
+          },
+          {
+            "chunk_id": "L02#002:03",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第九条 【商品不完好的分类判定标准】",
+            "score": 0.638,
+            "relevance": 0.572,
+            "prior": 0.9,
+            "excerpt": "对超出查验和确认商品品质、功能需要而使用商品，导致商品价值贬损较大的，视为商品不完好。具体判定标准如下： （一）食品（含保健食品）、化妆品、医疗器械、计生用品：必要的一次性密封包装被损坏； （二）电子电器类：进行未经授权的维修、改动，破坏、…"
+          },
+          {
+            "chunk_id": "L01#003:00",
+            "section": "L01 第二十四条 【质量不符时的退货、更换、修理】",
+            "score": 0.627,
+            "relevance": 0.559,
+            "prior": 0.9,
+            "excerpt": "经营者提供的商品或者服务不符合质量要求的，消费者可以依照国家规定、当事人约定退货，或者要求经营者履行更换、修理等义务。没有国家规定和当事人约定的，消费者可以自收到商品之日起七日内退货；七日后符合法定解除合同条件的，消费者可以及时退货，不符合…"
+          },
+          {
+            "chunk_id": "L01#004:00",
+            "section": "L01 第二十五条 【网络购物七日无理由退货】",
+            "score": 0.562,
+            "relevance": 0.477,
+            "prior": 0.9,
+            "excerpt": "经营者采用网络、电视、电话、邮购等方式销售商品，消费者有权自收到商品之日起七日内退货，且无需说明理由，但下列商品除外： （一）消费者定作的； （二）鲜活易腐的； （三）在线下载或者消费者拆封的音像制品、计算机软件等数字化商品； （四）交付的…"
+          },
+          {
+            "chunk_id": "P11#005:01",
+            "section": "P11 第五条 服装、鞋帽、箱包 > 5.2 试穿的界限",
+            "score": 0.536,
+            "relevance": 0.445,
+            "prior": 0.9,
+            "excerpt": "**室内试穿、不影响商品原有品质与外观的，不视为已使用**，仍支持无理由退货。"
+          },
+          {
+            "chunk_id": "L01#007:00",
+            "section": "L01 第四十八条 【经营者民事责任】",
+            "score": 0.528,
+            "relevance": 0.434,
+            "prior": 0.9,
+            "excerpt": "经营者提供商品或者服务有下列情形之一的，除本法另有规定外，应当依照其他有关法律、法规的规定，承担民事责任： （一）商品或者服务存在缺陷的； （二）不具备商品应当具备的使用性能而出售时未作说明的； （三）不符合在商品或者其包装上注明采用的商品…"
+          },
+          {
+            "chunk_id": "P02#002:00",
+            "section": "P02 第三条 商品条件",
+            "score": 0.432,
+            "relevance": 0.29,
+            "prior": 1,
+            "excerpt": "3.1 **无理由退货要求商品未拆封、不影响二次销售。** 已拆封或已使用的商品不支持无理由退货。 3.2 商品状态分为三档，无理由退货仅接受「未拆封」： | 商品状态 | 含义 | 无理由退货 | |---|---|---| | 未拆封 …"
+          },
+          {
+            "chunk_id": "P01#006:00",
+            "section": "P01 第六章 消费者的义务 > 6.1 诚实信用",
+            "score": 0.412,
+            "relevance": 0.29,
+            "prior": 0.9,
+            "excerpt": "消费者行使退货权利应遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。"
+          },
+          {
+            "chunk_id": "L02#002:01",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】",
+            "score": 0.364,
+            "relevance": 0.23,
+            "prior": 0.9,
+            "excerpt": "下列性质的商品经消费者在购买时确认，可以不适用七日无理由退货规定： （一）拆封后易影响人身安全或者生命健康的商品，或者拆封后易导致商品品质发生改变的商品； （二）一经激活或者试用后价值贬损较大的商品； （三）销售时已明示的临近保质期的商品、…"
+          },
+          {
+            "chunk_id": "L01#002:00",
+            "section": "L01 第二十三条 【瑕疵举证责任倒置】",
+            "score": 0.305,
+            "relevance": 0.157,
+            "prior": 0.9,
+            "excerpt": "经营者应当保证在正常使用商品或者接受服务的情况下其提供的商品或者服务应当具有的质量、性能、用途和有效期限；但消费者在购买该商品或者接受该服务前已经知道其存在瑕疵，且存在该瑕疵不违反法律强制性规定的除外。 经营者以广告、产品说明、实物样品或者…"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d611c2875bcc393a",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.805,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:51:44.398Z",
+      "updatedAt": "2026-08-18T11:51:44.421Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "d611c2875bcc393a",
+      "traceId": "5b3a54257cce0532d0bd68d2320a7594",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 11:51:40.631000+00:00",
+      "endTime": "2026-08-18 11:51:42.623000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "消费者基于查验需要打开商品包装，但未影响商品原有品质、功能和外观的，经营者是否应当予以退货？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】",
+            "text": "经营者通过网络、电视、电话、邮购等方式销售商品的，应当遵守消费者权益保护法第二十五条规定，不得擅自扩大不适用无理由退货的商品范围。\n\n经营者应当以显著方式对不适用无理由退货的商品进行标注，提示消费者在购买时进行确认，不得将不适用无理由退货作为消费者默认同意的选项。未经消费者确认，经营者不得拒绝无理由退货。\n\n消费者退货的商品应当完好。消费者基于查验需要打开商品包装，或者为确认商品的品质和功能进行合理调试而不影响商品原有品质、功能和外观的，经营者应当予以退货。\n\n消费者无理由退货应当遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。\n\n> **适用要点**：本条是**平台风控规则的法律依据**。第四款首次在行政法规层面确立「无理由退货不得滥用」，平台对高频异常退款账户采取限制自动通道、转人工审核等措施，据此具备合法性——但措施须与滥用程度相当，不得直接剥夺法定退货权。",
+            "score": 0.9791864681243897,
+            "doc_id": "L03",
+            "layer": "law",
+            "doc_type": "行政法规",
+            "effective_date": "2024-07-01",
+            "source_path": "doc/policy/law/L03-消费者权益保护法实施条例-摘录.md",
+            "reason": "相关性 0.999 × 先验 0.90 → 0.979；命中 1/law/dense#4, 1/law/bm25#2"
+          },
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】 … 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+            "text": "下列商品不适用七日无理由退货规定：\n\n（一）消费者定作的商品；\n\n（二）鲜活易腐的商品；\n\n（三）在线下载或者消费者拆封的音像制品、计算机软件等数字化商品；\n\n（四）交付的报纸、期刊。\n\n> **判定要点**：这是**封闭清单**，四类之外的商品不得以「商品性质特殊」为由直接排除。定制商品、生鲜商品、已激活的虚拟商品分别落在第（一）（二）（三）项。\n\n下列性质的商品经消费者在购买时确认，可以不适用七日无理由退货规定：\n\n（一）拆封后易影响人身安全或者生命健康的商品，或者拆封后易导致商品品质发生改变的商品；\n\n（二）一经激活或者试用后价值贬损较大的商品；\n\n（三）销售时已明示的临近保质期的商品、有瑕疵的商品。\n\n> **判定要点**：本条商品**必须有消费者购买时的确认记录**才能排除退货。没有确认记录的，销售者不得拒绝退货（见第二十条第二款）。\n\n消费者退回的商品应当完好。\n\n商品能够保持原有品质、功能，商品本身、配件、商标标识齐全的，视为商品完好。\n\n消费者基于查验需要而打开商品包装，或者为确认商品的品质、功能而进行合理的调试不影响商品的完好。\n\n> **判定要点**：**「拆封」不等于「不完好」**。仅因买家拆开包装查验即拒绝退货，属违法。判定商品状态时须区分「拆封查验」与「超出查验需要的使用」。\n\n对超出查验和确认商品品质、功能需要而使用商品，导致商品价值贬损较大的，视为商品不完好。具体判定标准如下：\n\n（一）食品（含保健食品）、化妆品、医疗器械、计生用品：必要的一次性密封包装被损坏；\n\n（二）电子电器类：进行未经授权的维修、改动，破坏、涂改强制性产品认证标志、指示标贴、机器序列号等，有难以恢复原状的外观类使用痕迹，或者产生激活、授权信息、不合理的个人使用数据留存等数据类使用痕迹；\n\n（三）服装、鞋帽、箱包、玩具、家纺、家居类：商标标识被摘、标识被剪，商品受污、受损。\n\n下列商品不适用七日无理由退货规定：\n\n（一）消费者定作的商品；\n\n（二）鲜活易腐的商品；\n\n（三）在线下载或者消费者拆封的音像制品、计算机软件等数字化商品；\n\n（四）交付的报纸、期刊。\n\n> **判定要点**：这是**封闭清单**，四类之外的商品不得以「商品性质特殊」为由直接排除。定制商品、生鲜商品、已激活的虚拟商品分别落在第（一）（二）（三）项。\n\n下列性质的商品经消费者在购买时确认，可以不适用七日无理由退货规定：\n\n（一）拆封后易影响人身安全或者生命健康的商品，或者拆封后易导致商品品质发生改变的商品；\n\n（二）一经激活或者试用后价值贬损较大的商品；\n\n（三）销售时已明示的临近保质期的商品、有瑕疵的商品。\n\n> **判定要点**：本条商品**必须有消费者购买时的确认记录**才能排除退货。没有确认记录的，销售者不得拒绝退货（见第二十条第二款）。\n\n消费者退回的商品应当完好。\n\n商品能够保持原有品质、功能，商品本身、配件、商标标识齐全的，视为商品完好。\n\n消费者基于查验需要而打开商品包装，或者为确认商品的品质、功能而进行合理的调试不影响商品的完好。\n\n> **判定要点**：**「拆封」不等于「不完好」**。仅因买家拆开包装查验即拒绝退货，属违法。判定商品状态时须区分「拆封查验」与「超出查验需要的使用」。\n\n对超出查验和确认商品品质、功能需要而使用商品，导致商品价值贬损较大的，视为商品不完好。具体判定标准如下：\n\n（一）食品（含保健食品）、化妆品、医疗器械、计生用品：必要的一次性密封包装被损坏；\n\n（二）电子电器类：进行未经授权的维修、改动，破坏、涂改强制性产品认证标志、指示标贴、机器序列号等，有难以恢复原状的外观类使用痕迹，或者产生激活、授权信息、不合理的个人使用数据留存等数据类使用痕迹；\n\n（三）服装、鞋帽、箱包、玩具、家纺、家居类：商标标识被摘、标识被剪，商品受污、受损。\n\n下列商品不适用七日无理由退货规定：\n\n（一）消费者定作的商品；\n\n（二）鲜活易腐的商品；\n\n（三）在线下载或者消费者拆封的音像制品、计算机软件等数字化商品；\n\n（四）交付的报纸、期刊。\n\n> **判定要点**：这是**封闭清单**，四类之外的商品不得以「商品性质特殊」为由直接排除。定制商品、生鲜商品、已激活的虚拟商品分别落在第（一）（二）（三）项。\n\n下列性质的商品经消费者在购买时确认，可以不适用七日无理由退货规定：\n\n（一）拆封后易影响人身安全或者生命健康的商品，或者拆封后易导致商品品质发生改变的商品；\n\n（二）一经激活或者试用后价值贬损较大的商品；\n\n（三）销售时已明示的临近保质期的商品、有瑕疵的商品。\n\n> **判定要点**：本条商品**必须有消费者购买时的确认记录**才能排除退货。没有确认记录的，销售者不得拒绝退货（见第二十条第二款）。\n\n消费者退回的商品应当完好。\n\n商品能够保持原有品质、功能，商品本身、配件、商标标识齐全的，视为商品完好。\n\n消费者基于查验需要而打开商品包装，或者为确认商品的品质、功能而进行合理的调试不影响商品的完好。\n\n> **判定要点**：**「拆封」不等于「不完好」**。仅因买家拆开包装查验即拒绝退货，属违法。判定商品状态时须区分「拆封查验」与「超出查验需要的使用」。\n\n对超出查验和确认商品品质、功能需要而使用商品，导致商品价值贬损较大的，视为商品不完好。具体判定标准如下：\n\n（一）食品（含保健食品）、化妆品、医疗器械、计生用品：必要的一次性密封包装被损坏；\n\n（二）电子电器类：进行未经授权的维修、改动，破坏、涂改强制性产品认证标志、指示标贴、机器序列号等，有难以恢复原状的外观类使用痕迹，或者产生激活、授权信息、不合理的个人使用数据留存等数据类使用痕迹；\n\n（三）服装、鞋帽、箱包、玩具、家纺、家居类：商标标识被摘、标识被剪，商品受污、受损。",
+            "score": 0.9705572414398195,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.988 × 先验 0.90 → 0.971；命中 1/law/dense#1, 1/law/bm25#1"
+          },
+          {
+            "section": "P05 星辰优选商品完好标准与验收规范 > 第一条 商品完好的基本定义 … 第二条 商品状态的三档划分",
+            "text": "1.1 **商品能够保持原有品质、功能，商品本身、配件、商标标识齐全的，视为商品完好。**\n\n1.2 **消费者基于查验需要而打开商品包装，或者为确认商品的品质、功能而进行合理的调试，不影响商品的完好。**\n\n1.3 **「拆封」不等于「不完好」。** 平台与商家不得仅因外包装被打开即拒绝无理由退货。\n\n平台在受理无理由退货时，将商品状态划分为三档：\n\n| 状态 | 判定要素 | 无理由退货 |\n|---|---|---|\n| **未拆封** | 外包装完整，密封条、封口、塑封未破坏；商品未从原包装中取出 | ✅ 支持 |\n| **已拆封** | 包装已开启，商品已取出查验，但未投入实际使用，无使用痕迹 | ❌ 不支持 |\n| **已使用** | 商品已实际使用，存在使用痕迹、消耗、激活或数据留存 | ❌ 不支持 |\n\n2.1 无理由退货**仅接受「未拆封」**。这是平台在法定标准之上对商品二次销售价值的进一步要求，已在商品详情页与售后政策中公示。\n\n2.2 **质量问题退货不受本条限制**——商品已拆封、已使用，均不影响质量问题退货的受理。\n\n2.3 消费者对商品状态的陈述与实际退回商品不符的，按第五条处理。",
+            "score": 0.9609509277343751,
+            "doc_id": "P05",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P05-商品完好标准与验收规范.md",
+            "reason": "相关性 0.976 × 先验 0.90 → 0.961；命中 1/platform/dense#11, 1/platform/bm25#1"
+          },
+          {
+            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】 … 第二十五条 【网络购物七日无理由退货】",
+            "text": "经营者应当保证在正常使用商品或者接受服务的情况下其提供的商品或者服务应当具有的质量、性能、用途和有效期限；但消费者在购买该商品或者接受该服务前已经知道其存在瑕疵，且存在该瑕疵不违反法律强制性规定的除外。\n\n经营者以广告、产品说明、实物样品或者其他方式表明商品或者服务的质量状况的，应当保证其提供的商品或者服务的实际质量与表明的质量状况相符。\n\n**经营者提供的机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品或者装饰装修等服务，消费者自接受商品或者服务之日起六个月内发现瑕疵，发生争议的，由经营者承担有关瑕疵的举证责任。**\n\n> **售后适用要点**：耐用商品六个月内的质量争议，举证责任在经营者一方，不能要求消费者自证商品有质量问题。\n\n经营者提供的商品或者服务不符合质量要求的，消费者可以依照国家规定、当事人约定退货，或者要求经营者履行更换、修理等义务。没有国家规定和当事人约定的，消费者可以自收到商品之日起七日内退货；七日后符合法定解除合同条件的，消费者可以及时退货，不符合法定解除合同条件的，可以要求经营者履行更换、修理等义务。\n\n依照前款规定进行退货、更换、修理的，经营者应当承担运输等必要费用。\n\n> **售后适用要点**：**质量问题退货的运费由经营者承担**，与无理由退货运费由消费者承担（第二十五条）相反。判定退款时必须先区分「无理由」与「质量问题」，两者的运费归属、窗口期、商品完好要求均不同。\n\n经营者采用网络、电视、电话、邮购等方式销售商品，消费者有权自收到商品之日起七日内退货，且无需说明理由，但下列商品除外：\n\n（一）消费者定作的；\n\n（二）鲜活易腐的；\n\n（三）在线下载或者消费者拆封的音像制品、计算机软件等数字化商品；\n\n（四）交付的报纸、期刊。\n\n除前款所列商品外，其他根据商品性质并经消费者在购买时确认不宜退货的商品，不适用无理由退货。\n\n消费者退货的商品应当完好。经营者应当自收到退回商品之日起七日内返还消费者支付的商品价款。退回商品的运费由消费者承担；经营者和消费者另有约定的，按照约定。\n\n> **售后适用要点**：这是「七天无理由退货」的法律出处。四类法定除外商品是**排除项的封闭清单**，经营者不得擅自扩大（见 [L03] 实施条例第十九条）。第五款所列「其他不宜退货商品」必须**逐单经消费者购买时确认**才能排除，默认勾选无效。",
+            "score": 0.6272781658172608,
+            "doc_id": "L01",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2014-03-15",
+            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
+            "reason": "相关性 0.559 × 先验 0.90 → 0.627；命中 1/law/dense#3"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "1b4e4421e3968315",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.992,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:51:44.398Z",
+      "updatedAt": "2026-08-18T11:51:44.420Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "ca595114187738fb",
+      "traceId": "5b3a54257cce0532d0bd68d2320a7594",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-18 11:51:41.742000+00:00",
+      "endTime": "2026-08-18 11:51:41.804000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "L02#002:02",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+            "rrf": 0.0952,
+            "hits": [
+              "1/law/dense#1",
+              "1/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P02#002:00",
+            "section": "P02 第三条 商品条件",
+            "rrf": 0.0893,
+            "hits": [
+              "1/platform/dense#1",
+              "1/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "L03#005:00",
+            "section": "L03 第十九条 【无理由退货的边界与滥用治理】",
+            "rrf": 0.0871,
+            "hits": [
+              "1/law/dense#4",
+              "1/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P05#001:00",
+            "section": "P05 第一条 商品完好的基本定义",
+            "rrf": 0.0799,
+            "hits": [
+              "1/platform/dense#11",
+              "1/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P05#002:00",
+            "section": "P05 第二条 商品状态的三档划分",
+            "rrf": 0.0785,
+            "hits": [
+              "1/platform/dense#6",
+              "1/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P01#006:00",
+            "section": "P01 第六章 消费者的义务 > 6.1 诚实信用",
+            "rrf": 0.0777,
+            "hits": [
+              "1/platform/dense#2",
+              "1/platform/bm25#11"
+            ]
+          },
+          {
+            "chunk_id": "L01#004:00",
+            "section": "L01 第二十五条 【网络购物七日无理由退货】",
+            "rrf": 0.0769,
+            "hits": [
+              "1/law/dense#6",
+              "1/law/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "L02#002:03",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第九条 【商品不完好的分类判定标准】",
+            "rrf": 0.0768,
+            "hits": [
+              "1/law/dense#10",
+              "1/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P11#008:00",
+            "section": "P11 第八条 珠宝、贵金属与奢侈品",
+            "rrf": 0.0747,
+            "hits": [
+              "1/platform/dense#3",
+              "1/platform/bm25#12"
+            ]
+          },
+          {
+            "chunk_id": "P04#002:01",
+            "section": "P04 第二条 经消费者确认后不适用无理由退货的商品 > 2.1 拆封后影响人身安全或商品品质的商品",
+            "rrf": 0.0733,
+            "hits": [
+              "1/platform/dense#5",
+              "1/platform/bm25#10"
+            ]
+          },
+          {
+            "chunk_id": "L01#002:00",
+            "section": "L01 第二十三条 【瑕疵举证责任倒置】",
+            "rrf": 0.0702,
+            "hits": [
+              "1/law/dense#9",
+              "1/law/bm25#8"
+            ]
+          },
+          {
+            "chunk_id": "P05#004:00",
+            "section": "P05 第四条 退回商品的验收 > 4.1 验收范围",
+            "rrf": 0.067,
+            "hits": [
+              "1/platform/dense#12",
+              "1/platform/bm25#8"
+            ]
+          },
+          {
+            "chunk_id": "L01#007:00",
+            "section": "L01 第四十八条 【经营者民事责任】",
+            "rrf": 0.0657,
+            "hits": [
+              "1/law/dense#12",
+              "1/law/bm25#9"
+            ]
+          },
+          {
+            "chunk_id": "P05#003:00",
+            "section": "P05 第三条 分类目的「不完好」判定标准",
+            "rrf": 0.0455,
+            "hits": [
+              "1/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L02#002:01",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】",
+            "rrf": 0.0455,
+            "hits": [
+              "1/law/dense#2"
+            ]
+          },
+          {
+            "chunk_id": "P11#005:01",
+            "section": "P11 第五条 服装、鞋帽、箱包 > 5.2 试穿的界限",
+            "rrf": 0.0435,
+            "hits": [
+              "1/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L01#003:00",
+            "section": "L01 第二十四条 【质量不符时的退货、更换、修理】",
+            "rrf": 0.0435,
+            "hits": [
+              "1/law/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "P11#006:00",
+            "section": "P11 第六条 食品、保健食品、化妆品 > 6.1 密封包装",
+            "rrf": 0.0417,
+            "hits": [
+              "1/platform/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "L03#002:00",
+            "section": "L03 第十条 【明码标价与自动续费告知】",
+            "rrf": 0.0417,
+            "hits": [
+              "1/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "L02#004:05",
+            "section": "L02 第四章 特别规定 > 第二十五条 【退货商品的检验与再销售】",
+            "rrf": 0.04,
+            "hits": [
+              "1/law/dense#5"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d611c2875bcc393a",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.062,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:51:44.398Z",
+      "updatedAt": "2026-08-18T11:51:44.420Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "1f4c897de06c8218",
+      "traceId": "5b3a54257cce0532d0bd68d2320a7594",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 11:51:42.609000+00:00",
+      "endTime": "2026-08-18 11:51:42.623000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "L03#005:00",
+          "L02#002:02",
+          "P05#001:00",
+          "P05#002:00",
+          "L02#002:03",
+          "L01#003:00",
+          "L01#004:00",
+          "P11#005:01",
+          "L01#007:00",
+          "P02#002:00",
+          "P01#006:00",
+          "L02#002:01",
+          "L01#002:00"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】",
+            "text": "经营者通过网络、电视、电话、邮购等方式销售商品的，应当遵守消费者权益保护法第二十五条规定，不得擅自扩大不适用无理由退货的商品范围。\n\n经营者应当以显著方式对不适用无理由退货的商品进行标注，提示消费者在购买时进行确认，不得将不适用无理由退货作为消费者默认同意的选项。未经消费者确认，经营者不得拒绝无理由退货。\n\n消费者退货的商品应当完好。消费者基于查验需要打开商品包装，或者为确认商品的品质和功能进行合理调试而不影响商品原有品质、功能和外观的，经营者应当予以退货。\n\n消费者无理由退货应当遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。\n\n> **适用要点**：本条是**平台风控规则的法律依据**。第四款首次在行政法规层面确立「无理由退货不得滥用」，平台对高频异常退款账户采取限制自动通道、转人工审核等措施，据此具备合法性——但措施须与滥用程度相当，不得直接剥夺法定退货权。",
+            "score": 0.9791864681243897,
+            "doc_id": "L03",
+            "layer": "law",
+            "doc_type": "行政法规",
+            "effective_date": "2024-07-01",
+            "source_path": "doc/policy/law/L03-消费者权益保护法实施条例-摘录.md",
+            "reason": "相关性 0.999 × 先验 0.90 → 0.979；命中 1/law/dense#4, 1/law/bm25#2"
+          },
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】 … 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+            "text": "下列商品不适用七日无理由退货规定：\n\n（一）消费者定作的商品；\n\n（二）鲜活易腐的商品；\n\n（三）在线下载或者消费者拆封的音像制品、计算机软件等数字化商品；\n\n（四）交付的报纸、期刊。\n\n> **判定要点**：这是**封闭清单**，四类之外的商品不得以「商品性质特殊」为由直接排除。定制商品、生鲜商品、已激活的虚拟商品分别落在第（一）（二）（三）项。\n\n下列性质的商品经消费者在购买时确认，可以不适用七日无理由退货规定：\n\n（一）拆封后易影响人身安全或者生命健康的商品，或者拆封后易导致商品品质发生改变的商品；\n\n（二）一经激活或者试用后价值贬损较大的商品；\n\n（三）销售时已明示的临近保质期的商品、有瑕疵的商品。\n\n> **判定要点**：本条商品**必须有消费者购买时的确认记录**才能排除退货。没有确认记录的，销售者不得拒绝退货（见第二十条第二款）。\n\n消费者退回的商品应当完好。\n\n商品能够保持原有品质、功能，商品本身、配件、商标标识齐全的，视为商品完好。\n\n消费者基于查验需要而打开商品包装，或者为确认商品的品质、功能而进行合理的调试不影响商品的完好。\n\n> **判定要点**：**「拆封」不等于「不完好」**。仅因买家拆开包装查验即拒绝退货，属违法。判定商品状态时须区分「拆封查验」与「超出查验需要的使用」。\n\n对超出查验和确认商品品质、功能需要而使用商品，导致商品价值贬损较大的，视为商品不完好。具体判定标准如下：\n\n（一）食品（含保健食品）、化妆品、医疗器械、计生用品：必要的一次性密封包装被损坏；\n\n（二）电子电器类：进行未经授权的维修、改动，破坏、涂改强制性产品认证标志、指示标贴、机器序列号等，有难以恢复原状的外观类使用痕迹，或者产生激活、授权信息、不合理的个人使用数据留存等数据类使用痕迹；\n\n（三）服装、鞋帽、箱包、玩具、家纺、家居类：商标标识被摘、标识被剪，商品受污、受损。\n\n下列商品不适用七日无理由退货规定：\n\n（一）消费者定作的商品；\n\n（二）鲜活易腐的商品；\n\n（三）在线下载或者消费者拆封的音像制品、计算机软件等数字化商品；\n\n（四）交付的报纸、期刊。\n\n> **判定要点**：这是**封闭清单**，四类之外的商品不得以「商品性质特殊」为由直接排除。定制商品、生鲜商品、已激活的虚拟商品分别落在第（一）（二）（三）项。\n\n下列性质的商品经消费者在购买时确认，可以不适用七日无理由退货规定：\n\n（一）拆封后易影响人身安全或者生命健康的商品，或者拆封后易导致商品品质发生改变的商品；\n\n（二）一经激活或者试用后价值贬损较大的商品；\n\n（三）销售时已明示的临近保质期的商品、有瑕疵的商品。\n\n> **判定要点**：本条商品**必须有消费者购买时的确认记录**才能排除退货。没有确认记录的，销售者不得拒绝退货（见第二十条第二款）。\n\n消费者退回的商品应当完好。\n\n商品能够保持原有品质、功能，商品本身、配件、商标标识齐全的，视为商品完好。\n\n消费者基于查验需要而打开商品包装，或者为确认商品的品质、功能而进行合理的调试不影响商品的完好。\n\n> **判定要点**：**「拆封」不等于「不完好」**。仅因买家拆开包装查验即拒绝退货，属违法。判定商品状态时须区分「拆封查验」与「超出查验需要的使用」。\n\n对超出查验和确认商品品质、功能需要而使用商品，导致商品价值贬损较大的，视为商品不完好。具体判定标准如下：\n\n（一）食品（含保健食品）、化妆品、医疗器械、计生用品：必要的一次性密封包装被损坏；\n\n（二）电子电器类：进行未经授权的维修、改动，破坏、涂改强制性产品认证标志、指示标贴、机器序列号等，有难以恢复原状的外观类使用痕迹，或者产生激活、授权信息、不合理的个人使用数据留存等数据类使用痕迹；\n\n（三）服装、鞋帽、箱包、玩具、家纺、家居类：商标标识被摘、标识被剪，商品受污、受损。\n\n下列商品不适用七日无理由退货规定：\n\n（一）消费者定作的商品；\n\n（二）鲜活易腐的商品；\n\n（三）在线下载或者消费者拆封的音像制品、计算机软件等数字化商品；\n\n（四）交付的报纸、期刊。\n\n> **判定要点**：这是**封闭清单**，四类之外的商品不得以「商品性质特殊」为由直接排除。定制商品、生鲜商品、已激活的虚拟商品分别落在第（一）（二）（三）项。\n\n下列性质的商品经消费者在购买时确认，可以不适用七日无理由退货规定：\n\n（一）拆封后易影响人身安全或者生命健康的商品，或者拆封后易导致商品品质发生改变的商品；\n\n（二）一经激活或者试用后价值贬损较大的商品；\n\n（三）销售时已明示的临近保质期的商品、有瑕疵的商品。\n\n> **判定要点**：本条商品**必须有消费者购买时的确认记录**才能排除退货。没有确认记录的，销售者不得拒绝退货（见第二十条第二款）。\n\n消费者退回的商品应当完好。\n\n商品能够保持原有品质、功能，商品本身、配件、商标标识齐全的，视为商品完好。\n\n消费者基于查验需要而打开商品包装，或者为确认商品的品质、功能而进行合理的调试不影响商品的完好。\n\n> **判定要点**：**「拆封」不等于「不完好」**。仅因买家拆开包装查验即拒绝退货，属违法。判定商品状态时须区分「拆封查验」与「超出查验需要的使用」。\n\n对超出查验和确认商品品质、功能需要而使用商品，导致商品价值贬损较大的，视为商品不完好。具体判定标准如下：\n\n（一）食品（含保健食品）、化妆品、医疗器械、计生用品：必要的一次性密封包装被损坏；\n\n（二）电子电器类：进行未经授权的维修、改动，破坏、涂改强制性产品认证标志、指示标贴、机器序列号等，有难以恢复原状的外观类使用痕迹，或者产生激活、授权信息、不合理的个人使用数据留存等数据类使用痕迹；\n\n（三）服装、鞋帽、箱包、玩具、家纺、家居类：商标标识被摘、标识被剪，商品受污、受损。",
+            "score": 0.9705572414398195,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.988 × 先验 0.90 → 0.971；命中 1/law/dense#1, 1/law/bm25#1"
+          },
+          {
+            "section": "P05 星辰优选商品完好标准与验收规范 > 第一条 商品完好的基本定义 … 第二条 商品状态的三档划分",
+            "text": "1.1 **商品能够保持原有品质、功能，商品本身、配件、商标标识齐全的，视为商品完好。**\n\n1.2 **消费者基于查验需要而打开商品包装，或者为确认商品的品质、功能而进行合理的调试，不影响商品的完好。**\n\n1.3 **「拆封」不等于「不完好」。** 平台与商家不得仅因外包装被打开即拒绝无理由退货。\n\n平台在受理无理由退货时，将商品状态划分为三档：\n\n| 状态 | 判定要素 | 无理由退货 |\n|---|---|---|\n| **未拆封** | 外包装完整，密封条、封口、塑封未破坏；商品未从原包装中取出 | ✅ 支持 |\n| **已拆封** | 包装已开启，商品已取出查验，但未投入实际使用，无使用痕迹 | ❌ 不支持 |\n| **已使用** | 商品已实际使用，存在使用痕迹、消耗、激活或数据留存 | ❌ 不支持 |\n\n2.1 无理由退货**仅接受「未拆封」**。这是平台在法定标准之上对商品二次销售价值的进一步要求，已在商品详情页与售后政策中公示。\n\n2.2 **质量问题退货不受本条限制**——商品已拆封、已使用，均不影响质量问题退货的受理。\n\n2.3 消费者对商品状态的陈述与实际退回商品不符的，按第五条处理。",
+            "score": 0.9609509277343751,
+            "doc_id": "P05",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P05-商品完好标准与验收规范.md",
+            "reason": "相关性 0.976 × 先验 0.90 → 0.961；命中 1/platform/dense#11, 1/platform/bm25#1"
+          },
+          {
+            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】 … 第二十五条 【网络购物七日无理由退货】",
+            "text": "经营者应当保证在正常使用商品或者接受服务的情况下其提供的商品或者服务应当具有的质量、性能、用途和有效期限；但消费者在购买该商品或者接受该服务前已经知道其存在瑕疵，且存在该瑕疵不违反法律强制性规定的除外。\n\n经营者以广告、产品说明、实物样品或者其他方式表明商品或者服务的质量状况的，应当保证其提供的商品或者服务的实际质量与表明的质量状况相符。\n\n**经营者提供的机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品或者装饰装修等服务，消费者自接受商品或者服务之日起六个月内发现瑕疵，发生争议的，由经营者承担有关瑕疵的举证责任。**\n\n> **售后适用要点**：耐用商品六个月内的质量争议，举证责任在经营者一方，不能要求消费者自证商品有质量问题。\n\n经营者提供的商品或者服务不符合质量要求的，消费者可以依照国家规定、当事人约定退货，或者要求经营者履行更换、修理等义务。没有国家规定和当事人约定的，消费者可以自收到商品之日起七日内退货；七日后符合法定解除合同条件的，消费者可以及时退货，不符合法定解除合同条件的，可以要求经营者履行更换、修理等义务。\n\n依照前款规定进行退货、更换、修理的，经营者应当承担运输等必要费用。\n\n> **售后适用要点**：**质量问题退货的运费由经营者承担**，与无理由退货运费由消费者承担（第二十五条）相反。判定退款时必须先区分「无理由」与「质量问题」，两者的运费归属、窗口期、商品完好要求均不同。\n\n经营者采用网络、电视、电话、邮购等方式销售商品，消费者有权自收到商品之日起七日内退货，且无需说明理由，但下列商品除外：\n\n（一）消费者定作的；\n\n（二）鲜活易腐的；\n\n（三）在线下载或者消费者拆封的音像制品、计算机软件等数字化商品；\n\n（四）交付的报纸、期刊。\n\n除前款所列商品外，其他根据商品性质并经消费者在购买时确认不宜退货的商品，不适用无理由退货。\n\n消费者退货的商品应当完好。经营者应当自收到退回商品之日起七日内返还消费者支付的商品价款。退回商品的运费由消费者承担；经营者和消费者另有约定的，按照约定。\n\n> **售后适用要点**：这是「七天无理由退货」的法律出处。四类法定除外商品是**排除项的封闭清单**，经营者不得擅自扩大（见 [L03] 实施条例第十九条）。第五款所列「其他不宜退货商品」必须**逐单经消费者购买时确认**才能排除，默认勾选无效。",
+            "score": 0.6272781658172608,
+            "doc_id": "L01",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2014-03-15",
+            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
+            "reason": "相关性 0.559 × 先验 0.90 → 0.627；命中 1/law/dense#3"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d611c2875bcc393a",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.014,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:51:44.398Z",
+      "updatedAt": "2026-08-18T11:51:44.414Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "673e5e4685b06aca",
+      "traceId": "5b3a54257cce0532d0bd68d2320a7594",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 11:51:41.741000+00:00",
+      "endTime": "2026-08-18 11:51:41.742000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 12,
+              "law": 12
+            },
+            "law_weight": 1
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d611c2875bcc393a",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:51:44.398Z",
+      "updatedAt": "2026-08-18T11:51:44.414Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "0c7949b5399209f3",
+      "traceId": "5b3a54257cce0532d0bd68d2320a7594",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 11:51:40.631000+00:00",
+      "endTime": "2026-08-18 11:51:41.741000+00:00",
+      "input": {
+        "query": "消费者基于查验需要打开商品包装，但未影响商品原有品质、功能和外观的，经营者是否应当予以退货？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": true,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "condition",
+            "text": "消费者基于查验需要打开商品包装但未影响商品原有品质、功能和外观的，经营者是否应当予以退货？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d611c2875bcc393a",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.11,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:51:44.398Z",
+      "updatedAt": "2026-08-18T11:51:44.413Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    }
+  ]
+}

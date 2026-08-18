@@ -105,9 +105,12 @@ class BgeM3Embedder:
 
     # ── 编码 ──────────────────────────────────────────────────────────────
     def _encode(self, texts: list[str]) -> list[list[float]]:
+        from llm.device import inference_lock
+
         torch = self._torch
         out: list[list[float]] = []
-        with torch.inference_mode():
+        # 前向必须串行：MPS 后端不是线程安全的，并发跑会段错误（llm/device.py）
+        with inference_lock(), torch.inference_mode():
             for i in range(0, len(texts), BATCH_SIZE):
                 batch = texts[i : i + BATCH_SIZE]
                 enc = self.tokenizer(

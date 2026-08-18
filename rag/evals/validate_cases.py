@@ -14,7 +14,9 @@
 2. **重叠率**：口语档抄了原文的词，Recall 会虚高（5.1）。这项报警告不报错，
    超线的样本由人决定重写还是降级为 formal 档。
 3. **参考答案可溯源**：答案里的数字必须在种子块正文出现过。凭空出现的数字是幻觉，
-   而 Context Recall 会把它算成「检索没召回」，把生成的问题记到检索头上。
+   而 Context Recall 会把它算成「检索没召回」，把生成的问题记到检索头上。同一项还查
+   `claims`（Context Recall 的分母）：数字必须在参考答案里出现过，改了答案没重拆
+   claim 会被这一项抓住。
 4. **`case_id` 与 query 去重**：措辞几乎相同的两条 query 会让同一类问题被重复计权。
 5. **分层覆盖**：16 篇文档、两个 layer、两种 kind 都要有样本，冷门文档不低于下限。
 """
@@ -43,6 +45,10 @@ MIN_CASES_PER_DOC = 4
 
 MIN_QUERY_DISTANCE = 0.15
 """两条 query 的实词差异下限。低于它视为重复问法。"""
+
+MIN_CLAIM_CHARS = 8
+"""claim 的字数下限。claim 要独立可读（不带指代、主语和前提都在句子里），比这更短的
+基本是把一句话切碎的产物，judge 拿到它只能判不支撑。"""
 
 STYLES = {"formal", "colloquial"}
 TYPES = {"single", "multi_hop", "unanswerable"}
@@ -85,7 +91,36 @@ def _check_shape(rep: Report, case: dict) -> bool:
         rep.fail(cid, "unanswerable 样本不该有参考答案 —— 语料里没有的事没有正确答案")
     if case["type"] != "unanswerable" and not case["reference_answer"].strip():
         rep.fail(cid, "参考答案为空，算不了 Context Recall")
+    _check_claims(rep, case)
     return True
+
+
+def _check_claims(rep: Report, case: dict) -> None:
+    """claims 是 Context Recall 的分母，缺了那条样本就没有这个指标。
+
+    改了参考答案而 claims 没跟着改，是这里最想抓的情况：分母还是老的，分数看着正常。
+    没法逐字比对（claim 本来就是改写过的句子），退而查数字 —— 答案里改掉一个天数、
+    claim 里还留着旧的，这一项就报出来。
+    """
+    cid = case["case_id"]
+    claims = case.get("claims") or []
+    if case["type"] == "unanswerable":
+        if claims:
+            rep.fail(cid, "unanswerable 样本不该有 claims —— 没有参考答案就没有分母")
+        return
+    if not claims:
+        rep.warn(cid, "没有 claims，跑 --judge 时这条不计入 Context Recall；"
+                      "用 python rag/evals/generate_claims.py 补")
+        return
+
+    # 「可以退。」这种脱离上下文读不懂的 claim，judge 只能判不支撑，白扣一格分母
+    if short := [c for c in claims if len(c.strip()) < MIN_CLAIM_CHARS]:
+        rep.warn(cid, f"claim 太短、离开答案读不懂：{short} —— 重拆或手工合并")
+
+    pool = set(_NUMBER.findall(case["reference_answer"]))
+    stray = sorted({n for c in claims for n in _NUMBER.findall(c)} - pool)
+    if stray:
+        rep.fail(cid, f"claims 里的数字 {stray} 在参考答案里找不到 —— 答案改过而 claims 没重拆？")
 
 
 def _check_traceable(rep: Report, case: dict, source: str) -> None:

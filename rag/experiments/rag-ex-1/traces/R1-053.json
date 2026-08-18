@@ -1,0 +1,1403 @@
+{
+  "case": {
+    "case_id": "R1-053",
+    "type": "single",
+    "style": "formal",
+    "doc_id": "P06",
+    "layer": "platform",
+    "kind": "text",
+    "seed_chunk_id": [
+      "P06#003:00"
+    ],
+    "error": null,
+    "scores": {
+      "recall@10": 1.0,
+      "recall@3": 1.0,
+      "recall@1": 1.0,
+      "evidence_tokens": 674,
+      "duplicate_ratio": 0.75,
+      "context_recall": 1.0,
+      "context_relevance": 0.286
+    },
+    "elapsed_s": 2.0,
+    "seed_rank": {
+      "candidate": {
+        "P06#003:00": 1
+      },
+      "evidence": {
+        "P06#003:00": 1
+      }
+    },
+    "sections": [
+      "P06 星辰优选运费与退货物流规则 > 第四条 运费险 > 4.1 运费险的性质 … 第四条 运费险 > 4.4 不赔付情形"
+    ],
+    "judge": {
+      "context_recall": {
+        "score": 1.0,
+        "n": 4,
+        "hit": 4,
+        "detail": [
+          {
+            "claim": "运费险由保险公司承保。",
+            "supported": true,
+            "reason": "上下文明确写“运费险由保险公司承保”。"
+          },
+          {
+            "claim": "运费险的赔付金额按保单约定。",
+            "supported": true,
+            "reason": "上下文明确写“赔付金额按保单约定”。"
+          },
+          {
+            "claim": "运费险的赔付金额可能低于实际运费。",
+            "supported": true,
+            "reason": "上下文明确写“可能低于实际运费”。"
+          },
+          {
+            "claim": "运费险的存在不改变本规则第一条的运费承担原则。",
+            "supported": true,
+            "reason": "上下文明确写“不改变本规则第一条的运费承担原则”。"
+          }
+        ],
+        "error": null
+      },
+      "context_relevance": {
+        "score": 0.286,
+        "n": 28,
+        "hit": 8,
+        "truncated": false,
+        "note": "不相关的主要是重复内容、到账时间、不赔情形等。",
+        "irrelevant": [
+          "运费险的存在不改变本规则第一条的运费承担原则。",
+          "投保运费险的订单成功退货后，保险公司按保单约定自动赔付至消费者账户，通常在退款完成后 **24 小时**内到账。",
+          "- 退货申请被驳回、未实际完成退货的；",
+          "- 未使用保单指定的物流方式的；",
+          "- 同一订单已获赔的部分。",
+          "运费险的存在不改变本规则第一条的运费承担原则。",
+          "投保运费险的订单成功退货后，保险公司按保单约定自动赔付至消费者账户，通常在退款完成后 **24 小时**内到账。",
+          "- 退货申请被驳回、未实际完成退货的；",
+          "- 未使用保单指定的物流方式的；",
+          "- 同一订单已获赔的部分。"
+        ],
+        "error": null
+      }
+    },
+    "trace_id": "f60d2b68c2a5a09c6b74b3ec45c70a34"
+  },
+  "trace": {
+    "id": "f60d2b68c2a5a09c6b74b3ec45c70a34",
+    "name": "experiment-item-run",
+    "timestamp": "2026-08-18 11:47:58.277000+00:00"
+  },
+  "observations": [
+    {
+      "id": "7873af824beb3dad",
+      "traceId": "f60d2b68c2a5a09c6b74b3ec45c70a34",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-18 11:47:14.815000+00:00",
+      "endTime": "2026-08-18 11:48:05.540000+00:00",
+      "input": {
+        "query": "运费险的赔付金额是否一定等于实际产生的运费？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-053",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "formal",
+        "doc_id": "P06",
+        "section": "第四条 运费险 > 4.1 运费险的性质",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.474,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-053",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "P06",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P06#003:00"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 674,
+          "duplicate_ratio": 0.75,
+          "context_recall": 1,
+          "context_relevance": 0.286
+        },
+        "elapsed_s": 2,
+        "seed_rank": {
+          "candidate": {
+            "P06#003:00": 1
+          },
+          "evidence": {
+            "P06#003:00": 1
+          }
+        },
+        "sections": [
+          "P06 星辰优选运费与退货物流规则 > 第四条 运费险 > 4.1 运费险的性质 … 第四条 运费险 > 4.4 不赔付情形"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 4,
+            "hit": 4,
+            "detail": [
+              {
+                "claim": "运费险由保险公司承保。",
+                "supported": true,
+                "reason": "上下文明确写“运费险由保险公司承保”。"
+              },
+              {
+                "claim": "运费险的赔付金额按保单约定。",
+                "supported": true,
+                "reason": "上下文明确写“赔付金额按保单约定”。"
+              },
+              {
+                "claim": "运费险的赔付金额可能低于实际运费。",
+                "supported": true,
+                "reason": "上下文明确写“可能低于实际运费”。"
+              },
+              {
+                "claim": "运费险的存在不改变本规则第一条的运费承担原则。",
+                "supported": true,
+                "reason": "上下文明确写“不改变本规则第一条的运费承担原则”。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.286,
+            "n": 28,
+            "hit": 8,
+            "truncated": false,
+            "note": "不相关的主要是重复内容、到账时间、不赔情形等。",
+            "irrelevant": [
+              "运费险的存在不改变本规则第一条的运费承担原则。",
+              "投保运费险的订单成功退货后，保险公司按保单约定自动赔付至消费者账户，通常在退款完成后 **24 小时**内到账。",
+              "- 退货申请被驳回、未实际完成退货的；",
+              "- 未使用保单指定的物流方式的；",
+              "- 同一订单已获赔的部分。",
+              "运费险的存在不改变本规则第一条的运费承担原则。",
+              "投保运费险的订单成功退货后，保险公司按保单约定自动赔付至消费者账户，通常在退款完成后 **24 小时**内到账。",
+              "- 退货申请被驳回、未实际完成退货的；",
+              "- 未使用保单指定的物流方式的；",
+              "- 同一订单已获赔的部分。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 50.725,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:48:07.984Z",
+      "updatedAt": "2026-08-18T11:48:08.003Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "d1b2dc11cdb0eb24",
+      "traceId": "f60d2b68c2a5a09c6b74b3ec45c70a34",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-18 11:47:14.815000+00:00",
+      "endTime": "2026-08-18 11:48:05.537000+00:00",
+      "input": {
+        "query": "运费险的赔付金额是否一定等于实际产生的运费？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "baseline-5",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-053",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "formal",
+        "doc_id": "P06",
+        "section": "第四条 运费险 > 4.1 运费险的性质",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.474,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-053",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "P06",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P06#003:00"
+        ],
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 674,
+          "duplicate_ratio": 0.75,
+          "context_recall": 1,
+          "context_relevance": 0.286
+        },
+        "elapsed_s": 2,
+        "seed_rank": {
+          "candidate": {
+            "P06#003:00": 1
+          },
+          "evidence": {
+            "P06#003:00": 1
+          }
+        },
+        "sections": [
+          "P06 星辰优选运费与退货物流规则 > 第四条 运费险 > 4.1 运费险的性质 … 第四条 运费险 > 4.4 不赔付情形"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 4,
+            "hit": 4,
+            "detail": [
+              {
+                "claim": "运费险由保险公司承保。",
+                "supported": true,
+                "reason": "上下文明确写“运费险由保险公司承保”。"
+              },
+              {
+                "claim": "运费险的赔付金额按保单约定。",
+                "supported": true,
+                "reason": "上下文明确写“赔付金额按保单约定”。"
+              },
+              {
+                "claim": "运费险的赔付金额可能低于实际运费。",
+                "supported": true,
+                "reason": "上下文明确写“可能低于实际运费”。"
+              },
+              {
+                "claim": "运费险的存在不改变本规则第一条的运费承担原则。",
+                "supported": true,
+                "reason": "上下文明确写“不改变本规则第一条的运费承担原则”。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.286,
+            "n": 28,
+            "hit": 8,
+            "truncated": false,
+            "note": "不相关的主要是重复内容、到账时间、不赔情形等。",
+            "irrelevant": [
+              "运费险的存在不改变本规则第一条的运费承担原则。",
+              "投保运费险的订单成功退货后，保险公司按保单约定自动赔付至消费者账户，通常在退款完成后 **24 小时**内到账。",
+              "- 退货申请被驳回、未实际完成退货的；",
+              "- 未使用保单指定的物流方式的；",
+              "- 同一订单已获赔的部分。",
+              "运费险的存在不改变本规则第一条的运费承担原则。",
+              "投保运费险的订单成功退货后，保险公司按保单约定自动赔付至消费者账户，通常在退款完成后 **24 小时**内到账。",
+              "- 退货申请被驳回、未实际完成退货的；",
+              "- 未使用保单指定的物流方式的；",
+              "- 同一订单已获赔的部分。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "7873af824beb3dad",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 50.722,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:48:07.984Z",
+      "updatedAt": "2026-08-18T11:48:08.003Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "cf67a7db64988b29",
+      "traceId": "f60d2b68c2a5a09c6b74b3ec45c70a34",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-18 11:48:05.538000+00:00",
+      "endTime": "2026-08-18 11:48:05.540000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "7873af824beb3dad",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.002,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:48:07.984Z",
+      "updatedAt": "2026-08-18T11:48:08.002Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "8a57db5c6c5f865e",
+      "traceId": "f60d2b68c2a5a09c6b74b3ec45c70a34",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-18 11:48:05.538000+00:00",
+      "endTime": "2026-08-18 11:48:05.539000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "运费险的赔付金额是否一定等于实际产生的运费？"
+        },
+        "output": {
+          "case_id": "R1-053",
+          "type": "single",
+          "style": "formal",
+          "doc_id": "P06",
+          "layer": "platform",
+          "kind": "text",
+          "seed_chunk_id": [
+            "P06#003:00"
+          ],
+          "error": null,
+          "scores": {
+            "recall@10": 1,
+            "recall@3": 1,
+            "recall@1": 1,
+            "evidence_tokens": 674,
+            "duplicate_ratio": 0.75,
+            "context_recall": 1,
+            "context_relevance": 0.286
+          },
+          "elapsed_s": 2,
+          "seed_rank": {
+            "candidate": {
+              "P06#003:00": 1
+            },
+            "evidence": {
+              "P06#003:00": 1
+            }
+          },
+          "sections": [
+            "P06 星辰优选运费与退货物流规则 > 第四条 运费险 > 4.1 运费险的性质 … 第四条 运费险 > 4.4 不赔付情形"
+          ],
+          "judge": {
+            "context_recall": {
+              "score": 1,
+              "n": 4,
+              "hit": 4,
+              "detail": [
+                {
+                  "claim": "运费险由保险公司承保。",
+                  "supported": true,
+                  "reason": "上下文明确写“运费险由保险公司承保”。"
+                },
+                {
+                  "claim": "运费险的赔付金额按保单约定。",
+                  "supported": true,
+                  "reason": "上下文明确写“赔付金额按保单约定”。"
+                },
+                {
+                  "claim": "运费险的赔付金额可能低于实际运费。",
+                  "supported": true,
+                  "reason": "上下文明确写“可能低于实际运费”。"
+                },
+                {
+                  "claim": "运费险的存在不改变本规则第一条的运费承担原则。",
+                  "supported": true,
+                  "reason": "上下文明确写“不改变本规则第一条的运费承担原则”。"
+                }
+              ],
+              "error": null
+            },
+            "context_relevance": {
+              "score": 0.286,
+              "n": 28,
+              "hit": 8,
+              "truncated": false,
+              "note": "不相关的主要是重复内容、到账时间、不赔情形等。",
+              "irrelevant": [
+                "运费险的存在不改变本规则第一条的运费承担原则。",
+                "投保运费险的订单成功退货后，保险公司按保单约定自动赔付至消费者账户，通常在退款完成后 **24 小时**内到账。",
+                "- 退货申请被驳回、未实际完成退货的；",
+                "- 未使用保单指定的物流方式的；",
+                "- 同一订单已获赔的部分。",
+                "运费险的存在不改变本规则第一条的运费承担原则。",
+                "投保运费险的订单成功退货后，保险公司按保单约定自动赔付至消费者账户，通常在退款完成后 **24 小时**内到账。",
+                "- 退货申请被驳回、未实际完成退货的；",
+                "- 未使用保单指定的物流方式的；",
+                "- 同一订单已获赔的部分。"
+              ],
+              "error": null
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [
+            "运费险由保险公司承保。",
+            "运费险的赔付金额按保单约定。",
+            "运费险的赔付金额可能低于实际运费。",
+            "运费险的存在不改变本规则第一条的运费承担原则。"
+          ],
+          "seed_chunk_id": [
+            "P06#003:00"
+          ],
+          "reference_answer": "运费险由保险公司承保，赔付金额按保单约定，可能低于实际运费。运费险的存在不改变本规则第一条的运费承担原则。"
+        },
+        "metadata": {
+          "kind": "text",
+          "type": "single",
+          "layer": "platform",
+          "style": "formal",
+          "doc_id": "P06",
+          "section": "第四条 运费险 > 4.1 运费险的性质",
+          "reviewed": false,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.474
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 1,
+          "comment": "种子块名次 P06#003:00=1"
+        },
+        {
+          "name": "recall@3",
+          "value": 1,
+          "comment": "种子块名次 P06#003:00=1"
+        },
+        {
+          "name": "recall@1",
+          "value": 1,
+          "comment": "种子块名次 P06#003:00=1"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 674,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0.75,
+          "comment": ""
+        },
+        {
+          "name": "context_recall",
+          "value": 1,
+          "comment": "4/4 条 claim 被支撑"
+        },
+        {
+          "name": "context_relevance",
+          "value": 0.286,
+          "comment": "8/28 个内容单元相关；不相关的主要是重复内容、到账时间、不赔情形等。"
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "cf67a7db64988b29",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:48:07.984Z",
+      "updatedAt": "2026-08-18T11:48:08.001Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "2244d7e40fd4b911",
+      "traceId": "f60d2b68c2a5a09c6b74b3ec45c70a34",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-18 11:48:00.233000+00:00",
+      "endTime": "2026-08-18 11:48:00.247000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "P06#003:00",
+          "P06#003:02",
+          "P06#003:03",
+          "P06#003:01"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P06 星辰优选运费与退货物流规则 > 第四条 运费险 > 4.1 运费险的性质 … 第四条 运费险 > 4.4 不赔付情形",
+            "text": "运费险由保险公司承保，**赔付金额按保单约定，可能低于实际运费**。运费险的存在不改变本规则第一条的运费承担原则。\n\n投保运费险的订单成功退货后，保险公司按保单约定自动赔付至消费者账户，通常在退款完成后 **24 小时**内到账。\n\n保险赔付金额不足以覆盖实际运费的，差额部分按第一条的归属原则处理——质量问题退货的差额由经营者补足，无理由退货的差额由消费者自行承担。\n\n- 退货申请被驳回、未实际完成退货的；\n- 未使用保单指定的物流方式的；\n- 同一订单已获赔的部分。\n\n运费险由保险公司承保，**赔付金额按保单约定，可能低于实际运费**。运费险的存在不改变本规则第一条的运费承担原则。\n\n投保运费险的订单成功退货后，保险公司按保单约定自动赔付至消费者账户，通常在退款完成后 **24 小时**内到账。\n\n保险赔付金额不足以覆盖实际运费的，差额部分按第一条的归属原则处理——质量问题退货的差额由经营者补足，无理由退货的差额由消费者自行承担。\n\n- 退货申请被驳回、未实际完成退货的；\n- 未使用保单指定的物流方式的；\n- 同一订单已获赔的部分。\n\n运费险由保险公司承保，**赔付金额按保单约定，可能低于实际运费**。运费险的存在不改变本规则第一条的运费承担原则。\n\n投保运费险的订单成功退货后，保险公司按保单约定自动赔付至消费者账户，通常在退款完成后 **24 小时**内到账。\n\n保险赔付金额不足以覆盖实际运费的，差额部分按第一条的归属原则处理——质量问题退货的差额由经营者补足，无理由退货的差额由消费者自行承担。\n\n- 退货申请被驳回、未实际完成退货的；\n- 未使用保单指定的物流方式的；\n- 同一订单已获赔的部分。\n\n运费险由保险公司承保，**赔付金额按保单约定，可能低于实际运费**。运费险的存在不改变本规则第一条的运费承担原则。\n\n投保运费险的订单成功退货后，保险公司按保单约定自动赔付至消费者账户，通常在退款完成后 **24 小时**内到账。\n\n保险赔付金额不足以覆盖实际运费的，差额部分按第一条的归属原则处理——质量问题退货的差额由经营者补足，无理由退货的差额由消费者自行承担。\n\n- 退货申请被驳回、未实际完成退货的；\n- 未使用保单指定的物流方式的；\n- 同一订单已获赔的部分。",
+            "score": 0.9545094299316407,
+            "doc_id": "P06",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P06-运费与退货物流规则.md",
+            "reason": "相关性 0.968 × 先验 0.90 → 0.955；命中 1/platform/dense#1, 1/platform/bm25#1"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "8ac314870d0fc9e3",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.014,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:48:02.940Z",
+      "updatedAt": "2026-08-18T11:48:02.963Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "ad222aeaf78709a1",
+      "traceId": "f60d2b68c2a5a09c6b74b3ec45c70a34",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-18 11:47:59.521000+00:00",
+      "endTime": "2026-08-18 11:48:00.232000+00:00",
+      "input": {
+        "query": "运费险的赔付金额是否一定等于实际产生的运费？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 4,
+        "min_score": 0.3,
+        "dropped": [
+          "L02#003:08",
+          "L01#003:00",
+          "P06#001:01",
+          "P06#002:01",
+          "P03#001:05",
+          "P06#000:00",
+          "P06#002:00",
+          "P06#006:00",
+          "P06#001:03",
+          "P06#001:02",
+          "L04#002:00",
+          "L05#025:00",
+          "L01#009:00",
+          "L02#003:07",
+          "L05#015:00",
+          "L03#004:00"
+        ],
+        "evidence": [
+          {
+            "chunk_id": "P06#003:00",
+            "section": "P06 第四条 运费险 > 4.1 运费险的性质",
+            "score": 0.955,
+            "relevance": 0.968,
+            "prior": 0.9,
+            "excerpt": "运费险由保险公司承保，**赔付金额按保单约定，可能低于实际运费**。运费险的存在不改变本规则第一条的运费承担原则。"
+          },
+          {
+            "chunk_id": "P06#003:02",
+            "section": "P06 第四条 运费险 > 4.3 赔付不足",
+            "score": 0.936,
+            "relevance": 0.945,
+            "prior": 0.9,
+            "excerpt": "保险赔付金额不足以覆盖实际运费的，差额部分按第一条的归属原则处理——质量问题退货的差额由经营者补足，无理由退货的差额由消费者自行承担。"
+          },
+          {
+            "chunk_id": "P06#003:03",
+            "section": "P06 第四条 运费险 > 4.4 不赔付情形",
+            "score": 0.405,
+            "relevance": 0.282,
+            "prior": 0.9,
+            "excerpt": "- 退货申请被驳回、未实际完成退货的； - 未使用保单指定的物流方式的； - 同一订单已获赔的部分。"
+          },
+          {
+            "chunk_id": "P06#003:01",
+            "section": "P06 第四条 运费险 > 4.2 赔付触发",
+            "score": 0.335,
+            "relevance": 0.194,
+            "prior": 0.9,
+            "excerpt": "投保运费险的订单成功退货后，保险公司按保单约定自动赔付至消费者账户，通常在退款完成后 **24 小时**内到账。"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "8ac314870d0fc9e3",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.711,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:48:02.940Z",
+      "updatedAt": "2026-08-18T11:48:02.963Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "8ac314870d0fc9e3",
+      "traceId": "f60d2b68c2a5a09c6b74b3ec45c70a34",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-18 11:47:58.277000+00:00",
+      "endTime": "2026-08-18 11:48:00.247000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "运费险的赔付金额是否一定等于实际产生的运费？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P06 星辰优选运费与退货物流规则 > 第四条 运费险 > 4.1 运费险的性质 … 第四条 运费险 > 4.4 不赔付情形",
+            "text": "运费险由保险公司承保，**赔付金额按保单约定，可能低于实际运费**。运费险的存在不改变本规则第一条的运费承担原则。\n\n投保运费险的订单成功退货后，保险公司按保单约定自动赔付至消费者账户，通常在退款完成后 **24 小时**内到账。\n\n保险赔付金额不足以覆盖实际运费的，差额部分按第一条的归属原则处理——质量问题退货的差额由经营者补足，无理由退货的差额由消费者自行承担。\n\n- 退货申请被驳回、未实际完成退货的；\n- 未使用保单指定的物流方式的；\n- 同一订单已获赔的部分。\n\n运费险由保险公司承保，**赔付金额按保单约定，可能低于实际运费**。运费险的存在不改变本规则第一条的运费承担原则。\n\n投保运费险的订单成功退货后，保险公司按保单约定自动赔付至消费者账户，通常在退款完成后 **24 小时**内到账。\n\n保险赔付金额不足以覆盖实际运费的，差额部分按第一条的归属原则处理——质量问题退货的差额由经营者补足，无理由退货的差额由消费者自行承担。\n\n- 退货申请被驳回、未实际完成退货的；\n- 未使用保单指定的物流方式的；\n- 同一订单已获赔的部分。\n\n运费险由保险公司承保，**赔付金额按保单约定，可能低于实际运费**。运费险的存在不改变本规则第一条的运费承担原则。\n\n投保运费险的订单成功退货后，保险公司按保单约定自动赔付至消费者账户，通常在退款完成后 **24 小时**内到账。\n\n保险赔付金额不足以覆盖实际运费的，差额部分按第一条的归属原则处理——质量问题退货的差额由经营者补足，无理由退货的差额由消费者自行承担。\n\n- 退货申请被驳回、未实际完成退货的；\n- 未使用保单指定的物流方式的；\n- 同一订单已获赔的部分。\n\n运费险由保险公司承保，**赔付金额按保单约定，可能低于实际运费**。运费险的存在不改变本规则第一条的运费承担原则。\n\n投保运费险的订单成功退货后，保险公司按保单约定自动赔付至消费者账户，通常在退款完成后 **24 小时**内到账。\n\n保险赔付金额不足以覆盖实际运费的，差额部分按第一条的归属原则处理——质量问题退货的差额由经营者补足，无理由退货的差额由消费者自行承担。\n\n- 退货申请被驳回、未实际完成退货的；\n- 未使用保单指定的物流方式的；\n- 同一订单已获赔的部分。",
+            "score": 0.9545094299316407,
+            "doc_id": "P06",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P06-运费与退货物流规则.md",
+            "reason": "相关性 0.968 × 先验 0.90 → 0.955；命中 1/platform/dense#1, 1/platform/bm25#1"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d1b2dc11cdb0eb24",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.97,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:48:02.940Z",
+      "updatedAt": "2026-08-18T11:48:02.962Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "fdac06b0a2b11737",
+      "traceId": "f60d2b68c2a5a09c6b74b3ec45c70a34",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-18 11:47:59.448000+00:00",
+      "endTime": "2026-08-18 11:47:59.448000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "8ac314870d0fc9e3",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:48:02.940Z",
+      "updatedAt": "2026-08-18T11:48:02.959Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "28dd35c8b9bdae81",
+      "traceId": "f60d2b68c2a5a09c6b74b3ec45c70a34",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-18 11:47:59.448000+00:00",
+      "endTime": "2026-08-18 11:47:59.521000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "P06#003:00",
+            "section": "P06 第四条 运费险 > 4.1 运费险的性质",
+            "rrf": 0.0952,
+            "hits": [
+              "1/platform/dense#1",
+              "1/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:08",
+            "section": "L02 第三章 退货程序 > 第十八条 【退货运费承担】",
+            "rrf": 0.0931,
+            "hits": [
+              "1/law/dense#2",
+              "1/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P06#003:02",
+            "section": "P06 第四条 运费险 > 4.3 赔付不足",
+            "rrf": 0.0909,
+            "hits": [
+              "1/platform/dense#2",
+              "1/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P06#003:01",
+            "section": "P06 第四条 运费险 > 4.2 赔付触发",
+            "rrf": 0.0851,
+            "hits": [
+              "1/platform/dense#3",
+              "1/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P06#003:03",
+            "section": "P06 第四条 运费险 > 4.4 不赔付情形",
+            "rrf": 0.0851,
+            "hits": [
+              "1/platform/dense#4",
+              "1/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L01#003:00",
+            "section": "L01 第二十四条 【质量不符时的退货、更换、修理】",
+            "rrf": 0.0817,
+            "hits": [
+              "1/law/dense#5",
+              "1/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P06#001:01",
+            "section": "P06 第二条 无理由退货的运费 > 2.2 原订单运费",
+            "rrf": 0.0702,
+            "hits": [
+              "1/platform/dense#9",
+              "1/platform/bm25#8"
+            ]
+          },
+          {
+            "chunk_id": "P06#002:01",
+            "section": "P06 第三条 质量问题退货的运费 > 3.2 垫付与返还",
+            "rrf": 0.0694,
+            "hits": [
+              "1/platform/dense#14",
+              "1/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P03#001:05",
+            "section": "P03 第二条 退款金额的计算 > 2.6 运费",
+            "rrf": 0.0693,
+            "hits": [
+              "1/platform/dense#7",
+              "1/platform/bm25#11"
+            ]
+          },
+          {
+            "chunk_id": "P06#000:00",
+            "section": "P06 第一条 运费承担的基本原则",
+            "rrf": 0.0686,
+            "hits": [
+              "1/platform/dense#5",
+              "1/platform/bm25#15"
+            ]
+          },
+          {
+            "chunk_id": "P06#002:00",
+            "section": "P06 第三条 质量问题退货的运费 > 3.1 全额承担",
+            "rrf": 0.062,
+            "hits": [
+              "1/platform/dense#8",
+              "1/platform/bm25#18"
+            ]
+          },
+          {
+            "chunk_id": "P06#006:00",
+            "section": "P06 相关文件",
+            "rrf": 0.0583,
+            "hits": [
+              "1/platform/dense#12",
+              "1/platform/bm25#17"
+            ]
+          },
+          {
+            "chunk_id": "P06#001:03",
+            "section": "P06 第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
+            "rrf": 0.0583,
+            "hits": [
+              "1/platform/dense#17",
+              "1/platform/bm25#12"
+            ]
+          },
+          {
+            "chunk_id": "P06#001:02",
+            "section": "P06 第二条 无理由退货的运费 > 2.3 包邮订单的处理",
+            "rrf": 0.0581,
+            "hits": [
+              "1/platform/dense#16",
+              "1/platform/bm25#13"
+            ]
+          },
+          {
+            "chunk_id": "L04#002:00",
+            "section": "L04 第二十条 【交付与运输风险】",
+            "rrf": 0.0476,
+            "hits": [
+              "1/law/dense#1"
+            ]
+          },
+          {
+            "chunk_id": "L05#025:00",
+            "section": "L05 与无理由退货的对照",
+            "rrf": 0.0455,
+            "hits": [
+              "1/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L01#009:00",
+            "section": "L01 第五十五条 【惩罚性赔偿】",
+            "rrf": 0.0435,
+            "hits": [
+              "1/law/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:07",
+            "section": "L02 第三章 退货程序 > 第十七条 【退款金额的计算】",
+            "rrf": 0.0435,
+            "hits": [
+              "1/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L05#015:00",
+            "section": "L05 第十五条 【免费修理与运输费】",
+            "rrf": 0.0417,
+            "hits": [
+              "1/law/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "L03#004:00",
+            "section": "L03 第十八条 【售后有效期起算与退款金额】",
+            "rrf": 0.04,
+            "hits": [
+              "1/law/bm25#5"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "8ac314870d0fc9e3",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.073,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:48:02.940Z",
+      "updatedAt": "2026-08-18T11:48:02.953Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "0673887d8fdae0cf",
+      "traceId": "f60d2b68c2a5a09c6b74b3ec45c70a34",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-18 11:47:58.277000+00:00",
+      "endTime": "2026-08-18 11:47:59.447000+00:00",
+      "input": {
+        "query": "运费险的赔付金额是否一定等于实际产生的运费？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "refund",
+            "text": "运费险的赔付金额是否一定等于实际产生的运费？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "8ac314870d0fc9e3",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.17,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-18T11:48:02.940Z",
+      "updatedAt": "2026-08-18T11:48:02.950Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    }
+  ]
+}

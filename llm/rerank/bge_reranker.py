@@ -43,9 +43,12 @@ class BgeReranker:
         """
         if not passages:
             return []
+        from llm.device import inference_lock
+
         torch = self._torch
         out: list[float] = []
-        with torch.inference_mode():
+        # 与嵌入共用一把锁：同一块 GPU，串行不慢，并发会段错误（llm/device.py）
+        with inference_lock(), torch.inference_mode():
             for i in range(0, len(passages), BATCH_SIZE):
                 batch = passages[i : i + BATCH_SIZE]
                 enc = self.tokenizer(

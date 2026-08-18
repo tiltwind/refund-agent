@@ -8,6 +8,10 @@
 人工穷举「这条 query 的全部相关块」。代价是这个 ID 不完整（同一条规则散在多篇
 文档里），所以它只作 Recall 的下界，长尾由 Context Recall 覆盖。
 
+参考答案的 claim 在这里**一并生成**，跟 query 和答案落在同一行：它是 Context Recall
+的分母，拆分不该在跑批时现做（那样每改一版检索参数就重拆一遍，分母还会跟着抖）。
+已有样本要补 claim 用 `rag/evals/generate_claims.py`，那个脚本不动 query。
+
 **重复跑要出同一批样本**：随机种子固定、抽样在按 chunk_id 排序后的序列上跑、
 生成温度 0。否则每次跑出来的数据集不同，版本之间的分数没法比。种子块选中之后，
 query 仍由模型生成，措辞可能有细微出入 —— 要的是抽样稳定，不是逐字节可复现。
@@ -91,7 +95,15 @@ SYSTEM = """你在为退款政策检索系统构造评测样本。给你一段�
    ✗「退款要多久」这种谁都能答的泛问。
 3. reference_answer 只能用给定条文里的信息，一到三句话说完。不许补常识、不许编数字、
    不许写条文里没有的条件。条文没说的就不要说。
-4. 不要在问题里引用条款号、文档名或标题。"""
+4. 不要在问题里引用条款号、文档名或标题。
+5. claims 是把 reference_answer 拆成的原子事实，Context Recall 逐条判它有没有被检回的
+   上下文支撑（5-rag-eval 七）。拆法：
+   - 每条只说一件事：一个条件、一个期限、一个金额、一项义务或一个例外；
+   - 每条独立可读，不用「它」「该商品」「上述情形」这类指代，主语和前提写进句子里；
+   - 数字、天数、比例留在所属那条里，不单独成条，也不要丢；
+   - 只用 reference_answer 里已经有的信息，不补条文里的其他内容；
+   - 答案开头那种一句话结论（「可以退。」）不许原样成条，把它管的前提写进去；
+   - 一到六条。答案短就一两条，不要为了凑数把一句话切碎。"""
 
 USER_SINGLE = """政策条文：
 
@@ -119,6 +131,7 @@ class Generated(BaseModel):
     formal: str = Field(description="带政策术语的规范问法")
     colloquial: str = Field(description="消费者的口语问法，不含条文措辞")
     reference_answer: str = Field(description="只用给定条文信息作答，一到三句")
+    claims: list[str] = Field(description="把 reference_answer 拆成的原子事实，1~6 条")
 
 
 # ── 抽样 ──────────────────────────────────────────────────────────────────
@@ -239,7 +252,8 @@ def generate(model, prompt: str, body: str) -> Generated:
 
 
 # ── 组装 ──────────────────────────────────────────────────────────────────
-def _case(query: str, style: str, kind: str, seeds: list[dict], answer: str, meta: dict) -> dict:
+def _case(query: str, style: str, kind: str, seeds: list[dict], answer: str, meta: dict,
+          claims: list[str] | None = None) -> dict:
     return {
         "case_id": "",  # 全部样本排完序后统一编号
         "query": query,
@@ -247,6 +261,9 @@ def _case(query: str, style: str, kind: str, seeds: list[dict], answer: str, met
         "type": kind,
         "seed_chunk_id": [c["chunk_id"] for c in seeds],
         "reference_answer": answer,
+        # 同一个种子块的 formal / colloquial 两条共用一份参考答案，claim 也就共用一份：
+        # 分母一致，语域分档表比的才只是检索质量（5-rag-eval 七）
+        "claims": claims or [],
         "meta": meta,
     }
 
@@ -271,7 +288,9 @@ def build_cases(model, model_name: str, seeds: list[dict], pairs: list) -> list[
         got = generate(model, USER_SINGLE.format(body=chunk["body"]), chunk["body"])
         for style, query in (("formal", got.formal), ("colloquial", got.colloquial)):
             meta = _meta([chunk], overlap_ratio(query, chunk["body"]), model_name)
-            cases.append(_case(query, style, "single", [chunk], got.reference_answer, meta))
+            cases.append(
+                _case(query, style, "single", [chunk], got.reference_answer, meta, got.claims)
+            )
 
     for i, (topic, a, b) in enumerate(pairs, 1):
         print(f"  [{i}/{len(pairs)}] multi_hop {a['chunk_id']} + {b['chunk_id']}", flush=True)
@@ -281,7 +300,7 @@ def build_cases(model, model_name: str, seeds: list[dict], pairs: list) -> list[
             meta = _meta([a, b], overlap_ratio(query, both), model_name)
             meta["topic"] = topic
             cases.append(
-                _case(query, style, "multi_hop", [a, b], got.reference_answer, meta)
+                _case(query, style, "multi_hop", [a, b], got.reference_answer, meta, got.claims)
             )
 
     for topic, query in UNANSWERABLE:

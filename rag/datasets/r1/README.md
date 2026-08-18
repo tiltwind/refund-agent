@@ -5,6 +5,7 @@
 
 ```bash
 python rag/evals/generate_cases.py       # 重新生成（抽样稳定，措辞可能有细微出入）
+python rag/evals/generate_claims.py      # 给已有样本补 claims，不动 query
 python rag/evals/validate_cases.py       # 自检：ID 有效性、可溯源、分层覆盖，不调模型
 python rag/evals/push_dataset.py         # 推成 Langfuse 数据集 retrieval-cases-r1
 ```
@@ -26,6 +27,7 @@ python rag/evals/push_dataset.py         # 推成 Langfuse 数据集 retrieval-c
 | collection | `refund_policy_chunks` | 重新灌库后先跑自检 |
 | 嵌入模型 | `BAAI/bge-m3`，`max_length=1024` | 换模型等于换向量空间，基线要重跑 |
 | 生成模型 | `deepseek-v4-flash`，温度 0 | 只影响新增样本的措辞，已有样本不动 |
+| claim 拆分 | `deepseek-v4-pro`，温度 0（`meta.claims_by`） | 重拆会改 Context Recall 的分母，历史分数不再可比 |
 | 抽样种子 | `SEED = 20260817` | 改它等于换一批种子块，全集要重抽检 |
 
 **什么时候开重建数据集**：切片参数变更、语料大改版、期望值大面积失效。只是补样本就直接往`cases.jsonl` 里加 —— 版本号碎了就没法做纵向对比。
@@ -45,6 +47,10 @@ python rag/evals/push_dataset.py         # 推成 Langfuse 数据集 retrieval-c
 
   "seed_chunk_id": ["P05#002:00", "P06#001:00"],  // Recall 的真值，multi_hop 全中才算命中
   "reference_answer": "已拆封但未实际使用的商品不支持无理由退货……寄回运费由消费者承担……",
+  "claims": [                                     // 参考答案拆成的原子事实
+    "已拆封但未实际使用的商品不支持无理由退货。",   // Context Recall 逐条判有没有被
+    "无理由退货的寄回运费由消费者承担。"            // 检回的上下文支撑，分母就是条数
+  ],
 
   "meta": {
     "doc_id": "P05+P06",                          // 跨块样本用 + 连接
@@ -53,13 +59,20 @@ python rag/evals/push_dataset.py         # 推成 Langfuse 数据集 retrieval-c
     "section": "第二条 商品状态的三档划分 / 第二条 无理由退货的运费 > 2.1 寄回运费",
     "overlap_ratio": 0.194,                       // query 与种子块正文的实词重叠率
     "generated_by": "openai:deepseek-v4-flash",
+    "claims_by": "openai:deepseek-v4-pro",        // 只有事后补拆的行才有这个字段
     "reviewed": false                             // 人工抽检过没有，见第五节
   }
 }
 ```
 
-`unanswerable` 样本的 `seed_chunk_id` 为空、`reference_answer` 为空串：语料里没有的事没有正确答案，
+`unanswerable` 样本的 `seed_chunk_id` 为空、`reference_answer` 与 `claims` 为空：语料里没有的事没有正确答案，
 这类样本只判「链路的兜底行为对不对」，不进前三个指标的均值。
+
+`claims` 与 query、参考答案在同一次生成里出齐，不在跑批时现拆 —— 它是 Context Recall 的分母，
+现拆的话同一条答案这次 4 条下次 5 条，两次跑批的分数就没法比。`formal` 与 `colloquial` 是同一个
+种子块的两种问法，参考答案逐字相同，共用一份 claim。当前 102 条里 96 条带 claim，共 282 条，
+是用 `generate_claims.py` 事后补的（重跑 `generate_cases.py` 会连 query 一起重写），所以每行都记了
+`meta.claims_by`。
 
 ---
 
@@ -98,7 +111,7 @@ python rag/evals/push_dataset.py         # 推成 Langfuse 数据集 retrieval-c
 ```
 353 个子块
   └─ 分层抽样（种子固定、按 chunk_id 排序后抽）→ 53 个种子块
-        └─ LLM 生成（温度 0，只给 chunk.body 不给块头）→ { formal, colloquial, reference_answer }
+        └─ LLM 生成（温度 0，只给 chunk.body 不给块头）→ { formal, colloquial, reference_answer, claims }
               └─ 重叠率超 0.45 的口语档打回重写一次
                     └─ 自动自检五项 → cases.jsonl
 ```
@@ -107,13 +120,15 @@ python rag/evals/push_dataset.py         # 推成 Langfuse 数据集 retrieval-c
 等于直接给 BM25 一个精确命中。跨块样本的两个种子块按关键词从两篇文档里各挑一个，
 关键词只用于挑块，不进提示词。
 
-自检的五项（`rag/evals/validate_cases.py`，不调模型）：
+自检项（`rag/evals/validate_cases.py`，不调模型）：
 
 | 检查 | 抓什么 | 级别 |
 |---|---|---|
 | `seed_chunk_id` 存在性 | 切片版本漂了 | 错误 |
 | `meta.overlap_ratio` 与实算一致 | 改了 query 忘了改分档字段 | 错误 |
 | 参考答案里的数字可溯源 | 凭空出现的天数 / 次数 / 金额是幻觉 | 错误 |
+| `claims` 里的数字在参考答案里出现过 | 改了参考答案而 claim 没重拆 | 错误 |
+| 非 `unanswerable` 样本带 `claims` | 那条样本算不了 Context Recall | 警告 |
 | `case_id` 唯一、种子数与 `type` 匹配 | 聚合口径算错 | 错误 |
 | 分层覆盖（16 篇 / 两层 / 两种 kind / 每篇 ≥ 4 条） | 某一档没样本，测不出来 | 错误 |
 | 口语档重叠率超 0.45 | query 抄了原文 | 警告，人工决定重写还是降级为 `formal` |
@@ -129,7 +144,8 @@ python rag/evals/push_dataset.py         # 推成 Langfuse 数据集 retrieval-c
 
 1. 这个 query 真人会这么问吗；
 2. 不看原文，这个 query 能唯一指向种子块吗 —— 不能说明问得太泛（「退款要多久」这种），要改写或降级为 `multi_hop`；
-3. 参考答案有没有超出种子块 —— 超出的部分要么删，要么把那个块也加进 `seed_chunk_id`。
+3. 参考答案有没有超出种子块 —— 超出的部分要么删，要么把那个块也加进 `seed_chunk_id`；
+   顺带看 `claims` 拆得对不对：有没有把一句话切成半句、有没有补进答案里没有的话。
 
 抽检过的样本的第二个用途：Context Recall 靠模型逐条判 claim，判得准不准需要一个基准，用的就是这批（5-rag-eval 七）。抽检做完之前，两个 LLM 指标的结论不采信。
 
