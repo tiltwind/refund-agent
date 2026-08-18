@@ -2,7 +2,7 @@
 
 用 [4 · 检索评测数据集](https://tiltwind.github.io/refund-agent/doc/get-start/4-rag-dataset.md)的 `r1` 评[六步检索链路](https://tiltwind.github.io/refund-agent/doc/get-start/3-rag-impl.md#七第-6-步--检索链路-ragretrieving)。被测对象是 `search_policy` 及其内部各步，不含 Agent。
 
-> 本篇为设计稿，代码尚未实现。待建产物见[第九节](#九待建产物)。
+> 三档 Recall 已实现，在 `rag/experiments/rag-ex-1/`；两个 LLM 指标待建，见[第九节](#九待建产物)。
 
 ---
 
@@ -49,9 +49,9 @@ Context Relevance 补的是另一个方向：前两个指标都在问「捞得�
 | 做法 | 代价 |
 |---|---|
 | 评测脚本自己按 `rewrite → route → recall → rerank → assemble` 编排一遍 | 复制了 [`milvus.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/milvus.py) 的编排逻辑，容易和线上跑偏 |
-| 给 `search_policy` 加一个返回 trace 的旁路 | 线上路径要加一个可选参数；换来评测和线上跑的是同一段代码 |
+| 给 `search_policy` 加一个返回 trace 的旁路 | 多一个入口方法；换来评测和线上跑的是同一段代码 |
 
-取第二种，与 `2-design 3.4` 的口径一致：prod 与 eval 走同一条检索路径。[`RetrievalTrace`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/protocol.py) 已经在记每一步的中间产物，把重排后的 `chunk_id` 序列结构化落进去即可，不必新造一条路径。
+取第二种，与 `2-design 3.4` 的口径一致：prod 与 eval 走同一条检索路径。落地成 `search_with_trace`：编排逻辑在它里面，`search_policy` 调它并丢掉 trace，线上调用方一行不用改。[`RetrievalTrace`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/protocol.py) 已经在记每一步的中间产物，两个 ID 序列 `candidate_ids` / `evidence_ids` 结构化加在它上面 —— 那些人读的 `steps` 字符串也含 ID，但正则去抠一句日志，措辞改一个字打分器就静默判负。
 
 ---
 
@@ -70,6 +70,8 @@ Recall@k = |命中的种子块| / |全部种子块|
 | `recall@10` | 召回融合后的候选，`CANDIDATE_LIMIT = 20` 之内 | 召回层的上界。这里没有的，后面救不回来 |
 | `recall@3` | 重排后前 3 | 实际交付水位。`DEFAULT_TOP_K = 4`，取 3 留一格余量 |
 | `recall@1` | 重排后第 1 | 头部精度，对 `MIN_SCORE = 0.30` 这类阈值最敏感 |
+
+k 小于种子块数的档次不计分。两个种子块不可能同时排第 1，`multi_hop` 的 `recall@1` 是结构性的 0，算进均值等于按 multi_hop 的占比给这一档加了个固定折扣 —— 改参数动不了它，版本间对比也读不出东西。r1 的 16 条 multi_hop 因此只进 `@3` 与 `@10`，三档的分母各自记在结果文件里。
 
 ### 3.2 归因就在两档之差
 
@@ -207,13 +209,36 @@ r1 是改检索就跑的那一套，与 Agent 端到端回归互不干扰：
 
 ## 九、待建产物
 
+实验目录是 `rag/experiments/rag-ex-1/`，脚本、结果、报告、trace 留档都在目录内。判分口径变了开新目录，见 8.2。
+
 | 产物 | 位置 | 作用 |
 |---|---|---|
-| 实验脚本 | `evals/experiments/rag-1/run_experiment.py` | 跑 r1、算三个指标、聚合落盘 |
-| 打分器 | `evals/experiments/rag-1/scorers.py` | `recall_at_k` 纯函数；`context_recall`、`context_relevance` 调 judge |
-| judge 提示词 | `evals/experiments/rag-1/prompts/` | 拆 claim、判支撑、判句子相关性 |
-| judge 校准 | `evals/experiments/rag-1/judge_calibration.md` | 第七节的一致率结果，不达标不采信指标 |
-| 结果 | `evals/experiments/rag-1/result.json` | run 级与逐条指标落盘，报告只读它，不依赖 Langfuse 在线 |
-| 链路旁路 | [`rag/retrieving/milvus.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/milvus.py) | 让 `search_policy` 能返回重排后的 `chunk_id` 序列，见第二节 |
+| 实验脚本 | `rag/experiments/rag-ex-1/run_experiment.py` | 跑 r1、算三个指标、聚合落盘 |
+| 打分器 | `rag/experiments/rag-ex-1/scorers.py` | `recall_at_k` 纯函数；`context_recall`、`context_relevance` 调 judge |
+| judge 提示词 | `rag/experiments/rag-ex-1/prompts/` | 拆 claim、判支撑、判句子相关性 |
+| judge 校准 | `rag/experiments/rag-ex-1/judge_calibration.md` | 第七节的一致率结果，不达标不采信指标 |
+| 结果 | `rag/experiments/rag-ex-1/result.json` | run 级与逐条指标落盘，报告只读它，不依赖 Langfuse 在线 |
+| trace 留档 | `rag/experiments/rag-ex-1/traces/` | 人工要逐条读的几条链路现场，导出成文件 |
+| 链路旁路 | [`rag/retrieving/milvus.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/milvus.py) | 让 `search_policy` 能返回重排后的 `chunk_id` 序列，并把六步上报 Langfuse，见第二节与 9.1 |
 
-实现顺序：先做 `recall_at_k`，它不调模型，数据集一到位就能跑，也能立刻验证第二节那个旁路改造对不对。两个 LLM 指标等 judge 校准做完再接。
+### 9.1 Langfuse 承担哪一段
+
+数据集要推上去：`python rag/evals/push_dataset.py` 得到 `retrieval-cases-r1`，一条 item 一个 query，`expected_output` 里的 `seed_chunk_id` 与 `reference_answer` 就是两个 Recall 打分器的输入。`run_experiment.py --langfuse` 时样本从这份数据集拉，跑批走 `client.run_experiment`，分数写回 dataset run 做版本对比。
+
+六步各自成 span，挂在 `rag.search_policy` 这个 retriever 节点下，随 item 的 trace 一起上报。埋点在 [`milvus.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/milvus.py) 里而不是在评测脚本里，因此线上和评测翻的是同一棵树 —— 这和 `2-design 3.4` 是同一条口径。候选与证据的 `chunk_id` **全序列**进 span 的 output：`recall@10` 判负时 UI 上直接看得到种子块排在第几，不必回头翻结果文件。judge 接进来之后，每条 claim 的判定也挂在这条 trace 上。
+
+指标不以它为准。默认路径读 `rag/datasets/r1/cases.jsonl`，不连 Langfuse 也不上报（脚本会把 `REFUND_AGENT_RAG_SPAN` 关掉，免得堆一批不挂在任何 dataset run 上的 trace）。三档 Recall 是要进门禁的数，不该被一个本地实例的死活卡住。两条路径判分逻辑共用，落同一份 `result.json`。
+
+### 9.2 实现顺序
+
+前置是 Milvus 起着并已灌库，且 `python rag/evals/validate_cases.py` 通过。
+
+| 步 | 做什么 | 完成的标志 |
+|---|---|---|
+| 1 | 第二节的链路旁路，把重排后的 `chunk_id` 序列结构化落进 `RetrievalTrace` | 单条 query 能取到 Evidence 序列 |
+| 2 | `scorers.recall_at_k` 与离线跑批 | r1 全量跑出 `recall@1/@3/@10` 三档，写进 `result.json` |
+| 3 | 接 Langfuse：推数据集，跑批写回 dataset run | run 页有分数，分档均值可查 |
+| 4 | judge 提示词与第七节的校准 | 一致率达标，之后才接两个 LLM 指标 |
+| 5 | 报告与 trace 留档 | 分档表 + 逐条归因 |
+
+先做 `recall_at_k`：它不调模型，数据集一到位就能跑，也能立刻验证第 1 步的旁路改造对不对。第 1~3 步已落地，产物与第一份基线在 `rag/experiments/rag-ex-1/`。

@@ -40,10 +40,19 @@ class RetrievalTrace:
     没有这些日志，坏 case 只能靠猜：明明有条款却没召回，到底是被生效日期
     过滤掉了、是两路都没排进 TopK、还是重排把它压下去了？这三种情况的修法
     完全不同，而它们在最终结果里长得一模一样。
+
+    `steps` 是人读的，两个 ID 序列是机器读的。Recall@k 的真值是 chunk_id 集合
+    比对，从 `steps` 里那句「top3=[...]」正则抠 ID 也能算，但那句话的措辞属于
+    日志，改一个字打分器就静默判负 —— 指标依赖的东西要单独存。
     """
 
     query: str = ""
     steps: list[tuple[str, str]] = field(default_factory=list)
+
+    candidate_ids: list[str] = field(default_factory=list)
+    """召回融合后的候选，按 RRF 序。`recall@10` 读它。"""
+    evidence_ids: list[str] = field(default_factory=list)
+    """重排后过阈值的证据，按最终分降序。`recall@3` / `recall@1` 读它。"""
 
     def record(self, step: str, detail: str) -> None:
         self.steps.append((step, detail))

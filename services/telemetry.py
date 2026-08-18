@@ -21,6 +21,7 @@ tracer provider，接一个 callback 就能拿到 8.1 那棵调用树。
 import hashlib
 import os
 import re
+from contextlib import contextmanager
 from functools import lru_cache
 from typing import Any
 
@@ -99,6 +100,35 @@ def _handler():
 
 def enabled() -> bool:
     return _handler() is not None
+
+
+@contextmanager
+def span(name: str, *, as_type: str = "span", **attrs):
+    """开一个 span，未配置 Langfuse 时是个空壳（`yield None`，调用方不必写 if）。
+
+    给的是**不经 langchain 的那些环节**用的 —— CallbackHandler 只认 LangGraph 的图节点
+    与 LLM 调用，检索链路的召回、重排、装配三步不是 langchain 组件，在 trace 里原本
+    是一片空白：能看到 `search_refund_policy` 这个工具调了 3 秒，看不到它内部把哪些
+    chunk 捞出来又压下去了。
+
+    父子关系由 OTel 的当前上下文决定，不用手工传：在 Agent 里调用时当前上下文就是那次
+    工具调用，span 自动挂进去；离线跑批没有父上下文，每次检索自成一条 trace。
+
+    走 `_handler()` 而不是直接 `get_client()`：客户端是进程内单例，谁先初始化谁说了算，
+    绕开这里会拿到一个不带 mask 钩子的实例，PII 就跟着 span 上去了（2-design 5.4）。
+
+    `as_type` 是 Langfuse 的观测类型（span / retriever / tool / generation …），检索链路
+    的根节点用 `retriever`，UI 上才和普通 span 区分得开。
+    """
+    if _handler() is None:
+        yield None
+        return
+
+    from langfuse import get_client
+
+    # v4 把 start_as_current_span 合并成了这一个入口，类型走 as_type 参数
+    with get_client().start_as_current_observation(name=name, as_type=as_type, **attrs) as current:
+        yield current
 
 
 def trace_config(ctx: RefundContext, meta: dict | None = None, *, name: str = "refund-chat") -> dict:

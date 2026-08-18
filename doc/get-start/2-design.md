@@ -261,10 +261,13 @@ trace: refund-chat  [request_id=req-abc-123, user=C1001, session=sess-77]
     ├── span  tool.get_customer_info
     │   └── span  http.user_svc
     ├── span  tool.search_refund_policy
-    │   ├── generation  rag.rewrite
-    │   ├── span  rag.recall
-    │   ├── span  rag.rerank
-    │   └── span  rag.assemble
+    │   └── retriever  rag.search_policy
+    │       ├── span  rag.rewrite
+    │       │   └── generation  llm.call
+    │       ├── span  rag.route
+    │       ├── span  rag.recall
+    │       ├── span  rag.rerank
+    │       └── span  rag.assemble
     ├── span  tool.check_refund_eligibility
     │   └── span  http.order_svc
     └── span  tool.record_refund_denial
@@ -318,7 +321,7 @@ class DownstreamClient:
 | 一次请求 = 一条 trace，图节点 / 工具 / generation 自动成树 | ✅ Langfuse `CallbackHandler` 接 LangGraph 回调，不自建 tracer provider |
 | trace 属性：`request_id`、`session_id`、脱敏后的 `customer_id`、`agent_version`、`prompt_version`、`request_source` | ✅ 由 `trace_config()` 组装，埋点走 `invoke` 的 `config`，与业务身份的 `context` 分开 |
 | PII 脱敏（5.4） | ✅ 挂在 SDK 的 `mask` 钩子上，所有 span 的 input/output 统一过一遍 |
-| `rag.recall` / `rag.rerank` / `rag.assemble` 子 span | ❌ 改写走 LangChain 自动出现，其余为纯函数，需手工包一层 |
+| `rag.recall` / `rag.rerank` / `rag.assemble` 子 span | ✅ 六步在 [`milvus.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/milvus.py) 里各包一层，根节点是 `rag.search_policy`（retriever 类型）；候选与证据的 `chunk_id` 序列进 span 的 output |
 | 跨服务 `traceparent` 透传（5.3） | ❌ v1 全走 eval 数据源，尚无下游 HTTP 调用 |
 | scores 异步写回 | ❌ 属第六章的评估闭环 |
 
