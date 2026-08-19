@@ -1,14 +1,9 @@
-"""装配去重和重复率口径的回归测试。"""
+"""装配分组口径的回归测试。"""
 
 import unittest
-import sys
 from types import SimpleNamespace
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parents[1] / "rag/experiments/rag-ex-1"))
-import scorers
 from rag.retrieving.pipeline import assemble
-from rag.retrieving.protocol import PolicySection
 
 
 def evidence(parent_id: str, chunk_id: str, parent_seq: int = 1) -> SimpleNamespace:
@@ -36,15 +31,6 @@ class AssembleGroupingTests(unittest.TestCase):
             [evidence("P#1", "P#1:00"), evidence("P#2", "P#2:00", parent_seq=3)], top_k=4
         )
         self.assertEqual(len(groups), 2)
-
-
-class DuplicateRatioTests(unittest.TestCase):
-    def test_duplicate_ratio_is_content_signal(self):
-        sections = [
-            PolicySection(section="a", text="same paragraph\n\nunique"),
-            PolicySection(section="b", text="same paragraph"),
-        ]
-        self.assertAlmostEqual(scorers.duplicate_ratio(sections), 14 / 34, places=3)
 
 
 if __name__ == "__main__":

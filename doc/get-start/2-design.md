@@ -230,7 +230,7 @@ def get_customer_info(runtime: ToolRuntime[RefundContext]) -> str:
 | 查询改写的 LLM 抖动 | 改写模型固定版本、温度 0，改写结果记进 trace；`REFUND_AGENT_REWRITE=off` 可整体关闭，见 [`rag/retrieving/pipeline/rewrite.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/pipeline/rewrite.py) |
 | collection 空 / 灌库没跑 | 检索返回空时**显式抛错**，不让 Agent 带着「未检索到条款」继续判定 |
 
-回归波动时，先检查 `tool.search_refund_policy` 的返回和六步检索 trace，再检查 Agent。检索另用 query → section 数据集计算 recall@k 和 MRR。CI 需要启动 Milvus 并运行 [`rag/index/seed_milvus.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/index/seed_milvus.py)。
+回归波动时，先检查 `tool.search_refund_policy` 的返回和六步检索 trace，再检查 Agent。检索另用 [`r1` 数据集](https://tiltwind.github.io/refund-agent/doc/get-start/4-rag-dataset.md)算两个 judge 指标与三个排序指标。CI 需要启动 Milvus 并运行 [`rag/index/seed_milvus.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/index/seed_milvus.py)。
 
 ---
 

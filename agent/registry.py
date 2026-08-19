@@ -16,7 +16,7 @@ _VERSIONS = {
 
 def get(version: str = "v1"):
     """按版本号取 Agent 实例。未知版本抛异常，不 fallback 到默认版本 ——
-    否则一次拼写错误会让整轮评估悄悄跑在旧版本上，报告却署着新版本的名字。"""
+    拼写错误当场暴露，报告署的版本和实际跑的那一版始终一致。"""
     module = _VERSIONS.get(version)
     if module is None:
         raise ValueError(f"unknown agent version: {version}（可选：{list(_VERSIONS)}）")

@@ -610,7 +610,7 @@ footer { margin-top: 48px; padding-top: 14px; border-top: 1px solid var(--grid);
   作为 <code>agent/v2</code> 重跑同一数据集做版本对比——数据集与判分逻辑都不动，才归因得干净。</li>
   <li><strong>再定多轮口径</strong>（改判分）：<code>must_call</code> 在多轮用例里改成按「累计到本轮」判。
   这是判分口径变更，开 <code>ex-2</code>，不要就地改 ex-1——历史 run 的分数只有在判分逻辑不动的前提下才可比。</li>
-  <li><strong>修 metadata</strong>：让上报的 <code>model</code> 反映实际生效的供应商与模型，否则版本对比的坐标是错的。</li>
+  <li><strong>修 metadata</strong>：让上报的 <code>model</code> 反映实际生效的供应商与模型 —— 版本对比的坐标就是这个字段。</li>
   <li><strong>citation_hit 单独立项</strong>：建 query→section 的 retrieval 数据集，把检索质量从 Agent 回归里摘出去。</li>
 </ul>
 

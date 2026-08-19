@@ -4,13 +4,13 @@
     python rag/evals/push_dataset.py --dry-run           # 只打印，不连 Langfuse
 
 与 Agent 用例集的推送脚本（evals/push_dataset.py）分开：那边一条 item 是一段多轮
-对话，这边一条 item 是一个 query。切分口径也不同 ——
+对话，这边一条 item 是一个问题。切分口径也不同 ——
 
 | 字段 | 放什么 | 谁读它 |
 |---|---|---|
-| `input` | `query`，直接喂 `search_policy` | 跑批的 task 函数 |
-| `expected_output` | `seed_chunk_id` + `reference_answer` + `claims` | 两个 Recall 打分器 |
-| `metadata` | style / type / doc_id / layer / kind / 重叠率 | 报告分档（5-rag-eval 8.2） |
+| `input` | `question`，直接喂 `search_policy` | 跑批的 task 函数 |
+| `expected_output` | `ground_truth` | Context Recall |
+| `metadata` | `source` | 三个排序指标的真值（`rank_metrics.py`）；报告按文档分档也读它 |
 
 item id 直接用 `case_id`，Langfuse 按 id upsert：改完 cases.jsonl 重推是覆盖同一条。
 推之前先跑 `python rag/evals/validate_cases.py`。
@@ -28,19 +28,16 @@ from rag.evals.common import DATASET_DIR, ROOT, load_env, read_cases  # noqa: E4
 
 
 def to_item(case: dict) -> dict:
+    """一条样本 → 一条 dataset item。
+
+    `ground_truth` 跟着 item 走：dataset run 判 Context Recall 时读的是 item 自己
+    带的那份，不回头读本地文件，两边不一致的风险就没了。
+    """
     return {
         "id": case["case_id"],
-        "input": {"query": case["query"]},
-        "expected_output": {
-            "seed_chunk_id": case["seed_chunk_id"],
-            # 等价块分组也一起推：判分口径的一部分，落在这里两条路径才给同一个数
-            "acceptable_seed_chunk_ids": case.get("acceptable_seed_chunk_ids") or [],
-            "reference_answer": case["reference_answer"],
-            # claim 一起推：dataset run 里判 Context Recall 时读的是 item 自己带的这份，
-            # 不回头读本地文件，两边不一致的风险就没了
-            "claims": case.get("claims") or [],
-        },
-        "metadata": {"style": case["style"], "type": case["type"], **case["meta"]},
+        "input": {"question": case["question"]},
+        "expected_output": {"ground_truth": case["ground_truth"]},
+        "metadata": {"source": case["source"]},
     }
 
 

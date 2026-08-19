@@ -7,12 +7,12 @@ BM25 有成熟的分词器、可解释的打分、不需要额外加载 sparse_l
 两路各司其职，再在应用层显式做 RRF 融合（rag/retrieving/pipeline/recall.py）。
 
 **为什么不用 FlagEmbedding / sentence-transformers**：直接用 transformers
-是为了把 pooling 与截断长度摆在明面上。这两件事一旦在灌库与检索之间不一致，
-检索结果不会报错，只会悄悄变差 —— 这是 RAG 里最难定位的一类故障。
+是为了把 pooling 与截断长度摆在明面上。灌库与检索两侧的这两个值必须相同，
+两侧不一致属于静默故障：检索照常返回，只是结果悄悄变差 —— 这是 RAG 里最难定位的一类。
 
 **为什么没有降级实现**：换嵌入模型等于换向量空间，TopK 排序整体重来。
-拿不到模型时必须显式失败，不能悄悄退回哈希嵌入那种「只认字面」的兜底 ——
-那会让检索看起来在工作，实际上召回的条款与问题无关。
+拿不到模型时显式失败，不退回哈希嵌入那种「只认字面」的兜底 ——
+哈希嵌入让检索看起来在工作，召回的条款却与问题无关。
 """
 
 import os
@@ -86,8 +86,16 @@ class BgeM3Embedder:
         切分器天然按字符计数，而截断限制按 token 计 —— 中文 1 字 ≈ 1~1.5 token
         （XLM-R BPE），直接拿字符数当 token 数会静默超限。所以切分的长度函数
         必须是这个方法，不能是 len()。
+
+        锁的范围与前向一致：HF 的 fast tokenizer 是 Rust 对象，同一个实例被两个
+        线程同时调用会抛 `RuntimeError: Already borrowed`。装配那一步用它算预算
+        （rag/retrieving/pipeline/assemble.py），与检索线程的 `_encode` 并发，
+        正好撞上 —— 锁只圈住这一次编码，代价是微秒级。
         """
-        return len(self.tokenizer.encode(text, add_special_tokens=True))
+        from llm.device import inference_lock
+
+        with inference_lock():
+            return len(self.tokenizer.encode(text, add_special_tokens=True))
 
     def truncation_report(self, texts: list[str]) -> dict:
         """入库前把「静默截断」变成显式数字。验收标准：truncated == 0。"""

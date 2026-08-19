@@ -1,251 +1,163 @@
-# 4 · 检索评测数据集：反向生成与校验
+# 4 · 检索评测数据集
 
-[3 · 政策知识库](https://tiltwind.github.io/refund-agent/doc/get-start/3-rag-impl.md)里的 RRF `k=20`、重排权重 `0.80 / 0.20`、`MIN_SCORE=0.30`、法规层 `0.5` 降权都是初始值，校准它们需要一个标注集。本篇建这个标注集 `r1`：样本怎么造、怎么校验、绑定哪些版本。
+[3 · 政策知识库](https://tiltwind.github.io/refund-agent/doc/get-start/3-rag-impl.md)里的 RRF `k=20`、重排权重 `0.80 / 0.20`、`MIN_SCORE=0.30`、法规层 `0.5` 降权都是初始值，校准它们要有一个数据集。本篇建这个集 `r1`。
 
-> 产物清单与当前实现见[第十节](#十产物)。
-
----
-
-## 一、检索单独建集的理由
-
-检索是 Agent 的一个工具。端到端跑一条退款用例，看到的是最终答复对不对；而[六步链路](https://tiltwind.github.io/refund-agent/doc/get-start/3-rag-impl.md#七第-6-步--检索链路-ragretrieving)里任何一步出问题，表现都是同一个现象：答复缺依据。端到端评测定位不到具体步骤，原因有三个：
-
-| 问题 | 具体表现 |
-|---|---|
-| 输入不纯 | 用户口语先过 Agent 的工具调用、再过[改写](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/pipeline/rewrite.py)才进检索。分数掉了，分不清是模型没检索、改写把 query 改坏了，还是召回本身不行 |
-| 期望值只能标到文档级 | 答复里不会出现 `P02#003:01` 这种块编号，端到端能断言的最细粒度是「引没引到 P02」。P02 有 30 多个子块，召回错了条款、对了文档，照样算命中 |
-| 覆盖的是判定逻辑，不是政策条款 | 端到端用例按规则分支抽样（订单有效性、风控、窗口、商品状态），353 个子块里绝大多数碰不到 |
-
-r1 直接喂 `search_policy`，不经过 Agent，query 与 chunk 一一对应，测的是检索器本身。改一个 `RRF_K`，影响落在哪一步可以直接读出来。
+顺序是：先定要评什么指标，再由指标决定标注哪些字段。反过来做会标出一堆没人读的字段。
 
 ---
 
-## 二、由指标反推的标注项
+## 一、评估指标
 
-先定指标，再由指标决定标注字段。检索端取三个指标：
+检索交付给模型的是一组条款。它只可能在两个方向上出错：
 
-| 指标 | 回答什么 | 需要标什么 | 标注成本 |
-|---|---|---|---|
-| Recall@k | 该召回的块召回了吗 | 相关 chunk 的 ID | 高（见第三节） |
-| Context Recall | 检回的上下文能支撑住答案吗 | 一个参考答案 | 中 |
-| Context Relevance | 检回的东西有多少是真有用的 | 什么都不用标 | 零 |
-
-一条样本至少要有 `query`、`seed_chunk_id`、`reference_answer` 三样。
-
----
-
-## 三、ID 不做人工标注
-
-ID 级 Recall 的真值是「这条 query 的全部相关块」。
-人工穷举很难做到：一条 query 要在 353 个块里逐个过一遍，而 P02 和 P07 都讲退货窗口、L02 和 P02 都讲七天无理由，漏标无法避免。漏标带来的不是少算，是系统性低估：模型召回了一个正确但没标的块，指标判它错。
-
-| 标注方式 | 一条 query 的成本 | 覆盖 | 结论 |
-|---|---|---|---|
-| 人工穷举全部相关块 | 过 353 个块 | 完整但做不到 | 否 |
-| 人工只标最相关的 1～2 块 | 几分钟 | 头部准，长尾全漏 | 可作抽检基准，不作主口径 |
-| 反向生成：从块出发写 query | 一次模型调用 | 种子块必对，长尾仍漏 | 主口径 |
-| 内容级 Context Recall | 一次 judge 调用 | 不需要 ID，覆盖长尾 | 补第三行的漏 |
-
-第三行和第四行配合，用「标答案」替代「标全部相关文档」。代价是引入 LLM 判定的噪声和成本，所以两个 recall 分开报，不合成一个数。
-
----
-
-## 四、反向生成
+| 指标 | 问什么 | 要标什么 |
+|---|---|---|
+| Context Precision | 检回的条款里有多少是真有用的，有用的排得够不够靠前 | 什么都不标 |
+| Context Recall | 回答这个问题需要的信息，检回的上下文里有没有 | 一个标准答案 |
 
 ```
-353 个子块
-  └─ 分层抽样 → 种子块 chunk
-        └─ LLM 生成 → { query, reference_answer }
-              └─ 自动校验（重叠率 / 可溯源 / ID 存在）
-                    └─ 人工抽检 10%
-                          └─ rag/datasets/r1/cases.jsonl
+Context Precision = Σ(Precision@k × rel_k) / 相关条数
+Context Recall    = 被上下文支撑的句子数 / 标准答案的句子数
 ```
 
-正向是先写 query 再找答案块，仍然要人工穷举。反向从块出发，`seed_chunk_id` 在生成时就确定，零标注成本拿到一个必定正确的 ground truth。这个 ID 不完整（不是全部相关块），但它必定为真，作为 Recall 的下界可靠。
+一个管精度，一个管覆盖，方向相反。两个都由 LLM judge 判定。
 
-生成提示词的三条约束（详细设计在实现时定稿）：
+> 不评 Recall@k. ID 级的 Recall@k 要的真值是「这条问题的全部相关块」，人工在 353 个块里穷举做不到：P02 和 P07 都讲退货窗口，L02 和 P02 都讲七天无理由，漏标无法避免。
 
-| 约束 | 为什么 |
+这两个指标都要调模型，判定本身带噪声，而且判的是交付出去的那几段 —— 「本该给的那段排在第几」它们答不了。所以另有一组不调模型的排序指标，见 1.5。
+
+### 1.1 判定对象
+
+`search_policy` 返回的是装配后的 `PolicySection` 列表，`DEFAULT_TOP_K = 4`，按重排分降序：
+
+```
+… → 4 召回融合 → 5 重排 → 6 装配 → PolicySection × 4   ← 两个指标都判这一组
+```
+
+判这一层而不是重排那一层，因为装配产物才是真正注入模型的上下文：装配把命中的子块还原成完整小节、还可能合并相邻父块，重排选对了块、装配仍可能塞进一堆无关正文。
+
+两个指标都由 LLM judge 逐条判定，实现在 [`judge.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/experiments/rag-ex-1/judge.py)。
+
+### 1.2 Context Precision 计算
+
+**第一步，逐段判相关性**。把问题和 4 段条款一起给 judge，每段返回 0(不相关) 或 1(相关)。
+
+**第二步，按位置加权**。`rel_k` 是第 k 段的判定（0 或 1），`Precision@k` 是前 k 段里相关的比例，只在相关的位置上累加。
+
+举例，4 段判成 `[相关, 不相关, 相关, 不相关]`：
+
+| k | 判定 | Precision@k | 计入 |
+|---|---|---|---|
+| 1 | 相关 | 1/1 = 1.000 | ✓ |
+| 2 | 不相关 | — | |
+| 3 | 相关 | 2/3 = 0.667 | ✓ |
+| 4 | 不相关 | — | |
+
+`(1.000 + 0.667) / 2 = 0.833`。同样是两段相关，排在第 1、2 位得 1.000，排在第 3、4 位只得 0.583。
+
+位置相关：检索交付给模型的是一个有序列表，把不相关的顶在前面本身就是缺陷。
+
+### 1.3 Context Recall 计算
+
+- **第一步，拆句**。参考答案 拆分为独立的信息单元（通常按句子）。
+- **第二步，逐句归因**。对于每个信息单元，判断是否能从检索结果中找到支撑。
+
+### 1.4 两个指标的判断
+
+| Precision | Recall | 说明 | 改哪里 |
+|---|---|---|---|
+| 低 | 低 | 检索没找对东西 | 召回层：切片、块头、BM25 分析器、`CANDIDATE_LIMIT` |
+| 低 | 高 | 答案撑得住，但混进了无关条款 | 重排权重、`MIN_SCORE`、`top_k` 调小 |
+| 高 | 低 | 检回的都有用，就是不够 | `top_k` 调大、[改写](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/pipeline/rewrite.py)拆子查询 |
+| 高 | 高 | 检索没问题 | 答复仍然错，问题在生成阶段 |
+
+
+### 1.5 三个排序指标
+
+上面两个指标各自有一个绕不开的短板：都要调模型，判定本身带噪声；而且它们判的是**交付出去
+的那几段**，判不了「本该给的那段排在第几」。所以另有一组不调模型的指标，判 `source`
+在检索链路里的位次：
+
+| 指标 | 问什么 |
 |---|---|
-| 只给 `chunk.body`，不给 `chunk.header` | 块头是`【文档】P02 …【路径】第二条 退货窗口`，模型会照抄进 query，直接给了 BM25 一个精确命中 |
-| 要求 query 是消费者会问出口的话 | 见 5.2 |
-| 参考答案只能用给定块里的信息，不许补常识 | 答案里混进块外信息，Context Recall 会把检索判负，实际是生成阶段的问题 |
-| 顺带把参考答案拆成 claim | claim 是 Context Recall 的分母。跟答案一次生成，比事后再调一轮模型便宜，也保证同一条答案的拆分只有一份 |
+| `candidate_hit` | 出题的条文有没有进 20 条候选 —— 分开「召回层漏了」和「重排/阈值挡了」 |
+| `hit@1` / `hit@4` | 重排后它排在第几 |
+| `mrr` | 1 / 排名，掉出证据列表记 0 |
 
----
+它与 Recall@k 的区别在真值：Recall@k 要「这条问题的全部相关块」，这一组只要「这条问题至少
+出自这一段」，而后者在反向生成时就是已知的。代价是它只能作**下界** —— 命中不代表检索完备，
+没命中也可能是检回了另一段等价条文（平台层与法规层对同一件事常常各有条文，`source` 只记了
+出题用的那一段）。所以两组指标并排读：排序那组指方向，判定那组兜底。
 
-## 五、生成的四个问题
+跨块样本按两段里排得最深的那个算：标准答案要两段都用上，只召回一半答不全。
 
-下面四个问题不处理，数据集会系统性偏离。
+实现在 [`rank_metrics.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/experiments/rag-ex-1/rank_metrics.py)。
+判分只比对 chunk_id，同一份检索结果重复判多少次都是同一个数。
 
-### 5.1 术语泄漏：query 抄了原文的词
 
-模型倾向于把原文措辞原样搬进 query。「无理由退货窗口为签收后 15 天」生成出「金牌会员的无理由退货窗口是多少天」，每个实词都在原文里，BM25 直接命中。这类样本把 Recall 抬到一个与线上无关的高位。
-
-对策：生成后算 query 与 `chunk.body` 的实词重叠率，超阈值的打回重写，要求换一种问法。重叠率同时作为样本的一个字段落盘，报指标时按它分档看。高重叠样本的 Recall 是上界，低重叠样本的 Recall 才对应线上表现。
-
-### 5.2 语域偏移：生成的 query 不像真人问话
-
-模型写的是「根据平台政策，高风险账户的退款申请应如何处理」，真实用户问的是「凭什么说我账号有问题，我就退过两次」。前者是术语检索，后者才是这条链路要处理的输入。
-
-对策：每个种子块生成两条 query，风格各一档，分开报指标：
-
-| 风格 | 样子 | 主要压测什么 |
-|---|---|---|
-| `formal` | 带政策术语的规范问法 | BM25 一路与切片质量 |
-| `colloquial` | 口语、带情绪、不含术语 | 稠密一路与[改写](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/pipeline/rewrite.py)环节 |
-
-两档分数的差值反映链路对字面匹配的依赖程度。
-
-### 5.3 种子块不等于全部相关块
-
-同一条规则散在多篇文档里：退货窗口 P02 有、P07 的会员权益也有；七天无理由 L02 是法规原文、P02 是平台落地。种子块只有一个，模型召回了另一个同样正确的块，ID 级 Recall 判它错。
-
-不补全 ID，补全就回到了人工穷举。改为两条：
-
-1. Recall@k 按「种子块命中率」口径读，它是下界不是真值，绝对值偏低属正常，看的是版本间的相对变化；
-2. 长尾交给内容级 Context Recall，它不需要 ID，只问「检回的上下文撑不撑得住这个答案」。召回 P07 而不是 P02，只要答案里的 claim 都被支撑，它照样给分。
-
-### 5.4 单块答不全的问题
-
-有些问题天然要跨块。「拆封了但没用过，还能不能退，运费谁出」要 P05 的商品完好标准加 P06 的运费规则。反向生成默认产出单块样本，全是单块会让数据集偏简单。
-
-显式建两个小类：
-
-| 类型 | 怎么造 | 它测什么 |
-|---|---|---|
-| `multi_hop` | 指定两个块一起喂给生成器，`seed_chunk_id` 记两个 | `DEFAULT_TOP_K=4` 够不够、装配的相邻合并有没有起作用 |
-| `unanswerable` | query 问语料里根本没有的事（如「保价规则」） | 检索兜底行为。链路当前的口径是[空结果直接抛异常](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/milvus.py)，这类样本用来确认异常确实抛了，而不是硬凑四条不相关的证据 |
-
-`multi_hop` 的 Recall 按「全部种子块都召回才算命中」判，不给部分分：只召回一半，答案照样是错的。
-
----
-
-## 六、抽样：353 个块的选法
-
-不做全量。全量意味着 353 × 2 条样本，每次评测都要跑一遍完整检索链路加两个 LLM judge，成本压不住。分层抽样，每层保证下限：
-
-| 切面 | 分层依据 | 为什么这么分 |
-|---|---|---|
-| 文档层 | `law` / `platform` | 路由决定两层各给多少名额，两层都要有样本才测得出路由 |
-| 文档 | 16 篇每篇都要有 | 重排里 `DOC_PRIOR = {"P02": 1.0}` 给了 P02 先验加权，其他文档默认 0.9。不覆盖冷门文档就测不出这个先验有没有压死长尾 |
-| 块类型 | `text` / `table` | 表格是[原子块](https://github.com/tiltwind/refund-agent/blob/main/rag/chunking/model.py)，一张表就是一个大块，检索行为跟正文块不同，必须单独抽 |
-| 块长度 | 长块 / 短块 | 法规层的条文块常常只有 100 token，短块在 BM25 里天然吃亏 |
-
-P02 是核心政策，日常检索里本来就占多数命中。抽样时要提高冷门文档的比例，数据集的作用是暴露问题，不是复现现状。
-
----
-
-## 七、样本格式
-
-每行一个 JSON 对象。注释是说明，实际文件里没有。
+## 二、数据集格式
 
 ```jsonc
 {
-  "case_id": "R1-014",
-  "query": "拆开包装看了一眼，没用过，这种还能退吗？",
-  "style": "colloquial",              // formal | colloquial，分档报指标
-  "type": "single",                   // single | multi_hop | unanswerable
-
-  "seed_chunk_id": ["P05#002:01"],    // 反向生成的种子块，Recall 的真值
-  "reference_answer": "未使用且不影响二次销售的商品，即使已开启包装，仍适用无理由退货；判断标准是商品本身、附件、包装是否完整。",
-
-  "meta": {                           // 生成时落盘，供分档与排查
-    "doc_id": "P05",
-    "layer": "platform",
-    "kind": "text",
-    "overlap_ratio": 0.21,            // query 与块正文的实词重叠率，见 5.1
-    "generated_by": "…",              // 生成模型标识
-    "reviewed": true                  // 人工抽检过没有
-  }
+  "case_id": "R1-081",
+  "question": "商品已拆封但未实际使用，是否支持无理由退货？若支持，寄回运费由谁承担？",
+  "ground_truth": "已拆封但未实际使用的商品不支持无理由退货，平台仅接受未拆封商品的无理由退货。若符合无理由退货条件，寄回运费由消费者承担，可自行选择快递或使用平台上门取件服务（费用从退款中扣除）。",
+  "source": ["P05#002:00", "P06#001:00"]   // 出题的条文，排序指标的真值
 }
 ```
 
-字段与指标的对应：
+| 字段 | 谁读它 |
+|---|---|
+| `question` | 直接喂 `search_policy`，不经过 Agent |
+| `ground_truth` | Context Recall 的分母：按句拆开，逐句判有没有被上下文支撑 |
+| `source` | 三个排序指标的真值；报告按文档分档也读它；掉分时回头看这条出自哪一段条文 |
 
-| 字段 | 谁读它 | 缺了会怎样 |
-|---|---|---|
-| `query` | 直接喂 `search_policy` | — |
-| `seed_chunk_id` | `recall_at_k` | 算不了 ID 级 Recall |
-| `reference_answer` | `context_recall`（LLM judge） | 算不了内容级 Recall |
-| `claims` | `context_recall` 的分母 | 同上。它是参考答案拆成的原子事实，与答案同一次生成，不在跑批时现拆 |
-| `style` / `overlap_ratio` | 报告分档 | 只剩一个混合数，读不出对字面匹配的依赖程度 |
-| `type` | 聚合口径（`multi_hop` 全中才算命中） | 部分召回被误判为通过 |
-| `meta.doc_id` / `layer` / `kind` | 报告切片 | 定位不到是哪类文档或哪类块出问题 |
 
-Context Relevance 不在表里，它不需要任何标注字段，只看检回的内容和 query。
+## 三、反向生成
 
----
+反向从条文出发生成数据集：
 
-## 八、校验：两道关
+```
+353 个子块
+  └─ 分层抽样 → 单块种子 + 跨块对
+        └─ LLM 生成（温度 0）→ { formal, colloquial, ground_truth }
+              └─ 自检五项 → rag/datasets/r1/cases.jsonl
+```
 
-生成的东西不能直接用。
+当前这一版：96 条样本，82 条单块 + 14 条跨块，去重后用到 52 个种子块（占 353 个块的 15%）。
 
-### 8.1 自动自检（零成本，不调模型）
+问题分2类型，一个是带政策术语的规范问法，一个是消费者的口语。
+同一条规则被问到两次，一次给 BM25 送精确 term，一次压稠密一路和[改写](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/pipeline/rewrite.py)环节。
 
-对标 [`validate_cases.py`](https://github.com/tiltwind/refund-agent/blob/main/evals/validate_cases.py) 的定位：在花钱跑批前拦住明显不对的东西。
+抽样每篇文档保底 2 个、块数 ≥ 20 的加 1，层内保证表格块与短块各有一个。
+
+## 四、自检
+
+数据集自检[`validate_cases.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/evals/validate_cases.py) ：
 
 | 检查 | 抓什么 |
 |---|---|
-| `seed_chunk_id` 存在性 | 拿 ID 去 Milvus 查，查不到说明切片版本已经漂了（见第九节） |
-| 重叠率阈值 | `overlap_ratio` 超线的样本标记出来，人工决定重写还是保留为 `formal` 档 |
-| 参考答案可溯源 | 答案里的数字（天数、次数、金额）必须在种子块正文里出现过。凭空出现的数字是模型幻觉 |
-| `case_id` 与 query 去重 | 不同种子块生成出几乎相同的 query，会让某类问题被重复计权 |
-| 分层覆盖 | 16 篇文档、两个 layer、两种 `kind` 都有样本，且冷门文档不低于下限 |
+| 四个字段齐全、`case_id` 唯一 | 跑批跑到一半才发现要重来 |
+| `question` 不重复 | 同一个问题被重复计权 |
+| `source` 里的 chunk_id 在库里存在 | 切片版本漂了 |
+| `ground_truth` 里的数字在源块正文里出现过 | 凭空出现的天数、次数、金额是模型幻觉 |
+| `ground_truth` 不以独立结论句开头 | 见 1.3 |
 
-### 8.2 人工抽检
+自检之外抽 10% 人工过一遍，判两件事：这个问题真人会不会这么问；标准答案有没有超出源块（超出的部分要么删，要么把那个块也加进 `source`）。
 
-抽 10%，只判三件事，判不了就打回：
-
-1. 这个 query 真人会这么问吗，不会就是 5.2 的语域偏移；
-2. 不看原文，这个 query 能唯一指向种子块吗，不能说明 query 太泛，比如「退款要多久」，这条应该改写或降级为 `multi_hop`；
-3. 参考答案有没有超出种子块，超出的部分要么删，要么把那个块也加进 `seed_chunk_id`。
-
-抽检结果记 `meta.reviewed`。这批人工确认过的样本还有第二个用途：Context Recall 靠模型逐条判定 claim，判定准不准需要一个基准，用的就是这批样本。
-
----
-
-## 九、版本绑定：chunk_id 会漂
-
-评估用例的期望值绑定着某个版本的被测对象。r1 绑的是切片产物，这个绑定比一般的更脆。
-
-`chunk_id` 的构成是 [`policy.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/chunking/policy.py) 里的 `f"{doc_id}#{parent_seq:03d}:{chunk_index:02d}"`，例如 `P02#003:01`。它是位置派生的，不是内容哈希：
-
-| 改动 | `chunk_id` 会不会变 | 后果 |
-|---|---|---|
-| 重新跑一遍 `seed_milvus.py`，文档没改 | 不变 | 安全 |
-| 政策文档增删一个 `##` 小节 | 该文档后续所有块的 `parent_seq` 全部偏移 | 整篇的 `seed_chunk_id` 静默失效 |
-| 调切分参数（320 / 512 / overlap） | `chunk_index` 重排 | 同上 |
-| 只改正文措辞，不动标题结构 | 不变，但块内容变了 | 参考答案可能对不上，要重新抽检 |
-
-静默失效时用例照跑，只是 Recall 全线暴跌，看上去像检索退化。所以自检必须查 ID 存在性，且要记录绑定版本：
-
-| 绑定项 | 记在哪 | 变更后 |
-|---|---|---|
-| 政策语料 | `doc/policy/` 的 git sha | 文档改版后重新生成受影响文档的样本 |
-| 切片参数 | `320 / 512 / overlap=0` | 参数变了整个 r1 作废，开 r2 |
-| collection | `MILVUS_COLLECTION` | 重新灌库后先跑自检 |
-
-开不开新版本的判断标准：追加样本直接往 `cases.jsonl` 里加，期望值大面积失效才开 r2。否则版本号会碎得没法做纵向对比。
-
----
-
-## 十、产物
+## 五、产物
 
 | 产物 | 位置 | 作用 |
 |---|---|---|
-| 生成脚本 | [`rag/evals/generate_cases.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/evals/generate_cases.py) | 分层抽样 + 反向生成 + 重叠率计算 |
-| 用例集 | [`rag/datasets/r1/cases.jsonl`](https://github.com/tiltwind/refund-agent/blob/main/rag/datasets/r1/cases.jsonl) | 检索评测的单一事实源，102 条 |
-| 数据集说明 | [`rag/datasets/r1/README.md`](https://github.com/tiltwind/refund-agent/blob/main/rag/datasets/r1/README.md) | 绑定关系、分层结果、抽检记录 |
-| 自检脚本 | [`rag/evals/validate_cases.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/evals/validate_cases.py) | 第八节的五项检查，不调模型 |
-| 推送脚本 | [`rag/evals/push_dataset.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/evals/push_dataset.py) | `input` 放 query，`expected_output` 放种子块与参考答案 |
+| 生成脚本 | [`rag/evals/generate_cases.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/evals/generate_cases.py) | 分层抽样 + 反向生成 |
+| 用例集 | [`rag/datasets/r1/cases.jsonl`](https://github.com/tiltwind/refund-agent/blob/main/rag/datasets/r1/cases.jsonl) | 96 条，检索评测的单一事实源 |
+| 数据集说明 | [`rag/datasets/r1/README.md`](https://github.com/tiltwind/refund-agent/blob/main/rag/datasets/r1/README.md) | 绑定关系、分布、已知偏差 |
+| 自检脚本 | [`rag/evals/validate_cases.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/evals/validate_cases.py) | 第四节五项 |
+| 排序指标 | [`rag/experiments/rag-ex-1/rank_metrics.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/experiments/rag-ex-1/rank_metrics.py) | 1.0 那三个，判分只读 `source` |
+| 推送脚本 | [`rag/evals/push_dataset.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/evals/push_dataset.py) | 推成 Langfuse 数据集 |
 
 ```bash
 python rag/evals/generate_cases.py --dry-run   # 只看抽样结果，不调模型
-python rag/evals/generate_cases.py             # 生成 rag/datasets/r1/cases.jsonl
-python rag/evals/validate_cases.py             # 第八节的五项检查
+python rag/evals/generate_cases.py             # 生成 cases.jsonl
+python rag/evals/validate_cases.py             # 五项自检
 ```
-
-生成脚本重复跑，抽样稳定：随机种子固定、按 `chunk_id` 排序后抽样、生成温度设 0。稳定的是抽到哪些种子块，query 的措辞仍由模型给，两次生成会有细微出入 —— 要用重跑的结果覆盖已有样本，先确认这一版的抽检结论还成不成立。
-
-语料从 collection 读，脚本不再切一遍：`chunk_id` 由切片位置派生，脚本自己切等于在库外维护第二份切片产物，参数一改两边悄悄错开，生成时看着对、评测时全线判负。

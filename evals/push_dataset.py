@@ -61,7 +61,7 @@ def load_cases(dataset: Path) -> list[dict]:
 
 def to_item(case: dict) -> dict:
     # `run`（只有 D1-027 用到）按同一条口径拆开：怎么跑归 input，判什么归
-    # expected_output —— 混在一起的话，打分器就得从 input 里翻期望值。
+    # expected_output —— 两边分清楚，打分器直接读 expected_output。
     payload = {
         "context": case["context"],
         "turns": [{"user": turn["user"]} for turn in case["turns"]],

@@ -80,8 +80,8 @@ def create_collection(client: MilvusClient) -> None:
     schema.add_field("parent_seq", DataType.INT64)
 
     # 正文与可检索文本分开存：body 是原文（装配后喂模型），
-    # text = 块头 + body（进 embedding 与 BM25）。混成一个字段的话，
-    # 模型读到的上下文里会夹着一堆【文档】【路径】的标记。
+    # text = 块头 + body（进 embedding 与 BM25）。分开之后模型读到的上下文里
+    # 没有【文档】【路径】这些检索用的标记。
     schema.add_field("body", DataType.VARCHAR, max_length=16384)
     schema.add_field(
         "text",

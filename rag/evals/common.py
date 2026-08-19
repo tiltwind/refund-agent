@@ -1,4 +1,4 @@
-"""r1 数据集三个脚本的公共部分：环境变量、语料、jsonl、实词重叠率。
+"""r1 数据集脚本的公共部分：环境变量、语料、jsonl、judge 模型。
 
 语料从 **Milvus 取**，不从 `doc/policy/` 重新切一遍。数据集绑的是 `chunk_id`，
 而 `chunk_id` 由切片位置派生（rag/chunking/policy.py），脚本自己再切一次就等于
@@ -15,7 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 DATASET_DIR = ROOT / "rag" / "datasets" / "r1"
 
-# query 与块正文比对时忽略的虚词。只在两个字都是虚词时才丢掉这个二元组 ——
+# 比对文本时忽略的虚词。只在两个字都是虚词时才丢掉这个二元组 ——
 # 「的商品」里的「商品」还是实词。
 FUNC_CHARS = set("的了着过吗呢吧啊呀么是不在有和与或及对为以之其这那些我你他她它们个就都还也很要会能可把被给让从到")
 
@@ -59,17 +59,16 @@ def load_chunks() -> list[dict]:
     return sorted(rows, key=lambda r: r["chunk_id"])
 
 
-# ── 实词重叠率 ────────────────────────────────────────────────────────────
+# ── 关键词匹配 ────────────────────────────────────────────────────────────
 def terms(text: str) -> set[str]:
     """把文本切成可比对的实词单位：中文取相邻二元组，数字与拉丁词整体取。
 
     这里**没有分词**：项目不装 jieba，BM25 的中文分析器跑在 Milvus 服务端
     （rag/index/seed_milvus.py），本机拿不到同一套切词。二元组是零依赖下最接近
-    中文词的近似 —— 「无理由退货」切出「无理」「理由」「由退」「退货」，
-    抄了原文的 query 会大面积命中，换过说法的不会。
+    中文词的近似 —— 「无理由退货」切出「无理」「理由」「由退」「退货」。
 
-    它只用于**分档与打回重写**，不参与判分，所以近似带来的误差可以接受；
-    真要用它做门禁，就得先跟服务端分析器对齐。
+    它只用来给跨块样本按关键词挑块（`generate_cases.py`），不参与判分，
+    近似带来的误差可以接受。
     """
     out: set[str] = set()
     for token in _TOKEN.findall(text):
@@ -85,14 +84,6 @@ def terms(text: str) -> set[str]:
                 continue
             out.add(a + b)
     return out
-
-
-def overlap_ratio(query: str, body: str) -> float:
-    """query 有多少实词单位来自块正文。1.0 = 整句都是原文的词。"""
-    q = terms(query)
-    if not q:
-        return 0.0
-    return round(len(q & terms(body)) / len(q), 3)
 
 
 # ── jsonl ────────────────────────────────────────────────────────────────
@@ -169,10 +160,10 @@ def judge_json_hint(schema) -> str:
     """json_mode 下要追加到提示词末尾的一段：字段结构。
 
     `json_mode` 是 DeepSeek 这类网关上**唯一能同时开着思考模式**的结构化方式
-    （function_calling 要设 tool_choice，与 thinking 冲突），而判定 claim 正是该让
+    （function_calling 要设 tool_choice，与 thinking 冲突），而逐条判定正是该让
     模型多想一步的活。代价是它只保证「输出是合法 JSON」：langchain 不会像
-    function_calling 那样把 schema 传给模型，字段名得自己写进提示词，否则模型自由
-    发挥（实测吐过 `{"useful": [...]}`），解析直接失败。
+    function_calling 那样把 schema 传给模型，字段名得自己写进提示词。实测里模型给过
+    `{"useful": [...]}` 这样的自造字段名，解析直接失败。
 
     schema 由 pydantic 模型现生成，不手写 —— 手写的那份迟早跟类定义对不上。
     """

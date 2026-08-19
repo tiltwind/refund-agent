@@ -23,10 +23,10 @@ python evals/validate_cases.py                    # 自检：期望值 vs 规则
 
 **什么时候开 d2**：fixture 语义变更、规则引擎口径变更、期望值需要大面积重写时。
 只是追加新用例（比如线上 badcase 回流）直接往 `cases.jsonl` 里加，不开新版本——
-否则版本号会碎得没法做纵向对比。
+版本号保持粗粒度，纵向对比才有连续的基线。
 
-> ⚠️ 时间一律用 `signed_days_ago` 相对天数。用绝对时间戳的话，这个数据集放三个月后所有窗口判定
-> 全部失效，而且失效得悄无声息：用例照跑，只是答案全错了。
+> ⚠️ 时间一律用 `signed_days_ago` 相对天数。绝对时间戳跟着数据集一起变旧：放三个月后所有窗口判定
+> 全部失效，而且失效得悄无声息，用例照跑，只是答案全错了。
 
 ---
 
@@ -103,8 +103,8 @@ python evals/validate_cases.py                    # 自检：期望值 vs 规则
 [`evals/experiments/ex-1`](../../experiments/ex-1/README.md)——运行命令、指标口径
 （硬 / 软、run 级聚合）都在那份 README 里。
 
-分开放是因为两者的版本节奏不同：改期望值开 d2，改判分口径开 ex-2。写在一处的话，动任何
-一边都会让另一边的历史结论失去可比性。
+分开放是因为两者的版本节奏不同：改期望值开 d2，改判分口径开 ex-2。两条版本线各自独立，
+动一边不影响另一边的历史结论。
 
 ---
 
@@ -155,7 +155,7 @@ python evals/validate_cases.py                    # 自检：期望值 vs 规则
 |---|---|
 | 工具层参数校验（`reason_type` 非法值 → `参数错误：…`） | 自然语言难以稳定触发，属单元测试范畴，不该占一条 agent 用例 |
 | 客服代操作（`actor=staff:*`） | v1 在此没有差异化逻辑，等审批流落地后补 |
-| 检索质量本身（recall@k / MRR） | 另建 retrieval 数据集（query → 应召回的 section），与本集不互相顶替（2-design 3.4） |
+| 检索质量本身（Context Precision / Context Recall） | 另建 [retrieval 数据集 r1](https://tiltwind.github.io/refund-agent/doc/get-start/4-rag-dataset.md)（question → ground_truth），与本集不互相顶替（2-design 3.4） |
 | 人工审批 interrupt / 恢复 | 尚未实现（2-design 第四章） |
 | 部分退款、运费与优惠券重算、赠品退回 | 规则引擎当前不支持，语料里有（P06 / P10）但判不了 |
 | 线上真实分布（脏数据、字段缺失、异常枚举） | 靠 ⑦ 回流补，手工构造造不出真实分布 |

@@ -1,15 +1,34 @@
 # 实验 rag-ex-1 —— 数据集 r1 的检索评测
 
-被测对象是 [`search_policy`](../../retrieving/milvus.py) 的六步链路，不经过 Agent。样本来自
-[`rag/datasets/r1`](../../datasets/r1/README.md)，指标口径见
+被测对象是 [`search_policy`](../../retrieving/milvus.py)，不经过 Agent：一个问题进去、一组
+`PolicySection` 出来。样本来自 [`rag/datasets/r1`](../../datasets/r1/README.md)，两个指标的
+算法见 [4 · 检索评测数据集](https://tiltwind.github.io/refund-agent/doc/get-start/4-rag-dataset.md)。
+这里只写脚本怎么用，跑批结果、校准基线与门禁口径见
 [5 · 检索评测](https://tiltwind.github.io/refund-agent/doc/get-start/5-rag-eval.md)。
+
+指标分两组。LLM judge 判交付的上下文：
+
+```
+Context Precision = Σ(Precision@k × rel_k) / 相关条数   逐段判相关 + 位置加权，不要标注
+Context Recall    = 被支撑的句子数 / ground_truth 句数  标准答案拆句 + 逐句归因
+```
+
+排序指标判出题的那段条文排第几，只比对 `source` 与检索链路的 ID 序列，不调模型：
+
+```
+candidate_hit   source 有没有进 20 条候选        分开「召回层漏了」和「重排/阈值挡了」
+hit@1 / hit@4   重排后它排在第几
+mrr             1 / 排名，掉出证据列表记 0
+```
+
+两组的可比性条件不同：judge 那组要判定口径相同（模型、思考档位、结构化方式），排序那组
+只要数据集与 collection 没变。跨块样本按两段里排得最深的那个算 —— 只召回一半答不全。
 
 判分逻辑跟着实验走：**换判分口径 = 开新实验目录**，就地改会让历史 run 的分数不再可比。
 期望值变了（改 `cases.jsonl` 的口径）就该开 r2。
 
-打分器分两处：`scorers.py` 是纯函数（三档 Recall + 两个辅助数，进门禁），`judge.py` 要调 LLM
-（Context Recall + Context Relevance，默认关，`--judge` 打开，只进报告）。六步上报 Langfuse，
-分数写回 dataset run。
+五个文件：`run_experiment.py` 跑批、`judge.py` 是两个 judge 指标、`rank_metrics.py` 是三个
+排序指标、`report.py` 出 HTML 报告、`calibrate_judge.py` 校准 judge。
 
 ---
 
@@ -19,25 +38,24 @@
 |---|---|
 | Milvus 起着并已灌库 | `bash scripts/milvus.sh start` + `python rag/index/seed_milvus.py` |
 | 数据集自检过 | `python rag/evals/validate_cases.py` |
-| 样本带 `claims`（只有 `--judge` 要） | `python rag/evals/generate_claims.py` |
 
-改写那一步会调一次模型（`.env` 里没配凭据就原文透传，检索照跑，排序质量掉一档）。其余
-两个模型是本地的：BGE-M3 嵌入、bge-reranker-v2-m3 重排。
+链路的改写那一步会调一次模型（`.env` 里没配凭据就原文透传，检索照跑，排序质量掉一档）。
+其余两个是本地模型：BGE-M3 嵌入、bge-reranker-v2-m3 重排。
 
-`--judge` 另外要一个 judge 模型，从 `.env` 取，与改写模型分开配 —— 没单独配就回落到主模型，
-那是自己评自己，跑批时会打一行警告：
+judge 模型从 `.env` 取，与改写模型分开配 —— 没单独配就回落到主模型，那是自己评自己，
+跑批时打一行警告：
 
 ```bash
 OPENAI_JUDGE_MODEL="deepseek-v4-pro"          # 或 ANTHROPIC_JUDGE_MODEL
 REFUND_AGENT_JUDGE_STRUCTURED="json_mode"     # DeepSeek 上留着思考模式的那一档
+REFUND_AGENT_JUDGE_REASONING="none"           # 思考档位；它换掉的是判定口径，不只是速度
 ```
 
 ## 二、跑
 
 ```bash
-python rag/experiments/rag-ex-1/run_experiment.py                        # 离线，全量 102 条
-python rag/experiments/rag-ex-1/run_experiment.py --cases R1-001 R1-082  # 只跑指定用例
-python rag/experiments/rag-ex-1/run_experiment.py --judge --concurrency 8  # 加两个 LLM 指标
+python rag/experiments/rag-ex-1/run_experiment.py                        # 离线，全量
+python rag/experiments/rag-ex-1/run_experiment.py --cases R1-001 R1-081  # 只跑指定用例
 python rag/experiments/rag-ex-1/run_experiment.py --langfuse --run-name $(git rev-parse --short HEAD)
 ```
 
@@ -48,16 +66,29 @@ python rag/experiments/rag-ex-1/run_experiment.py --langfuse --run-name $(git re
 | `--dataset-name` | `retrieval-cases-r1` | Langfuse 上的数据集名 |
 | `--run-name` | `<数据集>-<条数>cases` | 版本对比时传 git sha |
 | `--cases` | 全量 | 只跑指定 case_id |
-| `--judge` | 关 | 加算 Context Recall 与 Context Relevance，每条多两次 judge 调用 |
-| `--concurrency` | 4 | 嵌入和重排的前向是串行的（同一块 GPU，且 MPS 后端不是线程安全的，见 `llm/device.py`），调高它并行的是改写和 judge 那些网络调用 —— 带 `--judge` 时值得调到 8 |
+| `--concurrency` | 8 | 本地模型的前向与 tokenizer 都被一把全局锁串起来（同一块 GPU，MPS 后端不是线程安全的；HF fast tokenizer 并发调用抛 `Already borrowed`，见 `llm/device.py`），调高它并行的是改写和 judge 那些网络调用 |
 | `--out` | `result.json` | 只跑 `--cases` 子集时默认不写，免得覆盖全量结果 |
 
-每条一行，`@1/@3/@10=001` 是三档的命中位：只有候选里有，重排后前 3 里没有。`-` 表示这一档
-不适用（`multi_hop` 没有 `recall@1`）。带 `--judge` 时行尾多出 `CR`（Context Recall）与
-`CRel`（Context Relevance）。
+跑批同时在 `--out` 旁边落一份 `context_snapshot.json`：这一轮 judge 的输入（问题、有序
+上下文全文、标准答案），校准 judge 用，见下面「judge 校准」。`result.json` 里的
+`sections` 只有标题，判定复现要的是正文。
 
-`--judge` 默认关，因为调参迭代要的是三档 Recall：多付两百多次 judge 调用、慢一个量级，而那
-两个数不进门禁。出报告、做版本留档时再带上。
+每条一行：`4 段 · CP=0.833 CR=1.000 · rank=证据列表第 2 位（共 16 条）`。最后那一段写的是
+「卡在哪一步」而不是数字 —— 一个 `hit@4=0` 说明不了该改召回还是该改阈值。
+
+检索的三种出口分开记账：
+
+| 出口 | 判分 | 计入均值 |
+|---|---|---|
+| 正常返回 | 判 | 是 |
+| `RetrievalError`（重排后没有可交付证据） | 上下文为空，两个 judge 指标判 0 | 是 |
+| 其他异常（跑批故障） | 不判 | 否，进 `summary.failures`，行首打「跑批故障」 |
+
+第三行与第二行分开，是因为它们混在一起时一次 tokenizer 竞态会被记成「检索没召回」——
+均值里凭空多出几条 0，看上去像检索退化。口径与 judge 调用失败不写分数一致。
+
+耗时绝大部分花在 judge 上：每条两次调用，空上下文的那几条直接判 0 不调。排序指标不花
+时间 —— 它读的是同一次检索已经产出的 ID 序列。
 
 ### 两条路径
 
@@ -69,8 +100,8 @@ python rag/experiments/rag-ex-1/run_experiment.py --langfuse --run-name $(git re
 | 分数 | `result.json` | `result.json` + dataset run |
 | 检索 trace | 不上报（脚本把 `REFUND_AGENT_RAG_SPAN` 关掉） | 六步随 item 的 trace 上报 |
 
-门禁走默认路径：三档 Recall 不该被一个本地 Langfuse 实例的死活卡住。版本对比用
-`--langfuse`，run 页上能并排看两次跑批。
+调参走默认路径，不该被一个本地 Langfuse 实例的死活卡住。版本对比用 `--langfuse`，
+run 页上能并排看两次跑批。
 
 ### Langfuse 上能看到什么
 
@@ -89,105 +120,86 @@ retriever  rag.search_policy   in {query, top_k}          out {sections: 全文}
 
 | 层 | 记到什么程度 | 因为要回答 |
 |---|---|---|
-| `rag.recall` | 全部 20 条的 `chunk_id` + 小节名 + RRF 分 + 命中来源，无正文 | 捞没捞到、是哪一路捞的、排第几。20 条全文有几万字，这一步用不上 |
+| `rag.recall` | 全部 20 条的 `chunk_id` + 小节名 + RRF 分 + 命中来源，无正文 | 捞没捞到、是哪一路捞的、排第几 |
 | `rag.rerank` | 每条证据的三个分 + 120 字摘录，外加被阈值砍掉的 `dropped` | 分数为什么是 0.98 或 0.29。重排返回空时 `dropped` 是全部 20 条，一眼看出是阈值不是召回的问题 |
-| `rag.assemble` / 根节点 | `PolicySection` **全文**，含 `text`、`score`、`reason`、来源路径 | 这是真正注入模型上下文的东西。judge 接进来后判的就是这段文字，只留小节名的话掉分时无从核对；装配把同一父块拼两遍，也只有正文在场才看得出来 |
+| `rag.assemble` / 根节点 | `PolicySection` **全文** | 这是两个指标真正判定的东西，掉分时要对着正文核对 |
 
-一次检索的 span 合计约 19KB。埋点在 [`milvus.py`](../../retrieving/milvus.py) 而不是在这个脚本里，
-所以线上出坏 case 翻的是同一棵树（`2-design 3.4`）。
+埋点在 [`milvus.py`](../../retrieving/milvus.py) 而不是在这个脚本里，所以线上出坏 case
+翻的是同一棵树（`2-design 3.4`）。
 
-## 三、指标
+## 三、结果文件
 
-| 指标 | 读什么 | 诊断 |
-|---|---|---|
-| `recall@10` | 召回融合后的候选（`CANDIDATE_LIMIT = 20`） | 召回层的上界，这里没有的后面救不回来 |
-| `recall@3` | 重排后前 3（`DEFAULT_TOP_K = 4`，留一格余量） | 实际交付水位 |
-| `recall@1` | 重排后第 1 | 头部精度，对 `MIN_SCORE` 最敏感 |
-| `evidence_tokens` | 装配后证据的 token 用量 | `TOKEN_BUDGET = 3000` 的实际占用 |
-| `duplicate_ratio` | 重复正文的字符占比 | 内容重复信号；是否由装配造成需结合 trace 验证 |
-| `context_recall` | 参考答案的 claim 有几条被检回的上下文支撑 | 种子 ID 判负而它高 = 召回了等价条款，是标注不全不是检索坏 |
-| `context_relevance` | 检回内容里跟 query 相关的句子占比 | 惩罚「多召回」。`top_k` 调大时它下降，与 Recall 一起读才知道净赚还是净亏 |
-
-后两个挂在 `PolicySection.text` 上（那是真正注入模型上下文的东西），逐条判定理由落在
-`result.json` 的 `judge` 字段里。它们调模型、有噪声，所以只记录不进门禁；judge 校准做完
-之前结论不采信。claim 不在跑批时现拆，是 `cases.jsonl` 里的一个字段 —— 分母得在两次 run
-之间保持一致。judge 调用失败的那条不写分数（写 0 会被均值当成检索没召回），失败清单进
-`summary.judge_errors`。
-
-命中口径是**全部种子块都进前 k 才算命中**，`multi_hop` 不给部分分：只召回一半，答案照样是错的。
-
-`unanswerable` 的 6 条没有种子块，不进上述均值 —— 空集是任何集合的子集，算出来是满分。它们
-只判一件事：链路有没有按口径抛异常（`unanswerable_raised`）。
-
-分档按 `style` / `type` / `layer` / `kind` / `doc_id` 各切一份，落在 `result.json` 的
-`breakdown` 里。总均值只用来看趋势，能指向改哪个文件的是分档。
-
-## 四、结果
-
-`result.json` 是唯一事实源，报告和版本对比都读它。第一次全量跑的结论见
-[基线报告](./baseline-report.md)。逐条那份带 `seed_rank` ——
-种子块在候选里第几、在证据里第几，两个名次差就是重排的账：
+`result.json` 是唯一事实源，报告和版本对比都读它。逐条那份带每一次判定的理由：
 
 ```json
 {
-  "case_id": "R1-046", "type": "single", "style": "colloquial", "kind": "table",
-  "seed_chunk_id": ["P05#002:00"],
-  "scores": { "recall@10": 1.0, "recall@3": 0.0, "recall@1": 0.0,
-              "evidence_tokens": 2604, "duplicate_ratio": 0.434 },
-  "seed_rank": { "candidate": { "P05#002:00": 2 }, "evidence": { "P05#002:00": 12 } }
+  "case_id": "R1-039", "doc_id": "P03",
+  "question": "…",
+  "error": null, "failure": null,
+  "sections": ["P03 退款到账时效 > 第二条 各渠道到账时效", "…"],
+  "scores": { "context_precision": 0.5, "context_recall": 1.0,
+              "candidate_hit": 1.0, "hit@1": 0.0, "hit@4": 1.0, "mrr": 0.5 },
+  "retrieval": {
+    "candidate_ids": ["P03#004:01", "…"],
+    "evidence_ids": ["P03#004:01", "P03#004:02", "…"],
+    "rank_note": "证据列表第 2 位（共 4 条）"
+  },
+  "judge": {
+    "context_precision": { "score": 0.5, "n": 3, "hit": 1,
+      "detail": [{ "text": "【P03 …】…", "hit": true, "reason": "给出了到账时效" }, "…"] }
+  }
 }
 ```
 
-召回层排第 2，重排压到第 12 —— 要改的是重排权重，不是切片。`multi_hop` 没有 `recall@1` 这个键
-（k 小于种子块数不计分），三档各自的分母记在 `summary.counted` 里。
+一个 0.5 分说明不了改哪里 —— 要能翻到是哪一段被判不相关、哪一句没被支撑。两条 ID 序列
+落盘是同一个道理：一条样本掉分时，要能当场分清 source 是没被召回、还是被阈值挡在了
+证据列表外，这两种情况的修法完全不同。
 
-走 `--langfuse` 时每条还会多一个 `trace_id`，run 级多一个 `run_url`：从结果文件能直接跳到那条
-trace 看六步。反过来不成立 —— Langfuse 是本地实例，换台机器就打不开，所以报告只读结果文件。
+judge 调用失败的那条不写分数，从均值的分母里少掉，失败清单进 `summary.judge_errors`；
+链路本身跑挂的那条一个分数都不写，进 `summary.failures`。两份清单都要报出来 ——
+写 0 会被均值当成检索没召回，把故障记到检索头上。
 
-`config` 记的是这次跑批的被测参数（collection、模型、`top_k`、`MIN_SCORE`、各权重）。两次 run
-的分数只有在这些值相同的前提下才可比 —— 尤其是 collection，重新灌库而 `chunk_id` 漂了，
-Recall 会全线暴跌，看上去像检索退化。
+走 `--langfuse` 时每条还会多一个 `trace_id`，run 级多一个 `run_url`。反过来不成立 ——
+Langfuse 是本地实例，换台机器就打不开，所以报告只读结果文件。
 
-### 现场记录
-
-```bash
-python rag/experiments/rag-ex-1/export_traces.py                # 抽 20 条导出到 traces/
-python rag/experiments/rag-ex-1/export_traces.py --all          # 全量 102 条
-python rag/experiments/rag-ex-1/export_traces.py --cases R1-046 # 只导指定用例
-```
-
-抽样不是随机的 —— 随机 20 条里大概率一条空证据都没有，而那恰恰是最该留档的。按报告里的每个
-结论分桶取，最后三条是三档全中的对照：只留坏 case 的话，读的人无从判断正常的一次检索长什么样。
-桶的定义在脚本的 `BUCKETS` 里，也写进 [`traces/README.md`](./traces/README.md)。
-
-`--all` 是同一套分组、不截断，剩下的进「其余」。留全量的理由是报告的分档表：口语档、表格档
-指到的是一批用例，只留 20 条抽样的话点进去多半没有对应的那一条。代价是 102 条约 6MB。
-
-每条两个文件：`.md` 人读版（六步展开，装配那步是条款全文），`.json` 机器版（全部 observation
-原样保留）。跑批带过 `--judge` 的话，`.md` 末尾还有一段 judge 判定：逐条 claim 支不支撑、
-哪些内容单元被判为不相关 —— 就跟在装配的正文后面，对着看的。要跑批带过 `--langfuse`
-才有 `trace_id` 可导。
+`config` 记的是这次跑批的被测参数（collection、三个模型、`top_k`、`MIN_SCORE`、各权重）。
+两次 run 的分数只有在这些值相同的前提下才可比 —— 尤其是 `judge_model` 与
+`judge_reasoning`：换 judge 等于换判定口径。
 
 ### HTML 报告
 
 ```bash
-python rag/experiments/rag-ex-1/report.py                       # → rag-ex-1-report.html
+python rag/experiments/rag-ex-1/report.py                       # → report.html
 ```
 
-[`rag-ex-1-report.html`](./rag-ex-1-report.html) 是同一批数据的可视化：三档、四张分档表、
-两个 LLM 指标、四个链路问题、run 间抖动、102 条明细（链到现场记录）。只读 `result.json`，
-不连 Langfuse。结果文件里带 `--judge` 那两个键时，分档表和明细表各多两列，第三节多出
-`recall@3` × `Context Recall` 的四象限 —— 那张表是这两个指标存在的理由：种子 ID 判负而
-上下文撑得住，说明召回的是等价条款，只报 Recall 的话它和真的没召回长得一样。
-`report.py` 里的 `HISTORY` 是人填的 —— 结果文件只存最近一次，而抖动幅度要几次才看得出来。
+五节：两个 judge 指标的均值与公式、四个排序指标、分数分布、按文档分档、逐条明细。
+明细里每条都能展开看逐条判定，「source 排名」那一列直接写出卡在哪一步。分布图看的是
+均值掩盖的形状 —— 0.87 可能是「都在 0.87」，也可能是「八成满分、两成接近 0」，
+这两种情况的修法不同。
 
-## 五、门禁
+### judge 校准
 
-三档 Recall 是纯函数，所以它做门禁；两个 LLM 指标接进来之后只记录，不参与 pass / fail。
+跑批的分数里混着两个变量：检索每次返回的上下文会变，judge 的判定也会变。校准把前一个
+拿掉 —— 固定住上下文，只让 judge 重复判定，剩下的波动就都是它自己的。
 
-**打分器是纯函数，被测链路不是**：改写那一步调模型，同一份数据集跑几次会有一两条翻转，
-`recall@10` 实测抖 ±0.02。定容差之前先看[基线报告第六节](./baseline-report.md#六门禁前要解决的一件事链路不是确定性的)。
+```bash
+python rag/experiments/rag-ex-1/calibrate_judge.py            # 3 轮，读 context_snapshot.json
+python rag/experiments/rag-ex-1/calibrate_judge.py --rounds 5
+```
 
-门禁看**相对值**：`seed_chunk_id` 是下界，绝对值本来就偏低，定一个 `recall@3 ≥ 0.9` 之类的
-阈值没有依据。改参数后重跑，与上一版 `result.json` 对比，任一档下降超过容差即不通过。容差
-在攒够几个基线 run 之后再定，第一版只记录。
+不碰 Milvus、embedding、reranker，只读快照。三个数进 `calibration.json`：
+
+| 数 | 说的是什么 | 怎么用 |
+|---|---|---|
+| 轮间均值极差 | 判定噪声底 | 两次 run 的指标差值大过它，才算链路真的动了 |
+| verdict 翻转率 | 逐段/逐句判定在各轮之间判得不一致的比例 | 提示词的边界说清楚了没有 |
+| 样本分数极差 | 哪几条判得最不稳 | 分歧明细带各轮理由，是改提示词的入口 |
+
+空上下文的条目不参与：judge 对它们短路判 0，不调模型。
+
+判得稳不等于判得对 —— 后者要人工标注。两个指标的判定单位不同，抽样也分开：Context
+Precision 按段抽、Context Recall 按句抽，人工标 hit 之后与 judge 的判定算一致率，再看
+错的方向偏哪边。上下文固定住之后，同一份标注在改过提示词的 judge 上还能接着用。
+
+换 `judge_model`、`judge_reasoning` 或 `judge_structured` 等于换判定口径，新旧一致率
+不可比 —— 快照里记着跑批那轮的 judge，对不上时脚本打一行提示。

@@ -1,0 +1,994 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>rag-ex-1 · r1-96cases-run1</title><style>
+:root {
+  color-scheme: light;
+  --page:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --series:#2a78d6; --track:#eceae4; --good:#0ca30c; --bad:#d03b3b;
+  --warn:#fab219; --border:rgba(11,11,11,0.10);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --series:#3987e5; --track:#262624; --border:rgba(255,255,255,0.10);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --series:#3987e5; --track:#262624; --border:rgba(255,255,255,0.10);
+}
+* { box-sizing: border-box; }
+body { margin:0; padding:40px 24px 80px; background:var(--page); color:var(--ink);
+  font:15px/1.65 system-ui,-apple-system,"Segoe UI","PingFang SC",sans-serif; }
+main { max-width:1100px; margin:0 auto; }
+a { color:var(--series); text-decoration:none; }
+a:hover { text-decoration:underline; }
+code { font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace; }
+h1 { font-size:26px; margin:0 0 6px; letter-spacing:-0.01em; }
+h2 { font-size:18px; margin:48px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--grid); }
+h3 { font-size:14px; margin:0 0 10px; font-weight:600; }
+p { margin:10px 0; color:var(--ink-2); }
+.sub { color:var(--muted); margin:0 0 18px; font-size:14px; }
+.chips { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px; }
+.chip { border:1px solid var(--border); border-radius:999px; padding:3px 11px;
+  font-size:12.5px; color:var(--ink-2); background:var(--surface); }
+.chip b { color:var(--ink); font-weight:600; }
+.tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0 8px; }
+.tile { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:14px 16px; }
+.tile .k { font-size:12px; color:var(--muted); }
+.tile .v { font-size:30px; font-weight:650; letter-spacing:-0.02em; margin-top:2px; }
+.tile .n { font-size:12.5px; color:var(--ink-2); }
+.formula { margin:14px 0; padding:12px 16px; background:var(--surface); border:1px solid var(--border);
+  border-radius:8px; font:12.5px/1.9 ui-monospace,Menlo,monospace; color:var(--ink-2); overflow-x:auto; }
+.note { margin:18px 0; padding:14px 16px; background:var(--surface); border:1px solid var(--border);
+  border-left:3px solid var(--warn); border-radius:8px; font-size:14px; color:var(--ink-2); }
+.note strong { color:var(--ink); }
+.grid2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(420px,1fr)); gap:16px 24px; }
+.tablewrap { overflow-x:auto; border:1px solid var(--border); border-radius:8px; background:var(--surface); }
+table { border-collapse:collapse; width:100%; font-size:13px; }
+th, td { padding:7px 9px; text-align:left; border-bottom:1px solid var(--grid); white-space:nowrap; }
+thead th { font-size:11.5px; color:var(--muted); font-weight:600; background:var(--surface); position:sticky; top:0; }
+tbody tr:last-child td { border-bottom:0; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+td.wrap { white-space:normal; min-width:260px; }
+.id { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
+.mini { position:relative; height:11px; background:var(--track); border-radius:3px; min-width:60px; }
+.mini i { position:absolute; left:0; top:0; height:11px; background:var(--series); border-radius:3px; }
+.bar { display:flex; align-items:center; gap:8px; margin:3px 0; font-size:12.5px; color:var(--ink-2); }
+.bar .lab { width:78px; font-family:ui-monospace,Menlo,monospace; font-size:12px; text-align:right; }
+.bar .track { flex:1; height:14px; background:var(--track); border-radius:3px; position:relative; }
+.bar .track i { position:absolute; left:0; top:0; height:14px; background:var(--series); border-radius:3px; }
+.bar .cnt { width:34px; font-variant-numeric:tabular-nums; }
+details { margin:0; }
+details summary { cursor:pointer; color:var(--series); font-size:12px; }
+details .detail { margin:8px 0 4px; padding:10px 12px; background:var(--page);
+  border:1px solid var(--grid); border-radius:6px; white-space:normal; }
+details .detail div { margin:4px 0; font-size:12.5px; color:var(--ink-2); }
+.h1 { color:var(--good); font-weight:600; }
+.h0 { color:var(--bad); font-weight:600; }
+.row-bad td { background:color-mix(in srgb,var(--bad) 6%,transparent); }
+footer { margin-top:56px; padding-top:16px; border-top:1px solid var(--grid); font-size:12.5px; color:var(--muted); }
+</style></head><body><main><h1>rag-ex-1 · r1-96cases-run1</h1><p class="sub">96 条样本 · 2026-08-19T13:32:38+00:00</p><div class="chips"><span class="chip">数据集 <b>rag/datasets/r1</b></span><span class="chip">judge <b>openai:deepseek-v4-flash</b></span><span class="chip">collection <b>refund_policy_chunks</b></span><span class="chip">top_k <b>4</b></span><span class="chip">min_score <b>0.3</b></span><span class="chip">耗时 <b>112s</b></span></div><h2>一、两个 judge 指标</h2><div class="formula">Context Precision = Σ(Precision@k × rel_k) / 相关条数<br>&nbsp;&nbsp;逐段判这段条款对回答问题有没有用，按位置加权：相关的排在前面得分高<br><br>Context Recall&nbsp;&nbsp;&nbsp;&nbsp;= 被上下文支撑的句子数 / ground_truth 的句子数<br>&nbsp;&nbsp;标准答案按句拆开，逐句判检回的上下文里有没有这个信息</div><div class="tiles"><div class="tile"><div class="k">Context Precision</div><div class="v">0.900</div><div class="n">n=96</div></div><div class="tile"><div class="k">Context Recall</div><div class="v">0.927</div><div class="n">n=96</div></div><div class="tile"><div class="k">空上下文</div><div class="v">5</div><div class="n">两个 judge 指标都判 0</div></div></div><h2>二、排序指标</h2><p><code>source</code> 是出题用的那一段条文，判的是它有没有被检回来：命中不代表检索完备，没命中则一定漏了 —— 它是下界指标，不需要穷举标注。跨块样本按两段里排得最深的那个算。</p><div class="tiles"><div class="tile"><div class="k">候选覆盖</div><div class="v">0.969</div><div class="n">n=96</div></div><div class="tile"><div class="k">Hit@1</div><div class="v">0.552</div><div class="n">n=96</div></div><div class="tile"><div class="k">Hit@4</div><div class="v">0.812</div><div class="n">n=96</div></div><div class="tile"><div class="k">MRR</div><div class="v">0.675</div><div class="n">n=96</div></div></div><div class="note"><strong>候选覆盖高、Hit@4 低</strong>的样本有 15 条：出题的条文被召回层捞进来了，却没排进前 4 —— 要动的是重排权重与 <code>MIN_SCORE</code>，不是切片与分析器。</div><h2>三、分数分布</h2><div class="grid2"><div><h3>Context Precision</h3><div class="bar"><span class="lab">= 0</span><span class="track"><i style="width:7%"></i></span><span class="cnt">5</span></div><div class="bar"><span class="lab">(0, 0.33]</span><span class="track"><i style="width:0%"></i></span><span class="cnt">0</span></div><div class="bar"><span class="lab">(0.33, 0.67]</span><span class="track"><i style="width:11%"></i></span><span class="cnt">8</span></div><div class="bar"><span class="lab">(0.67, 1)</span><span class="track"><i style="width:14%"></i></span><span class="cnt">10</span></div><div class="bar"><span class="lab">= 1</span><span class="track"><i style="width:100%"></i></span><span class="cnt">73</span></div></div><div><h3>Context Recall</h3><div class="bar"><span class="lab">= 0</span><span class="track"><i style="width:7%"></i></span><span class="cnt">6</span></div><div class="bar"><span class="lab">(0, 0.33]</span><span class="track"><i style="width:0%"></i></span><span class="cnt">0</span></div><div class="bar"><span class="lab">(0.33, 0.67]</span><span class="track"><i style="width:2%"></i></span><span class="cnt">2</span></div><div class="bar"><span class="lab">(0.67, 1)</span><span class="track"><i style="width:0%"></i></span><span class="cnt">0</span></div><div class="bar"><span class="lab">= 1</span><span class="track"><i style="width:100%"></i></span><span class="cnt">88</span></div></div></div><h2>四、按文档分档</h2><p>样本出自哪篇文档，按 Hit@4 升序。总均值只用来看趋势，能指向改哪一篇语料的是这张表 —— 某一篇的 Hit@4 明显低于其他，先去看那篇的切片和小节标题。</p><div class="tablewrap"><table><thead><tr><th>文档</th><th class="n">n</th><th class="n">Precision</th><th></th><th class="n">Recall</th><th></th><th class="n">Hit@4</th><th></th><th class="n">MRR</th><th></th></tr></thead><tbody><tr><td class="id">P04+P11</td><td class="n">2</td><td class="n">0.639</td><td><div class="mini"><i style="width:64%"></i></div></td><td class="n">0.750</td><td><div class="mini"><i style="width:75%"></i></div></td><td class="n">0.000</td><td><div class="mini"><i style="width:0%"></i></div></td><td class="n">0.118</td><td><div class="mini"><i style="width:12%"></i></div></td></tr><tr><td class="id">L04+P09</td><td class="n">2</td><td class="n">0.791</td><td><div class="mini"><i style="width:79%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">0.500</td><td><div class="mini"><i style="width:50%"></i></div></td><td class="n">0.167</td><td><div class="mini"><i style="width:17%"></i></div></td></tr><tr><td class="id">P05+P06</td><td class="n">2</td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">0.750</td><td><div class="mini"><i style="width:75%"></i></div></td><td class="n">0.500</td><td><div class="mini"><i style="width:50%"></i></div></td><td class="n">0.205</td><td><div class="mini"><i style="width:20%"></i></div></td></tr><tr><td class="id">P02+P08</td><td class="n">2</td><td class="n">0.791</td><td><div class="mini"><i style="width:79%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">0.500</td><td><div class="mini"><i style="width:50%"></i></div></td><td class="n">0.267</td><td><div class="mini"><i style="width:27%"></i></div></td></tr><tr><td class="id">L02</td><td class="n">6</td><td class="n">0.694</td><td><div class="mini"><i style="width:69%"></i></div></td><td class="n">0.833</td><td><div class="mini"><i style="width:83%"></i></div></td><td class="n">0.500</td><td><div class="mini"><i style="width:50%"></i></div></td><td class="n">0.417</td><td><div class="mini"><i style="width:42%"></i></div></td></tr><tr><td class="id">L05</td><td class="n">6</td><td class="n">0.972</td><td><div class="mini"><i style="width:97%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">0.667</td><td><div class="mini"><i style="width:67%"></i></div></td><td class="n">0.579</td><td><div class="mini"><i style="width:58%"></i></div></td></tr><tr><td class="id">P05</td><td class="n">4</td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">0.750</td><td><div class="mini"><i style="width:75%"></i></div></td><td class="n">0.750</td><td><div class="mini"><i style="width:75%"></i></div></td><td class="n">0.644</td><td><div class="mini"><i style="width:64%"></i></div></td></tr><tr><td class="id">L03</td><td class="n">4</td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">0.750</td><td><div class="mini"><i style="width:75%"></i></div></td><td class="n">0.750</td><td><div class="mini"><i style="width:75%"></i></div></td></tr><tr><td class="id">P10</td><td class="n">8</td><td class="n">0.865</td><td><div class="mini"><i style="width:86%"></i></div></td><td class="n">0.875</td><td><div class="mini"><i style="width:88%"></i></div></td><td class="n">0.750</td><td><div class="mini"><i style="width:75%"></i></div></td><td class="n">0.766</td><td><div class="mini"><i style="width:77%"></i></div></td></tr><tr><td class="id">P11</td><td class="n">6</td><td class="n">0.833</td><td><div class="mini"><i style="width:83%"></i></div></td><td class="n">0.833</td><td><div class="mini"><i style="width:83%"></i></div></td><td class="n">0.833</td><td><div class="mini"><i style="width:83%"></i></div></td><td class="n">0.639</td><td><div class="mini"><i style="width:64%"></i></div></td></tr><tr><td class="id">P06</td><td class="n">6</td><td class="n">0.944</td><td><div class="mini"><i style="width:94%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">0.833</td><td><div class="mini"><i style="width:83%"></i></div></td><td class="n">0.741</td><td><div class="mini"><i style="width:74%"></i></div></td></tr><tr><td class="id">P03</td><td class="n">6</td><td class="n">0.750</td><td><div class="mini"><i style="width:75%"></i></div></td><td class="n">0.833</td><td><div class="mini"><i style="width:83%"></i></div></td><td class="n">0.833</td><td><div class="mini"><i style="width:83%"></i></div></td><td class="n">0.750</td><td><div class="mini"><i style="width:75%"></i></div></td></tr><tr><td class="id">P01</td><td class="n">6</td><td class="n">0.833</td><td><div class="mini"><i style="width:83%"></i></div></td><td class="n">0.833</td><td><div class="mini"><i style="width:83%"></i></div></td><td class="n">0.833</td><td><div class="mini"><i style="width:83%"></i></div></td><td class="n">0.833</td><td><div class="mini"><i style="width:83%"></i></div></td></tr><tr><td class="id">P02+P07</td><td class="n">2</td><td class="n">0.862</td><td><div class="mini"><i style="width:86%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">0.375</td><td><div class="mini"><i style="width:38%"></i></div></td></tr><tr><td class="id">L01+L05</td><td class="n">2</td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">0.500</td><td><div class="mini"><i style="width:50%"></i></div></td></tr><tr><td class="id">L02+P02</td><td class="n">2</td><td class="n">0.917</td><td><div class="mini"><i style="width:92%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">0.500</td><td><div class="mini"><i style="width:50%"></i></div></td></tr><tr><td class="id">P04</td><td class="n">4</td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">0.562</td><td><div class="mini"><i style="width:56%"></i></div></td></tr><tr><td class="id">P09</td><td class="n">6</td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">0.750</td><td><div class="mini"><i style="width:75%"></i></div></td></tr><tr><td class="id">P02</td><td class="n">4</td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">0.833</td><td><div class="mini"><i style="width:83%"></i></div></td></tr><tr><td class="id">L01</td><td class="n">4</td><td class="n">0.979</td><td><div class="mini"><i style="width:98%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">0.875</td><td><div class="mini"><i style="width:88%"></i></div></td></tr><tr><td class="id">P07</td><td class="n">4</td><td class="n">0.875</td><td><div class="mini"><i style="width:88%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">0.875</td><td><div class="mini"><i style="width:88%"></i></div></td></tr><tr><td class="id">L04</td><td class="n">4</td><td class="n">0.979</td><td><div class="mini"><i style="width:98%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td></tr><tr><td class="id">P08</td><td class="n">4</td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td><td class="n">1.000</td><td><div class="mini"><i style="width:100%"></i></div></td></tr></tbody></table></div><h2>五、逐条明细（96 条，按 Hit@4 升序）</h2><div class="tablewrap"><table><thead><tr><th>用例</th><th>出处</th><th>问题</th><th class="n">段数</th><th class="n">Precision</th><th class="n">Recall</th><th class="n">MRR</th><th>source 排名</th><th class="n">耗时</th></tr></thead><tbody><tr class="row-bad"><td class="id">R1-006</td><td class="id">L02</td><td class="wrap">我退货的时候是不是也得讲点规矩，不能想怎么退就怎么退？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 0/0</div><div><span class="h0">✗</span> （无）<br><span class="id">没有检回任何条款</span></div></div><div class="detail"><div><b>Context Recall</b> 0/1</div><div><span class="h0">✗</span> 消费者行使七日无理由退货权利应当遵循公平、诚实信用的原则，遵守商业道德。<br><span class="id">上下文为空</span></div></div></details></td><td class="n">0</td><td class="n">0.000</td><td class="n">0.000</td><td class="n">0.000</td><td class="wrap">候选第 13 位，未进证据列表 —— 卡在重排或 MIN_SCORE</td><td class="n">4.5s</td></tr><tr class="row-bad"><td class="id">R1-026</td><td class="id">P01</td><td class="wrap">我看协议上写的和那个售后政策里说的不太一样，到底听谁的啊？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 0/0</div><div><span class="h0">✗</span> （无）<br><span class="id">没有检回任何条款</span></div></div><div class="detail"><div><b>Context Recall</b> 0/1</div><div><span class="h0">✗</span> 本协议与平台公示的各项交易规则共同构成完整约定，各规则文件与本协议不一致的，以专门规则文件为准。<br><span class="id">上下文为空</span></div></div></details></td><td class="n">0</td><td class="n">0.000</td><td class="n">0.000</td><td class="n">0.000</td><td class="wrap">候选第 1 位，未进证据列表 —— 卡在重排或 MIN_SCORE</td><td class="n">2.5s</td></tr><tr class="row-bad"><td class="id">R1-040</td><td class="id">P03</td><td class="wrap">我提交退货申请都两天多了，商家一直没动静，这单是不是就黄了？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 0/0</div><div><span class="h0">✗</span> （无）<br><span class="id">没有检回任何条款</span></div></div><div class="detail"><div><b>Context Recall</b> 0/1</div><div><span class="h0">✗</span> 商家审核退货申请的时限是48小时，超时未处理视为同意退货。<br><span class="id">上下文为空</span></div></div></details></td><td class="n">0</td><td class="n">0.000</td><td class="n">0.000</td><td class="n">0.000</td><td class="wrap">候选第 8 位，未进证据列表 —— 卡在重排或 MIN_SCORE</td><td class="n">2.3s</td></tr><tr class="row-bad"><td class="id">R1-074</td><td class="id">P10</td><td class="wrap">钱都退给我了，那发票什么时候能给我作废掉？会告诉我一声吗？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 0/0</div><div><span class="h0">✗</span> （无）<br><span class="id">没有检回任何条款</span></div></div><div class="detail"><div><b>Context Recall</b> 0/1</div><div><span class="h0">✗</span> 平台在退款完成后7个工作日内完成发票冲红，并向消费者推送冲红结果。<br><span class="id">上下文为空</span></div></div></details></td><td class="n">0</td><td class="n">0.000</td><td class="n">0.000</td><td class="n">0.000</td><td class="wrap">候选第 1 位，未进证据列表 —— 卡在重排或 MIN_SCORE</td><td class="n">2.6s</td></tr><tr class="row-bad"><td class="id">R1-080</td><td class="id">P11</td><td class="wrap">我收到货的时候东西就已经过期了，这种情况我能怎么办？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 0/0</div><div><span class="h0">✗</span> （无）<br><span class="id">没有检回任何条款</span></div></div><div class="detail"><div><b>Context Recall</b> 0/1</div><div><span class="h0">✗</span> 签收时已过保质期的，全额退款，并按食品安全相关规定赔付。<br><span class="id">上下文为空</span></div></div></details></td><td class="n">0</td><td class="n">0.000</td><td class="n">0.000</td><td class="n">0.000</td><td class="wrap">不在 20 条候选里 —— 卡在召回层</td><td class="n">7.6s</td></tr><tr class="row-bad"><td class="id">R1-008</td><td class="id">L02</td><td class="wrap">我买的东西拆开用了下就不值钱了，或者快过期了，这种是不是商家只要提前跟我说过，就能不让我退？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 2/3</div><div><span class="h0">✗</span> 【L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） &gt; 第二十六条 【格式条款效力】】
+经营者在经营活动中使用格式条款的，应当以显著方式提请消费者注意商品或者服务的数量和质量、价款或者费用、履行期限和方式、安全注意事项和风险警示<br><span class="id">该条讲格式条款效力，未直接回答拆封使用后能否退货</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第二章 不适用退货的商品范围和商品完好标准 &gt; 第八条 【商品完好的标准】】
+下列商品不适用七日无理由退货规定：
+
+（一）消费者定作的商品；
+
+（二）鲜活易腐的商品；
+
+（三）在线下载或者消<br><span class="id">明确拆封后价值贬损商品经确认可不退，及拆封查验与使用的区分</span></div><div><span class="h1">✓</span> 【P04 星辰优选不适用无理由退货商品清单 &gt; 第五条 不属于排除范围的常见误区】
+以下情形**不构成**拒绝无理由退货的理由：
+
+| 常见说法 | 是否成立 | 说明 |
+|---|---|---|
+| 「特价商品概不退换」 | ❌ 不成<br><span class="id">明确拆封使用后价值贬损可视为不完好，属退货例外</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 拆封后易影响人身安全或生命健康、易导致品质改变的商品，一经激活或试用后价值贬损较大的商品，以及销售时已明示的临近保质期或有瑕疵的商品，经消费者购买时确认后，可以不适用七日无理由退货。<br><span class="id">上下文明确列出三类商品及确认条件</span></div><div><span class="h1">✓</span> 但必须有购买时的确认记录，否则销售者不得拒绝退货。<br><span class="id">上下文明确要求确认记录，否则不得拒绝</span></div></div></details></td><td class="n">3</td><td class="n">0.583</td><td class="n">1.000</td><td class="n">0.000</td><td class="wrap">候选第 1 位，未进证据列表 —— 卡在重排或 MIN_SCORE</td><td class="n">11.7s</td></tr><tr class="row-bad"><td class="id">R1-096</td><td class="id">L04+P09</td><td class="wrap">我跟商家吵起来了，平台到底管不管？什么情况下我能找平台来评理？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 2/3</div><div><span class="h0">✗</span> 【L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） &gt; 第六十条 【争议解决途径】】
+电子商务争议可以通过协商和解，请求消费者组织、行业协会或者其他依法成立的调解组织调解，向有关部门投诉，提请仲裁，或者提起诉讼等方式解决。<br><span class="id">仅列举争议解决途径，未说明平台介入条件或责任。</span></div><div><span class="h1">✓</span> 【P01 星辰优选用户服务协议 &gt; 第四章 平台的角色与责任 &gt; 4.4 平台的协助义务】
+平台为交易提供技术服务与规则保障。商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。
+
+**平台就其公示的服务承诺自行担责，不以<br><span class="id">明确平台协助义务及先行赔付、连带责任等依据。</span></div><div><span class="h1">✓</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第三条 申请平台介入 &gt; 3.1 申请条件】
+出现以下任一情形，消费者可申请平台介入：
+
+（一）商家拒绝退款申请或超过 48 小时未响应；
+（二）商家提出的处理方案消费者不接受；
+（三）商家验收<br><span class="id">直接规定申请平台介入的具体情形和时限。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 消费者与平台内经营者发生争议时，平台应当积极协助消费者维护合法权益。<br><span class="id">上下文明确平台应积极协助消费者维权</span></div><div><span class="h1">✓</span> 出现以下任一情形消费者可申请平台介入：商家拒绝退款或超过48小时未响应、商家提出的处理方案消费者不接受、商家验收结论消费者有异议、双方协商超过3个自然日仍未达成一致。<br><span class="id">上下文列出四种可申请介入情形，与句意一致</span></div></div></details></td><td class="n">3</td><td class="n">0.583</td><td class="n">1.000</td><td class="n">0.000</td><td class="wrap">候选第 7 位，未进证据列表 —— 卡在重排或 MIN_SCORE</td><td class="n">3.5s</td></tr><tr class="row-bad"><td class="id">R1-012</td><td class="id">L03</td><td class="wrap">我就拆开包装看了一眼东西长啥样，没用过也没弄坏，这种还能退吗？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 2/4</div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第二章 不适用退货的商品范围和商品完好标准 &gt; 第八条 【商品完好的标准】】
+下列商品不适用七日无理由退货规定：
+
+（一）消费者定作的商品；
+
+（二）鲜活易腐的商品；
+
+（三）在线下载或者消<br><span class="id">条款明确拆封查验不影响商品完好，可退</span></div><div><span class="h1">✓</span> 【P04 星辰优选不适用无理由退货商品清单 &gt; 第五条 不属于排除范围的常见误区】
+以下情形**不构成**拒绝无理由退货的理由：
+
+| 常见说法 | 是否成立 | 说明 |
+|---|---|---|
+| 「特价商品概不退换」 | ❌ 不成<br><span class="id">明确拆封查验可退，直接回应问题</span></div><div><span class="h0">✗</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第三条 商品条件】
+3.1 **无理由退货要求商品未拆封、不影响二次销售。** 已拆封或已使用的商品不支持无理由退货。
+
+3.2 商品状态分为三档，无理由退货仅接受「未拆封」：
+
+| 商品状态 |<br><span class="id">平台政策要求未拆封，与问题情形冲突</span></div><div><span class="h0">✗</span> 【P05 星辰优选商品完好标准与验收规范 &gt; 第二条 商品状态的三档划分】
+平台在受理无理由退货时，将商品状态划分为三档：
+
+| 状态 | 判定要素 | 无理由退货 |
+|---|---|---|
+| **未拆封** | 外包装完整，密封条<br><span class="id">平台政策要求未拆封，与问题情形冲突</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 消费者基于查验需要打开商品包装，或者为确认商品品质和功能进行合理调试而不影响商品原有品质、功能和外观的，经营者应当予以退货。<br><span class="id">上下文明确写出查验性拆封和合理调试不影响商品完好，应退货。</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.000</td><td class="wrap">不在 20 条候选里 —— 卡在召回层</td><td class="n">6.8s</td></tr><tr class="row-bad"><td class="id">R1-024</td><td class="id">L05</td><td class="wrap">我买的东西想退，要是走无理由退货，运费是不是得我自己掏？要是因为质量问题退，是不是就不用我出运费了？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【P03 星辰优选退款规则与到账时效 &gt; 第二条 退款金额的计算 &gt; 2.6 运费】
+**退款金额以消费者实际支付的金额为准**，不是商品标价。
+
+使用优惠券的订单，**按实付金额退款，优惠券不予退还**。
+
+套装商品或满减活动订单中部分商<br><span class="id">明确区分无理由与质量问题退货的运费承担，直接回答用户问题。</span></div><div><span class="h1">✓</span> 【P06 星辰优选运费与退货物流规则 &gt; 第一条 运费承担的基本原则 … 第二条 无理由退货的运费 &gt; 2.3 包邮订单的处理】
+**运费归属完全取决于退款原因类型**，这是「无理由」与「质量问题」两类申请最直接的差别之一：
+
+| 退款原因<br><span class="id">详细列出无理由退货运费由消费者承担，质量问题由经营者承担，含表格依据。</span></div><div><span class="h1">✓</span> 【P06 星辰优选运费与退货物流规则 &gt; 第三条 质量问题退货的运费 &gt; 3.1 全额承担 … 第四条 运费险 &gt; 4.3 赔付不足】
+商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。
+
+消费<br><span class="id">规定质量问题退货运费由经营者承担，并说明运费险不影响原则，相关。</span></div><div><span class="h0">✗</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第五条 特定场景的处理口径 &gt; 5.2 商品与描述不符】
+生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：
+
+| 情形 | 处理 |
+|---|---|<br><span class="id">主要讲特殊类目和描述不符，未直接涉及运费承担，与问题无关。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 七日无理由退货的运费由消费者承担；<br><span class="id">上下文明确无理由退货寄回运费由消费者承担</span></div><div><span class="h1">✓</span> 三包质量问题退货的运费由经营者承担。<br><span class="id">上下文明确质量问题退货运费由经营者承担</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.000</td><td class="wrap">不在 20 条候选里 —— 卡在召回层</td><td class="n">5.6s</td></tr><tr class="row-bad"><td class="id">R1-046</td><td class="id">P05</td><td class="wrap">我把东西拆开看了一眼，没用过，也没弄脏弄坏，这种还能七天无理由退吗？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第二章 不适用退货的商品范围和商品完好标准 &gt; 第七条 【约定不适用商品（须消费者购买时逐单确认）】 … 第二章 不适用退货的商品范围和商品完好标准 &gt; 第六条 【法定不适用商品（无需消费者<br><span class="id">条款明确拆封查验不影响完好，可退</span></div><div><span class="h1">✓</span> 【L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） &gt; 第二十五条 【网络购物七日无理由退货】】
+经营者采用网络、电视、电话、邮购等方式销售商品，消费者有权自收到商品之日起七日内退货，且无需说明理由，但下列商品除外：
+
+（一）消<br><span class="id">规定七日无理由退货及完好标准</span></div><div><span class="h1">✓</span> 【P04 星辰优选不适用无理由退货商品清单 &gt; 第五条 不属于排除范围的常见误区】
+以下情形**不构成**拒绝无理由退货的理由：
+
+| 常见说法 | 是否成立 | 说明 |
+|---|---|---|
+| 「特价商品概不退换」 | ❌ 不成<br><span class="id">明确拆封不等于不完好，可退</span></div><div><span class="h1">✓</span> 【P04 星辰优选不适用无理由退货商品清单 &gt; 第一条 法定不适用无理由退货的商品 … 第二条 经消费者确认后不适用无理由退货的商品 &gt; 2.1 拆封后影响人身安全或商品品质的商品】
+以下四类商品依法不适用七日无理由退货，**平台已在商品详<br><span class="id">列举不适用情形，拆封查验可退</span></div></div><div class="detail"><div><b>Context Recall</b> 0/1</div><div><span class="h0">✗</span> 无理由退货仅接受「未拆封」状态，已拆封的商品即使未实际使用、无使用痕迹，也不支持无理由退货。<br><span class="id">上下文明确拆封查验不影响完好，未拆封才可退的说法与上下文相反</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">0.000</td><td class="n">0.077</td><td class="wrap">证据列表第 13 位（共 16 条）</td><td class="n">9.0s</td></tr><tr class="row-bad"><td class="id">R1-082</td><td class="id">P05+P06</td><td class="wrap">我拆开包装看了一眼，没用过，这种还能七天无理由退吗？要是能退，寄回去的运费是不是得我自己掏？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） &gt; 第二十五条 【网络购物七日无理由退货】】
+经营者采用网络、电视、电话、邮购等方式销售商品，消费者有权自收到商品之日起七日内退货，且无需说明理由，但下列商品除外：
+
+（一）消<br><span class="id">规定了七日无理由退货的适用范围和运费承担，直接回答用户问题。</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第二章 不适用退货的商品范围和商品完好标准 &gt; 第八条 【商品完好的标准】 … 第三章 退货程序 &gt; 第十八条 【退货运费承担】】
+下列商品不适用七日无理由退货规定：
+
+（一）消费者定作的商<br><span class="id">包含商品完好标准及退货运费承担规则，与用户拆封和运费问题相关。</span></div><div><span class="h1">✓</span> 【P06 星辰优选运费与退货物流规则 &gt; 第二条 无理由退货的运费 &gt; 2.1 寄回运费 … 第三条 质量问题退货的运费 &gt; 3.3 大件商品】
+无理由退货所产生的寄回运费由消费者承担。消费者可自行选择快递，也可使用平台的上门取件服务（费用<br><span class="id">明确无理由退货运费由消费者承担，直接回答运费问题。</span></div><div><span class="h0">✗</span> 【P03 星辰优选退款规则与到账时效 &gt; 第二条 退款金额的计算 &gt; 2.6 运费】
+**退款金额以消费者实际支付的金额为准**，不是商品标价。
+
+使用优惠券的订单，**按实付金额退款，优惠券不予退还**。
+
+套装商品或满减活动订单中部分商<br><span class="id">主要讲退款金额计算，未涉及退货资格或运费承担，与问题无关。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/2</div><div><span class="h0">✗</span> 已拆封但未实际使用的商品不支持无理由退货，平台仅接受未拆封商品的无理由退货。<br><span class="id">上下文未提及拆封即不支持退货，反而说明拆封查验不影响完好。</span></div><div><span class="h1">✓</span> 若符合无理由退货条件，寄回运费由消费者承担，可自行选择快递或使用平台上门取件服务（费用从退款中扣除）。<br><span class="id">上下文多处明确无理由退货寄回运费由消费者承担，可自选快递或平台取件。</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">0.500</td><td class="n">0.077</td><td class="wrap">证据列表第 13 位（共 16 条）</td><td class="n">6.8s</td></tr><tr class="row-bad"><td class="id">R1-086</td><td class="id">P04+P11</td><td class="wrap">我买了个刻字的礼品，这种本来就不能七天无理由退，那我想退款的话，走那个自动退款通道行不行？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h0">✗</span> 【P03 星辰优选退款规则与到账时效 &gt; 第四条 退款通道 &gt; 4.1 自动退款通道 … 第四条 退款通道 &gt; 4.2 人工审核通道】
+同时满足以下条件的申请走自动通道，即时判定、即时发起退款：
+
+（一）订单存在且属于当前账户；
+（二）订单<br><span class="id">该条讲自动/人工通道条件，未直接回答刻字礼品能否走自动退款通道。</span></div><div><span class="h1">✓</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第五条 特定场景的处理口径 &gt; 5.1 特殊类目的质量问题】
+生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：
+
+| 情形 | 处理 |
+|---|--<br><span class="id">明确定制商品质量问题可退款，与用户退款诉求相关。</span></div><div><span class="h1">✓</span> 【P04 星辰优选不适用无理由退货商品清单 &gt; 第一条 法定不适用无理由退货的商品】
+以下四类商品依法不适用七日无理由退货，**平台已在商品详情页明确标注，无需消费者另行确认**：
+
+| 类别 | 平台对应商品举例 |
+|---|---|
+<br><span class="id">明确刻字礼品属定制商品，不适用无理由退货，但未排除质量问题退款。</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第二章 不适用退货的商品范围和商品完好标准 &gt; 第七条 【约定不适用商品（须消费者购买时逐单确认）】 … 第四章 特别规定 &gt; 第二十条 【不适用商品的标注与确认程序】】
+下列商品不适用七日<br><span class="id">规定定制商品不适用无理由退货，但质量问题仍可主张权利。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/2</div><div><span class="h1">✓</span> 刻字礼品属于消费者定作商品，依法不适用七日无理由退货。<br><span class="id">上下文明确列出刻字礼品为定作商品，不适用无理由退货。</span></div><div><span class="h0">✗</span> 且平台不支持任何形式的退款申请通过自动通道，含无理由退货与质量问题，因此这类商品无法通过自动通道提交退款申请。<br><span class="id">上下文未提及平台不支持任何形式退款，仅说特殊类目不进入自动通道。</span></div></div></details></td><td class="n">4</td><td class="n">0.639</td><td class="n">0.500</td><td class="n">0.111</td><td class="wrap">证据列表第 9 位（共 18 条）</td><td class="n">6.7s</td></tr><tr class="row-bad"><td class="id">R1-050</td><td class="id">P06</td><td class="wrap">我要是单纯不想要了退回去，运费是不是得我自己掏？要是东西有毛病退，是不是运费和之前付的邮费都能退给我？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第三章 退货程序 &gt; 第十八条 【退货运费承担】】
+选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。
+
+七日期间自消费者签收商品的次日开始起算。
+
+&gt; **判定<br><span class="id">条款明确无理由退货运费由消费者承担，质量问题运费由经营者承担，直接回答用户问题。</span></div><div><span class="h1">✓</span> 【P03 星辰优选退款规则与到账时效 &gt; 第二条 退款金额的计算 &gt; 2.6 运费】
+**退款金额以消费者实际支付的金额为准**，不是商品标价。
+
+使用优惠券的订单，**按实付金额退款，优惠券不予退还**。
+
+套装商品或满减活动订单中部分商<br><span class="id">条款明确无理由退货运费消费者承担，质量问题运费平台或商家承担，直接相关。</span></div><div><span class="h1">✓</span> 【P06 星辰优选运费与退货物流规则 &gt; 第二条 无理由退货的运费 &gt; 2.1 寄回运费 … 第三条 质量问题退货的运费 &gt; 3.4 争议期间的运费垫付】
+无理由退货所产生的寄回运费由消费者承担。消费者可自行选择快递，也可使用平台的上门取件<br><span class="id">条款详细规定无理由退货运费消费者承担，质量问题运费及原运费经营者承担，直接回答。</span></div><div><span class="h1">✓</span> 【L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） &gt; 第二十四条 【质量不符时的退货、更换、修理】】
+经营者提供的商品或者服务不符合质量要求的，消费者可以依照国家规定、当事人约定退货，或者要求经营者履行更换、修理等义务。没有国<br><span class="id">消保法规定质量问题退货经营者承担运输费用，直接回答质量问题运费承担。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 无理由退货的寄回运费由消费者承担，原订单已付运费不退还；<br><span class="id">上下文多处明确无理由退货寄回运费由消费者承担，原订单运费不退。</span></div><div><span class="h1">✓</span> 质量问题退货的寄回运费由经营者承担，原订单已付运费一并退还。<br><span class="id">上下文明确质量问题退货寄回运费及原订单运费均由经营者承担。</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.111</td><td class="wrap">证据列表第 9 位（共 13 条）</td><td class="n">7.6s</td></tr><tr class="row-bad"><td class="id">R1-085</td><td class="id">P04+P11</td><td class="wrap">对于不适用七日无理由退货的四类商品，消费者能否通过自动通道提交退款申请？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h0">✗</span> 【P04 星辰优选不适用无理由退货商品清单 &gt; 第一条 法定不适用无理由退货的商品 … 第二条 经消费者确认后不适用无理由退货的商品 &gt; 2.3 销售时已明示的临期或瑕疵商品】
+以下四类商品依法不适用七日无理由退货，**平台已在商品详情页明<br><span class="id">条款列举四类法定不适用商品，但未提及自动通道退款申请问题。</span></div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第四条 特殊类目】
+4.1 以下类目不支持任何形式的退款：
+
+- **生鲜食品**——鲜活易腐，签收后无法二次销售；
+- **定制商品**——按消费者要求单独制作，无通用价值；
+- **虚拟商品*<br><span class="id">明确特殊类目不进入自动退款通道，直接回答用户问题。</span></div><div><span class="h1">✓</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第五条 特定场景的处理口径 &gt; 5.1 特殊类目的质量问题】
+生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：
+
+| 情形 | 处理 |
+|---|--<br><span class="id">说明特殊类目限制自动通道，质量问题转人工处理，提供依据。</span></div><div><span class="h1">✓</span> 【P04 星辰优选不适用无理由退货商品清单 &gt; 第三条 平台特殊类目：不支持任何形式的退款 … 第四条 标注与确认的前提条件】
+以下三类商品在星辰优选**不支持任何形式的退款**，不区分退款原因：
+
+鲜活水产、冷鲜肉禽、新鲜果蔬、鲜切花、现<br><span class="id">明确三类商品不支持任何形式退款，不走自动通道，直接相关。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 刻字礼品属于消费者定作商品，依法不适用七日无理由退货。<br><span class="id">上下文明确列出刻字礼品为定作商品，不适用无理由退货</span></div><div><span class="h1">✓</span> 且平台不支持任何形式的退款申请通过自动通道，含无理由退货与质量问题，因此这类商品无法通过自动通道提交退款申请。<br><span class="id">上下文说明特殊类目不区分退款原因，均不走自动通道</span></div></div></details></td><td class="n">4</td><td class="n">0.639</td><td class="n">1.000</td><td class="n">0.125</td><td class="wrap">证据列表第 8 位（共 20 条）</td><td class="n">2.6s</td></tr><tr class="row-bad"><td class="id">R1-070</td><td class="id">P10</td><td class="wrap">我用了优惠券买的，现在全退了，是退我券后付的钱，还是按原价退给我？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【P10 星辰优选优惠券、赠品与发票处理规则 &gt; 第一条 优惠券 &gt; 1.1 基本规则 … 第二条 满减与套装的部分退货 &gt; 2.4 套装商品】
+**使用优惠券的订单，按实付金额退款，优惠券不予退还。**
+
+优惠券是平台或商家给予的一次性价<br><span class="id">明确说明优惠券订单按实付金额退款，优惠券不退还。</span></div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第七条 退款方式与时效】
+7.1 退款审核通过后**原路退回支付账户**，**1-3 个工作日**到账。
+
+7.2 使用优惠券的订单**按实付金额退款，优惠券不予退还**。
+
+7.3 多种支付方式<br><span class="id">规定优惠券订单按实付金额退款，优惠券不退还。</span></div><div><span class="h1">✓</span> 【P03 星辰优选退款规则与到账时效 &gt; 第二条 退款金额的计算 &gt; 2.2 优惠券 … 第二条 退款金额的计算 &gt; 2.3 部分退货导致优惠失效】
+**退款金额以消费者实际支付的金额为准**，不是商品标价。
+
+使用优惠券的订单，**按实付<br><span class="id">规定优惠券订单按实付金额退款，优惠券不退还。</span></div><div><span class="h0">✗</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第三章 退货程序 &gt; 第十五条 【积分、代金券、优惠券的返还】】
+退款方式比照购买商品的支付方式。经营者与消费者另有约定的，从其约定。
+
+购买商品时采用多种方式支付价款的，一般应当按照各种支<br><span class="id">涉及优惠券返还，但未明确全额退款时是否退还优惠券。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 退款基数是实付金额，不是商品标价。<br><span class="id">上下文多处明确退款基数为实付金额</span></div><div><span class="h1">✓</span> 例如标价200元、用50元优惠券实付150元，全额退款金额为150元。<br><span class="id">上下文表格示例标价200元用50元券实付150元退150元</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.125</td><td class="wrap">证据列表第 8 位（共 11 条）</td><td class="n">7.3s</td></tr><tr class="row-bad"><td class="id">R1-023</td><td class="id">L05</td><td class="wrap">在七日无理由退货与三包质量问题两种情形下，退货产生的运费分别由哪一方承担？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【P03 星辰优选退款规则与到账时效 &gt; 第二条 退款金额的计算 &gt; 2.6 运费】
+**退款金额以消费者实际支付的金额为准**，不是商品标价。
+
+使用优惠券的订单，**按实付金额退款，优惠券不予退还**。
+
+套装商品或满减活动订单中部分商<br><span class="id">明确区分无理由与质量问题退货的运费承担方。</span></div><div><span class="h1">✓</span> 【P06 星辰优选运费与退货物流规则 &gt; 第一条 运费承担的基本原则 … 第三条 质量问题退货的运费 &gt; 3.4 争议期间的运费垫付】
+**运费归属完全取决于退款原因类型**，这是「无理由」与「质量问题」两类申请最直接的差别之一：
+
+| 退<br><span class="id">表格直接列出两类退货的运费承担规则。</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第三章 退货程序 &gt; 第十八条 【退货运费承担】】
+选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。
+
+七日期间自消费者签收商品的次日开始起算。
+
+&gt; **判定<br><span class="id">条款明确无理由退货运费由消费者承担。</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第七章 附则 &gt; 第三十五条 【质量问题退货的法律适用】】
+网络商品销售者提供的商品不符合质量要求，消费者要求退货的，适用《消费者权益保护法》第二十四条以及其他相关规定。
+
+&gt; **判定要点<br><span class="id">指明质量问题退货适用消保法，运费由经营者承担。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 七日无理由退货的运费由消费者承担；<br><span class="id">上下文多处明确无理由退货运费由消费者承担</span></div><div><span class="h1">✓</span> 三包质量问题退货的运费由经营者承担。<br><span class="id">上下文明确质量问题退货运费由经营者承担</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.143</td><td class="wrap">证据列表第 7 位（共 17 条）</td><td class="n">6.0s</td></tr><tr class="row-bad"><td class="id">R1-007</td><td class="id">L02</td><td class="wrap">哪些商品在消费者购买时确认后，可以不适用七日无理由退货规定？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 2/3</div><div><span class="h1">✓</span> 【P04 星辰优选不适用无理由退货商品清单 &gt; 第一条 法定不适用无理由退货的商品 … 第二条 经消费者确认后不适用无理由退货的商品 &gt; 2.3 销售时已明示的临期或瑕疵商品】
+以下四类商品依法不适用七日无理由退货，**平台已在商品详情页明<br><span class="id">明确列出经消费者确认后不适用无理由退货的商品类别及确认要求。</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第一章 总则 &gt; 第二条 【适用范围】 … 第二章 不适用退货的商品范围和商品完好标准 &gt; 第六条 【法定不适用商品（无需消费者确认）】】
+为保障《消费者权益保护法》七日无理由退货规定的实施<br><span class="id">规定经消费者确认可不适用无理由退货的三类商品，直接回答用户问题。</span></div><div><span class="h0">✗</span> 【P04 星辰优选不适用无理由退货商品清单】
+&gt; 本清单分三级：**法定不适用**（无需消费者确认即排除）、**确认后不适用**（须逐单确认）、**平台特殊类目**（不支持任何形式退款）。三者的排除强度与前提条件各不相同。<br><span class="id">仅说明清单分级，未具体列出经确认后不适用退货的商品。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 拆封后易影响人身安全或生命健康、易导致品质改变的商品，一经激活或试用后价值贬损较大的商品，以及销售时已明示的临近保质期或有瑕疵的商品，经消费者购买时确认后，可以不适用七日无理由退货。<br><span class="id">上下文明确列出三类商品经确认可不适用退货</span></div><div><span class="h1">✓</span> 但必须有购买时的确认记录，否则销售者不得拒绝退货。<br><span class="id">上下文明确要求有确认记录否则不得拒绝退货</span></div></div></details></td><td class="n">3</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.167</td><td class="wrap">证据列表第 6 位（共 19 条）</td><td class="n">11.8s</td></tr><tr class="row-bad"><td class="id">R1-092</td><td class="id">P02+P08</td><td class="wrap">我这两个月退了好几次货，好像超过三次了，现在再申请退款会怎么样？会不会直接不给我退？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 2/4</div><div><span class="h0">✗</span> 【P03 星辰优选退款规则与到账时效 &gt; 第六条 重复申请与幂等 &gt; 6.1 已退款订单】
+**已完成退款的订单不可重复申请退款。** 对同一订单的再次申请，判定结论为不通过。
+
+同一次退款请求因网络超时等原因被重复提交的，平台以请求标识为<br><span class="id">该条讲重复申请退款，与用户多次退货后申请退款的处理无关。</span></div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第五条 高风险账户 … 第六条 判定顺序】
+5.1 **近 90 天内退款次数超过 3 次的账户视为高风险账户。**
+
+5.2 高风险账户的**自动退款通道关闭**，所有退款申请需转人工客服审核，<br><span class="id">直接规定高风险账户判定及处理，用户超三次退款，正适用。</span></div><div><span class="h1">✓</span> 【P08 星辰优选风控与异常退款治理规则 &gt; 第一条 高风险账户的判定 &gt; 1.1 判定标准 … 第一条 高风险账户的判定 &gt; 1.2 阈值口径】
+**近 90 天内退款次数超过 3 次的账户，判定为高风险账户。**
+
+判定条件为「超过 3<br><span class="id">明确高风险判定标准与统计口径，是回答用户问题的依据。</span></div><div><span class="h0">✗</span> 【P08 星辰优选风控与异常退款治理规则 &gt; 第六条 申诉 &gt; 6.4 复核后的恢复】
+消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。
+
+申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报<br><span class="id">讲申诉流程，用户未问申诉，与当前问题不直接相关。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 近90天内退款次数超过3次的账户会被判定为高风险账户。<br><span class="id">上下文多处明确写出近90天退款超3次判高风险</span></div><div><span class="h1">✓</span> 在审核流程中，高风险账户这一项命中后，结论为不通过，并关闭自动通道，转人工审核。<br><span class="id">审核表第3项写明命中结论为不通过并转人工</span></div></div></details></td><td class="n">4</td><td class="n">0.583</td><td class="n">1.000</td><td class="n">0.200</td><td class="wrap">证据列表第 5 位（共 6 条）</td><td class="n">6.0s</td></tr><tr class="row-bad"><td class="id">R1-084</td><td class="id">P02+P07</td><td class="wrap">我是金牌会员，东西签收正好第15天，现在想退，还能退吗？要是已经过了15天，是不是不管啥理由、东西啥样都没戏了？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第二条 退货窗口】
+2.1 **无理由退货**：
+
+- 普通会员：自签收之日起 **7 天**内可申请；
+- 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。
+<br><span class="id">直接规定金牌会员15天窗口及超出不予受理</span></div><div><span class="h0">✗</span> 【P01 星辰优选用户服务协议 &gt; 第五章 售后与退款 &gt; 5.1 售后服务承诺】
+平台支持七日无理由退货，并在法定标准之上向金牌会员提供延长至 15 天的无理由退货服务（[P07]）。
+
+退款申请的受理条件、判定标准、处理时效，适用《售后<br><span class="id">主要讲服务承诺和审核流程，未直接回答退货窗口</span></div><div><span class="h1">✓</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第四条 会员权益的边界 &gt; 4.4 等级以申请时为准】
+**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益<br><span class="id">说明会员等级影响窗口，风控不影响，且生鲜定制等限制</span></div><div><span class="h1">✓</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第二条 售后权益差异 &gt; 2.1 无理由退货窗口 … 第二条 售后权益差异 &gt; 2.3 权益对照】
+| 会员等级 | 无理由退货窗口 |
+|---|---|
+| 普通会员 | 自签收之日起 **<br><span class="id">明确金牌会员15天窗口及质量问题15天，与问题相关</span></div></div><div class="detail"><div><b>Context Recall</b> 3/3</div><div><span class="h1">✓</span> 金牌会员无理由退货窗口为自签收之日起15天，签收天数等于窗口值的当天仍在窗口内，可以申请；<br><span class="id">上下文明确金牌会员15天且等于窗口值当天可申请</span></div><div><span class="h1">✓</span> 签收第15天可申请。<br><span class="id">上下文举例签收第15天在窗口内可申请</span></div><div><span class="h1">✓</span> 签收超过15天的订单，无论退款原因为何、商品状态如何，一律不予受理。<br><span class="id">上下文明确超15天一律不予受理</span></div></div></details></td><td class="n">4</td><td class="n">0.806</td><td class="n">1.000</td><td class="n">0.250</td><td class="wrap">证据列表第 4 位（共 15 条）</td><td class="n">3.3s</td></tr><tr class=""><td class="id">R1-043</td><td class="id">P04</td><td class="wrap">金牌会员在购买商品超过7天后，是否仍可主张无理由退货？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第二条 退货窗口】
+2.1 **无理由退货**：
+
+- 普通会员：自签收之日起 **7 天**内可申请；
+- 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。
+<br><span class="id">明确金牌会员无理由退货窗口为15天，超过7天仍可申请</span></div><div><span class="h1">✓</span> 【P01 星辰优选用户服务协议 &gt; 第五章 售后与退款 &gt; 5.1 售后服务承诺】
+平台支持七日无理由退货，并在法定标准之上向金牌会员提供延长至 15 天的无理由退货服务（[P07]）。
+
+退款申请的受理条件、判定标准、处理时效，适用《售后<br><span class="id">提及金牌会员延长至15天无理由退货，与问题直接相关</span></div><div><span class="h1">✓</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第四条 会员权益的边界 &gt; 4.1 风控优先于会员权益 … 第四条 会员权益的边界 &gt; 4.4 等级以申请时为准】
+**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风控规<br><span class="id">说明金牌会员15天窗口及风控不影响窗口，与问题相关</span></div><div><span class="h1">✓</span> 【P04 星辰优选不适用无理由退货商品清单 &gt; 第五条 不属于排除范围的常见误区】
+以下情形**不构成**拒绝无理由退货的理由：
+
+| 常见说法 | 是否成立 | 说明 |
+|---|---|---|
+| 「特价商品概不退换」 | ❌ 不成<br><span class="id">明确金牌会员无理由窗口为15天，超过7天可退</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 金牌会员的无理由退货窗口为15天，而非7天，因此超过7天但未满15天仍可退货。<br><span class="id">上下文多处明确金牌会员无理由退货窗口为15天，且超过7天未满15天可退。</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.250</td><td class="wrap">证据列表第 4 位（共 17 条）</td><td class="n">9.3s</td></tr><tr class="row-bad"><td class="id">R1-010</td><td class="id">L02</td><td class="wrap">我在网上买了东西想退货，跟卖家吵起来了，找平台帮忙评理，平台是不是必须得管这事儿？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 2/4</div><div><span class="h0">✗</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第一章 总则 &gt; 第三条 【销售者与平台的义务分工】】
+为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等相关法律、行政<br><span class="id">条款主要规定平台引导督促义务，未明确必须调解。</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第四章 特别规定 &gt; 第二十一条 【平台与商家的协议义务】 … 第四章 特别规定 &gt; 第二十四条 【消费纠纷和解与协助维权】】
+网络商品销售者应当采取技术手段或者其他措施，对于本办法第六条规<br><span class="id">明确平台应调解退货纠纷，提供协助。</span></div><div><span class="h1">✓</span> 【L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） &gt; 第六十一条 【平台协助维权义务】】
+消费者在电子商务平台购买商品或者接受服务，与平台内经营者发生争议时，电子商务平台经营者应当积极协助消费者维护合法权益。<br><span class="id">规定平台应积极协助消费者维权。</span></div><div><span class="h0">✗</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第一条 适用范围】
+本规则适用于消费者与商家在退款、退货、售后赔付过程中产生的全部争议，包括：
+
+- 商家拒绝退款申请，消费者有异议的；
+- 商家验收退回商品不通过，消费者有异议的；
+- 退款金<br><span class="id">仅说明适用范围，未规定平台必须介入。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 消费者因退货发生消费纠纷，要求网络交易平台提供者调解的，平台应当调解。<br><span class="id">上下文明确写出平台应当调解消费纠纷</span></div></div></details></td><td class="n">4</td><td class="n">0.583</td><td class="n">1.000</td><td class="n">0.333</td><td class="wrap">证据列表第 3 位（共 8 条）</td><td class="n">6.9s</td></tr><tr class="row-bad"><td class="id">R1-021</td><td class="id">L05</td><td class="wrap">三包有效期内的修理费用由哪一方承担？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 2/4</div><div><span class="h1">✓</span> 【L05 部分商品修理更换退货责任规定（三包规定） &gt; 第十四条 【换货标准与有效期重算】 … 第十六条 【上门服务】】
+换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。
+
+换货后的三包有效期自换货之日起重新计算。由销售<br><span class="id">明确三包期内由修理者免费修理，含材料费和工时费。</span></div><div><span class="h0">✗</span> 【L05 部分商品修理更换退货责任规定（三包规定） &gt; 第十一条 【修理两次仍不能正常使用】 … 第十二条 【超期未修好】】
+在三包有效期内，修理两次，仍不能正常使用的产品，凭修理者提供的修理记录和证明，由销售者负责为消费者免费调换同型号同<br><span class="id">涉及换货和超期未修好，未直接回答修理费用承担。</span></div><div><span class="h1">✓</span> 【L05 部分商品修理更换退货责任规定（三包规定） &gt; 第十八条 【修理费用来源】 … 第十九条 【修理费用的支付形式】】
+修理费用由生产者提供。修理费用指三包有效期内保证正常修理的待支费用。
+
+销售者负责修理的产品，生产者按照合同或者协议<br><span class="id">规定修理费用由生产者提供，明确费用来源。</span></div><div><span class="h0">✗</span> 【L05 部分商品修理更换退货责任规定（三包规定） &gt; 第三条 【谁经销谁负责】】
+列入目录的产品实行谁经销谁负责三包的原则。销售者与生产者、销售者与供货者、销售者与修理者之间订立的合同，不得免除本规定的三包责任和义务。<br><span class="id">原则性规定，未具体说明修理费用承担。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 修理费用由生产者提供。<br><span class="id">上下文明确写出修理费用由生产者提供</span></div><div><span class="h1">✓</span> 修理费用指三包有效期内保证正常修理的待支费用。<br><span class="id">上下文有相同定义</span></div></div></details></td><td class="n">4</td><td class="n">0.833</td><td class="n">1.000</td><td class="n">0.333</td><td class="wrap">证据列表第 3 位（共 12 条）</td><td class="n">6.1s</td></tr><tr class=""><td class="id">R1-034</td><td class="id">P02</td><td class="wrap">我拆开包装看了一眼，但还没用过，这种还能退吗？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 2/4</div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第二章 不适用退货的商品范围和商品完好标准 &gt; 第八条 【商品完好的标准】】
+下列商品不适用七日无理由退货规定：
+
+（一）消费者定作的商品；
+
+（二）鲜活易腐的商品；
+
+（三）在线下载或者消<br><span class="id">条款明确拆封查验不影响完好，可退</span></div><div><span class="h1">✓</span> 【P04 星辰优选不适用无理由退货商品清单 &gt; 第五条 不属于排除范围的常见误区】
+以下情形**不构成**拒绝无理由退货的理由：
+
+| 常见说法 | 是否成立 | 说明 |
+|---|---|---|
+| 「特价商品概不退换」 | ❌ 不成<br><span class="id">明确拆封查验可退，直接回应问题</span></div><div><span class="h0">✗</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第三条 商品条件】
+3.1 **无理由退货要求商品未拆封、不影响二次销售。** 已拆封或已使用的商品不支持无理由退货。
+
+3.2 商品状态分为三档，无理由退货仅接受「未拆封」：
+
+| 商品状态 |<br><span class="id">平台政策与法规冲突，且未明确拆封查验可退</span></div><div><span class="h0">✗</span> 【P10 星辰优选优惠券、赠品与发票处理规则 &gt; 第三条 赠品 &gt; 3.5 消耗类赠品】
+**退货时须将商品本身、配件及赠品一并退回。**
+
+赠品包括赠送的实物、积分、代金券、优惠券等各种形式。
+
+赠品无法一并退回的（已使用、已丢失、已损坏<br><span class="id">涉及赠品退回，与拆封退货无关</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 无理由退货仅接受「未拆封」状态，即外包装及密封完整、未开启。<br><span class="id">上下文P02明确说明无理由退货仅接受未拆封状态</span></div><div><span class="h1">✓</span> 已拆封（已开启包装但未投入使用）的商品不支持无理由退货。<br><span class="id">上下文P02明确说明已拆封不支持无理由退货</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.333</td><td class="wrap">证据列表第 3 位（共 5 条）</td><td class="n">9.0s</td></tr><tr class=""><td class="id">R1-054</td><td class="id">P06</td><td class="wrap">我买了运费险，退货运费花了50块，保险能全赔给我吗？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/2</div><div><span class="h1">✓</span> 【P06 星辰优选运费与退货物流规则 &gt; 第四条 运费险 &gt; 4.1 运费险的性质 … 第四条 运费险 &gt; 4.4 不赔付情形】
+运费险由保险公司承保，**赔付金额按保单约定，可能低于实际运费**。运费险的存在不改变本规则第一条的运费承担原<br><span class="id">条款说明运费险赔付可能低于实际运费，差额按责任归属处理，直接回答能否全赔。</span></div><div><span class="h0">✗</span> 【P06 星辰优选运费与退货物流规则 &gt; 第三条 质量问题退货的运费 &gt; 3.1 全额承担 … 第三条 质量问题退货的运费 &gt; 3.4 争议期间的运费垫付】
+商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式<br><span class="id">条款针对质量问题退货的运费承担，与运费险赔付无关。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 运费险由保险公司承保，赔付金额按保单约定，可能低于实际运费。<br><span class="id">上下文明确提到运费险由保险公司承保，赔付金额按保单约定，可能低于实际运费。</span></div><div><span class="h1">✓</span> 运费险的存在不改变本规则第一条的运费承担原则。<br><span class="id">上下文明确提到运费险的存在不改变本规则第一条的运费承担原则。</span></div></div></details></td><td class="n">2</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.333</td><td class="wrap">证据列表第 3 位（共 6 条）</td><td class="n">7.0s</td></tr><tr class=""><td class="id">R1-078</td><td class="id">P11</td><td class="wrap">我买的东西保修期是从哪天开始算的？要是换了个新的，保修期是不是重新从头算？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/3</div><div><span class="h1">✓</span> 【L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） &gt; 第十八条 【售后有效期起算与退款金额】】
+经营者与消费者约定承担退货、更换、修理等义务的有效期限不得低于国家有关规定的要求。有效期限自经营者向消费者交付商品或者提供<br><span class="id">直接规定保修期起算与换货重算，构成依据。</span></div><div><span class="h1">✓</span> 【L05 部分商品修理更换退货责任规定（三包规定） &gt; 第十四条 【换货标准与有效期重算】】
+换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。
+
+换货后的三包有效期自换货之日起重新计算。由销售者在发票背面加盖更换章并提供<br><span class="id">规定换货后三包有效期重新计算，直接相关。</span></div><div><span class="h1">✓</span> 【P11 星辰优选特殊类目售后细则 &gt; 第四条 数码与家用电器 &gt; 4.3 三包有效期的计算】
+未激活、未拆封的数码产品适用通用的无理由退货规则。**已激活的商品视为不完好**，不支持无理由退货（见 [P05] 第 3.2 条）。
+
+列入国<br><span class="id">明确三包有效期起算与换货重算，直接相关。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 三包有效期自开具发票之日起计算，扣除因修理占用和无零配件待修的时间。<br><span class="id">上下文明确写出三包有效期自开票日起算并扣除修理与待修时间</span></div><div><span class="h1">✓</span> 换货后的三包有效期自换货之日起重新计算。<br><span class="id">上下文多处写明换货后三包有效期自换货日起重新计算</span></div></div></details></td><td class="n">3</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.333</td><td class="wrap">证据列表第 3 位（共 3 条）</td><td class="n">8.0s</td></tr><tr class=""><td class="id">R1-081</td><td class="id">P05+P06</td><td class="wrap">商品已拆封但未实际使用，是否支持无理由退货？若支持，寄回运费由谁承担？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第三条 商品条件】
+3.1 **无理由退货要求商品未拆封、不影响二次销售。** 已拆封或已使用的商品不支持无理由退货。
+
+3.2 商品状态分为三档，无理由退货仅接受「未拆封」：
+
+| 商品状态 |<br><span class="id">明确已拆封不支持无理由退货，直接回答用户问题</span></div><div><span class="h1">✓</span> 【P05 星辰优选商品完好标准与验收规范 &gt; 第二条 商品状态的三档划分】
+平台在受理无理由退货时，将商品状态划分为三档：
+
+| 状态 | 判定要素 | 无理由退货 |
+|---|---|---|
+| **未拆封** | 外包装完整，密封条<br><span class="id">补充说明已拆封不支持无理由退货，与问题相关</span></div><div><span class="h1">✓</span> 【P06 星辰优选运费与退货物流规则 &gt; 第一条 运费承担的基本原则 … 第三条 质量问题退货的运费 &gt; 3.1 全额承担】
+**运费归属完全取决于退款原因类型**，这是「无理由」与「质量问题」两类申请最直接的差别之一：
+
+| 退款原因 |<br><span class="id">明确无理由退货运费由消费者承担，回答运费问题</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第二章 不适用退货的商品范围和商品完好标准 &gt; 第七条 【约定不适用商品（须消费者购买时逐单确认）】 … 第三章 退货程序 &gt; 第十八条 【退货运费承担】】
+下列商品不适用七日无理由退货规定<br><span class="id">规定无理由退货运费由消费者承担，与问题相关</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 已拆封但未实际使用的商品不支持无理由退货，平台仅接受未拆封商品的无理由退货。<br><span class="id">上下文多处明确已拆封不支持无理由退货，仅未拆封支持。</span></div><div><span class="h1">✓</span> 若符合无理由退货条件，寄回运费由消费者承担，可自行选择快递或使用平台上门取件服务（费用从退款中扣除）。<br><span class="id">上下文明确无理由退货寄回运费由消费者承担，可自选快递或平台取件。</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.333</td><td class="wrap">证据列表第 3 位（共 18 条）</td><td class="n">8.6s</td></tr><tr class=""><td class="id">R1-091</td><td class="id">P02+P08</td><td class="wrap">近90天内退款次数超过3次的账户，其退款申请在审核流程中会得到什么结论？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/3</div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第五条 高风险账户 … 第六条 判定顺序】
+5.1 **近 90 天内退款次数超过 3 次的账户视为高风险账户。**
+
+5.2 高风险账户的**自动退款通道关闭**，所有退款申请需转人工客服审核，<br><span class="id">直接规定高风险账户退款转人工审核，回答结论</span></div><div><span class="h1">✓</span> 【P08 星辰优选风控与异常退款治理规则 &gt; 第一条 高风险账户的判定 &gt; 1.1 判定标准 … 第一条 高风险账户的判定 &gt; 1.3 统计口径】
+**近 90 天内退款次数超过 3 次的账户，判定为高风险账户。**
+
+判定条件为「超过 3<br><span class="id">明确高风险判定标准，但未直接说审核结论，部分相关</span></div><div><span class="h1">✓</span> 【P03 星辰优选退款规则与到账时效 &gt; 第四条 退款通道 &gt; 4.2 人工审核通道】
+同时满足以下条件的申请走自动通道，即时判定、即时发起退款：
+
+（一）订单存在且属于当前账户；
+（二）订单未曾退款；
+（三）账户不属于高风险账户（[P08<br><span class="id">规定高风险账户转人工审核，与问题相关</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 近90天内退款次数超过3次的账户会被判定为高风险账户。<br><span class="id">上下文多处明确写出近90天退款超3次判定高风险</span></div><div><span class="h1">✓</span> 在审核流程中，高风险账户这一项命中后，结论为不通过，并关闭自动通道，转人工审核。<br><span class="id">上下文明确高风险命中结论为不通过并转人工</span></div></div></details></td><td class="n">3</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.333</td><td class="wrap">证据列表第 3 位（共 6 条）</td><td class="n">6.1s</td></tr><tr class=""><td class="id">R1-095</td><td class="id">L04+P09</td><td class="wrap">当消费者与平台内经营者发生争议时，平台负有哪些协助义务？在哪些具体情形下消费者可以申请平台介入处理？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） &gt; 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】】
+电子商务争议可以通过协商和解，请求消费者组织、行业协会或者其他依法成立的调解组织调解，向有关部门投诉，<br><span class="id">条款明确平台应积极协助消费者维权，构成依据。</span></div><div><span class="h1">✓</span> 【P01 星辰优选用户服务协议 &gt; 第四章 平台的角色与责任 &gt; 4.1 平台与商家的关系 … 第四章 平台的角色与责任 &gt; 4.4 平台的协助义务】
+平台为交易提供技术服务与规则保障。商品由平台内商家或平台自营主体销售，销售者是履行售后义<br><span class="id">条款规定平台协助义务及提供商家信息，构成依据。</span></div><div><span class="h1">✓</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第二条 争议解决的层级 … 第三条 申请平台介入 &gt; 3.3 提交材料】
+平台采用三层递进的处理机制：
+
+| 层级 | 处理方式 | 时限 |
+|---|---|---|
+| 第一层 | **双<br><span class="id">条款列举可申请平台介入的具体情形，构成依据。</span></div><div><span class="h1">✓</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第七条 外部维权途径 &gt; 7.2 平台的协助义务】
+消费者对平台判定结论仍有异议的，可通过以下途径维权：
+
+（一）向平台所在地或商家所在地市场监督管理部门投诉；
+（二）请求消费者协会或其他依法成<br><span class="id">条款规定外部维权时平台协助义务，构成依据。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 消费者与平台内经营者发生争议时，平台应当积极协助消费者维护合法权益。<br><span class="id">上下文多处明确平台应积极协助消费者维权</span></div><div><span class="h1">✓</span> 出现以下任一情形消费者可申请平台介入：商家拒绝退款或超过48小时未响应、商家提出的处理方案消费者不接受、商家验收结论消费者有异议、双方协商超过3个自然日仍未达成一致。<br><span class="id">上下文列出四种可申请介入情形，与句子一致</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.333</td><td class="wrap">证据列表第 3 位（共 19 条）</td><td class="n">3.2s</td></tr><tr class="row-bad"><td class="id">R1-039</td><td class="id">P03</td><td class="wrap">商家审核退货申请超过48小时未处理，会产生什么后果？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/3</div><div><span class="h0">✗</span> 【P05 星辰优选商品完好标准与验收规范 &gt; 第四条 退回商品的验收 &gt; 4.2 验收时限】
+商家收到退回商品后，按以下清单验收：
+
+（一）商品主体是否为原订单商品（型号、颜色、规格、序列号）；
+（二）配件是否齐全（说明书、电源线、保修卡、<br><span class="id">该条讲验收时限，非审核退货申请超时后果。</span></div><div><span class="h1">✓</span> 【P03 星辰优选退款规则与到账时效 &gt; 第五条 商家处理时效与超时机制 &gt; 5.1 未发货订单的退款 … 第五条 商家处理时效与超时机制 &gt; 5.3 已签收订单的退货退款】
+消费者申请退款后，商家 **24 小时**内未处理的，系统自动同<br><span class="id">明确商家审核退货申请48小时超时视为同意退货。</span></div><div><span class="h0">✗</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第三条 申请平台介入 &gt; 3.1 申请条件】
+出现以下任一情形，消费者可申请平台介入：
+
+（一）商家拒绝退款申请或超过 48 小时未响应；
+（二）商家提出的处理方案消费者不接受；
+（三）商家验收<br><span class="id">该条讲平台介入条件，非超时后果。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 商家审核退货申请的时限是48小时，超时未处理视为同意退货。<br><span class="id">上下文明确写出商家审核退货申请48小时，超时视为同意退货。</span></div></div></details></td><td class="n">3</td><td class="n">0.500</td><td class="n">1.000</td><td class="n">0.500</td><td class="wrap">证据列表第 2 位（共 4 条）</td><td class="n">2.2s</td></tr><tr class="row-bad"><td class="id">R1-056</td><td class="id">P07</td><td class="wrap">我想升金牌会员，得满足啥条件才行啊？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/2</div><div><span class="h0">✗</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第四条 会员权益的边界 &gt; 4.3 会员权益不突破商品条件】
+**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗<br><span class="id">该段讲会员权益边界与风控，未涉及升级条件。</span></div><div><span class="h1">✓</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第一条 会员等级】
+星辰优选设两个会员等级，等级由累计消费金额与账户状态综合评定：
+
+| 等级 | 评定标准 |
+|---|---|
+| **普通会员** | 完成注册的全部消费者 |
+| **<br><span class="id">明确金牌会员评定标准：近12个月累计消费达标且无严重违规。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 金牌会员需满足近12个月累计消费达标，且账户无严重违规记录。<br><span class="id">上下文明确给出金牌会员评定标准</span></div><div><span class="h1">✓</span> 会员等级按月评定，等级变化在次月生效。<br><span class="id">上下文明确说明按月评定次月生效</span></div></div></details></td><td class="n">2</td><td class="n">0.500</td><td class="n">1.000</td><td class="n">0.500</td><td class="wrap">证据列表第 2 位（共 2 条）</td><td class="n">6.9s</td></tr><tr class="row-bad"><td class="id">R1-083</td><td class="id">P02+P07</td><td class="wrap">金牌会员在签收后第15天申请无理由退货，是否仍在窗口内？若签收已超过15天，无论退款原因或商品状态如何，是否一律不予受理？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第二条 退货窗口】
+2.1 **无理由退货**：
+
+- 普通会员：自签收之日起 **7 天**内可申请；
+- 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。
+<br><span class="id">直接规定金牌会员15天窗口及超出15天一律不受理，覆盖问题全部要点。</span></div><div><span class="h1">✓</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第二条 售后权益差异 &gt; 2.1 无理由退货窗口 … 第二条 售后权益差异 &gt; 2.3 权益对照】
+| 会员等级 | 无理由退货窗口 |
+|---|---|
+| 普通会员 | 自签收之日起 **<br><span class="id">明确金牌会员无理由退货15天窗口，与问题直接相关。</span></div><div><span class="h0">✗</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第四条 会员权益的边界 &gt; 4.3 会员权益不突破商品条件 … 第四条 会员权益的边界 &gt; 4.4 等级以申请时为准】
+**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风<br><span class="id">主要讲风控、商品限制、申请时等级，未直接回答窗口问题。</span></div><div><span class="h1">✓</span> 【P01 星辰优选用户服务协议 &gt; 第五章 售后与退款 &gt; 5.1 售后服务承诺】
+平台支持七日无理由退货，并在法定标准之上向金牌会员提供延长至 15 天的无理由退货服务（[P07]）。
+
+退款申请的受理条件、判定标准、处理时效，适用《售后<br><span class="id">提及金牌会员15天无理由退货服务，为窗口提供依据。</span></div></div><div class="detail"><div><b>Context Recall</b> 3/3</div><div><span class="h1">✓</span> 金牌会员无理由退货窗口为自签收之日起15天，签收天数等于窗口值的当天仍在窗口内，可以申请；<br><span class="id">上下文明确金牌会员15天且等于窗口值当天可申请</span></div><div><span class="h1">✓</span> 签收第15天可申请。<br><span class="id">上下文举例签收第15天在窗口内可申请</span></div><div><span class="h1">✓</span> 签收超过15天的订单，无论退款原因为何、商品状态如何，一律不予受理。<br><span class="id">上下文明确超过15天一律不予受理</span></div></div></details></td><td class="n">4</td><td class="n">0.917</td><td class="n">1.000</td><td class="n">0.500</td><td class="wrap">证据列表第 2 位（共 13 条）</td><td class="n">3.3s</td></tr><tr class="row-bad"><td class="id">R1-089</td><td class="id">L02+P02</td><td class="wrap">普通会员选择无理由退货时，其退货通知的发出时间与签收日期的关系应如何判定窗口期是否在限内？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第二条 退货窗口】
+2.1 **无理由退货**：
+
+- 普通会员：自签收之日起 **7 天**内可申请；
+- 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。
+<br><span class="id">直接规定普通会员7天无理由退货窗口及判定规则</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第三章 退货程序 &gt; 第十条 【退货通知期限与起算点】】
+选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。
+
+七日期间自消费者签收商品的次日开始起算。
+
+&gt; *<br><span class="id">明确退货通知发出时间与签收次日的关系，直接回答窗口期判定</span></div><div><span class="h0">✗</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第四条 会员权益的边界 &gt; 4.3 会员权益不突破商品条件 … 第四条 会员权益的边界 &gt; 4.4 等级以申请时为准】
+**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风<br><span class="id">主要讲会员权益边界与风控，未涉及退货通知时间与签收日期关系</span></div><div><span class="h1">✓</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第二条 售后权益差异 &gt; 2.1 无理由退货窗口】
+| 会员等级 | 无理由退货窗口 |
+|---|---|
+| 普通会员 | 自签收之日起 **7 天** |
+| 金牌会员 | 自签收之日起 <br><span class="id">表格明确普通会员7天窗口，与问题直接相关</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 普通会员无理由退货窗口为自签收之日起7天，且签收当天不计入，自签收次日开始起算；<br><span class="id">上下文明确普通会员7天窗口，且L02规定签收次日开始起算。</span></div><div><span class="h1">✓</span> 窗口期以发出退货通知的时间为准，签收天数等于7天的当天仍在窗口内，大于7天即为超出。<br><span class="id">上下文明确窗口以发出通知为准，等于窗口值在窗口内，大于即超出。</span></div></div></details></td><td class="n">4</td><td class="n">0.917</td><td class="n">1.000</td><td class="n">0.500</td><td class="wrap">证据列表第 2 位（共 7 条）</td><td class="n">6.6s</td></tr><tr class="row-bad"><td class="id">R1-090</td><td class="id">L02+P02</td><td class="wrap">我普通会员，签收那天不算，从第二天开始数，那我第几天之前把退货申请发出去才算没超时？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第二条 退货窗口】
+2.1 **无理由退货**：
+
+- 普通会员：自签收之日起 **7 天**内可申请；
+- 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。
+<br><span class="id">明确普通会员7天窗口及起算规则，直接回答用户问题。</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第三章 退货程序 &gt; 第十条 【退货通知期限与起算点】】
+选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。
+
+七日期间自消费者签收商品的次日开始起算。
+
+&gt; *<br><span class="id">规定七日期间自签收次日开始起算，与用户问题直接相关。</span></div><div><span class="h0">✗</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第四条 会员权益的边界 &gt; 4.4 等级以申请时为准】
+**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益<br><span class="id">内容涉及会员权益边界和风控，未直接回答退货期限问题。</span></div><div><span class="h1">✓</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第二条 售后权益差异 &gt; 2.1 无理由退货窗口 … 第二条 售后权益差异 &gt; 2.2 质量问题退货窗口】
+| 会员等级 | 无理由退货窗口 |
+|---|---|
+| 普通会员 | 自签收之日<br><span class="id">表格明确普通会员无理由退货窗口为7天，与用户问题直接相关。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 普通会员无理由退货窗口为自签收之日起7天，且签收当天不计入，自签收次日开始起算；<br><span class="id">上下文明确普通会员7天窗口，且L02规定签收次日开始起算。</span></div><div><span class="h1">✓</span> 窗口期以发出退货通知的时间为准，签收天数等于7天的当天仍在窗口内，大于7天即为超出。<br><span class="id">上下文明确窗口以发出退货通知为准，且等于窗口值当天在窗口内。</span></div></div></details></td><td class="n">4</td><td class="n">0.917</td><td class="n">1.000</td><td class="n">0.500</td><td class="wrap">证据列表第 2 位（共 6 条）</td><td class="n">6.9s</td></tr><tr class=""><td class="id">R1-001</td><td class="id">L01</td><td class="wrap">消费者通过网络购买商品后，哪些商品属于法定不适用七天无理由退货的情形？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第一章 总则 &gt; 第一条 【立法目的】 … 第二章 不适用退货的商品范围和商品完好标准 &gt; 第六条 【法定不适用商品（无需消费者确认）】】
+为保障《消费者权益保护法》七日无理由退货规定的实施<br><span class="id">包含法定不适用商品清单，直接回答用户问题。</span></div><div><span class="h1">✓</span> 【L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） &gt; 第二十五条 【网络购物七日无理由退货】】
+经营者采用网络、电视、电话、邮购等方式销售商品，消费者有权自收到商品之日起七日内退货，且无需说明理由，但下列商品除外：
+
+（一）消<br><span class="id">列出法定不适用商品，是法律依据。</span></div><div><span class="h1">✓</span> 【P04 星辰优选不适用无理由退货商品清单 &gt; 第一条 法定不适用无理由退货的商品 … 第二条 经消费者确认后不适用无理由退货的商品】
+以下四类商品依法不适用七日无理由退货，**平台已在商品详情页明确标注，无需消费者另行确认**：
+
+| 类<br><span class="id">明确列出法定不适用商品及确认商品，直接相关。</span></div><div><span class="h0">✗</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第四章 特别规定 &gt; 第二十条 【不适用商品的标注与确认程序】】
+网络商品销售者应当采取技术手段或者其他措施，对于本办法第六条规定的不适用七日无理由退货的商品进行明确标注。
+
+符合本办法第七<br><span class="id">主要讲标注和确认程序，未列具体商品清单。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 有四类商品不适用无理由退货：消费者定作的、鲜活易腐的、在线下载或消费者拆封的音像制品和计算机软件等数字化商品，以及交付的报纸、期刊。<br><span class="id">上下文多处列出四类法定不适用商品，信息完整。</span></div><div><span class="h1">✓</span> 此外，其他根据商品性质并经消费者在购买时确认不宜退货的商品，也不适用无理由退货。<br><span class="id">上下文明确提及经消费者确认不宜退货的商品不适用。</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.500</td><td class="wrap">证据列表第 2 位（共 17 条）</td><td class="n">11.8s</td></tr><tr class=""><td class="id">R1-041</td><td class="id">P04</td><td class="wrap">按消费者提供的尺寸、图案、文字、配置单独制作的商品，是否适用无理由退货？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【P11 星辰优选特殊类目售后细则 &gt; 第二条 定制商品 &gt; 2.1 退款限制 … 第二条 定制商品 &gt; 2.4 稿件确认】
+按消费者提供的尺寸、图案、文字、配置单独制作的商品，**不支持无理由退货**。
+
+商家开始生产前，消费者可无条件取<br><span class="id">直接规定定制商品不支持无理由退货，并说明例外情形。</span></div><div><span class="h1">✓</span> 【P04 星辰优选不适用无理由退货商品清单 &gt; 第二条 经消费者确认后不适用无理由退货的商品 … 第三条 平台特殊类目：不支持任何形式的退款 &gt; 3.3 虚拟商品】
+以下商品**须在下单必经流程中经消费者逐单确认**，方可排除无理由退货。*<br><span class="id">明确定制商品不支持任何形式退款，属于依据。</span></div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第四条 特殊类目】
+4.1 以下类目不支持任何形式的退款：
+
+- **生鲜食品**——鲜活易腐，签收后无法二次销售；
+- **定制商品**——按消费者要求单独制作，无通用价值；
+- **虚拟商品*<br><span class="id">规定定制商品不支持退款，并说明限制条件。</span></div><div><span class="h1">✓</span> 【P04 星辰优选不适用无理由退货商品清单 &gt; 第一条 法定不适用无理由退货的商品】
+以下四类商品依法不适用七日无理由退货，**平台已在商品详情页明确标注，无需消费者另行确认**：
+
+| 类别 | 平台对应商品举例 |
+|---|---|
+<br><span class="id">法定不适用无理由退货商品包含消费者定作商品。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 按消费者提供的尺寸、图案、文字、配置单独制作的商品，对其他消费者无通用价值，不适用无理由退货。<br><span class="id">上下文多处明确说明定制商品无通用价值且不支持无理由退货。</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.500</td><td class="wrap">证据列表第 2 位（共 16 条）</td><td class="n">8.6s</td></tr><tr class=""><td class="id">R1-042</td><td class="id">P04</td><td class="wrap">我按自己要求定做的东西，尺寸图案都是我自己给的，这种能随便退吗？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【P11 星辰优选特殊类目售后细则 &gt; 第二条 定制商品 &gt; 2.1 退款限制 … 第二条 定制商品 &gt; 2.4 稿件确认】
+按消费者提供的尺寸、图案、文字、配置单独制作的商品，**不支持无理由退货**。
+
+商家开始生产前，消费者可无条件取<br><span class="id">直接规定定制商品不支持无理由退货，并说明例外情形</span></div><div><span class="h1">✓</span> 【P04 星辰优选不适用无理由退货商品清单 &gt; 第三条 平台特殊类目：不支持任何形式的退款 &gt; 3.2 定制商品】
+以下三类商品在星辰优选**不支持任何形式的退款**，不区分退款原因：
+
+鲜活水产、冷鲜肉禽、新鲜果蔬、鲜切花、现制食品等。签<br><span class="id">明确定制商品不支持任何形式退款，但质量问题可转争议处理</span></div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第四条 特殊类目】
+4.1 以下类目不支持任何形式的退款：
+
+- **生鲜食品**——鲜活易腐，签收后无法二次销售；
+- **定制商品**——按消费者要求单独制作，无通用价值；
+- **虚拟商品*<br><span class="id">规定定制商品不支持无理由退货，但质量问题可转争议处理</span></div><div><span class="h1">✓</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第五条 特定场景的处理口径 &gt; 5.1 特殊类目的质量问题】
+生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：
+
+| 情形 | 处理 |
+|---|--<br><span class="id">说明定制商品质量问题可获赔付或补偿，与无理由退货区分</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 按消费者提供的尺寸、图案、文字、配置单独制作的商品，对其他消费者无通用价值，不适用无理由退货。<br><span class="id">上下文多处明确说明定制商品无通用价值且不支持无理由退货</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.500</td><td class="wrap">证据列表第 2 位（共 9 条）</td><td class="n">9.3s</td></tr><tr class=""><td class="id">R1-045</td><td class="id">P05</td><td class="wrap">商品已拆封但未实际使用、无使用痕迹，是否支持无理由退货？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第三条 商品条件】
+3.1 **无理由退货要求商品未拆封、不影响二次销售。** 已拆封或已使用的商品不支持无理由退货。
+
+3.2 商品状态分为三档，无理由退货仅接受「未拆封」：
+
+| 商品状态 |<br><span class="id">明确已拆封不支持无理由退货，直接回答用户问题。</span></div><div><span class="h1">✓</span> 【P05 星辰优选商品完好标准与验收规范 &gt; 第二条 商品状态的三档划分】
+平台在受理无理由退货时，将商品状态划分为三档：
+
+| 状态 | 判定要素 | 无理由退货 |
+|---|---|---|
+| **未拆封** | 外包装完整，密封条<br><span class="id">明确已拆封不支持无理由退货，直接回答用户问题。</span></div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第六条 判定顺序】
+平台按以下固定顺序审核退款申请，**命中一项即形成结论，不再继续后续审核**：
+
+| 顺序 | 审核事项 | 命中结论 |
+|---|---|---|
+| 1 | 订单不存在，<br><span class="id">判定顺序中明确无理由退货要求未拆封，提供依据。</span></div><div><span class="h0">✗</span> 【P11 星辰优选特殊类目售后细则 &gt; 第四条 数码与家用电器 &gt; 4.1 无理由退货 … 第五条 服装、鞋帽、箱包 &gt; 5.2 试穿的界限】
+未激活、未拆封的数码产品适用通用的无理由退货规则。**已激活的商品视为不完好**，不支持无理由退<br><span class="id">主要涉及数码、服装等特殊类目，与一般拆封问题无关。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 无理由退货仅接受「未拆封」状态，已拆封的商品即使未实际使用、无使用痕迹，也不支持无理由退货。<br><span class="id">上下文多处明确无理由退货仅接受未拆封，已拆封不支持。</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.500</td><td class="wrap">证据列表第 2 位（共 16 条）</td><td class="n">9.2s</td></tr><tr class=""><td class="id">R1-063</td><td class="id">P09</td><td class="wrap">当消费者主张退回的商品存在不完好、缺件或调包情形时，举证责任由哪一方承担？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 2/4</div><div><span class="h1">✓</span> 【P05 星辰优选商品完好标准与验收规范 &gt; 第五条 举证责任 &gt; 5.1 商家举证 … 第五条 举证责任 &gt; 5.4 举证不能的后果】
+商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：
+
+- 完整的退货开<br><span class="id">明确商家对退回商品不完好、缺件、调包承担举证责任</span></div><div><span class="h1">✓</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第四条 平台介入的处理 &gt; 4.4 举证责任分配】
+平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。
+
+举证期结束后，平台在 **72 小时**内出具判定结论，并向<br><span class="id">表格中明确退回商品不完好、缺件、调包由商家举证</span></div><div><span class="h0">✗</span> 【L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） &gt; 第二十三条 【瑕疵举证责任倒置】】
+经营者应当保证在正常使用商品或者接受服务的情况下其提供的商品或者服务应当具有的质量、性能、用途和有效期限；但消费者在购买该商品或者接受该<br><span class="id">条款针对耐用商品瑕疵举证，未涉及退回商品不完好情形</span></div><div><span class="h0">✗</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第三条 极速退款 &gt; 3.3 垫付后的处理】
+金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款项即时到账。
+
+（一）会员等级为金牌会员；
+（二）账户<br><span class="id">条款涉及极速退款垫付，未涉及举证责任分配</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 退回商品不完好、缺件、调包的举证责任由商家承担。<br><span class="id">上下文明确写出商家主张退回商品不完好、被调包、缺件的由商家举证。</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.500</td><td class="wrap">证据列表第 2 位（共 10 条）</td><td class="n">6.6s</td></tr><tr class=""><td class="id">R1-064</td><td class="id">P09</td><td class="wrap">我退货回去的东西，商家非说少了零件、被换过、或者说不完好，这种情况到底该谁拿出证据来证明？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【P05 星辰优选商品完好标准与验收规范 &gt; 第五条 举证责任 &gt; 5.1 商家举证 … 第五条 举证责任 &gt; 5.4 举证不能的后果】
+商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：
+
+- 完整的退货开<br><span class="id">明确商家对退货不完好、缺件、调包承担举证责任</span></div><div><span class="h1">✓</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第四条 平台介入的处理 &gt; 4.4 举证责任分配】
+平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。
+
+举证期结束后，平台在 **72 小时**内出具判定结论，并向<br><span class="id">表格明确退回商品不完好、缺件、调包由商家举证</span></div><div><span class="h1">✓</span> 【L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） &gt; 第二十三条 【瑕疵举证责任倒置】】
+经营者应当保证在正常使用商品或者接受服务的情况下其提供的商品或者服务应当具有的质量、性能、用途和有效期限；但消费者在购买该商品或者接受该<br><span class="id">规定耐用商品六个月内瑕疵由经营者举证，但未直接涉及退货缺件</span></div><div><span class="h0">✗</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第二章 不适用退货的商品范围和商品完好标准 &gt; 第九条 【商品不完好的分类判定标准】】
+下列商品不适用七日无理由退货规定：
+
+（一）消费者定作的商品；
+
+（二）鲜活易腐的商品；
+
+（三）在线<br><span class="id">主要规定不适用退货商品范围和完好标准，未涉及举证责任</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 退回商品不完好、缺件、调包的举证责任由商家承担。<br><span class="id">上下文明确商家主张退回商品不完好、被调包、缺件的由商家举证</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.500</td><td class="wrap">证据列表第 2 位（共 12 条）</td><td class="n">6.5s</td></tr><tr class=""><td class="id">R1-067</td><td class="id">P09</td><td class="wrap">在哪些情形下，平台会介入处理消费者的售后问题？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第三条 申请平台介入 &gt; 3.1 申请条件 … 第五条 特定场景的处理口径 &gt; 5.4 商品导致人身或财产损害】
+出现以下任一情形，消费者可申请平台介入：
+
+（一）商家拒绝退款申请或超过 48 <br><span class="id">直接列出消费者可申请平台介入的四种情形及流程。</span></div><div><span class="h1">✓</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第六条 平台的先行赔付 &gt; 6.1 适用情形】
+- 商家失联、闭店、无法履行售后义务的；
+- 商家拒不执行平台判定结论的；
+- 平台公示的服务承诺未能兑现的。
+
+平台先行赔付后，有权向商家追偿，<br><span class="id">规定了平台先行赔付的适用情形，属于介入处理情形。</span></div><div><span class="h1">✓</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第一条 适用范围 … 第二条 争议解决的层级】
+本规则适用于消费者与商家在退款、退货、售后赔付过程中产生的全部争议，包括：
+
+- 商家拒绝退款申请，消费者有异议的；
+- 商家验收退回商品不通过，<br><span class="id">说明平台介入的适用范围和处理层级，包含介入情形。</span></div><div><span class="h1">✓</span> 【L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） &gt; 第四十四条 【网络交易平台提供者责任】】
+消费者通过网络交易平台购买商品或者接受服务，其合法权益受到损害的，可以向销售者或者服务者要求赔偿。网络交易平台提供者不能提供销售者<br><span class="id">法律条款规定平台在特定条件下需承担赔偿责任，属于介入情形。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 商家失联、闭店、无法履行售后义务的，商家拒不执行平台判定结论的，以及平台公示的服务承诺未能兑现的，平台都会介入处理。<br><span class="id">上下文明确列出三种情形，平台先行赔付适用</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.500</td><td class="wrap">证据列表第 2 位（共 10 条）</td><td class="n">7.5s</td></tr><tr class=""><td class="id">R1-077</td><td class="id">P11</td><td class="wrap">三包有效期从何时开始起算？换货后有效期如何计算？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【L05 部分商品修理更换退货责任规定（三包规定） &gt; 第八条 【三包有效期的计算】】
+三包有效期自开具发票之日起计算，扣除因修理占用和无零配件待修的时间。
+
+三包有效期内消费者凭发票及三包凭证办理修理、换货、退货。
+
+&gt; **判定要点**<br><span class="id">直接规定三包有效期自开票日起算并扣除修理时间</span></div><div><span class="h1">✓</span> 【P11 星辰优选特殊类目售后细则 &gt; 第四条 数码与家用电器 &gt; 4.3 三包有效期的计算 … 第四条 数码与家用电器 &gt; 4.4 三包退货的折旧】
+未激活、未拆封的数码产品适用通用的无理由退货规则。**已激活的商品视为不完好**，不支持<br><span class="id">明确三包期起算及换货后重新计算</span></div><div><span class="h1">✓</span> 【L05 部分商品修理更换退货责任规定（三包规定） &gt; 第十二条 【超期未修好】 … 第十四条 【换货标准与有效期重算】】
+在三包有效期内，因生产者未供应零配件，自送修之日起超过90日未修好的，修理者应当在修理状况中注明，销售者凭此据免费为<br><span class="id">规定换货后三包有效期重新计算</span></div><div><span class="h1">✓</span> 【L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） &gt; 第十八条 【售后有效期起算与退款金额】】
+经营者与消费者约定承担退货、更换、修理等义务的有效期限不得低于国家有关规定的要求。有效期限自经营者向消费者交付商品或者提供<br><span class="id">规定交付或安装完成起算及换货后重新计算</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 三包有效期自开具发票之日起计算，扣除因修理占用和无零配件待修的时间。<br><span class="id">上下文多处明确写出该句内容</span></div><div><span class="h1">✓</span> 换货后的三包有效期自换货之日起重新计算。<br><span class="id">上下文明确写出换货后有效期重算</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.500</td><td class="wrap">证据列表第 2 位（共 8 条）</td><td class="n">8.1s</td></tr><tr class=""><td class="id">R1-093</td><td class="id">L01+L05</td><td class="wrap">在三包有效期内符合换货条件、但销售者无同型号同规格产品且消费者不愿调换其他型号而要求退货时，退货金额应如何计算？若该商品属于耐用商品且消费者在六个月内发现瑕疵发生争议，举证责任由谁承担？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【L05 部分商品修理更换退货责任规定（三包规定） &gt; 第十二条 【超期未修好】 … 第十四条 【换货标准与有效期重算】】
+在三包有效期内，因生产者未供应零配件，自送修之日起超过90日未修好的，修理者应当在修理状况中注明，销售者凭此据免费为<br><span class="id">直接规定无同型号产品退货及折旧费计算</span></div><div><span class="h1">✓</span> 【L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） &gt; 第二十三条 【瑕疵举证责任倒置】】
+经营者应当保证在正常使用商品或者接受服务的情况下其提供的商品或者服务应当具有的质量、性能、用途和有效期限；但消费者在购买该商品或者接受该<br><span class="id">规定耐用商品六个月瑕疵举证责任倒置</span></div><div><span class="h1">✓</span> 【P05 星辰优选商品完好标准与验收规范 &gt; 第五条 举证责任 &gt; 5.3 耐用商品的举证责任倒置 … 第五条 举证责任 &gt; 5.4 举证不能的后果】
+商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：
+
+-<br><span class="id">规定耐用商品六个月瑕疵举证责任倒置</span></div><div><span class="h0">✗</span> 【L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） &gt; 第十八条 【售后有效期起算与退款金额】】
+经营者与消费者约定承担退货、更换、修理等义务的有效期限不得低于国家有关规定的要求。有效期限自经营者向消费者交付商品或者提供<br><span class="id">涉及退款金额但未涉及举证责任</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 在三包有效期内符合换货条件、销售者无同型号同规格产品且消费者不愿调换其他型号而要求退货的，销售者应予以退货，对已使用过的商品按本规定收取折旧费，折旧费自开具发票之日起算至退货之日止，并扣除修理占用和待修时间。<br><span class="id">上下文明确写出该退货条件及折旧费计算方式</span></div><div><span class="h1">✓</span> 若该商品属于机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自接受商品之日起六个月内发现瑕疵发生争议的，由经营者承担有关瑕疵的举证责任。<br><span class="id">上下文多处提及耐用商品六个月举证责任倒置</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.500</td><td class="wrap">证据列表第 2 位（共 13 条）</td><td class="n">4.8s</td></tr><tr class=""><td class="id">R1-094</td><td class="id">L01+L05</td><td class="wrap">我买的东西坏了想换，但店里没同款了，我也不想换别的型号，就想退钱。这种退货是不是能扣我折旧费？还有，我买的是大件家电，用了不到半年就出毛病，他们非说是我自己弄坏的，这到底该谁拿出证据来？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【L05 部分商品修理更换退货责任规定（三包规定） &gt; 第十三条 【无同型号产品时的退货与折旧】】
+在三包有效期内，符合换货条件的，销售者因无同型号同规格产品，消费者不愿调换其他型号、规格产品而要求退货的，销售者应予以退货；有同型号同规格产<br><span class="id">直接规定无同型号退货可扣折旧费，构成依据。</span></div><div><span class="h1">✓</span> 【L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） &gt; 第二十三条 【瑕疵举证责任倒置】】
+经营者应当保证在正常使用商品或者接受服务的情况下其提供的商品或者服务应当具有的质量、性能、用途和有效期限；但消费者在购买该商品或者接受该<br><span class="id">规定耐用商品六个月内瑕疵由经营者举证，直接回答举证责任。</span></div><div><span class="h1">✓</span> 【P11 星辰优选特殊类目售后细则 &gt; 第四条 数码与家用电器 &gt; 4.4 三包退货的折旧】
+未激活、未拆封的数码产品适用通用的无理由退货规则。**已激活的商品视为不完好**，不支持无理由退货（见 [P05] 第 3.2 条）。
+
+列入国家<br><span class="id">包含三包退货折旧及举证责任相关内容，构成依据。</span></div><div><span class="h1">✓</span> 【L05 部分商品修理更换退货责任规定（三包规定） &gt; 与无理由退货的对照】
+| 维度 | 七日无理由退货（[L02]） | 三包质量问题（本规定） |
+|---|---|---|
+| 起算点 | 签收次日 | 开具发票之日 |
+| 窗口 <br><span class="id">对照表明确三包退货可扣折旧及举证责任，构成依据。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 在三包有效期内符合换货条件、销售者无同型号同规格产品且消费者不愿调换其他型号而要求退货的，销售者应予以退货，对已使用过的商品按本规定收取折旧费，折旧费自开具发票之日起算至退货之日止，并扣除修理占用和待修时间。<br><span class="id">上下文多处明确写出该退货及折旧费计算规则</span></div><div><span class="h1">✓</span> 若该商品属于机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自接受商品之日起六个月内发现瑕疵发生争议的，由经营者承担有关瑕疵的举证责任。<br><span class="id">上下文直接引用消保法第二十三条相关内容</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">0.500</td><td class="wrap">证据列表第 2 位（共 5 条）</td><td class="n">4.3s</td></tr><tr class="row-bad"><td class="id">R1-051</td><td class="id">P06</td><td class="wrap">若退款中扣除了运费但未在退款结果中列明扣除项与金额，该扣除是否有效？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 2/3</div><div><span class="h1">✓</span> 【P06 星辰优选运费与退货物流规则 &gt; 第二条 无理由退货的运费 &gt; 2.4 扣除运费的前置条件】
+无理由退货所产生的寄回运费由消费者承担。消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。
+
+订单原本收取的运费属于已<br><span class="id">条款明确未列明扣除无效，直接回答用户问题</span></div><div><span class="h0">✗</span> 【P10 星辰优选优惠券、赠品与发票处理规则 &gt; 第二条 满减与套装的部分退货 &gt; 2.3 结算结果的告知】
+订单中部分商品退货，导致剩余订单不再满足满减、满赠、套装优惠条件的，按购买时各商品的**原价重新结算，多退少补**。
+
+订单：A <br><span class="id">涉及优惠重算，非运费扣除列明问题</span></div><div><span class="h1">✓</span> 【P10 星辰优选优惠券、赠品与发票处理规则 &gt; 第七条 退款金额的构成告知】
+每笔退款完成后，平台向消费者列明金额构成：
+
+| 项目 | 说明 |
+|---|---|
+| 商品实付金额 | 退款基数 |
+| 优惠重算差额 | 部分退货导致<br><span class="id">要求列明每项扣除依据与金额，未列明无效</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 未列明的扣除无效，消费者可申请补退。<br><span class="id">上下文多处明确写出未列明扣除无效可补退</span></div></div></details></td><td class="n">3</td><td class="n">0.833</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 3 条）</td><td class="n">7.4s</td></tr><tr class="row-bad"><td class="id">R1-052</td><td class="id">P06</td><td class="wrap">我退货退款的时候，商家悄悄把运费扣了，但退款单上根本没写扣了啥、扣了多少，这种扣法算数吗？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 2/4</div><div><span class="h1">✓</span> 【P06 星辰优选运费与退货物流规则 &gt; 第二条 无理由退货的运费 &gt; 2.4 扣除运费的前置条件】
+无理由退货所产生的寄回运费由消费者承担。消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。
+
+订单原本收取的运费属于已<br><span class="id">条款明确运费扣除须列明，未列明无效，直接回应问题。</span></div><div><span class="h0">✗</span> 【P03 星辰优选退款规则与到账时效 &gt; 第二条 退款金额的计算 &gt; 2.6 运费】
+**退款金额以消费者实际支付的金额为准**，不是商品标价。
+
+使用优惠券的订单，**按实付金额退款，优惠券不予退还**。
+
+套装商品或满减活动订单中部分商<br><span class="id">主要讲退款金额计算，运费规则仅引用，未直接回应扣费列明问题。</span></div><div><span class="h1">✓</span> 【P10 星辰优选优惠券、赠品与发票处理规则 &gt; 第七条 退款金额的构成告知】
+每笔退款完成后，平台向消费者列明金额构成：
+
+| 项目 | 说明 |
+|---|---|
+| 商品实付金额 | 退款基数 |
+| 优惠重算差额 | 部分退货导致<br><span class="id">规定每项扣除须列明依据与金额，未列明无效，支持消费者补退。</span></div><div><span class="h0">✗</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第三章 退货程序 &gt; 第十八条 【退货运费承担】】
+选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。
+
+七日期间自消费者签收商品的次日开始起算。
+
+&gt; **判定<br><span class="id">主要讲退货程序与运费承担，未涉及扣除列明要求。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 未列明的扣除无效，消费者可申请补退。<br><span class="id">上下文多处明确写出未列明的扣除无效，可申请补退。</span></div></div></details></td><td class="n">4</td><td class="n">0.833</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 4 条）</td><td class="n">7.2s</td></tr><tr class="row-bad"><td class="id">R1-003</td><td class="id">L01</td><td class="wrap">经营者对消费者提出的退货要求故意拖延或者无理拒绝的，应当承担何种责任？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） &gt; 第四十八条 【经营者民事责任】 … 第五十二条 【财产损害责任】】
+经营者提供商品或者服务有下列情形之一的，除本法另有规定外，应当依照其他有关法律、法规的规定，承担民事责任<br><span class="id">直接规定故意拖延或无理拒绝退货的民事责任</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第五章 监督检查 &gt; 第二十九条 … 第六章 法律责任 &gt; 第三十一条 【拒绝退货、拖延退款】】
+市场监督管理部门应当加强对网络商品销售者和网络交易平台提供者经营行为的监督检查，督促和引导其<br><span class="id">规定拒绝退货或拖延退款的行政处罚责任</span></div><div><span class="h0">✗</span> 【L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） &gt; 第二十条 【交付与运输风险】】
+电子商务经营者应当按照承诺或者与消费者约定的方式、时限向消费者交付商品或者服务，并承担商品运输中的风险和责任。但是，消费者另行选择快递物流<br><span class="id">涉及交付与运输风险，非退货责任</span></div><div><span class="h1">✓</span> 【P08 星辰优选风控与异常退款治理规则 &gt; 第五条 商家侧的异常治理】
+风控不只针对消费者。以下商家行为同样纳入治理：
+
+| 商家行为 | 处置 |
+|---|---|
+| 无正当理由拒绝合规退货申请 | 判定退款，计入服务考核 |
+| <br><span class="id">平台规则明确商家拖延退款等处置措施</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 经营者对消费者提出的退货要求故意拖延或者无理拒绝的，应当依照有关法律、法规的规定承担民事责任。<br><span class="id">上下文第四十八条第八项明确列出该情形需承担民事责任</span></div><div><span class="h1">✓</span> 也就是说，故意拖延或无理拒绝退款请求本身即构成违法，而不只是服务态度问题。<br><span class="id">售后适用要点直接说明拖延或拒绝退款构成违法</span></div></div></details></td><td class="n">4</td><td class="n">0.917</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 7 条）</td><td class="n">11.7s</td></tr><tr class="row-bad"><td class="id">R1-017</td><td class="id">L04</td><td class="wrap">消费者与平台内经营者发生争议时，电子商务平台经营者负有哪些协助义务？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） &gt; 第六十一条 【平台协助维权义务】 … 第六十二条 【交易记录的举证责任】】
+消费者在电子商务平台购买商品或者接受服务，与平台内经营者发生争议时，电子商务平台经营者应当积极<br><span class="id">直接规定平台应积极协助消费者维权，并提供交易记录，构成依据。</span></div><div><span class="h1">✓</span> 【P01 星辰优选用户服务协议 &gt; 第四章 平台的角色与责任 &gt; 4.4 平台的协助义务】
+平台为交易提供技术服务与规则保障。商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。
+
+**平台就其公示的服务承诺自行担责，不以<br><span class="id">明确平台协助义务，包括提供商家信息，直接相关。</span></div><div><span class="h0">✗</span> 【L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） &gt; 第三十八条 【平台连带责任】 … 第五十八条 【质量担保机制】】
+电子商务平台经营者知道或者应当知道平台内经营者销售的商品或者提供的服务不符合保障人身、财产安全的要求，或<br><span class="id">主要涉及连带责任和保证金，非协助义务本身。</span></div><div><span class="h1">✓</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第七条 外部维权途径 &gt; 7.2 平台的协助义务】
+消费者对平台判定结论仍有异议的，可通过以下途径维权：
+
+（一）向平台所在地或商家所在地市场监督管理部门投诉；
+（二）请求消费者协会或其他依法成<br><span class="id">规定平台提供商家信息和交易凭证，协助外部维权，直接相关。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 消费者在电子商务平台购买商品或接受服务，与平台内经营者发生争议时，电子商务平台经营者应当积极协助消费者维护合法权益。<br><span class="id">上下文明确写出平台应积极协助消费者维权</span></div></div></details></td><td class="n">4</td><td class="n">0.917</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 12 条）</td><td class="n">6.3s</td></tr><tr class="row-bad"><td class="id">R1-071</td><td class="id">P10</td><td class="wrap">购买商品附赠的赠品，在退货时是否必须一并退回？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【P10 星辰优选优惠券、赠品与发票处理规则 &gt; 第三条 赠品 &gt; 3.1 一并退回义务 … 第三条 赠品 &gt; 3.5 消耗类赠品】
+**退货时须将商品本身、配件及赠品一并退回。**
+
+赠品包括赠送的实物、积分、代金券、优惠券等各种形式。
+<br><span class="id">直接规定退货时赠品须一并退回及例外情形。</span></div><div><span class="h1">✓</span> 【P03 星辰优选退款规则与到账时效 &gt; 第二条 退款金额的计算 &gt; 2.5 赠品】
+**退款金额以消费者实际支付的金额为准**，不是商品标价。
+
+使用优惠券的订单，**按实付金额退款，优惠券不予退还**。
+
+套装商品或满减活动订单中部分商<br><span class="id">提及赠品不能退回时扣款，与问题相关。</span></div><div><span class="h0">✗</span> 【P10 星辰优选优惠券、赠品与发票处理规则 &gt; 第二条 满减与套装的部分退货 &gt; 2.4 套装商品】
+订单中部分商品退货，导致剩余订单不再满足满减、满赠、套装优惠条件的，按购买时各商品的**原价重新结算，多退少补**。
+
+订单：A 商品 <br><span class="id">主要讲满减套装部分退货结算，未涉及赠品退回。</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第三章 退货程序 &gt; 第十二条 【赠品一并退回】】
+选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。
+
+七日期间自消费者签收商品的次日开始起算。
+
+&gt; **判定<br><span class="id">明确无理由退货时赠品应一并退回。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 赠品与被退商品直接绑定的（买 A 送 B），退 A 须一并退 B；<br><span class="id">上下文明确列出赠品与被退商品直接绑定的情形，退A须一并退B。</span></div><div><span class="h1">✓</span> 赠品与整单绑定的（满额赠），部分退货后仍满足赠送条件的，赠品无需退回，不再满足的则须退回或折价。<br><span class="id">上下文明确说明赠品与整单绑定的处理规则，与句子一致。</span></div></div></details></td><td class="n">4</td><td class="n">0.917</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 9 条）</td><td class="n">7.3s</td></tr><tr class=""><td class="id">R1-002</td><td class="id">L01</td><td class="wrap">我在网上买的东西，是不是什么都能七天无理由退？有没有哪种是死活不给退的？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） &gt; 第二十五条 【网络购物七日无理由退货】】
+经营者采用网络、电视、电话、邮购等方式销售商品，消费者有权自收到商品之日起七日内退货，且无需说明理由，但下列商品除外：
+
+（一）消<br><span class="id">直接列出法定不适用退货的四类商品及确认要求，是回答依据。</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第一章 总则 &gt; 第二条 【适用范围】 … 第二章 不适用退货的商品范围和商品完好标准 &gt; 第六条 【法定不适用商品（无需消费者确认）】】
+为保障《消费者权益保护法》七日无理由退货规定的实施<br><span class="id">详细规定不适用退货的商品范围和完好标准，包含法定除外和确认商品。</span></div><div><span class="h1">✓</span> 【P04 星辰优选不适用无理由退货商品清单 &gt; 第一条 法定不适用无理由退货的商品 … 第二条 经消费者确认后不适用无理由退货的商品】
+以下四类商品依法不适用七日无理由退货，**平台已在商品详情页明确标注，无需消费者另行确认**：
+
+| 类<br><span class="id">平台清单明确法定不适用和需确认的商品，直接回答哪些不能退。</span></div><div><span class="h1">✓</span> 【P11 星辰优选特殊类目售后细则 &gt; 第七条 图书、音像与知识付费】
+7.1 已拆封的音像制品、计算机软件等数字化商品，**法定不适用无理由退货**。
+
+7.2 未拆封的图书、音像制品适用通用无理由退货规则。
+
+7.3 图书出现书写、划线<br><span class="id">针对图书音像等特殊类目，明确拆封数字化商品不退，是具体例外。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 有四类商品不适用无理由退货：消费者定作的、鲜活易腐的、在线下载或消费者拆封的音像制品和计算机软件等数字化商品，以及交付的报纸、期刊。<br><span class="id">上下文多处列出四类法定除外商品，信息一致。</span></div><div><span class="h1">✓</span> 此外，其他根据商品性质并经消费者在购买时确认不宜退货的商品，也不适用无理由退货。<br><span class="id">上下文明确提及经消费者确认不宜退货的商品不适用无理由退货。</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 13 条）</td><td class="n">11.8s</td></tr><tr class=""><td class="id">R1-004</td><td class="id">L01</td><td class="wrap">我要求退货，商家一直拖着不给办，或者干脆找借口拒绝，这种情况商家是不是违法了？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） &gt; 第四十八条 【经营者民事责任】】
+经营者提供商品或者服务有下列情形之一的，除本法另有规定外，应当依照其他有关法律、法规的规定，承担民事责任：
+
+（一）商品或者服务存在缺陷的<br><span class="id">第（八）项明确故意拖延或无理拒绝退货要求构成违法，直接回答商家是否违法。</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第五章 监督检查 &gt; 第二十九条 … 第六章 法律责任 &gt; 第三十一条 【拒绝退货、拖延退款】】
+市场监督管理部门应当加强对网络商品销售者和网络交易平台提供者经营行为的监督检查，督促和引导其<br><span class="id">规定超15日未办理退货或退款即受处罚，为商家拖延退货违法提供依据。</span></div><div><span class="h1">✓</span> 【P08 星辰优选风控与异常退款治理规则 &gt; 第五条 商家侧的异常治理】
+风控不只针对消费者。以下商家行为同样纳入治理：
+
+| 商家行为 | 处置 |
+|---|---|
+| 无正当理由拒绝合规退货申请 | 判定退款，计入服务考核 |
+| <br><span class="id">平台规则明确商家无理由拒绝或拖延退货的处置，佐证商家行为违规。</span></div><div><span class="h0">✗</span> 【P06 星辰优选运费与退货物流规则 &gt; 第六条 物流异常的处理 &gt; 6.3 商家拒收退货】
+退回商品在物流途中丢失的，由承运方按其承运协议赔付。消费者已履行寄回义务并提供有效物流凭证的，**不因商家未收到货而拒绝退款**——平台先行为消费<br><span class="id">该条主要涉及物流丢失、破损及拒收，与商家拖延退货违法问题不直接相关。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 经营者对消费者提出的退货要求故意拖延或者无理拒绝的，应当依照有关法律、法规的规定承担民事责任。<br><span class="id">上下文第四十八条第八项明确列出该情形并规定承担民事责任</span></div><div><span class="h1">✓</span> 也就是说，故意拖延或无理拒绝退款请求本身即构成违法，而不只是服务态度问题。<br><span class="id">售后适用要点直接说明构成违法，不只是服务态度问题</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 6 条）</td><td class="n">11.8s</td></tr><tr class=""><td class="id">R1-005</td><td class="id">L02</td><td class="wrap">消费者在行使七日无理由退货权利时，应当遵循哪些基本原则？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第一章 总则 &gt; 第三条 【销售者与平台的义务分工】 … 第二章 不适用退货的商品范围和商品完好标准 &gt; 第七条 【约定不适用商品（须消费者购买时逐单确认）】】
+为保障《消费者权益保护法》七<br><span class="id">条款明确消费者行使退货权应遵循公平、诚实信用原则，直接回答基本原则。</span></div><div><span class="h1">✓</span> 【P01 星辰优选用户服务协议 &gt; 第六章 消费者的义务 &gt; 6.1 诚实信用】
+消费者行使退货权利应遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。
+
+以下行为构成对售后规则的滥用，平台可依 [P08] 采取限制<br><span class="id">条款规定消费者应遵循诚实信用原则，不得滥用退货规则，是基本原则之一。</span></div><div><span class="h1">✓</span> 【L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） &gt; 第十九条 【无理由退货的边界与滥用治理】】
+经营者通过网络、电视、电话、邮购等方式销售商品的，应当遵守消费者权益保护法第二十五条规定，不得擅自扩大不适用无理由退货的<br><span class="id">条款第四款规定消费者无理由退货应遵循诚实信用原则，直接相关。</span></div><div><span class="h1">✓</span> 【P08 星辰优选风控与异常退款治理规则 &gt; 第七条 合法性依据】
+7.1 《消费者权益保护法实施条例》第十九条第四款规定：**消费者无理由退货应当遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。** 这是平台风控<br><span class="id">条款引用诚实信用原则作为法律依据，与问题直接相关。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 消费者行使七日无理由退货权利应当遵循公平、诚实信用的原则，遵守商业道德。<br><span class="id">上下文明确写出消费者行使退货权应遵循公平、诚实信用原则</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 16 条）</td><td class="n">11.7s</td></tr><tr class=""><td class="id">R1-009</td><td class="id">L02</td><td class="wrap">消费者在平台购物后因退货产生纠纷，要求平台调解时，平台是否有义务进行调解？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第四章 特别规定 &gt; 第二十一条 【平台与商家的协议义务】 … 第四章 特别规定 &gt; 第二十四条 【消费纠纷和解与协助维权】】
+网络商品销售者应当采取技术手段或者其他措施，对于本办法第六条规<br><span class="id">条款明确平台应当调解退货纠纷，直接回答用户问题。</span></div><div><span class="h1">✓</span> 【P01 星辰优选用户服务协议 &gt; 第八章 争议解决 &gt; 8.2 平台调解】
+因本协议产生的争议，可通过协商和解、平台调解、向市场监督管理部门投诉、申请仲裁或提起诉讼等方式解决。
+
+消费者要求平台调解的，平台应当调解，具体规则见 [P09]<br><span class="id">协议规定平台应当调解，并明确平台责任。</span></div><div><span class="h1">✓</span> 【L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） &gt; 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】】
+电子商务争议可以通过协商和解，请求消费者组织、行业协会或者其他依法成立的调解组织调解，向有关部门投诉，<br><span class="id">规定平台应积极协助维权，包含调解义务。</span></div><div><span class="h1">✓</span> 【P01 星辰优选用户服务协议 &gt; 第四章 平台的角色与责任 &gt; 4.4 平台的协助义务】
+平台为交易提供技术服务与规则保障。商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。
+
+**平台就其公示的服务承诺自行担责，不以<br><span class="id">平台应协助维权，提供商家信息，涉及调解义务。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 消费者因退货发生消费纠纷，要求网络交易平台提供者调解的，平台应当调解。<br><span class="id">上下文明确写出平台应当调解</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 17 条）</td><td class="n">7.2s</td></tr><tr class=""><td class="id">R1-011</td><td class="id">L03</td><td class="wrap">消费者基于查验需要打开商品包装，但未影响商品原有品质、功能和外观的，经营者是否应当予以退货？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 2/4</div><div><span class="h1">✓</span> 【L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） &gt; 第十九条 【无理由退货的边界与滥用治理】】
+经营者通过网络、电视、电话、邮购等方式销售商品的，应当遵守消费者权益保护法第二十五条规定，不得擅自扩大不适用无理由退货的<br><span class="id">直接规定基于查验打开包装不影响退货，经营者应予以退货。</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第二章 不适用退货的商品范围和商品完好标准 &gt; 第七条 【约定不适用商品（须消费者购买时逐单确认）】 … 第二章 不适用退货的商品范围和商品完好标准 &gt; 第八条 【商品完好的标准】】
+下列商<br><span class="id">明确拆封查验不影响商品完好，经营者应退货。</span></div><div><span class="h0">✗</span> 【P05 星辰优选商品完好标准与验收规范 &gt; 第一条 商品完好的基本定义 … 第二条 商品状态的三档划分】
+1.1 **商品能够保持原有品质、功能，商品本身、配件、商标标识齐全的，视为商品完好。**
+
+1.2 **消费者基于查验需要而打开商<br><span class="id">平台规定已拆封不支持无理由退货，与问题情形冲突，不构成依据。</span></div><div><span class="h0">✗</span> 【L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） &gt; 第二十三条 【瑕疵举证责任倒置】 … 第二十五条 【网络购物七日无理由退货】】
+经营者应当保证在正常使用商品或者接受服务的情况下其提供的商品或者服务应当具有的质量、性能、用<br><span class="id">主要涉及质量问题退货和运费，未直接回答拆封查验退货问题。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 消费者基于查验需要打开商品包装，或者为确认商品品质和功能进行合理调试而不影响商品原有品质、功能和外观的，经营者应当予以退货。<br><span class="id">上下文多处明确写出该规定，信息直接支撑。</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 13 条）</td><td class="n">6.9s</td></tr><tr class=""><td class="id">R1-013</td><td class="id">L03</td><td class="wrap">消费者与经营者发生消费者权益争议时，可以向哪些部门提出投诉？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） &gt; 第二十六条 【投诉与举报渠道】 … 第四十四条 【经营者投诉处理机制】】
+消费者与经营者发生消费者权益争议的，可以向市场监督管理部门或者其他有关行政部门投诉。
+
+自<br><span class="id">直接规定可向市场监督管理部门或其他有关行政部门投诉。</span></div><div><span class="h1">✓</span> 【L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） &gt; 第四十六条 【行政投诉处理时限】 … 第四十七条 【质量鉴定】】
+消费者和经营者发生消费争议向市场监督管理部门或者其他有关行政部门投诉的，应当提供真实身份信息，有明<br><span class="id">规定了投诉处理时限和程序，属于投诉依据。</span></div><div><span class="h1">✓</span> 【L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） &gt; 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】】
+电子商务争议可以通过协商和解，请求消费者组织、行业协会或者其他依法成立的调解组织调解，向有关部门投诉，<br><span class="id">明确可向有关部门投诉，属于投诉途径之一。</span></div><div><span class="h1">✓</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第七条 外部维权途径 &gt; 7.1 途径】
+消费者对平台判定结论仍有异议的，可通过以下途径维权：
+
+（一）向平台所在地或商家所在地市场监督管理部门投诉；
+（二）请求消费者协会或其他依法成立的调解组<br><span class="id">列举了具体投诉部门，如市场监督管理部门。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 消费者与经营者发生消费者权益争议的，可以向市场监督管理部门或者其他有关行政部门投诉。<br><span class="id">上下文首句即原文，完全支撑。</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 10 条）</td><td class="n">6.8s</td></tr><tr class=""><td class="id">R1-014</td><td class="id">L03</td><td class="wrap">我跟商家闹了纠纷，想投诉他，该找哪个部门管这事？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） &gt; 第二十六条 【投诉与举报渠道】 … 第二十七条 【投诉举报的规范】】
+消费者与经营者发生消费者权益争议的，可以向市场监督管理部门或者其他有关行政部门投诉。
+
+自然人<br><span class="id">明确投诉可向市场监督管理部门或其他行政部门，直接回答找谁投诉。</span></div><div><span class="h1">✓</span> 【L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） &gt; 第四十六条 【行政投诉处理时限】】
+消费者和经营者发生消费争议向市场监督管理部门或者其他有关行政部门投诉的，应当提供真实身份信息，有明确的被投诉人、具体的投诉请求和<br><span class="id">规定投诉处理时限和流程，属于投诉依据。</span></div><div><span class="h1">✓</span> 【L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） &gt; 第六十条 【争议解决途径】】
+电子商务争议可以通过协商和解，请求消费者组织、行业协会或者其他依法成立的调解组织调解，向有关部门投诉，提请仲裁，或者提起诉讼等方式解决。<br><span class="id">列举争议解决途径，包括向有关部门投诉，提供依据。</span></div><div><span class="h1">✓</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第七条 外部维权途径 &gt; 7.1 途径】
+消费者对平台判定结论仍有异议的，可通过以下途径维权：
+
+（一）向平台所在地或商家所在地市场监督管理部门投诉；
+（二）请求消费者协会或其他依法成立的调解组<br><span class="id">具体列出外部维权途径，包括向市场监管部门投诉等，直接相关。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 消费者与经营者发生消费者权益争议的，可以向市场监督管理部门或者其他有关行政部门投诉。<br><span class="id">上下文首句即原文，完全支撑。</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 5 条）</td><td class="n">6.8s</td></tr><tr class=""><td class="id">R1-015</td><td class="id">L04</td><td class="wrap">平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/3</div><div><span class="h1">✓</span> 【L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） &gt; 第五十八条 【质量担保机制】】
+国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。
+
+电子商务平台经营者与平台内经营者协议设立消费<br><span class="id">直接规定保证金需明确约定提取数额、管理、使用和退还办法。</span></div><div><span class="h0">✗</span> 【P01 星辰优选用户服务协议 &gt; 第四章 平台的角色与责任 &gt; 4.3 平台的连带责任 … 第四章 平台的角色与责任 &gt; 4.4 平台的协助义务】
+平台为交易提供技术服务与规则保障。商品由平台内商家或平台自营主体销售，销售者是履行售后义务<br><span class="id">内容为平台责任与协助义务，未涉及保证金约定事项。</span></div><div><span class="h0">✗</span> 【L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） &gt; 第三十二条 【平台交易规则的制定】】
+电子商务平台经营者应当遵循公开、公平、公正的原则，制定平台服务协议和交易规则，明确进入和退出平台、商品和服务质量保障、消费者权益保护<br><span class="id">关于平台交易规则制定，未涉及保证金约定事项。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。<br><span class="id">上下文原文直接包含该句内容</span></div></div></details></td><td class="n">3</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 4 条）</td><td class="n">6.7s</td></tr><tr class=""><td class="id">R1-016</td><td class="id">L04</td><td class="wrap">平台和商家一起搞的那个保证金，得把哪些事说清楚才行？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/1</div><div><span class="h1">✓</span> 【L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） &gt; 第五十八条 【质量担保机制】】
+国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。
+
+电子商务平台经营者与平台内经营者协议设立消费<br><span class="id">条款明确保证金需约定提取数额、管理、使用和退还办法，直接回答用户问题。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。<br><span class="id">上下文原文直接包含该句内容</span></div></div></details></td><td class="n">1</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 1 条）</td><td class="n">5.9s</td></tr><tr class=""><td class="id">R1-018</td><td class="id">L04</td><td class="wrap">我在网上买东西跟商家吵起来了，平台那边是不是有责任管这事儿？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） &gt; 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】】
+电子商务争议可以通过协商和解，请求消费者组织、行业协会或者其他依法成立的调解组织调解，向有关部门投诉，<br><span class="id">条款明确平台应积极协助消费者维权，直接回应平台是否有责任。</span></div><div><span class="h1">✓</span> 【P01 星辰优选用户服务协议 &gt; 第四章 平台的角色与责任 &gt; 4.1 平台与商家的关系 … 第四章 平台的角色与责任 &gt; 4.4 平台的协助义务】
+平台为交易提供技术服务与规则保障。商品由平台内商家或平台自营主体销售，销售者是履行售后义<br><span class="id">条款规定平台协助义务及连带责任，构成平台责任依据。</span></div><div><span class="h1">✓</span> 【L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） &gt; 第六十三条 【在线争议解决机制】 … 相关文件】
+电子商务平台经营者可以建立争议在线解决机制，制定并公示争议解决规则，根据自愿原则，公平、公正地解决当事人的争议。
+
+- <br><span class="id">条款允许平台建立争议解决机制，涉及平台处理争议的责任。</span></div><div><span class="h1">✓</span> 【L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） &gt; 第四十四条 【网络交易平台提供者责任】】
+消费者通过网络交易平台购买商品或者接受服务，其合法权益受到损害的，可以向销售者或者服务者要求赔偿。网络交易平台提供者不能提供销售者<br><span class="id">条款规定平台在特定情形下的赔偿责任，直接相关。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 消费者在电子商务平台购买商品或接受服务，与平台内经营者发生争议时，电子商务平台经营者应当积极协助消费者维护合法权益。<br><span class="id">上下文明确写出平台应积极协助消费者维权</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 13 条）</td><td class="n">5.5s</td></tr><tr class=""><td class="id">R1-019</td><td class="id">L05</td><td class="wrap">若商家自行承诺的保修期限高于目录规定的最低要求，该承诺是否具有约束力？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/3</div><div><span class="h1">✓</span> 【L05 部分商品修理更换退货责任规定（三包规定） &gt; 第四条 【最低标准与更优承诺】】
+目录中规定的指标是履行三包规定的最基本要求。国家鼓励销售者和生产者制定严于本规定的三包实施细则。
+
+本规定不免除未列入目录产品的三包责任和销售者、生产<br><span class="id">条款明确目录为最低要求，商家更优承诺具约束力。</span></div><div><span class="h0">✗</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第六条 平台的先行赔付 &gt; 6.3 平台承诺的约束力】
+- 商家失联、闭店、无法履行售后义务的；
+- 商家拒不执行平台判定结论的；
+- 平台公示的服务承诺未能兑现的。
+
+平台先行赔付后，有权向商<br><span class="id">内容为平台先行赔付情形，与商家保修承诺无关。</span></div><div><span class="h0">✗</span> 【L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） &gt; 第四十四条 【网络交易平台提供者责任】】
+消费者通过网络交易平台购买商品或者接受服务，其合法权益受到损害的，可以向销售者或者服务者要求赔偿。网络交易平台提供者不能提供销售者<br><span class="id">涉及平台责任，未直接回答商家保修承诺约束力。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 本规定不免除未列入目录产品的三包责任，也不免除销售者、生产者向消费者承诺的高于目录规定三包的责任。<br><span class="id">上下文原文直接包含该句内容</span></div><div><span class="h1">✓</span> 因此商家自行承诺的更高保修期同样具有约束力。<br><span class="id">上下文明确商家承诺具约束力</span></div></div></details></td><td class="n">3</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 3 条）</td><td class="n">5.5s</td></tr><tr class=""><td class="id">R1-020</td><td class="id">L05</td><td class="wrap">我买的东西不在那个目录里，但店家自己说保修两年，这个承诺算数吗？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/1</div><div><span class="h1">✓</span> 【L05 部分商品修理更换退货责任规定（三包规定） &gt; 第四条 【最低标准与更优承诺】】
+目录中规定的指标是履行三包规定的最基本要求。国家鼓励销售者和生产者制定严于本规定的三包实施细则。
+
+本规定不免除未列入目录产品的三包责任和销售者、生产<br><span class="id">条款明确商家承诺高于目录的责任有效，直接回答用户问题。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 本规定不免除未列入目录产品的三包责任，也不免除销售者、生产者向消费者承诺的高于目录规定三包的责任。<br><span class="id">上下文原文直接包含该句内容</span></div><div><span class="h1">✓</span> 因此商家自行承诺的更高保修期同样具有约束力。<br><span class="id">上下文提到承诺高于目录责任，可推出约束力</span></div></div></details></td><td class="n">1</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 1 条）</td><td class="n">3.4s</td></tr><tr class=""><td class="id">R1-022</td><td class="id">L05</td><td class="wrap">保修期内修东西的钱谁出啊？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/1</div><div><span class="h1">✓</span> 【L05 部分商品修理更换退货责任规定（三包规定） &gt; 第十八条 【修理费用来源】 … 第十九条 【修理费用的支付形式】】
+修理费用由生产者提供。修理费用指三包有效期内保证正常修理的待支费用。
+
+销售者负责修理的产品，生产者按照合同或者协议<br><span class="id">条款明确修理费用由生产者提供，直接回答费用承担问题。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 修理费用由生产者提供。<br><span class="id">上下文明确写出修理费用由生产者提供</span></div><div><span class="h1">✓</span> 修理费用指三包有效期内保证正常修理的待支费用。<br><span class="id">上下文直接给出修理费用的定义</span></div></div></details></td><td class="n">1</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 2 条）</td><td class="n">3.4s</td></tr><tr class=""><td class="id">R1-025</td><td class="id">P01</td><td class="wrap">当本协议与平台公示的专门交易规则文件内容存在冲突时，应以哪一方的规定为准？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/2</div><div><span class="h1">✓</span> 【P01 星辰优选用户服务协议 &gt; 第一章 协议的接受与变更 &gt; 1.1 协议范围 … 第一章 协议的接受与变更 &gt; 1.4 规则的公示与查阅】
+本协议及平台在首页显著位置公示的各项交易规则（含《售后服务与退换货政策》《退款规则与到账时效》<br><span class="id">条款明确说明冲突时以专门规则文件为准。</span></div><div><span class="h0">✗</span> 【L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） &gt; 第三十三条 【平台规则的公示义务】 … 第三十四条 【规则变更的征求意见程序】】
+电子商务平台经营者应当在其首页显著位置持续公示平台服务协议和交易规则信息或者上述信息的链<br><span class="id">条款涉及公示义务和变更程序，未回答冲突优先级。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 本协议与平台公示的各项交易规则共同构成完整约定，各规则文件与本协议不一致的，以专门规则文件为准。<br><span class="id">上下文明确写出协议与规则构成完整约定，不一致时以专门规则为准。</span></div></div></details></td><td class="n">2</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 4 条）</td><td class="n">5.5s</td></tr><tr class=""><td class="id">R1-027</td><td class="id">P01</td><td class="wrap">平台变更交易规则时，已生效订单应适用哪个版本的规则？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 2/2</div><div><span class="h1">✓</span> 【P01 星辰优选用户服务协议 &gt; 第一章 协议的接受与变更 &gt; 1.3 协议的变更】
+本协议及平台在首页显著位置公示的各项交易规则（含《售后服务与退换货政策》《退款规则与到账时效》《争议处理规则》等），共同构成消费者与平台之间的完整约定。<br><span class="id">明确已生效订单适用下单时规则版本，直接回答用户问题。</span></div><div><span class="h1">✓</span> 【L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） &gt; 第三十四条 【规则变更的征求意见程序】】
+电子商务平台经营者修改平台服务协议和交易规则，应当在其首页显著位置公开征求意见，采取合理措施确保有关各方能够及时充分表达意见。修<br><span class="id">规定规则变更公示程序及新旧版本适用，为判定提供依据。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 已生效订单适用下单时的规则版本，不适用变更后的新规则。<br><span class="id">上下文明确写出已生效订单适用下单时规则版本</span></div><div><span class="h1">✓</span> 处理售后申请时须核对订单创建时间与条款生效日期，不得以新版本条款判定旧订单。<br><span class="id">上下文明确要求核对订单创建时间与条款生效日期</span></div></div></details></td><td class="n">2</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 2 条）</td><td class="n">1.6s</td></tr><tr class=""><td class="id">R1-028</td><td class="id">P01</td><td class="wrap">我前几天下的单，今天平台改了规矩，那我这单是按新规矩还是老规矩来算啊？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/1</div><div><span class="h1">✓</span> 【P01 星辰优选用户服务协议 &gt; 第一章 协议的接受与变更 &gt; 1.3 协议的变更】
+本协议及平台在首页显著位置公示的各项交易规则（含《售后服务与退换货政策》《退款规则与到账时效》《争议处理规则》等），共同构成消费者与平台之间的完整约定。<br><span class="id">条款明确已生效订单适用下单时规则，直接回答新旧规则适用问题。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 已生效订单适用下单时的规则版本，不适用变更后的新规则。<br><span class="id">上下文明确写出已生效订单适用下单时规则版本</span></div><div><span class="h1">✓</span> 处理售后申请时须核对订单创建时间与条款生效日期，不得以新版本条款判定旧订单。<br><span class="id">上下文明确写出核对订单创建时间与条款生效日期</span></div></div></details></td><td class="n">1</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 1 条）</td><td class="n">1.8s</td></tr><tr class=""><td class="id">R1-029</td><td class="id">P01</td><td class="wrap">因消费者自身原因导致账户密码泄露或被盗用而产生的损失，责任如何划分？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/1</div><div><span class="h1">✓</span> 【P01 星辰优选用户服务协议 &gt; 第二章 账户与身份 &gt; 2.5 账户安全】
+消费者应提供真实、准确、完整的注册信息。账户仅限本人使用，不得出借、出租、转让。
+
+**平台以账户登录状态确定操作主体身份。** 所有订单查询、售后申请、退款操<br><span class="id">条款明确因消费者自身原因导致账户密码泄露或被盗用的损失由消费者自行承担，直接回答责任划分。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 因消费者自身原因导致账户密码泄露、被盗用而产生的损失，由消费者自行承担。<br><span class="id">上下文原文直接包含该句内容</span></div><div><span class="h1">✓</span> 平台在收到消费者挂失通知后应及时采取冻结措施。<br><span class="id">上下文原文直接包含该句内容</span></div></div></details></td><td class="n">1</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 1 条）</td><td class="n">2.1s</td></tr><tr class=""><td class="id">R1-030</td><td class="id">P01</td><td class="wrap">我自己不小心把密码告诉别人了，账号被人盗了，里面的钱没了，这损失算谁的？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/1</div><div><span class="h1">✓</span> 【P01 星辰优选用户服务协议 &gt; 第二章 账户与身份 &gt; 2.5 账户安全】
+消费者应提供真实、准确、完整的注册信息。账户仅限本人使用，不得出借、出租、转让。
+
+**平台以账户登录状态确定操作主体身份。** 所有订单查询、售后申请、退款操<br><span class="id">条款明确因消费者自身原因导致密码泄露被盗的损失由消费者自行承担，构成依据。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 因消费者自身原因导致账户密码泄露、被盗用而产生的损失，由消费者自行承担。<br><span class="id">上下文原文直接包含此句</span></div><div><span class="h1">✓</span> 平台在收到消费者挂失通知后应及时采取冻结措施。<br><span class="id">上下文原文直接包含此句</span></div></div></details></td><td class="n">1</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 1 条）</td><td class="n">2.8s</td></tr><tr class=""><td class="id">R1-031</td><td class="id">P02</td><td class="wrap">退款申请按原因分为哪两类，分类结果对后续判定有何影响？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/3</div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第一条 适用范围与基本原则】
+1.1 本政策适用于消费者在星辰优选商城购买实物商品及虚拟商品所产生的全部退换货、退款申请。
+
+1.2 本政策所载标准为平台承诺的服务下限。凡低于《消费者权益保护法》<br><span class="id">直接说明退款按原因分两类及分类决定后续判定标准</span></div><div><span class="h0">✗</span> 【P06 星辰优选运费与退货物流规则 &gt; 第一条 运费承担的基本原则】
+**运费归属完全取决于退款原因类型**，这是「无理由」与「质量问题」两类申请最直接的差别之一：
+
+| 退款原因 | 寄回运费 | 原订单已付运费 | 依据 |
+|---<br><span class="id">主要讲运费承担，未直接回答分类及影响</span></div><div><span class="h0">✗</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第六条 判定顺序】
+平台按以下固定顺序审核退款申请，**命中一项即形成结论，不再继续后续审核**：
+
+| 顺序 | 审核事项 | 命中结论 |
+|---|---|---|
+| 1 | 订单不存在，<br><span class="id">讲审核顺序，未涉及退款原因分类及影响</span></div></div><div class="detail"><div><b>Context Recall</b> 4/4</div><div><span class="h1">✓</span> 退款申请按原因分为「无理由」和「质量问题」两类，分类结果决定后续全部判定标准。<br><span class="id">上下文明确写出退款原因分两类且决定判定标准</span></div><div><span class="h1">✓</span> 无理由指商品无质量问题、消费者主观不再需要；<br><span class="id">上下文表格中无理由含义与此一致</span></div><div><span class="h1">✓</span> 质量问题指商品存在性能故障、破损、错发漏发或与描述不符等客观瑕疵。<br><span class="id">上下文表格中质量问题含义与此一致</span></div><div><span class="h1">✓</span> 平台只受理这两类，不设第三类。<br><span class="id">上下文明确写出只受理两类不设第三类</span></div></div></details></td><td class="n">3</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 3 条）</td><td class="n">8.4s</td></tr><tr class=""><td class="id">R1-032</td><td class="id">P02</td><td class="wrap">我退货的时候得选个理由，是不是就分两种？选哪种是不是后面处理都不一样？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/2</div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第一条 适用范围与基本原则】
+1.1 本政策适用于消费者在星辰优选商城购买实物商品及虚拟商品所产生的全部退换货、退款申请。
+
+1.2 本政策所载标准为平台承诺的服务下限。凡低于《消费者权益保护法》<br><span class="id">条款明确退款原因分两类且决定后续判定标准，直接回答用户问题。</span></div><div><span class="h0">✗</span> 【P05 星辰优选商品完好标准与验收规范 &gt; 第二条 商品状态的三档划分】
+平台在受理无理由退货时，将商品状态划分为三档：
+
+| 状态 | 判定要素 | 无理由退货 |
+|---|---|---|
+| **未拆封** | 外包装完整，密封条<br><span class="id">条款讲商品状态三档划分，与退款原因分类无关，答非所问。</span></div></div><div class="detail"><div><b>Context Recall</b> 4/4</div><div><span class="h1">✓</span> 退款申请按原因分为「无理由」和「质量问题」两类，分类结果决定后续全部判定标准。<br><span class="id">上下文明确写出分类及决定后续判定标准</span></div><div><span class="h1">✓</span> 无理由指商品无质量问题、消费者主观不再需要；<br><span class="id">上下文表格中定义无理由含义一致</span></div><div><span class="h1">✓</span> 质量问题指商品存在性能故障、破损、错发漏发或与描述不符等客观瑕疵。<br><span class="id">上下文表格中定义质量问题含义一致</span></div><div><span class="h1">✓</span> 平台只受理这两类，不设第三类。<br><span class="id">上下文明确写出只受理两类不设第三类</span></div></div></details></td><td class="n">2</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 2 条）</td><td class="n">6.5s</td></tr><tr class=""><td class="id">R1-033</td><td class="id">P02</td><td class="wrap">商品已开启包装但尚未投入使用，是否符合无理由退货的条件？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/3</div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第三条 商品条件】
+3.1 **无理由退货要求商品未拆封、不影响二次销售。** 已拆封或已使用的商品不支持无理由退货。
+
+3.2 商品状态分为三档，无理由退货仅接受「未拆封」：
+
+| 商品状态 |<br><span class="id">明确已拆封未使用不支持无理由退货</span></div><div><span class="h1">✓</span> 【P05 星辰优选商品完好标准与验收规范 &gt; 第二条 商品状态的三档划分】
+平台在受理无理由退货时，将商品状态划分为三档：
+
+| 状态 | 判定要素 | 无理由退货 |
+|---|---|---|
+| **未拆封** | 外包装完整，密封条<br><span class="id">规定已拆封未使用不支持无理由退货</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第二章 不适用退货的商品范围和商品完好标准 &gt; 第七条 【约定不适用商品（须消费者购买时逐单确认）】 … 第二章 不适用退货的商品范围和商品完好标准 &gt; 第六条 【法定不适用商品（无需消费者<br><span class="id">规定拆封查验不影响完好，可支持退货</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 无理由退货仅接受「未拆封」状态，即外包装及密封完整、未开启。<br><span class="id">上下文明确无理由退货仅接受未拆封，外包装密封完整未开启</span></div><div><span class="h1">✓</span> 已拆封（已开启包装但未投入使用）的商品不支持无理由退货。<br><span class="id">上下文明确已拆封不支持无理由退货</span></div></div></details></td><td class="n">3</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 15 条）</td><td class="n">9.2s</td></tr><tr class=""><td class="id">R1-035</td><td class="id">P03</td><td class="wrap">订单使用多种支付方式组合支付时，各支付方式的款项如何退回？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/3</div><div><span class="h1">✓</span> 【P03 星辰优选退款规则与到账时效 &gt; 第一条 退款方式 &gt; 1.2 组合支付的退款】
+退款审核通过后，款项**原路退回至原支付账户**。未经消费者明确同意，平台不以余额、储值卡、优惠券等形式替代原路退款。
+
+订单采用多种方式组合支付的（<br><span class="id">直接规定组合支付按实际支付金额分别原路退回</span></div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第七条 退款方式与时效】
+7.1 退款审核通过后**原路退回支付账户**，**1-3 个工作日**到账。
+
+7.2 使用优惠券的订单**按实付金额退款，优惠券不予退还**。
+
+7.3 多种支付方式<br><span class="id">7.3条明确组合支付分别原路退回，构成依据</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第三章 退货程序 &gt; 第十四条 【退款方式】】
+选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。
+
+七日期间自消费者签收商品的次日开始起算。
+
+&gt; **判定要点<br><span class="id">包含组合支付退款方式的规定，构成依据</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 按各支付方式实际支付的金额分别原路退回，即银行卡退回银行卡、余额退回余额、积分退回积分。<br><span class="id">上下文明确说明按各支付方式实际支付金额分别原路退回</span></div></div></details></td><td class="n">3</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 3 条）</td><td class="n">8.9s</td></tr><tr class=""><td class="id">R1-036</td><td class="id">P03</td><td class="wrap">我下单的时候又是银行卡又是余额又是积分凑着付的，那退钱的时候是咋退的？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 2/2</div><div><span class="h1">✓</span> 【P03 星辰优选退款规则与到账时效 &gt; 第一条 退款方式 &gt; 1.2 组合支付的退款 … 第二条 退款金额的计算 &gt; 2.4 积分与储值】
+退款审核通过后，款项**原路退回至原支付账户**。未经消费者明确同意，平台不以余额、储值卡、优惠券<br><span class="id">直接说明组合支付按各方式实际支付金额原路退回，并规定积分、储值余额返还形式。</span></div><div><span class="h1">✓</span> 【P10 星辰优选优惠券、赠品与发票处理规则 &gt; 第四条 积分与储值 &gt; 4.1 积分支付部分的返还 … 第四条 积分与储值 &gt; 4.3 储值余额】
+以积分抵扣支付的部分，退款时**以积分形式原额返还**至消费者账户。
+
+订单赠送的积分在退<br><span class="id">明确积分支付部分以积分原额返还、储值余额原额返还至储值账户，与问题相关。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 按各支付方式实际支付的金额分别原路退回，即银行卡退回银行卡、余额退回余额、积分退回积分。<br><span class="id">上下文明确说明按各支付方式实际支付金额分别原路退回</span></div></div></details></td><td class="n">2</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 5 条）</td><td class="n">7.4s</td></tr><tr class=""><td class="id">R1-037</td><td class="id">P03</td><td class="wrap">转人工审核是否意味着退款申请已被拒绝？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【P03 星辰优选退款规则与到账时效 &gt; 第四条 退款通道 &gt; 4.2 人工审核通道 … 第四条 退款通道 &gt; 4.3 通道不预设结论】
+同时满足以下条件的申请走自动通道，即时判定、即时发起退款：
+
+（一）订单存在且属于当前账户；
+（二）订<br><span class="id">明确说明转人工审核不等于拒绝退款，直接回答用户问题。</span></div><div><span class="h1">✓</span> 【P08 星辰优选风控与异常退款治理规则 &gt; 第二条 触发后的处理 &gt; 2.1 关闭自动退款通道 … 第二条 触发后的处理 &gt; 2.3 风控不预设结论】
+高风险账户的**全部退款申请关闭自动通道**，一律转人工客服审核。
+
+人工审核周期为 <br><span class="id">说明高风险判定只改变处理通道，不预先否定诉求，与问题相关。</span></div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第五条 高风险账户 … 第六条 判定顺序】
+5.1 **近 90 天内退款次数超过 3 次的账户视为高风险账户。**
+
+5.2 高风险账户的**自动退款通道关闭**，所有退款申请需转人工客服审核，<br><span class="id">明确高风险判定不等于拒绝退款，只改变处理通道，直接相关。</span></div><div><span class="h0">✗</span> 【L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） &gt; 第十九条 【无理由退货的边界与滥用治理】】
+经营者通过网络、电视、电话、邮购等方式销售商品的，应当遵守消费者权益保护法第二十五条规定，不得擅自扩大不适用无理由退货的<br><span class="id">该条为法律依据，未直接说明转人工审核是否等于拒绝退款。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 转人工审核不等于拒绝退款。<br><span class="id">上下文多处明确写有该句</span></div><div><span class="h1">✓</span> 人工通道只改变处理方式与时效，不预先否定消费者诉求。<br><span class="id">上下文多处明确写有该句</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 7 条）</td><td class="n">6.2s</td></tr><tr class=""><td class="id">R1-038</td><td class="id">P03</td><td class="wrap">我退款申请被转去人工了，这是不是说明没戏了、要被拒了？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/3</div><div><span class="h1">✓</span> 【P03 星辰优选退款规则与到账时效 &gt; 第四条 退款通道 &gt; 4.2 人工审核通道 … 第四条 退款通道 &gt; 4.3 通道不预设结论】
+同时满足以下条件的申请走自动通道，即时判定、即时发起退款：
+
+（一）订单存在且属于当前账户；
+（二）订<br><span class="id">明确说明转人工不等于拒绝，直接回应问题</span></div><div><span class="h1">✓</span> 【P08 星辰优选风控与异常退款治理规则 &gt; 第二条 触发后的处理 &gt; 2.1 关闭自动退款通道 … 第二条 触发后的处理 &gt; 2.3 风控不预设结论】
+高风险账户的**全部退款申请关闭自动通道**，一律转人工客服审核。
+
+人工审核周期为 <br><span class="id">说明高风险转人工不预设否定，人工后仍可退款</span></div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第五条 高风险账户 … 第六条 判定顺序】
+5.1 **近 90 天内退款次数超过 3 次的账户视为高风险账户。**
+
+5.2 高风险账户的**自动退款通道关闭**，所有退款申请需转人工客服审核，<br><span class="id">明确高风险判定不等于拒绝，人工审核后仍可能批准</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 转人工审核不等于拒绝退款。<br><span class="id">上下文多处明确写有该句</span></div><div><span class="h1">✓</span> 人工通道只改变处理方式与时效，不预先否定消费者诉求。<br><span class="id">上下文多处明确写有该句</span></div></div></details></td><td class="n">3</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 6 条）</td><td class="n">5.6s</td></tr><tr class=""><td class="id">R1-044</td><td class="id">P04</td><td class="wrap">我是金牌会员，东西买了都十几天了，客服说过了7天不给退，这说法靠谱吗？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【P04 星辰优选不适用无理由退货商品清单 &gt; 第五条 不属于排除范围的常见误区】
+以下情形**不构成**拒绝无理由退货的理由：
+
+| 常见说法 | 是否成立 | 说明 |
+|---|---|---|
+| 「特价商品概不退换」 | ❌ 不成<br><span class="id">明确金牌会员无理由退货窗口为15天，客服说7天不成立</span></div><div><span class="h1">✓</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第三条 极速退款 &gt; 3.1 服务内容 … 第四条 会员权益的边界 &gt; 4.4 等级以申请时为准】
+金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款<br><span class="id">说明金牌会员15天窗口及风控不影响窗口，与问题相关</span></div><div><span class="h1">✓</span> 【P01 星辰优选用户服务协议 &gt; 第五章 售后与退款 &gt; 5.1 售后服务承诺】
+平台支持七日无理由退货，并在法定标准之上向金牌会员提供延长至 15 天的无理由退货服务（[P07]）。
+
+退款申请的受理条件、判定标准、处理时效，适用《售后<br><span class="id">提及金牌会员延长至15天，且客服不得自行裁量，相关</span></div><div><span class="h1">✓</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第二条 退货窗口】
+2.1 **无理由退货**：
+
+- 普通会员：自签收之日起 **7 天**内可申请；
+- 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。
+<br><span class="id">明确金牌会员15天窗口，直接回答客服说法不靠谱</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 金牌会员的无理由退货窗口为15天，而非7天，因此超过7天但未满15天仍可退货。<br><span class="id">上下文多处明确金牌会员无理由退货窗口为15天，且超过7天未满15天可退。</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 10 条）</td><td class="n">9.3s</td></tr><tr class=""><td class="id">R1-047</td><td class="id">P05</td><td class="wrap">消费者主张商品存在质量问题时，需要提供哪些材料，以及是否应当保留问题商品？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/4</div><div><span class="h1">✓</span> 【P05 星辰优选商品完好标准与验收规范 &gt; 第五条 举证责任 &gt; 5.1 商家举证 … 第五条 举证责任 &gt; 5.3 耐用商品的举证责任倒置】
+商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：
+
+- 完整<br><span class="id">直接规定消费者需提供照片视频并保留商品，以及举证责任倒置。</span></div><div><span class="h0">✗</span> 【P08 星辰优选风控与异常退款治理规则 &gt; 第六条 申诉 &gt; 6.2 申诉材料】
+消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。
+
+申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。<br><span class="id">涉及申诉材料，但未针对质量问题举证要求。</span></div><div><span class="h0">✗</span> 【P01 星辰优选用户服务协议 &gt; 第三章 订单与合同 &gt; 3.2 商品信息】
+商品页面展示的商品信息构成要约，消费者提交订单并支付成功后，买卖合同成立。
+
+平台不以格式条款约定「消费者支付价款后合同不成立」；含有该内容的条款无效。
+
+平台<br><span class="id">涉及商品信息与运输风险，未回答举证材料。</span></div><div><span class="h0">✗</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第五条 特定场景的处理口径 &gt; 5.2 商品与描述不符 … 第五条 特定场景的处理口径 &gt; 5.5 超出退货窗口但存在质量问题】
+生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实<br><span class="id">涉及特殊商品质量问题处理，未回答举证材料。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。<br><span class="id">上下文明确写出该句内容</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 9 条）</td><td class="n">7.6s</td></tr><tr class=""><td class="id">R1-048</td><td class="id">P05</td><td class="wrap">我买的东西坏了，想找商家说理，是不是得先拍个照或者录个视频给他们看？那个坏的东西我自己得留着不能扔吧？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/1</div><div><span class="h1">✓</span> 【P05 星辰优选商品完好标准与验收规范 &gt; 第五条 举证责任 &gt; 5.2 消费者举证】
+商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：
+
+- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；<br><span class="id">条款明确消费者需提供问题商品照片或视频并保留商品，直接回答用户问题。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。<br><span class="id">上下文明确写出消费者需提供照片或视频并保留商品</span></div></div></details></td><td class="n">1</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 1 条）</td><td class="n">7.5s</td></tr><tr class=""><td class="id">R1-049</td><td class="id">P06</td><td class="wrap">无理由退货与质量问题退货在寄回运费和原订单已付运费的承担上分别有何规定？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【P06 星辰优选运费与退货物流规则 &gt; 第一条 运费承担的基本原则 … 第二条 无理由退货的运费 &gt; 2.3 包邮订单的处理】
+**运费归属完全取决于退款原因类型**，这是「无理由」与「质量问题」两类申请最直接的差别之一：
+
+| 退款原因<br><span class="id">直接列出无理由与质量问题退货的运费承担对比表，构成依据。</span></div><div><span class="h1">✓</span> 【P06 星辰优选运费与退货物流规则 &gt; 第三条 质量问题退货的运费 &gt; 3.1 全额承担 … 第四条 运费险 &gt; 4.3 赔付不足】
+商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。
+
+消费<br><span class="id">明确质量问题退货运费由经营者承担，并含运费险补充规则。</span></div><div><span class="h1">✓</span> 【P03 星辰优选退款规则与到账时效 &gt; 第二条 退款金额的计算 &gt; 2.6 运费】
+**退款金额以消费者实际支付的金额为准**，不是商品标价。
+
+使用优惠券的订单，**按实付金额退款，优惠券不予退还**。
+
+套装商品或满减活动订单中部分商<br><span class="id">提及运费承担核心区别，虽简略但构成依据。</span></div><div><span class="h1">✓</span> 【L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） &gt; 第二十四条 【质量不符时的退货、更换、修理】】
+经营者提供的商品或者服务不符合质量要求的，消费者可以依照国家规定、当事人约定退货，或者要求经营者履行更换、修理等义务。没有国<br><span class="id">法律规定质量问题退货运费由经营者承担，与问题相关。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 无理由退货的寄回运费由消费者承担，原订单已付运费不退还；<br><span class="id">上下文明确无理由退货寄回运费消费者承担，原运费不退</span></div><div><span class="h1">✓</span> 质量问题退货的寄回运费由经营者承担，原订单已付运费一并退还。<br><span class="id">上下文明确质量问题退货运费经营者承担，原运费退还</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 17 条）</td><td class="n">8.0s</td></tr><tr class=""><td class="id">R1-053</td><td class="id">P06</td><td class="wrap">运费险的赔付金额是否一定等于实际产生的运费？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/1</div><div><span class="h1">✓</span> 【P06 星辰优选运费与退货物流规则 &gt; 第四条 运费险 &gt; 4.1 运费险的性质 … 第四条 运费险 &gt; 4.4 不赔付情形】
+运费险由保险公司承保，**赔付金额按保单约定，可能低于实际运费**。运费险的存在不改变本规则第一条的运费承担原<br><span class="id">条款明确赔付金额可能低于实际运费，直接回答用户问题。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 运费险由保险公司承保，赔付金额按保单约定，可能低于实际运费。<br><span class="id">上下文明确提到运费险由保险公司承保，赔付金额按保单约定，可能低于实际运费。</span></div><div><span class="h1">✓</span> 运费险的存在不改变本规则第一条的运费承担原则。<br><span class="id">上下文明确提到运费险的存在不改变本规则第一条的运费承担原则。</span></div></div></details></td><td class="n">1</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 4 条）</td><td class="n">5.6s</td></tr><tr class=""><td class="id">R1-055</td><td class="id">P07</td><td class="wrap">金牌会员的评定条件具体包括哪些？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/2</div><div><span class="h1">✓</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第一条 会员等级】
+星辰优选设两个会员等级，等级由累计消费金额与账户状态综合评定：
+
+| 等级 | 评定标准 |
+|---|---|
+| **普通会员** | 完成注册的全部消费者 |
+| **<br><span class="id">直接给出金牌会员评定条件，包括消费金额和账户状态要求。</span></div><div><span class="h0">✗</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第三条 极速退款 &gt; 3.2 适用条件】
+金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款项即时到账。
+
+（一）会员等级为金牌会员；
+（二）账户未被<br><span class="id">讲的是极速退款适用条件，与评定条件无关。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 金牌会员需满足近12个月累计消费达标，且账户无严重违规记录。<br><span class="id">上下文明确写出金牌会员评定标准</span></div><div><span class="h1">✓</span> 会员等级按月评定，等级变化在次月生效。<br><span class="id">上下文明确写出按月评定次月生效</span></div></div></details></td><td class="n">2</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 2 条）</td><td class="n">6.9s</td></tr><tr class=""><td class="id">R1-057</td><td class="id">P07</td><td class="wrap">金牌会员在提交退货申请并填写有效物流单号后，退款是否会在商家签收退货之前先行到账？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/3</div><div><span class="h1">✓</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第三条 极速退款 &gt; 3.1 服务内容 … 第四条 会员权益的边界 &gt; 4.4 等级以申请时为准】
+金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款<br><span class="id">明确说明金牌会员填写物流单号后商家收货前先行垫付退款</span></div><div><span class="h0">✗</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第二条 退货窗口】
+2.1 **无理由退货**：
+
+- 普通会员：自签收之日起 **7 天**内可申请；
+- 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。
+<br><span class="id">仅涉及退货窗口，未提及退款到账时间</span></div><div><span class="h0">✗</span> 【P03 星辰优选退款规则与到账时效 &gt; 第五条 商家处理时效与超时机制 &gt; 5.2 已发货未签收订单的退款 … 第五条 商家处理时效与超时机制 &gt; 5.3 已签收订单的退货退款】
+消费者申请退款后，商家 **24 小时**内未处理的，系统<br><span class="id">涉及商家处理时效，但未提及先行垫付</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 金牌会员发起退货退款申请并填写有效退货物流单号后，平台会在商家收到退货前先行垫付退款，款项即时到账。<br><span class="id">上下文明确描述金牌会员垫付退款规则</span></div></div></details></td><td class="n">3</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 5 条）</td><td class="n">2.0s</td></tr><tr class=""><td class="id">R1-058</td><td class="id">P07</td><td class="wrap">我是金牌会员，东西刚寄回去，快递还在路上呢，钱能不能先退到我账上？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/3</div><div><span class="h1">✓</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第三条 极速退款 &gt; 3.1 服务内容 … 第三条 极速退款 &gt; 3.2 适用条件】
+金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款项即时到账。
+<br><span class="id">条款明确金牌会员退货物流单号后可先行垫付退款，直接回答用户问题。</span></div><div><span class="h0">✗</span> 【P01 星辰优选用户服务协议 &gt; 第五章 售后与退款 &gt; 5.1 售后服务承诺】
+平台支持七日无理由退货，并在法定标准之上向金牌会员提供延长至 15 天的无理由退货服务（[P07]）。
+
+退款申请的受理条件、判定标准、处理时效，适用《售后<br><span class="id">条款涉及退款审核流程和口头承诺无效，未提及极速退款或先行垫付。</span></div><div><span class="h0">✗</span> 【P02 星辰优选售后服务与退换货政策 &gt; 第二条 退货窗口】
+2.1 **无理由退货**：
+
+- 普通会员：自签收之日起 **7 天**内可申请；
+- 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。
+<br><span class="id">条款规定退货申请窗口，与退款到账时间无关。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 金牌会员发起退货退款申请并填写有效退货物流单号后，平台会在商家收到退货前先行垫付退款，款项即时到账。<br><span class="id">上下文明确写出金牌会员垫付退款且即时到账</span></div></div></details></td><td class="n">3</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 4 条）</td><td class="n">7.2s</td></tr><tr class=""><td class="id">R1-059</td><td class="id">P08</td><td class="wrap">消费者被采取一至四级阶梯措施后，其法定七日无理由退货权是否会受到影响？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【P08 星辰优选风控与异常退款治理规则 &gt; 第四条 处置措施】
+平台按行为性质与严重程度采取阶梯式措施：
+
+| 层级 | 措施 | 适用情形 |
+|---|---|---|
+| 一级 | 转人工审核 | 退款频次异常，无实质证据 |
+| <br><span class="id">明确说明一至四级措施不剥夺法定七日无理由退货权，直接回答用户问题。</span></div><div><span class="h1">✓</span> 【P08 星辰优选风控与异常退款治理规则 &gt; 第二条 触发后的处理 &gt; 2.5 法定权利不受影响】
+高风险账户的**全部退款申请关闭自动通道**，一律转人工客服审核。
+
+人工审核周期为 **1-3 个工作日**。审核期间订单状态保持待处理，<br><span class="id">规定风控措施不得剥夺法定七日无理由退货权，与问题直接相关。</span></div><div><span class="h1">✓</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第五条 权益的调整与失效 &gt; 5.2 违规导致的权益冻结】
+会员等级降级后，权益随之调整，平台提前 7 日通知。
+
+出现以下情形的，平台可冻结会员售后权益，恢复至普通会员标准：
+
+（一）经查实的<br><span class="id">说明权益冻结不影响法定7日无理由退货权，提供依据。</span></div><div><span class="h1">✓</span> 【L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） &gt; 第十九条 【无理由退货的边界与滥用治理】】
+经营者通过网络、电视、电话、邮购等方式销售商品的，应当遵守消费者权益保护法第二十五条规定，不得擅自扩大不适用无理由退货的<br><span class="id">条款涉及无理由退货的边界与滥用治理，为平台措施提供法律依据，且提及不得剥夺法定退货权。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 一至四级措施均不剥夺法定七日无理由退货权，仅调整处理通道与平台额外权益。<br><span class="id">上下文明确写有一至四级措施不剥夺法定七日无理由退货权</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 6 条）</td><td class="n">7.1s</td></tr><tr class=""><td class="id">R1-060</td><td class="id">P08</td><td class="wrap">平台对我采取一至四级处罚措施后，法定七日无理由退货权是否仍然有效？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【P08 星辰优选风控与异常退款治理规则 &gt; 第四条 处置措施】
+平台按行为性质与严重程度采取阶梯式措施：
+
+| 层级 | 措施 | 适用情形 |
+|---|---|---|
+| 一级 | 转人工审核 | 退款频次异常，无实质证据 |
+| <br><span class="id">明确一至四级措施不剥夺法定七日无理由退货权</span></div><div><span class="h1">✓</span> 【P08 星辰优选风控与异常退款治理规则 &gt; 第二条 触发后的处理 &gt; 2.5 法定权利不受影响】
+高风险账户的**全部退款申请关闭自动通道**，一律转人工客服审核。
+
+人工审核周期为 **1-3 个工作日**。审核期间订单状态保持待处理，<br><span class="id">明确风控措施不得剥夺法定七日无理由退货权</span></div><div><span class="h1">✓</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第五条 权益的调整与失效 &gt; 5.2 违规导致的权益冻结】
+会员等级降级后，权益随之调整，平台提前 7 日通知。
+
+出现以下情形的，平台可冻结会员售后权益，恢复至普通会员标准：
+
+（一）经查实的<br><span class="id">明确权益冻结不影响法定七日无理由退货权</span></div><div><span class="h0">✗</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第四章 特别规定 &gt; 第二十三条 【平台检查监控义务】 … 第六章 法律责任 &gt; 第三十三条 【退货商品再销售未标注】】
+网络商品销售者应当采取技术手段或者其他措施，对于本办法第六条规定的不<br><span class="id">主要规定平台义务和处罚，未涉及处罚措施与退货权关系</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 一至四级措施均不剥夺法定七日无理由退货权，仅调整处理通道与平台额外权益。<br><span class="id">上下文4.1明确写有一至四级措施不剥夺法定七日无理由退货权</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 15 条）</td><td class="n">7.9s</td></tr><tr class=""><td class="id">R1-061</td><td class="id">P08</td><td class="wrap">平台收到申诉后，复核结论的告知时限是多久？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/4</div><div><span class="h1">✓</span> 【P08 星辰优选风控与异常退款治理规则 &gt; 第六条 申诉 &gt; 6.1 申诉渠道 … 第六条 申诉 &gt; 6.4 复核后的恢复】
+消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。
+
+申诉方应提供支持其主张的材料，如<br><span class="id">条款明确平台收到申诉后3个工作日内完成复核并告知结论，直接回答时限。</span></div><div><span class="h0">✗</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第三条 申请平台介入 &gt; 3.2 申请时限 … 第四条 平台介入的处理 &gt; 4.2 判定时限】
+出现以下任一情形，消费者可申请平台介入：
+
+（一）商家拒绝退款申请或超过 48 小时未响应；
+（二<br><span class="id">该条款针对平台介入争议处理，非申诉复核告知时限。</span></div><div><span class="h0">✗</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第五条 权益的调整与失效 &gt; 5.3 申诉】
+会员等级降级后，权益随之调整，平台提前 7 日通知。
+
+出现以下情形的，平台可冻结会员售后权益，恢复至普通会员标准：
+
+（一）经查实的调包退货、虚假<br><span class="id">该条款针对会员权益冻结申诉，非风控申诉复核时限。</span></div><div><span class="h0">✗</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第七条 外部维权途径 &gt; 7.3 行政投诉的处理时限】
+消费者对平台判定结论仍有异议的，可通过以下途径维权：
+
+（一）向平台所在地或商家所在地市场监督管理部门投诉；
+（二）请求消费者协会或其他依<br><span class="id">该条款针对外部维权途径，非平台申诉复核时限。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 平台在收到申诉后3个工作日内完成复核并告知结论。<br><span class="id">上下文明确提到3个工作日内完成复核并告知结论</span></div><div><span class="h1">✓</span> 若复核维持原判定，须说明具体理由。<br><span class="id">上下文明确提到复核维持原判定的须说明具体理由</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 8 条）</td><td class="n">6.6s</td></tr><tr class=""><td class="id">R1-062</td><td class="id">P08</td><td class="wrap">我申诉之后，他们大概多久能给我个说法？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/2</div><div><span class="h1">✓</span> 【P08 星辰优选风控与异常退款治理规则 &gt; 第六条 申诉 &gt; 6.3 处理时限】
+消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。
+
+申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。<br><span class="id">直接规定申诉后3个工作日告知结论，构成依据。</span></div><div><span class="h0">✗</span> 【P07 星辰优选会员权益与售后延长规则 &gt; 第五条 权益的调整与失效 &gt; 5.3 申诉】
+会员等级降级后，权益随之调整，平台提前 7 日通知。
+
+出现以下情形的，平台可冻结会员售后权益，恢复至普通会员标准：
+
+（一）经查实的调包退货、虚假<br><span class="id">讲的是权益冻结申诉，与问题情形不同。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 平台在收到申诉后3个工作日内完成复核并告知结论。<br><span class="id">上下文明确写出3个工作日完成复核并告知结论</span></div><div><span class="h1">✓</span> 若复核维持原判定，须说明具体理由。<br><span class="id">上下文明确写出复核维持原判定须说明具体理由</span></div></div></details></td><td class="n">2</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 2 条）</td><td class="n">6.6s</td></tr><tr class=""><td class="id">R1-065</td><td class="id">P09</td><td class="wrap">商品实物与页面描述或实物样品不一致时，消费者是否可以主张退货，且运费由谁承担？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 4/4</div><div><span class="h1">✓</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第五条 特定场景的处理口径 &gt; 5.2 商品与描述不符】
+生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：
+
+| 情形 | 处理 |
+|---|---|<br><span class="id">直接规定商品与描述不符构成质量问题，可退货且运费商家承担。</span></div><div><span class="h1">✓</span> 【P01 星辰优选用户服务协议 &gt; 第三章 订单与合同 &gt; 3.2 商品信息 … 第三章 订单与合同 &gt; 3.3 交付与运输风险】
+商品页面展示的商品信息构成要约，消费者提交订单并支付成功后，买卖合同成立。
+
+平台不以格式条款约定「消费者支<br><span class="id">明确商品与描述不符属质量问题，可主张售后，运费不由消费者承担。</span></div><div><span class="h1">✓</span> 【P06 星辰优选运费与退货物流规则 &gt; 第一条 运费承担的基本原则 … 第三条 质量问题退货的运费 &gt; 3.3 大件商品】
+**运费归属完全取决于退款原因类型**，这是「无理由」与「质量问题」两类申请最直接的差别之一：
+
+| 退款原因 |<br><span class="id">规定质量问题退货运费由经营者承担，与问题直接相关。</span></div><div><span class="h1">✓</span> 【L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） &gt; 第二十四条 【质量不符时的退货、更换、修理】】
+经营者提供的商品或者服务不符合质量要求的，消费者可以依照国家规定、当事人约定退货，或者要求经营者履行更换、修理等义务。没有国<br><span class="id">法律规定质量不符可退货，经营者承担运输费用。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 商品实物与页面描述或实物样品不一致的，构成质量问题，消费者可主张退货，且运费由商家承担。<br><span class="id">上下文明确写出实物与描述不符构成质量问题，可退货且运费商家承担。</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 13 条）</td><td class="n">5.8s</td></tr><tr class=""><td class="id">R1-066</td><td class="id">P09</td><td class="wrap">我收到的货跟网上图片和介绍对不上，这算不算质量问题？能退吗？退回去的邮费谁出？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第五条 特定场景的处理口径 &gt; 5.1 特殊类目的质量问题 … 第五条 特定场景的处理口径 &gt; 5.2 商品与描述不符】
+生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获<br><span class="id">条款明确商品与描述不符构成质量问题，可退货且运费商家承担。</span></div><div><span class="h1">✓</span> 【L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） &gt; 第二十四条 【质量不符时的退货、更换、修理】】
+经营者提供的商品或者服务不符合质量要求的，消费者可以依照国家规定、当事人约定退货，或者要求经营者履行更换、修理等义务。没有国<br><span class="id">消保法规定质量不符可退货，运费由经营者承担。</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第七章 附则 &gt; 第三十五条 【质量问题退货的法律适用】】
+网络商品销售者提供的商品不符合质量要求，消费者要求退货的，适用《消费者权益保护法》第二十四条以及其他相关规定。
+
+&gt; **判定要点<br><span class="id">明确质量问题退货适用消保法，运费由经营者承担。</span></div><div><span class="h0">✗</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第三章 退货程序 &gt; 第十八条 【退货运费承担】】
+选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。
+
+七日期间自消费者签收商品的次日开始起算。
+
+&gt; **判定<br><span class="id">该条主要规定无理由退货运费由消费者承担，与质量问题无关。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 商品实物与页面描述或实物样品不一致的，构成质量问题，消费者可主张退货，且运费由商家承担。<br><span class="id">上下文明确写出实物与描述不一致构成质量问题，可退货且运费商家承担。</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 13 条）</td><td class="n">7.8s</td></tr><tr class=""><td class="id">R1-068</td><td class="id">P09</td><td class="wrap">商家跑路了、店关了，或者答应我的事没做到，这种情况平台管不管？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/3</div><div><span class="h1">✓</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第六条 平台的先行赔付 &gt; 6.1 适用情形 … 第六条 平台的先行赔付 &gt; 6.3 平台承诺的约束力】
+- 商家失联、闭店、无法履行售后义务的；
+- 商家拒不执行平台判定结论的；
+- 平台公示<br><span class="id">明确列出商家失联闭店等情形，平台先行赔付并追偿，直接回答平台管不管。</span></div><div><span class="h1">✓</span> 【P01 星辰优选用户服务协议 &gt; 第四章 平台的角色与责任 &gt; 4.2 平台的先行赔付承诺】
+平台为交易提供技术服务与规则保障。商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。
+
+**平台就其公示的服务承诺自行担责，<br><span class="id">规定平台先行赔付承诺及协助维权义务，构成回答依据。</span></div><div><span class="h1">✓</span> 【L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） &gt; 第五十八条 【质量担保机制】】
+国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。
+
+电子商务平台经营者与平台内经营者协议设立消费<br><span class="id">规定平台先行赔偿责任及追偿，是平台管的法律依据。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 商家失联、闭店、无法履行售后义务的，商家拒不执行平台判定结论的，以及平台公示的服务承诺未能兑现的，平台都会介入处理。<br><span class="id">上下文明确列出三种情形，平台介入处理。</span></div></div></details></td><td class="n">3</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 4 条）</td><td class="n">7.5s</td></tr><tr class=""><td class="id">R1-069</td><td class="id">P10</td><td class="wrap">使用优惠券后发生全额退款时，退款金额按实付金额还是商品标价计算？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【P10 星辰优选优惠券、赠品与发票处理规则 &gt; 第一条 优惠券 &gt; 1.1 基本规则 … 第二条 满减与套装的部分退货 &gt; 2.4 套装商品】
+**使用优惠券的订单，按实付金额退款，优惠券不予退还。**
+
+优惠券是平台或商家给予的一次性价<br><span class="id">条款明确全额退款按实付金额计算，优惠券不退还，直接回答用户问题。</span></div><div><span class="h1">✓</span> 【P03 星辰优选退款规则与到账时效 &gt; 第二条 退款金额的计算 &gt; 2.1 计算基数 … 第二条 退款金额的计算 &gt; 2.3 部分退货导致优惠失效】
+**退款金额以消费者实际支付的金额为准**，不是商品标价。
+
+使用优惠券的订单，**按实<br><span class="id">条款规定退款以实付金额为准，优惠券不退还，直接回答用户问题。</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第三章 退货程序 &gt; 第十七条 【退款金额的计算】】
+消费者购买商品时采用信用卡支付方式并支付手续费的，网络商品销售者退款时可以不退回手续费。
+
+消费者购买商品时采用信用卡支付方式并被网络商<br><span class="id">条款规定退货价款以实际支出为准，即实付金额，直接回答用户问题。</span></div><div><span class="h0">✗</span> 【P10 星辰优选优惠券、赠品与发票处理规则 &gt; 第七条 退款金额的构成告知】
+每笔退款完成后，平台向消费者列明金额构成：
+
+| 项目 | 说明 |
+|---|---|
+| 商品实付金额 | 退款基数 |
+| 优惠重算差额 | 部分退货导致<br><span class="id">条款仅说明退款金额构成，未直接规定全额退款基数，与问题不直接相关。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 退款基数是实付金额，不是商品标价。<br><span class="id">上下文多处明确退款基数为实付金额</span></div><div><span class="h1">✓</span> 例如标价200元、用50元优惠券实付150元，全额退款金额为150元。<br><span class="id">上下文表格示例标价200元用50元券实付150元退150元</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 14 条）</td><td class="n">7.4s</td></tr><tr class=""><td class="id">R1-072</td><td class="id">P10</td><td class="wrap">我买的东西送了个赠品，现在想把东西退了，那个赠品是不是也得一起退回去啊？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 3/4</div><div><span class="h1">✓</span> 【P10 星辰优选优惠券、赠品与发票处理规则 &gt; 第三条 赠品 &gt; 3.1 一并退回义务 … 第三条 赠品 &gt; 3.5 消耗类赠品】
+**退货时须将商品本身、配件及赠品一并退回。**
+
+赠品包括赠送的实物、积分、代金券、优惠券等各种形式。
+<br><span class="id">直接规定退货时赠品须一并退回，并说明例外情形。</span></div><div><span class="h1">✓</span> 【P03 星辰优选退款规则与到账时效 &gt; 第二条 退款金额的计算 &gt; 2.5 赠品】
+**退款金额以消费者实际支付的金额为准**，不是商品标价。
+
+使用优惠券的订单，**按实付金额退款，优惠券不予退还**。
+
+套装商品或满减活动订单中部分商<br><span class="id">提及赠品退回及折价规则，与问题直接相关。</span></div><div><span class="h1">✓</span> 【L02 网络购买商品七日无理由退货暂行办法 &gt; 第三章 退货程序 &gt; 第十二条 【赠品一并退回】】
+选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。
+
+七日期间自消费者签收商品的次日开始起算。
+
+&gt; **判定<br><span class="id">明确退货时赠品须一并退回，并规定赠品处理。</span></div><div><span class="h0">✗</span> 【P10 星辰优选优惠券、赠品与发票处理规则 &gt; 第二条 满减与套装的部分退货 &gt; 2.4 套装商品】
+订单中部分商品退货，导致剩余订单不再满足满减、满赠、套装优惠条件的，按购买时各商品的**原价重新结算，多退少补**。
+
+订单：A 商品 <br><span class="id">内容为满减套装部分退货的结算，未涉及赠品退回。</span></div></div><div class="detail"><div><b>Context Recall</b> 2/2</div><div><span class="h1">✓</span> 赠品与被退商品直接绑定的（买 A 送 B），退 A 须一并退 B；<br><span class="id">上下文明确列出赠品与被退商品直接绑定的情形，退A须一并退B。</span></div><div><span class="h1">✓</span> 赠品与整单绑定的（满额赠），部分退货后仍满足赠送条件的，赠品无需退回，不再满足的则须退回或折价。<br><span class="id">上下文明确说明整单绑定赠品部分退货后满足条件无需退回，不满足则须退回或折价。</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 11 条）</td><td class="n">6.8s</td></tr><tr class=""><td class="id">R1-073</td><td class="id">P10</td><td class="wrap">退款完成后，平台需要多长时间完成发票冲红并通知消费者结果？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/2</div><div><span class="h1">✓</span> 【P10 星辰优选优惠券、赠品与发票处理规则 &gt; 第五条 发票 &gt; 5.4 冲红时限】
+订单已开具发票的，消费者应在退货时将发票原件一并退回；电子发票由平台系统直接冲红，无需消费者操作。
+
+纸质发票遗失的，消费者需提供情况说明。**平台不得<br><span class="id">明确给出退款完成后7个工作日内完成冲红并通知消费者</span></div><div><span class="h0">✗</span> 【P08 星辰优选风控与异常退款治理规则 &gt; 第六条 申诉 &gt; 6.3 处理时限】
+消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。
+
+申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。<br><span class="id">讲的是风控申诉时限，与发票冲红无关</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 平台在退款完成后7个工作日内完成发票冲红，并向消费者推送冲红结果。<br><span class="id">上下文明确提到退款完成后7个工作日内完成冲红并推送结果</span></div></div></details></td><td class="n">2</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 2 条）</td><td class="n">6.8s</td></tr><tr class=""><td class="id">R1-075</td><td class="id">P11</td><td class="wrap">在商家开始生产之前，消费者是否可以取消订单并获得全额退款？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/3</div><div><span class="h1">✓</span> 【P11 星辰优选特殊类目售后细则 &gt; 第二条 定制商品 &gt; 2.2 生产前可取消 … 第二条 定制商品 &gt; 2.3 与约定规格不符】
+按消费者提供的尺寸、图案、文字、配置单独制作的商品，**不支持无理由退货**。
+
+商家开始生产前，消费者<br><span class="id">条款明确生产前可无条件取消并全额退款，直接回答用户问题。</span></div><div><span class="h0">✗</span> 【P01 星辰优选用户服务协议 &gt; 第三章 订单与合同 &gt; 3.4 订单取消】
+商品页面展示的商品信息构成要约，消费者提交订单并支付成功后，买卖合同成立。
+
+平台不以格式条款约定「消费者支付价款后合同不成立」；含有该内容的条款无效。
+
+平台<br><span class="id">条款涉及未发货订单取消退款，但未明确生产前情形，且与定制商品无关。</span></div><div><span class="h0">✗</span> 【P06 星辰优选运费与退货物流规则 &gt; 第六条 物流异常的处理 &gt; 6.4 消费者拒收包裹】
+退回商品在物流途中丢失的，由承运方按其承运协议赔付。消费者已履行寄回义务并提供有效物流凭证的，**不因商家未收到货而拒绝退款**——平台先行为消<br><span class="id">条款涉及拒收包裹退款，与生产前取消订单无关。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 只要商家还没开始生产，消费者就能取消订单并拿到全额退款。<br><span class="id">上下文明确写出生产前可无条件取消并全额退款</span></div></div></details></td><td class="n">3</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 4 条）</td><td class="n">7.2s</td></tr><tr class=""><td class="id">R1-076</td><td class="id">P11</td><td class="wrap">我下单之后还没开始做，现在想不要了，钱能全退吗？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/1</div><div><span class="h1">✓</span> 【P11 星辰优选特殊类目售后细则 &gt; 第二条 定制商品 &gt; 2.2 生产前可取消】
+按消费者提供的尺寸、图案、文字、配置单独制作的商品，**不支持无理由退货**。
+
+商家开始生产前，消费者可无条件取消订单并全额退款。商家应在接单后 **2<br><span class="id">条款明确生产前可无条件取消并全额退款，直接回答用户问题。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 只要商家还没开始生产，消费者就能取消订单并拿到全额退款。<br><span class="id">上下文明确写出生产前可无条件取消并全额退款</span></div></div></details></td><td class="n">1</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 1 条）</td><td class="n">4.6s</td></tr><tr class=""><td class="id">R1-079</td><td class="id">P11</td><td class="wrap">签收时商品已过保质期，消费者可以主张哪些权利？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/4</div><div><span class="h1">✓</span> 【P11 星辰优选特殊类目售后细则 &gt; 第六条 食品、保健食品、化妆品 &gt; 6.2 保质期】
+**必要的一次性密封包装被损坏的，视为不完好**，不支持无理由退货。
+
+| 情形 | 处理 |
+|---|---|
+| 签收时已过保质期 | 全额<br><span class="id">直接规定签收时已过保质期全额退款并赔付</span></div><div><span class="h0">✗</span> 【P09 星辰优选争议处理与平台介入规则 &gt; 第五条 特定场景的处理口径 &gt; 5.1 特殊类目的质量问题 … 第五条 特定场景的处理口径 &gt; 5.5 超出退货窗口但存在质量问题】
+生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经<br><span class="id">涉及质量问题处理，但未直接针对保质期过期</span></div><div><span class="h0">✗</span> 【P05 星辰优选商品完好标准与验收规范 &gt; 第五条 举证责任 &gt; 5.2 消费者举证 … 第五条 举证责任 &gt; 5.3 耐用商品的举证责任倒置】
+商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：
+
+- 完<br><span class="id">举证责任规定，未涉及保质期过期权利</span></div><div><span class="h0">✗</span> 【L05 部分商品修理更换退货责任规定（三包规定） &gt; 第二十二条 【申诉与诉讼】】
+销售者、修理者、生产者未按本规定执行三包的，消费者可以向产品质量监督管理部门或者工商行政管理部门申诉，由上述部门责令其按三包规定办理。消费者也可以依法申请<br><span class="id">三包申诉途径，与保质期过期无直接关联</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 签收时已过保质期的，全额退款，并按食品安全相关规定赔付。<br><span class="id">上下文表格明确写明签收时已过保质期全额退款并按规定赔付</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 7 条）</td><td class="n">7.8s</td></tr><tr class=""><td class="id">R1-087</td><td class="id">P10</td><td class="wrap">退款金额的构成明细中，各项扣除（如赠品折价、运费、手续费）是否必须逐项列明依据与金额？若未列明，消费者有何权利？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/3</div><div><span class="h1">✓</span> 【P10 星辰优选优惠券、赠品与发票处理规则 &gt; 第七条 退款金额的构成告知】
+每笔退款完成后，平台向消费者列明金额构成：
+
+| 项目 | 说明 |
+|---|---|
+| 商品实付金额 | 退款基数 |
+| 优惠重算差额 | 部分退货导致<br><span class="id">直接规定退款金额构成须逐项列明依据与金额，未列明扣除无效可补退。</span></div><div><span class="h0">✗</span> 【P06 星辰优选运费与退货物流规则 &gt; 第二条 无理由退货的运费 &gt; 2.4 扣除运费的前置条件】
+无理由退货所产生的寄回运费由消费者承担。消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。
+
+订单原本收取的运费属于已<br><span class="id">主要规定运费承担情形，虽提及列明扣除项，但非针对退款构成明细的完整依据。</span></div><div><span class="h0">✗</span> 【P10 星辰优选优惠券、赠品与发票处理规则 &gt; 第二条 满减与套装的部分退货 &gt; 2.3 结算结果的告知】
+订单中部分商品退货，导致剩余订单不再满足满减、满赠、套装优惠条件的，按购买时各商品的**原价重新结算，多退少补**。
+
+订单：A <br><span class="id">涉及部分退货重新结算的告知，但未直接回应各项扣除是否须逐项列明依据与金额。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 退款金额构成中每一项扣除（商品实付金额、优惠重算差额、赠品折价、运费、手续费）都须列明依据与金额，未列明的扣除无效，消费者可申请补退。<br><span class="id">上下文明确列出各项扣除须列明依据与金额，未列明无效。</span></div></div></details></td><td class="n">3</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 3 条）</td><td class="n">7.6s</td></tr><tr class=""><td class="id">R1-088</td><td class="id">P10</td><td class="wrap">退钱的时候，平台扣了我赠品钱、运费这些，是不是得一项一项写清楚扣了啥、为啥扣？要是它没写明白，我能找它要回来吗？<details><summary>判定明细</summary><div class="detail"><div><b>Context Precision</b> 1/4</div><div><span class="h1">✓</span> 【P10 星辰优选优惠券、赠品与发票处理规则 &gt; 第六条 手续费 &gt; 6.1 信用卡手续费 … 第七条 退款金额的构成告知】
+消费者使用信用卡支付并已支付手续费的，退款时手续费不予退回。
+
+平台曾免除该手续费的，可在退款时扣除。
+
+已产生的<br><span class="id">条款明确退款须列明各项扣除依据与金额，未列明可补退，直接回答用户问题。</span></div><div><span class="h0">✗</span> 【P03 星辰优选退款规则与到账时效 &gt; 第二条 退款金额的计算 &gt; 2.5 赠品】
+**退款金额以消费者实际支付的金额为准**，不是商品标价。
+
+使用优惠券的订单，**按实付金额退款，优惠券不予退还**。
+
+套装商品或满减活动订单中部分商<br><span class="id">主要讲退款金额计算和赠品扣除规则，未涉及扣款明细告知义务。</span></div><div><span class="h0">✗</span> 【P10 星辰优选优惠券、赠品与发票处理规则 &gt; 第二条 满减与套装的部分退货 &gt; 2.3 结算结果的告知】
+订单中部分商品退货，导致剩余订单不再满足满减、满赠、套装优惠条件的，按购买时各商品的**原价重新结算，多退少补**。
+
+订单：A <br><span class="id">讲部分退货重新结算的告知，但未涉及赠品、运费等扣款明细要求。</span></div><div><span class="h0">✗</span> 【P06 星辰优选运费与退货物流规则 &gt; 第二条 无理由退货的运费 &gt; 2.4 扣除运费的前置条件】
+无理由退货所产生的寄回运费由消费者承担。消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。
+
+订单原本收取的运费属于已<br><span class="id">讲运费扣除规则，但未涉及扣款明细告知义务。</span></div></div><div class="detail"><div><b>Context Recall</b> 1/1</div><div><span class="h1">✓</span> 退款金额构成中每一项扣除（商品实付金额、优惠重算差额、赠品折价、运费、手续费）都须列明依据与金额，未列明的扣除无效，消费者可申请补退。<br><span class="id">上下文明确列出各项扣除须列明依据与金额，未列明无效。</span></div></div></details></td><td class="n">4</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">1.000</td><td class="wrap">证据列表第 1 位（共 5 条）</td><td class="n">8.6s</td></tr></tbody></table></div><footer>被测参数：judge_model=openai:deepseek-v4-flash · judge_reasoning=none · judge_structured=json_mode · collection=refund_policy_chunks · embedding_model=BAAI/bge-m3 · reranker=BAAI/bge-reranker-v2-m3 · top_k=4 · candidate_limit=20 · rrf_k=20 · min_score=0.3 · relevance_weight=0.8 · prior_weight=0.2 · token_budget=3000 · merge_max_parents=3</footer></main></body></html>

@@ -22,9 +22,9 @@ _TABLE_ROW = re.compile(r"^\s*\|")
 def parse_frontmatter(raw: str, source_path: str) -> tuple[DocMeta, str]:
     """拆出 YAML frontmatter 与正文。缺 frontmatter 直接失败。
 
-    元数据不是可选装饰：没有 effective_date / expire_date 就没法在检索时排除
-    已废止的条款，没有 layer / authority_level 就没法在法规与平台规则冲突时定序。
-    一篇没有元数据的政策文档进了库，会以「看起来正常」的方式污染每一次检索。
+    元数据不是可选装饰：检索靠 effective_date / expire_date 排除已废止的条款，
+    靠 layer / authority_level 在法规与平台规则冲突时定序。缺元数据的政策文档
+    入库后，会以「看起来正常」的方式污染每一次检索。
     """
     m = _FRONTMATTER.match(raw)
     if not m:

@@ -1,255 +1,94 @@
-"""r1 自检 —— 在花钱跑批前拦住明显不对的样本（4-rag-dataset 8.1）。
+"""r1 自检 —— 在花钱跑批之前拦住明显不对的样本，不调模型。
 
-    python rag/evals/validate_cases.py                  # 默认校验 rag/datasets/r1
-    python rag/evals/validate_cases.py rag/datasets/r2
+    python rag/evals/validate_cases.py
 
-**不调模型**，只连 Milvus 查一次 ID。跑批一次要过完整检索链路加两个 LLM judge，
-自检的成本是它的千分之一，所以每次改数据集、每次重新灌库都该先跑这个。
+五项检查，对着数据集的四个字段：
 
-五项检查（对应 8.1 的五行）：
+| 检查 | 抓什么 |
+|---|---|
+| 字段齐全、`case_id` 唯一 | 跑批时才发现要重来 |
+| `question` 不重复 | 同一个问题重复计权 |
+| `source` 里的 chunk_id 在库里存在 | 切片版本漂了（4 · 五） |
+| `ground_truth` 里的数字在源块正文里出现过 | 凭空出现的天数/次数/金额是模型幻觉 |
+| `ground_truth` 不以独立结论句开头 | 「可以退。」切出来是不含信息的判定单元 |
 
-1. **`seed_chunk_id` 存在性**：ID 是位置派生的（`{doc_id}#{parent_seq}:{chunk_index}`），
-   政策文档增删一个小节就会让整篇后续的 ID 静默偏移。失效时用例照跑，只是 Recall
-   全线暴跌，看上去像检索退化 —— 这项检查把它变成一条明确的报错。
-2. **重叠率**：口语档抄了原文的词，Recall 会虚高（5.1）。这项报警告不报错，
-   超线的样本由人决定重写还是降级为 formal 档。
-3. **参考答案可溯源**：答案里的数字必须在种子块正文出现过。凭空出现的数字是幻觉，
-   而 Context Recall 会把它算成「检索没召回」，把生成的问题记到检索头上。同一项还查
-   `claims`（Context Recall 的分母）：数字必须在参考答案里出现过，改了答案没重拆
-   claim 会被这一项抓住。
-4. **`case_id` 与 query 去重**：措辞几乎相同的两条 query 会让同一类问题被重复计权。
-5. **分层覆盖**：16 篇文档、两个 layer、两种 kind 都要有样本，冷门文档不低于下限。
+第三项只查存在性 —— `source` 不参与判分，但它失效说明数据集绑的那版切片已经
+不在了，标准答案大概率也对不上了。
 """
 
 import re
 import sys
-from collections import Counter, defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from rag.evals.common import (  # noqa: E402
-    DATASET_DIR,
-    load_chunks,
-    load_env,
-    overlap_ratio,
-    read_cases,
-    terms,
-)
+from rag.evals.common import DATASET_DIR, load_chunks, load_env, read_cases  # noqa: E402
 
-MAX_COLLOQUIAL_OVERLAP = 0.45
-"""口语档超过这个重叠率就报警告，口径与 generate_cases.py 一致。"""
+FIELDS = ("case_id", "question", "ground_truth", "source")
 
-MIN_CASES_PER_DOC = 4
-"""每篇文档的样本下限 = 保底 2 个种子块 × 两档语域。"""
-
-MIN_QUERY_DISTANCE = 0.15
-"""两条 query 的实词差异下限。低于它视为重复问法。"""
-
-MIN_CLAIM_CHARS = 8
-"""claim 的字数下限。claim 要独立可读（不带指代、主语和前提都在句子里），比这更短的
-基本是把一句话切碎的产物，judge 拿到它只能判不支撑。"""
-
-STYLES = {"formal", "colloquial"}
-TYPES = {"single", "multi_hop", "unanswerable"}
-REQUIRED = ("case_id", "query", "style", "type", "seed_chunk_id", "reference_answer", "meta")
+LEAD_MAX_CHARS = 8
+"""首句短于这个长度就当独立结论句。Context Recall 把 `ground_truth` 按句拆开
+逐句归因，「可以退。」这样的句子不含条件、期限、数字，检回的条款再对也支撑
+不了它，判负记在检索头上 —— 结论要连着它管的前提一起写。"""
 
 _NUMBER = re.compile(r"\d+(?:\.\d+)?")
+_SENTENCE_END = re.compile(r"(?<=[。！？；])")
 
 
-class Report:
-    def __init__(self) -> None:
-        self.errors: list[str] = []
-        self.warnings: list[str] = []
-
-    def fail(self, where: str, msg: str) -> None:
-        self.errors.append(f"{where}: {msg}")
-
-    def warn(self, where: str, msg: str) -> None:
-        self.warnings.append(f"{where}: {msg}")
-
-
-def _check_shape(rep: Report, case: dict) -> bool:
-    cid = case.get("case_id", "<无 case_id>")
-    missing = [f for f in REQUIRED if f not in case]
-    if missing:
-        rep.fail(cid, f"缺字段 {missing}")
-        return False
-    if case["style"] not in STYLES:
-        rep.fail(cid, f"未知 style「{case['style']}」，可选 {sorted(STYLES)}")
-    if case["type"] not in TYPES:
-        rep.fail(cid, f"未知 type「{case['type']}」，可选 {sorted(TYPES)}")
-        return False
-
-    seeds = case["seed_chunk_id"]
-    # 分母口径按 type 定（5-rag-eval 3.1）：single 是 1，multi_hop 是 2 且要求全中，
-    # unanswerable 不进均值。种子数与 type 对不上，聚合出来的分数就是错的。
-    expect = {"single": 1, "multi_hop": 2, "unanswerable": 0}[case["type"]]
-    if len(seeds) != expect:
-        rep.fail(cid, f"type={case['type']} 应有 {expect} 个 seed_chunk_id，实际 {len(seeds)}")
-    if case["type"] == "unanswerable" and case["reference_answer"]:
-        rep.fail(cid, "unanswerable 样本不该有参考答案 —— 语料里没有的事没有正确答案")
-    if case["type"] != "unanswerable" and not case["reference_answer"].strip():
-        rep.fail(cid, "参考答案为空，算不了 Context Recall")
-    _check_claims(rep, case)
-    return True
-
-
-def _check_claims(rep: Report, case: dict) -> None:
-    """claims 是 Context Recall 的分母，缺了那条样本就没有这个指标。
-
-    改了参考答案而 claims 没跟着改，是这里最想抓的情况：分母还是老的，分数看着正常。
-    没法逐字比对（claim 本来就是改写过的句子），退而查数字 —— 答案里改掉一个天数、
-    claim 里还留着旧的，这一项就报出来。
-    """
-    cid = case["case_id"]
-    claims = case.get("claims") or []
-    if case["type"] == "unanswerable":
-        if claims:
-            rep.fail(cid, "unanswerable 样本不该有 claims —— 没有参考答案就没有分母")
-        return
-    if not claims:
-        rep.warn(cid, "没有 claims，跑 --judge 时这条不计入 Context Recall；"
-                      "用 python rag/evals/generate_claims.py 补")
-        return
-
-    # 「可以退。」这种脱离上下文读不懂的 claim，judge 只能判不支撑，白扣一格分母
-    if short := [c for c in claims if len(c.strip()) < MIN_CLAIM_CHARS]:
-        rep.warn(cid, f"claim 太短、离开答案读不懂：{short} —— 重拆或手工合并")
-
-    pool = set(_NUMBER.findall(case["reference_answer"]))
-    stray = sorted({n for c in claims for n in _NUMBER.findall(c)} - pool)
-    if stray:
-        rep.fail(cid, f"claims 里的数字 {stray} 在参考答案里找不到 —— 答案改过而 claims 没重拆？")
-
-
-def _check_traceable(rep: Report, case: dict, source: str) -> None:
-    """答案里的数字必须在种子块正文里出现过。"""
-    if not source:
-        return
-    # 正文里的数字带千分位或加粗标记，去掉非数字字符再比对，避免把 **15** 判成没出现
-    pool = set(_NUMBER.findall(source))
-    stray = [n for n in _NUMBER.findall(case["reference_answer"]) if n not in pool]
-    if stray:
-        rep.fail(case["case_id"], f"参考答案里的数字 {stray} 在种子块正文里找不到")
-
-
-def validate(dataset: Path) -> tuple[Report, list[dict]]:
-    rep = Report()
-    cases = read_cases(dataset)
-    if not cases:
-        raise SystemExit(f"{dataset / 'cases.jsonl'} 里没有样本")
-
-    chunks = load_chunks()
-    by_id = {c["chunk_id"]: c for c in chunks}
-    all_docs = {c["doc_id"] for c in chunks}
-
+def check(cases: list[dict], bodies: dict[str, str]) -> list[str]:
+    errors: list[str] = []
     seen_ids: set[str] = set()
-    seen_terms: list[tuple[str, set[str]]] = []
-    per_doc: Counter[str] = Counter()
-    layers: Counter[str] = Counter()
-    kinds: Counter[str] = Counter()
+    seen_questions: dict[str, str] = {}
 
-    for case in cases:
-        if not _check_shape(rep, case):
+    for i, case in enumerate(cases, 1):
+        if missing := [f for f in FIELDS if not case.get(f)]:
+            errors.append(f"第 {i} 行缺字段：{'、'.join(missing)}")
             continue
+
         cid = case["case_id"]
-
-        # 1 · ID 存在性
-        for chunk_id in case["seed_chunk_id"]:
-            if chunk_id not in by_id:
-                rep.fail(
-                    cid,
-                    f"种子块 {chunk_id} 不在 collection 里 —— 切片版本漂了，"
-                    "重新灌库或重新生成受影响文档的样本",
-                )
-
-        # 2 · 重叠率
-        source = "".join(by_id[c]["body"] for c in case["seed_chunk_id"] if c in by_id)
-        if source:
-            actual = overlap_ratio(case["query"], source)
-            recorded = case["meta"].get("overlap_ratio", -1)
-            if abs(actual - recorded) > 0.01:
-                rep.fail(cid, f"meta.overlap_ratio 与实际不符：记的 {recorded}，实算 {actual}")
-            if case["style"] == "colloquial" and actual > MAX_COLLOQUIAL_OVERLAP:
-                rep.warn(cid, f"口语档重叠率 {actual} 超线，query 抄了原文的词：{case['query']}")
-
-        # 3 · 参考答案可溯源
-        _check_traceable(rep, case, source)
-
-        # 4 · 去重
         if cid in seen_ids:
-            rep.fail(cid, "case_id 重复")
+            errors.append(f"{cid}：case_id 重复")
         seen_ids.add(cid)
-        mine = terms(case["query"])
-        for other_id, other in seen_terms:
-            union = mine | other
-            if union and 1 - len(mine & other) / len(union) < MIN_QUERY_DISTANCE:
-                rep.warn(cid, f"与 {other_id} 的问法几乎相同：{case['query']}")
-        seen_terms.append((cid, mine))
 
-        # 5 · 分层覆盖的计数
-        for chunk_id in case["seed_chunk_id"]:
-            if chunk := by_id.get(chunk_id):
-                per_doc[chunk["doc_id"]] += 1
-                layers[chunk["layer"]] += 1
-                kinds[chunk["kind"]] += 1
+        question = case["question"].strip()
+        if first := seen_questions.get(question):
+            errors.append(f"{cid}：question 与 {first} 完全相同")
+        seen_questions[question] = cid
 
-    for doc_id in sorted(all_docs):
-        if per_doc[doc_id] < MIN_CASES_PER_DOC:
-            rep.fail(
-                "分层覆盖",
-                f"{doc_id} 只有 {per_doc[doc_id]} 条样本，低于下限 {MIN_CASES_PER_DOC}",
-            )
-    facets = (("layer", layers, {"law", "platform"}), ("kind", kinds, {"text", "table"}))
-    for name, got, want in facets:
-        if missing := want - set(got):
-            rep.fail("分层覆盖", f"{name} 缺 {sorted(missing)}，这一档测不出来")
+        parts = [p.strip() for p in _SENTENCE_END.split(case["ground_truth"]) if p.strip()]
+        if len(parts) > 1 and len(parts[0]) <= LEAD_MAX_CHARS:
+            errors.append(f"{cid}：ground_truth 以独立结论句「{parts[0]}」开头")
 
-    return rep, cases
+        if unknown := [sid for sid in case["source"] if sid not in bodies]:
+            errors.append(f"{cid}：source 在库里不存在 {unknown} —— 切片版本漂了")
+            continue
 
+        # 数字可溯源：标准答案里的天数、次数、金额必须在源块正文里出现过。
+        # 「7 天」写成「七天」不算漏 —— 中文数字不在这条检查的范围里，它抓的是
+        # 模型凭空编出一个阿拉伯数字的情况
+        source_text = "".join(bodies[sid] for sid in case["source"])
+        source_numbers = set(_NUMBER.findall(source_text))
+        if invented := sorted(set(_NUMBER.findall(case["ground_truth"])) - source_numbers):
+            errors.append(f"{cid}：ground_truth 里的数字 {invented} 在源块正文里没有")
 
-def _summary(cases: list[dict]) -> str:
-    by_type = Counter(c["type"] for c in cases)
-    by_style = Counter(c["style"] for c in cases)
-    by_doc: dict[str, int] = defaultdict(int)
-    for case in cases:
-        by_doc[case["meta"]["doc_id"] or "—"] += 1
-    ratios = sorted(
-        c["meta"]["overlap_ratio"]
-        for c in cases
-        if c["style"] == "colloquial" and c["seed_chunk_id"]
-    )
-    median = ratios[len(ratios) // 2] if ratios else 0.0
-    return (
-        f"  类型：{dict(by_type)}\n"
-        f"  语域：{dict(by_style)}\n"
-        f"  口语档重叠率中位数：{median}\n"
-        f"  文档：{'  '.join(f'{d}×{n}' for d, n in sorted(by_doc.items()))}"
-    )
+    return errors
 
 
 def main() -> None:
-    dataset = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else DATASET_DIR
-    if not (dataset / "cases.jsonl").exists():
-        raise SystemExit(f"找不到 {dataset / 'cases.jsonl'}")
-
     load_env()
-    rep, cases = validate(dataset)
+    cases = read_cases(DATASET_DIR)
+    bodies = {c["chunk_id"]: c["body"] for c in load_chunks()}
+    print(f"{DATASET_DIR.name}：{len(cases)} 条样本，语料 {len(bodies)} 块")
 
-    print(f"数据集 {dataset.name}：{len(cases)} 条样本")
-    print(_summary(cases))
+    errors = check(cases, bodies)
+    if not errors:
+        print("零错误。下一步：python rag/experiments/rag-ex-1/run_experiment.py")
+        return
 
-    if rep.warnings:
-        print(f"\n! {len(rep.warnings)} 条警告（人工决定改不改）：")
-        for msg in rep.warnings:
-            print(f"  - {msg}")
-    if rep.errors:
-        print(f"\n✗ {len(rep.errors)} 处不合格：")
-        for msg in rep.errors:
-            print(f"  - {msg}")
-        raise SystemExit(1)
-    print("\n✓ ID 有效、答案可溯源、分层齐全")
+    print(f"\n{len(errors)} 个错误：")
+    for line in errors:
+        print(f"  {line}")
+    raise SystemExit(1)
 
 
 if __name__ == "__main__":

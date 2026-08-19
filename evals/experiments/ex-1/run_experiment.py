@@ -80,7 +80,7 @@ class Progress:
     """并发跑批时的进度打印。
 
     用例是多线程跑的（max_concurrency），所以每条消息都整块拿锁打完再放 ——
-    否则一条用例的工具链会插到另一条中间，日志就没法读了。
+    一条用例的工具链在日志里是连续的一段。
     """
 
     def __init__(self, total: int, verbose: bool = False) -> None:

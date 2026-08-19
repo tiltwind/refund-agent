@@ -5,7 +5,16 @@ from typing import Protocol
 
 
 class RetrievalError(RuntimeError):
-    """检索链路无法提供可用证据。"""
+    """检索链路无法提供可用证据。
+
+    带上这次检索的 `trace`：链路交不出证据时，最先要回答的是「召回层到底捞到
+    没有」—— 捞到了被阈值砍光和压根没捞到，修法完全不同。异常里不带中间产物，
+    调用方（评测、线上错误处理）就只剩一句错误消息可看。
+    """
+
+    def __init__(self, message: str, trace: "RetrievalTrace | None" = None) -> None:
+        super().__init__(message)
+        self.trace = trace
 
 
 class NoCandidatesError(RetrievalError):
@@ -21,11 +30,11 @@ class PolicySection:
     """一条装配好的证据。
 
     字段不只是「文本 + 分数」—— 检索结果必须同时带回**内容、来源、时间、
-    相关性理由**，缺一项都会在下游付出代价：
-    - 没有来源，答复里引用不了原文、事后审计追不到出处；
-    - 没有生效日期，模型无从判断这条还算不算数；
-    - 没有相关性理由和分数，线上出坏 case 时无法区分「是召回错了」还是
-      「是模型答错了」—— 这是调试检索质量唯一的抓手。
+    相关性理由**，每一项都对着下游一件具体的事：
+    - 来源：答复里引用原文，事后审计追出处；
+    - 生效日期：模型据此判断这条还算不算数；
+    - 相关性理由和分数：线上出坏 case 时区分「是召回错了」还是「是模型答错了」
+      —— 这是调试检索质量唯一的抓手。
     """
 
     section: str
@@ -53,20 +62,18 @@ class RetrievalTrace:
     过滤掉了、是两路都没排进 TopK、还是重排把它压下去了？这三种情况的修法
     完全不同，而它们在最终结果里长得一模一样。
 
-    `steps` 是人读的，两个 ID 序列是机器读的。Recall@k 的真值是 chunk_id 集合
-    比对，从 `steps` 里那句「top3=[...]」正则抠 ID 也能算，但那句话的措辞属于
-    日志，改一个字打分器就静默判负 —— 指标依赖的东西要单独存。
+    `steps` 是人读的，两个 ID 序列是机器读的：装配那一步要拿证据 ID，上报的
+    span 也要它们 —— 从 `steps` 里那句「top3=[...]」正则抠 ID 也能拿到，但那句话
+    的措辞属于日志，改一个字下游就静默出错。
     """
 
     query: str = ""
     steps: list[tuple[str, str]] = field(default_factory=list)
-    rewrite_plan: dict | None = None
-    rewrite_hash: str = ""
 
     candidate_ids: list[str] = field(default_factory=list)
-    """召回融合后的候选，按 RRF 序。`recall@10` 读它。"""
+    """召回融合后的候选，按 RRF 序。"""
     evidence_ids: list[str] = field(default_factory=list)
-    """重排后过阈值的证据，按最终分降序。`recall@3` / `recall@1` 读它。"""
+    """重排后过阈值的证据，按最终分降序。"""
 
     def record(self, step: str, detail: str) -> None:
         self.steps.append((step, detail))

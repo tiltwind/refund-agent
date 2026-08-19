@@ -16,8 +16,6 @@ collection 按版本发布（MILVUS_COLLECTION 指向固定版本），以及检
 """
 
 import os
-import json
-import hashlib
 from contextlib import contextmanager
 from dataclasses import asdict, dataclass
 
@@ -99,13 +97,13 @@ class MilvusRagService:
     def search_with_trace(
         self, query: str, top_k: int = DEFAULT_TOP_K
     ) -> tuple[list[PolicySection], RetrievalTrace]:
-        """检索评测的入口 —— 除了装配结果，还要中间产物。
+        """排查用的入口 —— 除了装配结果，还要中间产物。
 
-        Recall@k 挂在重排输出的 chunk_id 上，而 `search_policy` 只返回装配后的
-        `PolicySection`，那上面没有 chunk_id（装配把子块还原成小节，一条对应
-        一组子块）。评测脚本自己按六步再编排一遍也能拿到，但那等于把编排逻辑
-        抄一份出去，两边迟早跑偏；改成同一段代码多一个出口，prod 与 eval 走的
-        就还是同一条链路（2-design 3.4）。
+        `search_policy` 只返回装配后的 `PolicySection`，那上面没有 chunk_id
+        （装配把子块还原成小节，一条对应一组子块）。要看「这个块被召回了没有、
+        排第几、被谁压下去了」，得有重排那一层的 ID 序列。编排在这个方法里，
+        `search_policy` 调它并丢掉 trace —— prod 与排查走的是同一条链路
+        （2-design 3.4）。
         """
         trace = RetrievalTrace(query=query)
 
@@ -125,10 +123,6 @@ class MilvusRagService:
                         {"id": q.id, "intent": q.intent, "text": q.text} for q in plan.sub_queries
                     ],
                 }
-                trace.rewrite_plan = step.data
-                trace.rewrite_hash = hashlib.sha256(
-                    json.dumps(step.data, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
-                ).hexdigest()[:16]
 
             # 2 · 路由：每条子查询打哪些层、各取多少
             with _step(trace, "路由", "route") as step:
@@ -175,7 +169,8 @@ class MilvusRagService:
             if not candidates:
                 raise NoCandidatesError(
                     f"policy collection「{COLLECTION}」检索不到任何生效条款"
-                    f"（uri={MILVUS_URI}）；请先执行 python rag/index/seed_milvus.py 灌库"
+                    f"（uri={MILVUS_URI}）；请先执行 python rag/index/seed_milvus.py 灌库",
+                    trace,
                 )
 
             # 5 · 重排：cross-encoder + 层级/文档先验
@@ -214,18 +209,19 @@ class MilvusRagService:
                 step.text = f"{len(evidence)} → {len(sections)} 块：" + "；".join(
                     s.section for s in sections
                 )
-                # 这一步带**全文**：它是真正注入模型上下文的东西。Context Recall 与
-                # Context Relevance 判的就是这段文字，trace 里只留小节名的话，judge 掉分时
-                # 无从核对；装配把同一父块拼两遍这类缺陷，也只有正文在场才看得出来。
+                # 这一步带**全文**：它是真正注入模型上下文的东西。Context Precision 与
+                # Context Recall 判的就是这段文字，judge 掉分时要对着正文核对；
+                # 装配把同一父块拼两遍这类缺陷，也只有正文在场才看得出来。
                 step.data = {"sections": [asdict(s) for s in sections]}
 
             if not sections:
-                # 候选存在但全部被 MIN_SCORE 过滤，不能把空列表交给 Agent，
-                # 否则它会退回凭记忆回答政策。与召回层完全无候选分开报错，
+                # 候选存在但全部被 MIN_SCORE 过滤，不把空列表交给 Agent —— 拿到空列表的
+                # Agent 会退回凭记忆回答政策。与召回层完全无候选分开报错，
                 # 评测和线上调用方才能区分两类故障。
                 raise NoEvidenceError(
                     f"重排后没有可交付政策证据（candidates={len(candidates)}, "
-                    f"evidence={len(evidence)}, min_score={MIN_SCORE}）"
+                    f"evidence={len(evidence)}, min_score={MIN_SCORE}）",
+                    trace,
                 )
 
             if root is not None:

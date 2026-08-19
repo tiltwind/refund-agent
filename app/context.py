@@ -34,6 +34,6 @@ class RefundContext:
     request_source: str = "prod"
     """prod | eval —— 决定 services/ 选哪个实现。
 
-    必须由服务端决定，绝不能由客户端请求携带：否则任何调用方声明一句
-    request_source=eval 就能绕开真实数据与真实风控（2-design 6.3）。
+    由服务端决定，不从客户端请求里读：这个字段把链路切到 eval 实现上，
+    绕开真实数据与真实风控，决定权只留在服务端（2-design 6.3）。
     """

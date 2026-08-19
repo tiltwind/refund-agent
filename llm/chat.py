@@ -23,8 +23,8 @@ ANTHROPIC_*，把 OPENAI_* 加进来后，老的 .env 必须跑出跟以前一�
     4. 改写 / judge 角色回落到主模型；主模型没有兜底值时报错
 
 第 3 条的限定很关键：agent/v1/meta.yaml 里写的是 `anthropic:claude-sonnet-5`，
-provider 切到 openai 后这个默认值必须失效，否则会拿着 Claude 的模型名去打
-OpenAI 的端点，报一个跟真实原因（没配 OPENAI_MODEL）毫不相干的 404。
+provider 切到 openai 后这个默认值失效 —— Claude 的模型名打到 OpenAI 的端点上
+只换回一个 404，跟真实原因（没配 OPENAI_MODEL）毫不相干。
 
 第 4 条对 openai **不设内置默认值**：走 OPENAI_* 的多半是兼容网关（DeepSeek、
 Qwen、vLLM…），模型名各家各写各的，猜任何一个都是错的。与其让它 404，不如直接
@@ -167,7 +167,7 @@ def provider_of(model: str) -> str:
 
     通常就是当前 provider()，但 REFUND_AGENT_MODEL 允许带前缀跨供应商覆盖
     （`REFUND_AGENT_MODEL=openai:qwen-max` 配 ANTHROPIC_API_KEY 的环境）——
-    那种情况下端点必须跟着模型走，否则会拿 OpenAI 的模型名去打 Anthropic 的地址。
+    那种情况下端点跟着模型走，模型名和地址出自同一处判断。
     """
     head, _, rest = model.partition(":")
     return head if rest and head in PROVIDERS else provider()
