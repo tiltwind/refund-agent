@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-022",
+    "query": "保修期内修东西的钱谁出啊？",
     "type": "single",
     "style": "colloquial",
     "doc_id": "L05",
@@ -9,6 +10,7 @@
     "seed_chunk_id": [
       "L05#018:00"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
@@ -28,6 +30,18 @@
         "L05#018:00": 1
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "refund",
+          "text": "保修期内的商品维修费用由谁承担？"
+        }
+      ]
+    },
+    "rewrite_hash": "fca4c08ab4de43b8",
     "sections": [
       "L05 部分商品修理更换退货责任规定（三包规定） > 第十八条 【修理费用来源】 … 第十九条 【修理费用的支付形式】"
     ],
@@ -55,34 +69,34 @@
         "n": 6,
         "hit": 5,
         "truncated": false,
-        "note": "第5条是原则性要求，未直接说明费用承担方。",
+        "note": "不相关的主要是专款专用原则，未直接回答费用承担方。",
         "irrelevant": [
           "专款专用。"
         ],
         "error": null
       }
     },
-    "trace_id": "19eae838bc77953b20fc8e25f42613a1"
+    "trace_id": "4b187f170f0437c89d7448a6567f1eba"
   },
   "trace": {
-    "id": "19eae838bc77953b20fc8e25f42613a1",
+    "id": "4b187f170f0437c89d7448a6567f1eba",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:50:25.002000+00:00"
+    "timestamp": "2026-08-19 05:19:30.510000+00:00"
   },
   "observations": [
     {
-      "id": "24e28db062d1239c",
-      "traceId": "19eae838bc77953b20fc8e25f42613a1",
+      "id": "97622bc3813f14a6",
+      "traceId": "4b187f170f0437c89d7448a6567f1eba",
       "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:49:46.232000+00:00",
-      "endTime": "2026-08-18 11:50:30.018000+00:00",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:18:50.121000+00:00",
+      "endTime": "2026-08-19 05:19:35.563000+00:00",
       "input": {
         "query": "保修期内修东西的钱谁出啊？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -113,7 +127,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -126,6 +140,7 @@
       },
       "output": {
         "case_id": "R1-022",
+        "query": "保修期内修东西的钱谁出啊？",
         "type": "single",
         "style": "colloquial",
         "doc_id": "L05",
@@ -134,6 +149,7 @@
         "seed_chunk_id": [
           "L05#018:00"
         ],
+        "acceptable_seed_chunk_ids": null,
         "error": null,
         "scores": {
           "recall@10": 1,
@@ -153,6 +169,18 @@
             "L05#018:00": 1
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "refund",
+              "text": "保修期内的商品维修费用由谁承担？"
+            }
+          ]
+        },
+        "rewrite_hash": "fca4c08ab4de43b8",
         "sections": [
           "L05 部分商品修理更换退货责任规定（三包规定） > 第十八条 【修理费用来源】 … 第十九条 【修理费用的支付形式】"
         ],
@@ -180,7 +208,7 @@
             "n": 6,
             "hit": 5,
             "truncated": false,
-            "note": "第5条是原则性要求，未直接说明费用承担方。",
+            "note": "不相关的主要是专款专用原则，未直接回答费用承担方。",
             "irrelevant": [
               "专款专用。"
             ],
@@ -195,6 +223,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
+      "parentObservationId": "1dbb0afdf3b6ef38",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -202,10 +231,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 43.786,
+      "latency": 45.442,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:33.846Z",
-      "updatedAt": "2026-08-18T11:50:33.864Z",
+      "createdAt": "2026-08-19T05:19:40.189Z",
+      "updatedAt": "2026-08-19T05:19:40.205Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -215,7 +244,6 @@
       "modelParameters": null,
       "version": null,
       "statusMessage": null,
-      "parentObservationId": null,
       "promptId": null,
       "promptName": null,
       "promptVersion": null,
@@ -227,18 +255,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "a77d9e11d64a1e96",
-      "traceId": "19eae838bc77953b20fc8e25f42613a1",
+      "id": "74b57c912695bcf3",
+      "traceId": "4b187f170f0437c89d7448a6567f1eba",
       "type": "SPAN",
       "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:50:30.017000+00:00",
-      "endTime": "2026-08-18 11:50:30.018000+00:00",
+      "startTime": "2026-08-19 05:19:35.564000+00:00",
+      "endTime": "2026-08-19 05:19:35.566000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -262,7 +290,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "24e28db062d1239c",
+      "parentObservationId": "1dbb0afdf3b6ef38",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -270,10 +298,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.001,
+      "latency": 0.002,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:33.846Z",
-      "updatedAt": "2026-08-18T11:50:33.864Z",
+      "createdAt": "2026-08-19T05:19:40.189Z",
+      "updatedAt": "2026-08-19T05:19:40.203Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -295,12 +323,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "412522d6ce49c202",
-      "traceId": "19eae838bc77953b20fc8e25f42613a1",
+      "id": "c7cd71a618e7e875",
+      "traceId": "4b187f170f0437c89d7448a6567f1eba",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:50:30.017000+00:00",
-      "endTime": "2026-08-18 11:50:30.018000+00:00",
+      "startTime": "2026-08-19 05:19:35.565000+00:00",
+      "endTime": "2026-08-19 05:19:35.565000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -308,6 +336,7 @@
         },
         "output": {
           "case_id": "R1-022",
+          "query": "保修期内修东西的钱谁出啊？",
           "type": "single",
           "style": "colloquial",
           "doc_id": "L05",
@@ -316,6 +345,7 @@
           "seed_chunk_id": [
             "L05#018:00"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
@@ -335,6 +365,18 @@
               "L05#018:00": 1
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "refund",
+                "text": "保修期内的商品维修费用由谁承担？"
+              }
+            ]
+          },
+          "rewrite_hash": "fca4c08ab4de43b8",
           "sections": [
             "L05 部分商品修理更换退货责任规定（三包规定） > 第十八条 【修理费用来源】 … 第十九条 【修理费用的支付形式】"
           ],
@@ -362,7 +404,7 @@
               "n": 6,
               "hit": 5,
               "truncated": false,
-              "note": "第5条是原则性要求，未直接说明费用承担方。",
+              "note": "不相关的主要是专款专用原则，未直接回答费用承担方。",
               "irrelevant": [
                 "专款专用。"
               ],
@@ -378,7 +420,8 @@
           "seed_chunk_id": [
             "L05#018:00"
           ],
-          "reference_answer": "修理费用由生产者提供。修理费用指三包有效期内保证正常修理的待支费用。"
+          "reference_answer": "修理费用由生产者提供。修理费用指三包有效期内保证正常修理的待支费用。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "text",
@@ -400,7 +443,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -445,7 +488,7 @@
         {
           "name": "context_relevance",
           "value": 0.833,
-          "comment": "5/6 个内容单元相关；第5条是原则性要求，未直接说明费用承担方。"
+          "comment": "5/6 个内容单元相关；不相关的主要是专款专用原则，未直接回答费用承担方。"
         },
         {
           "name": "run_error",
@@ -460,7 +503,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "a77d9e11d64a1e96",
+      "parentObservationId": "74b57c912695bcf3",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -468,10 +511,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.001,
+      "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:33.846Z",
-      "updatedAt": "2026-08-18T11:50:33.862Z",
+      "createdAt": "2026-08-19T05:19:40.189Z",
+      "updatedAt": "2026-08-19T05:19:40.200Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -491,18 +534,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "66daa98241ae94c0",
-      "traceId": "19eae838bc77953b20fc8e25f42613a1",
+      "id": "1dbb0afdf3b6ef38",
+      "traceId": "4b187f170f0437c89d7448a6567f1eba",
       "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:49:46.232000+00:00",
-      "endTime": "2026-08-18 11:50:30.016000+00:00",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-19 05:18:50.121000+00:00",
+      "endTime": "2026-08-19 05:19:35.566000+00:00",
       "input": {
         "query": "保修期内修东西的钱谁出啊？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -533,7 +576,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -546,6 +589,7 @@
       },
       "output": {
         "case_id": "R1-022",
+        "query": "保修期内修东西的钱谁出啊？",
         "type": "single",
         "style": "colloquial",
         "doc_id": "L05",
@@ -554,6 +598,7 @@
         "seed_chunk_id": [
           "L05#018:00"
         ],
+        "acceptable_seed_chunk_ids": null,
         "error": null,
         "scores": {
           "recall@10": 1,
@@ -573,6 +618,18 @@
             "L05#018:00": 1
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "refund",
+              "text": "保修期内的商品维修费用由谁承担？"
+            }
+          ]
+        },
+        "rewrite_hash": "fca4c08ab4de43b8",
         "sections": [
           "L05 部分商品修理更换退货责任规定（三包规定） > 第十八条 【修理费用来源】 … 第十九条 【修理费用的支付形式】"
         ],
@@ -600,7 +657,7 @@
             "n": 6,
             "hit": 5,
             "truncated": false,
-            "note": "第5条是原则性要求，未直接说明费用承担方。",
+            "note": "不相关的主要是专款专用原则，未直接回答费用承担方。",
             "irrelevant": [
               "专款专用。"
             ],
@@ -615,7 +672,6 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "24e28db062d1239c",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -623,10 +679,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 43.784,
+      "latency": 45.445,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:33.846Z",
-      "updatedAt": "2026-08-18T11:50:33.855Z",
+      "createdAt": "2026-08-19T05:19:40.189Z",
+      "updatedAt": "2026-08-19T05:19:40.197Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -636,6 +692,7 @@
       "modelParameters": null,
       "version": null,
       "statusMessage": null,
+      "parentObservationId": null,
       "promptId": null,
       "promptName": null,
       "promptVersion": null,
@@ -647,21 +704,22 @@
       "usagePricingTierName": null
     },
     {
-      "id": "ac625d1666a0fe2f",
-      "traceId": "19eae838bc77953b20fc8e25f42613a1",
+      "id": "9d0d394371efddd4",
+      "traceId": "4b187f170f0437c89d7448a6567f1eba",
       "type": "SPAN",
-      "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:50:25.002000+00:00",
-      "endTime": "2026-08-18 11:50:25.936000+00:00",
+      "name": "rag.rerank",
+      "startTime": "2026-08-19 05:19:31.616000+00:00",
+      "endTime": "2026-08-19 05:19:32.142000+00:00",
       "input": {
-        "query": "保修期内修东西的钱谁出啊？"
+        "query": "保修期内修东西的钱谁出啊？",
+        "candidates": 20
       },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -673,13 +731,44 @@
         }
       },
       "output": {
-        "rewritten": true,
-        "needs_law": false,
-        "sub_queries": [
+        "passed": 2,
+        "min_score": 0.3,
+        "dropped": [
+          "P05#005:02",
+          "L05#003:00",
+          "P06#002:02",
+          "L05#012:00",
+          "P01#003:02",
+          "P06#003:02",
+          "P06#002:00",
+          "P11#004:01",
+          "L05#015:00",
+          "P10#001:03",
+          "P11#004:04",
+          "P06#001:00",
+          "L05#004:00",
+          "P01#006:02",
+          "P03#001:05",
+          "L01#003:00",
+          "P06#002:03",
+          "P06#006:00"
+        ],
+        "evidence": [
           {
-            "id": "1",
-            "intent": "refund",
-            "text": "保修期内的商品维修费用由谁承担？"
+            "chunk_id": "L05#018:00",
+            "section": "L05 第十八条 【修理费用来源】",
+            "score": 0.406,
+            "relevance": 0.395,
+            "prior": 0.45,
+            "excerpt": "修理费用由生产者提供。修理费用指三包有效期内保证正常修理的待支费用。"
+          },
+          {
+            "chunk_id": "L05#019:00",
+            "section": "L05 第十九条 【修理费用的支付形式】",
+            "score": 0.334,
+            "relevance": 0.305,
+            "prior": 0.45,
+            "excerpt": "销售者负责修理的产品，生产者按照合同或者协议一次拨出费用，具体办法由产销双方商定。销售者委托或者指定修理者的，其修理费的支付形式由销售者和修理者双方合同约定。专款专用。生产者自行选择其他方式或者自行设置修理网点的，由生产者直接提供修理费用。"
           }
         ]
       },
@@ -690,7 +779,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "afa915b909ed16ba",
+      "parentObservationId": "24fe5e65aeefd7a1",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -698,10 +787,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.934,
+      "latency": 0.526,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:28.805Z",
-      "updatedAt": "2026-08-18T11:50:28.836Z",
+      "createdAt": "2026-08-19T05:19:35.079Z",
+      "updatedAt": "2026-08-19T05:19:35.108Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -722,23 +811,99 @@
       "usagePricingTierName": null
     },
     {
-      "id": "afa915b909ed16ba",
-      "traceId": "19eae838bc77953b20fc8e25f42613a1",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:50:25.002000+00:00",
-      "endTime": "2026-08-18 11:50:26.553000+00:00",
-      "modelParameters": {},
+      "id": "571d5687f8d20441",
+      "traceId": "4b187f170f0437c89d7448a6567f1eba",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:19:31.536000+00:00",
+      "endTime": "2026-08-19 05:19:31.536000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "24fe5e65aeefd7a1",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:19:35.079Z",
+      "updatedAt": "2026-08-19T05:19:35.099Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "719231ce385b5500",
+      "traceId": "4b187f170f0437c89d7448a6567f1eba",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:19:32.142000+00:00",
+      "endTime": "2026-08-19 05:19:32.150000+00:00",
       "input": {
-        "query": "保修期内修东西的钱谁出啊？",
-        "top_k": 4
+        "top_k": 4,
+        "evidence": [
+          "L05#018:00",
+          "L05#019:00"
+        ]
       },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -771,7 +936,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "66daa98241ae94c0",
+      "parentObservationId": "24fe5e65aeefd7a1",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -779,10 +944,91 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.551,
+      "latency": 0.008,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:28.805Z",
-      "updatedAt": "2026-08-18T11:50:28.832Z",
+      "createdAt": "2026-08-19T05:19:35.079Z",
+      "updatedAt": "2026-08-19T05:19:35.098Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "24fe5e65aeefd7a1",
+      "traceId": "4b187f170f0437c89d7448a6567f1eba",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:19:30.510000+00:00",
+      "endTime": "2026-08-19 05:19:32.150000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "保修期内修东西的钱谁出啊？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "L05 部分商品修理更换退货责任规定（三包规定） > 第十八条 【修理费用来源】 … 第十九条 【修理费用的支付形式】",
+            "text": "修理费用由生产者提供。修理费用指三包有效期内保证正常修理的待支费用。\n\n销售者负责修理的产品，生产者按照合同或者协议一次拨出费用，具体办法由产销双方商定。销售者委托或者指定修理者的，其修理费的支付形式由销售者和修理者双方合同约定。专款专用。生产者自行选择其他方式或者自行设置修理网点的，由生产者直接提供修理费用。",
+            "score": 0.40572239398956306,
+            "doc_id": "L05",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "1995-08-25",
+            "source_path": "doc/policy/law/L05-部分商品修理更换退货责任规定.md",
+            "reason": "相关性 0.395 × 先验 0.45 → 0.406；命中 1/law/dense#3, 1/law/bm25#1"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "97622bc3813f14a6",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.64,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:19:35.079Z",
+      "updatedAt": "2026-08-19T05:19:35.095Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -802,18 +1048,93 @@
       "usagePricingTierName": null
     },
     {
-      "id": "6c589c62b4c9da32",
-      "traceId": "19eae838bc77953b20fc8e25f42613a1",
+      "id": "099f894898d66815",
+      "traceId": "4b187f170f0437c89d7448a6567f1eba",
       "type": "SPAN",
-      "name": "rag.recall",
-      "startTime": "2026-08-18 11:50:25.937000+00:00",
-      "endTime": "2026-08-18 11:50:26.026000+00:00",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-19 05:19:30.510000+00:00",
+      "endTime": "2026-08-19 05:19:31.535000+00:00",
+      "input": {
+        "query": "保修期内修东西的钱谁出啊？"
+      },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "refund",
+            "text": "保修期内的商品维修费用由谁承担？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "24fe5e65aeefd7a1",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.025,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:19:35.079Z",
+      "updatedAt": "2026-08-19T05:19:35.092Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "2d4240e1a2ca8037",
+      "traceId": "4b187f170f0437c89d7448a6567f1eba",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-19 05:19:31.536000+00:00",
+      "endTime": "2026-08-19 05:19:31.615000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1003,7 +1324,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "afa915b909ed16ba",
+      "parentObservationId": "24fe5e65aeefd7a1",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1011,10 +1332,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.089,
+      "latency": 0.079,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:28.805Z",
-      "updatedAt": "2026-08-18T11:50:28.832Z",
+      "createdAt": "2026-08-19T05:19:35.079Z",
+      "updatedAt": "2026-08-19T05:19:35.090Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1023,270 +1344,6 @@
       "model": null,
       "modelParameters": null,
       "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "2775c90517f7d426",
-      "traceId": "19eae838bc77953b20fc8e25f42613a1",
-      "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:50:25.937000+00:00",
-      "endTime": "2026-08-18 11:50:25.937000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "routes": [
-          {
-            "sub_query": "1",
-            "layer_k": {
-              "platform": 18,
-              "law": 5
-            },
-            "law_weight": 0.5
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "afa915b909ed16ba",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.0,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:28.805Z",
-      "updatedAt": "2026-08-18T11:50:28.831Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "abf20aa2b8e88551",
-      "traceId": "19eae838bc77953b20fc8e25f42613a1",
-      "type": "SPAN",
-      "name": "rag.rerank",
-      "startTime": "2026-08-18 11:50:26.027000+00:00",
-      "endTime": "2026-08-18 11:50:26.549000+00:00",
-      "input": {
-        "query": "保修期内修东西的钱谁出啊？",
-        "candidates": 20
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "passed": 2,
-        "min_score": 0.3,
-        "dropped": [
-          "P05#005:02",
-          "L05#003:00",
-          "P06#002:02",
-          "L05#012:00",
-          "P01#003:02",
-          "P06#003:02",
-          "P06#002:00",
-          "P11#004:01",
-          "L05#015:00",
-          "P10#001:03",
-          "P11#004:04",
-          "P06#001:00",
-          "L05#004:00",
-          "P01#006:02",
-          "P03#001:05",
-          "L01#003:00",
-          "P06#002:03",
-          "P06#006:00"
-        ],
-        "evidence": [
-          {
-            "chunk_id": "L05#018:00",
-            "section": "L05 第十八条 【修理费用来源】",
-            "score": 0.406,
-            "relevance": 0.395,
-            "prior": 0.45,
-            "excerpt": "修理费用由生产者提供。修理费用指三包有效期内保证正常修理的待支费用。"
-          },
-          {
-            "chunk_id": "L05#019:00",
-            "section": "L05 第十九条 【修理费用的支付形式】",
-            "score": 0.334,
-            "relevance": 0.305,
-            "prior": 0.45,
-            "excerpt": "销售者负责修理的产品，生产者按照合同或者协议一次拨出费用，具体办法由产销双方商定。销售者委托或者指定修理者的，其修理费的支付形式由销售者和修理者双方合同约定。专款专用。生产者自行选择其他方式或者自行设置修理网点的，由生产者直接提供修理费用。"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "afa915b909ed16ba",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.522,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:28.805Z",
-      "updatedAt": "2026-08-18T11:50:28.831Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "2d4933ee438d9ad2",
-      "traceId": "19eae838bc77953b20fc8e25f42613a1",
-      "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:50:26.549000+00:00",
-      "endTime": "2026-08-18 11:50:26.553000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": [
-          "L05#018:00",
-          "L05#019:00"
-        ]
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "L05 部分商品修理更换退货责任规定（三包规定） > 第十八条 【修理费用来源】 … 第十九条 【修理费用的支付形式】",
-            "text": "修理费用由生产者提供。修理费用指三包有效期内保证正常修理的待支费用。\n\n销售者负责修理的产品，生产者按照合同或者协议一次拨出费用，具体办法由产销双方商定。销售者委托或者指定修理者的，其修理费的支付形式由销售者和修理者双方合同约定。专款专用。生产者自行选择其他方式或者自行设置修理网点的，由生产者直接提供修理费用。",
-            "score": 0.40572239398956306,
-            "doc_id": "L05",
-            "layer": "law",
-            "doc_type": "部门规章",
-            "effective_date": "1995-08-25",
-            "source_path": "doc/policy/law/L05-部分商品修理更换退货责任规定.md",
-            "reason": "相关性 0.395 × 先验 0.45 → 0.406；命中 1/law/dense#3, 1/law/bm25#1"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "afa915b909ed16ba",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.004,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:28.805Z",
-      "updatedAt": "2026-08-18T11:50:28.830Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,

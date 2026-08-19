@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-072",
+    "query": "我买的东西送了个赠品，现在想把东西退了，那个赠品是不是也得一起退回去啊？",
     "type": "single",
     "style": "colloquial",
     "doc_id": "P10",
@@ -9,6 +10,7 @@
     "seed_chunk_id": [
       "P10#002:02"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
@@ -19,7 +21,7 @@
       "context_recall": 1.0,
       "context_relevance": 0.132
     },
-    "elapsed_s": 1.6,
+    "elapsed_s": 1.7,
     "seed_rank": {
       "candidate": {
         "P10#002:02": 3
@@ -28,6 +30,18 @@
         "P10#002:02": 1
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "condition",
+          "text": "退货时随商品赠送的赠品是否需要一并退回？"
+        }
+      ]
+    },
+    "rewrite_hash": "ff61a6a43f0108fd",
     "sections": [
       "P10 星辰优选优惠券、赠品与发票处理规则 > 第三条 赠品 > 3.1 一并退回义务 … 第三条 赠品 > 3.5 消耗类赠品",
       "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.5 赠品",
@@ -43,17 +57,17 @@
           {
             "claim": "在赠品与被退商品直接绑定的情形（买 A 送 B）中，退货 A 须一并退回赠品 B。",
             "supported": true,
-            "reason": "P10 第三条 3.1 明确：买 A 送 B，退 A 须一并退 B。"
+            "reason": "P10 明确：买 A 送 B，退 A 须一并退 B。"
           },
           {
             "claim": "在赠品与整单绑定的情形（满额赠）中，部分退货后仍满足赠送条件的，赠品无需退回。",
             "supported": true,
-            "reason": "P10 第三条 3.1 明确：部分退货后仍满足赠送条件的，赠品无需退回。"
+            "reason": "P10 明确：部分退货后仍满足赠送条件的，赠品无需退回。"
           },
           {
             "claim": "在赠品与整单绑定的情形（满额赠）中，部分退货后不再满足赠送条件的，赠品须退回或折价。",
             "supported": true,
-            "reason": "P10 第三条 3.1 明确：不再满足的，赠品须退回或折价。"
+            "reason": "P10 明确：不再满足的，赠品须退回或折价。"
           }
         ],
         "error": null
@@ -79,27 +93,27 @@
         "error": null
       }
     },
-    "trace_id": "eb70527b12596bf786aecd3cbb042e92"
+    "trace_id": "f05931d6432dc7cbce4ce7f650959452"
   },
   "trace": {
-    "id": "eb70527b12596bf786aecd3cbb042e92",
+    "id": "f05931d6432dc7cbce4ce7f650959452",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:45:31.308000+00:00"
+    "timestamp": "2026-08-19 05:13:59.941000+00:00"
   },
   "observations": [
     {
-      "id": "9203f84556a18438",
-      "traceId": "eb70527b12596bf786aecd3cbb042e92",
+      "id": "4969d73a4988f267",
+      "traceId": "f05931d6432dc7cbce4ce7f650959452",
       "type": "SPAN",
       "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:45:37.304000+00:00",
-      "endTime": "2026-08-18 11:45:37.306000+00:00",
+      "startTime": "2026-08-19 05:14:06.131000+00:00",
+      "endTime": "2026-08-19 05:14:06.133000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -123,7 +137,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "12f650e6fb9129ee",
+      "parentObservationId": "c2b8531e365a8e0e",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -133,8 +147,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.002,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:42.018Z",
-      "updatedAt": "2026-08-18T11:45:42.035Z",
+      "createdAt": "2026-08-19T05:14:08.109Z",
+      "updatedAt": "2026-08-19T05:14:08.125Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -156,18 +170,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "12f650e6fb9129ee",
-      "traceId": "eb70527b12596bf786aecd3cbb042e92",
+      "id": "c737d74db32e351a",
+      "traceId": "f05931d6432dc7cbce4ce7f650959452",
       "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:44:57.310000+00:00",
-      "endTime": "2026-08-18 11:45:37.306000+00:00",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:13:49.070000+00:00",
+      "endTime": "2026-08-19 05:14:06.130000+00:00",
       "input": {
         "query": "我买的东西送了个赠品，现在想把东西退了，那个赠品是不是也得一起退回去啊？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -198,7 +212,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -211,6 +225,7 @@
       },
       "output": {
         "case_id": "R1-072",
+        "query": "我买的东西送了个赠品，现在想把东西退了，那个赠品是不是也得一起退回去啊？",
         "type": "single",
         "style": "colloquial",
         "doc_id": "P10",
@@ -219,6 +234,7 @@
         "seed_chunk_id": [
           "P10#002:02"
         ],
+        "acceptable_seed_chunk_ids": null,
         "error": null,
         "scores": {
           "recall@10": 1,
@@ -229,7 +245,7 @@
           "context_recall": 1,
           "context_relevance": 0.132
         },
-        "elapsed_s": 1.6,
+        "elapsed_s": 1.7,
         "seed_rank": {
           "candidate": {
             "P10#002:02": 3
@@ -238,6 +254,18 @@
             "P10#002:02": 1
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "condition",
+              "text": "退货时随商品赠送的赠品是否需要一并退回？"
+            }
+          ]
+        },
+        "rewrite_hash": "ff61a6a43f0108fd",
         "sections": [
           "P10 星辰优选优惠券、赠品与发票处理规则 > 第三条 赠品 > 3.1 一并退回义务 … 第三条 赠品 > 3.5 消耗类赠品",
           "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.5 赠品",
@@ -253,17 +281,204 @@
               {
                 "claim": "在赠品与被退商品直接绑定的情形（买 A 送 B）中，退货 A 须一并退回赠品 B。",
                 "supported": true,
-                "reason": "P10 第三条 3.1 明确：买 A 送 B，退 A 须一并退 B。"
+                "reason": "P10 明确：买 A 送 B，退 A 须一并退 B。"
               },
               {
                 "claim": "在赠品与整单绑定的情形（满额赠）中，部分退货后仍满足赠送条件的，赠品无需退回。",
                 "supported": true,
-                "reason": "P10 第三条 3.1 明确：部分退货后仍满足赠送条件的，赠品无需退回。"
+                "reason": "P10 明确：部分退货后仍满足赠送条件的，赠品无需退回。"
               },
               {
                 "claim": "在赠品与整单绑定的情形（满额赠）中，部分退货后不再满足赠送条件的，赠品须退回或折价。",
                 "supported": true,
-                "reason": "P10 第三条 3.1 明确：不再满足的，赠品须退回或折价。"
+                "reason": "P10 明确：不再满足的，赠品须退回或折价。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.132,
+            "n": 106,
+            "hit": 14,
+            "truncated": false,
+            "note": "不相关的多为退款金额、运费、时效等条款。",
+            "irrelevant": [
+              "**",
+              "**退货时须将商品本身、配件及赠品一并退回。",
+              "**",
+              "赠品包括赠送的实物、积分、代金券、优惠券等各种形式。",
+              "赠品无法一并退回的（已使用、已丢失、已损坏），平台可按**事先标明的赠品价格**从退款中扣除相应价款。",
+              "赠品未事先标明价格的，**不得从退款中扣除**。",
+              "- 赠品与被退商品直接绑定的（买 A 送 B），退 A 须一并退 B；",
+              "- 赠品与整单绑定的（满额赠），部分退货后仍满足赠送条件的，赠品无需退回；",
+              "不再满足的，赠品须退回或折价。",
+              "因商家原因导致的退款，**赠品不要求退回，不从退款中扣除赠品价款**。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "c2b8531e365a8e0e",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 17.06,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:14:08.109Z",
+      "updatedAt": "2026-08-19T05:14:08.121Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "c2b8531e365a8e0e",
+      "traceId": "f05931d6432dc7cbce4ce7f650959452",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-19 05:13:49.070000+00:00",
+      "endTime": "2026-08-19 05:14:06.133000+00:00",
+      "input": {
+        "query": "我买的东西送了个赠品，现在想把东西退了，那个赠品是不是也得一起退回去啊？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-072",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P10",
+        "section": "第三条 赠品 > 3.3 部分退货时的赠品",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.091,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-072",
+        "query": "我买的东西送了个赠品，现在想把东西退了，那个赠品是不是也得一起退回去啊？",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P10",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P10#002:02"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 2491,
+          "duplicate_ratio": 0.343,
+          "context_recall": 1,
+          "context_relevance": 0.132
+        },
+        "elapsed_s": 1.7,
+        "seed_rank": {
+          "candidate": {
+            "P10#002:02": 3
+          },
+          "evidence": {
+            "P10#002:02": 1
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "condition",
+              "text": "退货时随商品赠送的赠品是否需要一并退回？"
+            }
+          ]
+        },
+        "rewrite_hash": "ff61a6a43f0108fd",
+        "sections": [
+          "P10 星辰优选优惠券、赠品与发票处理规则 > 第三条 赠品 > 3.1 一并退回义务 … 第三条 赠品 > 3.5 消耗类赠品",
+          "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.5 赠品",
+          "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十二条 【赠品一并退回】",
+          "P10 星辰优选优惠券、赠品与发票处理规则 > 第二条 满减与套装的部分退货 > 2.4 套装商品"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 3,
+            "hit": 3,
+            "detail": [
+              {
+                "claim": "在赠品与被退商品直接绑定的情形（买 A 送 B）中，退货 A 须一并退回赠品 B。",
+                "supported": true,
+                "reason": "P10 明确：买 A 送 B，退 A 须一并退 B。"
+              },
+              {
+                "claim": "在赠品与整单绑定的情形（满额赠）中，部分退货后仍满足赠送条件的，赠品无需退回。",
+                "supported": true,
+                "reason": "P10 明确：部分退货后仍满足赠送条件的，赠品无需退回。"
+              },
+              {
+                "claim": "在赠品与整单绑定的情形（满额赠）中，部分退货后不再满足赠送条件的，赠品须退回或折价。",
+                "supported": true,
+                "reason": "P10 明确：不再满足的，赠品须退回或折价。"
               }
             ],
             "error": null
@@ -304,10 +519,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 39.996,
+      "latency": 17.063,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:42.018Z",
-      "updatedAt": "2026-08-18T11:45:42.034Z",
+      "createdAt": "2026-08-19T05:14:08.109Z",
+      "updatedAt": "2026-08-19T05:14:08.118Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -329,12 +544,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "133c07239ff788c6",
-      "traceId": "eb70527b12596bf786aecd3cbb042e92",
+      "id": "6f46c979e708e957",
+      "traceId": "f05931d6432dc7cbce4ce7f650959452",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:45:37.305000+00:00",
-      "endTime": "2026-08-18 11:45:37.306000+00:00",
+      "startTime": "2026-08-19 05:14:06.131000+00:00",
+      "endTime": "2026-08-19 05:14:06.132000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -342,6 +557,7 @@
         },
         "output": {
           "case_id": "R1-072",
+          "query": "我买的东西送了个赠品，现在想把东西退了，那个赠品是不是也得一起退回去啊？",
           "type": "single",
           "style": "colloquial",
           "doc_id": "P10",
@@ -350,6 +566,7 @@
           "seed_chunk_id": [
             "P10#002:02"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
@@ -360,7 +577,7 @@
             "context_recall": 1,
             "context_relevance": 0.132
           },
-          "elapsed_s": 1.6,
+          "elapsed_s": 1.7,
           "seed_rank": {
             "candidate": {
               "P10#002:02": 3
@@ -369,6 +586,18 @@
               "P10#002:02": 1
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "condition",
+                "text": "退货时随商品赠送的赠品是否需要一并退回？"
+              }
+            ]
+          },
+          "rewrite_hash": "ff61a6a43f0108fd",
           "sections": [
             "P10 星辰优选优惠券、赠品与发票处理规则 > 第三条 赠品 > 3.1 一并退回义务 … 第三条 赠品 > 3.5 消耗类赠品",
             "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.5 赠品",
@@ -384,17 +613,17 @@
                 {
                   "claim": "在赠品与被退商品直接绑定的情形（买 A 送 B）中，退货 A 须一并退回赠品 B。",
                   "supported": true,
-                  "reason": "P10 第三条 3.1 明确：买 A 送 B，退 A 须一并退 B。"
+                  "reason": "P10 明确：买 A 送 B，退 A 须一并退 B。"
                 },
                 {
                   "claim": "在赠品与整单绑定的情形（满额赠）中，部分退货后仍满足赠送条件的，赠品无需退回。",
                   "supported": true,
-                  "reason": "P10 第三条 3.1 明确：部分退货后仍满足赠送条件的，赠品无需退回。"
+                  "reason": "P10 明确：部分退货后仍满足赠送条件的，赠品无需退回。"
                 },
                 {
                   "claim": "在赠品与整单绑定的情形（满额赠）中，部分退货后不再满足赠送条件的，赠品须退回或折价。",
                   "supported": true,
-                  "reason": "P10 第三条 3.1 明确：不再满足的，赠品须退回或折价。"
+                  "reason": "P10 明确：不再满足的，赠品须退回或折价。"
                 }
               ],
               "error": null
@@ -430,7 +659,8 @@
           "seed_chunk_id": [
             "P10#002:02"
           ],
-          "reference_answer": "赠品与被退商品直接绑定的（买 A 送 B），退 A 须一并退 B；赠品与整单绑定的（满额赠），部分退货后仍满足赠送条件的，赠品无需退回，不再满足的则须退回或折价。"
+          "reference_answer": "赠品与被退商品直接绑定的（买 A 送 B），退 A 须一并退 B；赠品与整单绑定的（满额赠），部分退货后仍满足赠送条件的，赠品无需退回，不再满足的则须退回或折价。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "text",
@@ -452,7 +682,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -512,7 +742,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "9203f84556a18438",
+      "parentObservationId": "4969d73a4988f267",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -522,8 +752,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:42.018Z",
-      "updatedAt": "2026-08-18T11:45:42.028Z",
+      "createdAt": "2026-08-19T05:14:08.109Z",
+      "updatedAt": "2026-08-19T05:14:08.117Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -543,49 +773,21 @@
       "usagePricingTierName": null
     },
     {
-      "id": "a298a23e79f93f4b",
-      "traceId": "eb70527b12596bf786aecd3cbb042e92",
+      "id": "6c687165839ea9bb",
+      "traceId": "f05931d6432dc7cbce4ce7f650959452",
       "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:44:57.310000+00:00",
-      "endTime": "2026-08-18 11:45:37.303000+00:00",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-19 05:13:59.941000+00:00",
+      "endTime": "2026-08-19 05:14:01.009000+00:00",
       "input": {
         "query": "我买的东西送了个赠品，现在想把东西退了，那个赠品是不是也得一起退回去啊？"
       },
       "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-072",
-        "kind": "text",
-        "type": "single",
-        "layer": "platform",
-        "style": "colloquial",
-        "doc_id": "P10",
-        "section": "第三条 赠品 > 3.3 部分退货时的赠品",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.091,
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -597,85 +799,15 @@
         }
       },
       "output": {
-        "case_id": "R1-072",
-        "type": "single",
-        "style": "colloquial",
-        "doc_id": "P10",
-        "layer": "platform",
-        "kind": "text",
-        "seed_chunk_id": [
-          "P10#002:02"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 2491,
-          "duplicate_ratio": 0.343,
-          "context_recall": 1,
-          "context_relevance": 0.132
-        },
-        "elapsed_s": 1.6,
-        "seed_rank": {
-          "candidate": {
-            "P10#002:02": 3
-          },
-          "evidence": {
-            "P10#002:02": 1
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "condition",
+            "text": "退货时随商品赠送的赠品是否需要一并退回？"
           }
-        },
-        "sections": [
-          "P10 星辰优选优惠券、赠品与发票处理规则 > 第三条 赠品 > 3.1 一并退回义务 … 第三条 赠品 > 3.5 消耗类赠品",
-          "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.5 赠品",
-          "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十二条 【赠品一并退回】",
-          "P10 星辰优选优惠券、赠品与发票处理规则 > 第二条 满减与套装的部分退货 > 2.4 套装商品"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 3,
-            "hit": 3,
-            "detail": [
-              {
-                "claim": "在赠品与被退商品直接绑定的情形（买 A 送 B）中，退货 A 须一并退回赠品 B。",
-                "supported": true,
-                "reason": "P10 第三条 3.1 明确：买 A 送 B，退 A 须一并退 B。"
-              },
-              {
-                "claim": "在赠品与整单绑定的情形（满额赠）中，部分退货后仍满足赠送条件的，赠品无需退回。",
-                "supported": true,
-                "reason": "P10 第三条 3.1 明确：部分退货后仍满足赠送条件的，赠品无需退回。"
-              },
-              {
-                "claim": "在赠品与整单绑定的情形（满额赠）中，部分退货后不再满足赠送条件的，赠品须退回或折价。",
-                "supported": true,
-                "reason": "P10 第三条 3.1 明确：不再满足的，赠品须退回或折价。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.132,
-            "n": 106,
-            "hit": 14,
-            "truncated": false,
-            "note": "不相关的多为退款金额、运费、时效等条款。",
-            "irrelevant": [
-              "**",
-              "**退货时须将商品本身、配件及赠品一并退回。",
-              "**",
-              "赠品包括赠送的实物、积分、代金券、优惠券等各种形式。",
-              "赠品无法一并退回的（已使用、已丢失、已损坏），平台可按**事先标明的赠品价格**从退款中扣除相应价款。",
-              "赠品未事先标明价格的，**不得从退款中扣除**。",
-              "- 赠品与被退商品直接绑定的（买 A 送 B），退 A 须一并退 B；",
-              "- 赠品与整单绑定的（满额赠），部分退货后仍满足赠送条件的，赠品无需退回；",
-              "不再满足的，赠品须退回或折价。",
-              "因商家原因导致的退款，**赠品不要求退回，不从退款中扣除赠品价款**。"
-            ],
-            "error": null
-          }
-        }
+        ]
       },
       "usage": {
         "input": 0,
@@ -684,7 +816,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "12f650e6fb9129ee",
+      "parentObservationId": "46a6669e2dd888ba",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -692,10 +824,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 39.993,
+      "latency": 1.068,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:42.018Z",
-      "updatedAt": "2026-08-18T11:45:42.025Z",
+      "createdAt": "2026-08-19T05:14:03.088Z",
+      "updatedAt": "2026-08-19T05:14:03.106Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -716,313 +848,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "cd040c892ec8cdf1",
-      "traceId": "eb70527b12596bf786aecd3cbb042e92",
-      "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:45:32.890000+00:00",
-      "endTime": "2026-08-18 11:45:32.917000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": [
-          "P10#002:02",
-          "P10#002:00",
-          "P03#001:04",
-          "P10#002:03",
-          "P10#002:01",
-          "P10#002:04",
-          "L02#003:02",
-          "P10#001:03",
-          "P10#004:00",
-          "P05#004:00",
-          "P10#003:01"
-        ]
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "P10 星辰优选优惠券、赠品与发票处理规则 > 第三条 赠品 > 3.1 一并退回义务 … 第三条 赠品 > 3.5 消耗类赠品",
-            "text": "**退货时须将商品本身、配件及赠品一并退回。**\n\n赠品包括赠送的实物、积分、代金券、优惠券等各种形式。\n\n赠品无法一并退回的（已使用、已丢失、已损坏），平台可按**事先标明的赠品价格**从退款中扣除相应价款。\n\n赠品未事先标明价格的，**不得从退款中扣除**。\n\n- 赠品与被退商品直接绑定的（买 A 送 B），退 A 须一并退 B；\n- 赠品与整单绑定的（满额赠），部分退货后仍满足赠送条件的，赠品无需退回；不再满足的，赠品须退回或折价。\n\n因商家原因导致的退款，**赠品不要求退回，不从退款中扣除赠品价款**。\n\n试用装、小样等消耗类赠品，已拆封使用的不要求退回，也不从退款中扣除。\n\n**退货时须将商品本身、配件及赠品一并退回。**\n\n赠品包括赠送的实物、积分、代金券、优惠券等各种形式。\n\n赠品无法一并退回的（已使用、已丢失、已损坏），平台可按**事先标明的赠品价格**从退款中扣除相应价款。\n\n赠品未事先标明价格的，**不得从退款中扣除**。\n\n- 赠品与被退商品直接绑定的（买 A 送 B），退 A 须一并退 B；\n- 赠品与整单绑定的（满额赠），部分退货后仍满足赠送条件的，赠品无需退回；不再满足的，赠品须退回或折价。\n\n因商家原因导致的退款，**赠品不要求退回，不从退款中扣除赠品价款**。\n\n试用装、小样等消耗类赠品，已拆封使用的不要求退回，也不从退款中扣除。\n\n**退货时须将商品本身、配件及赠品一并退回。**\n\n赠品包括赠送的实物、积分、代金券、优惠券等各种形式。\n\n赠品无法一并退回的（已使用、已丢失、已损坏），平台可按**事先标明的赠品价格**从退款中扣除相应价款。\n\n赠品未事先标明价格的，**不得从退款中扣除**。\n\n- 赠品与被退商品直接绑定的（买 A 送 B），退 A 须一并退 B；\n- 赠品与整单绑定的（满额赠），部分退货后仍满足赠送条件的，赠品无需退回；不再满足的，赠品须退回或折价。\n\n因商家原因导致的退款，**赠品不要求退回，不从退款中扣除赠品价款**。\n\n试用装、小样等消耗类赠品，已拆封使用的不要求退回，也不从退款中扣除。\n\n**退货时须将商品本身、配件及赠品一并退回。**\n\n赠品包括赠送的实物、积分、代金券、优惠券等各种形式。\n\n赠品无法一并退回的（已使用、已丢失、已损坏），平台可按**事先标明的赠品价格**从退款中扣除相应价款。\n\n赠品未事先标明价格的，**不得从退款中扣除**。\n\n- 赠品与被退商品直接绑定的（买 A 送 B），退 A 须一并退 B；\n- 赠品与整单绑定的（满额赠），部分退货后仍满足赠送条件的，赠品无需退回；不再满足的，赠品须退回或折价。\n\n因商家原因导致的退款，**赠品不要求退回，不从退款中扣除赠品价款**。\n\n试用装、小样等消耗类赠品，已拆封使用的不要求退回，也不从退款中扣除。\n\n**退货时须将商品本身、配件及赠品一并退回。**\n\n赠品包括赠送的实物、积分、代金券、优惠券等各种形式。\n\n赠品无法一并退回的（已使用、已丢失、已损坏），平台可按**事先标明的赠品价格**从退款中扣除相应价款。\n\n赠品未事先标明价格的，**不得从退款中扣除**。\n\n- 赠品与被退商品直接绑定的（买 A 送 B），退 A 须一并退 B；\n- 赠品与整单绑定的（满额赠），部分退货后仍满足赠送条件的，赠品无需退回；不再满足的，赠品须退回或折价。\n\n因商家原因导致的退款，**赠品不要求退回，不从退款中扣除赠品价款**。\n\n试用装、小样等消耗类赠品，已拆封使用的不要求退回，也不从退款中扣除。",
-            "score": 0.9723471450805665,
-            "doc_id": "P10",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P10-优惠券赠品与发票处理规则.md",
-            "reason": "相关性 0.990 × 先验 0.90 → 0.972；命中 1/platform/dense#2, 1/platform/bm25#2"
-          },
-          {
-            "section": "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.5 赠品",
-            "text": "**退款金额以消费者实际支付的金额为准**，不是商品标价。\n\n使用优惠券的订单，**按实付金额退款，优惠券不予退还**。\n\n套装商品或满减活动订单中部分商品退货，导致剩余订单不再满足优惠条件的，按购买时各商品的原价重新结算，**多退少补**。\n\n以积分、储值余额支付的部分，退款时以相同形式返还至原账户。\n\n退货时须将商品本身、配件及赠品一并退回。赠品不能一并退回的，平台可按事先标明的赠品价格从退款中扣除相应价款。详见 [P10]。\n\n运费的承担与扣除规则详见 [P06]。核心区别：**无理由退货的退回运费由消费者承担，质量问题退货的运费由平台或商家承担。**",
-            "score": 0.966382818222046,
-            "doc_id": "P03",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P03-退款规则与到账时效.md",
-            "reason": "相关性 0.983 × 先验 0.90 → 0.966；命中 1/platform/dense#3, 1/platform/bm25#4"
-          },
-          {
-            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十二条 【赠品一并退回】",
-            "text": "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。\n\n七日期间自消费者签收商品的次日开始起算。\n\n> **判定要点**：窗口期以**发出退货通知**的时间为准，不是商品寄回或卖家收到的时间；起算点是**签收次日**，签收当天不计入。\n\n网络商品销售者收到退货通知后应当及时向消费者提供真实、准确的退货地址、退货联系人、退货联系电话等有效联系信息。\n\n消费者获得上述信息后应当及时退回商品，并保留退货凭证。\n\n消费者退货时应当将商品本身、配件及赠品一并退回。\n\n赠品包括赠送的实物、积分、代金券、优惠券等形式。如果赠品不能一并退回，经营者可以要求消费者按照事先标明的赠品价格支付赠品价款。\n\n消费者退回的商品完好的，网络商品销售者应当在收到退回商品之日起七日内向消费者返还已支付的商品价款。\n\n> **判定要点**：法定退款时限是**收到退货之日起 7 日内**。平台承诺的「1-3 个工作日到账」快于法定要求，属于更优承诺。\n\n退款方式比照购买商品的支付方式。经营者与消费者另有约定的，从其约定。\n\n购买商品时采用多种方式支付价款的，一般应当按照各种支付方式的实际支付价款以相应方式退款。\n\n除征得消费者明确表示同意的以外，网络商品销售者不应当自行指定其他退款方式。\n\n> **判定要点**：**「原路退回」是法定默认方式**。未经消费者明确同意，不得以store credit、平台余额、优惠券等形式替代原路退款。\n\n消费者采用积分、代金券、优惠券等形式支付价款的，网络商品销售者在消费者退还商品后应当以相应形式返还消费者。对积分、代金券、优惠券的使用和返还有约定的，可以从其约定。\n\n消费者购买商品时采用信用卡支付方式并支付手续费的，网络商品销售者退款时可以不退回手续费。\n\n消费者购买商品时采用信用卡支付方式并被网络商品销售者免除手续费的，网络商品销售者可以在退款时扣除手续费。\n\n退货价款以消费者实际支出的价款为准。\n\n套装或者满减优惠活动中的部分商品退货，导致不能再享受优惠的，根据购买时各商品价格进行结算，多退少补。\n\n> **判定要点**：**退款基数是实付金额，不是商品标价**。部分退货导致优惠失效的，剩余订单需重新结算，可能出现「多退少补」。\n\n商品退回所产生的运费依法由消费者承担。经营者与消费者另有约定的，按照约定。\n\n消费者参加满足一定条件免运费活动，但退货后已不能达到免运费活动要求的，网络商品销售者在退款时可以扣除运费。\n\n> **判定要点**：**无理由退货运费由消费者承担**（本条）；**质量问题退货运费由经营者承担**（消保法第二十四条）。这是区分退款原因的直接后果之一。\n\n网络商品销售者可以与消费者约定退货方式，但不应当限制消费者的退货方式。\n\n网络商品销售者可以免费上门取货，也可以征得消费者同意后有偿上门取货。",
-            "score": 0.885993185043335,
-            "doc_id": "L02",
-            "layer": "law",
-            "doc_type": "部门规章",
-            "effective_date": "2017-03-15",
-            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
-            "reason": "相关性 0.995 × 先验 0.45 → 0.886；命中 1/law/dense#1, 1/law/bm25#1"
-          },
-          {
-            "section": "P10 星辰优选优惠券、赠品与发票处理规则 > 第二条 满减与套装的部分退货 > 2.4 套装商品",
-            "text": "订单中部分商品退货，导致剩余订单不再满足满减、满赠、套装优惠条件的，按购买时各商品的**原价重新结算，多退少补**。\n\n订单：A 商品 120 元 + B 商品 100 元，使用「满 200 减 40」优惠券，实付 180 元。\n\n| 退货情形 | 重新结算 | 退款金额 |\n|---|---|---|\n| 全退 A + B | 优惠整体失效 | 180 元 |\n| 仅退 A（120 元） | 剩余 B 100 元不满 200，优惠失效，B 应付 100 元 | 180 - 100 = **80 元** |\n| 仅退 B（100 元） | 剩余 A 120 元不满 200，优惠失效，A 应付 120 元 | 180 - 120 = **60 元** |\n\n> 部分退货的退款金额**不是按商品标价直接退**，而是「原实付 − 剩余商品重新结算后应付」。\n\n平台在退款结果中列明重新结算的过程与金额构成。**未列明计算过程的扣减无效**，消费者可申请复核。\n\n套装商品原则上须整套退回。仅退部分件的，按套装内单件原价结算，差额由消费者承担。",
-            "score": 0.6951400566101075,
-            "doc_id": "P10",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P10-优惠券赠品与发票处理规则.md",
-            "reason": "相关性 0.644 × 先验 0.90 → 0.695；命中 1/platform/dense#7, 1/platform/bm25#9"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "811251eefdf1ff58",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.027,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:36.979Z",
-      "updatedAt": "2026-08-18T11:45:36.990Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "0aea5fc694ddda08",
-      "traceId": "eb70527b12596bf786aecd3cbb042e92",
-      "type": "SPAN",
-      "name": "rag.rerank",
-      "startTime": "2026-08-18 11:45:32.344000+00:00",
-      "endTime": "2026-08-18 11:45:32.890000+00:00",
-      "input": {
-        "query": "我买的东西送了个赠品，现在想把东西退了，那个赠品是不是也得一起退回去啊？",
-        "candidates": 20
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "passed": 11,
-        "min_score": 0.3,
-        "dropped": [
-          "L02#002:02",
-          "L02#003:05",
-          "L05#013:00",
-          "L02#001:01",
-          "L02#003:03",
-          "L02#003:09",
-          "L02#003:01",
-          "P11#008:00",
-          "P03#007:00"
-        ],
-        "evidence": [
-          {
-            "chunk_id": "P10#002:02",
-            "section": "P10 第三条 赠品 > 3.3 部分退货时的赠品",
-            "score": 0.972,
-            "relevance": 0.99,
-            "prior": 0.9,
-            "excerpt": "- 赠品与被退商品直接绑定的（买 A 送 B），退 A 须一并退 B； - 赠品与整单绑定的（满额赠），部分退货后仍满足赠送条件的，赠品无需退回；不再满足的，赠品须退回或折价。"
-          },
-          {
-            "chunk_id": "P10#002:00",
-            "section": "P10 第三条 赠品 > 3.1 一并退回义务",
-            "score": 0.971,
-            "relevance": 0.989,
-            "prior": 0.9,
-            "excerpt": "**退货时须将商品本身、配件及赠品一并退回。** 赠品包括赠送的实物、积分、代金券、优惠券等各种形式。"
-          },
-          {
-            "chunk_id": "P03#001:04",
-            "section": "P03 第二条 退款金额的计算 > 2.5 赠品",
-            "score": 0.966,
-            "relevance": 0.983,
-            "prior": 0.9,
-            "excerpt": "退货时须将商品本身、配件及赠品一并退回。赠品不能一并退回的，平台可按事先标明的赠品价格从退款中扣除相应价款。详见 [P10]。"
-          },
-          {
-            "chunk_id": "P10#002:03",
-            "section": "P10 第三条 赠品 > 3.4 商家原因导致的退款",
-            "score": 0.933,
-            "relevance": 0.941,
-            "prior": 0.9,
-            "excerpt": "因商家原因导致的退款，**赠品不要求退回，不从退款中扣除赠品价款**。"
-          },
-          {
-            "chunk_id": "P10#002:01",
-            "section": "P10 第三条 赠品 > 3.2 赠品不能退回的处理",
-            "score": 0.918,
-            "relevance": 0.922,
-            "prior": 0.9,
-            "excerpt": "赠品无法一并退回的（已使用、已丢失、已损坏），平台可按**事先标明的赠品价格**从退款中扣除相应价款。 赠品未事先标明价格的，**不得从退款中扣除**。"
-          },
-          {
-            "chunk_id": "P10#002:04",
-            "section": "P10 第三条 赠品 > 3.5 消耗类赠品",
-            "score": 0.889,
-            "relevance": 0.887,
-            "prior": 0.9,
-            "excerpt": "试用装、小样等消耗类赠品，已拆封使用的不要求退回，也不从退款中扣除。"
-          },
-          {
-            "chunk_id": "L02#003:02",
-            "section": "L02 第三章 退货程序 > 第十二条 【赠品一并退回】",
-            "score": 0.886,
-            "relevance": 0.995,
-            "prior": 0.45,
-            "excerpt": "消费者退货时应当将商品本身、配件及赠品一并退回。 赠品包括赠送的实物、积分、代金券、优惠券等形式。如果赠品不能一并退回，经营者可以要求消费者按照事先标明的赠品价格支付赠品价款。"
-          },
-          {
-            "chunk_id": "P10#001:03",
-            "section": "P10 第二条 满减与套装的部分退货 > 2.4 套装商品",
-            "score": 0.695,
-            "relevance": 0.644,
-            "prior": 0.9,
-            "excerpt": "套装商品原则上须整套退回。仅退部分件的，按套装内单件原价结算，差额由消费者承担。"
-          },
-          {
-            "chunk_id": "P10#004:00",
-            "section": "P10 第五条 发票 > 5.1 退货须退回发票",
-            "score": 0.628,
-            "relevance": 0.56,
-            "prior": 0.9,
-            "excerpt": "订单已开具发票的，消费者应在退货时将发票原件一并退回；电子发票由平台系统直接冲红，无需消费者操作。"
-          },
-          {
-            "chunk_id": "P05#004:00",
-            "section": "P05 第四条 退回商品的验收 > 4.1 验收范围",
-            "score": 0.616,
-            "relevance": 0.545,
-            "prior": 0.9,
-            "excerpt": "商家收到退回商品后，按以下清单验收： （一）商品主体是否为原订单商品（型号、颜色、规格、序列号）； （二）配件是否齐全（说明书、电源线、保修卡、附赠部件）； （三）赠品是否一并退回； （四）吊牌、标识、防伪标是否完整； （五）包装是否具备再…"
-          },
-          {
-            "chunk_id": "P10#003:01",
-            "section": "P10 第四条 积分与储值 > 4.2 购物赠送的积分",
-            "score": 0.495,
-            "relevance": 0.394,
-            "prior": 0.9,
-            "excerpt": "订单赠送的积分在退款时**扣回**。积分余额不足扣回的，账户积分置零，不作负值处理，也不折现追缴。"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "811251eefdf1ff58",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.546,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:36.979Z",
-      "updatedAt": "2026-08-18T11:45:36.989Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "5a98f99508f727e6",
-      "traceId": "eb70527b12596bf786aecd3cbb042e92",
+      "id": "73f6ad499fff5ca1",
+      "traceId": "f05931d6432dc7cbce4ce7f650959452",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 11:45:32.287000+00:00",
-      "endTime": "2026-08-18 11:45:32.343000+00:00",
+      "startTime": "2026-08-19 05:14:01.010000+00:00",
+      "endTime": "2026-08-19 05:14:01.105000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1214,7 +1051,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "811251eefdf1ff58",
+      "parentObservationId": "46a6669e2dd888ba",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1222,10 +1059,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.056,
+      "latency": 0.095,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:36.979Z",
-      "updatedAt": "2026-08-18T11:45:36.989Z",
+      "createdAt": "2026-08-19T05:14:03.088Z",
+      "updatedAt": "2026-08-19T05:14:03.106Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1247,172 +1084,204 @@
       "usagePricingTierName": null
     },
     {
-      "id": "565ecd7f9552af42",
-      "traceId": "eb70527b12596bf786aecd3cbb042e92",
+      "id": "88a97349fdb55aa4",
+      "traceId": "f05931d6432dc7cbce4ce7f650959452",
       "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:45:32.286000+00:00",
-      "endTime": "2026-08-18 11:45:32.287000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "routes": [
-          {
-            "sub_query": "1",
-            "layer_k": {
-              "platform": 18,
-              "law": 5
-            },
-            "law_weight": 0.5
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "811251eefdf1ff58",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.001,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:36.979Z",
-      "updatedAt": "2026-08-18T11:45:36.988Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "908f4193ae4b85c3",
-      "traceId": "eb70527b12596bf786aecd3cbb042e92",
-      "type": "SPAN",
-      "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:45:31.308000+00:00",
-      "endTime": "2026-08-18 11:45:32.286000+00:00",
-      "input": {
-        "query": "我买的东西送了个赠品，现在想把东西退了，那个赠品是不是也得一起退回去啊？"
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "rewritten": true,
-        "needs_law": false,
-        "sub_queries": [
-          {
-            "id": "1",
-            "intent": "condition",
-            "text": "退货时随商品赠送的赠品是否需要一并退回？"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "811251eefdf1ff58",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.978,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:36.979Z",
-      "updatedAt": "2026-08-18T11:45:36.988Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "811251eefdf1ff58",
-      "traceId": "eb70527b12596bf786aecd3cbb042e92",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:45:31.308000+00:00",
-      "endTime": "2026-08-18 11:45:32.918000+00:00",
-      "modelParameters": {},
+      "name": "rag.rerank",
+      "startTime": "2026-08-19 05:14:01.105000+00:00",
+      "endTime": "2026-08-19 05:14:01.666000+00:00",
       "input": {
         "query": "我买的东西送了个赠品，现在想把东西退了，那个赠品是不是也得一起退回去啊？",
-        "top_k": 4
+        "candidates": 20
       },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 11,
+        "min_score": 0.3,
+        "dropped": [
+          "L02#002:02",
+          "L02#003:05",
+          "L05#013:00",
+          "L02#001:01",
+          "L02#003:03",
+          "L02#003:09",
+          "L02#003:01",
+          "P11#008:00",
+          "P03#007:00"
+        ],
+        "evidence": [
+          {
+            "chunk_id": "P10#002:02",
+            "section": "P10 第三条 赠品 > 3.3 部分退货时的赠品",
+            "score": 0.972,
+            "relevance": 0.99,
+            "prior": 0.9,
+            "excerpt": "- 赠品与被退商品直接绑定的（买 A 送 B），退 A 须一并退 B； - 赠品与整单绑定的（满额赠），部分退货后仍满足赠送条件的，赠品无需退回；不再满足的，赠品须退回或折价。"
+          },
+          {
+            "chunk_id": "P10#002:00",
+            "section": "P10 第三条 赠品 > 3.1 一并退回义务",
+            "score": 0.971,
+            "relevance": 0.989,
+            "prior": 0.9,
+            "excerpt": "**退货时须将商品本身、配件及赠品一并退回。** 赠品包括赠送的实物、积分、代金券、优惠券等各种形式。"
+          },
+          {
+            "chunk_id": "P03#001:04",
+            "section": "P03 第二条 退款金额的计算 > 2.5 赠品",
+            "score": 0.966,
+            "relevance": 0.983,
+            "prior": 0.9,
+            "excerpt": "退货时须将商品本身、配件及赠品一并退回。赠品不能一并退回的，平台可按事先标明的赠品价格从退款中扣除相应价款。详见 [P10]。"
+          },
+          {
+            "chunk_id": "P10#002:03",
+            "section": "P10 第三条 赠品 > 3.4 商家原因导致的退款",
+            "score": 0.933,
+            "relevance": 0.941,
+            "prior": 0.9,
+            "excerpt": "因商家原因导致的退款，**赠品不要求退回，不从退款中扣除赠品价款**。"
+          },
+          {
+            "chunk_id": "P10#002:01",
+            "section": "P10 第三条 赠品 > 3.2 赠品不能退回的处理",
+            "score": 0.918,
+            "relevance": 0.922,
+            "prior": 0.9,
+            "excerpt": "赠品无法一并退回的（已使用、已丢失、已损坏），平台可按**事先标明的赠品价格**从退款中扣除相应价款。 赠品未事先标明价格的，**不得从退款中扣除**。"
+          },
+          {
+            "chunk_id": "P10#002:04",
+            "section": "P10 第三条 赠品 > 3.5 消耗类赠品",
+            "score": 0.889,
+            "relevance": 0.887,
+            "prior": 0.9,
+            "excerpt": "试用装、小样等消耗类赠品，已拆封使用的不要求退回，也不从退款中扣除。"
+          },
+          {
+            "chunk_id": "L02#003:02",
+            "section": "L02 第三章 退货程序 > 第十二条 【赠品一并退回】",
+            "score": 0.886,
+            "relevance": 0.995,
+            "prior": 0.45,
+            "excerpt": "消费者退货时应当将商品本身、配件及赠品一并退回。 赠品包括赠送的实物、积分、代金券、优惠券等形式。如果赠品不能一并退回，经营者可以要求消费者按照事先标明的赠品价格支付赠品价款。"
+          },
+          {
+            "chunk_id": "P10#001:03",
+            "section": "P10 第二条 满减与套装的部分退货 > 2.4 套装商品",
+            "score": 0.695,
+            "relevance": 0.644,
+            "prior": 0.9,
+            "excerpt": "套装商品原则上须整套退回。仅退部分件的，按套装内单件原价结算，差额由消费者承担。"
+          },
+          {
+            "chunk_id": "P10#004:00",
+            "section": "P10 第五条 发票 > 5.1 退货须退回发票",
+            "score": 0.628,
+            "relevance": 0.56,
+            "prior": 0.9,
+            "excerpt": "订单已开具发票的，消费者应在退货时将发票原件一并退回；电子发票由平台系统直接冲红，无需消费者操作。"
+          },
+          {
+            "chunk_id": "P05#004:00",
+            "section": "P05 第四条 退回商品的验收 > 4.1 验收范围",
+            "score": 0.616,
+            "relevance": 0.545,
+            "prior": 0.9,
+            "excerpt": "商家收到退回商品后，按以下清单验收： （一）商品主体是否为原订单商品（型号、颜色、规格、序列号）； （二）配件是否齐全（说明书、电源线、保修卡、附赠部件）； （三）赠品是否一并退回； （四）吊牌、标识、防伪标是否完整； （五）包装是否具备再…"
+          },
+          {
+            "chunk_id": "P10#003:01",
+            "section": "P10 第四条 积分与储值 > 4.2 购物赠送的积分",
+            "score": 0.495,
+            "relevance": 0.394,
+            "prior": 0.9,
+            "excerpt": "订单赠送的积分在退款时**扣回**。积分余额不足扣回的，账户积分置零，不作负值处理，也不折现追缴。"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "46a6669e2dd888ba",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.561,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:14:03.088Z",
+      "updatedAt": "2026-08-19T05:14:03.105Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "6c8648042d0abb98",
+      "traceId": "f05931d6432dc7cbce4ce7f650959452",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:14:01.666000+00:00",
+      "endTime": "2026-08-19 05:14:01.678000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "P10#002:02",
+          "P10#002:00",
+          "P03#001:04",
+          "P10#002:03",
+          "P10#002:01",
+          "P10#002:04",
+          "L02#003:02",
+          "P10#001:03",
+          "P10#004:00",
+          "P05#004:00",
+          "P10#003:01"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1478,7 +1347,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "a298a23e79f93f4b",
+      "parentObservationId": "46a6669e2dd888ba",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1486,16 +1355,204 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.61,
+      "latency": 0.012,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:36.979Z",
-      "updatedAt": "2026-08-18T11:45:36.987Z",
+      "createdAt": "2026-08-19T05:14:03.088Z",
+      "updatedAt": "2026-08-19T05:14:03.104Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
       "totalTokens": 0,
       "completionStartTime": null,
       "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "46a6669e2dd888ba",
+      "traceId": "f05931d6432dc7cbce4ce7f650959452",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:13:59.941000+00:00",
+      "endTime": "2026-08-19 05:14:01.678000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "我买的东西送了个赠品，现在想把东西退了，那个赠品是不是也得一起退回去啊？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P10 星辰优选优惠券、赠品与发票处理规则 > 第三条 赠品 > 3.1 一并退回义务 … 第三条 赠品 > 3.5 消耗类赠品",
+            "text": "**退货时须将商品本身、配件及赠品一并退回。**\n\n赠品包括赠送的实物、积分、代金券、优惠券等各种形式。\n\n赠品无法一并退回的（已使用、已丢失、已损坏），平台可按**事先标明的赠品价格**从退款中扣除相应价款。\n\n赠品未事先标明价格的，**不得从退款中扣除**。\n\n- 赠品与被退商品直接绑定的（买 A 送 B），退 A 须一并退 B；\n- 赠品与整单绑定的（满额赠），部分退货后仍满足赠送条件的，赠品无需退回；不再满足的，赠品须退回或折价。\n\n因商家原因导致的退款，**赠品不要求退回，不从退款中扣除赠品价款**。\n\n试用装、小样等消耗类赠品，已拆封使用的不要求退回，也不从退款中扣除。\n\n**退货时须将商品本身、配件及赠品一并退回。**\n\n赠品包括赠送的实物、积分、代金券、优惠券等各种形式。\n\n赠品无法一并退回的（已使用、已丢失、已损坏），平台可按**事先标明的赠品价格**从退款中扣除相应价款。\n\n赠品未事先标明价格的，**不得从退款中扣除**。\n\n- 赠品与被退商品直接绑定的（买 A 送 B），退 A 须一并退 B；\n- 赠品与整单绑定的（满额赠），部分退货后仍满足赠送条件的，赠品无需退回；不再满足的，赠品须退回或折价。\n\n因商家原因导致的退款，**赠品不要求退回，不从退款中扣除赠品价款**。\n\n试用装、小样等消耗类赠品，已拆封使用的不要求退回，也不从退款中扣除。\n\n**退货时须将商品本身、配件及赠品一并退回。**\n\n赠品包括赠送的实物、积分、代金券、优惠券等各种形式。\n\n赠品无法一并退回的（已使用、已丢失、已损坏），平台可按**事先标明的赠品价格**从退款中扣除相应价款。\n\n赠品未事先标明价格的，**不得从退款中扣除**。\n\n- 赠品与被退商品直接绑定的（买 A 送 B），退 A 须一并退 B；\n- 赠品与整单绑定的（满额赠），部分退货后仍满足赠送条件的，赠品无需退回；不再满足的，赠品须退回或折价。\n\n因商家原因导致的退款，**赠品不要求退回，不从退款中扣除赠品价款**。\n\n试用装、小样等消耗类赠品，已拆封使用的不要求退回，也不从退款中扣除。\n\n**退货时须将商品本身、配件及赠品一并退回。**\n\n赠品包括赠送的实物、积分、代金券、优惠券等各种形式。\n\n赠品无法一并退回的（已使用、已丢失、已损坏），平台可按**事先标明的赠品价格**从退款中扣除相应价款。\n\n赠品未事先标明价格的，**不得从退款中扣除**。\n\n- 赠品与被退商品直接绑定的（买 A 送 B），退 A 须一并退 B；\n- 赠品与整单绑定的（满额赠），部分退货后仍满足赠送条件的，赠品无需退回；不再满足的，赠品须退回或折价。\n\n因商家原因导致的退款，**赠品不要求退回，不从退款中扣除赠品价款**。\n\n试用装、小样等消耗类赠品，已拆封使用的不要求退回，也不从退款中扣除。\n\n**退货时须将商品本身、配件及赠品一并退回。**\n\n赠品包括赠送的实物、积分、代金券、优惠券等各种形式。\n\n赠品无法一并退回的（已使用、已丢失、已损坏），平台可按**事先标明的赠品价格**从退款中扣除相应价款。\n\n赠品未事先标明价格的，**不得从退款中扣除**。\n\n- 赠品与被退商品直接绑定的（买 A 送 B），退 A 须一并退 B；\n- 赠品与整单绑定的（满额赠），部分退货后仍满足赠送条件的，赠品无需退回；不再满足的，赠品须退回或折价。\n\n因商家原因导致的退款，**赠品不要求退回，不从退款中扣除赠品价款**。\n\n试用装、小样等消耗类赠品，已拆封使用的不要求退回，也不从退款中扣除。",
+            "score": 0.9723471450805665,
+            "doc_id": "P10",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P10-优惠券赠品与发票处理规则.md",
+            "reason": "相关性 0.990 × 先验 0.90 → 0.972；命中 1/platform/dense#2, 1/platform/bm25#2"
+          },
+          {
+            "section": "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.5 赠品",
+            "text": "**退款金额以消费者实际支付的金额为准**，不是商品标价。\n\n使用优惠券的订单，**按实付金额退款，优惠券不予退还**。\n\n套装商品或满减活动订单中部分商品退货，导致剩余订单不再满足优惠条件的，按购买时各商品的原价重新结算，**多退少补**。\n\n以积分、储值余额支付的部分，退款时以相同形式返还至原账户。\n\n退货时须将商品本身、配件及赠品一并退回。赠品不能一并退回的，平台可按事先标明的赠品价格从退款中扣除相应价款。详见 [P10]。\n\n运费的承担与扣除规则详见 [P06]。核心区别：**无理由退货的退回运费由消费者承担，质量问题退货的运费由平台或商家承担。**",
+            "score": 0.966382818222046,
+            "doc_id": "P03",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P03-退款规则与到账时效.md",
+            "reason": "相关性 0.983 × 先验 0.90 → 0.966；命中 1/platform/dense#3, 1/platform/bm25#4"
+          },
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十二条 【赠品一并退回】",
+            "text": "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。\n\n七日期间自消费者签收商品的次日开始起算。\n\n> **判定要点**：窗口期以**发出退货通知**的时间为准，不是商品寄回或卖家收到的时间；起算点是**签收次日**，签收当天不计入。\n\n网络商品销售者收到退货通知后应当及时向消费者提供真实、准确的退货地址、退货联系人、退货联系电话等有效联系信息。\n\n消费者获得上述信息后应当及时退回商品，并保留退货凭证。\n\n消费者退货时应当将商品本身、配件及赠品一并退回。\n\n赠品包括赠送的实物、积分、代金券、优惠券等形式。如果赠品不能一并退回，经营者可以要求消费者按照事先标明的赠品价格支付赠品价款。\n\n消费者退回的商品完好的，网络商品销售者应当在收到退回商品之日起七日内向消费者返还已支付的商品价款。\n\n> **判定要点**：法定退款时限是**收到退货之日起 7 日内**。平台承诺的「1-3 个工作日到账」快于法定要求，属于更优承诺。\n\n退款方式比照购买商品的支付方式。经营者与消费者另有约定的，从其约定。\n\n购买商品时采用多种方式支付价款的，一般应当按照各种支付方式的实际支付价款以相应方式退款。\n\n除征得消费者明确表示同意的以外，网络商品销售者不应当自行指定其他退款方式。\n\n> **判定要点**：**「原路退回」是法定默认方式**。未经消费者明确同意，不得以store credit、平台余额、优惠券等形式替代原路退款。\n\n消费者采用积分、代金券、优惠券等形式支付价款的，网络商品销售者在消费者退还商品后应当以相应形式返还消费者。对积分、代金券、优惠券的使用和返还有约定的，可以从其约定。\n\n消费者购买商品时采用信用卡支付方式并支付手续费的，网络商品销售者退款时可以不退回手续费。\n\n消费者购买商品时采用信用卡支付方式并被网络商品销售者免除手续费的，网络商品销售者可以在退款时扣除手续费。\n\n退货价款以消费者实际支出的价款为准。\n\n套装或者满减优惠活动中的部分商品退货，导致不能再享受优惠的，根据购买时各商品价格进行结算，多退少补。\n\n> **判定要点**：**退款基数是实付金额，不是商品标价**。部分退货导致优惠失效的，剩余订单需重新结算，可能出现「多退少补」。\n\n商品退回所产生的运费依法由消费者承担。经营者与消费者另有约定的，按照约定。\n\n消费者参加满足一定条件免运费活动，但退货后已不能达到免运费活动要求的，网络商品销售者在退款时可以扣除运费。\n\n> **判定要点**：**无理由退货运费由消费者承担**（本条）；**质量问题退货运费由经营者承担**（消保法第二十四条）。这是区分退款原因的直接后果之一。\n\n网络商品销售者可以与消费者约定退货方式，但不应当限制消费者的退货方式。\n\n网络商品销售者可以免费上门取货，也可以征得消费者同意后有偿上门取货。",
+            "score": 0.885993185043335,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.995 × 先验 0.45 → 0.886；命中 1/law/dense#1, 1/law/bm25#1"
+          },
+          {
+            "section": "P10 星辰优选优惠券、赠品与发票处理规则 > 第二条 满减与套装的部分退货 > 2.4 套装商品",
+            "text": "订单中部分商品退货，导致剩余订单不再满足满减、满赠、套装优惠条件的，按购买时各商品的**原价重新结算，多退少补**。\n\n订单：A 商品 120 元 + B 商品 100 元，使用「满 200 减 40」优惠券，实付 180 元。\n\n| 退货情形 | 重新结算 | 退款金额 |\n|---|---|---|\n| 全退 A + B | 优惠整体失效 | 180 元 |\n| 仅退 A（120 元） | 剩余 B 100 元不满 200，优惠失效，B 应付 100 元 | 180 - 100 = **80 元** |\n| 仅退 B（100 元） | 剩余 A 120 元不满 200，优惠失效，A 应付 120 元 | 180 - 120 = **60 元** |\n\n> 部分退货的退款金额**不是按商品标价直接退**，而是「原实付 − 剩余商品重新结算后应付」。\n\n平台在退款结果中列明重新结算的过程与金额构成。**未列明计算过程的扣减无效**，消费者可申请复核。\n\n套装商品原则上须整套退回。仅退部分件的，按套装内单件原价结算，差额由消费者承担。",
+            "score": 0.6951400566101075,
+            "doc_id": "P10",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P10-优惠券赠品与发票处理规则.md",
+            "reason": "相关性 0.644 × 先验 0.90 → 0.695；命中 1/platform/dense#7, 1/platform/bm25#9"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "c737d74db32e351a",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.737,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:14:03.088Z",
+      "updatedAt": "2026-08-19T05:14:03.102Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "8659f10cef083caf",
+      "traceId": "f05931d6432dc7cbce4ce7f650959452",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:14:01.010000+00:00",
+      "endTime": "2026-08-19 05:14:01.010000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "46a6669e2dd888ba",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:14:03.088Z",
+      "updatedAt": "2026-08-19T05:14:03.101Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,

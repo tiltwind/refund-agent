@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-084",
+    "query": "我是金牌会员，东西签收正好第15天，现在想退，还能退吗？要是已经过了15天，是不是不管啥理由、东西啥样都没戏了？",
     "type": "multi_hop",
     "style": "colloquial",
     "doc_id": "P07+P02",
@@ -10,31 +11,51 @@
       "P07#001:00",
       "P02#001:00"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
       "recall@3": 0.0,
-      "evidence_tokens": 1801,
-      "duplicate_ratio": 0.503,
+      "evidence_tokens": 2430,
+      "duplicate_ratio": 0.288,
       "context_recall": 1.0,
-      "context_relevance": 0.326
+      "context_relevance": 0.287
     },
-    "elapsed_s": 2.5,
+    "elapsed_s": 2.6,
     "seed_rank": {
       "candidate": {
-        "P07#001:00": 3,
-        "P02#001:00": 1
+        "P07#001:00": 1,
+        "P02#001:00": 2
       },
       "evidence": {
         "P07#001:00": 5,
         "P02#001:00": 1
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "window",
+          "text": "金牌会员签收第15天的商品，无理由退货还在窗口期内吗？"
+        },
+        {
+          "id": "2",
+          "intent": "condition",
+          "text": "金牌会员签收超过15天的商品，是否无论任何理由和商品状态都无法退货？"
+        }
+      ]
+    },
+    "rewrite_hash": "e0690df6fc90b024",
     "sections": [
       "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
-      "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.1 风控优先于会员权益 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
+      "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.2 适用条件 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
       "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
-      "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.3 权益对照"
+      "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.3 权益对照",
+      "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区",
+      "P02 星辰优选售后服务与退换货政策 > 第四条 特殊类目 … 第五条 高风险账户"
     ],
     "judge": {
       "context_recall": {
@@ -61,47 +82,47 @@
         "error": null
       },
       "context_relevance": {
-        "score": 0.326,
-        "n": 89,
-        "hit": 29,
+        "score": 0.287,
+        "n": 115,
+        "hit": 33,
         "truncated": false,
-        "note": "不相关的主要是重复内容、风控、商品类型限制等。",
+        "note": "不相关的主要是极速退款、风控、特殊类目、表格重复等。",
         "irrelevant": [
           "2.1 **无理由退货**：",
           "- 普通会员：自签收之日起 **7 天**内可申请；",
           "2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 15 天**内可申请，需描述具体问题。",
-          "**账户被判定为高风险账户的，会员等级不产生豁免效力。",
-          "** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。",
-          "> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。",
-          "两者独立生效，风控不改变窗口，会员不豁免风控。",
-          "生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。",
-          "**账户被判定为高风险账户的，会员等级不产生豁免效力。",
-          "** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。"
+          "金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款项即时到账。",
+          "（一）会员等级为金牌会员；",
+          "（二）账户未被判定为高风险账户；",
+          "（三）订单金额未超过极速退款额度上限；",
+          "（四）商品类目不属于特殊类目。",
+          "商家收货验收不通过的，平台按 [P09] 的争议规则处理。",
+          "经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。"
         ],
         "error": null
       }
     },
-    "trace_id": "db6e96467cd5efba7d9835e47f956124"
+    "trace_id": "fcbf3a4ea1924a2c091dc21baa45b114"
   },
   "trace": {
-    "id": "db6e96467cd5efba7d9835e47f956124",
+    "id": "fcbf3a4ea1924a2c091dc21baa45b114",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:44:07.488000+00:00"
+    "timestamp": "2026-08-19 05:13:19.708000+00:00"
   },
   "observations": [
     {
-      "id": "b1c9036df16a89ad",
-      "traceId": "db6e96467cd5efba7d9835e47f956124",
+      "id": "f6c6c9c85edab351",
+      "traceId": "fcbf3a4ea1924a2c091dc21baa45b114",
       "type": "SPAN",
       "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:43:59.503000+00:00",
-      "endTime": "2026-08-18 11:44:15.243000+00:00",
+      "startTime": "2026-08-19 05:12:54.872000+00:00",
+      "endTime": "2026-08-19 05:13:27.042000+00:00",
       "input": {
         "query": "我是金牌会员，东西签收正好第15天，现在想退，还能退吗？要是已经过了15天，是不是不管啥理由、东西啥样都没戏了？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -133,7 +154,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -146,6 +167,7 @@
       },
       "output": {
         "case_id": "R1-084",
+        "query": "我是金牌会员，东西签收正好第15天，现在想退，还能退吗？要是已经过了15天，是不是不管啥理由、东西啥样都没戏了？",
         "type": "multi_hop",
         "style": "colloquial",
         "doc_id": "P07+P02",
@@ -155,31 +177,51 @@
           "P07#001:00",
           "P02#001:00"
         ],
+        "acceptable_seed_chunk_ids": null,
         "error": null,
         "scores": {
           "recall@10": 1,
           "recall@3": 0,
-          "evidence_tokens": 1801,
-          "duplicate_ratio": 0.503,
+          "evidence_tokens": 2430,
+          "duplicate_ratio": 0.288,
           "context_recall": 1,
-          "context_relevance": 0.326
+          "context_relevance": 0.287
         },
-        "elapsed_s": 2.5,
+        "elapsed_s": 2.6,
         "seed_rank": {
           "candidate": {
-            "P07#001:00": 3,
-            "P02#001:00": 1
+            "P07#001:00": 1,
+            "P02#001:00": 2
           },
           "evidence": {
             "P07#001:00": 5,
             "P02#001:00": 1
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "window",
+              "text": "金牌会员签收第15天的商品，无理由退货还在窗口期内吗？"
+            },
+            {
+              "id": "2",
+              "intent": "condition",
+              "text": "金牌会员签收超过15天的商品，是否无论任何理由和商品状态都无法退货？"
+            }
+          ]
+        },
+        "rewrite_hash": "e0690df6fc90b024",
         "sections": [
           "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
-          "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.1 风控优先于会员权益 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
+          "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.2 适用条件 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
           "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
-          "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.3 权益对照"
+          "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.3 权益对照",
+          "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区",
+          "P02 星辰优选售后服务与退换货政策 > 第四条 特殊类目 … 第五条 高风险账户"
         ],
         "judge": {
           "context_recall": {
@@ -206,22 +248,22 @@
             "error": null
           },
           "context_relevance": {
-            "score": 0.326,
-            "n": 89,
-            "hit": 29,
+            "score": 0.287,
+            "n": 115,
+            "hit": 33,
             "truncated": false,
-            "note": "不相关的主要是重复内容、风控、商品类型限制等。",
+            "note": "不相关的主要是极速退款、风控、特殊类目、表格重复等。",
             "irrelevant": [
               "2.1 **无理由退货**：",
               "- 普通会员：自签收之日起 **7 天**内可申请；",
               "2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 15 天**内可申请，需描述具体问题。",
-              "**账户被判定为高风险账户的，会员等级不产生豁免效力。",
-              "** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。",
-              "> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。",
-              "两者独立生效，风控不改变窗口，会员不豁免风控。",
-              "生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。",
-              "**账户被判定为高风险账户的，会员等级不产生豁免效力。",
-              "** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。"
+              "金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款项即时到账。",
+              "（一）会员等级为金牌会员；",
+              "（二）账户未被判定为高风险账户；",
+              "（三）订单金额未超过极速退款额度上限；",
+              "（四）商品类目不属于特殊类目。",
+              "商家收货验收不通过的，平台按 [P09] 的争议规则处理。",
+              "经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。"
             ],
             "error": null
           }
@@ -241,10 +283,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 15.74,
+      "latency": 32.17,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:16.409Z",
-      "updatedAt": "2026-08-18T11:44:16.422Z",
+      "createdAt": "2026-08-19T05:13:27.888Z",
+      "updatedAt": "2026-08-19T05:13:27.896Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -266,188 +308,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "d7834aec88dcb11e",
-      "traceId": "db6e96467cd5efba7d9835e47f956124",
-      "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:43:59.503000+00:00",
-      "endTime": "2026-08-18 11:44:15.240000+00:00",
-      "input": {
-        "query": "我是金牌会员，东西签收正好第15天，现在想退，还能退吗？要是已经过了15天，是不是不管啥理由、东西啥样都没戏了？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-084",
-        "kind": "table+text",
-        "type": "multi_hop",
-        "layer": "platform",
-        "style": "colloquial",
-        "topic": "会员的退货窗口和普通会员差多少",
-        "doc_id": "P07+P02",
-        "section": "第二条 售后权益差异 > 2.1 无理由退货窗口 / 第二条 退货窗口",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.233,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-084",
-        "type": "multi_hop",
-        "style": "colloquial",
-        "doc_id": "P07+P02",
-        "layer": "platform",
-        "kind": "table+text",
-        "seed_chunk_id": [
-          "P07#001:00",
-          "P02#001:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 0,
-          "evidence_tokens": 1801,
-          "duplicate_ratio": 0.503,
-          "context_recall": 1,
-          "context_relevance": 0.326
-        },
-        "elapsed_s": 2.5,
-        "seed_rank": {
-          "candidate": {
-            "P07#001:00": 3,
-            "P02#001:00": 1
-          },
-          "evidence": {
-            "P07#001:00": 5,
-            "P02#001:00": 1
-          }
-        },
-        "sections": [
-          "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
-          "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.1 风控优先于会员权益 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
-          "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
-          "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.3 权益对照"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 3,
-            "hit": 3,
-            "detail": [
-              {
-                "claim": "金牌会员无理由退货窗口为自签收之日起15天。",
-                "supported": true,
-                "reason": "P02 2.1 及 P07 表格均明确金牌会员无理由退货窗口为15天。"
-              },
-              {
-                "claim": "签收天数等于15天的当天仍在金牌会员无理由退货窗口内，金牌会员可以申请退货。",
-                "supported": true,
-                "reason": "P02 2.3 明确签收天数等于窗口值当天仍在窗口内，可申请。"
-              },
-              {
-                "claim": "签收超过15天的订单，无论退款原因为何、商品状态如何，一律不予受理。",
-                "supported": true,
-                "reason": "P02 2.5 明确签收超过15天一律不予受理。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.326,
-            "n": 89,
-            "hit": 29,
-            "truncated": false,
-            "note": "不相关的主要是重复内容、风控、商品类型限制等。",
-            "irrelevant": [
-              "2.1 **无理由退货**：",
-              "- 普通会员：自签收之日起 **7 天**内可申请；",
-              "2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 15 天**内可申请，需描述具体问题。",
-              "**账户被判定为高风险账户的，会员等级不产生豁免效力。",
-              "** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。",
-              "> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。",
-              "两者独立生效，风控不改变窗口，会员不豁免风控。",
-              "生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。",
-              "**账户被判定为高风险账户的，会员等级不产生豁免效力。",
-              "** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "b1c9036df16a89ad",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 15.737,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:16.409Z",
-      "updatedAt": "2026-08-18T11:44:16.422Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "b7b4d5a3a464d49e",
-      "traceId": "db6e96467cd5efba7d9835e47f956124",
+      "id": "59551fbb509637e8",
+      "traceId": "fcbf3a4ea1924a2c091dc21baa45b114",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:44:15.241000+00:00",
-      "endTime": "2026-08-18 11:44:15.242000+00:00",
+      "startTime": "2026-08-19 05:13:27.042000+00:00",
+      "endTime": "2026-08-19 05:13:27.042000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -455,6 +321,7 @@
         },
         "output": {
           "case_id": "R1-084",
+          "query": "我是金牌会员，东西签收正好第15天，现在想退，还能退吗？要是已经过了15天，是不是不管啥理由、东西啥样都没戏了？",
           "type": "multi_hop",
           "style": "colloquial",
           "doc_id": "P07+P02",
@@ -464,31 +331,51 @@
             "P07#001:00",
             "P02#001:00"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
             "recall@3": 0,
-            "evidence_tokens": 1801,
-            "duplicate_ratio": 0.503,
+            "evidence_tokens": 2430,
+            "duplicate_ratio": 0.288,
             "context_recall": 1,
-            "context_relevance": 0.326
+            "context_relevance": 0.287
           },
-          "elapsed_s": 2.5,
+          "elapsed_s": 2.6,
           "seed_rank": {
             "candidate": {
-              "P07#001:00": 3,
-              "P02#001:00": 1
+              "P07#001:00": 1,
+              "P02#001:00": 2
             },
             "evidence": {
               "P07#001:00": 5,
               "P02#001:00": 1
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "window",
+                "text": "金牌会员签收第15天的商品，无理由退货还在窗口期内吗？"
+              },
+              {
+                "id": "2",
+                "intent": "condition",
+                "text": "金牌会员签收超过15天的商品，是否无论任何理由和商品状态都无法退货？"
+              }
+            ]
+          },
+          "rewrite_hash": "e0690df6fc90b024",
           "sections": [
             "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
-            "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.1 风控优先于会员权益 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
+            "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.2 适用条件 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
             "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
-            "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.3 权益对照"
+            "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.3 权益对照",
+            "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区",
+            "P02 星辰优选售后服务与退换货政策 > 第四条 特殊类目 … 第五条 高风险账户"
           ],
           "judge": {
             "context_recall": {
@@ -515,22 +402,22 @@
               "error": null
             },
             "context_relevance": {
-              "score": 0.326,
-              "n": 89,
-              "hit": 29,
+              "score": 0.287,
+              "n": 115,
+              "hit": 33,
               "truncated": false,
-              "note": "不相关的主要是重复内容、风控、商品类型限制等。",
+              "note": "不相关的主要是极速退款、风控、特殊类目、表格重复等。",
               "irrelevant": [
                 "2.1 **无理由退货**：",
                 "- 普通会员：自签收之日起 **7 天**内可申请；",
                 "2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 15 天**内可申请，需描述具体问题。",
-                "**账户被判定为高风险账户的，会员等级不产生豁免效力。",
-                "** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。",
-                "> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。",
-                "两者独立生效，风控不改变窗口，会员不豁免风控。",
-                "生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。",
-                "**账户被判定为高风险账户的，会员等级不产生豁免效力。",
-                "** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。"
+                "金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款项即时到账。",
+                "（一）会员等级为金牌会员；",
+                "（二）账户未被判定为高风险账户；",
+                "（三）订单金额未超过极速退款额度上限；",
+                "（四）商品类目不属于特殊类目。",
+                "商家收货验收不通过的，平台按 [P09] 的争议规则处理。",
+                "经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。"
               ],
               "error": null
             }
@@ -546,7 +433,8 @@
             "P07#001:00",
             "P02#001:00"
           ],
-          "reference_answer": "金牌会员无理由退货窗口为自签收之日起15天，签收天数等于窗口值的当天仍在窗口内，可以申请；签收第15天可申请。签收超过15天的订单，无论退款原因为何、商品状态如何，一律不予受理。"
+          "reference_answer": "金牌会员无理由退货窗口为自签收之日起15天，签收天数等于窗口值的当天仍在窗口内，可以申请；签收第15天可申请。签收超过15天的订单，无论退款原因为何、商品状态如何，一律不予受理。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "table+text",
@@ -569,7 +457,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -584,7 +472,7 @@
         {
           "name": "recall@10",
           "value": 1,
-          "comment": "种子块名次 P07#001:00=3、P02#001:00=1"
+          "comment": "种子块名次 P07#001:00=1、P02#001:00=2"
         },
         {
           "name": "recall@3",
@@ -593,12 +481,12 @@
         },
         {
           "name": "evidence_tokens",
-          "value": 1801,
+          "value": 2430,
           "comment": ""
         },
         {
           "name": "duplicate_ratio",
-          "value": 0.503,
+          "value": 0.288,
           "comment": ""
         },
         {
@@ -608,8 +496,8 @@
         },
         {
           "name": "context_relevance",
-          "value": 0.326,
-          "comment": "29/89 个内容单元相关；不相关的主要是重复内容、风控、商品类型限制等。"
+          "value": 0.287,
+          "comment": "33/115 个内容单元相关；不相关的主要是极速退款、风控、特殊类目、表格重复等。"
         },
         {
           "name": "run_error",
@@ -624,7 +512,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "0065537e2a200770",
+      "parentObservationId": "99bcd9bc281bc9c8",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -632,10 +520,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.001,
+      "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:16.409Z",
-      "updatedAt": "2026-08-18T11:44:16.421Z",
+      "createdAt": "2026-08-19T05:13:27.888Z",
+      "updatedAt": "2026-08-19T05:13:27.895Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -655,18 +543,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "0065537e2a200770",
-      "traceId": "db6e96467cd5efba7d9835e47f956124",
+      "id": "99bcd9bc281bc9c8",
+      "traceId": "fcbf3a4ea1924a2c091dc21baa45b114",
       "type": "SPAN",
       "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:44:15.241000+00:00",
-      "endTime": "2026-08-18 11:44:15.243000+00:00",
+      "startTime": "2026-08-19 05:13:27.041000+00:00",
+      "endTime": "2026-08-19 05:13:27.042000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -690,7 +578,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "b1c9036df16a89ad",
+      "parentObservationId": "f6c6c9c85edab351",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -698,10 +586,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.002,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:16.409Z",
-      "updatedAt": "2026-08-18T11:44:16.420Z",
+      "createdAt": "2026-08-19T05:13:27.888Z",
+      "updatedAt": "2026-08-19T05:13:27.894Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -723,495 +611,50 @@
       "usagePricingTierName": null
     },
     {
-      "id": "d916eb1c1e5baf87",
-      "traceId": "db6e96467cd5efba7d9835e47f956124",
+      "id": "a6821813ecfc3740",
+      "traceId": "fcbf3a4ea1924a2c091dc21baa45b114",
       "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:44:08.893000+00:00",
-      "endTime": "2026-08-18 11:44:08.893000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "routes": [
-          {
-            "sub_query": "1",
-            "layer_k": {
-              "platform": 18,
-              "law": 5
-            },
-            "law_weight": 0.5
-          },
-          {
-            "sub_query": "2",
-            "layer_k": {
-              "platform": 18,
-              "law": 5
-            },
-            "law_weight": 0.5
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "cc00bcd70507e45d",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.0,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:11.368Z",
-      "updatedAt": "2026-08-18T11:44:11.390Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "cc00bcd70507e45d",
-      "traceId": "db6e96467cd5efba7d9835e47f956124",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:44:07.488000+00:00",
-      "endTime": "2026-08-18 11:44:09.945000+00:00",
-      "modelParameters": {},
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:12:54.873000+00:00",
+      "endTime": "2026-08-19 05:13:27.041000+00:00",
       "input": {
-        "query": "我是金牌会员，东西签收正好第15天，现在想退，还能退吗？要是已经过了15天，是不是不管啥理由、东西啥样都没戏了？",
-        "top_k": 4
+        "query": "我是金牌会员，东西签收正好第15天，现在想退，还能退吗？要是已经过了15天，是不是不管啥理由、东西啥样都没戏了？"
       },
       "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
-            "text": "2.1 **无理由退货**：\n\n- 普通会员：自签收之日起 **7 天**内可申请；\n- 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。\n\n2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 15 天**内可申请，需描述具体问题。\n\n2.3 **窗口判定为「大于即超出」**：签收天数**等于**窗口值的当天仍在窗口内，可以申请；签收天数**大于**窗口值即为超出。\n\n> 例：金牌会员无理由退货，签收第 15 天 → 在窗口内，可申请；签收第 16 天 → 超出，不予受理。\n\n2.4 **超出窗口的申请一律不予受理**，不因会员等级、商品金额、历史消费而例外。\n\n2.5 **最宽窗口为 15 天**。签收超过 15 天的订单，无论退款原因为何、商品状态如何，判定结论均为不通过——此时无需再向消费者追问退款原因或商品状态。",
-            "score": 0.9859220027923585,
-            "doc_id": "P02",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
-            "reason": "相关性 0.982 × 先验 1.00 → 0.986；命中 1/platform/dense#2, 1/platform/bm25#1, 2/platform/dense#2, 2/platform/bm25#1"
-          },
-          {
-            "section": "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.1 风控优先于会员权益 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
-            "text": "**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。\n\n> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。两者独立生效，风控不改变窗口，会员不豁免风控。\n\n生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。\n\n无理由退货「须未拆封」的要求对所有会员等级一律适用。金牌会员延长的是**时间窗口**，不是商品状态要求。\n\n退款申请的窗口按**消费者提交退款申请时**的会员等级判定。下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；反之适用 7 天窗口。\n\n**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。\n\n> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。两者独立生效，风控不改变窗口，会员不豁免风控。\n\n生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。\n\n无理由退货「须未拆封」的要求对所有会员等级一律适用。金牌会员延长的是**时间窗口**，不是商品状态要求。\n\n退款申请的窗口按**消费者提交退款申请时**的会员等级判定。下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；反之适用 7 天窗口。\n\n**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。\n\n> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。两者独立生效，风控不改变窗口，会员不豁免风控。\n\n生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。\n\n无理由退货「须未拆封」的要求对所有会员等级一律适用。金牌会员延长的是**时间窗口**，不是商品状态要求。\n\n退款申请的窗口按**消费者提交退款申请时**的会员等级判定。下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；反之适用 7 天窗口。",
-            "score": 0.9499401855468751,
-            "doc_id": "P07",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
-            "reason": "相关性 0.962 × 先验 0.90 → 0.950；命中 1/platform/dense#6, 1/platform/bm25#9"
-          },
-          {
-            "section": "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
-            "text": "平台支持七日无理由退货，并在法定标准之上向金牌会员提供延长至 15 天的无理由退货服务（[P07]）。\n\n退款申请的受理条件、判定标准、处理时效，适用《售后服务与退换货政策》（[P02]）。\n\n**退款是否通过，以平台依据本协议及各项交易规则作出的正式审核结论为准。** 接待人员不得自行裁量退款是否通过，其职责限于理解消费者诉求、如实转述审核结论、说明所适用的政策条款。\n\n任何退款批准或拒绝的答复，均须以实际生成的退款单号或受理编号为前提。**未生成单号的口头承诺不构成平台的处理结论**，消费者可据此要求重新处理。",
-            "score": 0.9467039871215821,
-            "doc_id": "P01",
-            "layer": "platform",
-            "doc_type": "平台服务协议",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P01-用户服务协议.md",
-            "reason": "相关性 0.958 × 先验 0.90 → 0.947；命中 1/platform/dense#4, 1/platform/bm25#5, 2/platform/dense#7"
-          },
-          {
-            "section": "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.3 权益对照",
-            "text": "| 会员等级 | 无理由退货窗口 |\n|---|---|\n| 普通会员 | 自签收之日起 **7 天** |\n| 金牌会员 | 自签收之日起 **15 天** |\n\n金牌会员的 15 天窗口是平台在法定 7 日标准之上作出的更优承诺，对该等级会员的全部订单有效。\n\n**质量问题退货不区分会员等级，所有消费者一律 15 天。** 会员等级不影响质量问题售后。\n\n| 权益项 | 普通会员 | 金牌会员 |\n|---|---|---|\n| 无理由退货窗口 | 7 天 | 15 天 |\n| 质量问题退货窗口 | 15 天 | 15 天 |\n| 极速退款 | 不支持 | 支持（见第三条） |\n| 专属客服通道 | 不支持 | 支持 |\n| 退货上门取件 | 有偿 | 每月 2 次免费 |\n\n| 会员等级 | 无理由退货窗口 |\n|---|---|\n| 普通会员 | 自签收之日起 **7 天** |\n| 金牌会员 | 自签收之日起 **15 天** |\n\n金牌会员的 15 天窗口是平台在法定 7 日标准之上作出的更优承诺，对该等级会员的全部订单有效。\n\n**质量问题退货不区分会员等级，所有消费者一律 15 天。** 会员等级不影响质量问题售后。\n\n| 权益项 | 普通会员 | 金牌会员 |\n|---|---|---|\n| 无理由退货窗口 | 7 天 | 15 天 |\n| 质量问题退货窗口 | 15 天 | 15 天 |\n| 极速退款 | 不支持 | 支持（见第三条） |\n| 专属客服通道 | 不支持 | 支持 |\n| 退货上门取件 | 有偿 | 每月 2 次免费 |\n\n| 会员等级 | 无理由退货窗口 |\n|---|---|\n| 普通会员 | 自签收之日起 **7 天** |\n| 金牌会员 | 自签收之日起 **15 天** |\n\n金牌会员的 15 天窗口是平台在法定 7 日标准之上作出的更优承诺，对该等级会员的全部订单有效。\n\n**质量问题退货不区分会员等级，所有消费者一律 15 天。** 会员等级不影响质量问题售后。\n\n| 权益项 | 普通会员 | 金牌会员 |\n|---|---|---|\n| 无理由退货窗口 | 7 天 | 15 天 |\n| 质量问题退货窗口 | 15 天 | 15 天 |\n| 极速退款 | 不支持 | 支持（见第三条） |\n| 专属客服通道 | 不支持 | 支持 |\n| 退货上门取件 | 有偿 | 每月 2 次免费 |",
-            "score": 0.9365392017364503,
-            "doc_id": "P07",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
-            "reason": "相关性 0.946 × 先验 0.90 → 0.937；命中 1/platform/dense#1, 1/platform/bm25#2, 2/platform/dense#10, 2/platform/bm25#6"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "d7834aec88dcb11e",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 2.457,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:11.368Z",
-      "updatedAt": "2026-08-18T11:44:11.389Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "eb460a5607fdca43",
-      "traceId": "db6e96467cd5efba7d9835e47f956124",
-      "type": "SPAN",
-      "name": "rag.recall",
-      "startTime": "2026-08-18 11:44:08.893000+00:00",
-      "endTime": "2026-08-18 11:44:09.013000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "candidates": [
-          {
-            "chunk_id": "P02#001:00",
-            "section": "P02 第二条 退货窗口",
-            "rrf": 0.1861,
-            "hits": [
-              "1/platform/dense#2",
-              "1/platform/bm25#1",
-              "2/platform/dense#2",
-              "2/platform/bm25#1"
-            ]
-          },
-          {
-            "chunk_id": "L02#006:01",
-            "section": "L02 第六章 法律责任 > 第三十一条 【拒绝退货、拖延退款】",
-            "rrf": 0.1787,
-            "hits": [
-              "1/law/dense#3",
-              "1/law/bm25#5",
-              "2/law/dense#1",
-              "2/law/bm25#1"
-            ]
-          },
-          {
-            "chunk_id": "P07#001:00",
-            "section": "P07 第二条 售后权益差异 > 2.1 无理由退货窗口",
-            "rrf": 0.1649,
-            "hits": [
-              "1/platform/dense#1",
-              "1/platform/bm25#2",
-              "2/platform/dense#10",
-              "2/platform/bm25#6"
-            ]
-          },
-          {
-            "chunk_id": "P04#005:00",
-            "section": "P04 第五条 不属于排除范围的常见误区",
-            "rrf": 0.1487,
-            "hits": [
-              "1/platform/dense#8",
-              "1/platform/bm25#6",
-              "2/platform/dense#9",
-              "2/platform/bm25#5"
-            ]
-          },
-          {
-            "chunk_id": "P07#001:02",
-            "section": "P07 第二条 售后权益差异 > 2.3 权益对照",
-            "rrf": 0.1462,
-            "hits": [
-              "1/platform/dense#3",
-              "1/platform/bm25#3",
-              "2/platform/dense#11",
-              "2/platform/bm25#17"
-            ]
-          },
-          {
-            "chunk_id": "L02#003:00",
-            "section": "L02 第三章 退货程序 > 第十条 【退货通知期限与起算点】",
-            "rrf": 0.1347,
-            "hits": [
-              "1/law/dense#1",
-              "1/law/bm25#2",
-              "2/law/bm25#4"
-            ]
-          },
-          {
-            "chunk_id": "P01#005:00",
-            "section": "P01 第五章 售后与退款 > 5.1 售后服务承诺",
-            "rrf": 0.1187,
-            "hits": [
-              "1/platform/dense#4",
-              "1/platform/bm25#5",
-              "2/platform/dense#7"
-            ]
-          },
-          {
-            "chunk_id": "P07#001:01",
-            "section": "P07 第二条 售后权益差异 > 2.2 质量问题退货窗口",
-            "rrf": 0.115,
-            "hits": [
-              "1/platform/dense#5",
-              "1/platform/bm25#10",
-              "2/platform/dense#4"
-            ]
-          },
-          {
-            "chunk_id": "P09#004:04",
-            "section": "P09 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
-            "rrf": 0.1081,
-            "hits": [
-              "1/platform/dense#10",
-              "1/platform/bm25#12",
-              "2/platform/dense#3"
-            ]
-          },
-          {
-            "chunk_id": "P03#002:02",
-            "section": "P03 第三条 到账时效 > 3.3 法定时限",
-            "rrf": 0.0949,
-            "hits": [
-              "1/platform/dense#15",
-              "2/platform/dense#5",
-              "2/platform/bm25#18"
-            ]
-          },
-          {
-            "chunk_id": "L02#001:04",
-            "section": "L02 第一章 总则 > 第五条 【鼓励更优承诺】",
-            "rrf": 0.0931,
-            "hits": [
-              "1/law/dense#2",
-              "1/law/bm25#1"
-            ]
-          },
-          {
-            "chunk_id": "L05#025:00",
-            "section": "L05 与无理由退货的对照",
-            "rrf": 0.0889,
-            "hits": [
-              "1/law/bm25#3",
-              "2/law/bm25#2"
-            ]
-          },
-          {
-            "chunk_id": "L01#004:00",
-            "section": "L01 第二十五条 【网络购物七日无理由退货】",
-            "rrf": 0.0871,
-            "hits": [
-              "1/law/dense#4",
-              "2/law/dense#2"
-            ]
-          },
-          {
-            "chunk_id": "P03#004:01",
-            "section": "P03 第五条 商家处理时效与超时机制 > 5.2 已发货未签收订单的退款",
-            "rrf": 0.0821,
-            "hits": [
-              "1/platform/dense#9",
-              "2/platform/dense#1"
-            ]
-          },
-          {
-            "chunk_id": "L02#001:01",
-            "section": "L02 第一章 总则 > 第二条 【适用范围】",
-            "rrf": 0.0817,
-            "hits": [
-              "1/law/dense#5",
-              "2/law/dense#4"
-            ]
-          },
-          {
-            "chunk_id": "L05#010:00",
-            "section": "L05 第十条 【售出 15 日内：可换可修】",
-            "rrf": 0.0817,
-            "hits": [
-              "1/law/bm25#4",
-              "2/law/dense#5"
-            ]
-          },
-          {
-            "chunk_id": "P07#003:03",
-            "section": "P07 第四条 会员权益的边界 > 4.4 等级以申请时为准",
-            "rrf": 0.0787,
-            "hits": [
-              "1/platform/dense#7",
-              "1/platform/bm25#4"
-            ]
-          },
-          {
-            "chunk_id": "P02#005:00",
-            "section": "P02 第六条 判定顺序",
-            "rrf": 0.0757,
-            "hits": [
-              "1/platform/bm25#11",
-              "2/platform/bm25#3"
-            ]
-          },
-          {
-            "chunk_id": "P07#003:02",
-            "section": "P07 第四条 会员权益的边界 > 4.3 会员权益不突破商品条件",
-            "rrf": 0.0729,
-            "hits": [
-              "1/platform/dense#6",
-              "1/platform/bm25#9"
-            ]
-          },
-          {
-            "chunk_id": "P07#003:00",
-            "section": "P07 第四条 会员权益的边界 > 4.1 风控优先于会员权益",
-            "rrf": 0.0693,
-            "hits": [
-              "1/platform/dense#11",
-              "1/platform/bm25#7"
-            ]
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "cc00bcd70507e45d",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.12,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:11.368Z",
-      "updatedAt": "2026-08-18T11:44:11.389Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "3e277817e886c85c",
-      "traceId": "db6e96467cd5efba7d9835e47f956124",
-      "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:44:09.923000+00:00",
-      "endTime": "2026-08-18 11:44:09.945000+00:00",
-      "input": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
         "top_k": 4,
-        "evidence": [
-          "P02#001:00",
-          "P07#003:02",
-          "P07#003:03",
-          "P01#005:00",
-          "P07#001:00",
-          "P04#005:00",
-          "P07#003:00",
-          "P07#001:02",
-          "P07#001:01",
-          "P02#005:00",
-          "L02#001:04",
-          "L01#004:00",
-          "L02#006:01",
-          "P09#004:04",
-          "L02#003:00",
-          "L05#025:00"
-        ]
-      },
-      "metadata": {
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-084",
+        "kind": "table+text",
+        "type": "multi_hop",
+        "layer": "platform",
+        "style": "colloquial",
+        "topic": "会员的退货窗口和普通会员差多少",
+        "doc_id": "P07+P02",
+        "section": "第二条 售后权益差异 > 2.1 无理由退货窗口 / 第二条 退货窗口",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.233,
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1223,52 +666,108 @@
         }
       },
       "output": {
-        "sections": [
-          {
-            "section": "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
-            "text": "2.1 **无理由退货**：\n\n- 普通会员：自签收之日起 **7 天**内可申请；\n- 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。\n\n2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 15 天**内可申请，需描述具体问题。\n\n2.3 **窗口判定为「大于即超出」**：签收天数**等于**窗口值的当天仍在窗口内，可以申请；签收天数**大于**窗口值即为超出。\n\n> 例：金牌会员无理由退货，签收第 15 天 → 在窗口内，可申请；签收第 16 天 → 超出，不予受理。\n\n2.4 **超出窗口的申请一律不予受理**，不因会员等级、商品金额、历史消费而例外。\n\n2.5 **最宽窗口为 15 天**。签收超过 15 天的订单，无论退款原因为何、商品状态如何，判定结论均为不通过——此时无需再向消费者追问退款原因或商品状态。",
-            "score": 0.9859220027923585,
-            "doc_id": "P02",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
-            "reason": "相关性 0.982 × 先验 1.00 → 0.986；命中 1/platform/dense#2, 1/platform/bm25#1, 2/platform/dense#2, 2/platform/bm25#1"
+        "case_id": "R1-084",
+        "query": "我是金牌会员，东西签收正好第15天，现在想退，还能退吗？要是已经过了15天，是不是不管啥理由、东西啥样都没戏了？",
+        "type": "multi_hop",
+        "style": "colloquial",
+        "doc_id": "P07+P02",
+        "layer": "platform",
+        "kind": "table+text",
+        "seed_chunk_id": [
+          "P07#001:00",
+          "P02#001:00"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 0,
+          "evidence_tokens": 2430,
+          "duplicate_ratio": 0.288,
+          "context_recall": 1,
+          "context_relevance": 0.287
+        },
+        "elapsed_s": 2.6,
+        "seed_rank": {
+          "candidate": {
+            "P07#001:00": 1,
+            "P02#001:00": 2
           },
-          {
-            "section": "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.1 风控优先于会员权益 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
-            "text": "**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。\n\n> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。两者独立生效，风控不改变窗口，会员不豁免风控。\n\n生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。\n\n无理由退货「须未拆封」的要求对所有会员等级一律适用。金牌会员延长的是**时间窗口**，不是商品状态要求。\n\n退款申请的窗口按**消费者提交退款申请时**的会员等级判定。下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；反之适用 7 天窗口。\n\n**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。\n\n> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。两者独立生效，风控不改变窗口，会员不豁免风控。\n\n生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。\n\n无理由退货「须未拆封」的要求对所有会员等级一律适用。金牌会员延长的是**时间窗口**，不是商品状态要求。\n\n退款申请的窗口按**消费者提交退款申请时**的会员等级判定。下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；反之适用 7 天窗口。\n\n**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。\n\n> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。两者独立生效，风控不改变窗口，会员不豁免风控。\n\n生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。\n\n无理由退货「须未拆封」的要求对所有会员等级一律适用。金牌会员延长的是**时间窗口**，不是商品状态要求。\n\n退款申请的窗口按**消费者提交退款申请时**的会员等级判定。下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；反之适用 7 天窗口。",
-            "score": 0.9499401855468751,
-            "doc_id": "P07",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
-            "reason": "相关性 0.962 × 先验 0.90 → 0.950；命中 1/platform/dense#6, 1/platform/bm25#9"
-          },
-          {
-            "section": "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
-            "text": "平台支持七日无理由退货，并在法定标准之上向金牌会员提供延长至 15 天的无理由退货服务（[P07]）。\n\n退款申请的受理条件、判定标准、处理时效，适用《售后服务与退换货政策》（[P02]）。\n\n**退款是否通过，以平台依据本协议及各项交易规则作出的正式审核结论为准。** 接待人员不得自行裁量退款是否通过，其职责限于理解消费者诉求、如实转述审核结论、说明所适用的政策条款。\n\n任何退款批准或拒绝的答复，均须以实际生成的退款单号或受理编号为前提。**未生成单号的口头承诺不构成平台的处理结论**，消费者可据此要求重新处理。",
-            "score": 0.9467039871215821,
-            "doc_id": "P01",
-            "layer": "platform",
-            "doc_type": "平台服务协议",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P01-用户服务协议.md",
-            "reason": "相关性 0.958 × 先验 0.90 → 0.947；命中 1/platform/dense#4, 1/platform/bm25#5, 2/platform/dense#7"
-          },
-          {
-            "section": "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.3 权益对照",
-            "text": "| 会员等级 | 无理由退货窗口 |\n|---|---|\n| 普通会员 | 自签收之日起 **7 天** |\n| 金牌会员 | 自签收之日起 **15 天** |\n\n金牌会员的 15 天窗口是平台在法定 7 日标准之上作出的更优承诺，对该等级会员的全部订单有效。\n\n**质量问题退货不区分会员等级，所有消费者一律 15 天。** 会员等级不影响质量问题售后。\n\n| 权益项 | 普通会员 | 金牌会员 |\n|---|---|---|\n| 无理由退货窗口 | 7 天 | 15 天 |\n| 质量问题退货窗口 | 15 天 | 15 天 |\n| 极速退款 | 不支持 | 支持（见第三条） |\n| 专属客服通道 | 不支持 | 支持 |\n| 退货上门取件 | 有偿 | 每月 2 次免费 |\n\n| 会员等级 | 无理由退货窗口 |\n|---|---|\n| 普通会员 | 自签收之日起 **7 天** |\n| 金牌会员 | 自签收之日起 **15 天** |\n\n金牌会员的 15 天窗口是平台在法定 7 日标准之上作出的更优承诺，对该等级会员的全部订单有效。\n\n**质量问题退货不区分会员等级，所有消费者一律 15 天。** 会员等级不影响质量问题售后。\n\n| 权益项 | 普通会员 | 金牌会员 |\n|---|---|---|\n| 无理由退货窗口 | 7 天 | 15 天 |\n| 质量问题退货窗口 | 15 天 | 15 天 |\n| 极速退款 | 不支持 | 支持（见第三条） |\n| 专属客服通道 | 不支持 | 支持 |\n| 退货上门取件 | 有偿 | 每月 2 次免费 |\n\n| 会员等级 | 无理由退货窗口 |\n|---|---|\n| 普通会员 | 自签收之日起 **7 天** |\n| 金牌会员 | 自签收之日起 **15 天** |\n\n金牌会员的 15 天窗口是平台在法定 7 日标准之上作出的更优承诺，对该等级会员的全部订单有效。\n\n**质量问题退货不区分会员等级，所有消费者一律 15 天。** 会员等级不影响质量问题售后。\n\n| 权益项 | 普通会员 | 金牌会员 |\n|---|---|---|\n| 无理由退货窗口 | 7 天 | 15 天 |\n| 质量问题退货窗口 | 15 天 | 15 天 |\n| 极速退款 | 不支持 | 支持（见第三条） |\n| 专属客服通道 | 不支持 | 支持 |\n| 退货上门取件 | 有偿 | 每月 2 次免费 |",
-            "score": 0.9365392017364503,
-            "doc_id": "P07",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
-            "reason": "相关性 0.946 × 先验 0.90 → 0.937；命中 1/platform/dense#1, 1/platform/bm25#2, 2/platform/dense#10, 2/platform/bm25#6"
+          "evidence": {
+            "P07#001:00": 5,
+            "P02#001:00": 1
           }
-        ]
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "window",
+              "text": "金牌会员签收第15天的商品，无理由退货还在窗口期内吗？"
+            },
+            {
+              "id": "2",
+              "intent": "condition",
+              "text": "金牌会员签收超过15天的商品，是否无论任何理由和商品状态都无法退货？"
+            }
+          ]
+        },
+        "rewrite_hash": "e0690df6fc90b024",
+        "sections": [
+          "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
+          "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.2 适用条件 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
+          "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
+          "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.3 权益对照",
+          "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区",
+          "P02 星辰优选售后服务与退换货政策 > 第四条 特殊类目 … 第五条 高风险账户"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 3,
+            "hit": 3,
+            "detail": [
+              {
+                "claim": "金牌会员无理由退货窗口为自签收之日起15天。",
+                "supported": true,
+                "reason": "P02 2.1 及 P07 表格均明确金牌会员无理由退货窗口为15天。"
+              },
+              {
+                "claim": "签收天数等于15天的当天仍在金牌会员无理由退货窗口内，金牌会员可以申请退货。",
+                "supported": true,
+                "reason": "P02 2.3 明确签收天数等于窗口值当天仍在窗口内，可申请。"
+              },
+              {
+                "claim": "签收超过15天的订单，无论退款原因为何、商品状态如何，一律不予受理。",
+                "supported": true,
+                "reason": "P02 2.5 明确签收超过15天一律不予受理。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.287,
+            "n": 115,
+            "hit": 33,
+            "truncated": false,
+            "note": "不相关的主要是极速退款、风控、特殊类目、表格重复等。",
+            "irrelevant": [
+              "2.1 **无理由退货**：",
+              "- 普通会员：自签收之日起 **7 天**内可申请；",
+              "2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 15 天**内可申请，需描述具体问题。",
+              "金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款项即时到账。",
+              "（一）会员等级为金牌会员；",
+              "（二）账户未被判定为高风险账户；",
+              "（三）订单金额未超过极速退款额度上限；",
+              "（四）商品类目不属于特殊类目。",
+              "商家收货验收不通过的，平台按 [P09] 的争议规则处理。",
+              "经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。"
+            ],
+            "error": null
+          }
+        }
       },
       "usage": {
         "input": 0,
@@ -1277,7 +776,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "cc00bcd70507e45d",
+      "parentObservationId": "f6c6c9c85edab351",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1285,10 +784,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.022,
+      "latency": 32.168,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:11.368Z",
-      "updatedAt": "2026-08-18T11:44:11.385Z",
+      "createdAt": "2026-08-19T05:13:27.888Z",
+      "updatedAt": "2026-08-19T05:13:27.894Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1309,12 +808,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "ee7adcf08253e923",
-      "traceId": "db6e96467cd5efba7d9835e47f956124",
+      "id": "c3577fb6f7381151",
+      "traceId": "fcbf3a4ea1924a2c091dc21baa45b114",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 11:44:09.013000+00:00",
-      "endTime": "2026-08-18 11:44:09.923000+00:00",
+      "startTime": "2026-08-19 05:13:21.405000+00:00",
+      "endTime": "2026-08-19 05:13:22.240000+00:00",
       "input": {
         "query": "我是金牌会员，东西签收正好第15天，现在想退，还能退吗？要是已经过了15天，是不是不管啥理由、东西啥样都没戏了？",
         "candidates": 20
@@ -1324,7 +823,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1336,13 +835,12 @@
         }
       },
       "output": {
-        "passed": 16,
+        "passed": 17,
         "min_score": 0.3,
         "dropped": [
-          "P03#002:02",
-          "P03#004:01",
-          "L02#001:01",
-          "L05#010:00"
+          "L02#002:01",
+          "L02#001:03",
+          "L02#002:00"
         ],
         "evidence": [
           {
@@ -1394,14 +892,6 @@
             "excerpt": "以下情形**不构成**拒绝无理由退货的理由： | 常见说法 | 是否成立 | 说明 | |---|---|---| | 「特价商品概不退换」 | ❌ 不成立 | 除非属临期/瑕疵专区并经确认，否则无效 | | 「拆开包装就不能退」 | ❌ …"
           },
           {
-            "chunk_id": "P07#003:00",
-            "section": "P07 第四条 会员权益的边界 > 4.1 风控优先于会员权益",
-            "score": 0.889,
-            "relevance": 0.886,
-            "prior": 0.9,
-            "excerpt": "**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。 > 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退*…"
-          },
-          {
             "chunk_id": "P07#001:02",
             "section": "P07 第二条 售后权益差异 > 2.3 权益对照",
             "score": 0.846,
@@ -1418,12 +908,28 @@
             "excerpt": "**质量问题退货不区分会员等级，所有消费者一律 15 天。** 会员等级不影响质量问题售后。"
           },
           {
-            "chunk_id": "P02#005:00",
-            "section": "P02 第六条 判定顺序",
-            "score": 0.556,
-            "relevance": 0.446,
+            "chunk_id": "P07#002:01",
+            "section": "P07 第三条 极速退款 > 3.2 适用条件",
+            "score": 0.732,
+            "relevance": 0.689,
+            "prior": 0.9,
+            "excerpt": "（一）会员等级为金牌会员； （二）账户未被判定为高风险账户； （三）订单金额未超过极速退款额度上限； （四）商品类目不属于特殊类目。"
+          },
+          {
+            "chunk_id": "P02#004:00",
+            "section": "P02 第五条 高风险账户",
+            "score": 0.705,
+            "relevance": 0.632,
             "prior": 1,
-            "excerpt": "平台按以下固定顺序审核退款申请，**命中一项即形成结论，不再继续后续审核**： | 顺序 | 审核事项 | 命中结论 | |---|---|---| | 1 | 订单不存在，或不属于当前账户 | 不通过：订单不存在 | | 2 | 订单已退…"
+            "excerpt": "5.1 **近 90 天内退款次数超过 3 次的账户视为高风险账户。** 5.2 高风险账户的**自动退款通道关闭**，所有退款申请需转人工客服审核，审核周期为 **1-3 个工作日**。 5.3 阈值判定为「超过」：近 90 天退款 3 …"
+          },
+          {
+            "chunk_id": "P04#003:01",
+            "section": "P04 第三条 平台特殊类目：不支持任何形式的退款 > 3.1 生鲜食品",
+            "score": 0.552,
+            "relevance": 0.465,
+            "prior": 0.9,
+            "excerpt": "鲜活水产、冷鲜肉禽、新鲜果蔬、鲜切花、现制食品等。签收后商品品质随时间迅速变化，无法核验退货时的实际状态，亦无二次销售可能。"
           },
           {
             "chunk_id": "L02#001:04",
@@ -1432,6 +938,14 @@
             "relevance": 0.551,
             "prior": 0.45,
             "excerpt": "鼓励网络商品销售者作出比本办法更有利于消费者的无理由退货承诺。 > **适用要点**：平台把窗口期从 7 天延长到 15 天、对特定会员延长售后期，属于本条鼓励的「更优承诺」，合法有效；反向缩短则无效。"
+          },
+          {
+            "chunk_id": "P02#003:00",
+            "section": "P02 第四条 特殊类目",
+            "score": 0.423,
+            "relevance": 0.279,
+            "prior": 1,
+            "excerpt": "4.1 以下类目不支持任何形式的退款： - **生鲜食品**——鲜活易腐，签收后无法二次销售； - **定制商品**——按消费者要求单独制作，无通用价值； - **虚拟商品**——充值卡、会员权益、卡券码等，交付即核销。 4.2 上述限制*…"
           },
           {
             "chunk_id": "L01#004:00",
@@ -1448,14 +962,6 @@
             "relevance": 0.335,
             "prior": 0.45,
             "excerpt": "网络商品销售者违反本办法规定，有下列情形之一的，依照《消费者权益保护法》第五十六条第一款第（八）项规定予以处罚： （一）未经消费者在购买时确认，擅自以商品不适用七日无理由退货为由拒绝退货，或者以消费者已拆封、查验影响商品完好为由拒绝退货的；…"
-          },
-          {
-            "chunk_id": "P09#004:04",
-            "section": "P09 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
-            "score": 0.346,
-            "relevance": 0.207,
-            "prior": 0.9,
-            "excerpt": "超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。"
           },
           {
             "chunk_id": "L02#003:00",
@@ -1482,7 +988,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "cc00bcd70507e45d",
+      "parentObservationId": "9a1b745c9826d440",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1490,10 +996,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.91,
+      "latency": 0.835,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:11.368Z",
-      "updatedAt": "2026-08-18T11:44:11.384Z",
+      "createdAt": "2026-08-19T05:13:22.869Z",
+      "updatedAt": "2026-08-19T05:13:22.892Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1514,12 +1020,646 @@
       "usagePricingTierName": null
     },
     {
-      "id": "3492e96017b2bb4c",
-      "traceId": "db6e96467cd5efba7d9835e47f956124",
+      "id": "9a1b745c9826d440",
+      "traceId": "fcbf3a4ea1924a2c091dc21baa45b114",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:13:19.708000+00:00",
+      "endTime": "2026-08-19 05:13:22.259000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "我是金牌会员，东西签收正好第15天，现在想退，还能退吗？要是已经过了15天，是不是不管啥理由、东西啥样都没戏了？",
+        "top_k": 6
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
+            "text": "2.1 **无理由退货**：\n\n- 普通会员：自签收之日起 **7 天**内可申请；\n- 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。\n\n2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 15 天**内可申请，需描述具体问题。\n\n2.3 **窗口判定为「大于即超出」**：签收天数**等于**窗口值的当天仍在窗口内，可以申请；签收天数**大于**窗口值即为超出。\n\n> 例：金牌会员无理由退货，签收第 15 天 → 在窗口内，可申请；签收第 16 天 → 超出，不予受理。\n\n2.4 **超出窗口的申请一律不予受理**，不因会员等级、商品金额、历史消费而例外。\n\n2.5 **最宽窗口为 15 天**。签收超过 15 天的订单，无论退款原因为何、商品状态如何，判定结论均为不通过——此时无需再向消费者追问退款原因或商品状态。",
+            "score": 0.9859220027923585,
+            "doc_id": "P02",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
+            "reason": "相关性 0.982 × 先验 1.00 → 0.986；命中 1/platform/dense#2, 1/platform/bm25#1, 2/platform/dense#3, 2/platform/bm25#1"
+          },
+          {
+            "section": "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.2 适用条件 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
+            "text": "金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款项即时到账。\n\n（一）会员等级为金牌会员；\n（二）账户未被判定为高风险账户；\n（三）订单金额未超过极速退款额度上限；\n（四）商品类目不属于特殊类目。\n\n商家收货验收不通过的，平台按 [P09] 的争议规则处理。经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。\n\n消费者出现调包退货、退空包裹、虚构退货物流等行为的，**平台暂停其极速退款资格**，恢复需人工审核。\n\n**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。\n\n> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。两者独立生效，风控不改变窗口，会员不豁免风控。\n\n生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。\n\n无理由退货「须未拆封」的要求对所有会员等级一律适用。金牌会员延长的是**时间窗口**，不是商品状态要求。\n\n退款申请的窗口按**消费者提交退款申请时**的会员等级判定。下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；反之适用 7 天窗口。\n\n**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。\n\n> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。两者独立生效，风控不改变窗口，会员不豁免风控。\n\n生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。\n\n无理由退货「须未拆封」的要求对所有会员等级一律适用。金牌会员延长的是**时间窗口**，不是商品状态要求。\n\n退款申请的窗口按**消费者提交退款申请时**的会员等级判定。下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；反之适用 7 天窗口。",
+            "score": 0.9499402809143067,
+            "doc_id": "P07",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
+            "reason": "相关性 0.962 × 先验 0.90 → 0.950；命中 1/platform/dense#6, 1/platform/bm25#9, 2/platform/dense#4, 2/platform/bm25#8"
+          },
+          {
+            "section": "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
+            "text": "平台支持七日无理由退货，并在法定标准之上向金牌会员提供延长至 15 天的无理由退货服务（[P07]）。\n\n退款申请的受理条件、判定标准、处理时效，适用《售后服务与退换货政策》（[P02]）。\n\n**退款是否通过，以平台依据本协议及各项交易规则作出的正式审核结论为准。** 接待人员不得自行裁量退款是否通过，其职责限于理解消费者诉求、如实转述审核结论、说明所适用的政策条款。\n\n任何退款批准或拒绝的答复，均须以实际生成的退款单号或受理编号为前提。**未生成单号的口头承诺不构成平台的处理结论**，消费者可据此要求重新处理。",
+            "score": 0.9467039871215821,
+            "doc_id": "P01",
+            "layer": "platform",
+            "doc_type": "平台服务协议",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P01-用户服务协议.md",
+            "reason": "相关性 0.958 × 先验 0.90 → 0.947；命中 1/platform/dense#4, 1/platform/bm25#5, 2/platform/dense#2, 2/platform/bm25#6"
+          },
+          {
+            "section": "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.3 权益对照",
+            "text": "| 会员等级 | 无理由退货窗口 |\n|---|---|\n| 普通会员 | 自签收之日起 **7 天** |\n| 金牌会员 | 自签收之日起 **15 天** |\n\n金牌会员的 15 天窗口是平台在法定 7 日标准之上作出的更优承诺，对该等级会员的全部订单有效。\n\n**质量问题退货不区分会员等级，所有消费者一律 15 天。** 会员等级不影响质量问题售后。\n\n| 权益项 | 普通会员 | 金牌会员 |\n|---|---|---|\n| 无理由退货窗口 | 7 天 | 15 天 |\n| 质量问题退货窗口 | 15 天 | 15 天 |\n| 极速退款 | 不支持 | 支持（见第三条） |\n| 专属客服通道 | 不支持 | 支持 |\n| 退货上门取件 | 有偿 | 每月 2 次免费 |\n\n| 会员等级 | 无理由退货窗口 |\n|---|---|\n| 普通会员 | 自签收之日起 **7 天** |\n| 金牌会员 | 自签收之日起 **15 天** |\n\n金牌会员的 15 天窗口是平台在法定 7 日标准之上作出的更优承诺，对该等级会员的全部订单有效。\n\n**质量问题退货不区分会员等级，所有消费者一律 15 天。** 会员等级不影响质量问题售后。\n\n| 权益项 | 普通会员 | 金牌会员 |\n|---|---|---|\n| 无理由退货窗口 | 7 天 | 15 天 |\n| 质量问题退货窗口 | 15 天 | 15 天 |\n| 极速退款 | 不支持 | 支持（见第三条） |\n| 专属客服通道 | 不支持 | 支持 |\n| 退货上门取件 | 有偿 | 每月 2 次免费 |\n\n| 会员等级 | 无理由退货窗口 |\n|---|---|\n| 普通会员 | 自签收之日起 **7 天** |\n| 金牌会员 | 自签收之日起 **15 天** |\n\n金牌会员的 15 天窗口是平台在法定 7 日标准之上作出的更优承诺，对该等级会员的全部订单有效。\n\n**质量问题退货不区分会员等级，所有消费者一律 15 天。** 会员等级不影响质量问题售后。\n\n| 权益项 | 普通会员 | 金牌会员 |\n|---|---|---|\n| 无理由退货窗口 | 7 天 | 15 天 |\n| 质量问题退货窗口 | 15 天 | 15 天 |\n| 极速退款 | 不支持 | 支持（见第三条） |\n| 专属客服通道 | 不支持 | 支持 |\n| 退货上门取件 | 有偿 | 每月 2 次免费 |",
+            "score": 0.9365392017364503,
+            "doc_id": "P07",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
+            "reason": "相关性 0.946 × 先验 0.90 → 0.937；命中 1/platform/dense#1, 1/platform/bm25#2, 2/platform/dense#1, 2/platform/bm25#2"
+          },
+          {
+            "section": "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区",
+            "text": "以下情形**不构成**拒绝无理由退货的理由：\n\n| 常见说法 | 是否成立 | 说明 |\n|---|---|---|\n| 「特价商品概不退换」 | ❌ 不成立 | 除非属临期/瑕疵专区并经确认，否则无效 |\n| 「拆开包装就不能退」 | ❌ 不成立 | 查验性拆封不影响商品完好，见 [P05] |\n| 「已过 7 天不能退」（金牌会员） | ❌ 不成立 | 金牌会员无理由窗口为 15 天，见 [P07] |\n| 「商品页面写了不支持退货」 | ⚠️ 视情况 | 须落入第一条法定范围，或经第二条确认程序 |\n| 「大促期间商品不退」 | ❌ 不成立 | 促销不改变法定退货权 |\n| 「已使用优惠券的订单不退」 | ❌ 不成立 | 按实付金额退款，优惠券不退还，见 [P10] |",
+            "score": 0.894405107498169,
+            "doc_id": "P04",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P04-不适用无理由退货商品清单.md",
+            "reason": "相关性 0.893 × 先验 0.90 → 0.894；命中 1/platform/dense#8, 1/platform/bm25#6, 2/platform/dense#6, 2/platform/bm25#4"
+          },
+          {
+            "section": "P02 星辰优选售后服务与退换货政策 > 第四条 特殊类目 … 第五条 高风险账户",
+            "text": "4.1 以下类目不支持任何形式的退款：\n\n- **生鲜食品**——鲜活易腐，签收后无法二次销售；\n- **定制商品**——按消费者要求单独制作，无通用价值；\n- **虚拟商品**——充值卡、会员权益、卡券码等，交付即核销。\n\n4.2 上述限制**不区分退款原因**：即使消费者主张质量问题，亦不通过自动退款通道。此类诉求转入争议处理流程（[P09]），由人工核实后按个案处理。\n\n4.3 特殊类目限制在商品详情页以显著方式标注，并在下单必经流程中提示确认。**未经标注与确认的商品不适用本条**（依据 [L02] 第二十条、[L03] 第十九条）。\n\n4.4 本条清单与不适用无理由退货的完整商品目录，详见 [P04]。\n\n5.1 **近 90 天内退款次数超过 3 次的账户视为高风险账户。**\n\n5.2 高风险账户的**自动退款通道关闭**，所有退款申请需转人工客服审核，审核周期为 **1-3 个工作日**。\n\n5.3 阈值判定为「超过」：近 90 天退款 3 次**不构成**高风险；4 次及以上构成高风险。\n\n5.4 **风控规则的优先级高于会员权益。** 金牌会员触发高风险规则的，同样关闭自动通道，会员等级不能豁免风控。\n\n5.5 高风险判定不等于拒绝退款——它只改变处理通道（自动 → 人工），不预先否定诉求。人工审核后仍可能批准退款。\n\n5.6 风控的合法性依据与滥用治理的具体口径，详见 [P08]。",
+            "score": 0.705242109298706,
+            "doc_id": "P02",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
+            "reason": "相关性 0.632 × 先验 1.00 → 0.705；命中 1/platform/dense#18, 1/platform/bm25#18, 2/platform/dense#18, 2/platform/bm25#14"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "a6821813ecfc3740",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 2.551,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:13:22.869Z",
+      "updatedAt": "2026-08-19T05:13:22.891Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "83b0c37e1b63b3a8",
+      "traceId": "fcbf3a4ea1924a2c091dc21baa45b114",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:13:22.240000+00:00",
+      "endTime": "2026-08-19 05:13:22.259000+00:00",
+      "input": {
+        "top_k": 6,
+        "evidence": [
+          "P02#001:00",
+          "P07#003:02",
+          "P07#003:03",
+          "P01#005:00",
+          "P07#001:00",
+          "P04#005:00",
+          "P07#001:02",
+          "P07#001:01",
+          "P07#002:01",
+          "P02#004:00",
+          "P04#003:01",
+          "L02#001:04",
+          "P02#003:00",
+          "L01#004:00",
+          "L02#006:01",
+          "L02#003:00",
+          "L05#025:00"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
+            "text": "2.1 **无理由退货**：\n\n- 普通会员：自签收之日起 **7 天**内可申请；\n- 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。\n\n2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 15 天**内可申请，需描述具体问题。\n\n2.3 **窗口判定为「大于即超出」**：签收天数**等于**窗口值的当天仍在窗口内，可以申请；签收天数**大于**窗口值即为超出。\n\n> 例：金牌会员无理由退货，签收第 15 天 → 在窗口内，可申请；签收第 16 天 → 超出，不予受理。\n\n2.4 **超出窗口的申请一律不予受理**，不因会员等级、商品金额、历史消费而例外。\n\n2.5 **最宽窗口为 15 天**。签收超过 15 天的订单，无论退款原因为何、商品状态如何，判定结论均为不通过——此时无需再向消费者追问退款原因或商品状态。",
+            "score": 0.9859220027923585,
+            "doc_id": "P02",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
+            "reason": "相关性 0.982 × 先验 1.00 → 0.986；命中 1/platform/dense#2, 1/platform/bm25#1, 2/platform/dense#3, 2/platform/bm25#1"
+          },
+          {
+            "section": "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.2 适用条件 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
+            "text": "金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款项即时到账。\n\n（一）会员等级为金牌会员；\n（二）账户未被判定为高风险账户；\n（三）订单金额未超过极速退款额度上限；\n（四）商品类目不属于特殊类目。\n\n商家收货验收不通过的，平台按 [P09] 的争议规则处理。经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。\n\n消费者出现调包退货、退空包裹、虚构退货物流等行为的，**平台暂停其极速退款资格**，恢复需人工审核。\n\n**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。\n\n> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。两者独立生效，风控不改变窗口，会员不豁免风控。\n\n生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。\n\n无理由退货「须未拆封」的要求对所有会员等级一律适用。金牌会员延长的是**时间窗口**，不是商品状态要求。\n\n退款申请的窗口按**消费者提交退款申请时**的会员等级判定。下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；反之适用 7 天窗口。\n\n**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。\n\n> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。两者独立生效，风控不改变窗口，会员不豁免风控。\n\n生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。\n\n无理由退货「须未拆封」的要求对所有会员等级一律适用。金牌会员延长的是**时间窗口**，不是商品状态要求。\n\n退款申请的窗口按**消费者提交退款申请时**的会员等级判定。下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；反之适用 7 天窗口。",
+            "score": 0.9499402809143067,
+            "doc_id": "P07",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
+            "reason": "相关性 0.962 × 先验 0.90 → 0.950；命中 1/platform/dense#6, 1/platform/bm25#9, 2/platform/dense#4, 2/platform/bm25#8"
+          },
+          {
+            "section": "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
+            "text": "平台支持七日无理由退货，并在法定标准之上向金牌会员提供延长至 15 天的无理由退货服务（[P07]）。\n\n退款申请的受理条件、判定标准、处理时效，适用《售后服务与退换货政策》（[P02]）。\n\n**退款是否通过，以平台依据本协议及各项交易规则作出的正式审核结论为准。** 接待人员不得自行裁量退款是否通过，其职责限于理解消费者诉求、如实转述审核结论、说明所适用的政策条款。\n\n任何退款批准或拒绝的答复，均须以实际生成的退款单号或受理编号为前提。**未生成单号的口头承诺不构成平台的处理结论**，消费者可据此要求重新处理。",
+            "score": 0.9467039871215821,
+            "doc_id": "P01",
+            "layer": "platform",
+            "doc_type": "平台服务协议",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P01-用户服务协议.md",
+            "reason": "相关性 0.958 × 先验 0.90 → 0.947；命中 1/platform/dense#4, 1/platform/bm25#5, 2/platform/dense#2, 2/platform/bm25#6"
+          },
+          {
+            "section": "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.3 权益对照",
+            "text": "| 会员等级 | 无理由退货窗口 |\n|---|---|\n| 普通会员 | 自签收之日起 **7 天** |\n| 金牌会员 | 自签收之日起 **15 天** |\n\n金牌会员的 15 天窗口是平台在法定 7 日标准之上作出的更优承诺，对该等级会员的全部订单有效。\n\n**质量问题退货不区分会员等级，所有消费者一律 15 天。** 会员等级不影响质量问题售后。\n\n| 权益项 | 普通会员 | 金牌会员 |\n|---|---|---|\n| 无理由退货窗口 | 7 天 | 15 天 |\n| 质量问题退货窗口 | 15 天 | 15 天 |\n| 极速退款 | 不支持 | 支持（见第三条） |\n| 专属客服通道 | 不支持 | 支持 |\n| 退货上门取件 | 有偿 | 每月 2 次免费 |\n\n| 会员等级 | 无理由退货窗口 |\n|---|---|\n| 普通会员 | 自签收之日起 **7 天** |\n| 金牌会员 | 自签收之日起 **15 天** |\n\n金牌会员的 15 天窗口是平台在法定 7 日标准之上作出的更优承诺，对该等级会员的全部订单有效。\n\n**质量问题退货不区分会员等级，所有消费者一律 15 天。** 会员等级不影响质量问题售后。\n\n| 权益项 | 普通会员 | 金牌会员 |\n|---|---|---|\n| 无理由退货窗口 | 7 天 | 15 天 |\n| 质量问题退货窗口 | 15 天 | 15 天 |\n| 极速退款 | 不支持 | 支持（见第三条） |\n| 专属客服通道 | 不支持 | 支持 |\n| 退货上门取件 | 有偿 | 每月 2 次免费 |\n\n| 会员等级 | 无理由退货窗口 |\n|---|---|\n| 普通会员 | 自签收之日起 **7 天** |\n| 金牌会员 | 自签收之日起 **15 天** |\n\n金牌会员的 15 天窗口是平台在法定 7 日标准之上作出的更优承诺，对该等级会员的全部订单有效。\n\n**质量问题退货不区分会员等级，所有消费者一律 15 天。** 会员等级不影响质量问题售后。\n\n| 权益项 | 普通会员 | 金牌会员 |\n|---|---|---|\n| 无理由退货窗口 | 7 天 | 15 天 |\n| 质量问题退货窗口 | 15 天 | 15 天 |\n| 极速退款 | 不支持 | 支持（见第三条） |\n| 专属客服通道 | 不支持 | 支持 |\n| 退货上门取件 | 有偿 | 每月 2 次免费 |",
+            "score": 0.9365392017364503,
+            "doc_id": "P07",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
+            "reason": "相关性 0.946 × 先验 0.90 → 0.937；命中 1/platform/dense#1, 1/platform/bm25#2, 2/platform/dense#1, 2/platform/bm25#2"
+          },
+          {
+            "section": "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区",
+            "text": "以下情形**不构成**拒绝无理由退货的理由：\n\n| 常见说法 | 是否成立 | 说明 |\n|---|---|---|\n| 「特价商品概不退换」 | ❌ 不成立 | 除非属临期/瑕疵专区并经确认，否则无效 |\n| 「拆开包装就不能退」 | ❌ 不成立 | 查验性拆封不影响商品完好，见 [P05] |\n| 「已过 7 天不能退」（金牌会员） | ❌ 不成立 | 金牌会员无理由窗口为 15 天，见 [P07] |\n| 「商品页面写了不支持退货」 | ⚠️ 视情况 | 须落入第一条法定范围，或经第二条确认程序 |\n| 「大促期间商品不退」 | ❌ 不成立 | 促销不改变法定退货权 |\n| 「已使用优惠券的订单不退」 | ❌ 不成立 | 按实付金额退款，优惠券不退还，见 [P10] |",
+            "score": 0.894405107498169,
+            "doc_id": "P04",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P04-不适用无理由退货商品清单.md",
+            "reason": "相关性 0.893 × 先验 0.90 → 0.894；命中 1/platform/dense#8, 1/platform/bm25#6, 2/platform/dense#6, 2/platform/bm25#4"
+          },
+          {
+            "section": "P02 星辰优选售后服务与退换货政策 > 第四条 特殊类目 … 第五条 高风险账户",
+            "text": "4.1 以下类目不支持任何形式的退款：\n\n- **生鲜食品**——鲜活易腐，签收后无法二次销售；\n- **定制商品**——按消费者要求单独制作，无通用价值；\n- **虚拟商品**——充值卡、会员权益、卡券码等，交付即核销。\n\n4.2 上述限制**不区分退款原因**：即使消费者主张质量问题，亦不通过自动退款通道。此类诉求转入争议处理流程（[P09]），由人工核实后按个案处理。\n\n4.3 特殊类目限制在商品详情页以显著方式标注，并在下单必经流程中提示确认。**未经标注与确认的商品不适用本条**（依据 [L02] 第二十条、[L03] 第十九条）。\n\n4.4 本条清单与不适用无理由退货的完整商品目录，详见 [P04]。\n\n5.1 **近 90 天内退款次数超过 3 次的账户视为高风险账户。**\n\n5.2 高风险账户的**自动退款通道关闭**，所有退款申请需转人工客服审核，审核周期为 **1-3 个工作日**。\n\n5.3 阈值判定为「超过」：近 90 天退款 3 次**不构成**高风险；4 次及以上构成高风险。\n\n5.4 **风控规则的优先级高于会员权益。** 金牌会员触发高风险规则的，同样关闭自动通道，会员等级不能豁免风控。\n\n5.5 高风险判定不等于拒绝退款——它只改变处理通道（自动 → 人工），不预先否定诉求。人工审核后仍可能批准退款。\n\n5.6 风控的合法性依据与滥用治理的具体口径，详见 [P08]。",
+            "score": 0.705242109298706,
+            "doc_id": "P02",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
+            "reason": "相关性 0.632 × 先验 1.00 → 0.705；命中 1/platform/dense#18, 1/platform/bm25#18, 2/platform/dense#18, 2/platform/bm25#14"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "9a1b745c9826d440",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.019,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:13:22.869Z",
+      "updatedAt": "2026-08-19T05:13:22.891Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "4c873e8d42759d7f",
+      "traceId": "fcbf3a4ea1924a2c091dc21baa45b114",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-19 05:13:21.281000+00:00",
+      "endTime": "2026-08-19 05:13:21.405000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "P07#001:00",
+            "section": "P07 第二条 售后权益差异 > 2.1 无理由退货窗口",
+            "rrf": 0.1861,
+            "hits": [
+              "1/platform/dense#1",
+              "1/platform/bm25#2",
+              "2/platform/dense#1",
+              "2/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P02#001:00",
+            "section": "P02 第二条 退货窗口",
+            "rrf": 0.1842,
+            "hits": [
+              "1/platform/dense#2",
+              "1/platform/bm25#1",
+              "2/platform/dense#3",
+              "2/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:00",
+            "section": "L02 第三章 退货程序 > 第十条 【退货通知期限与起算点】",
+            "rrf": 0.0931,
+            "hits": [
+              "1/law/dense#1",
+              "1/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L02#001:04",
+            "section": "L02 第一章 总则 > 第五条 【鼓励更优承诺】",
+            "rrf": 0.1407,
+            "hits": [
+              "1/law/dense#2",
+              "1/law/bm25#1",
+              "2/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P07#001:02",
+            "section": "P07 第二条 售后权益差异 > 2.3 权益对照",
+            "rrf": 0.1704,
+            "hits": [
+              "1/platform/dense#3",
+              "1/platform/bm25#3",
+              "2/platform/dense#5",
+              "2/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#006:01",
+            "section": "L02 第六章 法律责任 > 第三十一条 【拒绝退货、拖延退款】",
+            "rrf": 0.1744,
+            "hits": [
+              "1/law/dense#3",
+              "1/law/bm25#5",
+              "2/law/dense#2",
+              "2/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P01#005:00",
+            "section": "P01 第五章 售后与退款 > 5.1 售后服务承诺",
+            "rrf": 0.1656,
+            "hits": [
+              "1/platform/dense#4",
+              "1/platform/bm25#5",
+              "2/platform/dense#2",
+              "2/platform/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "P07#003:03",
+            "section": "P07 第四条 会员权益的边界 > 4.4 等级以申请时为准",
+            "rrf": 0.1426,
+            "hits": [
+              "1/platform/dense#7",
+              "1/platform/bm25#4",
+              "2/platform/dense#14",
+              "2/platform/bm25#9"
+            ]
+          },
+          {
+            "chunk_id": "P04#005:00",
+            "section": "P04 第五条 不属于排除范围的常见误区",
+            "rrf": 0.1543,
+            "hits": [
+              "1/platform/dense#8",
+              "1/platform/bm25#6",
+              "2/platform/dense#6",
+              "2/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P07#001:01",
+            "section": "P07 第二条 售后权益差异 > 2.2 质量问题退货窗口",
+            "rrf": 0.1407,
+            "hits": [
+              "1/platform/dense#5",
+              "1/platform/bm25#10",
+              "2/platform/dense#7",
+              "2/platform/bm25#13"
+            ]
+          },
+          {
+            "chunk_id": "P07#003:02",
+            "section": "P07 第四条 会员权益的边界 > 4.3 会员权益不突破商品条件",
+            "rrf": 0.1503,
+            "hits": [
+              "1/platform/dense#6",
+              "1/platform/bm25#9",
+              "2/platform/dense#4",
+              "2/platform/bm25#8"
+            ]
+          },
+          {
+            "chunk_id": "P07#002:01",
+            "section": "P07 第三条 极速退款 > 3.2 适用条件",
+            "rrf": 0.0895,
+            "hits": [
+              "1/platform/dense#17",
+              "2/platform/dense#12",
+              "2/platform/bm25#12"
+            ]
+          },
+          {
+            "chunk_id": "P02#004:00",
+            "section": "P02 第五条 高风险账户",
+            "rrf": 0.1084,
+            "hits": [
+              "1/platform/dense#18",
+              "1/platform/bm25#18",
+              "2/platform/dense#18",
+              "2/platform/bm25#14"
+            ]
+          },
+          {
+            "chunk_id": "P02#003:00",
+            "section": "P02 第四条 特殊类目",
+            "rrf": 0.0556,
+            "hits": [
+              "2/platform/dense#16",
+              "2/platform/bm25#16"
+            ]
+          },
+          {
+            "chunk_id": "L01#004:00",
+            "section": "L01 第二十五条 【网络购物七日无理由退货】",
+            "rrf": 0.0893,
+            "hits": [
+              "1/law/dense#4",
+              "2/law/dense#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#002:01",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】",
+            "rrf": 0.0435,
+            "hits": [
+              "2/law/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#001:03",
+            "section": "L02 第一章 总则 > 第四条 【诚实信用原则】",
+            "rrf": 0.0435,
+            "hits": [
+              "2/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#002:00",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第六条 【法定不适用商品（无需消费者确认）】",
+            "rrf": 0.0417,
+            "hits": [
+              "2/law/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "L05#025:00",
+            "section": "L05 与无理由退货的对照",
+            "rrf": 0.0851,
+            "hits": [
+              "1/law/bm25#3",
+              "2/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P04#003:01",
+            "section": "P04 第三条 平台特殊类目：不支持任何形式的退款 > 3.1 生鲜食品",
+            "rrf": 0.04,
+            "hits": [
+              "2/platform/bm25#5"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "9a1b745c9826d440",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.124,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:13:22.869Z",
+      "updatedAt": "2026-08-19T05:13:22.888Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "595416927545aace",
+      "traceId": "fcbf3a4ea1924a2c091dc21baa45b114",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:13:21.280000+00:00",
+      "endTime": "2026-08-19 05:13:21.280000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          },
+          {
+            "sub_query": "2",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "9a1b745c9826d440",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:13:22.869Z",
+      "updatedAt": "2026-08-19T05:13:22.885Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "fe49d760498dc23e",
+      "traceId": "fcbf3a4ea1924a2c091dc21baa45b114",
       "type": "SPAN",
       "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:44:07.488000+00:00",
-      "endTime": "2026-08-18 11:44:08.892000+00:00",
+      "startTime": "2026-08-19 05:13:19.708000+00:00",
+      "endTime": "2026-08-19 05:13:21.279000+00:00",
       "input": {
         "query": "我是金牌会员，东西签收正好第15天，现在想退，还能退吗？要是已经过了15天，是不是不管啥理由、东西啥样都没戏了？"
       },
@@ -1528,7 +1668,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1551,7 +1691,7 @@
           {
             "id": "2",
             "intent": "condition",
-            "text": "签收超过15天后，无论什么理由、商品什么状态，是否都无法退货了？"
+            "text": "金牌会员签收超过15天的商品，是否无论任何理由和商品状态都无法退货？"
           }
         ]
       },
@@ -1562,7 +1702,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "cc00bcd70507e45d",
+      "parentObservationId": "9a1b745c9826d440",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1570,10 +1710,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.404,
+      "latency": 1.571,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:11.368Z",
-      "updatedAt": "2026-08-18T11:44:11.378Z",
+      "createdAt": "2026-08-19T05:13:22.869Z",
+      "updatedAt": "2026-08-19T05:13:22.883Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,

@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-091",
+    "query": "近90天内退款次数超过3次的账户，其退款申请在审核流程中会得到什么结论？",
     "type": "multi_hop",
     "style": "formal",
     "doc_id": "P08+P02",
@@ -10,6 +11,7 @@
       "P08#001:00",
       "P02#005:00"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
@@ -17,9 +19,9 @@
       "evidence_tokens": 1426,
       "duplicate_ratio": 0.268,
       "context_recall": 1.0,
-      "context_relevance": 0.276
+      "context_relevance": 0.289
     },
-    "elapsed_s": 2.3,
+    "elapsed_s": 2.1,
     "seed_rank": {
       "candidate": {
         "P08#001:00": 1,
@@ -30,6 +32,18 @@
         "P02#005:00": 2
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "risk",
+          "text": "近90天内退款次数超过3次的账户，其退款申请在审核流程中会得到什么结论？"
+        }
+      ]
+    },
+    "rewrite_hash": "d92ceb44c38e25bb",
     "sections": [
       "P02 星辰优选售后服务与退换货政策 > 第五条 高风险账户 … 第六条 判定顺序",
       "P08 星辰优选风控与异常退款治理规则 > 第一条 高风险账户的判定 > 1.1 判定标准 … 第一条 高风险账户的判定 > 1.3 统计口径",
@@ -65,11 +79,11 @@
         "error": null
       },
       "context_relevance": {
-        "score": 0.276,
+        "score": 0.289,
         "n": 76,
-        "hit": 21,
+        "hit": 22,
         "truncated": false,
-        "note": "不相关的多为重复条款、其他审核事项或与高风险判定无直接关联的内容。",
+        "note": "不相关的主要是重复条款、其他审核顺序、自动通道条件等。",
         "irrelevant": [
           "**",
           "5.4 **风控规则的优先级高于会员权益。",
@@ -85,387 +99,27 @@
         "error": null
       }
     },
-    "trace_id": "94dd44f4cd98965d084ac11b00b7b986"
+    "trace_id": "8ea7edec932a60d50c6b9d2b922aafdf"
   },
   "trace": {
-    "id": "94dd44f4cd98965d084ac11b00b7b986",
+    "id": "8ea7edec932a60d50c6b9d2b922aafdf",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:43:23.047000+00:00"
+    "timestamp": "2026-08-19 05:12:32.879000+00:00"
   },
   "observations": [
     {
-      "id": "04ea8d79d4881b5a",
-      "traceId": "94dd44f4cd98965d084ac11b00b7b986",
-      "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:43:00.144000+00:00",
-      "endTime": "2026-08-18 11:43:30.334000+00:00",
-      "input": {
-        "query": "近90天内退款次数超过3次的账户，其退款申请在审核流程中会得到什么结论？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-091",
-        "kind": "table+text",
-        "type": "multi_hop",
-        "layer": "platform",
-        "style": "formal",
-        "topic": "被判成高风险账户之后还退不退得了",
-        "doc_id": "P08+P02",
-        "section": "第一条 高风险账户的判定 > 1.1 判定标准 / 第六条 判定顺序",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.586,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-091",
-        "type": "multi_hop",
-        "style": "formal",
-        "doc_id": "P08+P02",
-        "layer": "platform",
-        "kind": "table+text",
-        "seed_chunk_id": [
-          "P08#001:00",
-          "P02#005:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "evidence_tokens": 1426,
-          "duplicate_ratio": 0.268,
-          "context_recall": 1,
-          "context_relevance": 0.276
-        },
-        "elapsed_s": 2.3,
-        "seed_rank": {
-          "candidate": {
-            "P08#001:00": 1,
-            "P02#005:00": 5
-          },
-          "evidence": {
-            "P08#001:00": 3,
-            "P02#005:00": 2
-          }
-        },
-        "sections": [
-          "P02 星辰优选售后服务与退换货政策 > 第五条 高风险账户 … 第六条 判定顺序",
-          "P08 星辰优选风控与异常退款治理规则 > 第一条 高风险账户的判定 > 1.1 判定标准 … 第一条 高风险账户的判定 > 1.3 统计口径",
-          "P03 星辰优选退款规则与到账时效 > 第四条 退款通道 > 4.2 人工审核通道"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 4,
-            "hit": 4,
-            "detail": [
-              {
-                "claim": "近90天内退款次数超过3次的账户会被判定为高风险账户。",
-                "supported": true,
-                "reason": "P02 5.1 和 P08 1.1 均明确该判定标准。"
-              },
-              {
-                "claim": "在审核流程中，高风险账户这一项命中后，结论为不通过。",
-                "supported": true,
-                "reason": "P02 审核顺序表第3项命中结论为不通过。"
-              },
-              {
-                "claim": "在审核流程中，高风险账户这一项命中后，关闭自动通道。",
-                "supported": true,
-                "reason": "P02 5.2 和审核顺序表均提到关闭自动通道。"
-              },
-              {
-                "claim": "在审核流程中，高风险账户这一项命中后，转人工审核。",
-                "supported": true,
-                "reason": "P02 5.2 和审核顺序表均提到转人工审核。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.276,
-            "n": 76,
-            "hit": 21,
-            "truncated": false,
-            "note": "不相关的多为重复条款、其他审核事项或与高风险判定无直接关联的内容。",
-            "irrelevant": [
-              "**",
-              "5.4 **风控规则的优先级高于会员权益。",
-              "** 金牌会员触发高风险规则的，同样关闭自动通道，会员等级不能豁免风控。",
-              "5.6 风控的合法性依据与滥用治理的具体口径，详见 [P08]。",
-              "平台按以下固定顺序审核退款申请，**命中一项即形成结论，不再继续后续审核**：",
-              "| 顺序 | 审核事项 | 命中结论 |",
-              "|---|---|---|",
-              "| 1 | 订单不存在，或不属于当前账户 | 不通过：订单不存在 |",
-              "| 2 | 订单已退款 | 不通过：不可重复申请 |",
-              "| 4 | 特殊类目（生鲜 / 定制 / 虚拟商品） | 不通过：该类目不支持退款 |"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "a56a0708f3c26cb2",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 30.19,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:31.096Z",
-      "updatedAt": "2026-08-18T11:43:31.107Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "a56a0708f3c26cb2",
-      "traceId": "94dd44f4cd98965d084ac11b00b7b986",
-      "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:43:00.144000+00:00",
-      "endTime": "2026-08-18 11:43:30.337000+00:00",
-      "input": {
-        "query": "近90天内退款次数超过3次的账户，其退款申请在审核流程中会得到什么结论？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-091",
-        "kind": "table+text",
-        "type": "multi_hop",
-        "layer": "platform",
-        "style": "formal",
-        "topic": "被判成高风险账户之后还退不退得了",
-        "doc_id": "P08+P02",
-        "section": "第一条 高风险账户的判定 > 1.1 判定标准 / 第六条 判定顺序",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.586,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-091",
-        "type": "multi_hop",
-        "style": "formal",
-        "doc_id": "P08+P02",
-        "layer": "platform",
-        "kind": "table+text",
-        "seed_chunk_id": [
-          "P08#001:00",
-          "P02#005:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "evidence_tokens": 1426,
-          "duplicate_ratio": 0.268,
-          "context_recall": 1,
-          "context_relevance": 0.276
-        },
-        "elapsed_s": 2.3,
-        "seed_rank": {
-          "candidate": {
-            "P08#001:00": 1,
-            "P02#005:00": 5
-          },
-          "evidence": {
-            "P08#001:00": 3,
-            "P02#005:00": 2
-          }
-        },
-        "sections": [
-          "P02 星辰优选售后服务与退换货政策 > 第五条 高风险账户 … 第六条 判定顺序",
-          "P08 星辰优选风控与异常退款治理规则 > 第一条 高风险账户的判定 > 1.1 判定标准 … 第一条 高风险账户的判定 > 1.3 统计口径",
-          "P03 星辰优选退款规则与到账时效 > 第四条 退款通道 > 4.2 人工审核通道"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 4,
-            "hit": 4,
-            "detail": [
-              {
-                "claim": "近90天内退款次数超过3次的账户会被判定为高风险账户。",
-                "supported": true,
-                "reason": "P02 5.1 和 P08 1.1 均明确该判定标准。"
-              },
-              {
-                "claim": "在审核流程中，高风险账户这一项命中后，结论为不通过。",
-                "supported": true,
-                "reason": "P02 审核顺序表第3项命中结论为不通过。"
-              },
-              {
-                "claim": "在审核流程中，高风险账户这一项命中后，关闭自动通道。",
-                "supported": true,
-                "reason": "P02 5.2 和审核顺序表均提到关闭自动通道。"
-              },
-              {
-                "claim": "在审核流程中，高风险账户这一项命中后，转人工审核。",
-                "supported": true,
-                "reason": "P02 5.2 和审核顺序表均提到转人工审核。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.276,
-            "n": 76,
-            "hit": 21,
-            "truncated": false,
-            "note": "不相关的多为重复条款、其他审核事项或与高风险判定无直接关联的内容。",
-            "irrelevant": [
-              "**",
-              "5.4 **风控规则的优先级高于会员权益。",
-              "** 金牌会员触发高风险规则的，同样关闭自动通道，会员等级不能豁免风控。",
-              "5.6 风控的合法性依据与滥用治理的具体口径，详见 [P08]。",
-              "平台按以下固定顺序审核退款申请，**命中一项即形成结论，不再继续后续审核**：",
-              "| 顺序 | 审核事项 | 命中结论 |",
-              "|---|---|---|",
-              "| 1 | 订单不存在，或不属于当前账户 | 不通过：订单不存在 |",
-              "| 2 | 订单已退款 | 不通过：不可重复申请 |",
-              "| 4 | 特殊类目（生鲜 / 定制 / 虚拟商品） | 不通过：该类目不支持退款 |"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 30.193,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:31.096Z",
-      "updatedAt": "2026-08-18T11:43:31.107Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "parentObservationId": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "ba5f2a258c393208",
-      "traceId": "94dd44f4cd98965d084ac11b00b7b986",
+      "id": "dca1a3ccf8862428",
+      "traceId": "8ea7edec932a60d50c6b9d2b922aafdf",
       "type": "SPAN",
       "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:43:30.336000+00:00",
-      "endTime": "2026-08-18 11:43:30.337000+00:00",
+      "startTime": "2026-08-19 05:12:39.855000+00:00",
+      "endTime": "2026-08-19 05:12:39.856000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -489,7 +143,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "a56a0708f3c26cb2",
+      "parentObservationId": "9e903c9748ccd7c6",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -499,8 +153,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:31.096Z",
-      "updatedAt": "2026-08-18T11:43:31.105Z",
+      "createdAt": "2026-08-19T05:12:42.765Z",
+      "updatedAt": "2026-08-19T05:12:42.791Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -522,12 +176,400 @@
       "usagePricingTierName": null
     },
     {
-      "id": "c61bd47c8730a88f",
-      "traceId": "94dd44f4cd98965d084ac11b00b7b986",
+      "id": "9e903c9748ccd7c6",
+      "traceId": "8ea7edec932a60d50c6b9d2b922aafdf",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-19 05:11:56.345000+00:00",
+      "endTime": "2026-08-19 05:12:39.857000+00:00",
+      "input": {
+        "query": "近90天内退款次数超过3次的账户，其退款申请在审核流程中会得到什么结论？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-091",
+        "kind": "table+text",
+        "type": "multi_hop",
+        "layer": "platform",
+        "style": "formal",
+        "topic": "被判成高风险账户之后还退不退得了",
+        "doc_id": "P08+P02",
+        "section": "第一条 高风险账户的判定 > 1.1 判定标准 / 第六条 判定顺序",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.586,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-091",
+        "query": "近90天内退款次数超过3次的账户，其退款申请在审核流程中会得到什么结论？",
+        "type": "multi_hop",
+        "style": "formal",
+        "doc_id": "P08+P02",
+        "layer": "platform",
+        "kind": "table+text",
+        "seed_chunk_id": [
+          "P08#001:00",
+          "P02#005:00"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "evidence_tokens": 1426,
+          "duplicate_ratio": 0.268,
+          "context_recall": 1,
+          "context_relevance": 0.289
+        },
+        "elapsed_s": 2.1,
+        "seed_rank": {
+          "candidate": {
+            "P08#001:00": 1,
+            "P02#005:00": 5
+          },
+          "evidence": {
+            "P08#001:00": 3,
+            "P02#005:00": 2
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "risk",
+              "text": "近90天内退款次数超过3次的账户，其退款申请在审核流程中会得到什么结论？"
+            }
+          ]
+        },
+        "rewrite_hash": "d92ceb44c38e25bb",
+        "sections": [
+          "P02 星辰优选售后服务与退换货政策 > 第五条 高风险账户 … 第六条 判定顺序",
+          "P08 星辰优选风控与异常退款治理规则 > 第一条 高风险账户的判定 > 1.1 判定标准 … 第一条 高风险账户的判定 > 1.3 统计口径",
+          "P03 星辰优选退款规则与到账时效 > 第四条 退款通道 > 4.2 人工审核通道"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 4,
+            "hit": 4,
+            "detail": [
+              {
+                "claim": "近90天内退款次数超过3次的账户会被判定为高风险账户。",
+                "supported": true,
+                "reason": "P02 5.1 和 P08 1.1 均明确该判定标准。"
+              },
+              {
+                "claim": "在审核流程中，高风险账户这一项命中后，结论为不通过。",
+                "supported": true,
+                "reason": "P02 审核顺序表第3项命中结论为不通过。"
+              },
+              {
+                "claim": "在审核流程中，高风险账户这一项命中后，关闭自动通道。",
+                "supported": true,
+                "reason": "P02 5.2 和审核顺序表均提到关闭自动通道。"
+              },
+              {
+                "claim": "在审核流程中，高风险账户这一项命中后，转人工审核。",
+                "supported": true,
+                "reason": "P02 5.2 和审核顺序表均提到转人工审核。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.289,
+            "n": 76,
+            "hit": 22,
+            "truncated": false,
+            "note": "不相关的主要是重复条款、其他审核顺序、自动通道条件等。",
+            "irrelevant": [
+              "**",
+              "5.4 **风控规则的优先级高于会员权益。",
+              "** 金牌会员触发高风险规则的，同样关闭自动通道，会员等级不能豁免风控。",
+              "5.6 风控的合法性依据与滥用治理的具体口径，详见 [P08]。",
+              "平台按以下固定顺序审核退款申请，**命中一项即形成结论，不再继续后续审核**：",
+              "| 顺序 | 审核事项 | 命中结论 |",
+              "|---|---|---|",
+              "| 1 | 订单不存在，或不属于当前账户 | 不通过：订单不存在 |",
+              "| 2 | 订单已退款 | 不通过：不可重复申请 |",
+              "| 4 | 特殊类目（生鲜 / 定制 / 虚拟商品） | 不通过：该类目不支持退款 |"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 43.512,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:12:42.765Z",
+      "updatedAt": "2026-08-19T05:12:42.790Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "e0bf01f9df2c1cb6",
+      "traceId": "8ea7edec932a60d50c6b9d2b922aafdf",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:11:56.345000+00:00",
+      "endTime": "2026-08-19 05:12:39.855000+00:00",
+      "input": {
+        "query": "近90天内退款次数超过3次的账户，其退款申请在审核流程中会得到什么结论？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-091",
+        "kind": "table+text",
+        "type": "multi_hop",
+        "layer": "platform",
+        "style": "formal",
+        "topic": "被判成高风险账户之后还退不退得了",
+        "doc_id": "P08+P02",
+        "section": "第一条 高风险账户的判定 > 1.1 判定标准 / 第六条 判定顺序",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.586,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-091",
+        "query": "近90天内退款次数超过3次的账户，其退款申请在审核流程中会得到什么结论？",
+        "type": "multi_hop",
+        "style": "formal",
+        "doc_id": "P08+P02",
+        "layer": "platform",
+        "kind": "table+text",
+        "seed_chunk_id": [
+          "P08#001:00",
+          "P02#005:00"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "evidence_tokens": 1426,
+          "duplicate_ratio": 0.268,
+          "context_recall": 1,
+          "context_relevance": 0.289
+        },
+        "elapsed_s": 2.1,
+        "seed_rank": {
+          "candidate": {
+            "P08#001:00": 1,
+            "P02#005:00": 5
+          },
+          "evidence": {
+            "P08#001:00": 3,
+            "P02#005:00": 2
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "risk",
+              "text": "近90天内退款次数超过3次的账户，其退款申请在审核流程中会得到什么结论？"
+            }
+          ]
+        },
+        "rewrite_hash": "d92ceb44c38e25bb",
+        "sections": [
+          "P02 星辰优选售后服务与退换货政策 > 第五条 高风险账户 … 第六条 判定顺序",
+          "P08 星辰优选风控与异常退款治理规则 > 第一条 高风险账户的判定 > 1.1 判定标准 … 第一条 高风险账户的判定 > 1.3 统计口径",
+          "P03 星辰优选退款规则与到账时效 > 第四条 退款通道 > 4.2 人工审核通道"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 4,
+            "hit": 4,
+            "detail": [
+              {
+                "claim": "近90天内退款次数超过3次的账户会被判定为高风险账户。",
+                "supported": true,
+                "reason": "P02 5.1 和 P08 1.1 均明确该判定标准。"
+              },
+              {
+                "claim": "在审核流程中，高风险账户这一项命中后，结论为不通过。",
+                "supported": true,
+                "reason": "P02 审核顺序表第3项命中结论为不通过。"
+              },
+              {
+                "claim": "在审核流程中，高风险账户这一项命中后，关闭自动通道。",
+                "supported": true,
+                "reason": "P02 5.2 和审核顺序表均提到关闭自动通道。"
+              },
+              {
+                "claim": "在审核流程中，高风险账户这一项命中后，转人工审核。",
+                "supported": true,
+                "reason": "P02 5.2 和审核顺序表均提到转人工审核。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.289,
+            "n": 76,
+            "hit": 22,
+            "truncated": false,
+            "note": "不相关的主要是重复条款、其他审核顺序、自动通道条件等。",
+            "irrelevant": [
+              "**",
+              "5.4 **风控规则的优先级高于会员权益。",
+              "** 金牌会员触发高风险规则的，同样关闭自动通道，会员等级不能豁免风控。",
+              "5.6 风控的合法性依据与滥用治理的具体口径，详见 [P08]。",
+              "平台按以下固定顺序审核退款申请，**命中一项即形成结论，不再继续后续审核**：",
+              "| 顺序 | 审核事项 | 命中结论 |",
+              "|---|---|---|",
+              "| 1 | 订单不存在，或不属于当前账户 | 不通过：订单不存在 |",
+              "| 2 | 订单已退款 | 不通过：不可重复申请 |",
+              "| 4 | 特殊类目（生鲜 / 定制 / 虚拟商品） | 不通过：该类目不支持退款 |"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "9e903c9748ccd7c6",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 43.51,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:12:42.765Z",
+      "updatedAt": "2026-08-19T05:12:42.782Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "cc04d2ed867a60fa",
+      "traceId": "8ea7edec932a60d50c6b9d2b922aafdf",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:43:30.336000+00:00",
-      "endTime": "2026-08-18 11:43:30.337000+00:00",
+      "startTime": "2026-08-19 05:12:39.856000+00:00",
+      "endTime": "2026-08-19 05:12:39.856000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -535,6 +577,7 @@
         },
         "output": {
           "case_id": "R1-091",
+          "query": "近90天内退款次数超过3次的账户，其退款申请在审核流程中会得到什么结论？",
           "type": "multi_hop",
           "style": "formal",
           "doc_id": "P08+P02",
@@ -544,6 +587,7 @@
             "P08#001:00",
             "P02#005:00"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
@@ -551,9 +595,9 @@
             "evidence_tokens": 1426,
             "duplicate_ratio": 0.268,
             "context_recall": 1,
-            "context_relevance": 0.276
+            "context_relevance": 0.289
           },
-          "elapsed_s": 2.3,
+          "elapsed_s": 2.1,
           "seed_rank": {
             "candidate": {
               "P08#001:00": 1,
@@ -564,6 +608,18 @@
               "P02#005:00": 2
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "risk",
+                "text": "近90天内退款次数超过3次的账户，其退款申请在审核流程中会得到什么结论？"
+              }
+            ]
+          },
+          "rewrite_hash": "d92ceb44c38e25bb",
           "sections": [
             "P02 星辰优选售后服务与退换货政策 > 第五条 高风险账户 … 第六条 判定顺序",
             "P08 星辰优选风控与异常退款治理规则 > 第一条 高风险账户的判定 > 1.1 判定标准 … 第一条 高风险账户的判定 > 1.3 统计口径",
@@ -599,11 +655,11 @@
               "error": null
             },
             "context_relevance": {
-              "score": 0.276,
+              "score": 0.289,
               "n": 76,
-              "hit": 21,
+              "hit": 22,
               "truncated": false,
-              "note": "不相关的多为重复条款、其他审核事项或与高风险判定无直接关联的内容。",
+              "note": "不相关的主要是重复条款、其他审核顺序、自动通道条件等。",
               "irrelevant": [
                 "**",
                 "5.4 **风控规则的优先级高于会员权益。",
@@ -631,7 +687,8 @@
             "P08#001:00",
             "P02#005:00"
           ],
-          "reference_answer": "近90天内退款次数超过3次的账户会被判定为高风险账户。在审核流程中，高风险账户这一项命中后，结论为不通过，并关闭自动通道，转人工审核。"
+          "reference_answer": "近90天内退款次数超过3次的账户会被判定为高风险账户。在审核流程中，高风险账户这一项命中后，结论为不通过，并关闭自动通道，转人工审核。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "table+text",
@@ -654,7 +711,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -693,8 +750,8 @@
         },
         {
           "name": "context_relevance",
-          "value": 0.276,
-          "comment": "21/76 个内容单元相关；不相关的多为重复条款、其他审核事项或与高风险判定无直接关联的内容。"
+          "value": 0.289,
+          "comment": "22/76 个内容单元相关；不相关的主要是重复条款、其他审核顺序、自动通道条件等。"
         },
         {
           "name": "run_error",
@@ -709,7 +766,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "ba5f2a258c393208",
+      "parentObservationId": "dca1a3ccf8862428",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -717,10 +774,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.001,
+      "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:31.096Z",
-      "updatedAt": "2026-08-18T11:43:31.104Z",
+      "createdAt": "2026-08-19T05:12:42.765Z",
+      "updatedAt": "2026-08-19T05:12:42.778Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -740,23 +797,23 @@
       "usagePricingTierName": null
     },
     {
-      "id": "08db297b05681434",
-      "traceId": "94dd44f4cd98965d084ac11b00b7b986",
+      "id": "7b8dcb14a7e9fe1a",
+      "traceId": "8ea7edec932a60d50c6b9d2b922aafdf",
       "type": "RETRIEVER",
       "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:43:23.047000+00:00",
-      "endTime": "2026-08-18 11:43:25.310000+00:00",
+      "startTime": "2026-08-19 05:12:32.879000+00:00",
+      "endTime": "2026-08-19 05:12:34.944000+00:00",
       "modelParameters": {},
       "input": {
         "query": "近90天内退款次数超过3次的账户，其退款申请在审核流程中会得到什么结论？",
-        "top_k": 4
+        "top_k": 6
       },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -811,7 +868,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "04ea8d79d4881b5a",
+      "parentObservationId": "e0bf01f9df2c1cb6",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -819,10 +876,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 2.263,
+      "latency": 2.065,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:26.039Z",
-      "updatedAt": "2026-08-18T11:43:26.062Z",
+      "createdAt": "2026-08-19T05:12:37.647Z",
+      "updatedAt": "2026-08-19T05:12:37.679Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -842,18 +899,29 @@
       "usagePricingTierName": null
     },
     {
-      "id": "f9624dcb19a3924b",
-      "traceId": "94dd44f4cd98965d084ac11b00b7b986",
+      "id": "7d915ed04b0e32b2",
+      "traceId": "8ea7edec932a60d50c6b9d2b922aafdf",
       "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:43:24.450000+00:00",
-      "endTime": "2026-08-18 11:43:24.451000+00:00",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:12:34.933000+00:00",
+      "endTime": "2026-08-19 05:12:34.943000+00:00",
+      "input": {
+        "top_k": 6,
+        "evidence": [
+          "P02#004:00",
+          "P02#005:00",
+          "P08#001:00",
+          "P08#001:01",
+          "P08#001:02",
+          "P03#003:01"
+        ]
+      },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -865,14 +933,39 @@
         }
       },
       "output": {
-        "routes": [
+        "sections": [
           {
-            "sub_query": "1",
-            "layer_k": {
-              "platform": 18,
-              "law": 5
-            },
-            "law_weight": 0.5
+            "section": "P02 星辰优选售后服务与退换货政策 > 第五条 高风险账户 … 第六条 判定顺序",
+            "text": "5.1 **近 90 天内退款次数超过 3 次的账户视为高风险账户。**\n\n5.2 高风险账户的**自动退款通道关闭**，所有退款申请需转人工客服审核，审核周期为 **1-3 个工作日**。\n\n5.3 阈值判定为「超过」：近 90 天退款 3 次**不构成**高风险；4 次及以上构成高风险。\n\n5.4 **风控规则的优先级高于会员权益。** 金牌会员触发高风险规则的，同样关闭自动通道，会员等级不能豁免风控。\n\n5.5 高风险判定不等于拒绝退款——它只改变处理通道（自动 → 人工），不预先否定诉求。人工审核后仍可能批准退款。\n\n5.6 风控的合法性依据与滥用治理的具体口径，详见 [P08]。\n\n平台按以下固定顺序审核退款申请，**命中一项即形成结论，不再继续后续审核**：\n\n| 顺序 | 审核事项 | 命中结论 |\n|---|---|---|\n| 1 | 订单不存在，或不属于当前账户 | 不通过：订单不存在 |\n| 2 | 订单已退款 | 不通过：不可重复申请 |\n| 3 | 高风险账户（近 90 天退款超过 3 次） | 不通过：关闭自动通道，转人工审核 |\n| 4 | 特殊类目（生鲜 / 定制 / 虚拟商品） | 不通过：该类目不支持退款 |\n| 5 | 签收超过 15 天（最宽窗口） | 不通过：超出所有退货窗口 |\n| 6 | 消费者未说明退款原因 | 需补充：请消费者确认「无理由」还是「质量问题」 |\n| 7 | 无理由退货，但未说明商品状态 | 需补充：请消费者确认「未拆封」「已拆封」「已使用」 |\n| 8 | 签收天数超出该类型对应窗口 | 不通过：超出退货窗口 |\n| 9 | 无理由退货，但商品非未拆封 | 不通过：无理由退货要求未拆封 |\n| — | 以上均未命中 | 通过，可退金额为订单实付金额 |\n\n> **第 1 至 5 项在向消费者追问之前完成。** 这些情形下无论消费者如何回答，结论都不会改变，追问只会白白拖长处理时间。只有当结论确实取决于消费者尚未提供的信息时（第 6、7 项），才向消费者确认。",
+            "score": 0.9890511512756348,
+            "doc_id": "P02",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
+            "reason": "相关性 0.986 × 先验 1.00 → 0.989；命中 1/platform/dense#2, 1/platform/bm25#3"
+          },
+          {
+            "section": "P08 星辰优选风控与异常退款治理规则 > 第一条 高风险账户的判定 > 1.1 判定标准 … 第一条 高风险账户的判定 > 1.3 统计口径",
+            "text": "**近 90 天内退款次数超过 3 次的账户，判定为高风险账户。**\n\n判定条件为「超过 3 次」，即：\n\n| 近 90 天退款次数 | 是否高风险 |\n|---|---|\n| 0 - 3 次 | 否 |\n| 4 次及以上 | **是** |\n\n> 恰好 3 次**不构成**高风险，第 4 次退款申请起触发。\n\n- 统计窗口为申请日往前推 **90 个自然日**；\n- 统计对象为**已完成的退款笔数**，按订单计；\n- 未通过的退款申请、仍在处理中的申请不计入；\n- 因商家原因（缺货、虚假发货、错发漏发）导致的退款**不计入**次数。\n\n**近 90 天内退款次数超过 3 次的账户，判定为高风险账户。**\n\n判定条件为「超过 3 次」，即：\n\n| 近 90 天退款次数 | 是否高风险 |\n|---|---|\n| 0 - 3 次 | 否 |\n| 4 次及以上 | **是** |\n\n> 恰好 3 次**不构成**高风险，第 4 次退款申请起触发。\n\n- 统计窗口为申请日往前推 **90 个自然日**；\n- 统计对象为**已完成的退款笔数**，按订单计；\n- 未通过的退款申请、仍在处理中的申请不计入；\n- 因商家原因（缺货、虚假发货、错发漏发）导致的退款**不计入**次数。\n\n**近 90 天内退款次数超过 3 次的账户，判定为高风险账户。**\n\n判定条件为「超过 3 次」，即：\n\n| 近 90 天退款次数 | 是否高风险 |\n|---|---|\n| 0 - 3 次 | 否 |\n| 4 次及以上 | **是** |\n\n> 恰好 3 次**不构成**高风险，第 4 次退款申请起触发。\n\n- 统计窗口为申请日往前推 **90 个自然日**；\n- 统计对象为**已完成的退款笔数**，按订单计；\n- 未通过的退款申请、仍在处理中的申请不计入；\n- 因商家原因（缺货、虚假发货、错发漏发）导致的退款**不计入**次数。",
+            "score": 0.972738962173462,
+            "doc_id": "P08",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
+            "reason": "相关性 0.991 × 先验 0.90 → 0.973；命中 1/platform/dense#1, 1/platform/bm25#2"
+          },
+          {
+            "section": "P03 星辰优选退款规则与到账时效 > 第四条 退款通道 > 4.2 人工审核通道",
+            "text": "同时满足以下条件的申请走自动通道，即时判定、即时发起退款：\n\n（一）订单存在且属于当前账户；\n（二）订单未曾退款；\n（三）账户不属于高风险账户（[P08]）；\n（四）商品类目不在特殊类目清单内（[P04]）；\n（五）符合 [P02] 的退货窗口与商品条件。\n\n以下情形关闭自动通道，转人工客服审核，**审核周期 1-3 个工作日**：\n\n（一）高风险账户的全部退款申请；\n（二）特殊类目商品的质量问题诉求；\n（三）退款金额超过平台设定的大额阈值；\n（四）涉及假冒伪劣、虚假宣传、人身损害的赔付诉求；\n（五）原支付渠道失效需变更退款方式的。\n\n**转人工审核不等于拒绝退款。** 人工通道只改变处理方式与时效，不预先否定消费者诉求。",
+            "score": 0.3045583891868592,
+            "doc_id": "P03",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P03-退款规则与到账时效.md",
+            "reason": "相关性 0.156 × 先验 0.90 → 0.305；命中 1/platform/dense#5, 1/platform/bm25#8"
           }
         ]
       },
@@ -883,7 +976,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "08db297b05681434",
+      "parentObservationId": "7b8dcb14a7e9fe1a",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -891,10 +984,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.001,
+      "latency": 0.01,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:26.039Z",
-      "updatedAt": "2026-08-18T11:43:26.062Z",
+      "createdAt": "2026-08-19T05:12:37.647Z",
+      "updatedAt": "2026-08-19T05:12:37.679Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -902,7 +995,6 @@
       "completionStartTime": null,
       "model": null,
       "modelParameters": null,
-      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -916,18 +1008,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "891f10cf5de2d110",
-      "traceId": "94dd44f4cd98965d084ac11b00b7b986",
+      "id": "d0ba16a608b1ac5a",
+      "traceId": "8ea7edec932a60d50c6b9d2b922aafdf",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 11:43:24.451000+00:00",
-      "endTime": "2026-08-18 11:43:24.547000+00:00",
+      "startTime": "2026-08-19 05:12:34.112000+00:00",
+      "endTime": "2026-08-19 05:12:34.186000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1118,7 +1210,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "08db297b05681434",
+      "parentObservationId": "7b8dcb14a7e9fe1a",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1126,10 +1218,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.096,
+      "latency": 0.074,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:26.039Z",
-      "updatedAt": "2026-08-18T11:43:26.061Z",
+      "createdAt": "2026-08-19T05:12:37.647Z",
+      "updatedAt": "2026-08-19T05:12:37.679Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1151,12 +1243,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "c242ee59efe0b6c6",
-      "traceId": "94dd44f4cd98965d084ac11b00b7b986",
+      "id": "d408e85fb43961ac",
+      "traceId": "8ea7edec932a60d50c6b9d2b922aafdf",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 11:43:24.547000+00:00",
-      "endTime": "2026-08-18 11:43:25.287000+00:00",
+      "startTime": "2026-08-19 05:12:34.187000+00:00",
+      "endTime": "2026-08-19 05:12:34.933000+00:00",
       "input": {
         "query": "近90天内退款次数超过3次的账户，其退款申请在审核流程中会得到什么结论？",
         "candidates": 20
@@ -1166,7 +1258,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1254,7 +1346,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "08db297b05681434",
+      "parentObservationId": "7b8dcb14a7e9fe1a",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1262,10 +1354,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.74,
+      "latency": 0.746,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:26.039Z",
-      "updatedAt": "2026-08-18T11:43:26.061Z",
+      "createdAt": "2026-08-19T05:12:37.647Z",
+      "updatedAt": "2026-08-19T05:12:37.668Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1286,29 +1378,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "fcb963537743698f",
-      "traceId": "94dd44f4cd98965d084ac11b00b7b986",
+      "id": "df16c26b96e3a864",
+      "traceId": "8ea7edec932a60d50c6b9d2b922aafdf",
       "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:43:25.287000+00:00",
-      "endTime": "2026-08-18 11:43:25.309000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": [
-          "P02#004:00",
-          "P02#005:00",
-          "P08#001:00",
-          "P08#001:01",
-          "P08#001:02",
-          "P03#003:01"
-        ]
-      },
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:12:34.112000+00:00",
+      "endTime": "2026-08-19 05:12:34.112000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1320,39 +1401,14 @@
         }
       },
       "output": {
-        "sections": [
+        "routes": [
           {
-            "section": "P02 星辰优选售后服务与退换货政策 > 第五条 高风险账户 … 第六条 判定顺序",
-            "text": "5.1 **近 90 天内退款次数超过 3 次的账户视为高风险账户。**\n\n5.2 高风险账户的**自动退款通道关闭**，所有退款申请需转人工客服审核，审核周期为 **1-3 个工作日**。\n\n5.3 阈值判定为「超过」：近 90 天退款 3 次**不构成**高风险；4 次及以上构成高风险。\n\n5.4 **风控规则的优先级高于会员权益。** 金牌会员触发高风险规则的，同样关闭自动通道，会员等级不能豁免风控。\n\n5.5 高风险判定不等于拒绝退款——它只改变处理通道（自动 → 人工），不预先否定诉求。人工审核后仍可能批准退款。\n\n5.6 风控的合法性依据与滥用治理的具体口径，详见 [P08]。\n\n平台按以下固定顺序审核退款申请，**命中一项即形成结论，不再继续后续审核**：\n\n| 顺序 | 审核事项 | 命中结论 |\n|---|---|---|\n| 1 | 订单不存在，或不属于当前账户 | 不通过：订单不存在 |\n| 2 | 订单已退款 | 不通过：不可重复申请 |\n| 3 | 高风险账户（近 90 天退款超过 3 次） | 不通过：关闭自动通道，转人工审核 |\n| 4 | 特殊类目（生鲜 / 定制 / 虚拟商品） | 不通过：该类目不支持退款 |\n| 5 | 签收超过 15 天（最宽窗口） | 不通过：超出所有退货窗口 |\n| 6 | 消费者未说明退款原因 | 需补充：请消费者确认「无理由」还是「质量问题」 |\n| 7 | 无理由退货，但未说明商品状态 | 需补充：请消费者确认「未拆封」「已拆封」「已使用」 |\n| 8 | 签收天数超出该类型对应窗口 | 不通过：超出退货窗口 |\n| 9 | 无理由退货，但商品非未拆封 | 不通过：无理由退货要求未拆封 |\n| — | 以上均未命中 | 通过，可退金额为订单实付金额 |\n\n> **第 1 至 5 项在向消费者追问之前完成。** 这些情形下无论消费者如何回答，结论都不会改变，追问只会白白拖长处理时间。只有当结论确实取决于消费者尚未提供的信息时（第 6、7 项），才向消费者确认。",
-            "score": 0.9890511512756348,
-            "doc_id": "P02",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
-            "reason": "相关性 0.986 × 先验 1.00 → 0.989；命中 1/platform/dense#2, 1/platform/bm25#3"
-          },
-          {
-            "section": "P08 星辰优选风控与异常退款治理规则 > 第一条 高风险账户的判定 > 1.1 判定标准 … 第一条 高风险账户的判定 > 1.3 统计口径",
-            "text": "**近 90 天内退款次数超过 3 次的账户，判定为高风险账户。**\n\n判定条件为「超过 3 次」，即：\n\n| 近 90 天退款次数 | 是否高风险 |\n|---|---|\n| 0 - 3 次 | 否 |\n| 4 次及以上 | **是** |\n\n> 恰好 3 次**不构成**高风险，第 4 次退款申请起触发。\n\n- 统计窗口为申请日往前推 **90 个自然日**；\n- 统计对象为**已完成的退款笔数**，按订单计；\n- 未通过的退款申请、仍在处理中的申请不计入；\n- 因商家原因（缺货、虚假发货、错发漏发）导致的退款**不计入**次数。\n\n**近 90 天内退款次数超过 3 次的账户，判定为高风险账户。**\n\n判定条件为「超过 3 次」，即：\n\n| 近 90 天退款次数 | 是否高风险 |\n|---|---|\n| 0 - 3 次 | 否 |\n| 4 次及以上 | **是** |\n\n> 恰好 3 次**不构成**高风险，第 4 次退款申请起触发。\n\n- 统计窗口为申请日往前推 **90 个自然日**；\n- 统计对象为**已完成的退款笔数**，按订单计；\n- 未通过的退款申请、仍在处理中的申请不计入；\n- 因商家原因（缺货、虚假发货、错发漏发）导致的退款**不计入**次数。\n\n**近 90 天内退款次数超过 3 次的账户，判定为高风险账户。**\n\n判定条件为「超过 3 次」，即：\n\n| 近 90 天退款次数 | 是否高风险 |\n|---|---|\n| 0 - 3 次 | 否 |\n| 4 次及以上 | **是** |\n\n> 恰好 3 次**不构成**高风险，第 4 次退款申请起触发。\n\n- 统计窗口为申请日往前推 **90 个自然日**；\n- 统计对象为**已完成的退款笔数**，按订单计；\n- 未通过的退款申请、仍在处理中的申请不计入；\n- 因商家原因（缺货、虚假发货、错发漏发）导致的退款**不计入**次数。",
-            "score": 0.972738962173462,
-            "doc_id": "P08",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
-            "reason": "相关性 0.991 × 先验 0.90 → 0.973；命中 1/platform/dense#1, 1/platform/bm25#2"
-          },
-          {
-            "section": "P03 星辰优选退款规则与到账时效 > 第四条 退款通道 > 4.2 人工审核通道",
-            "text": "同时满足以下条件的申请走自动通道，即时判定、即时发起退款：\n\n（一）订单存在且属于当前账户；\n（二）订单未曾退款；\n（三）账户不属于高风险账户（[P08]）；\n（四）商品类目不在特殊类目清单内（[P04]）；\n（五）符合 [P02] 的退货窗口与商品条件。\n\n以下情形关闭自动通道，转人工客服审核，**审核周期 1-3 个工作日**：\n\n（一）高风险账户的全部退款申请；\n（二）特殊类目商品的质量问题诉求；\n（三）退款金额超过平台设定的大额阈值；\n（四）涉及假冒伪劣、虚假宣传、人身损害的赔付诉求；\n（五）原支付渠道失效需变更退款方式的。\n\n**转人工审核不等于拒绝退款。** 人工通道只改变处理方式与时效，不预先否定消费者诉求。",
-            "score": 0.3045583891868592,
-            "doc_id": "P03",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P03-退款规则与到账时效.md",
-            "reason": "相关性 0.156 × 先验 0.90 → 0.305；命中 1/platform/dense#5, 1/platform/bm25#8"
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
           }
         ]
       },
@@ -1363,7 +1419,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "08db297b05681434",
+      "parentObservationId": "7b8dcb14a7e9fe1a",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1371,10 +1427,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.022,
+      "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:26.039Z",
-      "updatedAt": "2026-08-18T11:43:26.061Z",
+      "createdAt": "2026-08-19T05:12:37.647Z",
+      "updatedAt": "2026-08-19T05:12:37.665Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1382,6 +1438,7 @@
       "completionStartTime": null,
       "model": null,
       "modelParameters": null,
+      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -1395,12 +1452,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "a1f2b95c272a2ebd",
-      "traceId": "94dd44f4cd98965d084ac11b00b7b986",
+      "id": "8d464aceddc737f2",
+      "traceId": "8ea7edec932a60d50c6b9d2b922aafdf",
       "type": "SPAN",
       "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:43:23.047000+00:00",
-      "endTime": "2026-08-18 11:43:24.450000+00:00",
+      "startTime": "2026-08-19 05:12:32.879000+00:00",
+      "endTime": "2026-08-19 05:12:34.112000+00:00",
       "input": {
         "query": "近90天内退款次数超过3次的账户，其退款申请在审核流程中会得到什么结论？"
       },
@@ -1409,7 +1466,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1438,7 +1495,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "08db297b05681434",
+      "parentObservationId": "7b8dcb14a7e9fe1a",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1446,10 +1503,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.403,
+      "latency": 1.233,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:26.039Z",
-      "updatedAt": "2026-08-18T11:43:26.052Z",
+      "createdAt": "2026-08-19T05:12:37.647Z",
+      "updatedAt": "2026-08-19T05:12:37.659Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,

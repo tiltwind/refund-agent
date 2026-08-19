@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-013",
+    "query": "消费者与经营者发生消费者权益争议时，可以向哪些部门提出投诉？",
     "type": "single",
     "style": "formal",
     "doc_id": "L03",
@@ -9,6 +10,7 @@
     "seed_chunk_id": [
       "L03#009:00"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
@@ -19,7 +21,7 @@
       "context_recall": 1.0,
       "context_relevance": 0.034
     },
-    "elapsed_s": 1.5,
+    "elapsed_s": 1.9,
     "seed_rank": {
       "candidate": {
         "L03#009:00": 2
@@ -28,6 +30,18 @@
         "L03#009:00": 1
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": true,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "dispute",
+          "text": "消费者与经营者发生消费者权益争议时，可以向哪些部门提出投诉？"
+        }
+      ]
+    },
+    "rewrite_hash": "85457c679059f491",
     "sections": [
       "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第二十六条 【投诉与举报渠道】 … 第四十四条 【经营者投诉处理机制】",
       "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第四十六条 【行政投诉处理时限】 … 第四十七条 【质量鉴定】",
@@ -43,7 +57,7 @@
           {
             "claim": "消费者与经营者发生消费者权益争议的，可以向市场监督管理部门或者其他有关行政部门投诉。",
             "supported": true,
-            "reason": "上下文首句明确写明可向市场监督管理部门或其他有关行政部门投诉。"
+            "reason": "上下文第一段明确写明该投诉渠道。"
           }
         ],
         "error": null
@@ -53,7 +67,7 @@
         "n": 29,
         "hit": 1,
         "truncated": false,
-        "note": "其他单元涉及举报、处理流程、调解、鉴定、平台争议等，非直接回答投诉部门。",
+        "note": "其余多为投诉处理流程、调解、鉴定等后续程序，非投诉部门。",
         "irrelevant": [
           "自然人、法人或者其他组织可以向市场监督管理部门或者其他有关行政部门举报，反映经营者涉嫌违法的线索。",
           "市场监督管理部门或者其他有关行政部门应当畅通和规范消费者投诉、举报渠道，完善投诉、举报处理流程，依法及时受理和处理投诉、",
@@ -69,21 +83,266 @@
         "error": null
       }
     },
-    "trace_id": "cf56fb691fbed594dd272022ef54b479"
+    "trace_id": "996949b67d97556b225283ee6b23e8b6"
   },
   "trace": {
-    "id": "cf56fb691fbed594dd272022ef54b479",
+    "id": "996949b67d97556b225283ee6b23e8b6",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:51:09.223000+00:00"
+    "timestamp": "2026-08-19 05:20:11.583000+00:00"
   },
   "observations": [
     {
-      "id": "ad80932f7342bcd7",
-      "traceId": "cf56fb691fbed594dd272022ef54b479",
+      "id": "70e194efc6590cb8",
+      "traceId": "996949b67d97556b225283ee6b23e8b6",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-19 05:20:11.583000+00:00",
+      "endTime": "2026-08-19 05:20:59.764000+00:00",
+      "input": {
+        "query": "消费者与经营者发生消费者权益争议时，可以向哪些部门提出投诉？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-013",
+        "kind": "text",
+        "type": "single",
+        "layer": "law",
+        "style": "formal",
+        "doc_id": "L03",
+        "section": "第二十六条 【投诉与举报渠道】",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.696,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-013",
+        "query": "消费者与经营者发生消费者权益争议时，可以向哪些部门提出投诉？",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "L03",
+        "layer": "law",
+        "kind": "text",
+        "seed_chunk_id": [
+          "L03#009:00"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 732,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.034
+        },
+        "elapsed_s": 1.9,
+        "seed_rank": {
+          "candidate": {
+            "L03#009:00": 2
+          },
+          "evidence": {
+            "L03#009:00": 1
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": true,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "dispute",
+              "text": "消费者与经营者发生消费者权益争议时，可以向哪些部门提出投诉？"
+            }
+          ]
+        },
+        "rewrite_hash": "85457c679059f491",
+        "sections": [
+          "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第二十六条 【投诉与举报渠道】 … 第四十四条 【经营者投诉处理机制】",
+          "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第四十六条 【行政投诉处理时限】 … 第四十七条 【质量鉴定】",
+          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
+          "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.1 途径"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 1,
+            "hit": 1,
+            "detail": [
+              {
+                "claim": "消费者与经营者发生消费者权益争议的，可以向市场监督管理部门或者其他有关行政部门投诉。",
+                "supported": true,
+                "reason": "上下文第一段明确写明该投诉渠道。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.034,
+            "n": 29,
+            "hit": 1,
+            "truncated": false,
+            "note": "其余多为投诉处理流程、调解、鉴定等后续程序，非投诉部门。",
+            "irrelevant": [
+              "自然人、法人或者其他组织可以向市场监督管理部门或者其他有关行政部门举报，反映经营者涉嫌违法的线索。",
+              "市场监督管理部门或者其他有关行政部门应当畅通和规范消费者投诉、举报渠道，完善投诉、举报处理流程，依法及时受理和处理投诉、",
+              "投诉、举报应当遵守法律、法规和有关规定，不得利用投诉、举报牟取不正当利益，侵害经营者的合法权益，扰乱市场经济秩序。",
+              "经营者应当建立便捷、高效的投诉处理机制，及时解决消费争议。",
+              "鼓励和引导经营者建立健全首问负责、先行赔付、在线争议解决等制度，及时预防和解决消费争议。",
+              "消费者和经营者发生消费争议向市场监督管理部门或者其他有关行政部门投诉的，应当提供真实身份信息，有明确的被投诉人、具体的投",
+              "有关行政部门应当自收到投诉之日起7个工作日内，予以处理并告知消费者。",
+              "对不符合规定的投诉决定不予受理的，应当告知消费者不予受理的理由和其他解决争议的途径。",
+              "有关行政部门受理投诉后，消费者和经营者同意调解的，有关行政部门应当依据职责及时调解，并在受理之日起60日内调解完毕；",
+              "调解不成的应当终止调解。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 48.181,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:21:00.745Z",
+      "updatedAt": "2026-08-19T05:21:00.766Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "4840bb8a952ba3dd",
+      "traceId": "996949b67d97556b225283ee6b23e8b6",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-19 05:20:59.762000+00:00",
+      "endTime": "2026-08-19 05:20:59.763000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "70e194efc6590cb8",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:21:00.744Z",
+      "updatedAt": "2026-08-19T05:21:00.763Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "0f18808125945f55",
+      "traceId": "996949b67d97556b225283ee6b23e8b6",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:51:33.548000+00:00",
-      "endTime": "2026-08-18 11:51:33.548000+00:00",
+      "startTime": "2026-08-19 05:20:59.762000+00:00",
+      "endTime": "2026-08-19 05:20:59.763000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -91,6 +350,7 @@
         },
         "output": {
           "case_id": "R1-013",
+          "query": "消费者与经营者发生消费者权益争议时，可以向哪些部门提出投诉？",
           "type": "single",
           "style": "formal",
           "doc_id": "L03",
@@ -99,6 +359,7 @@
           "seed_chunk_id": [
             "L03#009:00"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
@@ -109,7 +370,7 @@
             "context_recall": 1,
             "context_relevance": 0.034
           },
-          "elapsed_s": 1.5,
+          "elapsed_s": 1.9,
           "seed_rank": {
             "candidate": {
               "L03#009:00": 2
@@ -118,6 +379,18 @@
               "L03#009:00": 1
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": true,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "dispute",
+                "text": "消费者与经营者发生消费者权益争议时，可以向哪些部门提出投诉？"
+              }
+            ]
+          },
+          "rewrite_hash": "85457c679059f491",
           "sections": [
             "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第二十六条 【投诉与举报渠道】 … 第四十四条 【经营者投诉处理机制】",
             "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第四十六条 【行政投诉处理时限】 … 第四十七条 【质量鉴定】",
@@ -133,7 +406,7 @@
                 {
                   "claim": "消费者与经营者发生消费者权益争议的，可以向市场监督管理部门或者其他有关行政部门投诉。",
                   "supported": true,
-                  "reason": "上下文首句明确写明可向市场监督管理部门或其他有关行政部门投诉。"
+                  "reason": "上下文第一段明确写明该投诉渠道。"
                 }
               ],
               "error": null
@@ -143,7 +416,7 @@
               "n": 29,
               "hit": 1,
               "truncated": false,
-              "note": "其他单元涉及举报、处理流程、调解、鉴定、平台争议等，非直接回答投诉部门。",
+              "note": "其余多为投诉处理流程、调解、鉴定等后续程序，非投诉部门。",
               "irrelevant": [
                 "自然人、法人或者其他组织可以向市场监督管理部门或者其他有关行政部门举报，反映经营者涉嫌违法的线索。",
                 "市场监督管理部门或者其他有关行政部门应当畅通和规范消费者投诉、举报渠道，完善投诉、举报处理流程，依法及时受理和处理投诉、",
@@ -167,7 +440,8 @@
           "seed_chunk_id": [
             "L03#009:00"
           ],
-          "reference_answer": "消费者与经营者发生消费者权益争议的，可以向市场监督管理部门或者其他有关行政部门投诉。"
+          "reference_answer": "消费者与经营者发生消费者权益争议的，可以向市场监督管理部门或者其他有关行政部门投诉。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "text",
@@ -189,7 +463,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -234,7 +508,7 @@
         {
           "name": "context_relevance",
           "value": 0.034,
-          "comment": "1/29 个内容单元相关；其他单元涉及举报、处理流程、调解、鉴定、平台争议等，非直接回答投诉部门。"
+          "comment": "1/29 个内容单元相关；其余多为投诉处理流程、调解、鉴定等后续程序，非投诉部门。"
         },
         {
           "name": "run_error",
@@ -249,7 +523,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "7ef13ef1c6048d6b",
+      "parentObservationId": "4840bb8a952ba3dd",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -257,10 +531,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.0,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:34.244Z",
-      "updatedAt": "2026-08-18T11:51:34.277Z",
+      "createdAt": "2026-08-19T05:21:00.744Z",
+      "updatedAt": "2026-08-19T05:21:00.762Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -280,417 +554,33 @@
       "usagePricingTierName": null
     },
     {
-      "id": "4e1f27348678b7e1",
-      "traceId": "cf56fb691fbed594dd272022ef54b479",
+      "id": "c87887e3a77efdf2",
+      "traceId": "996949b67d97556b225283ee6b23e8b6",
       "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:51:09.223000+00:00",
-      "endTime": "2026-08-18 11:51:33.549000+00:00",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:20:56.464000+00:00",
+      "endTime": "2026-08-19 05:20:56.490000+00:00",
       "input": {
-        "query": "消费者与经营者发生消费者权益争议时，可以向哪些部门提出投诉？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
         "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-013",
-        "kind": "text",
-        "type": "single",
-        "layer": "law",
-        "style": "formal",
-        "doc_id": "L03",
-        "section": "第二十六条 【投诉与举报渠道】",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.696,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-013",
-        "type": "single",
-        "style": "formal",
-        "doc_id": "L03",
-        "layer": "law",
-        "kind": "text",
-        "seed_chunk_id": [
-          "L03#009:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 732,
-          "duplicate_ratio": 0,
-          "context_recall": 1,
-          "context_relevance": 0.034
-        },
-        "elapsed_s": 1.5,
-        "seed_rank": {
-          "candidate": {
-            "L03#009:00": 2
-          },
-          "evidence": {
-            "L03#009:00": 1
-          }
-        },
-        "sections": [
-          "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第二十六条 【投诉与举报渠道】 … 第四十四条 【经营者投诉处理机制】",
-          "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第四十六条 【行政投诉处理时限】 … 第四十七条 【质量鉴定】",
-          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
-          "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.1 途径"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 1,
-            "hit": 1,
-            "detail": [
-              {
-                "claim": "消费者与经营者发生消费者权益争议的，可以向市场监督管理部门或者其他有关行政部门投诉。",
-                "supported": true,
-                "reason": "上下文首句明确写明可向市场监督管理部门或其他有关行政部门投诉。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.034,
-            "n": 29,
-            "hit": 1,
-            "truncated": false,
-            "note": "其他单元涉及举报、处理流程、调解、鉴定、平台争议等，非直接回答投诉部门。",
-            "irrelevant": [
-              "自然人、法人或者其他组织可以向市场监督管理部门或者其他有关行政部门举报，反映经营者涉嫌违法的线索。",
-              "市场监督管理部门或者其他有关行政部门应当畅通和规范消费者投诉、举报渠道，完善投诉、举报处理流程，依法及时受理和处理投诉、",
-              "投诉、举报应当遵守法律、法规和有关规定，不得利用投诉、举报牟取不正当利益，侵害经营者的合法权益，扰乱市场经济秩序。",
-              "经营者应当建立便捷、高效的投诉处理机制，及时解决消费争议。",
-              "鼓励和引导经营者建立健全首问负责、先行赔付、在线争议解决等制度，及时预防和解决消费争议。",
-              "消费者和经营者发生消费争议向市场监督管理部门或者其他有关行政部门投诉的，应当提供真实身份信息，有明确的被投诉人、具体的投",
-              "有关行政部门应当自收到投诉之日起7个工作日内，予以处理并告知消费者。",
-              "对不符合规定的投诉决定不予受理的，应当告知消费者不予受理的理由和其他解决争议的途径。",
-              "有关行政部门受理投诉后，消费者和经营者同意调解的，有关行政部门应当依据职责及时调解，并在受理之日起60日内调解完毕；",
-              "调解不成的应当终止调解。"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 24.326,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:34.244Z",
-      "updatedAt": "2026-08-18T11:51:34.275Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "parentObservationId": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "7ef13ef1c6048d6b",
-      "traceId": "cf56fb691fbed594dd272022ef54b479",
-      "type": "SPAN",
-      "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:51:33.547000+00:00",
-      "endTime": "2026-08-18 11:51:33.549000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "evaluator_count": 1,
-        "evaluation_count": 8,
-        "failed_evaluator_count": 0,
-        "skipped_evaluator_count": 0
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "4e1f27348678b7e1",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.002,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:34.244Z",
-      "updatedAt": "2026-08-18T11:51:34.275Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "1451f058b045cba1",
-      "traceId": "cf56fb691fbed594dd272022ef54b479",
-      "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:51:09.223000+00:00",
-      "endTime": "2026-08-18 11:51:33.546000+00:00",
-      "input": {
-        "query": "消费者与经营者发生消费者权益争议时，可以向哪些部门提出投诉？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-013",
-        "kind": "text",
-        "type": "single",
-        "layer": "law",
-        "style": "formal",
-        "doc_id": "L03",
-        "section": "第二十六条 【投诉与举报渠道】",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.696,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-013",
-        "type": "single",
-        "style": "formal",
-        "doc_id": "L03",
-        "layer": "law",
-        "kind": "text",
-        "seed_chunk_id": [
-          "L03#009:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 732,
-          "duplicate_ratio": 0,
-          "context_recall": 1,
-          "context_relevance": 0.034
-        },
-        "elapsed_s": 1.5,
-        "seed_rank": {
-          "candidate": {
-            "L03#009:00": 2
-          },
-          "evidence": {
-            "L03#009:00": 1
-          }
-        },
-        "sections": [
-          "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第二十六条 【投诉与举报渠道】 … 第四十四条 【经营者投诉处理机制】",
-          "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第四十六条 【行政投诉处理时限】 … 第四十七条 【质量鉴定】",
-          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
-          "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.1 途径"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 1,
-            "hit": 1,
-            "detail": [
-              {
-                "claim": "消费者与经营者发生消费者权益争议的，可以向市场监督管理部门或者其他有关行政部门投诉。",
-                "supported": true,
-                "reason": "上下文首句明确写明可向市场监督管理部门或其他有关行政部门投诉。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.034,
-            "n": 29,
-            "hit": 1,
-            "truncated": false,
-            "note": "其他单元涉及举报、处理流程、调解、鉴定、平台争议等，非直接回答投诉部门。",
-            "irrelevant": [
-              "自然人、法人或者其他组织可以向市场监督管理部门或者其他有关行政部门举报，反映经营者涉嫌违法的线索。",
-              "市场监督管理部门或者其他有关行政部门应当畅通和规范消费者投诉、举报渠道，完善投诉、举报处理流程，依法及时受理和处理投诉、",
-              "投诉、举报应当遵守法律、法规和有关规定，不得利用投诉、举报牟取不正当利益，侵害经营者的合法权益，扰乱市场经济秩序。",
-              "经营者应当建立便捷、高效的投诉处理机制，及时解决消费争议。",
-              "鼓励和引导经营者建立健全首问负责、先行赔付、在线争议解决等制度，及时预防和解决消费争议。",
-              "消费者和经营者发生消费争议向市场监督管理部门或者其他有关行政部门投诉的，应当提供真实身份信息，有明确的被投诉人、具体的投",
-              "有关行政部门应当自收到投诉之日起7个工作日内，予以处理并告知消费者。",
-              "对不符合规定的投诉决定不予受理的，应当告知消费者不予受理的理由和其他解决争议的途径。",
-              "有关行政部门受理投诉后，消费者和经营者同意调解的，有关行政部门应当依据职责及时调解，并在受理之日起60日内调解完毕；",
-              "调解不成的应当终止调解。"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "4e1f27348678b7e1",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 24.323,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:34.244Z",
-      "updatedAt": "2026-08-18T11:51:34.266Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "02ffc2874fab794f",
-      "traceId": "cf56fb691fbed594dd272022ef54b479",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:51:28.712000+00:00",
-      "endTime": "2026-08-18 11:51:30.237000+00:00",
-      "modelParameters": {},
-      "input": {
-        "query": "消费者与经营者发生消费者权益争议时，可以向哪些部门提出投诉？",
-        "top_k": 4
+        "evidence": [
+          "L03#009:00",
+          "L03#012:00",
+          "L03#013:00",
+          "L03#010:00",
+          "L03#011:00",
+          "L04#010:00",
+          "P09#006:00",
+          "L05#021:00",
+          "L05#022:00",
+          "L04#011:00"
+        ]
       },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -756,7 +646,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "1451f058b045cba1",
+      "parentObservationId": "7c221e8070d10c67",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -764,10 +654,301 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.525,
+      "latency": 0.026,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:34.244Z",
-      "updatedAt": "2026-08-18T11:51:34.262Z",
+      "createdAt": "2026-08-19T05:21:00.744Z",
+      "updatedAt": "2026-08-19T05:21:00.761Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "ecef5d748e97074a",
+      "traceId": "996949b67d97556b225283ee6b23e8b6",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:20:11.583000+00:00",
+      "endTime": "2026-08-19 05:20:59.761000+00:00",
+      "input": {
+        "query": "消费者与经营者发生消费者权益争议时，可以向哪些部门提出投诉？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-013",
+        "kind": "text",
+        "type": "single",
+        "layer": "law",
+        "style": "formal",
+        "doc_id": "L03",
+        "section": "第二十六条 【投诉与举报渠道】",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.696,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-013",
+        "query": "消费者与经营者发生消费者权益争议时，可以向哪些部门提出投诉？",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "L03",
+        "layer": "law",
+        "kind": "text",
+        "seed_chunk_id": [
+          "L03#009:00"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 732,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.034
+        },
+        "elapsed_s": 1.9,
+        "seed_rank": {
+          "candidate": {
+            "L03#009:00": 2
+          },
+          "evidence": {
+            "L03#009:00": 1
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": true,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "dispute",
+              "text": "消费者与经营者发生消费者权益争议时，可以向哪些部门提出投诉？"
+            }
+          ]
+        },
+        "rewrite_hash": "85457c679059f491",
+        "sections": [
+          "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第二十六条 【投诉与举报渠道】 … 第四十四条 【经营者投诉处理机制】",
+          "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第四十六条 【行政投诉处理时限】 … 第四十七条 【质量鉴定】",
+          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
+          "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.1 途径"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 1,
+            "hit": 1,
+            "detail": [
+              {
+                "claim": "消费者与经营者发生消费者权益争议的，可以向市场监督管理部门或者其他有关行政部门投诉。",
+                "supported": true,
+                "reason": "上下文第一段明确写明该投诉渠道。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.034,
+            "n": 29,
+            "hit": 1,
+            "truncated": false,
+            "note": "其余多为投诉处理流程、调解、鉴定等后续程序，非投诉部门。",
+            "irrelevant": [
+              "自然人、法人或者其他组织可以向市场监督管理部门或者其他有关行政部门举报，反映经营者涉嫌违法的线索。",
+              "市场监督管理部门或者其他有关行政部门应当畅通和规范消费者投诉、举报渠道，完善投诉、举报处理流程，依法及时受理和处理投诉、",
+              "投诉、举报应当遵守法律、法规和有关规定，不得利用投诉、举报牟取不正当利益，侵害经营者的合法权益，扰乱市场经济秩序。",
+              "经营者应当建立便捷、高效的投诉处理机制，及时解决消费争议。",
+              "鼓励和引导经营者建立健全首问负责、先行赔付、在线争议解决等制度，及时预防和解决消费争议。",
+              "消费者和经营者发生消费争议向市场监督管理部门或者其他有关行政部门投诉的，应当提供真实身份信息，有明确的被投诉人、具体的投",
+              "有关行政部门应当自收到投诉之日起7个工作日内，予以处理并告知消费者。",
+              "对不符合规定的投诉决定不予受理的，应当告知消费者不予受理的理由和其他解决争议的途径。",
+              "有关行政部门受理投诉后，消费者和经营者同意调解的，有关行政部门应当依据职责及时调解，并在受理之日起60日内调解完毕；",
+              "调解不成的应当终止调解。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "70e194efc6590cb8",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 48.178,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:21:00.744Z",
+      "updatedAt": "2026-08-19T05:21:00.760Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "7c221e8070d10c67",
+      "traceId": "996949b67d97556b225283ee6b23e8b6",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:20:54.587000+00:00",
+      "endTime": "2026-08-19 05:20:56.491000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "消费者与经营者发生消费者权益争议时，可以向哪些部门提出投诉？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第二十六条 【投诉与举报渠道】 … 第四十四条 【经营者投诉处理机制】",
+            "text": "消费者与经营者发生消费者权益争议的，可以向市场监督管理部门或者其他有关行政部门投诉。\n\n自然人、法人或者其他组织可以向市场监督管理部门或者其他有关行政部门举报，反映经营者涉嫌违法的线索。\n\n市场监督管理部门或者其他有关行政部门应当畅通和规范消费者投诉、举报渠道，完善投诉、举报处理流程，依法及时受理和处理投诉、举报，加强对投诉、举报信息的分析应用，开展消费预警和风险提示。\n\n投诉、举报应当遵守法律、法规和有关规定，不得利用投诉、举报牟取不正当利益，侵害经营者的合法权益，扰乱市场经济秩序。\n\n经营者应当建立便捷、高效的投诉处理机制，及时解决消费争议。\n\n鼓励和引导经营者建立健全首问负责、先行赔付、在线争议解决等制度，及时预防和解决消费争议。",
+            "score": 0.9796236801147462,
+            "doc_id": "L03",
+            "layer": "law",
+            "doc_type": "行政法规",
+            "effective_date": "2024-07-01",
+            "source_path": "doc/policy/law/L03-消费者权益保护法实施条例-摘录.md",
+            "reason": "相关性 1.000 × 先验 0.90 → 0.980；命中 1/law/dense#1, 1/law/bm25#1"
+          },
+          {
+            "section": "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第四十六条 【行政投诉处理时限】 … 第四十七条 【质量鉴定】",
+            "text": "消费者和经营者发生消费争议向市场监督管理部门或者其他有关行政部门投诉的，应当提供真实身份信息，有明确的被投诉人、具体的投诉请求和事实依据。\n\n有关行政部门应当自收到投诉之日起7个工作日内，予以处理并告知消费者。对不符合规定的投诉决定不予受理的，应当告知消费者不予受理的理由和其他解决争议的途径。\n\n有关行政部门受理投诉后，消费者和经营者同意调解的，有关行政部门应当依据职责及时调解，并在受理之日起60日内调解完毕；调解不成的应当终止调解。调解过程中需要鉴定、检测的，鉴定、检测时间不计算在60日内。\n\n有关行政部门经消费者和经营者同意，可以依法将投诉委托消费者协会或者依法成立的其他调解组织调解。\n\n因消费争议需要对商品或者服务质量进行鉴定、检测的，消费者和经营者可以协商确定鉴定、检测机构。无法协商一致的，受理消费者投诉的市场监督管理部门或者其他有关行政部门可以指定鉴定、检测机构。\n\n对于重大、复杂、涉及众多消费者合法权益的消费争议，可以由市场监督管理部门或者其他有关行政部门纳入抽查检验程序，委托具备相应资质的机构进行鉴定、检测。",
+            "score": 0.9774628925323487,
+            "doc_id": "L03",
+            "layer": "law",
+            "doc_type": "行政法规",
+            "effective_date": "2024-07-01",
+            "source_path": "doc/policy/law/L03-消费者权益保护法实施条例-摘录.md",
+            "reason": "相关性 0.997 × 先验 0.90 → 0.977；命中 1/law/dense#2, 1/law/bm25#2"
+          },
+          {
+            "section": "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
+            "text": "电子商务争议可以通过协商和解，请求消费者组织、行业协会或者其他依法成立的调解组织调解，向有关部门投诉，提请仲裁，或者提起诉讼等方式解决。\n\n消费者在电子商务平台购买商品或者接受服务，与平台内经营者发生争议时，电子商务平台经营者应当积极协助消费者维护合法权益。",
+            "score": 0.7291950035095216,
+            "doc_id": "L04",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2019-01-01",
+            "source_path": "doc/policy/law/L04-电子商务法-平台责任条款摘录.md",
+            "reason": "相关性 0.686 × 先验 0.90 → 0.729；命中 1/law/dense#9, 1/law/bm25#7"
+          },
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.1 途径",
+            "text": "消费者对平台判定结论仍有异议的，可通过以下途径维权：\n\n（一）向平台所在地或商家所在地市场监督管理部门投诉；\n（二）请求消费者协会或其他依法成立的调解组织调解；\n（三）拨打 12315 投诉举报；\n（四）按约定申请仲裁；\n（五）向人民法院提起诉讼。\n\n消费者通过外部途径维权的，平台应**提供商家的真实名称、地址和有效联系方式**，并提供订单原始记录与交易凭证，积极协助消费者维权。\n\n行政部门应自收到投诉之日起 **7 个工作日**内予以处理并告知消费者；受理后双方同意调解的，应在受理之日起 **60 日**内调解完毕（鉴定、检测时间不计入）。\n\n争议需对商品质量进行鉴定、检测的，双方可协商确定鉴定机构；无法协商一致的，由受理投诉的行政部门指定。",
+            "score": 0.7240906524658204,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.680 × 先验 0.90 → 0.724；命中 1/platform/dense#1, 1/platform/bm25#1"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "ecef5d748e97074a",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.904,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:21:00.744Z",
+      "updatedAt": "2026-08-19T05:21:00.758Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -787,12 +968,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "d5392860d7c87426",
-      "traceId": "cf56fb691fbed594dd272022ef54b479",
+      "id": "c096dea0513f49c6",
+      "traceId": "996949b67d97556b225283ee6b23e8b6",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 11:51:29.724000+00:00",
-      "endTime": "2026-08-18 11:51:30.212000+00:00",
+      "startTime": "2026-08-19 05:20:55.966000+00:00",
+      "endTime": "2026-08-19 05:20:56.464000+00:00",
       "input": {
         "query": "消费者与经营者发生消费者权益争议时，可以向哪些部门提出投诉？",
         "candidates": 20
@@ -802,7 +983,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -918,7 +1099,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "02ffc2874fab794f",
+      "parentObservationId": "7c221e8070d10c67",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -926,10 +1107,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.488,
+      "latency": 0.498,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:34.244Z",
-      "updatedAt": "2026-08-18T11:51:34.258Z",
+      "createdAt": "2026-08-19T05:21:00.744Z",
+      "updatedAt": "2026-08-19T05:21:00.758Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -950,33 +1131,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "bf282af7ecc39fd6",
-      "traceId": "cf56fb691fbed594dd272022ef54b479",
+      "id": "9a69b34ec4610a16",
+      "traceId": "996949b67d97556b225283ee6b23e8b6",
       "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:51:30.212000+00:00",
-      "endTime": "2026-08-18 11:51:30.237000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": [
-          "L03#009:00",
-          "L03#012:00",
-          "L03#013:00",
-          "L03#010:00",
-          "L03#011:00",
-          "L04#010:00",
-          "P09#006:00",
-          "L05#021:00",
-          "L05#022:00",
-          "L04#011:00"
-        ]
-      },
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:20:55.876000+00:00",
+      "endTime": "2026-08-19 05:20:55.876000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -988,50 +1154,14 @@
         }
       },
       "output": {
-        "sections": [
+        "routes": [
           {
-            "section": "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第二十六条 【投诉与举报渠道】 … 第四十四条 【经营者投诉处理机制】",
-            "text": "消费者与经营者发生消费者权益争议的，可以向市场监督管理部门或者其他有关行政部门投诉。\n\n自然人、法人或者其他组织可以向市场监督管理部门或者其他有关行政部门举报，反映经营者涉嫌违法的线索。\n\n市场监督管理部门或者其他有关行政部门应当畅通和规范消费者投诉、举报渠道，完善投诉、举报处理流程，依法及时受理和处理投诉、举报，加强对投诉、举报信息的分析应用，开展消费预警和风险提示。\n\n投诉、举报应当遵守法律、法规和有关规定，不得利用投诉、举报牟取不正当利益，侵害经营者的合法权益，扰乱市场经济秩序。\n\n经营者应当建立便捷、高效的投诉处理机制，及时解决消费争议。\n\n鼓励和引导经营者建立健全首问负责、先行赔付、在线争议解决等制度，及时预防和解决消费争议。",
-            "score": 0.9796236801147462,
-            "doc_id": "L03",
-            "layer": "law",
-            "doc_type": "行政法规",
-            "effective_date": "2024-07-01",
-            "source_path": "doc/policy/law/L03-消费者权益保护法实施条例-摘录.md",
-            "reason": "相关性 1.000 × 先验 0.90 → 0.980；命中 1/law/dense#1, 1/law/bm25#1"
-          },
-          {
-            "section": "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第四十六条 【行政投诉处理时限】 … 第四十七条 【质量鉴定】",
-            "text": "消费者和经营者发生消费争议向市场监督管理部门或者其他有关行政部门投诉的，应当提供真实身份信息，有明确的被投诉人、具体的投诉请求和事实依据。\n\n有关行政部门应当自收到投诉之日起7个工作日内，予以处理并告知消费者。对不符合规定的投诉决定不予受理的，应当告知消费者不予受理的理由和其他解决争议的途径。\n\n有关行政部门受理投诉后，消费者和经营者同意调解的，有关行政部门应当依据职责及时调解，并在受理之日起60日内调解完毕；调解不成的应当终止调解。调解过程中需要鉴定、检测的，鉴定、检测时间不计算在60日内。\n\n有关行政部门经消费者和经营者同意，可以依法将投诉委托消费者协会或者依法成立的其他调解组织调解。\n\n因消费争议需要对商品或者服务质量进行鉴定、检测的，消费者和经营者可以协商确定鉴定、检测机构。无法协商一致的，受理消费者投诉的市场监督管理部门或者其他有关行政部门可以指定鉴定、检测机构。\n\n对于重大、复杂、涉及众多消费者合法权益的消费争议，可以由市场监督管理部门或者其他有关行政部门纳入抽查检验程序，委托具备相应资质的机构进行鉴定、检测。",
-            "score": 0.9774628925323487,
-            "doc_id": "L03",
-            "layer": "law",
-            "doc_type": "行政法规",
-            "effective_date": "2024-07-01",
-            "source_path": "doc/policy/law/L03-消费者权益保护法实施条例-摘录.md",
-            "reason": "相关性 0.997 × 先验 0.90 → 0.977；命中 1/law/dense#2, 1/law/bm25#2"
-          },
-          {
-            "section": "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
-            "text": "电子商务争议可以通过协商和解，请求消费者组织、行业协会或者其他依法成立的调解组织调解，向有关部门投诉，提请仲裁，或者提起诉讼等方式解决。\n\n消费者在电子商务平台购买商品或者接受服务，与平台内经营者发生争议时，电子商务平台经营者应当积极协助消费者维护合法权益。",
-            "score": 0.7291950035095216,
-            "doc_id": "L04",
-            "layer": "law",
-            "doc_type": "法律",
-            "effective_date": "2019-01-01",
-            "source_path": "doc/policy/law/L04-电子商务法-平台责任条款摘录.md",
-            "reason": "相关性 0.686 × 先验 0.90 → 0.729；命中 1/law/dense#9, 1/law/bm25#7"
-          },
-          {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.1 途径",
-            "text": "消费者对平台判定结论仍有异议的，可通过以下途径维权：\n\n（一）向平台所在地或商家所在地市场监督管理部门投诉；\n（二）请求消费者协会或其他依法成立的调解组织调解；\n（三）拨打 12315 投诉举报；\n（四）按约定申请仲裁；\n（五）向人民法院提起诉讼。\n\n消费者通过外部途径维权的，平台应**提供商家的真实名称、地址和有效联系方式**，并提供订单原始记录与交易凭证，积极协助消费者维权。\n\n行政部门应自收到投诉之日起 **7 个工作日**内予以处理并告知消费者；受理后双方同意调解的，应在受理之日起 **60 日**内调解完毕（鉴定、检测时间不计入）。\n\n争议需对商品质量进行鉴定、检测的，双方可协商确定鉴定机构；无法协商一致的，由受理投诉的行政部门指定。",
-            "score": 0.7240906524658204,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.680 × 先验 0.90 → 0.724；命中 1/platform/dense#1, 1/platform/bm25#1"
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 12,
+              "law": 12
+            },
+            "law_weight": 1
           }
         ]
       },
@@ -1042,7 +1172,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "02ffc2874fab794f",
+      "parentObservationId": "7c221e8070d10c67",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1050,10 +1180,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.025,
+      "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:34.244Z",
-      "updatedAt": "2026-08-18T11:51:34.257Z",
+      "createdAt": "2026-08-19T05:21:00.744Z",
+      "updatedAt": "2026-08-19T05:21:00.757Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1061,6 +1191,7 @@
       "completionStartTime": null,
       "model": null,
       "modelParameters": null,
+      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -1074,18 +1205,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "e0bd455d9fb33c06",
-      "traceId": "cf56fb691fbed594dd272022ef54b479",
+      "id": "a5cdfed0b4913e79",
+      "traceId": "996949b67d97556b225283ee6b23e8b6",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 11:51:29.647000+00:00",
-      "endTime": "2026-08-18 11:51:29.724000+00:00",
+      "startTime": "2026-08-19 05:20:55.876000+00:00",
+      "endTime": "2026-08-19 05:20:55.966000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1279,7 +1410,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "02ffc2874fab794f",
+      "parentObservationId": "7c221e8070d10c67",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1287,10 +1418,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.077,
+      "latency": 0.09,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:34.244Z",
-      "updatedAt": "2026-08-18T11:51:34.257Z",
+      "createdAt": "2026-08-19T05:21:00.744Z",
+      "updatedAt": "2026-08-19T05:21:00.756Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1312,12 +1443,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "3d57d7ed78055490",
-      "traceId": "cf56fb691fbed594dd272022ef54b479",
+      "id": "95c75722425dcc11",
+      "traceId": "996949b67d97556b225283ee6b23e8b6",
       "type": "SPAN",
       "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:51:28.712000+00:00",
-      "endTime": "2026-08-18 11:51:29.647000+00:00",
+      "startTime": "2026-08-19 05:20:54.587000+00:00",
+      "endTime": "2026-08-19 05:20:55.875000+00:00",
       "input": {
         "query": "消费者与经营者发生消费者权益争议时，可以向哪些部门提出投诉？"
       },
@@ -1326,7 +1457,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1355,7 +1486,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "02ffc2874fab794f",
+      "parentObservationId": "7c221e8070d10c67",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1363,10 +1494,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.935,
+      "latency": 1.288,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:34.244Z",
-      "updatedAt": "2026-08-18T11:51:34.256Z",
+      "createdAt": "2026-08-19T05:21:00.744Z",
+      "updatedAt": "2026-08-19T05:21:00.752Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1374,80 +1505,6 @@
       "completionStartTime": null,
       "model": null,
       "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "8ef71e39d913fe65",
-      "traceId": "cf56fb691fbed594dd272022ef54b479",
-      "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:51:29.647000+00:00",
-      "endTime": "2026-08-18 11:51:29.647000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "routes": [
-          {
-            "sub_query": "1",
-            "layer_k": {
-              "platform": 12,
-              "law": 12
-            },
-            "law_weight": 1
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "02ffc2874fab794f",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.0,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:34.244Z",
-      "updatedAt": "2026-08-18T11:51:34.255Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,

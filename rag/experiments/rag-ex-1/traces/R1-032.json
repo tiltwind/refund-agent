@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-032",
+    "query": "我退货的时候得选个理由，是不是就分两种？选哪种是不是后面处理都不一样？",
     "type": "single",
     "style": "colloquial",
     "doc_id": "P02",
@@ -9,6 +10,7 @@
     "seed_chunk_id": [
       "P02#000:00"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
@@ -19,15 +21,27 @@
       "context_recall": 1.0,
       "context_relevance": 0.364
     },
-    "elapsed_s": 2.2,
+    "elapsed_s": 2.1,
     "seed_rank": {
       "candidate": {
-        "P02#000:00": 3
+        "P02#000:00": 2
       },
       "evidence": {
         "P02#000:00": 1
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "other",
+          "text": "退货时选择退货理由有哪些分类，不同理由对应的处理流程有什么区别？"
+        }
+      ]
+    },
+    "rewrite_hash": "d83609a275377762",
     "sections": [
       "P02 星辰优选售后服务与退换货政策 > 第一条 适用范围与基本原则",
       "P05 星辰优选商品完好标准与验收规范 > 第二条 商品状态的三档划分"
@@ -41,27 +55,27 @@
           {
             "claim": "退款申请按原因分为「无理由」和「质量问题」两类。",
             "supported": true,
-            "reason": "P02 1.3 表格明确分为无理由和质量问题两类"
+            "reason": "P02 1.3 表格明确列出两类退款原因。"
           },
           {
             "claim": "退款申请按原因分类的结果决定后续全部判定标准。",
             "supported": true,
-            "reason": "P02 1.3 写明分类结果决定后续全部判定标准"
+            "reason": "P02 1.3 写明分类结果决定后续全部判定标准。"
           },
           {
             "claim": "无理由指商品无质量问题、消费者主观不再需要。",
             "supported": true,
-            "reason": "P02 1.3 表格定义无理由为无质量问题、主观不再需要"
+            "reason": "P02 1.3 表格中无理由定义一致。"
           },
           {
             "claim": "质量问题指商品存在性能故障、破损、错发漏发或与描述不符等客观瑕疵。",
             "supported": true,
-            "reason": "P02 1.3 表格定义质量问题包含性能故障、破损、错发漏发、与描述不符"
+            "reason": "P02 1.3 表格中质量问题定义一致。"
           },
           {
             "claim": "平台只受理「无理由」和「质量问题」两类退款申请，不设第三类。",
             "supported": true,
-            "reason": "P02 1.3 明确平台只受理这两类，不设第三类"
+            "reason": "P02 1.3 明确只受理这两类，不设第三类。"
           }
         ],
         "error": null
@@ -71,7 +85,7 @@
         "n": 22,
         "hit": 8,
         "truncated": false,
-        "note": "不相关的多为适用范围、法定标准、争议处理及无理由退货的具体状态判定。",
+        "note": "不相关的主要是适用范围、法定标准、争议处理、商品状态划分等。",
         "irrelevant": [
           "1.1 本政策适用于消费者在星辰优选商城购买实物商品及虚拟商品所产生的全部退换货、退款申请。",
           "1.2 本政策所载标准为平台承诺的服务下限。",
@@ -87,34 +101,58 @@
         "error": null
       }
     },
-    "trace_id": "c27169d23dd9397901d0f53fd8e2533c"
+    "trace_id": "458b8901b44e068d2c7e31b6392aa9b9"
   },
   "trace": {
-    "id": "c27169d23dd9397901d0f53fd8e2533c",
+    "id": "458b8901b44e068d2c7e31b6392aa9b9",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:49:16.395000+00:00"
+    "timestamp": "2026-08-19 05:18:31.966000+00:00"
   },
   "observations": [
     {
-      "id": "22c557c0aeea6458",
-      "traceId": "c27169d23dd9397901d0f53fd8e2533c",
+      "id": "2779a17296a38e53",
+      "traceId": "458b8901b44e068d2c7e31b6392aa9b9",
       "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:49:18.577000+00:00",
-      "endTime": "2026-08-18 11:49:18.586000+00:00",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:17:53.646000+00:00",
+      "endTime": "2026-08-19 05:18:38.856000+00:00",
       "input": {
-        "top_k": 4,
-        "evidence": [
-          "P02#000:00",
-          "P05#002:00"
-        ]
+        "query": "我退货的时候得选个理由，是不是就分两种？选哪种是不是后面处理都不一样？"
       },
       "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-032",
+        "kind": "table",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P02",
+        "section": "第一条 适用范围与基本原则",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.13,
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -126,30 +164,107 @@
         }
       },
       "output": {
-        "sections": [
-          {
-            "section": "P02 星辰优选售后服务与退换货政策 > 第一条 适用范围与基本原则",
-            "text": "1.1 本政策适用于消费者在星辰优选商城购买实物商品及虚拟商品所产生的全部退换货、退款申请。\n\n1.2 本政策所载标准为平台承诺的服务下限。凡低于《消费者权益保护法》《网络购买商品七日无理由退货暂行办法》所定法定标准的条款，以法定标准为准；商家自行作出的更优承诺（如「30 天无忧退换」），对该商家的订单优先适用。\n\n1.3 退款申请按原因分为两类，**分类结果决定后续全部判定标准**：\n\n| 退款原因类型 | 含义 |\n|---|---|\n| **无理由** | 商品无质量问题，消费者主观不再需要（不喜欢、尺码不合、拍错等） |\n| **质量问题** | 商品存在性能故障、破损、错发漏发、与描述不符等客观瑕疵 |\n\n> 平台只受理这两类退款原因，不设第三类。消费者的口语化描述（\"这个不太合适\"、\"收到就是坏的\"）须先归入其中之一，再进入判定。归类有争议的，按 [P09] 的争议处理流程办理。",
-            "score": 0.5329561233520508,
-            "doc_id": "P02",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
-            "reason": "相关性 0.416 × 先验 1.00 → 0.533；命中 1/platform/dense#5, 2/platform/dense#7, 2/platform/bm25#1"
+        "case_id": "R1-032",
+        "query": "我退货的时候得选个理由，是不是就分两种？选哪种是不是后面处理都不一样？",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P02",
+        "layer": "platform",
+        "kind": "table",
+        "seed_chunk_id": [
+          "P02#000:00"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 531,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.364
+        },
+        "elapsed_s": 2.1,
+        "seed_rank": {
+          "candidate": {
+            "P02#000:00": 2
           },
-          {
-            "section": "P05 星辰优选商品完好标准与验收规范 > 第二条 商品状态的三档划分",
-            "text": "平台在受理无理由退货时，将商品状态划分为三档：\n\n| 状态 | 判定要素 | 无理由退货 |\n|---|---|---|\n| **未拆封** | 外包装完整，密封条、封口、塑封未破坏；商品未从原包装中取出 | ✅ 支持 |\n| **已拆封** | 包装已开启，商品已取出查验，但未投入实际使用，无使用痕迹 | ❌ 不支持 |\n| **已使用** | 商品已实际使用，存在使用痕迹、消耗、激活或数据留存 | ❌ 不支持 |\n\n2.1 无理由退货**仅接受「未拆封」**。这是平台在法定标准之上对商品二次销售价值的进一步要求，已在商品详情页与售后政策中公示。\n\n2.2 **质量问题退货不受本条限制**——商品已拆封、已使用，均不影响质量问题退货的受理。\n\n2.3 消费者对商品状态的陈述与实际退回商品不符的，按第五条处理。",
-            "score": 0.34552907228469854,
-            "doc_id": "P05",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P05-商品完好标准与验收规范.md",
-            "reason": "相关性 0.207 × 先验 0.90 → 0.346；命中 1/platform/dense#1, 1/platform/bm25#12, 2/platform/dense#17"
+          "evidence": {
+            "P02#000:00": 1
           }
-        ]
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "other",
+              "text": "退货时选择退货理由有哪些分类，不同理由对应的处理流程有什么区别？"
+            }
+          ]
+        },
+        "rewrite_hash": "d83609a275377762",
+        "sections": [
+          "P02 星辰优选售后服务与退换货政策 > 第一条 适用范围与基本原则",
+          "P05 星辰优选商品完好标准与验收规范 > 第二条 商品状态的三档划分"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 5,
+            "hit": 5,
+            "detail": [
+              {
+                "claim": "退款申请按原因分为「无理由」和「质量问题」两类。",
+                "supported": true,
+                "reason": "P02 1.3 表格明确列出两类退款原因。"
+              },
+              {
+                "claim": "退款申请按原因分类的结果决定后续全部判定标准。",
+                "supported": true,
+                "reason": "P02 1.3 写明分类结果决定后续全部判定标准。"
+              },
+              {
+                "claim": "无理由指商品无质量问题、消费者主观不再需要。",
+                "supported": true,
+                "reason": "P02 1.3 表格中无理由定义一致。"
+              },
+              {
+                "claim": "质量问题指商品存在性能故障、破损、错发漏发或与描述不符等客观瑕疵。",
+                "supported": true,
+                "reason": "P02 1.3 表格中质量问题定义一致。"
+              },
+              {
+                "claim": "平台只受理「无理由」和「质量问题」两类退款申请，不设第三类。",
+                "supported": true,
+                "reason": "P02 1.3 明确只受理这两类，不设第三类。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.364,
+            "n": 22,
+            "hit": 8,
+            "truncated": false,
+            "note": "不相关的主要是适用范围、法定标准、争议处理、商品状态划分等。",
+            "irrelevant": [
+              "1.1 本政策适用于消费者在星辰优选商城购买实物商品及虚拟商品所产生的全部退换货、退款申请。",
+              "1.2 本政策所载标准为平台承诺的服务下限。",
+              "凡低于《消费者权益保护法》《网络购买商品七日无理由退货暂行办法》所定法定标准的条款，以法定标准为准；",
+              "商家自行作出的更优承诺（如「30 天无忧退换」），对该商家的订单优先适用。",
+              "|---|---|",
+              "归类有争议的，按 [P09] 的争议处理流程办理。",
+              "平台在受理无理由退货时，将商品状态划分为三档：",
+              "| 状态 | 判定要素 | 无理由退货 |",
+              "|---|---|---|",
+              "| **未拆封** | 外包装完整，密封条、封口、塑封未破坏；商品未从原包装中取出 | ✅ 支持 |"
+            ],
+            "error": null
+          }
+        }
       },
       "usage": {
         "input": 0,
@@ -158,7 +273,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "63e15bdefc5c44a6",
+      "parentObservationId": "8671360f627b6be2",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -166,10 +281,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.009,
+      "latency": 45.21,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:49:23.485Z",
-      "updatedAt": "2026-08-18T11:49:23.497Z",
+      "createdAt": "2026-08-19T05:18:39.842Z",
+      "updatedAt": "2026-08-19T05:18:39.851Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -190,18 +305,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "82eee5c7f6a9c90d",
-      "traceId": "c27169d23dd9397901d0f53fd8e2533c",
+      "id": "7bd1bb3b4891ac0a",
+      "traceId": "458b8901b44e068d2c7e31b6392aa9b9",
       "type": "SPAN",
       "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:49:23.171000+00:00",
-      "endTime": "2026-08-18 11:49:23.173000+00:00",
+      "startTime": "2026-08-19 05:18:38.856000+00:00",
+      "endTime": "2026-08-19 05:18:38.857000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -225,7 +340,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "f2885414cc22da21",
+      "parentObservationId": "8671360f627b6be2",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -233,10 +348,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.002,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:49:23.485Z",
-      "updatedAt": "2026-08-18T11:49:23.497Z",
+      "createdAt": "2026-08-19T05:18:39.842Z",
+      "updatedAt": "2026-08-19T05:18:39.850Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -258,12 +373,207 @@
       "usagePricingTierName": null
     },
     {
-      "id": "3351f24f168e273d",
-      "traceId": "c27169d23dd9397901d0f53fd8e2533c",
+      "id": "8671360f627b6be2",
+      "traceId": "458b8901b44e068d2c7e31b6392aa9b9",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-19 05:17:53.646000+00:00",
+      "endTime": "2026-08-19 05:18:38.857000+00:00",
+      "input": {
+        "query": "我退货的时候得选个理由，是不是就分两种？选哪种是不是后面处理都不一样？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-032",
+        "kind": "table",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P02",
+        "section": "第一条 适用范围与基本原则",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.13,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-032",
+        "query": "我退货的时候得选个理由，是不是就分两种？选哪种是不是后面处理都不一样？",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P02",
+        "layer": "platform",
+        "kind": "table",
+        "seed_chunk_id": [
+          "P02#000:00"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 531,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.364
+        },
+        "elapsed_s": 2.1,
+        "seed_rank": {
+          "candidate": {
+            "P02#000:00": 2
+          },
+          "evidence": {
+            "P02#000:00": 1
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "other",
+              "text": "退货时选择退货理由有哪些分类，不同理由对应的处理流程有什么区别？"
+            }
+          ]
+        },
+        "rewrite_hash": "d83609a275377762",
+        "sections": [
+          "P02 星辰优选售后服务与退换货政策 > 第一条 适用范围与基本原则",
+          "P05 星辰优选商品完好标准与验收规范 > 第二条 商品状态的三档划分"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 5,
+            "hit": 5,
+            "detail": [
+              {
+                "claim": "退款申请按原因分为「无理由」和「质量问题」两类。",
+                "supported": true,
+                "reason": "P02 1.3 表格明确列出两类退款原因。"
+              },
+              {
+                "claim": "退款申请按原因分类的结果决定后续全部判定标准。",
+                "supported": true,
+                "reason": "P02 1.3 写明分类结果决定后续全部判定标准。"
+              },
+              {
+                "claim": "无理由指商品无质量问题、消费者主观不再需要。",
+                "supported": true,
+                "reason": "P02 1.3 表格中无理由定义一致。"
+              },
+              {
+                "claim": "质量问题指商品存在性能故障、破损、错发漏发或与描述不符等客观瑕疵。",
+                "supported": true,
+                "reason": "P02 1.3 表格中质量问题定义一致。"
+              },
+              {
+                "claim": "平台只受理「无理由」和「质量问题」两类退款申请，不设第三类。",
+                "supported": true,
+                "reason": "P02 1.3 明确只受理这两类，不设第三类。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.364,
+            "n": 22,
+            "hit": 8,
+            "truncated": false,
+            "note": "不相关的主要是适用范围、法定标准、争议处理、商品状态划分等。",
+            "irrelevant": [
+              "1.1 本政策适用于消费者在星辰优选商城购买实物商品及虚拟商品所产生的全部退换货、退款申请。",
+              "1.2 本政策所载标准为平台承诺的服务下限。",
+              "凡低于《消费者权益保护法》《网络购买商品七日无理由退货暂行办法》所定法定标准的条款，以法定标准为准；",
+              "商家自行作出的更优承诺（如「30 天无忧退换」），对该商家的订单优先适用。",
+              "|---|---|",
+              "归类有争议的，按 [P09] 的争议处理流程办理。",
+              "平台在受理无理由退货时，将商品状态划分为三档：",
+              "| 状态 | 判定要素 | 无理由退货 |",
+              "|---|---|---|",
+              "| **未拆封** | 外包装完整，密封条、封口、塑封未破坏；商品未从原包装中取出 | ✅ 支持 |"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 45.211,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:18:39.842Z",
+      "updatedAt": "2026-08-19T05:18:39.851Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "6ee151bf6e23aaf2",
+      "traceId": "458b8901b44e068d2c7e31b6392aa9b9",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:49:23.171000+00:00",
-      "endTime": "2026-08-18 11:49:23.172000+00:00",
+      "startTime": "2026-08-19 05:18:38.856000+00:00",
+      "endTime": "2026-08-19 05:18:38.857000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -271,6 +581,7 @@
         },
         "output": {
           "case_id": "R1-032",
+          "query": "我退货的时候得选个理由，是不是就分两种？选哪种是不是后面处理都不一样？",
           "type": "single",
           "style": "colloquial",
           "doc_id": "P02",
@@ -279,6 +590,7 @@
           "seed_chunk_id": [
             "P02#000:00"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
@@ -289,15 +601,27 @@
             "context_recall": 1,
             "context_relevance": 0.364
           },
-          "elapsed_s": 2.2,
+          "elapsed_s": 2.1,
           "seed_rank": {
             "candidate": {
-              "P02#000:00": 3
+              "P02#000:00": 2
             },
             "evidence": {
               "P02#000:00": 1
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "other",
+                "text": "退货时选择退货理由有哪些分类，不同理由对应的处理流程有什么区别？"
+              }
+            ]
+          },
+          "rewrite_hash": "d83609a275377762",
           "sections": [
             "P02 星辰优选售后服务与退换货政策 > 第一条 适用范围与基本原则",
             "P05 星辰优选商品完好标准与验收规范 > 第二条 商品状态的三档划分"
@@ -311,27 +635,27 @@
                 {
                   "claim": "退款申请按原因分为「无理由」和「质量问题」两类。",
                   "supported": true,
-                  "reason": "P02 1.3 表格明确分为无理由和质量问题两类"
+                  "reason": "P02 1.3 表格明确列出两类退款原因。"
                 },
                 {
                   "claim": "退款申请按原因分类的结果决定后续全部判定标准。",
                   "supported": true,
-                  "reason": "P02 1.3 写明分类结果决定后续全部判定标准"
+                  "reason": "P02 1.3 写明分类结果决定后续全部判定标准。"
                 },
                 {
                   "claim": "无理由指商品无质量问题、消费者主观不再需要。",
                   "supported": true,
-                  "reason": "P02 1.3 表格定义无理由为无质量问题、主观不再需要"
+                  "reason": "P02 1.3 表格中无理由定义一致。"
                 },
                 {
                   "claim": "质量问题指商品存在性能故障、破损、错发漏发或与描述不符等客观瑕疵。",
                   "supported": true,
-                  "reason": "P02 1.3 表格定义质量问题包含性能故障、破损、错发漏发、与描述不符"
+                  "reason": "P02 1.3 表格中质量问题定义一致。"
                 },
                 {
                   "claim": "平台只受理「无理由」和「质量问题」两类退款申请，不设第三类。",
                   "supported": true,
-                  "reason": "P02 1.3 明确平台只受理这两类，不设第三类"
+                  "reason": "P02 1.3 明确只受理这两类，不设第三类。"
                 }
               ],
               "error": null
@@ -341,7 +665,7 @@
               "n": 22,
               "hit": 8,
               "truncated": false,
-              "note": "不相关的多为适用范围、法定标准、争议处理及无理由退货的具体状态判定。",
+              "note": "不相关的主要是适用范围、法定标准、争议处理、商品状态划分等。",
               "irrelevant": [
                 "1.1 本政策适用于消费者在星辰优选商城购买实物商品及虚拟商品所产生的全部退换货、退款申请。",
                 "1.2 本政策所载标准为平台承诺的服务下限。",
@@ -369,7 +693,8 @@
           "seed_chunk_id": [
             "P02#000:00"
           ],
-          "reference_answer": "退款申请按原因分为「无理由」和「质量问题」两类，分类结果决定后续全部判定标准。无理由指商品无质量问题、消费者主观不再需要；质量问题指商品存在性能故障、破损、错发漏发或与描述不符等客观瑕疵。平台只受理这两类，不设第三类。"
+          "reference_answer": "退款申请按原因分为「无理由」和「质量问题」两类，分类结果决定后续全部判定标准。无理由指商品无质量问题、消费者主观不再需要；质量问题指商品存在性能故障、破损、错发漏发或与描述不符等客观瑕疵。平台只受理这两类，不设第三类。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "table",
@@ -391,7 +716,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -406,7 +731,7 @@
         {
           "name": "recall@10",
           "value": 1,
-          "comment": "种子块名次 P02#000:00=3"
+          "comment": "种子块名次 P02#000:00=2"
         },
         {
           "name": "recall@3",
@@ -436,7 +761,7 @@
         {
           "name": "context_relevance",
           "value": 0.364,
-          "comment": "8/22 个内容单元相关；不相关的多为适用范围、法定标准、争议处理及无理由退货的具体状态判定。"
+          "comment": "8/22 个内容单元相关；不相关的主要是适用范围、法定标准、争议处理、商品状态划分等。"
         },
         {
           "name": "run_error",
@@ -451,7 +776,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "82eee5c7f6a9c90d",
+      "parentObservationId": "7bd1bb3b4891ac0a",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -461,8 +786,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:49:23.485Z",
-      "updatedAt": "2026-08-18T11:49:23.496Z",
+      "createdAt": "2026-08-19T05:18:39.842Z",
+      "updatedAt": "2026-08-19T05:18:39.849Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -482,49 +807,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "4e25cf8221fa19f0",
-      "traceId": "c27169d23dd9397901d0f53fd8e2533c",
+      "id": "7320fbffe95cdb0c",
+      "traceId": "458b8901b44e068d2c7e31b6392aa9b9",
       "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:48:51.462000+00:00",
-      "endTime": "2026-08-18 11:49:23.170000+00:00",
-      "input": {
-        "query": "我退货的时候得选个理由，是不是就分两种？选哪种是不是后面处理都不一样？"
-      },
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:18:33.096000+00:00",
+      "endTime": "2026-08-19 05:18:33.097000+00:00",
       "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-032",
-        "kind": "table",
-        "type": "single",
-        "layer": "platform",
-        "style": "colloquial",
-        "doc_id": "P02",
-        "section": "第一条 适用范围与基本原则",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.13,
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -536,93 +830,16 @@
         }
       },
       "output": {
-        "case_id": "R1-032",
-        "type": "single",
-        "style": "colloquial",
-        "doc_id": "P02",
-        "layer": "platform",
-        "kind": "table",
-        "seed_chunk_id": [
-          "P02#000:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 531,
-          "duplicate_ratio": 0,
-          "context_recall": 1,
-          "context_relevance": 0.364
-        },
-        "elapsed_s": 2.2,
-        "seed_rank": {
-          "candidate": {
-            "P02#000:00": 3
-          },
-          "evidence": {
-            "P02#000:00": 1
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
           }
-        },
-        "sections": [
-          "P02 星辰优选售后服务与退换货政策 > 第一条 适用范围与基本原则",
-          "P05 星辰优选商品完好标准与验收规范 > 第二条 商品状态的三档划分"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 5,
-            "hit": 5,
-            "detail": [
-              {
-                "claim": "退款申请按原因分为「无理由」和「质量问题」两类。",
-                "supported": true,
-                "reason": "P02 1.3 表格明确分为无理由和质量问题两类"
-              },
-              {
-                "claim": "退款申请按原因分类的结果决定后续全部判定标准。",
-                "supported": true,
-                "reason": "P02 1.3 写明分类结果决定后续全部判定标准"
-              },
-              {
-                "claim": "无理由指商品无质量问题、消费者主观不再需要。",
-                "supported": true,
-                "reason": "P02 1.3 表格定义无理由为无质量问题、主观不再需要"
-              },
-              {
-                "claim": "质量问题指商品存在性能故障、破损、错发漏发或与描述不符等客观瑕疵。",
-                "supported": true,
-                "reason": "P02 1.3 表格定义质量问题包含性能故障、破损、错发漏发、与描述不符"
-              },
-              {
-                "claim": "平台只受理「无理由」和「质量问题」两类退款申请，不设第三类。",
-                "supported": true,
-                "reason": "P02 1.3 明确平台只受理这两类，不设第三类"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.364,
-            "n": 22,
-            "hit": 8,
-            "truncated": false,
-            "note": "不相关的多为适用范围、法定标准、争议处理及无理由退货的具体状态判定。",
-            "irrelevant": [
-              "1.1 本政策适用于消费者在星辰优选商城购买实物商品及虚拟商品所产生的全部退换货、退款申请。",
-              "1.2 本政策所载标准为平台承诺的服务下限。",
-              "凡低于《消费者权益保护法》《网络购买商品七日无理由退货暂行办法》所定法定标准的条款，以法定标准为准；",
-              "商家自行作出的更优承诺（如「30 天无忧退换」），对该商家的订单优先适用。",
-              "|---|---|",
-              "归类有争议的，按 [P09] 的争议处理流程办理。",
-              "平台在受理无理由退货时，将商品状态划分为三档：",
-              "| 状态 | 判定要素 | 无理由退货 |",
-              "|---|---|---|",
-              "| **未拆封** | 外包装完整，密封条、封口、塑封未破坏；商品未从原包装中取出 | ✅ 支持 |"
-            ],
-            "error": null
-          }
-        }
+        ]
       },
       "usage": {
         "input": 0,
@@ -631,7 +848,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "f2885414cc22da21",
+      "parentObservationId": "120489825ada4990",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -639,10 +856,105 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 31.708,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:49:23.485Z",
-      "updatedAt": "2026-08-18T11:49:23.496Z",
+      "createdAt": "2026-08-19T05:18:34.789Z",
+      "updatedAt": "2026-08-19T05:18:34.812Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "e33514cfc442e1bc",
+      "traceId": "458b8901b44e068d2c7e31b6392aa9b9",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:18:34.057000+00:00",
+      "endTime": "2026-08-19 05:18:34.066000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "P02#000:00",
+          "P05#002:00"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P02 星辰优选售后服务与退换货政策 > 第一条 适用范围与基本原则",
+            "text": "1.1 本政策适用于消费者在星辰优选商城购买实物商品及虚拟商品所产生的全部退换货、退款申请。\n\n1.2 本政策所载标准为平台承诺的服务下限。凡低于《消费者权益保护法》《网络购买商品七日无理由退货暂行办法》所定法定标准的条款，以法定标准为准；商家自行作出的更优承诺（如「30 天无忧退换」），对该商家的订单优先适用。\n\n1.3 退款申请按原因分为两类，**分类结果决定后续全部判定标准**：\n\n| 退款原因类型 | 含义 |\n|---|---|\n| **无理由** | 商品无质量问题，消费者主观不再需要（不喜欢、尺码不合、拍错等） |\n| **质量问题** | 商品存在性能故障、破损、错发漏发、与描述不符等客观瑕疵 |\n\n> 平台只受理这两类退款原因，不设第三类。消费者的口语化描述（\"这个不太合适\"、\"收到就是坏的\"）须先归入其中之一，再进入判定。归类有争议的，按 [P09] 的争议处理流程办理。",
+            "score": 0.5329561233520508,
+            "doc_id": "P02",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
+            "reason": "相关性 0.416 × 先验 1.00 → 0.533；命中 1/platform/dense#5, 1/platform/bm25#3"
+          },
+          {
+            "section": "P05 星辰优选商品完好标准与验收规范 > 第二条 商品状态的三档划分",
+            "text": "平台在受理无理由退货时，将商品状态划分为三档：\n\n| 状态 | 判定要素 | 无理由退货 |\n|---|---|---|\n| **未拆封** | 外包装完整，密封条、封口、塑封未破坏；商品未从原包装中取出 | ✅ 支持 |\n| **已拆封** | 包装已开启，商品已取出查验，但未投入实际使用，无使用痕迹 | ❌ 不支持 |\n| **已使用** | 商品已实际使用，存在使用痕迹、消耗、激活或数据留存 | ❌ 不支持 |\n\n2.1 无理由退货**仅接受「未拆封」**。这是平台在法定标准之上对商品二次销售价值的进一步要求，已在商品详情页与售后政策中公示。\n\n2.2 **质量问题退货不受本条限制**——商品已拆封、已使用，均不影响质量问题退货的受理。\n\n2.3 消费者对商品状态的陈述与实际退回商品不符的，按第五条处理。",
+            "score": 0.34552907228469854,
+            "doc_id": "P05",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P05-商品完好标准与验收规范.md",
+            "reason": "相关性 0.207 × 先验 0.90 → 0.346；命中 1/platform/dense#1"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "120489825ada4990",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.009,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:18:34.789Z",
+      "updatedAt": "2026-08-19T05:18:34.812Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -663,12 +975,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "03ce3d2544cacf93",
-      "traceId": "c27169d23dd9397901d0f53fd8e2533c",
+      "id": "64ea8d2d931b8d97",
+      "traceId": "458b8901b44e068d2c7e31b6392aa9b9",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 11:49:17.766000+00:00",
-      "endTime": "2026-08-18 11:49:18.577000+00:00",
+      "startTime": "2026-08-19 05:18:33.190000+00:00",
+      "endTime": "2026-08-19 05:18:34.057000+00:00",
       "input": {
         "query": "我退货的时候得选个理由，是不是就分两种？选哪种是不是后面处理都不一样？",
         "candidates": 20
@@ -678,7 +990,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -693,24 +1005,24 @@
         "passed": 2,
         "min_score": 0.3,
         "dropped": [
-          "P02#005:00",
-          "L02#003:00",
-          "P08#003:01",
-          "P06#000:00",
-          "P02#003:00",
-          "P04#002:00",
-          "P11#005:00",
-          "L02#003:04",
-          "P06#001:00",
-          "L02#003:07",
-          "L05#013:00",
-          "P04#002:03",
-          "L02#003:02",
           "L02#002:01",
-          "P03#001:05",
-          "P04#000:00",
+          "P09#000:00",
+          "P11#005:00",
+          "P04#001:00",
           "P09#004:00",
-          "P04#003:03"
+          "P04#003:03",
+          "P04#004:00",
+          "L02#003:04",
+          "L05#013:00",
+          "P08#003:01",
+          "L02#003:07",
+          "P02#003:00",
+          "L01#004:00",
+          "L02#004:03",
+          "P02#005:00",
+          "P04#002:00",
+          "L02#003:02",
+          "L02#003:05"
         ],
         "evidence": [
           {
@@ -738,7 +1050,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "63e15bdefc5c44a6",
+      "parentObservationId": "120489825ada4990",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -746,10 +1058,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.811,
+      "latency": 0.867,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:49:23.485Z",
-      "updatedAt": "2026-08-18T11:49:23.493Z",
+      "createdAt": "2026-08-19T05:18:34.789Z",
+      "updatedAt": "2026-08-19T05:18:34.811Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -770,12 +1082,321 @@
       "usagePricingTierName": null
     },
     {
-      "id": "63e15bdefc5c44a6",
-      "traceId": "c27169d23dd9397901d0f53fd8e2533c",
+      "id": "333bf8eda17c2183",
+      "traceId": "458b8901b44e068d2c7e31b6392aa9b9",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-19 05:18:33.097000+00:00",
+      "endTime": "2026-08-19 05:18:33.190000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "L02#002:01",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】",
+            "rrf": 0.0855,
+            "hits": [
+              "1/law/dense#5",
+              "1/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P02#000:00",
+            "section": "P02 第一条 适用范围与基本原则",
+            "rrf": 0.0835,
+            "hits": [
+              "1/platform/dense#5",
+              "1/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P09#000:00",
+            "section": "P09 第一条 适用范围",
+            "rrf": 0.0749,
+            "hits": [
+              "1/platform/dense#14",
+              "1/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P11#005:00",
+            "section": "P11 第五条 服装、鞋帽、箱包 > 5.1 无理由退货",
+            "rrf": 0.0739,
+            "hits": [
+              "1/platform/dense#18",
+              "1/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P04#001:00",
+            "section": "P04 第一条 法定不适用无理由退货的商品",
+            "rrf": 0.0718,
+            "hits": [
+              "1/platform/dense#6",
+              "1/platform/bm25#10"
+            ]
+          },
+          {
+            "chunk_id": "P09#004:00",
+            "section": "P09 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
+            "rrf": 0.0702,
+            "hits": [
+              "1/platform/dense#9",
+              "1/platform/bm25#8"
+            ]
+          },
+          {
+            "chunk_id": "P04#003:03",
+            "section": "P04 第三条 平台特殊类目：不支持任何形式的退款 > 3.3 虚拟商品",
+            "rrf": 0.0619,
+            "hits": [
+              "1/platform/dense#10",
+              "1/platform/bm25#15"
+            ]
+          },
+          {
+            "chunk_id": "P04#004:00",
+            "section": "P04 第四条 标注与确认的前提条件",
+            "rrf": 0.0589,
+            "hits": [
+              "1/platform/dense#15",
+              "1/platform/bm25#13"
+            ]
+          },
+          {
+            "chunk_id": "P05#002:00",
+            "section": "P05 第二条 商品状态的三档划分",
+            "rrf": 0.0476,
+            "hits": [
+              "1/platform/dense#1"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:04",
+            "section": "L02 第三章 退货程序 > 第十四条 【退款方式】",
+            "rrf": 0.0476,
+            "hits": [
+              "1/law/dense#1"
+            ]
+          },
+          {
+            "chunk_id": "L05#013:00",
+            "section": "L05 第十三条 【无同型号产品时的退货与折旧】",
+            "rrf": 0.0476,
+            "hits": [
+              "1/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P08#003:01",
+            "section": "P08 第三条 异常退款行为的认定 > 3.1 调包类",
+            "rrf": 0.0455,
+            "hits": [
+              "1/platform/dense#2"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:07",
+            "section": "L02 第三章 退货程序 > 第十七条 【退款金额的计算】",
+            "rrf": 0.0455,
+            "hits": [
+              "1/law/dense#2"
+            ]
+          },
+          {
+            "chunk_id": "P02#003:00",
+            "section": "P02 第四条 特殊类目",
+            "rrf": 0.0435,
+            "hits": [
+              "1/platform/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "L01#004:00",
+            "section": "L01 第二十五条 【网络购物七日无理由退货】",
+            "rrf": 0.0435,
+            "hits": [
+              "1/law/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#004:03",
+            "section": "L02 第四章 特别规定 > 第二十三条 【平台检查监控义务】",
+            "rrf": 0.0435,
+            "hits": [
+              "1/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P02#005:00",
+            "section": "P02 第六条 判定顺序",
+            "rrf": 0.0417,
+            "hits": [
+              "1/platform/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "P04#002:00",
+            "section": "P04 第二条 经消费者确认后不适用无理由退货的商品",
+            "rrf": 0.0417,
+            "hits": [
+              "1/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:02",
+            "section": "L02 第三章 退货程序 > 第十二条 【赠品一并退回】",
+            "rrf": 0.0417,
+            "hits": [
+              "1/law/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:05",
+            "section": "L02 第三章 退货程序 > 第十五条 【积分、代金券、优惠券的返还】",
+            "rrf": 0.0417,
+            "hits": [
+              "1/law/bm25#4"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "120489825ada4990",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.093,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:18:34.789Z",
+      "updatedAt": "2026-08-19T05:18:34.810Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "64e068d54c3b65a3",
+      "traceId": "458b8901b44e068d2c7e31b6392aa9b9",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-19 05:18:31.966000+00:00",
+      "endTime": "2026-08-19 05:18:33.096000+00:00",
+      "input": {
+        "query": "我退货的时候得选个理由，是不是就分两种？选哪种是不是后面处理都不一样？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "other",
+            "text": "退货时选择退货理由有哪些分类，不同理由对应的处理流程有什么区别？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "120489825ada4990",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.13,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:18:34.789Z",
+      "updatedAt": "2026-08-19T05:18:34.810Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "120489825ada4990",
+      "traceId": "458b8901b44e068d2c7e31b6392aa9b9",
       "type": "RETRIEVER",
       "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:49:16.395000+00:00",
-      "endTime": "2026-08-18 11:49:18.586000+00:00",
+      "startTime": "2026-08-19 05:18:31.966000+00:00",
+      "endTime": "2026-08-19 05:18:34.066000+00:00",
       "modelParameters": {},
       "input": {
         "query": "我退货的时候得选个理由，是不是就分两种？选哪种是不是后面处理都不一样？",
@@ -786,7 +1407,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -808,7 +1429,7 @@
             "doc_type": "平台交易规则",
             "effective_date": "2024-01-01",
             "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
-            "reason": "相关性 0.416 × 先验 1.00 → 0.533；命中 1/platform/dense#5, 2/platform/dense#7, 2/platform/bm25#1"
+            "reason": "相关性 0.416 × 先验 1.00 → 0.533；命中 1/platform/dense#5, 1/platform/bm25#3"
           },
           {
             "section": "P05 星辰优选商品完好标准与验收规范 > 第二条 商品状态的三档划分",
@@ -819,7 +1440,7 @@
             "doc_type": "平台交易规则",
             "effective_date": "2024-01-01",
             "source_path": "doc/policy/platform/P05-商品完好标准与验收规范.md",
-            "reason": "相关性 0.207 × 先验 0.90 → 0.346；命中 1/platform/dense#1, 1/platform/bm25#12, 2/platform/dense#17"
+            "reason": "相关性 0.207 × 先验 0.90 → 0.346；命中 1/platform/dense#1"
           }
         ]
       },
@@ -830,7 +1451,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "4e25cf8221fa19f0",
+      "parentObservationId": "2779a17296a38e53",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -838,616 +1459,16 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 2.191,
+      "latency": 2.1,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:49:23.485Z",
-      "updatedAt": "2026-08-18T11:49:23.492Z",
+      "createdAt": "2026-08-19T05:18:34.789Z",
+      "updatedAt": "2026-08-19T05:18:34.803Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
       "totalTokens": 0,
       "completionStartTime": null,
       "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "f2885414cc22da21",
-      "traceId": "c27169d23dd9397901d0f53fd8e2533c",
-      "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:48:51.462000+00:00",
-      "endTime": "2026-08-18 11:49:23.173000+00:00",
-      "input": {
-        "query": "我退货的时候得选个理由，是不是就分两种？选哪种是不是后面处理都不一样？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-032",
-        "kind": "table",
-        "type": "single",
-        "layer": "platform",
-        "style": "colloquial",
-        "doc_id": "P02",
-        "section": "第一条 适用范围与基本原则",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.13,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-032",
-        "type": "single",
-        "style": "colloquial",
-        "doc_id": "P02",
-        "layer": "platform",
-        "kind": "table",
-        "seed_chunk_id": [
-          "P02#000:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 531,
-          "duplicate_ratio": 0,
-          "context_recall": 1,
-          "context_relevance": 0.364
-        },
-        "elapsed_s": 2.2,
-        "seed_rank": {
-          "candidate": {
-            "P02#000:00": 3
-          },
-          "evidence": {
-            "P02#000:00": 1
-          }
-        },
-        "sections": [
-          "P02 星辰优选售后服务与退换货政策 > 第一条 适用范围与基本原则",
-          "P05 星辰优选商品完好标准与验收规范 > 第二条 商品状态的三档划分"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 5,
-            "hit": 5,
-            "detail": [
-              {
-                "claim": "退款申请按原因分为「无理由」和「质量问题」两类。",
-                "supported": true,
-                "reason": "P02 1.3 表格明确分为无理由和质量问题两类"
-              },
-              {
-                "claim": "退款申请按原因分类的结果决定后续全部判定标准。",
-                "supported": true,
-                "reason": "P02 1.3 写明分类结果决定后续全部判定标准"
-              },
-              {
-                "claim": "无理由指商品无质量问题、消费者主观不再需要。",
-                "supported": true,
-                "reason": "P02 1.3 表格定义无理由为无质量问题、主观不再需要"
-              },
-              {
-                "claim": "质量问题指商品存在性能故障、破损、错发漏发或与描述不符等客观瑕疵。",
-                "supported": true,
-                "reason": "P02 1.3 表格定义质量问题包含性能故障、破损、错发漏发、与描述不符"
-              },
-              {
-                "claim": "平台只受理「无理由」和「质量问题」两类退款申请，不设第三类。",
-                "supported": true,
-                "reason": "P02 1.3 明确平台只受理这两类，不设第三类"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.364,
-            "n": 22,
-            "hit": 8,
-            "truncated": false,
-            "note": "不相关的多为适用范围、法定标准、争议处理及无理由退货的具体状态判定。",
-            "irrelevant": [
-              "1.1 本政策适用于消费者在星辰优选商城购买实物商品及虚拟商品所产生的全部退换货、退款申请。",
-              "1.2 本政策所载标准为平台承诺的服务下限。",
-              "凡低于《消费者权益保护法》《网络购买商品七日无理由退货暂行办法》所定法定标准的条款，以法定标准为准；",
-              "商家自行作出的更优承诺（如「30 天无忧退换」），对该商家的订单优先适用。",
-              "|---|---|",
-              "归类有争议的，按 [P09] 的争议处理流程办理。",
-              "平台在受理无理由退货时，将商品状态划分为三档：",
-              "| 状态 | 判定要素 | 无理由退货 |",
-              "|---|---|---|",
-              "| **未拆封** | 外包装完整，密封条、封口、塑封未破坏；商品未从原包装中取出 | ✅ 支持 |"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 31.711,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:49:23.485Z",
-      "updatedAt": "2026-08-18T11:49:23.492Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "parentObservationId": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "32cc17ad62e39f86",
-      "traceId": "c27169d23dd9397901d0f53fd8e2533c",
-      "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:49:17.671000+00:00",
-      "endTime": "2026-08-18 11:49:17.671000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "routes": [
-          {
-            "sub_query": "1",
-            "layer_k": {
-              "platform": 18,
-              "law": 5
-            },
-            "law_weight": 0.5
-          },
-          {
-            "sub_query": "2",
-            "layer_k": {
-              "platform": 18,
-              "law": 5
-            },
-            "law_weight": 0.5
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "63e15bdefc5c44a6",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.0,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:49:18.457Z",
-      "updatedAt": "2026-08-18T11:49:18.469Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "11fd3e7585f1a532",
-      "traceId": "c27169d23dd9397901d0f53fd8e2533c",
-      "type": "SPAN",
-      "name": "rag.recall",
-      "startTime": "2026-08-18 11:49:17.671000+00:00",
-      "endTime": "2026-08-18 11:49:17.766000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "candidates": [
-          {
-            "chunk_id": "P02#005:00",
-            "section": "P02 第六条 判定顺序",
-            "rrf": 0.1534,
-            "hits": [
-              "1/platform/dense#9",
-              "1/platform/bm25#5",
-              "2/platform/dense#1",
-              "2/platform/bm25#12"
-            ]
-          },
-          {
-            "chunk_id": "L02#003:00",
-            "section": "L02 第三章 退货程序 > 第十条 【退货通知期限与起算点】",
-            "rrf": 0.1311,
-            "hits": [
-              "1/law/bm25#1",
-              "2/law/dense#5",
-              "2/law/bm25#3"
-            ]
-          },
-          {
-            "chunk_id": "P02#000:00",
-            "section": "P02 第一条 适用范围与基本原则",
-            "rrf": 0.1247,
-            "hits": [
-              "1/platform/dense#5",
-              "2/platform/dense#7",
-              "2/platform/bm25#1"
-            ]
-          },
-          {
-            "chunk_id": "P08#003:01",
-            "section": "P08 第三条 异常退款行为的认定 > 3.1 调包类",
-            "rrf": 0.1246,
-            "hits": [
-              "1/platform/dense#3",
-              "2/platform/dense#2",
-              "2/platform/bm25#8"
-            ]
-          },
-          {
-            "chunk_id": "P06#000:00",
-            "section": "P06 第一条 运费承担的基本原则",
-            "rrf": 0.119,
-            "hits": [
-              "1/platform/dense#7",
-              "1/platform/bm25#6",
-              "2/platform/dense#3"
-            ]
-          },
-          {
-            "chunk_id": "P02#003:00",
-            "section": "P02 第四条 特殊类目",
-            "rrf": 0.111,
-            "hits": [
-              "1/platform/dense#4",
-              "2/platform/dense#11",
-              "2/platform/bm25#7"
-            ]
-          },
-          {
-            "chunk_id": "P05#002:00",
-            "section": "P05 第二条 商品状态的三档划分",
-            "rrf": 0.1059,
-            "hits": [
-              "1/platform/dense#1",
-              "1/platform/bm25#12",
-              "2/platform/dense#17"
-            ]
-          },
-          {
-            "chunk_id": "P04#002:00",
-            "section": "P04 第二条 经消费者确认后不适用无理由退货的商品",
-            "rrf": 0.1005,
-            "hits": [
-              "1/platform/dense#13",
-              "1/platform/bm25#8",
-              "2/platform/bm25#9"
-            ]
-          },
-          {
-            "chunk_id": "P11#005:00",
-            "section": "P11 第五条 服装、鞋帽、箱包 > 5.1 无理由退货",
-            "rrf": 0.0954,
-            "hits": [
-              "1/platform/dense#8",
-              "1/platform/bm25#18",
-              "2/platform/bm25#10"
-            ]
-          },
-          {
-            "chunk_id": "L02#003:04",
-            "section": "L02 第三章 退货程序 > 第十四条 【退款方式】",
-            "rrf": 0.0952,
-            "hits": [
-              "1/law/dense#1",
-              "2/law/dense#1"
-            ]
-          },
-          {
-            "chunk_id": "P06#001:00",
-            "section": "P06 第二条 无理由退货的运费 > 2.1 寄回运费",
-            "rrf": 0.0911,
-            "hits": [
-              "1/platform/bm25#1",
-              "2/platform/bm25#3"
-            ]
-          },
-          {
-            "chunk_id": "L02#003:07",
-            "section": "L02 第三章 退货程序 > 第十七条 【退款金额的计算】",
-            "rrf": 0.0909,
-            "hits": [
-              "1/law/dense#2",
-              "2/law/dense#2"
-            ]
-          },
-          {
-            "chunk_id": "L05#013:00",
-            "section": "L05 第十三条 【无同型号产品时的退货与折旧】",
-            "rrf": 0.0893,
-            "hits": [
-              "2/law/dense#4",
-              "2/law/bm25#1"
-            ]
-          },
-          {
-            "chunk_id": "P04#002:03",
-            "section": "P04 第二条 经消费者确认后不适用无理由退货的商品 > 2.3 销售时已明示的临期或瑕疵商品",
-            "rrf": 0.0889,
-            "hits": [
-              "1/platform/dense#15",
-              "1/platform/bm25#10",
-              "2/platform/bm25#17"
-            ]
-          },
-          {
-            "chunk_id": "L02#003:02",
-            "section": "L02 第三章 退货程序 > 第十二条 【赠品一并退回】",
-            "rrf": 0.087,
-            "hits": [
-              "1/law/dense#3",
-              "2/law/dense#3"
-            ]
-          },
-          {
-            "chunk_id": "L02#002:01",
-            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】",
-            "rrf": 0.0817,
-            "hits": [
-              "1/law/dense#5",
-              "1/law/bm25#4"
-            ]
-          },
-          {
-            "chunk_id": "P03#001:05",
-            "section": "P03 第二条 退款金额的计算 > 2.6 运费",
-            "rrf": 0.0788,
-            "hits": [
-              "2/platform/dense#10",
-              "2/platform/bm25#2"
-            ]
-          },
-          {
-            "chunk_id": "P04#000:00",
-            "section": "P04 ",
-            "rrf": 0.0718,
-            "hits": [
-              "1/platform/dense#18",
-              "1/platform/bm25#2"
-            ]
-          },
-          {
-            "chunk_id": "P09#004:00",
-            "section": "P09 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
-            "rrf": 0.0688,
-            "hits": [
-              "2/platform/dense#13",
-              "2/platform/bm25#6"
-            ]
-          },
-          {
-            "chunk_id": "P04#003:03",
-            "section": "P04 第三条 平台特殊类目：不支持任何形式的退款 > 3.3 虚拟商品",
-            "rrf": 0.0678,
-            "hits": [
-              "1/platform/dense#16",
-              "2/platform/bm25#5"
-            ]
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "63e15bdefc5c44a6",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.095,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:49:18.457Z",
-      "updatedAt": "2026-08-18T11:49:18.467Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "ef53bdb51dd63012",
-      "traceId": "c27169d23dd9397901d0f53fd8e2533c",
-      "type": "SPAN",
-      "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:49:16.395000+00:00",
-      "endTime": "2026-08-18 11:49:17.670000+00:00",
-      "input": {
-        "query": "我退货的时候得选个理由，是不是就分两种？选哪种是不是后面处理都不一样？"
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "rewritten": true,
-        "needs_law": false,
-        "sub_queries": [
-          {
-            "id": "1",
-            "intent": "other",
-            "text": "退货时选择退货理由，退货理由分哪几种类型？"
-          },
-          {
-            "id": "2",
-            "intent": "other",
-            "text": "选择不同的退货理由，后续退款处理流程有什么区别？"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "63e15bdefc5c44a6",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 1.275,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:49:18.457Z",
-      "updatedAt": "2026-08-18T11:49:18.463Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,

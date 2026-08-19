@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-010",
+    "query": "我在网上买了东西想退货，跟卖家吵起来了，找平台帮忙评理，平台是不是必须得管这事儿？",
     "type": "single",
     "style": "colloquial",
     "doc_id": "L02",
@@ -9,30 +10,48 @@
     "seed_chunk_id": [
       "L02#004:04"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
       "recall@3": 1.0,
-      "recall@1": 1.0,
-      "evidence_tokens": 1160,
-      "duplicate_ratio": 0.367,
+      "recall@1": 0.0,
+      "evidence_tokens": 1300,
+      "duplicate_ratio": 0.326,
       "context_recall": 1.0,
-      "context_relevance": 0.054
+      "context_relevance": 0.128
     },
-    "elapsed_s": 2.0,
+    "elapsed_s": 2.3,
     "seed_rank": {
       "candidate": {
         "L02#004:04": 1
       },
       "evidence": {
-        "L02#004:04": 1
+        "L02#004:04": 3
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": true,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "dispute",
+          "text": "消费者与卖家发生退货纠纷，平台是否有义务介入处理或调解？"
+        },
+        {
+          "id": "2",
+          "intent": "other",
+          "text": "消费者与卖家就退货问题发生争议时，平台介入调解的职责和流程是什么？"
+        }
+      ]
+    },
+    "rewrite_hash": "acf5188f0523c21d",
     "sections": [
-      "L02 网络购买商品七日无理由退货暂行办法 > 第四章 特别规定 > 第二十三条 【平台检查监控义务】 … 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
+      "L02 网络购买商品七日无理由退货暂行办法 > 第一章 总则 > 第三条 【销售者与平台的义务分工】",
+      "L02 网络购买商品七日无理由退货暂行办法 > 第四章 特别规定 > 第二十一条 【平台与商家的协议义务】 … 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
       "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
-      "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】",
-      "P09 星辰优选争议处理与平台介入规则 > 第一条 适用范围"
+      "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】"
     ],
     "judge": {
       "context_recall": {
@@ -43,53 +62,275 @@
           {
             "claim": "消费者因退货发生消费纠纷，要求网络交易平台提供者调解的，网络交易平台提供者应当调解。",
             "supported": true,
-            "reason": "上下文明确：消费者因退货发生消费纠纷，要求平台调解的，平台应当调解。"
+            "reason": "第二十四条明确平台应当调解消费纠纷。"
           }
         ],
         "error": null
       },
       "context_relevance": {
-        "score": 0.054,
-        "n": 37,
-        "hit": 2,
+        "score": 0.128,
+        "n": 39,
+        "hit": 5,
         "truncated": false,
-        "note": "不相关的多为平台规则公示、商家标注义务、退货商品处理等，未直接回答平台是否必须调解。",
+        "note": "不相关的主要是七日无理由退货的具体规则、商品标注、检验处理等，而非平台调解义务。",
         "irrelevant": [
+          "为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等",
+          "消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。",
+          "网络商品销售者应当依法履行七日无理由退货义务。",
+          "网络交易平台提供者应当引导和督促平台上的网络商品销售者履行七日无理由退货义务，进行监督检查，并提供技术保障。",
+          "消费者行使七日无理由退货权利和网络商品销售者履行七日无理由退货义务都应当遵循公平、诚实信用的原则，遵守商业道德。",
+          "鼓励网络商品销售者作出比本办法更有利于消费者的无理由退货承诺。",
+          "> **适用要点**：平台把窗口期从 7 天延长到 15 天、对特定会员延长售后期，属于本条鼓励的「更优承诺」，合法有效",
+          "反向缩短则无效。",
           "网络商品销售者应当采取技术手段或者其他措施，对于本办法第六条规定的不适用七日无理由退货的商品进行明确标注。",
-          "符合本办法第七条规定的商品，网络商品销售者应当在商品销售必经流程中设置显著的确认程序，供消费者对单次购买行为进行确认。",
-          "如无确认，网络商品销售者不得拒绝七日无理由退货。",
-          "网络交易平台提供者应当与其平台上的网络商品销售者订立协议，明确双方七日无理由退货各自的权利、义务和责任。",
-          "网络交易平台提供者应当依法建立、完善其平台七日无理由退货规则以及配套的消费者权益保护有关制度，在其首页显著位置持续公示，",
-          "网络交易平台提供者应当对其平台上的网络商品销售者履行七日无理由退货义务建立检查监控制度，发现有违反相关法律、法规、规章的",
-          "网络交易平台提供者应当建立消费纠纷和解和消费维权自律制度。",
-          "消费者通过其他渠道维权的，网络交易平台提供者应当向消费者提供其平台上的网络商品销售者的真实名称、地址和有效联系方式，积极",
-          "网络商品销售者应当建立完善的七日无理由退货商品检验和处理程序。",
-          "对能够完全恢复到初始销售状态的七日无理由退货商品，可以作为全新商品再次销售；"
+          "符合本办法第七条规定的商品，网络商品销售者应当在商品销售必经流程中设置显著的确认程序，供消费者对单次购买行为进行确认。"
         ],
         "error": null
       }
     },
-    "trace_id": "8e3fb9554939729c19a2fe9e172dda17"
+    "trace_id": "fb6b6c72179f391eb5ce3d10e8a50771"
   },
   "trace": {
-    "id": "8e3fb9554939729c19a2fe9e172dda17",
+    "id": "fb6b6c72179f391eb5ce3d10e8a50771",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:51:50.840000+00:00"
+    "timestamp": "2026-08-19 05:20:16.466000+00:00"
   },
   "observations": [
     {
-      "id": "4d73b942bcb4902c",
-      "traceId": "8e3fb9554939729c19a2fe9e172dda17",
+      "id": "c9070e01e16c224b",
+      "traceId": "fb6b6c72179f391eb5ce3d10e8a50771",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-19 05:20:22.414000+00:00",
+      "endTime": "2026-08-19 05:20:22.415000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "我在网上买了东西想退货，跟卖家吵起来了，找平台帮忙评理，平台是不是必须得管这事儿？"
+        },
+        "output": {
+          "case_id": "R1-010",
+          "query": "我在网上买了东西想退货，跟卖家吵起来了，找平台帮忙评理，平台是不是必须得管这事儿？",
+          "type": "single",
+          "style": "colloquial",
+          "doc_id": "L02",
+          "layer": "law",
+          "kind": "text",
+          "seed_chunk_id": [
+            "L02#004:04"
+          ],
+          "acceptable_seed_chunk_ids": null,
+          "error": null,
+          "scores": {
+            "recall@10": 1,
+            "recall@3": 1,
+            "recall@1": 0,
+            "evidence_tokens": 1300,
+            "duplicate_ratio": 0.326,
+            "context_recall": 1,
+            "context_relevance": 0.128
+          },
+          "elapsed_s": 2.3,
+          "seed_rank": {
+            "candidate": {
+              "L02#004:04": 1
+            },
+            "evidence": {
+              "L02#004:04": 3
+            }
+          },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": true,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "dispute",
+                "text": "消费者与卖家发生退货纠纷，平台是否有义务介入处理或调解？"
+              },
+              {
+                "id": "2",
+                "intent": "other",
+                "text": "消费者与卖家就退货问题发生争议时，平台介入调解的职责和流程是什么？"
+              }
+            ]
+          },
+          "rewrite_hash": "acf5188f0523c21d",
+          "sections": [
+            "L02 网络购买商品七日无理由退货暂行办法 > 第一章 总则 > 第三条 【销售者与平台的义务分工】",
+            "L02 网络购买商品七日无理由退货暂行办法 > 第四章 特别规定 > 第二十一条 【平台与商家的协议义务】 … 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
+            "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
+            "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】"
+          ],
+          "judge": {
+            "context_recall": {
+              "score": 1,
+              "n": 1,
+              "hit": 1,
+              "detail": [
+                {
+                  "claim": "消费者因退货发生消费纠纷，要求网络交易平台提供者调解的，网络交易平台提供者应当调解。",
+                  "supported": true,
+                  "reason": "第二十四条明确平台应当调解消费纠纷。"
+                }
+              ],
+              "error": null
+            },
+            "context_relevance": {
+              "score": 0.128,
+              "n": 39,
+              "hit": 5,
+              "truncated": false,
+              "note": "不相关的主要是七日无理由退货的具体规则、商品标注、检验处理等，而非平台调解义务。",
+              "irrelevant": [
+                "为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等",
+                "消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。",
+                "网络商品销售者应当依法履行七日无理由退货义务。",
+                "网络交易平台提供者应当引导和督促平台上的网络商品销售者履行七日无理由退货义务，进行监督检查，并提供技术保障。",
+                "消费者行使七日无理由退货权利和网络商品销售者履行七日无理由退货义务都应当遵循公平、诚实信用的原则，遵守商业道德。",
+                "鼓励网络商品销售者作出比本办法更有利于消费者的无理由退货承诺。",
+                "> **适用要点**：平台把窗口期从 7 天延长到 15 天、对特定会员延长售后期，属于本条鼓励的「更优承诺」，合法有效",
+                "反向缩短则无效。",
+                "网络商品销售者应当采取技术手段或者其他措施，对于本办法第六条规定的不适用七日无理由退货的商品进行明确标注。",
+                "符合本办法第七条规定的商品，网络商品销售者应当在商品销售必经流程中设置显著的确认程序，供消费者对单次购买行为进行确认。"
+              ],
+              "error": null
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [
+            "消费者因退货发生消费纠纷，要求网络交易平台提供者调解的，网络交易平台提供者应当调解。"
+          ],
+          "seed_chunk_id": [
+            "L02#004:04"
+          ],
+          "reference_answer": "消费者因退货发生消费纠纷，要求网络交易平台提供者调解的，平台应当调解。",
+          "acceptable_seed_chunk_ids": []
+        },
+        "metadata": {
+          "kind": "text",
+          "type": "single",
+          "layer": "law",
+          "style": "colloquial",
+          "doc_id": "L02",
+          "section": "第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
+          "reviewed": false,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.103
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 1,
+          "comment": "种子块名次 L02#004:04=1"
+        },
+        {
+          "name": "recall@3",
+          "value": 1,
+          "comment": "种子块名次 L02#004:04=3"
+        },
+        {
+          "name": "recall@1",
+          "value": 0,
+          "comment": "种子块名次 L02#004:04=3"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 1300,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0.326,
+          "comment": ""
+        },
+        {
+          "name": "context_recall",
+          "value": 1,
+          "comment": "1/1 条 claim 被支撑"
+        },
+        {
+          "name": "context_relevance",
+          "value": 0.128,
+          "comment": "5/39 个内容单元相关；不相关的主要是七日无理由退货的具体规则、商品标注、检验处理等，而非平台调解义务。"
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "e79f02cabb9e70a7",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:20:25.548Z",
+      "updatedAt": "2026-08-19T05:20:25.560Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "7f748955fb9706fa",
+      "traceId": "fb6b6c72179f391eb5ce3d10e8a50771",
       "type": "SPAN",
       "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:51:09.224000+00:00",
-      "endTime": "2026-08-18 11:51:56.326000+00:00",
+      "startTime": "2026-08-19 05:20:11.584000+00:00",
+      "endTime": "2026-08-19 05:20:22.413000+00:00",
       "input": {
         "query": "我在网上买了东西想退货，跟卖家吵起来了，找平台帮忙评理，平台是不是必须得管这事儿？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -120,7 +361,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -133,6 +374,7 @@
       },
       "output": {
         "case_id": "R1-010",
+        "query": "我在网上买了东西想退货，跟卖家吵起来了，找平台帮忙评理，平台是不是必须得管这事儿？",
         "type": "single",
         "style": "colloquial",
         "doc_id": "L02",
@@ -141,30 +383,48 @@
         "seed_chunk_id": [
           "L02#004:04"
         ],
+        "acceptable_seed_chunk_ids": null,
         "error": null,
         "scores": {
           "recall@10": 1,
           "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 1160,
-          "duplicate_ratio": 0.367,
+          "recall@1": 0,
+          "evidence_tokens": 1300,
+          "duplicate_ratio": 0.326,
           "context_recall": 1,
-          "context_relevance": 0.054
+          "context_relevance": 0.128
         },
-        "elapsed_s": 2,
+        "elapsed_s": 2.3,
         "seed_rank": {
           "candidate": {
             "L02#004:04": 1
           },
           "evidence": {
-            "L02#004:04": 1
+            "L02#004:04": 3
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": true,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "dispute",
+              "text": "消费者与卖家发生退货纠纷，平台是否有义务介入处理或调解？"
+            },
+            {
+              "id": "2",
+              "intent": "other",
+              "text": "消费者与卖家就退货问题发生争议时，平台介入调解的职责和流程是什么？"
+            }
+          ]
+        },
+        "rewrite_hash": "acf5188f0523c21d",
         "sections": [
-          "L02 网络购买商品七日无理由退货暂行办法 > 第四章 特别规定 > 第二十三条 【平台检查监控义务】 … 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
+          "L02 网络购买商品七日无理由退货暂行办法 > 第一章 总则 > 第三条 【销售者与平台的义务分工】",
+          "L02 网络购买商品七日无理由退货暂行办法 > 第四章 特别规定 > 第二十一条 【平台与商家的协议义务】 … 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
           "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
-          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】",
-          "P09 星辰优选争议处理与平台介入规则 > 第一条 适用范围"
+          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】"
         ],
         "judge": {
           "context_recall": {
@@ -175,28 +435,28 @@
               {
                 "claim": "消费者因退货发生消费纠纷，要求网络交易平台提供者调解的，网络交易平台提供者应当调解。",
                 "supported": true,
-                "reason": "上下文明确：消费者因退货发生消费纠纷，要求平台调解的，平台应当调解。"
+                "reason": "第二十四条明确平台应当调解消费纠纷。"
               }
             ],
             "error": null
           },
           "context_relevance": {
-            "score": 0.054,
-            "n": 37,
-            "hit": 2,
+            "score": 0.128,
+            "n": 39,
+            "hit": 5,
             "truncated": false,
-            "note": "不相关的多为平台规则公示、商家标注义务、退货商品处理等，未直接回答平台是否必须调解。",
+            "note": "不相关的主要是七日无理由退货的具体规则、商品标注、检验处理等，而非平台调解义务。",
             "irrelevant": [
+              "为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等",
+              "消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。",
+              "网络商品销售者应当依法履行七日无理由退货义务。",
+              "网络交易平台提供者应当引导和督促平台上的网络商品销售者履行七日无理由退货义务，进行监督检查，并提供技术保障。",
+              "消费者行使七日无理由退货权利和网络商品销售者履行七日无理由退货义务都应当遵循公平、诚实信用的原则，遵守商业道德。",
+              "鼓励网络商品销售者作出比本办法更有利于消费者的无理由退货承诺。",
+              "> **适用要点**：平台把窗口期从 7 天延长到 15 天、对特定会员延长售后期，属于本条鼓励的「更优承诺」，合法有效",
+              "反向缩短则无效。",
               "网络商品销售者应当采取技术手段或者其他措施，对于本办法第六条规定的不适用七日无理由退货的商品进行明确标注。",
-              "符合本办法第七条规定的商品，网络商品销售者应当在商品销售必经流程中设置显著的确认程序，供消费者对单次购买行为进行确认。",
-              "如无确认，网络商品销售者不得拒绝七日无理由退货。",
-              "网络交易平台提供者应当与其平台上的网络商品销售者订立协议，明确双方七日无理由退货各自的权利、义务和责任。",
-              "网络交易平台提供者应当依法建立、完善其平台七日无理由退货规则以及配套的消费者权益保护有关制度，在其首页显著位置持续公示，",
-              "网络交易平台提供者应当对其平台上的网络商品销售者履行七日无理由退货义务建立检查监控制度，发现有违反相关法律、法规、规章的",
-              "网络交易平台提供者应当建立消费纠纷和解和消费维权自律制度。",
-              "消费者通过其他渠道维权的，网络交易平台提供者应当向消费者提供其平台上的网络商品销售者的真实名称、地址和有效联系方式，积极",
-              "网络商品销售者应当建立完善的七日无理由退货商品检验和处理程序。",
-              "对能够完全恢复到初始销售状态的七日无理由退货商品，可以作为全新商品再次销售；"
+              "符合本办法第七条规定的商品，网络商品销售者应当在商品销售必经流程中设置显著的确认程序，供消费者对单次购买行为进行确认。"
             ],
             "error": null
           }
@@ -209,7 +469,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "892ba004c0309a68",
+      "parentObservationId": "413742962147252c",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -217,10 +477,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 47.102,
+      "latency": 10.829,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:59.411Z",
-      "updatedAt": "2026-08-18T11:51:59.440Z",
+      "createdAt": "2026-08-19T05:20:25.548Z",
+      "updatedAt": "2026-08-19T05:20:25.558Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -241,181 +501,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "892ba004c0309a68",
-      "traceId": "8e3fb9554939729c19a2fe9e172dda17",
-      "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:51:09.224000+00:00",
-      "endTime": "2026-08-18 11:51:56.327000+00:00",
-      "input": {
-        "query": "我在网上买了东西想退货，跟卖家吵起来了，找平台帮忙评理，平台是不是必须得管这事儿？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-010",
-        "kind": "text",
-        "type": "single",
-        "layer": "law",
-        "style": "colloquial",
-        "doc_id": "L02",
-        "section": "第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.103,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-010",
-        "type": "single",
-        "style": "colloquial",
-        "doc_id": "L02",
-        "layer": "law",
-        "kind": "text",
-        "seed_chunk_id": [
-          "L02#004:04"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 1160,
-          "duplicate_ratio": 0.367,
-          "context_recall": 1,
-          "context_relevance": 0.054
-        },
-        "elapsed_s": 2,
-        "seed_rank": {
-          "candidate": {
-            "L02#004:04": 1
-          },
-          "evidence": {
-            "L02#004:04": 1
-          }
-        },
-        "sections": [
-          "L02 网络购买商品七日无理由退货暂行办法 > 第四章 特别规定 > 第二十三条 【平台检查监控义务】 … 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
-          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
-          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】",
-          "P09 星辰优选争议处理与平台介入规则 > 第一条 适用范围"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 1,
-            "hit": 1,
-            "detail": [
-              {
-                "claim": "消费者因退货发生消费纠纷，要求网络交易平台提供者调解的，网络交易平台提供者应当调解。",
-                "supported": true,
-                "reason": "上下文明确：消费者因退货发生消费纠纷，要求平台调解的，平台应当调解。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.054,
-            "n": 37,
-            "hit": 2,
-            "truncated": false,
-            "note": "不相关的多为平台规则公示、商家标注义务、退货商品处理等，未直接回答平台是否必须调解。",
-            "irrelevant": [
-              "网络商品销售者应当采取技术手段或者其他措施，对于本办法第六条规定的不适用七日无理由退货的商品进行明确标注。",
-              "符合本办法第七条规定的商品，网络商品销售者应当在商品销售必经流程中设置显著的确认程序，供消费者对单次购买行为进行确认。",
-              "如无确认，网络商品销售者不得拒绝七日无理由退货。",
-              "网络交易平台提供者应当与其平台上的网络商品销售者订立协议，明确双方七日无理由退货各自的权利、义务和责任。",
-              "网络交易平台提供者应当依法建立、完善其平台七日无理由退货规则以及配套的消费者权益保护有关制度，在其首页显著位置持续公示，",
-              "网络交易平台提供者应当对其平台上的网络商品销售者履行七日无理由退货义务建立检查监控制度，发现有违反相关法律、法规、规章的",
-              "网络交易平台提供者应当建立消费纠纷和解和消费维权自律制度。",
-              "消费者通过其他渠道维权的，网络交易平台提供者应当向消费者提供其平台上的网络商品销售者的真实名称、地址和有效联系方式，积极",
-              "网络商品销售者应当建立完善的七日无理由退货商品检验和处理程序。",
-              "对能够完全恢复到初始销售状态的七日无理由退货商品，可以作为全新商品再次销售；"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 47.103,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:59.411Z",
-      "updatedAt": "2026-08-18T11:51:59.440Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "parentObservationId": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "30884df058fab41c",
-      "traceId": "8e3fb9554939729c19a2fe9e172dda17",
+      "id": "e79f02cabb9e70a7",
+      "traceId": "fb6b6c72179f391eb5ce3d10e8a50771",
       "type": "SPAN",
       "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:51:56.326000+00:00",
-      "endTime": "2026-08-18 11:51:56.327000+00:00",
+      "startTime": "2026-08-19 05:20:22.414000+00:00",
+      "endTime": "2026-08-19 05:20:22.415000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -439,7 +536,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "892ba004c0309a68",
+      "parentObservationId": "413742962147252c",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -449,8 +546,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:59.411Z",
-      "updatedAt": "2026-08-18T11:51:59.432Z",
+      "createdAt": "2026-08-19T05:20:25.548Z",
+      "updatedAt": "2026-08-19T05:20:25.558Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -472,225 +569,49 @@
       "usagePricingTierName": null
     },
     {
-      "id": "7800a463c42a8c5d",
-      "traceId": "8e3fb9554939729c19a2fe9e172dda17",
-      "type": "EVALUATOR",
-      "name": "evaluate",
-      "startTime": "2026-08-18 11:51:56.326000+00:00",
-      "endTime": "2026-08-18 11:51:56.327000+00:00",
-      "modelParameters": {},
+      "id": "413742962147252c",
+      "traceId": "fb6b6c72179f391eb5ce3d10e8a50771",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-19 05:20:11.584000+00:00",
+      "endTime": "2026-08-19 05:20:22.416000+00:00",
       "input": {
-        "input": {
-          "query": "我在网上买了东西想退货，跟卖家吵起来了，找平台帮忙评理，平台是不是必须得管这事儿？"
-        },
-        "output": {
-          "case_id": "R1-010",
-          "type": "single",
-          "style": "colloquial",
-          "doc_id": "L02",
-          "layer": "law",
-          "kind": "text",
-          "seed_chunk_id": [
-            "L02#004:04"
-          ],
-          "error": null,
-          "scores": {
-            "recall@10": 1,
-            "recall@3": 1,
-            "recall@1": 1,
-            "evidence_tokens": 1160,
-            "duplicate_ratio": 0.367,
-            "context_recall": 1,
-            "context_relevance": 0.054
-          },
-          "elapsed_s": 2,
-          "seed_rank": {
-            "candidate": {
-              "L02#004:04": 1
-            },
-            "evidence": {
-              "L02#004:04": 1
-            }
-          },
-          "sections": [
-            "L02 网络购买商品七日无理由退货暂行办法 > 第四章 特别规定 > 第二十三条 【平台检查监控义务】 … 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
-            "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
-            "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】",
-            "P09 星辰优选争议处理与平台介入规则 > 第一条 适用范围"
-          ],
-          "judge": {
-            "context_recall": {
-              "score": 1,
-              "n": 1,
-              "hit": 1,
-              "detail": [
-                {
-                  "claim": "消费者因退货发生消费纠纷，要求网络交易平台提供者调解的，网络交易平台提供者应当调解。",
-                  "supported": true,
-                  "reason": "上下文明确：消费者因退货发生消费纠纷，要求平台调解的，平台应当调解。"
-                }
-              ],
-              "error": null
-            },
-            "context_relevance": {
-              "score": 0.054,
-              "n": 37,
-              "hit": 2,
-              "truncated": false,
-              "note": "不相关的多为平台规则公示、商家标注义务、退货商品处理等，未直接回答平台是否必须调解。",
-              "irrelevant": [
-                "网络商品销售者应当采取技术手段或者其他措施，对于本办法第六条规定的不适用七日无理由退货的商品进行明确标注。",
-                "符合本办法第七条规定的商品，网络商品销售者应当在商品销售必经流程中设置显著的确认程序，供消费者对单次购买行为进行确认。",
-                "如无确认，网络商品销售者不得拒绝七日无理由退货。",
-                "网络交易平台提供者应当与其平台上的网络商品销售者订立协议，明确双方七日无理由退货各自的权利、义务和责任。",
-                "网络交易平台提供者应当依法建立、完善其平台七日无理由退货规则以及配套的消费者权益保护有关制度，在其首页显著位置持续公示，",
-                "网络交易平台提供者应当对其平台上的网络商品销售者履行七日无理由退货义务建立检查监控制度，发现有违反相关法律、法规、规章的",
-                "网络交易平台提供者应当建立消费纠纷和解和消费维权自律制度。",
-                "消费者通过其他渠道维权的，网络交易平台提供者应当向消费者提供其平台上的网络商品销售者的真实名称、地址和有效联系方式，积极",
-                "网络商品销售者应当建立完善的七日无理由退货商品检验和处理程序。",
-                "对能够完全恢复到初始销售状态的七日无理由退货商品，可以作为全新商品再次销售；"
-              ],
-              "error": null
-            }
-          }
-        },
-        "expected_output": {
-          "claims": [
-            "消费者因退货发生消费纠纷，要求网络交易平台提供者调解的，网络交易平台提供者应当调解。"
-          ],
-          "seed_chunk_id": [
-            "L02#004:04"
-          ],
-          "reference_answer": "消费者因退货发生消费纠纷，要求网络交易平台提供者调解的，平台应当调解。"
-        },
-        "metadata": {
-          "kind": "text",
-          "type": "single",
-          "layer": "law",
-          "style": "colloquial",
-          "doc_id": "L02",
-          "section": "第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
-          "reviewed": false,
-          "claims_by": "openai:deepseek-v4-pro",
-          "generated_by": "openai:deepseek-v4-flash",
-          "overlap_ratio": 0.103
-        }
+        "query": "我在网上买了东西想退货，跟卖家吵起来了，找平台帮忙评理，平台是不是必须得管这事儿？"
       },
       "metadata": {
-        "evaluator_kind": "item",
-        "evaluator_index": 0,
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-010",
+        "kind": "text",
+        "type": "single",
+        "layer": "law",
+        "style": "colloquial",
+        "doc_id": "L02",
+        "section": "第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.103,
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": [
-        {
-          "name": "recall@10",
-          "value": 1,
-          "comment": "种子块名次 L02#004:04=1"
-        },
-        {
-          "name": "recall@3",
-          "value": 1,
-          "comment": "种子块名次 L02#004:04=1"
-        },
-        {
-          "name": "recall@1",
-          "value": 1,
-          "comment": "种子块名次 L02#004:04=1"
-        },
-        {
-          "name": "evidence_tokens",
-          "value": 1160,
-          "comment": ""
-        },
-        {
-          "name": "duplicate_ratio",
-          "value": 0.367,
-          "comment": ""
-        },
-        {
-          "name": "context_recall",
-          "value": 1,
-          "comment": "1/1 条 claim 被支撑"
-        },
-        {
-          "name": "context_relevance",
-          "value": 0.054,
-          "comment": "2/37 个内容单元相关；不相关的多为平台规则公示、商家标注义务、退货商品处理等，未直接回答平台是否必须调解。"
-        },
-        {
-          "name": "run_error",
-          "value": 0,
-          "comment": "ok"
-        }
-      ],
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "30884df058fab41c",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.001,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:59.411Z",
-      "updatedAt": "2026-08-18T11:51:59.430Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "9fa0666193597785",
-      "traceId": "8e3fb9554939729c19a2fe9e172dda17",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:51:50.840000+00:00",
-      "endTime": "2026-08-18 11:51:52.800000+00:00",
-      "modelParameters": {},
-      "input": {
-        "query": "我在网上买了东西想退货，跟卖家吵起来了，找平台帮忙评理，平台是不是必须得管这事儿？",
-        "top_k": 4
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -702,50 +623,359 @@
         }
       },
       "output": {
+        "case_id": "R1-010",
+        "query": "我在网上买了东西想退货，跟卖家吵起来了，找平台帮忙评理，平台是不是必须得管这事儿？",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "L02",
+        "layer": "law",
+        "kind": "text",
+        "seed_chunk_id": [
+          "L02#004:04"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 0,
+          "evidence_tokens": 1300,
+          "duplicate_ratio": 0.326,
+          "context_recall": 1,
+          "context_relevance": 0.128
+        },
+        "elapsed_s": 2.3,
+        "seed_rank": {
+          "candidate": {
+            "L02#004:04": 1
+          },
+          "evidence": {
+            "L02#004:04": 3
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": true,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "dispute",
+              "text": "消费者与卖家发生退货纠纷，平台是否有义务介入处理或调解？"
+            },
+            {
+              "id": "2",
+              "intent": "other",
+              "text": "消费者与卖家就退货问题发生争议时，平台介入调解的职责和流程是什么？"
+            }
+          ]
+        },
+        "rewrite_hash": "acf5188f0523c21d",
         "sections": [
+          "L02 网络购买商品七日无理由退货暂行办法 > 第一章 总则 > 第三条 【销售者与平台的义务分工】",
+          "L02 网络购买商品七日无理由退货暂行办法 > 第四章 特别规定 > 第二十一条 【平台与商家的协议义务】 … 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
+          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
+          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 1,
+            "hit": 1,
+            "detail": [
+              {
+                "claim": "消费者因退货发生消费纠纷，要求网络交易平台提供者调解的，网络交易平台提供者应当调解。",
+                "supported": true,
+                "reason": "第二十四条明确平台应当调解消费纠纷。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.128,
+            "n": 39,
+            "hit": 5,
+            "truncated": false,
+            "note": "不相关的主要是七日无理由退货的具体规则、商品标注、检验处理等，而非平台调解义务。",
+            "irrelevant": [
+              "为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等",
+              "消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。",
+              "网络商品销售者应当依法履行七日无理由退货义务。",
+              "网络交易平台提供者应当引导和督促平台上的网络商品销售者履行七日无理由退货义务，进行监督检查，并提供技术保障。",
+              "消费者行使七日无理由退货权利和网络商品销售者履行七日无理由退货义务都应当遵循公平、诚实信用的原则，遵守商业道德。",
+              "鼓励网络商品销售者作出比本办法更有利于消费者的无理由退货承诺。",
+              "> **适用要点**：平台把窗口期从 7 天延长到 15 天、对特定会员延长售后期，属于本条鼓励的「更优承诺」，合法有效",
+              "反向缩短则无效。",
+              "网络商品销售者应当采取技术手段或者其他措施，对于本办法第六条规定的不适用七日无理由退货的商品进行明确标注。",
+              "符合本办法第七条规定的商品，网络商品销售者应当在商品销售必经流程中设置显著的确认程序，供消费者对单次购买行为进行确认。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 10.832,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:20:25.548Z",
+      "updatedAt": "2026-08-19T05:20:25.557Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "20c04b013ce6f313",
+      "traceId": "fb6b6c72179f391eb5ce3d10e8a50771",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-19 05:20:17.982000+00:00",
+      "endTime": "2026-08-19 05:20:18.100000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
           {
-            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第四章 特别规定 > 第二十三条 【平台检查监控义务】 … 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
-            "text": "网络商品销售者应当采取技术手段或者其他措施，对于本办法第六条规定的不适用七日无理由退货的商品进行明确标注。\n\n符合本办法第七条规定的商品，网络商品销售者应当在商品销售必经流程中设置显著的确认程序，供消费者对单次购买行为进行确认。如无确认，网络商品销售者不得拒绝七日无理由退货。\n\n网络交易平台提供者应当与其平台上的网络商品销售者订立协议，明确双方七日无理由退货各自的权利、义务和责任。\n\n网络交易平台提供者应当依法建立、完善其平台七日无理由退货规则以及配套的消费者权益保护有关制度，在其首页显著位置持续公示，并保证消费者能够便利、完整地阅览和下载。\n\n网络交易平台提供者应当对其平台上的网络商品销售者履行七日无理由退货义务建立检查监控制度，发现有违反相关法律、法规、规章的，应当及时采取制止措施，并向网络交易平台提供者或者网络商品销售者所在地市场监督管理部门报告，必要时可以停止对其提供平台服务。\n\n网络交易平台提供者应当建立消费纠纷和解和消费维权自律制度。消费者在网络交易平台上购买商品，因退货而发生消费纠纷或其合法权益受到损害时，要求网络交易平台提供者调解的，网络交易平台提供者应当调解；消费者通过其他渠道维权的，网络交易平台提供者应当向消费者提供其平台上的网络商品销售者的真实名称、地址和有效联系方式，积极协助消费者维护自身合法权益。\n\n网络商品销售者应当建立完善的七日无理由退货商品检验和处理程序。\n\n对能够完全恢复到初始销售状态的七日无理由退货商品，可以作为全新商品再次销售；对不能够完全恢复到初始销售状态的七日无理由退货商品而再次销售的，应当通过显著的方式将商品的实际情况明确标注。\n\n网络商品销售者应当采取技术手段或者其他措施，对于本办法第六条规定的不适用七日无理由退货的商品进行明确标注。\n\n符合本办法第七条规定的商品，网络商品销售者应当在商品销售必经流程中设置显著的确认程序，供消费者对单次购买行为进行确认。如无确认，网络商品销售者不得拒绝七日无理由退货。\n\n网络交易平台提供者应当与其平台上的网络商品销售者订立协议，明确双方七日无理由退货各自的权利、义务和责任。\n\n网络交易平台提供者应当依法建立、完善其平台七日无理由退货规则以及配套的消费者权益保护有关制度，在其首页显著位置持续公示，并保证消费者能够便利、完整地阅览和下载。\n\n网络交易平台提供者应当对其平台上的网络商品销售者履行七日无理由退货义务建立检查监控制度，发现有违反相关法律、法规、规章的，应当及时采取制止措施，并向网络交易平台提供者或者网络商品销售者所在地市场监督管理部门报告，必要时可以停止对其提供平台服务。\n\n网络交易平台提供者应当建立消费纠纷和解和消费维权自律制度。消费者在网络交易平台上购买商品，因退货而发生消费纠纷或其合法权益受到损害时，要求网络交易平台提供者调解的，网络交易平台提供者应当调解；消费者通过其他渠道维权的，网络交易平台提供者应当向消费者提供其平台上的网络商品销售者的真实名称、地址和有效联系方式，积极协助消费者维护自身合法权益。\n\n网络商品销售者应当建立完善的七日无理由退货商品检验和处理程序。\n\n对能够完全恢复到初始销售状态的七日无理由退货商品，可以作为全新商品再次销售；对不能够完全恢复到初始销售状态的七日无理由退货商品而再次销售的，应当通过显著的方式将商品的实际情况明确标注。",
-            "score": 0.5254876661300659,
-            "doc_id": "L02",
-            "layer": "law",
-            "doc_type": "部门规章",
-            "effective_date": "2017-03-15",
-            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
-            "reason": "相关性 0.432 × 先验 0.90 → 0.525；命中 1/law/dense#1, 1/law/bm25#1, 2/law/dense#1, 2/law/bm25#1"
+            "chunk_id": "L02#004:04",
+            "section": "L02 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
+            "rrf": 0.1842,
+            "hits": [
+              "1/law/dense#1",
+              "1/law/bm25#2",
+              "2/law/dense#1",
+              "2/law/bm25#3"
+            ]
           },
           {
-            "section": "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
-            "text": "电子商务争议可以通过协商和解，请求消费者组织、行业协会或者其他依法成立的调解组织调解，向有关部门投诉，提请仲裁，或者提起诉讼等方式解决。\n\n消费者在电子商务平台购买商品或者接受服务，与平台内经营者发生争议时，电子商务平台经营者应当积极协助消费者维护合法权益。",
-            "score": 0.5091480779647828,
-            "doc_id": "L04",
-            "layer": "law",
-            "doc_type": "法律",
-            "effective_date": "2019-01-01",
-            "source_path": "doc/policy/law/L04-电子商务法-平台责任条款摘录.md",
-            "reason": "相关性 0.411 × 先验 0.90 → 0.509；命中 1/law/dense#2, 1/law/bm25#4, 2/law/dense#4, 2/law/bm25#8"
+            "chunk_id": "P09#002:00",
+            "section": "P09 第三条 申请平台介入 > 3.1 申请条件",
+            "rrf": 0.1364,
+            "hits": [
+              "1/platform/dense#2",
+              "1/platform/bm25#2",
+              "2/platform/dense#2"
+            ]
           },
           {
-            "section": "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】",
-            "text": "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。\n\n电子商务平台经营者与平台内经营者协议设立消费者权益保证金的，双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。\n\n消费者要求电子商务平台经营者承担先行赔偿责任以及电子商务平台经营者赔偿后向平台内经营者的追偿，适用《中华人民共和国消费者权益保护法》的有关规定。\n\n> **适用要点**：「消费者保障金」「先行赔付」的制度出处。平台垫付退款后向商家追偿，依据在此。",
-            "score": 0.42744131565094,
-            "doc_id": "L04",
-            "layer": "law",
-            "doc_type": "法律",
-            "effective_date": "2019-01-01",
-            "source_path": "doc/policy/law/L04-电子商务法-平台责任条款摘录.md",
-            "reason": "相关性 0.309 × 先验 0.90 → 0.427；命中 1/law/dense#7, 2/law/dense#6"
+            "chunk_id": "P09#000:00",
+            "section": "P09 第一条 适用范围",
+            "rrf": 0.1665,
+            "hits": [
+              "1/platform/dense#1",
+              "1/platform/bm25#5",
+              "2/platform/dense#1",
+              "2/platform/bm25#12"
+            ]
           },
           {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第一条 适用范围",
-            "text": "本规则适用于消费者与商家在退款、退货、售后赔付过程中产生的全部争议，包括：\n\n- 商家拒绝退款申请，消费者有异议的；\n- 商家验收退回商品不通过，消费者有异议的；\n- 退款金额、运费扣除有异议的；\n- 特殊类目商品的质量问题诉求；\n- 涉及假冒伪劣、虚假宣传的赔付诉求。",
-            "score": 0.3429855036735535,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.204 × 先验 0.90 → 0.343；命中 1/platform/dense#1, 1/platform/bm25#3, 2/platform/dense#1"
+            "chunk_id": "L04#011:00",
+            "section": "L04 第六十一条 【平台协助维权义务】",
+            "rrf": 0.1726,
+            "hits": [
+              "1/law/dense#2",
+              "1/law/bm25#5",
+              "2/law/dense#2",
+              "2/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P09#003:03",
+            "section": "P09 第四条 平台介入的处理 > 4.4 举证责任分配",
+            "rrf": 0.1577,
+            "hits": [
+              "1/platform/dense#3",
+              "1/platform/bm25#6",
+              "2/platform/dense#3",
+              "2/platform/bm25#11"
+            ]
+          },
+          {
+            "chunk_id": "P01#004:03",
+            "section": "P01 第四章 平台的角色与责任 > 4.4 平台的协助义务",
+            "rrf": 0.1617,
+            "hits": [
+              "1/platform/dense#5",
+              "1/platform/bm25#7",
+              "2/platform/dense#7",
+              "2/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P09#001:00",
+            "section": "P09 第二条 争议解决的层级",
+            "rrf": 0.1594,
+            "hits": [
+              "1/platform/dense#11",
+              "1/platform/bm25#4",
+              "2/platform/dense#5",
+              "2/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P01#008:01",
+            "section": "P01 第八章 争议解决 > 8.2 平台调解",
+            "rrf": 0.1514,
+            "hits": [
+              "1/platform/dense#6",
+              "1/platform/bm25#9",
+              "2/platform/dense#6",
+              "2/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "L04#010:00",
+            "section": "L04 第六十条 【争议解决途径】",
+            "rrf": 0.1523,
+            "hits": [
+              "1/law/dense#7",
+              "1/law/bm25#10",
+              "2/law/dense#3",
+              "2/law/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "P09#006:01",
+            "section": "P09 第七条 外部维权途径 > 7.2 平台的协助义务",
+            "rrf": 0.1014,
+            "hits": [
+              "1/platform/dense#9",
+              "1/platform/bm25#8",
+              "2/platform/dense#12"
+            ]
+          },
+          {
+            "chunk_id": "L05#021:00",
+            "section": "L05 第二十一条 【纠纷调解】",
+            "rrf": 0.131,
+            "hits": [
+              "1/law/bm25#1",
+              "2/law/dense#8",
+              "2/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P09#004:01",
+            "section": "P09 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
+            "rrf": 0.1178,
+            "hits": [
+              "1/platform/dense#4",
+              "2/platform/dense#4",
+              "2/platform/bm25#9"
+            ]
+          },
+          {
+            "chunk_id": "L04#008:00",
+            "section": "L04 第五十八条 【质量担保机制】",
+            "rrf": 0.114,
+            "hits": [
+              "1/law/dense#6",
+              "2/law/dense#6",
+              "2/law/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "P09#004:00",
+            "section": "P09 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
+            "rrf": 0.1072,
+            "hits": [
+              "1/platform/dense#8",
+              "2/platform/dense#9",
+              "2/platform/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "L03#005:00",
+            "section": "L03 第十九条 【无理由退货的边界与滥用治理】",
+            "rrf": 0.1013,
+            "hits": [
+              "1/law/dense#8",
+              "2/law/dense#10",
+              "2/law/bm25#11"
+            ]
+          },
+          {
+            "chunk_id": "L03#012:00",
+            "section": "L03 第四十六条 【行政投诉处理时限】",
+            "rrf": 0.0889,
+            "hits": [
+              "1/law/bm25#3",
+              "2/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P09#006:00",
+            "section": "P09 第七条 外部维权途径 > 7.1 途径",
+            "rrf": 0.0911,
+            "hits": [
+              "1/platform/bm25#1",
+              "2/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P09#005:02",
+            "section": "P09 第六条 平台的先行赔付 > 6.3 平台承诺的约束力",
+            "rrf": 0.0417,
+            "hits": [
+              "2/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "L02#004:01",
+            "section": "L02 第四章 特别规定 > 第二十一条 【平台与商家的协议义务】",
+            "rrf": 0.0833,
+            "hits": [
+              "1/law/dense#4",
+              "2/law/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "L02#001:02",
+            "section": "L02 第一章 总则 > 第三条 【销售者与平台的义务分工】",
+            "rrf": 0.0835,
+            "hits": [
+              "1/law/dense#3",
+              "2/law/dense#5"
+            ]
           }
         ]
       },
@@ -756,7 +986,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "4d73b942bcb4902c",
+      "parentObservationId": "a25720208733aa76",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -764,16 +994,18 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.96,
+      "latency": 0.118,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:54.387Z",
-      "updatedAt": "2026-08-18T11:51:54.417Z",
+      "createdAt": "2026-08-19T05:20:20.481Z",
+      "updatedAt": "2026-08-19T05:20:20.498Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
       "totalTokens": 0,
       "completionStartTime": null,
       "model": null,
+      "modelParameters": null,
+      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -787,12 +1019,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "90f64d14c9e5c61c",
-      "traceId": "8e3fb9554939729c19a2fe9e172dda17",
+      "id": "f7c992cb86167d12",
+      "traceId": "fb6b6c72179f391eb5ce3d10e8a50771",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 11:51:52.156000+00:00",
-      "endTime": "2026-08-18 11:51:52.779000+00:00",
+      "startTime": "2026-08-19 05:20:18.100000+00:00",
+      "endTime": "2026-08-19 05:20:18.711000+00:00",
       "input": {
         "query": "我在网上买了东西想退货，跟卖家吵起来了，找平台帮忙评理，平台是不是必须得管这事儿？",
         "candidates": 20
@@ -802,7 +1034,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -814,24 +1046,37 @@
         }
       },
       "output": {
-        "passed": 7,
+        "passed": 10,
         "min_score": 0.3,
         "dropped": [
-          "P09#006:01",
-          "P09#006:00",
           "P09#002:00",
-          "L05#021:00",
           "P09#003:03",
-          "P09#004:00",
-          "P02#007:00",
+          "P09#001:00",
+          "P09#006:01",
+          "L05#021:00",
           "P09#004:01",
-          "L02#003:00",
-          "L03#009:00",
-          "L05#009:00",
-          "L01#006:00",
-          "L02#002:01"
+          "P09#004:00",
+          "L03#012:00",
+          "P09#006:00",
+          "P09#005:02"
         ],
         "evidence": [
+          {
+            "chunk_id": "L02#001:02",
+            "section": "L02 第一章 总则 > 第三条 【销售者与平台的义务分工】",
+            "score": 0.584,
+            "relevance": 0.504,
+            "prior": 0.9,
+            "excerpt": "网络商品销售者应当依法履行七日无理由退货义务。 网络交易平台提供者应当引导和督促平台上的网络商品销售者履行七日无理由退货义务，进行监督检查，并提供技术保障。"
+          },
+          {
+            "chunk_id": "L02#004:01",
+            "section": "L02 第四章 特别规定 > 第二十一条 【平台与商家的协议义务】",
+            "score": 0.533,
+            "relevance": 0.441,
+            "prior": 0.9,
+            "excerpt": "网络交易平台提供者应当与其平台上的网络商品销售者订立协议，明确双方七日无理由退货各自的权利、义务和责任。"
+          },
           {
             "chunk_id": "L02#004:04",
             "section": "L02 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
@@ -849,14 +1094,6 @@
             "excerpt": "消费者在电子商务平台购买商品或者接受服务，与平台内经营者发生争议时，电子商务平台经营者应当积极协助消费者维护合法权益。"
           },
           {
-            "chunk_id": "L02#004:03",
-            "section": "L02 第四章 特别规定 > 第二十三条 【平台检查监控义务】",
-            "score": 0.484,
-            "relevance": 0.38,
-            "prior": 0.9,
-            "excerpt": "网络交易平台提供者应当对其平台上的网络商品销售者履行七日无理由退货义务建立检查监控制度，发现有违反相关法律、法规、规章的，应当及时采取制止措施，并向网络交易平台提供者或者网络商品销售者所在地市场监督管理部门报告，必要时可以停止对其提供平台服…"
-          },
-          {
             "chunk_id": "L04#008:00",
             "section": "L04 第五十八条 【质量担保机制】",
             "score": 0.427,
@@ -865,12 +1102,28 @@
             "excerpt": "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。 电子商务平台经营者与平台内经营者协议设立消费者权益保证金的，双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。 消费者要求电…"
           },
           {
+            "chunk_id": "L03#005:00",
+            "section": "L03 第十九条 【无理由退货的边界与滥用治理】",
+            "score": 0.406,
+            "relevance": 0.283,
+            "prior": 0.9,
+            "excerpt": "经营者通过网络、电视、电话、邮购等方式销售商品的，应当遵守消费者权益保护法第二十五条规定，不得擅自扩大不适用无理由退货的商品范围。 经营者应当以显著方式对不适用无理由退货的商品进行标注，提示消费者在购买时进行确认，不得将不适用无理由退货作为…"
+          },
+          {
             "chunk_id": "L04#010:00",
             "section": "L04 第六十条 【争议解决途径】",
             "score": 0.361,
             "relevance": 0.226,
             "prior": 0.9,
             "excerpt": "电子商务争议可以通过协商和解，请求消费者组织、行业协会或者其他依法成立的调解组织调解，向有关部门投诉，提请仲裁，或者提起诉讼等方式解决。"
+          },
+          {
+            "chunk_id": "P01#008:01",
+            "section": "P01 第八章 争议解决 > 8.2 平台调解",
+            "score": 0.352,
+            "relevance": 0.215,
+            "prior": 0.9,
+            "excerpt": "消费者要求平台调解的，平台应当调解，具体规则见 [P09]。"
           },
           {
             "chunk_id": "P09#000:00",
@@ -897,7 +1150,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "9fa0666193597785",
+      "parentObservationId": "a25720208733aa76",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -905,10 +1158,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.623,
+      "latency": 0.611,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:54.387Z",
-      "updatedAt": "2026-08-18T11:51:54.417Z",
+      "createdAt": "2026-08-19T05:20:20.481Z",
+      "updatedAt": "2026-08-19T05:20:20.498Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -929,18 +1182,23 @@
       "usagePricingTierName": null
     },
     {
-      "id": "a1ef34d8c967f8e2",
-      "traceId": "8e3fb9554939729c19a2fe9e172dda17",
-      "type": "SPAN",
-      "name": "rag.recall",
-      "startTime": "2026-08-18 11:51:52.075000+00:00",
-      "endTime": "2026-08-18 11:51:52.155000+00:00",
+      "id": "a25720208733aa76",
+      "traceId": "fb6b6c72179f391eb5ce3d10e8a50771",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:20:16.466000+00:00",
+      "endTime": "2026-08-19 05:20:18.724000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "我在网上买了东西想退货，跟卖家吵起来了，找平台帮忙评理，平台是不是必须得管这事儿？",
+        "top_k": 4
+      },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -952,201 +1210,50 @@
         }
       },
       "output": {
-        "candidates": [
+        "sections": [
           {
-            "chunk_id": "L02#004:04",
-            "section": "L02 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
-            "rrf": 0.1905,
-            "hits": [
-              "1/law/dense#1",
-              "1/law/bm25#1",
-              "2/law/dense#1",
-              "2/law/bm25#1"
-            ]
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第一章 总则 > 第三条 【销售者与平台的义务分工】",
+            "text": "为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等相关法律、行政法规，制定本办法。\n\n消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。\n\n网络商品销售者应当依法履行七日无理由退货义务。\n\n网络交易平台提供者应当引导和督促平台上的网络商品销售者履行七日无理由退货义务，进行监督检查，并提供技术保障。\n\n消费者行使七日无理由退货权利和网络商品销售者履行七日无理由退货义务都应当遵循公平、诚实信用的原则，遵守商业道德。\n\n鼓励网络商品销售者作出比本办法更有利于消费者的无理由退货承诺。\n\n> **适用要点**：平台把窗口期从 7 天延长到 15 天、对特定会员延长售后期，属于本条鼓励的「更优承诺」，合法有效；反向缩短则无效。",
+            "score": 0.5835658836364747,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.504 × 先验 0.90 → 0.584；命中 1/law/dense#3, 2/law/dense#5"
           },
           {
-            "chunk_id": "L04#011:00",
-            "section": "L04 第六十一条 【平台协助维权义务】",
-            "rrf": 0.1645,
-            "hits": [
-              "1/law/dense#2",
-              "1/law/bm25#4",
-              "2/law/dense#4",
-              "2/law/bm25#8"
-            ]
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第四章 特别规定 > 第二十一条 【平台与商家的协议义务】 … 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
+            "text": "网络商品销售者应当采取技术手段或者其他措施，对于本办法第六条规定的不适用七日无理由退货的商品进行明确标注。\n\n符合本办法第七条规定的商品，网络商品销售者应当在商品销售必经流程中设置显著的确认程序，供消费者对单次购买行为进行确认。如无确认，网络商品销售者不得拒绝七日无理由退货。\n\n网络交易平台提供者应当与其平台上的网络商品销售者订立协议，明确双方七日无理由退货各自的权利、义务和责任。\n\n网络交易平台提供者应当依法建立、完善其平台七日无理由退货规则以及配套的消费者权益保护有关制度，在其首页显著位置持续公示，并保证消费者能够便利、完整地阅览和下载。\n\n网络交易平台提供者应当对其平台上的网络商品销售者履行七日无理由退货义务建立检查监控制度，发现有违反相关法律、法规、规章的，应当及时采取制止措施，并向网络交易平台提供者或者网络商品销售者所在地市场监督管理部门报告，必要时可以停止对其提供平台服务。\n\n网络交易平台提供者应当建立消费纠纷和解和消费维权自律制度。消费者在网络交易平台上购买商品，因退货而发生消费纠纷或其合法权益受到损害时，要求网络交易平台提供者调解的，网络交易平台提供者应当调解；消费者通过其他渠道维权的，网络交易平台提供者应当向消费者提供其平台上的网络商品销售者的真实名称、地址和有效联系方式，积极协助消费者维护自身合法权益。\n\n网络商品销售者应当建立完善的七日无理由退货商品检验和处理程序。\n\n对能够完全恢复到初始销售状态的七日无理由退货商品，可以作为全新商品再次销售；对不能够完全恢复到初始销售状态的七日无理由退货商品而再次销售的，应当通过显著的方式将商品的实际情况明确标注。\n\n网络商品销售者应当采取技术手段或者其他措施，对于本办法第六条规定的不适用七日无理由退货的商品进行明确标注。\n\n符合本办法第七条规定的商品，网络商品销售者应当在商品销售必经流程中设置显著的确认程序，供消费者对单次购买行为进行确认。如无确认，网络商品销售者不得拒绝七日无理由退货。\n\n网络交易平台提供者应当与其平台上的网络商品销售者订立协议，明确双方七日无理由退货各自的权利、义务和责任。\n\n网络交易平台提供者应当依法建立、完善其平台七日无理由退货规则以及配套的消费者权益保护有关制度，在其首页显著位置持续公示，并保证消费者能够便利、完整地阅览和下载。\n\n网络交易平台提供者应当对其平台上的网络商品销售者履行七日无理由退货义务建立检查监控制度，发现有违反相关法律、法规、规章的，应当及时采取制止措施，并向网络交易平台提供者或者网络商品销售者所在地市场监督管理部门报告，必要时可以停止对其提供平台服务。\n\n网络交易平台提供者应当建立消费纠纷和解和消费维权自律制度。消费者在网络交易平台上购买商品，因退货而发生消费纠纷或其合法权益受到损害时，要求网络交易平台提供者调解的，网络交易平台提供者应当调解；消费者通过其他渠道维权的，网络交易平台提供者应当向消费者提供其平台上的网络商品销售者的真实名称、地址和有效联系方式，积极协助消费者维护自身合法权益。\n\n网络商品销售者应当建立完善的七日无理由退货商品检验和处理程序。\n\n对能够完全恢复到初始销售状态的七日无理由退货商品，可以作为全新商品再次销售；对不能够完全恢复到初始销售状态的七日无理由退货商品而再次销售的，应当通过显著的方式将商品的实际情况明确标注。",
+            "score": 0.5325097608566285,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.441 × 先验 0.90 → 0.533；命中 1/law/dense#4, 2/law/dense#4"
           },
           {
-            "chunk_id": "P01#004:03",
-            "section": "P01 第四章 平台的角色与责任 > 4.4 平台的协助义务",
-            "rrf": 0.1523,
-            "hits": [
-              "1/platform/dense#5",
-              "1/platform/bm25#5",
-              "2/platform/dense#11",
-              "2/platform/bm25#5"
-            ]
+            "section": "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
+            "text": "电子商务争议可以通过协商和解，请求消费者组织、行业协会或者其他依法成立的调解组织调解，向有关部门投诉，提请仲裁，或者提起诉讼等方式解决。\n\n消费者在电子商务平台购买商品或者接受服务，与平台内经营者发生争议时，电子商务平台经营者应当积极协助消费者维护合法权益。",
+            "score": 0.5091480779647828,
+            "doc_id": "L04",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2019-01-01",
+            "source_path": "doc/policy/law/L04-电子商务法-平台责任条款摘录.md",
+            "reason": "相关性 0.411 × 先验 0.90 → 0.509；命中 1/law/dense#2, 1/law/bm25#5, 2/law/dense#2, 2/law/bm25#4"
           },
           {
-            "chunk_id": "P09#006:01",
-            "section": "P09 第七条 外部维权途径 > 7.2 平台的协助义务",
-            "rrf": 0.1471,
-            "hits": [
-              "1/platform/dense#12",
-              "1/platform/bm25#6",
-              "2/platform/dense#4",
-              "2/platform/bm25#8"
-            ]
-          },
-          {
-            "chunk_id": "P09#000:00",
-            "section": "P09 第一条 适用范围",
-            "rrf": 0.1387,
-            "hits": [
-              "1/platform/dense#1",
-              "1/platform/bm25#3",
-              "2/platform/dense#1"
-            ]
-          },
-          {
-            "chunk_id": "P09#006:00",
-            "section": "P09 第七条 外部维权途径 > 7.1 途径",
-            "rrf": 0.1385,
-            "hits": [
-              "1/platform/bm25#2",
-              "2/platform/dense#2",
-              "2/platform/bm25#1"
-            ]
-          },
-          {
-            "chunk_id": "P09#002:00",
-            "section": "P09 第三条 申请平台介入 > 3.1 申请条件",
-            "rrf": 0.1296,
-            "hits": [
-              "1/platform/dense#3",
-              "1/platform/bm25#1",
-              "2/platform/dense#6"
-            ]
-          },
-          {
-            "chunk_id": "L05#021:00",
-            "section": "L05 第二十一条 【纠纷调解】",
-            "rrf": 0.1266,
-            "hits": [
-              "1/law/bm25#2",
-              "2/law/dense#8",
-              "2/law/bm25#2"
-            ]
-          },
-          {
-            "chunk_id": "P09#003:03",
-            "section": "P09 第四条 平台介入的处理 > 4.4 举证责任分配",
-            "rrf": 0.1228,
-            "hits": [
-              "1/platform/dense#2",
-              "1/platform/bm25#4",
-              "2/platform/dense#8"
-            ]
-          },
-          {
-            "chunk_id": "P09#004:00",
-            "section": "P09 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
-            "rrf": 0.1219,
-            "hits": [
-              "1/platform/dense#6",
-              "2/platform/dense#5",
-              "2/platform/bm25#3"
-            ]
-          },
-          {
-            "chunk_id": "P02#007:00",
-            "section": "P02 第八条 争议与升级",
-            "rrf": 0.1098,
-            "hits": [
-              "1/platform/dense#8",
-              "1/platform/bm25#7",
-              "2/platform/dense#7"
-            ]
-          },
-          {
-            "chunk_id": "P09#004:01",
-            "section": "P09 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
-            "rrf": 0.0851,
-            "hits": [
-              "1/platform/dense#4",
-              "2/platform/dense#3"
-            ]
-          },
-          {
-            "chunk_id": "L02#003:00",
-            "section": "L02 第三章 退货程序 > 第十条 【退货通知期限与起算点】",
-            "rrf": 0.0851,
-            "hits": [
-              "1/law/bm25#3",
-              "2/law/bm25#4"
-            ]
-          },
-          {
-            "chunk_id": "L04#010:00",
-            "section": "L04 第六十条 【争议解决途径】",
-            "rrf": 0.0839,
-            "hits": [
-              "2/law/dense#2",
-              "2/law/bm25#6"
-            ]
-          },
-          {
-            "chunk_id": "L03#009:00",
-            "section": "L03 第二十六条 【投诉与举报渠道】",
-            "rrf": 0.0805,
-            "hits": [
-              "2/law/dense#3",
-              "2/law/bm25#7"
-            ]
-          },
-          {
-            "chunk_id": "L05#009:00",
-            "section": "L05 第九条 【售出 7 日内：可退可换可修】",
-            "rrf": 0.077,
-            "hits": [
-              "1/law/bm25#7",
-              "2/law/bm25#5"
-            ]
-          },
-          {
-            "chunk_id": "L01#006:00",
-            "section": "L01 第四十四条 【网络交易平台提供者责任】",
-            "rrf": 0.0755,
-            "hits": [
-              "1/law/dense#6",
-              "2/law/dense#7"
-            ]
-          },
-          {
-            "chunk_id": "L04#008:00",
-            "section": "L04 第五十八条 【质量担保机制】",
-            "rrf": 0.0755,
-            "hits": [
-              "1/law/dense#7",
-              "2/law/dense#6"
-            ]
-          },
-          {
-            "chunk_id": "L02#002:01",
-            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】",
-            "rrf": 0.0718,
-            "hits": [
-              "1/law/bm25#6",
-              "2/law/bm25#10"
-            ]
-          },
-          {
-            "chunk_id": "L02#004:03",
-            "section": "L02 第四章 特别规定 > 第二十三条 【平台检查监控义务】",
-            "rrf": 0.0714,
-            "hits": [
-              "1/law/dense#8",
-              "1/law/bm25#8"
-            ]
+            "section": "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】",
+            "text": "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。\n\n电子商务平台经营者与平台内经营者协议设立消费者权益保证金的，双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。\n\n消费者要求电子商务平台经营者承担先行赔偿责任以及电子商务平台经营者赔偿后向平台内经营者的追偿，适用《中华人民共和国消费者权益保护法》的有关规定。\n\n> **适用要点**：「消费者保障金」「先行赔付」的制度出处。平台垫付退款后向商家追偿，依据在此。",
+            "score": 0.42744131565094,
+            "doc_id": "L04",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2019-01-01",
+            "source_path": "doc/policy/law/L04-电子商务法-平台责任条款摘录.md",
+            "reason": "相关性 0.309 × 先验 0.90 → 0.427；命中 1/law/dense#6, 2/law/dense#6, 2/law/bm25#7"
           }
         ]
       },
@@ -1157,7 +1264,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "9fa0666193597785",
+      "parentObservationId": "7f748955fb9706fa",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1165,18 +1272,16 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.08,
+      "latency": 2.258,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:54.387Z",
-      "updatedAt": "2026-08-18T11:51:54.417Z",
+      "createdAt": "2026-08-19T05:20:20.481Z",
+      "updatedAt": "2026-08-19T05:20:20.497Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
       "totalTokens": 0,
       "completionStartTime": null,
       "model": null,
-      "modelParameters": null,
-      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -1190,18 +1295,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "42196d6dca6b1550",
-      "traceId": "8e3fb9554939729c19a2fe9e172dda17",
+      "id": "67774cc2290518a2",
+      "traceId": "fb6b6c72179f391eb5ce3d10e8a50771",
       "type": "SPAN",
       "name": "rag.route",
-      "startTime": "2026-08-18 11:51:52.075000+00:00",
-      "endTime": "2026-08-18 11:51:52.075000+00:00",
+      "startTime": "2026-08-19 05:20:17.982000+00:00",
+      "endTime": "2026-08-19 05:20:17.982000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1239,7 +1344,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "9fa0666193597785",
+      "parentObservationId": "a25720208733aa76",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1249,8 +1354,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:54.387Z",
-      "updatedAt": "2026-08-18T11:51:54.413Z",
+      "createdAt": "2026-08-19T05:20:20.481Z",
+      "updatedAt": "2026-08-19T05:20:20.494Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1272,12 +1377,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "6c7789f47e58a1ec",
-      "traceId": "8e3fb9554939729c19a2fe9e172dda17",
+      "id": "caaa9a4b0c7b64ab",
+      "traceId": "fb6b6c72179f391eb5ce3d10e8a50771",
       "type": "SPAN",
       "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:51:50.840000+00:00",
-      "endTime": "2026-08-18 11:51:52.074000+00:00",
+      "startTime": "2026-08-19 05:20:16.466000+00:00",
+      "endTime": "2026-08-19 05:20:17.982000+00:00",
       "input": {
         "query": "我在网上买了东西想退货，跟卖家吵起来了，找平台帮忙评理，平台是不是必须得管这事儿？"
       },
@@ -1286,7 +1391,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1304,12 +1409,12 @@
           {
             "id": "1",
             "intent": "dispute",
-            "text": "消费者与卖家发生退货纠纷，平台是否有义务介入处理或评理？"
+            "text": "消费者与卖家发生退货纠纷，平台是否有义务介入处理或调解？"
           },
           {
             "id": "2",
             "intent": "other",
-            "text": "消费者与卖家发生退货纠纷时，平台之外还有哪些投诉或救济途径？"
+            "text": "消费者与卖家就退货问题发生争议时，平台介入调解的职责和流程是什么？"
           }
         ]
       },
@@ -1320,7 +1425,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "9fa0666193597785",
+      "parentObservationId": "a25720208733aa76",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1328,10 +1433,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.234,
+      "latency": 1.516,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:54.387Z",
-      "updatedAt": "2026-08-18T11:51:54.413Z",
+      "createdAt": "2026-08-19T05:20:20.481Z",
+      "updatedAt": "2026-08-19T05:20:20.494Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1352,20 +1457,23 @@
       "usagePricingTierName": null
     },
     {
-      "id": "0e5c1a823b2ef64e",
-      "traceId": "8e3fb9554939729c19a2fe9e172dda17",
+      "id": "d89b507f62429538",
+      "traceId": "fb6b6c72179f391eb5ce3d10e8a50771",
       "type": "SPAN",
       "name": "rag.assemble",
-      "startTime": "2026-08-18 11:51:52.779000+00:00",
-      "endTime": "2026-08-18 11:51:52.800000+00:00",
+      "startTime": "2026-08-19 05:20:18.711000+00:00",
+      "endTime": "2026-08-19 05:20:18.723000+00:00",
       "input": {
         "top_k": 4,
         "evidence": [
+          "L02#001:02",
+          "L02#004:01",
           "L02#004:04",
           "L04#011:00",
-          "L02#004:03",
           "L04#008:00",
+          "L03#005:00",
           "L04#010:00",
+          "P01#008:01",
           "P09#000:00",
           "P01#004:03"
         ]
@@ -1375,7 +1483,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1389,15 +1497,26 @@
       "output": {
         "sections": [
           {
-            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第四章 特别规定 > 第二十三条 【平台检查监控义务】 … 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
-            "text": "网络商品销售者应当采取技术手段或者其他措施，对于本办法第六条规定的不适用七日无理由退货的商品进行明确标注。\n\n符合本办法第七条规定的商品，网络商品销售者应当在商品销售必经流程中设置显著的确认程序，供消费者对单次购买行为进行确认。如无确认，网络商品销售者不得拒绝七日无理由退货。\n\n网络交易平台提供者应当与其平台上的网络商品销售者订立协议，明确双方七日无理由退货各自的权利、义务和责任。\n\n网络交易平台提供者应当依法建立、完善其平台七日无理由退货规则以及配套的消费者权益保护有关制度，在其首页显著位置持续公示，并保证消费者能够便利、完整地阅览和下载。\n\n网络交易平台提供者应当对其平台上的网络商品销售者履行七日无理由退货义务建立检查监控制度，发现有违反相关法律、法规、规章的，应当及时采取制止措施，并向网络交易平台提供者或者网络商品销售者所在地市场监督管理部门报告，必要时可以停止对其提供平台服务。\n\n网络交易平台提供者应当建立消费纠纷和解和消费维权自律制度。消费者在网络交易平台上购买商品，因退货而发生消费纠纷或其合法权益受到损害时，要求网络交易平台提供者调解的，网络交易平台提供者应当调解；消费者通过其他渠道维权的，网络交易平台提供者应当向消费者提供其平台上的网络商品销售者的真实名称、地址和有效联系方式，积极协助消费者维护自身合法权益。\n\n网络商品销售者应当建立完善的七日无理由退货商品检验和处理程序。\n\n对能够完全恢复到初始销售状态的七日无理由退货商品，可以作为全新商品再次销售；对不能够完全恢复到初始销售状态的七日无理由退货商品而再次销售的，应当通过显著的方式将商品的实际情况明确标注。\n\n网络商品销售者应当采取技术手段或者其他措施，对于本办法第六条规定的不适用七日无理由退货的商品进行明确标注。\n\n符合本办法第七条规定的商品，网络商品销售者应当在商品销售必经流程中设置显著的确认程序，供消费者对单次购买行为进行确认。如无确认，网络商品销售者不得拒绝七日无理由退货。\n\n网络交易平台提供者应当与其平台上的网络商品销售者订立协议，明确双方七日无理由退货各自的权利、义务和责任。\n\n网络交易平台提供者应当依法建立、完善其平台七日无理由退货规则以及配套的消费者权益保护有关制度，在其首页显著位置持续公示，并保证消费者能够便利、完整地阅览和下载。\n\n网络交易平台提供者应当对其平台上的网络商品销售者履行七日无理由退货义务建立检查监控制度，发现有违反相关法律、法规、规章的，应当及时采取制止措施，并向网络交易平台提供者或者网络商品销售者所在地市场监督管理部门报告，必要时可以停止对其提供平台服务。\n\n网络交易平台提供者应当建立消费纠纷和解和消费维权自律制度。消费者在网络交易平台上购买商品，因退货而发生消费纠纷或其合法权益受到损害时，要求网络交易平台提供者调解的，网络交易平台提供者应当调解；消费者通过其他渠道维权的，网络交易平台提供者应当向消费者提供其平台上的网络商品销售者的真实名称、地址和有效联系方式，积极协助消费者维护自身合法权益。\n\n网络商品销售者应当建立完善的七日无理由退货商品检验和处理程序。\n\n对能够完全恢复到初始销售状态的七日无理由退货商品，可以作为全新商品再次销售；对不能够完全恢复到初始销售状态的七日无理由退货商品而再次销售的，应当通过显著的方式将商品的实际情况明确标注。",
-            "score": 0.5254876661300659,
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第一章 总则 > 第三条 【销售者与平台的义务分工】",
+            "text": "为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等相关法律、行政法规，制定本办法。\n\n消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。\n\n网络商品销售者应当依法履行七日无理由退货义务。\n\n网络交易平台提供者应当引导和督促平台上的网络商品销售者履行七日无理由退货义务，进行监督检查，并提供技术保障。\n\n消费者行使七日无理由退货权利和网络商品销售者履行七日无理由退货义务都应当遵循公平、诚实信用的原则，遵守商业道德。\n\n鼓励网络商品销售者作出比本办法更有利于消费者的无理由退货承诺。\n\n> **适用要点**：平台把窗口期从 7 天延长到 15 天、对特定会员延长售后期，属于本条鼓励的「更优承诺」，合法有效；反向缩短则无效。",
+            "score": 0.5835658836364747,
             "doc_id": "L02",
             "layer": "law",
             "doc_type": "部门规章",
             "effective_date": "2017-03-15",
             "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
-            "reason": "相关性 0.432 × 先验 0.90 → 0.525；命中 1/law/dense#1, 1/law/bm25#1, 2/law/dense#1, 2/law/bm25#1"
+            "reason": "相关性 0.504 × 先验 0.90 → 0.584；命中 1/law/dense#3, 2/law/dense#5"
+          },
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第四章 特别规定 > 第二十一条 【平台与商家的协议义务】 … 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
+            "text": "网络商品销售者应当采取技术手段或者其他措施，对于本办法第六条规定的不适用七日无理由退货的商品进行明确标注。\n\n符合本办法第七条规定的商品，网络商品销售者应当在商品销售必经流程中设置显著的确认程序，供消费者对单次购买行为进行确认。如无确认，网络商品销售者不得拒绝七日无理由退货。\n\n网络交易平台提供者应当与其平台上的网络商品销售者订立协议，明确双方七日无理由退货各自的权利、义务和责任。\n\n网络交易平台提供者应当依法建立、完善其平台七日无理由退货规则以及配套的消费者权益保护有关制度，在其首页显著位置持续公示，并保证消费者能够便利、完整地阅览和下载。\n\n网络交易平台提供者应当对其平台上的网络商品销售者履行七日无理由退货义务建立检查监控制度，发现有违反相关法律、法规、规章的，应当及时采取制止措施，并向网络交易平台提供者或者网络商品销售者所在地市场监督管理部门报告，必要时可以停止对其提供平台服务。\n\n网络交易平台提供者应当建立消费纠纷和解和消费维权自律制度。消费者在网络交易平台上购买商品，因退货而发生消费纠纷或其合法权益受到损害时，要求网络交易平台提供者调解的，网络交易平台提供者应当调解；消费者通过其他渠道维权的，网络交易平台提供者应当向消费者提供其平台上的网络商品销售者的真实名称、地址和有效联系方式，积极协助消费者维护自身合法权益。\n\n网络商品销售者应当建立完善的七日无理由退货商品检验和处理程序。\n\n对能够完全恢复到初始销售状态的七日无理由退货商品，可以作为全新商品再次销售；对不能够完全恢复到初始销售状态的七日无理由退货商品而再次销售的，应当通过显著的方式将商品的实际情况明确标注。\n\n网络商品销售者应当采取技术手段或者其他措施，对于本办法第六条规定的不适用七日无理由退货的商品进行明确标注。\n\n符合本办法第七条规定的商品，网络商品销售者应当在商品销售必经流程中设置显著的确认程序，供消费者对单次购买行为进行确认。如无确认，网络商品销售者不得拒绝七日无理由退货。\n\n网络交易平台提供者应当与其平台上的网络商品销售者订立协议，明确双方七日无理由退货各自的权利、义务和责任。\n\n网络交易平台提供者应当依法建立、完善其平台七日无理由退货规则以及配套的消费者权益保护有关制度，在其首页显著位置持续公示，并保证消费者能够便利、完整地阅览和下载。\n\n网络交易平台提供者应当对其平台上的网络商品销售者履行七日无理由退货义务建立检查监控制度，发现有违反相关法律、法规、规章的，应当及时采取制止措施，并向网络交易平台提供者或者网络商品销售者所在地市场监督管理部门报告，必要时可以停止对其提供平台服务。\n\n网络交易平台提供者应当建立消费纠纷和解和消费维权自律制度。消费者在网络交易平台上购买商品，因退货而发生消费纠纷或其合法权益受到损害时，要求网络交易平台提供者调解的，网络交易平台提供者应当调解；消费者通过其他渠道维权的，网络交易平台提供者应当向消费者提供其平台上的网络商品销售者的真实名称、地址和有效联系方式，积极协助消费者维护自身合法权益。\n\n网络商品销售者应当建立完善的七日无理由退货商品检验和处理程序。\n\n对能够完全恢复到初始销售状态的七日无理由退货商品，可以作为全新商品再次销售；对不能够完全恢复到初始销售状态的七日无理由退货商品而再次销售的，应当通过显著的方式将商品的实际情况明确标注。",
+            "score": 0.5325097608566285,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.441 × 先验 0.90 → 0.533；命中 1/law/dense#4, 2/law/dense#4"
           },
           {
             "section": "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第六十条 【争议解决途径】 … 第六十一条 【平台协助维权义务】",
@@ -1408,7 +1527,7 @@
             "doc_type": "法律",
             "effective_date": "2019-01-01",
             "source_path": "doc/policy/law/L04-电子商务法-平台责任条款摘录.md",
-            "reason": "相关性 0.411 × 先验 0.90 → 0.509；命中 1/law/dense#2, 1/law/bm25#4, 2/law/dense#4, 2/law/bm25#8"
+            "reason": "相关性 0.411 × 先验 0.90 → 0.509；命中 1/law/dense#2, 1/law/bm25#5, 2/law/dense#2, 2/law/bm25#4"
           },
           {
             "section": "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】",
@@ -1419,18 +1538,7 @@
             "doc_type": "法律",
             "effective_date": "2019-01-01",
             "source_path": "doc/policy/law/L04-电子商务法-平台责任条款摘录.md",
-            "reason": "相关性 0.309 × 先验 0.90 → 0.427；命中 1/law/dense#7, 2/law/dense#6"
-          },
-          {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第一条 适用范围",
-            "text": "本规则适用于消费者与商家在退款、退货、售后赔付过程中产生的全部争议，包括：\n\n- 商家拒绝退款申请，消费者有异议的；\n- 商家验收退回商品不通过，消费者有异议的；\n- 退款金额、运费扣除有异议的；\n- 特殊类目商品的质量问题诉求；\n- 涉及假冒伪劣、虚假宣传的赔付诉求。",
-            "score": 0.3429855036735535,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.204 × 先验 0.90 → 0.343；命中 1/platform/dense#1, 1/platform/bm25#3, 2/platform/dense#1"
+            "reason": "相关性 0.309 × 先验 0.90 → 0.427；命中 1/law/dense#6, 2/law/dense#6, 2/law/bm25#7"
           }
         ]
       },
@@ -1441,7 +1549,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "9fa0666193597785",
+      "parentObservationId": "a25720208733aa76",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1449,10 +1557,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.021,
+      "latency": 0.012,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:54.387Z",
-      "updatedAt": "2026-08-18T11:51:54.412Z",
+      "createdAt": "2026-08-19T05:20:20.481Z",
+      "updatedAt": "2026-08-19T05:20:20.493Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,

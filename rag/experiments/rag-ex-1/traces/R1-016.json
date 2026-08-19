@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-016",
+    "query": "平台和商家一起搞的那个保证金，得把哪些事说清楚才行？",
     "type": "single",
     "style": "colloquial",
     "doc_id": "L04",
@@ -9,6 +10,7 @@
     "seed_chunk_id": [
       "L04#008:00"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
@@ -19,7 +21,7 @@
       "context_recall": 1.0,
       "context_relevance": 0.2
     },
-    "elapsed_s": 1.9,
+    "elapsed_s": 1.6,
     "seed_rank": {
       "candidate": {
         "L04#008:00": 1
@@ -28,6 +30,18 @@
         "L04#008:00": 1
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "other",
+          "text": "平台和商家共同缴纳的保证金，需要向消费者说明清楚哪些事项？"
+        }
+      ]
+    },
+    "rewrite_hash": "d5ea51da169a0da5",
     "sections": [
       "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】"
     ],
@@ -40,7 +54,7 @@
           {
             "claim": "双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。",
             "supported": true,
-            "reason": "第五十八条第二款原文明确约定内容。"
+            "reason": "第五十八条第二款原文明确约定提取数额、管理、使用和退还办法。"
           }
         ],
         "error": null
@@ -50,7 +64,7 @@
         "n": 5,
         "hit": 1,
         "truncated": false,
-        "note": "其他单元涉及担保机制、先行赔付追偿等，未直接说明保证金协议应约定的事项。",
+        "note": "其他单元涉及担保机制鼓励、先行赔付追偿等，未直接回答保证金协议需明确的事项。",
         "irrelevant": [
           "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。",
           "消费者要求电子商务平台经营者承担先行赔偿责任以及电子商务平台经营者赔偿后向平台内经营者的追偿，适用《中华人民共和国消费者",
@@ -60,21 +74,425 @@
         "error": null
       }
     },
-    "trace_id": "d0b63dbf6b58958faa0de19e7d60dedc"
+    "trace_id": "f83f0b7e50a877170b6fd2ec0499ba6e"
   },
   "trace": {
-    "id": "d0b63dbf6b58958faa0de19e7d60dedc",
+    "id": "f83f0b7e50a877170b6fd2ec0499ba6e",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:50:47.519000+00:00"
+    "timestamp": "2026-08-19 05:19:30.507000+00:00"
   },
   "observations": [
     {
-      "id": "8fba2c036cf2ab0d",
-      "traceId": "d0b63dbf6b58958faa0de19e7d60dedc",
+      "id": "7409a39b7f1a17ea",
+      "traceId": "f83f0b7e50a877170b6fd2ec0499ba6e",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:19:30.507000+00:00",
+      "endTime": "2026-08-19 05:19:59.687000+00:00",
+      "input": {
+        "query": "平台和商家一起搞的那个保证金，得把哪些事说清楚才行？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-016",
+        "kind": "text",
+        "type": "single",
+        "layer": "law",
+        "style": "colloquial",
+        "doc_id": "L04",
+        "section": "第五十八条 【质量担保机制】",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.2,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-016",
+        "query": "平台和商家一起搞的那个保证金，得把哪些事说清楚才行？",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "L04",
+        "layer": "law",
+        "kind": "text",
+        "seed_chunk_id": [
+          "L04#008:00"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 138,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.2
+        },
+        "elapsed_s": 1.6,
+        "seed_rank": {
+          "candidate": {
+            "L04#008:00": 1
+          },
+          "evidence": {
+            "L04#008:00": 1
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "other",
+              "text": "平台和商家共同缴纳的保证金，需要向消费者说明清楚哪些事项？"
+            }
+          ]
+        },
+        "rewrite_hash": "d5ea51da169a0da5",
+        "sections": [
+          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 1,
+            "hit": 1,
+            "detail": [
+              {
+                "claim": "双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。",
+                "supported": true,
+                "reason": "第五十八条第二款原文明确约定提取数额、管理、使用和退还办法。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.2,
+            "n": 5,
+            "hit": 1,
+            "truncated": false,
+            "note": "其他单元涉及担保机制鼓励、先行赔付追偿等，未直接回答保证金协议需明确的事项。",
+            "irrelevant": [
+              "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。",
+              "消费者要求电子商务平台经营者承担先行赔偿责任以及电子商务平台经营者赔偿后向平台内经营者的追偿，适用《中华人民共和国消费者",
+              "> **适用要点**：「消费者保障金」「先行赔付」的制度出处。",
+              "平台垫付退款后向商家追偿，依据在此。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "7bff0b5c29657ebb",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 29.18,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:20:00.327Z",
+      "updatedAt": "2026-08-19T05:20:00.357Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "8bbb9859df3a80f0",
+      "traceId": "f83f0b7e50a877170b6fd2ec0499ba6e",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-19 05:19:59.688000+00:00",
+      "endTime": "2026-08-19 05:19:59.691000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "7bff0b5c29657ebb",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.003,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:20:00.327Z",
+      "updatedAt": "2026-08-19T05:20:00.356Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "7bff0b5c29657ebb",
+      "traceId": "f83f0b7e50a877170b6fd2ec0499ba6e",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-19 05:19:30.507000+00:00",
+      "endTime": "2026-08-19 05:19:59.691000+00:00",
+      "input": {
+        "query": "平台和商家一起搞的那个保证金，得把哪些事说清楚才行？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-016",
+        "kind": "text",
+        "type": "single",
+        "layer": "law",
+        "style": "colloquial",
+        "doc_id": "L04",
+        "section": "第五十八条 【质量担保机制】",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.2,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-016",
+        "query": "平台和商家一起搞的那个保证金，得把哪些事说清楚才行？",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "L04",
+        "layer": "law",
+        "kind": "text",
+        "seed_chunk_id": [
+          "L04#008:00"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 138,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.2
+        },
+        "elapsed_s": 1.6,
+        "seed_rank": {
+          "candidate": {
+            "L04#008:00": 1
+          },
+          "evidence": {
+            "L04#008:00": 1
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "other",
+              "text": "平台和商家共同缴纳的保证金，需要向消费者说明清楚哪些事项？"
+            }
+          ]
+        },
+        "rewrite_hash": "d5ea51da169a0da5",
+        "sections": [
+          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 1,
+            "hit": 1,
+            "detail": [
+              {
+                "claim": "双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。",
+                "supported": true,
+                "reason": "第五十八条第二款原文明确约定提取数额、管理、使用和退还办法。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.2,
+            "n": 5,
+            "hit": 1,
+            "truncated": false,
+            "note": "其他单元涉及担保机制鼓励、先行赔付追偿等，未直接回答保证金协议需明确的事项。",
+            "irrelevant": [
+              "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。",
+              "消费者要求电子商务平台经营者承担先行赔偿责任以及电子商务平台经营者赔偿后向平台内经营者的追偿，适用《中华人民共和国消费者",
+              "> **适用要点**：「消费者保障金」「先行赔付」的制度出处。",
+              "平台垫付退款后向商家追偿，依据在此。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 29.184,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:20:00.327Z",
+      "updatedAt": "2026-08-19T05:20:00.355Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "0f16984aa96a4594",
+      "traceId": "f83f0b7e50a877170b6fd2ec0499ba6e",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:50:52.721000+00:00",
-      "endTime": "2026-08-18 11:50:52.721000+00:00",
+      "startTime": "2026-08-19 05:19:59.688000+00:00",
+      "endTime": "2026-08-19 05:19:59.689000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -82,6 +500,7 @@
         },
         "output": {
           "case_id": "R1-016",
+          "query": "平台和商家一起搞的那个保证金，得把哪些事说清楚才行？",
           "type": "single",
           "style": "colloquial",
           "doc_id": "L04",
@@ -90,6 +509,7 @@
           "seed_chunk_id": [
             "L04#008:00"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
@@ -100,7 +520,7 @@
             "context_recall": 1,
             "context_relevance": 0.2
           },
-          "elapsed_s": 1.9,
+          "elapsed_s": 1.6,
           "seed_rank": {
             "candidate": {
               "L04#008:00": 1
@@ -109,6 +529,18 @@
               "L04#008:00": 1
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "other",
+                "text": "平台和商家共同缴纳的保证金，需要向消费者说明清楚哪些事项？"
+              }
+            ]
+          },
+          "rewrite_hash": "d5ea51da169a0da5",
           "sections": [
             "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】"
           ],
@@ -121,7 +553,7 @@
                 {
                   "claim": "双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。",
                   "supported": true,
-                  "reason": "第五十八条第二款原文明确约定内容。"
+                  "reason": "第五十八条第二款原文明确约定提取数额、管理、使用和退还办法。"
                 }
               ],
               "error": null
@@ -131,7 +563,7 @@
               "n": 5,
               "hit": 1,
               "truncated": false,
-              "note": "其他单元涉及担保机制、先行赔付追偿等，未直接说明保证金协议应约定的事项。",
+              "note": "其他单元涉及担保机制鼓励、先行赔付追偿等，未直接回答保证金协议需明确的事项。",
               "irrelevant": [
                 "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。",
                 "消费者要求电子商务平台经营者承担先行赔偿责任以及电子商务平台经营者赔偿后向平台内经营者的追偿，适用《中华人民共和国消费者",
@@ -149,7 +581,8 @@
           "seed_chunk_id": [
             "L04#008:00"
           ],
-          "reference_answer": "双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。"
+          "reference_answer": "双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "text",
@@ -171,7 +604,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -216,7 +649,7 @@
         {
           "name": "context_relevance",
           "value": 0.2,
-          "comment": "1/5 个内容单元相关；其他单元涉及担保机制、先行赔付追偿等，未直接说明保证金协议应约定的事项。"
+          "comment": "1/5 个内容单元相关；其他单元涉及担保机制鼓励、先行赔付追偿等，未直接回答保证金协议需明确的事项。"
         },
         {
           "name": "run_error",
@@ -231,7 +664,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "d0ac7c4b518727cb",
+      "parentObservationId": "8bbb9859df3a80f0",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -239,10 +672,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.0,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:54.005Z",
-      "updatedAt": "2026-08-18T11:50:54.016Z",
+      "createdAt": "2026-08-19T05:20:00.327Z",
+      "updatedAt": "2026-08-19T05:20:00.354Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -262,12 +695,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "675b8a60fe1dae9f",
-      "traceId": "d0b63dbf6b58958faa0de19e7d60dedc",
+      "id": "8a925b35603c95f8",
+      "traceId": "f83f0b7e50a877170b6fd2ec0499ba6e",
       "type": "RETRIEVER",
       "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:50:47.518000+00:00",
-      "endTime": "2026-08-18 11:50:49.467000+00:00",
+      "startTime": "2026-08-19 05:19:55.328000+00:00",
+      "endTime": "2026-08-19 05:19:56.946000+00:00",
       "modelParameters": {},
       "input": {
         "query": "平台和商家一起搞的那个保证金，得把哪些事说清楚才行？",
@@ -278,7 +711,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -311,7 +744,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "e33fc72f46bc1412",
+      "parentObservationId": "7409a39b7f1a17ea",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -319,10 +752,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.949,
+      "latency": 1.618,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:54.005Z",
-      "updatedAt": "2026-08-18T11:50:54.016Z",
+      "createdAt": "2026-08-19T05:20:00.327Z",
+      "updatedAt": "2026-08-19T05:20:00.351Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -342,24 +775,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "0f1f6365c9303be1",
-      "traceId": "d0b63dbf6b58958faa0de19e7d60dedc",
+      "id": "5252d1d8f1106c84",
+      "traceId": "f83f0b7e50a877170b6fd2ec0499ba6e",
       "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:50:49.462000+00:00",
-      "endTime": "2026-08-18 11:50:49.467000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": [
-          "L04#008:00"
-        ]
-      },
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:19:56.286000+00:00",
+      "endTime": "2026-08-19 05:19:56.286000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -371,17 +798,14 @@
         }
       },
       "output": {
-        "sections": [
+        "routes": [
           {
-            "section": "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】",
-            "text": "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。\n\n电子商务平台经营者与平台内经营者协议设立消费者权益保证金的，双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。\n\n消费者要求电子商务平台经营者承担先行赔偿责任以及电子商务平台经营者赔偿后向平台内经营者的追偿，适用《中华人民共和国消费者权益保护法》的有关规定。\n\n> **适用要点**：「消费者保障金」「先行赔付」的制度出处。平台垫付退款后向商家追偿，依据在此。",
-            "score": 0.3748469257354737,
-            "doc_id": "L04",
-            "layer": "law",
-            "doc_type": "法律",
-            "effective_date": "2019-01-01",
-            "source_path": "doc/policy/law/L04-电子商务法-平台责任条款摘录.md",
-            "reason": "相关性 0.356 × 先验 0.45 → 0.375；命中 1/law/dense#1, 1/law/bm25#1"
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
           }
         ]
       },
@@ -392,7 +816,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "675b8a60fe1dae9f",
+      "parentObservationId": "8a925b35603c95f8",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -400,77 +824,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.005,
+      "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:54.005Z",
-      "updatedAt": "2026-08-18T11:50:54.016Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "d0ac7c4b518727cb",
-      "traceId": "d0b63dbf6b58958faa0de19e7d60dedc",
-      "type": "SPAN",
-      "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:50:52.720000+00:00",
-      "endTime": "2026-08-18 11:50:52.722000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "evaluator_count": 1,
-        "evaluation_count": 8,
-        "failed_evaluator_count": 0,
-        "skipped_evaluator_count": 0
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "e5b540c376f47416",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.002,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:54.005Z",
-      "updatedAt": "2026-08-18T11:50:54.016Z",
+      "createdAt": "2026-08-19T05:20:00.327Z",
+      "updatedAt": "2026-08-19T05:20:00.347Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -492,166 +849,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "e33fc72f46bc1412",
-      "traceId": "d0b63dbf6b58958faa0de19e7d60dedc",
-      "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:50:24.998000+00:00",
-      "endTime": "2026-08-18 11:50:52.720000+00:00",
-      "input": {
-        "query": "平台和商家一起搞的那个保证金，得把哪些事说清楚才行？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-016",
-        "kind": "text",
-        "type": "single",
-        "layer": "law",
-        "style": "colloquial",
-        "doc_id": "L04",
-        "section": "第五十八条 【质量担保机制】",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.2,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-016",
-        "type": "single",
-        "style": "colloquial",
-        "doc_id": "L04",
-        "layer": "law",
-        "kind": "text",
-        "seed_chunk_id": [
-          "L04#008:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 138,
-          "duplicate_ratio": 0,
-          "context_recall": 1,
-          "context_relevance": 0.2
-        },
-        "elapsed_s": 1.9,
-        "seed_rank": {
-          "candidate": {
-            "L04#008:00": 1
-          },
-          "evidence": {
-            "L04#008:00": 1
-          }
-        },
-        "sections": [
-          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 1,
-            "hit": 1,
-            "detail": [
-              {
-                "claim": "双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。",
-                "supported": true,
-                "reason": "第五十八条第二款原文明确约定内容。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.2,
-            "n": 5,
-            "hit": 1,
-            "truncated": false,
-            "note": "其他单元涉及担保机制、先行赔付追偿等，未直接说明保证金协议应约定的事项。",
-            "irrelevant": [
-              "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。",
-              "消费者要求电子商务平台经营者承担先行赔偿责任以及电子商务平台经营者赔偿后向平台内经营者的追偿，适用《中华人民共和国消费者",
-              "> **适用要点**：「消费者保障金」「先行赔付」的制度出处。",
-              "平台垫付退款后向商家追偿，依据在此。"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "e5b540c376f47416",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 27.722,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:54.005Z",
-      "updatedAt": "2026-08-18T11:50:54.016Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "2360dc05c2ee177d",
-      "traceId": "d0b63dbf6b58958faa0de19e7d60dedc",
+      "id": "88f48d8f8984a4c2",
+      "traceId": "f83f0b7e50a877170b6fd2ec0499ba6e",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 11:50:48.877000+00:00",
-      "endTime": "2026-08-18 11:50:49.462000+00:00",
+      "startTime": "2026-08-19 05:19:56.369000+00:00",
+      "endTime": "2026-08-19 05:19:56.943000+00:00",
       "input": {
         "query": "平台和商家一起搞的那个保证金，得把哪些事说清楚才行？",
         "candidates": 20
@@ -661,7 +864,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -714,7 +917,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "675b8a60fe1dae9f",
+      "parentObservationId": "8a925b35603c95f8",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -722,10 +925,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.585,
+      "latency": 0.574,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:54.004Z",
-      "updatedAt": "2026-08-18T11:50:54.015Z",
+      "createdAt": "2026-08-19T05:20:00.327Z",
+      "updatedAt": "2026-08-19T05:20:00.347Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -746,321 +949,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "e5b540c376f47416",
-      "traceId": "d0b63dbf6b58958faa0de19e7d60dedc",
-      "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:50:24.998000+00:00",
-      "endTime": "2026-08-18 11:50:52.722000+00:00",
-      "input": {
-        "query": "平台和商家一起搞的那个保证金，得把哪些事说清楚才行？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-016",
-        "kind": "text",
-        "type": "single",
-        "layer": "law",
-        "style": "colloquial",
-        "doc_id": "L04",
-        "section": "第五十八条 【质量担保机制】",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.2,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-016",
-        "type": "single",
-        "style": "colloquial",
-        "doc_id": "L04",
-        "layer": "law",
-        "kind": "text",
-        "seed_chunk_id": [
-          "L04#008:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 138,
-          "duplicate_ratio": 0,
-          "context_recall": 1,
-          "context_relevance": 0.2
-        },
-        "elapsed_s": 1.9,
-        "seed_rank": {
-          "candidate": {
-            "L04#008:00": 1
-          },
-          "evidence": {
-            "L04#008:00": 1
-          }
-        },
-        "sections": [
-          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 1,
-            "hit": 1,
-            "detail": [
-              {
-                "claim": "双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。",
-                "supported": true,
-                "reason": "第五十八条第二款原文明确约定内容。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.2,
-            "n": 5,
-            "hit": 1,
-            "truncated": false,
-            "note": "其他单元涉及担保机制、先行赔付追偿等，未直接说明保证金协议应约定的事项。",
-            "irrelevant": [
-              "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。",
-              "消费者要求电子商务平台经营者承担先行赔偿责任以及电子商务平台经营者赔偿后向平台内经营者的追偿，适用《中华人民共和国消费者",
-              "> **适用要点**：「消费者保障金」「先行赔付」的制度出处。",
-              "平台垫付退款后向商家追偿，依据在此。"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 27.724,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:54.005Z",
-      "updatedAt": "2026-08-18T11:50:54.015Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "parentObservationId": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "453b00f542b76603",
-      "traceId": "d0b63dbf6b58958faa0de19e7d60dedc",
-      "type": "SPAN",
-      "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:50:47.519000+00:00",
-      "endTime": "2026-08-18 11:50:48.790000+00:00",
-      "input": {
-        "query": "平台和商家一起搞的那个保证金，得把哪些事说清楚才行？"
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "rewritten": true,
-        "needs_law": false,
-        "sub_queries": [
-          {
-            "id": "1",
-            "intent": "other",
-            "text": "平台和商家共同缴纳的保证金，需要向消费者说明清楚哪些事项？"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "675b8a60fe1dae9f",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 1.271,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:48.955Z",
-      "updatedAt": "2026-08-18T11:50:48.982Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "dfee493a8c476b3a",
-      "traceId": "d0b63dbf6b58958faa0de19e7d60dedc",
-      "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:50:48.790000+00:00",
-      "endTime": "2026-08-18 11:50:48.791000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "routes": [
-          {
-            "sub_query": "1",
-            "layer_k": {
-              "platform": 18,
-              "law": 5
-            },
-            "law_weight": 0.5
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "675b8a60fe1dae9f",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.001,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:48.955Z",
-      "updatedAt": "2026-08-18T11:50:48.982Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "5779254591367824",
-      "traceId": "d0b63dbf6b58958faa0de19e7d60dedc",
+      "id": "c51696da0983630b",
+      "traceId": "f83f0b7e50a877170b6fd2ec0499ba6e",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 11:50:48.791000+00:00",
-      "endTime": "2026-08-18 11:50:48.877000+00:00",
+      "startTime": "2026-08-19 05:19:56.286000+00:00",
+      "endTime": "2026-08-19 05:19:56.369000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1249,7 +1149,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "675b8a60fe1dae9f",
+      "parentObservationId": "8a925b35603c95f8",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1257,10 +1157,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.086,
+      "latency": 0.083,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:48.955Z",
-      "updatedAt": "2026-08-18T11:50:48.978Z",
+      "createdAt": "2026-08-19T05:20:00.327Z",
+      "updatedAt": "2026-08-19T05:20:00.347Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1269,6 +1169,163 @@
       "model": null,
       "modelParameters": null,
       "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "b1300d718f18a474",
+      "traceId": "f83f0b7e50a877170b6fd2ec0499ba6e",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:19:56.944000+00:00",
+      "endTime": "2026-08-19 05:19:56.946000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "L04#008:00"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】",
+            "text": "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。\n\n电子商务平台经营者与平台内经营者协议设立消费者权益保证金的，双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。\n\n消费者要求电子商务平台经营者承担先行赔偿责任以及电子商务平台经营者赔偿后向平台内经营者的追偿，适用《中华人民共和国消费者权益保护法》的有关规定。\n\n> **适用要点**：「消费者保障金」「先行赔付」的制度出处。平台垫付退款后向商家追偿，依据在此。",
+            "score": 0.3748469257354737,
+            "doc_id": "L04",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2019-01-01",
+            "source_path": "doc/policy/law/L04-电子商务法-平台责任条款摘录.md",
+            "reason": "相关性 0.356 × 先验 0.45 → 0.375；命中 1/law/dense#1, 1/law/bm25#1"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "8a925b35603c95f8",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.002,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:20:00.327Z",
+      "updatedAt": "2026-08-19T05:20:00.346Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "fa02bfa835c2278f",
+      "traceId": "f83f0b7e50a877170b6fd2ec0499ba6e",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-19 05:19:55.328000+00:00",
+      "endTime": "2026-08-19 05:19:56.285000+00:00",
+      "input": {
+        "query": "平台和商家一起搞的那个保证金，得把哪些事说清楚才行？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "other",
+            "text": "平台和商家共同缴纳的保证金，需要向消费者说明清楚哪些事项？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "8a925b35603c95f8",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.957,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:20:00.327Z",
+      "updatedAt": "2026-08-19T05:20:00.342Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,

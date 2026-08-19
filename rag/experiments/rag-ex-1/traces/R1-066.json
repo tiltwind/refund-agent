@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-066",
+    "query": "我收到的货跟网上图片和介绍对不上，这算不算质量问题？能退吗？退回去的邮费谁出？",
     "type": "single",
     "style": "colloquial",
     "doc_id": "P09",
@@ -9,30 +10,48 @@
     "seed_chunk_id": [
       "P09#004:01"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
       "recall@3": 1.0,
       "recall@1": 1.0,
-      "evidence_tokens": 1566,
-      "duplicate_ratio": 0.437,
+      "evidence_tokens": 1908,
+      "duplicate_ratio": 0.199,
       "context_recall": 1.0,
-      "context_relevance": 0.426
+      "context_relevance": 0.125
     },
-    "elapsed_s": 2.3,
+    "elapsed_s": 2.2,
     "seed_rank": {
       "candidate": {
-        "P09#004:01": 2
+        "P09#004:01": 1
       },
       "evidence": {
         "P09#004:01": 1
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "condition",
+          "text": "收到的商品与网上图片和介绍描述不符，这算不算质量问题，可以申请退货吗？"
+        },
+        {
+          "id": "2",
+          "intent": "refund",
+          "text": "因商品与描述不符退货，退回去的邮费由谁承担？"
+        }
+      ]
+    },
+    "rewrite_hash": "9ce7c958990d298a",
     "sections": [
       "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题 … 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
       "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】",
-      "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.1 全额承担 … 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
-      "L02 网络购买商品七日无理由退货暂行办法 > 第七章 附则 > 第三十五条 【质量问题退货的法律适用】"
+      "L02 网络购买商品七日无理由退货暂行办法 > 第七章 附则 > 第三十五条 【质量问题退货的法律适用】",
+      "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十八条 【退货运费承担】"
     ],
     "judge": {
       "context_recall": {
@@ -43,27 +62,27 @@
           {
             "claim": "商品实物与页面描述或实物样品不一致的，构成质量问题。",
             "supported": true,
-            "reason": "P09 明确：商品实物与页面描述、实物样品不一致的，构成质量问题。"
+            "reason": "P09 明确写明实物与描述或样品不一致构成质量问题。"
           },
           {
             "claim": "商品实物与页面描述或实物样品不一致的，消费者可主张退货。",
             "supported": true,
-            "reason": "P09 明确：消费者可主张退货。"
+            "reason": "P09 写明消费者可主张退货。"
           },
           {
             "claim": "商品实物与页面描述或实物样品不一致的，运费由商家承担。",
             "supported": true,
-            "reason": "P09 明确：运费由商家承担。"
+            "reason": "P09 写明运费由商家承担。"
           }
         ],
         "error": null
       },
       "context_relevance": {
-        "score": 0.426,
-        "n": 61,
-        "hit": 26,
+        "score": 0.125,
+        "n": 80,
+        "hit": 10,
         "truncated": false,
-        "note": "不相关的主要是特殊类目（生鲜、定制、虚拟）的赔付规则、欺诈赔偿、三包、人身伤害等。",
+        "note": "不相关的主要是无理由退货流程、特殊类目赔付、欺诈赔偿、三包、退款时限与方式等。",
         "irrelevant": [
           "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：",
           "| 情形 | 处理 |",
@@ -79,21 +98,213 @@
         "error": null
       }
     },
-    "trace_id": "afd3185e14d80b2ea1ca8c65e804ff87"
+    "trace_id": "b37989b1a4c725ace1a87945713720a4"
   },
   "trace": {
-    "id": "afd3185e14d80b2ea1ca8c65e804ff87",
+    "id": "b37989b1a4c725ace1a87945713720a4",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:45:57.506000+00:00"
+    "timestamp": "2026-08-19 05:14:53.338000+00:00"
   },
   "observations": [
     {
-      "id": "2c76300e980d08d9",
-      "traceId": "afd3185e14d80b2ea1ca8c65e804ff87",
+      "id": "210dd6140cb96b63",
+      "traceId": "b37989b1a4c725ace1a87945713720a4",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-19 05:14:31.394000+00:00",
+      "endTime": "2026-08-19 05:15:00.258000+00:00",
+      "input": {
+        "query": "我收到的货跟网上图片和介绍对不上，这算不算质量问题？能退吗？退回去的邮费谁出？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-066",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P09",
+        "section": "第五条 特定场景的处理口径 > 5.2 商品与描述不符",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.103,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-066",
+        "query": "我收到的货跟网上图片和介绍对不上，这算不算质量问题？能退吗？退回去的邮费谁出？",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P09",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P09#004:01"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 1908,
+          "duplicate_ratio": 0.199,
+          "context_recall": 1,
+          "context_relevance": 0.125
+        },
+        "elapsed_s": 2.2,
+        "seed_rank": {
+          "candidate": {
+            "P09#004:01": 1
+          },
+          "evidence": {
+            "P09#004:01": 1
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "condition",
+              "text": "收到的商品与网上图片和介绍描述不符，这算不算质量问题，可以申请退货吗？"
+            },
+            {
+              "id": "2",
+              "intent": "refund",
+              "text": "因商品与描述不符退货，退回去的邮费由谁承担？"
+            }
+          ]
+        },
+        "rewrite_hash": "9ce7c958990d298a",
+        "sections": [
+          "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题 … 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
+          "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】",
+          "L02 网络购买商品七日无理由退货暂行办法 > 第七章 附则 > 第三十五条 【质量问题退货的法律适用】",
+          "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十八条 【退货运费承担】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 3,
+            "hit": 3,
+            "detail": [
+              {
+                "claim": "商品实物与页面描述或实物样品不一致的，构成质量问题。",
+                "supported": true,
+                "reason": "P09 明确写明实物与描述或样品不一致构成质量问题。"
+              },
+              {
+                "claim": "商品实物与页面描述或实物样品不一致的，消费者可主张退货。",
+                "supported": true,
+                "reason": "P09 写明消费者可主张退货。"
+              },
+              {
+                "claim": "商品实物与页面描述或实物样品不一致的，运费由商家承担。",
+                "supported": true,
+                "reason": "P09 写明运费由商家承担。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.125,
+            "n": 80,
+            "hit": 10,
+            "truncated": false,
+            "note": "不相关的主要是无理由退货流程、特殊类目赔付、欺诈赔偿、三包、退款时限与方式等。",
+            "irrelevant": [
+              "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：",
+              "| 情形 | 处理 |",
+              "|---|---|",
+              "| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |",
+              "| 生鲜商品缺斤少两 | 按差额比例退款 |",
+              "| 定制商品与约定规格不符 | 返工、重做或退款 |",
+              "| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |",
+              "| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |",
+              "| 虚拟商品重复发放、错发 | 退还多付款项 |",
+              "> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 28.864,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:15:03.521Z",
+      "updatedAt": "2026-08-19T05:15:03.533Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "4543e5753f73c633",
+      "traceId": "b37989b1a4c725ace1a87945713720a4",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:46:05.243000+00:00",
-      "endTime": "2026-08-18 11:46:05.244000+00:00",
+      "startTime": "2026-08-19 05:15:00.257000+00:00",
+      "endTime": "2026-08-19 05:15:00.258000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -101,6 +312,7 @@
         },
         "output": {
           "case_id": "R1-066",
+          "query": "我收到的货跟网上图片和介绍对不上，这算不算质量问题？能退吗？退回去的邮费谁出？",
           "type": "single",
           "style": "colloquial",
           "doc_id": "P09",
@@ -109,30 +321,48 @@
           "seed_chunk_id": [
             "P09#004:01"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
             "recall@3": 1,
             "recall@1": 1,
-            "evidence_tokens": 1566,
-            "duplicate_ratio": 0.437,
+            "evidence_tokens": 1908,
+            "duplicate_ratio": 0.199,
             "context_recall": 1,
-            "context_relevance": 0.426
+            "context_relevance": 0.125
           },
-          "elapsed_s": 2.3,
+          "elapsed_s": 2.2,
           "seed_rank": {
             "candidate": {
-              "P09#004:01": 2
+              "P09#004:01": 1
             },
             "evidence": {
               "P09#004:01": 1
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "condition",
+                "text": "收到的商品与网上图片和介绍描述不符，这算不算质量问题，可以申请退货吗？"
+              },
+              {
+                "id": "2",
+                "intent": "refund",
+                "text": "因商品与描述不符退货，退回去的邮费由谁承担？"
+              }
+            ]
+          },
+          "rewrite_hash": "9ce7c958990d298a",
           "sections": [
             "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题 … 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
             "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】",
-            "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.1 全额承担 … 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
-            "L02 网络购买商品七日无理由退货暂行办法 > 第七章 附则 > 第三十五条 【质量问题退货的法律适用】"
+            "L02 网络购买商品七日无理由退货暂行办法 > 第七章 附则 > 第三十五条 【质量问题退货的法律适用】",
+            "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十八条 【退货运费承担】"
           ],
           "judge": {
             "context_recall": {
@@ -143,27 +373,27 @@
                 {
                   "claim": "商品实物与页面描述或实物样品不一致的，构成质量问题。",
                   "supported": true,
-                  "reason": "P09 明确：商品实物与页面描述、实物样品不一致的，构成质量问题。"
+                  "reason": "P09 明确写明实物与描述或样品不一致构成质量问题。"
                 },
                 {
                   "claim": "商品实物与页面描述或实物样品不一致的，消费者可主张退货。",
                   "supported": true,
-                  "reason": "P09 明确：消费者可主张退货。"
+                  "reason": "P09 写明消费者可主张退货。"
                 },
                 {
                   "claim": "商品实物与页面描述或实物样品不一致的，运费由商家承担。",
                   "supported": true,
-                  "reason": "P09 明确：运费由商家承担。"
+                  "reason": "P09 写明运费由商家承担。"
                 }
               ],
               "error": null
             },
             "context_relevance": {
-              "score": 0.426,
-              "n": 61,
-              "hit": 26,
+              "score": 0.125,
+              "n": 80,
+              "hit": 10,
               "truncated": false,
-              "note": "不相关的主要是特殊类目（生鲜、定制、虚拟）的赔付规则、欺诈赔偿、三包、人身伤害等。",
+              "note": "不相关的主要是无理由退货流程、特殊类目赔付、欺诈赔偿、三包、退款时限与方式等。",
               "irrelevant": [
                 "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：",
                 "| 情形 | 处理 |",
@@ -189,7 +419,8 @@
           "seed_chunk_id": [
             "P09#004:01"
           ],
-          "reference_answer": "商品实物与页面描述或实物样品不一致的，构成质量问题，消费者可主张退货，且运费由商家承担。"
+          "reference_answer": "商品实物与页面描述或实物样品不一致的，构成质量问题，消费者可主张退货，且运费由商家承担。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "text",
@@ -211,7 +442,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -226,7 +457,7 @@
         {
           "name": "recall@10",
           "value": 1,
-          "comment": "种子块名次 P09#004:01=2"
+          "comment": "种子块名次 P09#004:01=1"
         },
         {
           "name": "recall@3",
@@ -240,12 +471,12 @@
         },
         {
           "name": "evidence_tokens",
-          "value": 1566,
+          "value": 1908,
           "comment": ""
         },
         {
           "name": "duplicate_ratio",
-          "value": 0.437,
+          "value": 0.199,
           "comment": ""
         },
         {
@@ -255,8 +486,8 @@
         },
         {
           "name": "context_relevance",
-          "value": 0.426,
-          "comment": "26/61 个内容单元相关；不相关的主要是特殊类目（生鲜、定制、虚拟）的赔付规则、欺诈赔偿、三包、人身伤害等。"
+          "value": 0.125,
+          "comment": "10/80 个内容单元相关；不相关的主要是无理由退货流程、特殊类目赔付、欺诈赔偿、三包、退款时限与方式等。"
         },
         {
           "name": "run_error",
@@ -271,7 +502,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "9fffed1f378d78ce",
+      "parentObservationId": "80015bca186e3733",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -281,8 +512,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:07.147Z",
-      "updatedAt": "2026-08-18T11:46:07.160Z",
+      "createdAt": "2026-08-19T05:15:03.520Z",
+      "updatedAt": "2026-08-19T05:15:03.532Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -302,364 +533,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "c510863fdcf34ef3",
-      "traceId": "afd3185e14d80b2ea1ca8c65e804ff87",
-      "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:45:39.582000+00:00",
-      "endTime": "2026-08-18 11:46:05.242000+00:00",
-      "input": {
-        "query": "我收到的货跟网上图片和介绍对不上，这算不算质量问题？能退吗？退回去的邮费谁出？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-066",
-        "kind": "text",
-        "type": "single",
-        "layer": "platform",
-        "style": "colloquial",
-        "doc_id": "P09",
-        "section": "第五条 特定场景的处理口径 > 5.2 商品与描述不符",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.103,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-066",
-        "type": "single",
-        "style": "colloquial",
-        "doc_id": "P09",
-        "layer": "platform",
-        "kind": "text",
-        "seed_chunk_id": [
-          "P09#004:01"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 1566,
-          "duplicate_ratio": 0.437,
-          "context_recall": 1,
-          "context_relevance": 0.426
-        },
-        "elapsed_s": 2.3,
-        "seed_rank": {
-          "candidate": {
-            "P09#004:01": 2
-          },
-          "evidence": {
-            "P09#004:01": 1
-          }
-        },
-        "sections": [
-          "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题 … 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
-          "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】",
-          "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.1 全额承担 … 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
-          "L02 网络购买商品七日无理由退货暂行办法 > 第七章 附则 > 第三十五条 【质量问题退货的法律适用】"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 3,
-            "hit": 3,
-            "detail": [
-              {
-                "claim": "商品实物与页面描述或实物样品不一致的，构成质量问题。",
-                "supported": true,
-                "reason": "P09 明确：商品实物与页面描述、实物样品不一致的，构成质量问题。"
-              },
-              {
-                "claim": "商品实物与页面描述或实物样品不一致的，消费者可主张退货。",
-                "supported": true,
-                "reason": "P09 明确：消费者可主张退货。"
-              },
-              {
-                "claim": "商品实物与页面描述或实物样品不一致的，运费由商家承担。",
-                "supported": true,
-                "reason": "P09 明确：运费由商家承担。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.426,
-            "n": 61,
-            "hit": 26,
-            "truncated": false,
-            "note": "不相关的主要是特殊类目（生鲜、定制、虚拟）的赔付规则、欺诈赔偿、三包、人身伤害等。",
-            "irrelevant": [
-              "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：",
-              "| 情形 | 处理 |",
-              "|---|---|",
-              "| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |",
-              "| 生鲜商品缺斤少两 | 按差额比例退款 |",
-              "| 定制商品与约定规格不符 | 返工、重做或退款 |",
-              "| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |",
-              "| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |",
-              "| 虚拟商品重复发放、错发 | 退还多付款项 |",
-              "> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "f4a9a6165ca07051",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 25.66,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:07.147Z",
-      "updatedAt": "2026-08-18T11:46:07.160Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "f4a9a6165ca07051",
-      "traceId": "afd3185e14d80b2ea1ca8c65e804ff87",
-      "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:45:39.582000+00:00",
-      "endTime": "2026-08-18 11:46:05.244000+00:00",
-      "input": {
-        "query": "我收到的货跟网上图片和介绍对不上，这算不算质量问题？能退吗？退回去的邮费谁出？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-066",
-        "kind": "text",
-        "type": "single",
-        "layer": "platform",
-        "style": "colloquial",
-        "doc_id": "P09",
-        "section": "第五条 特定场景的处理口径 > 5.2 商品与描述不符",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.103,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-066",
-        "type": "single",
-        "style": "colloquial",
-        "doc_id": "P09",
-        "layer": "platform",
-        "kind": "text",
-        "seed_chunk_id": [
-          "P09#004:01"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 1566,
-          "duplicate_ratio": 0.437,
-          "context_recall": 1,
-          "context_relevance": 0.426
-        },
-        "elapsed_s": 2.3,
-        "seed_rank": {
-          "candidate": {
-            "P09#004:01": 2
-          },
-          "evidence": {
-            "P09#004:01": 1
-          }
-        },
-        "sections": [
-          "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题 … 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
-          "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】",
-          "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.1 全额承担 … 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
-          "L02 网络购买商品七日无理由退货暂行办法 > 第七章 附则 > 第三十五条 【质量问题退货的法律适用】"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 3,
-            "hit": 3,
-            "detail": [
-              {
-                "claim": "商品实物与页面描述或实物样品不一致的，构成质量问题。",
-                "supported": true,
-                "reason": "P09 明确：商品实物与页面描述、实物样品不一致的，构成质量问题。"
-              },
-              {
-                "claim": "商品实物与页面描述或实物样品不一致的，消费者可主张退货。",
-                "supported": true,
-                "reason": "P09 明确：消费者可主张退货。"
-              },
-              {
-                "claim": "商品实物与页面描述或实物样品不一致的，运费由商家承担。",
-                "supported": true,
-                "reason": "P09 明确：运费由商家承担。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.426,
-            "n": 61,
-            "hit": 26,
-            "truncated": false,
-            "note": "不相关的主要是特殊类目（生鲜、定制、虚拟）的赔付规则、欺诈赔偿、三包、人身伤害等。",
-            "irrelevant": [
-              "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：",
-              "| 情形 | 处理 |",
-              "|---|---|",
-              "| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |",
-              "| 生鲜商品缺斤少两 | 按差额比例退款 |",
-              "| 定制商品与约定规格不符 | 返工、重做或退款 |",
-              "| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |",
-              "| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |",
-              "| 虚拟商品重复发放、错发 | 退还多付款项 |",
-              "> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 25.662,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:07.147Z",
-      "updatedAt": "2026-08-18T11:46:07.156Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "parentObservationId": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "9fffed1f378d78ce",
-      "traceId": "afd3185e14d80b2ea1ca8c65e804ff87",
+      "id": "80015bca186e3733",
+      "traceId": "b37989b1a4c725ace1a87945713720a4",
       "type": "SPAN",
       "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:46:05.243000+00:00",
-      "endTime": "2026-08-18 11:46:05.244000+00:00",
+      "startTime": "2026-08-19 05:15:00.257000+00:00",
+      "endTime": "2026-08-19 05:15:00.258000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -683,7 +568,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "f4a9a6165ca07051",
+      "parentObservationId": "210dd6140cb96b63",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -693,8 +578,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:07.147Z",
-      "updatedAt": "2026-08-18T11:46:07.155Z",
+      "createdAt": "2026-08-19T05:15:03.521Z",
+      "updatedAt": "2026-08-19T05:15:03.532Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -716,22 +601,49 @@
       "usagePricingTierName": null
     },
     {
-      "id": "4ad918a34f6c0722",
-      "traceId": "afd3185e14d80b2ea1ca8c65e804ff87",
+      "id": "4d0c29bf0d4badb7",
+      "traceId": "b37989b1a4c725ace1a87945713720a4",
       "type": "SPAN",
-      "name": "rag.rerank",
-      "startTime": "2026-08-18 11:45:59.036000+00:00",
-      "endTime": "2026-08-18 11:45:59.783000+00:00",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:14:31.394000+00:00",
+      "endTime": "2026-08-19 05:15:00.255000+00:00",
       "input": {
-        "query": "我收到的货跟网上图片和介绍对不上，这算不算质量问题？能退吗？退回去的邮费谁出？",
-        "candidates": 20
+        "query": "我收到的货跟网上图片和介绍对不上，这算不算质量问题？能退吗？退回去的邮费谁出？"
       },
       "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-066",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P09",
+        "section": "第五条 特定场景的处理口径 > 5.2 商品与描述不符",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.103,
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -743,15 +655,421 @@
         }
       },
       "output": {
-        "passed": 14,
+        "case_id": "R1-066",
+        "query": "我收到的货跟网上图片和介绍对不上，这算不算质量问题？能退吗？退回去的邮费谁出？",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P09",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P09#004:01"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 1908,
+          "duplicate_ratio": 0.199,
+          "context_recall": 1,
+          "context_relevance": 0.125
+        },
+        "elapsed_s": 2.2,
+        "seed_rank": {
+          "candidate": {
+            "P09#004:01": 1
+          },
+          "evidence": {
+            "P09#004:01": 1
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "condition",
+              "text": "收到的商品与网上图片和介绍描述不符，这算不算质量问题，可以申请退货吗？"
+            },
+            {
+              "id": "2",
+              "intent": "refund",
+              "text": "因商品与描述不符退货，退回去的邮费由谁承担？"
+            }
+          ]
+        },
+        "rewrite_hash": "9ce7c958990d298a",
+        "sections": [
+          "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题 … 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
+          "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】",
+          "L02 网络购买商品七日无理由退货暂行办法 > 第七章 附则 > 第三十五条 【质量问题退货的法律适用】",
+          "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十八条 【退货运费承担】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 3,
+            "hit": 3,
+            "detail": [
+              {
+                "claim": "商品实物与页面描述或实物样品不一致的，构成质量问题。",
+                "supported": true,
+                "reason": "P09 明确写明实物与描述或样品不一致构成质量问题。"
+              },
+              {
+                "claim": "商品实物与页面描述或实物样品不一致的，消费者可主张退货。",
+                "supported": true,
+                "reason": "P09 写明消费者可主张退货。"
+              },
+              {
+                "claim": "商品实物与页面描述或实物样品不一致的，运费由商家承担。",
+                "supported": true,
+                "reason": "P09 写明运费由商家承担。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.125,
+            "n": 80,
+            "hit": 10,
+            "truncated": false,
+            "note": "不相关的主要是无理由退货流程、特殊类目赔付、欺诈赔偿、三包、退款时限与方式等。",
+            "irrelevant": [
+              "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：",
+              "| 情形 | 处理 |",
+              "|---|---|",
+              "| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |",
+              "| 生鲜商品缺斤少两 | 按差额比例退款 |",
+              "| 定制商品与约定规格不符 | 返工、重做或退款 |",
+              "| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |",
+              "| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |",
+              "| 虚拟商品重复发放、错发 | 退还多付款项 |",
+              "> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "210dd6140cb96b63",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 28.861,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:15:03.520Z",
+      "updatedAt": "2026-08-19T05:15:03.527Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "872f9dbfb3fd8c35",
+      "traceId": "b37989b1a4c725ace1a87945713720a4",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:14:53.338000+00:00",
+      "endTime": "2026-08-19 05:14:55.542000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "我收到的货跟网上图片和介绍对不上，这算不算质量问题？能退吗？退回去的邮费谁出？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题 … 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
+            "text": "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。\n\n生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。",
+            "score": 0.9386408138275147,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.948 × 先验 0.90 → 0.939；命中 1/platform/dense#1, 1/platform/bm25#1, 2/platform/dense#1, 2/platform/bm25#1"
+          },
+          {
+            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】",
+            "text": "经营者提供的商品或者服务不符合质量要求的，消费者可以依照国家规定、当事人约定退货，或者要求经营者履行更换、修理等义务。没有国家规定和当事人约定的，消费者可以自收到商品之日起七日内退货；七日后符合法定解除合同条件的，消费者可以及时退货，不符合法定解除合同条件的，可以要求经营者履行更换、修理等义务。\n\n依照前款规定进行退货、更换、修理的，经营者应当承担运输等必要费用。\n\n> **售后适用要点**：**质量问题退货的运费由经营者承担**，与无理由退货运费由消费者承担（第二十五条）相反。判定退款时必须先区分「无理由」与「质量问题」，两者的运费归属、窗口期、商品完好要求均不同。",
+            "score": 0.8097258949279785,
+            "doc_id": "L01",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2014-03-15",
+            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
+            "reason": "相关性 0.900 × 先验 0.45 → 0.810；命中 1/law/dense#1, 1/law/bm25#1, 2/law/dense#1, 2/law/bm25#4"
+          },
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第七章 附则 > 第三十五条 【质量问题退货的法律适用】",
+            "text": "网络商品销售者提供的商品不符合质量要求，消费者要求退货的，适用《消费者权益保护法》第二十四条以及其他相关规定。\n\n> **判定要点**：本办法**只管无理由退货**。质量问题退货走消保法第二十四条与三包规定（[L05]），窗口期、运费、举证责任都不同。\n\n经营者采用电视、电话、邮购等方式销售商品，依照本办法执行。\n\n本办法由国家市场监督管理总局负责解释。\n\n本办法自2017年3月15日起施行。",
+            "score": 0.6735006237030029,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.729 × 先验 0.45 → 0.674；命中 1/law/dense#2, 2/law/dense#4"
+          },
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十八条 【退货运费承担】",
+            "text": "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。\n\n七日期间自消费者签收商品的次日开始起算。\n\n> **判定要点**：窗口期以**发出退货通知**的时间为准，不是商品寄回或卖家收到的时间；起算点是**签收次日**，签收当天不计入。\n\n网络商品销售者收到退货通知后应当及时向消费者提供真实、准确的退货地址、退货联系人、退货联系电话等有效联系信息。\n\n消费者获得上述信息后应当及时退回商品，并保留退货凭证。\n\n消费者退货时应当将商品本身、配件及赠品一并退回。\n\n赠品包括赠送的实物、积分、代金券、优惠券等形式。如果赠品不能一并退回，经营者可以要求消费者按照事先标明的赠品价格支付赠品价款。\n\n消费者退回的商品完好的，网络商品销售者应当在收到退回商品之日起七日内向消费者返还已支付的商品价款。\n\n> **判定要点**：法定退款时限是**收到退货之日起 7 日内**。平台承诺的「1-3 个工作日到账」快于法定要求，属于更优承诺。\n\n退款方式比照购买商品的支付方式。经营者与消费者另有约定的，从其约定。\n\n购买商品时采用多种方式支付价款的，一般应当按照各种支付方式的实际支付价款以相应方式退款。\n\n除征得消费者明确表示同意的以外，网络商品销售者不应当自行指定其他退款方式。\n\n> **判定要点**：**「原路退回」是法定默认方式**。未经消费者明确同意，不得以store credit、平台余额、优惠券等形式替代原路退款。\n\n消费者采用积分、代金券、优惠券等形式支付价款的，网络商品销售者在消费者退还商品后应当以相应形式返还消费者。对积分、代金券、优惠券的使用和返还有约定的，可以从其约定。\n\n消费者购买商品时采用信用卡支付方式并支付手续费的，网络商品销售者退款时可以不退回手续费。\n\n消费者购买商品时采用信用卡支付方式并被网络商品销售者免除手续费的，网络商品销售者可以在退款时扣除手续费。\n\n退货价款以消费者实际支出的价款为准。\n\n套装或者满减优惠活动中的部分商品退货，导致不能再享受优惠的，根据购买时各商品价格进行结算，多退少补。\n\n> **判定要点**：**退款基数是实付金额，不是商品标价**。部分退货导致优惠失效的，剩余订单需重新结算，可能出现「多退少补」。\n\n商品退回所产生的运费依法由消费者承担。经营者与消费者另有约定的，按照约定。\n\n消费者参加满足一定条件免运费活动，但退货后已不能达到免运费活动要求的，网络商品销售者在退款时可以扣除运费。\n\n> **判定要点**：**无理由退货运费由消费者承担**（本条）；**质量问题退货运费由经营者承担**（消保法第二十四条）。这是区分退款原因的直接后果之一。\n\n网络商品销售者可以与消费者约定退货方式，但不应当限制消费者的退货方式。\n\n网络商品销售者可以免费上门取货，也可以征得消费者同意后有偿上门取货。",
+            "score": 0.6328229808807373,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.679 × 先验 0.45 → 0.633；命中 2/law/dense#2, 2/law/bm25#2"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "4d0c29bf0d4badb7",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 2.204,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:14:58.427Z",
+      "updatedAt": "2026-08-19T05:14:58.448Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "297bd0b60e9414b4",
+      "traceId": "b37989b1a4c725ace1a87945713720a4",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:14:55.523000+00:00",
+      "endTime": "2026-08-19 05:14:55.541000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "P09#004:01",
+          "L01#003:00",
+          "L02#007:00",
+          "L02#003:08",
+          "P03#001:05",
+          "P01#003:01",
+          "P06#002:00",
+          "P06#000:00",
+          "P02#000:00",
+          "P06#002:02",
+          "P06#003:02",
+          "P09#004:00",
+          "P06#006:00"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题 … 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
+            "text": "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。\n\n生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。",
+            "score": 0.9386408138275147,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.948 × 先验 0.90 → 0.939；命中 1/platform/dense#1, 1/platform/bm25#1, 2/platform/dense#1, 2/platform/bm25#1"
+          },
+          {
+            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】",
+            "text": "经营者提供的商品或者服务不符合质量要求的，消费者可以依照国家规定、当事人约定退货，或者要求经营者履行更换、修理等义务。没有国家规定和当事人约定的，消费者可以自收到商品之日起七日内退货；七日后符合法定解除合同条件的，消费者可以及时退货，不符合法定解除合同条件的，可以要求经营者履行更换、修理等义务。\n\n依照前款规定进行退货、更换、修理的，经营者应当承担运输等必要费用。\n\n> **售后适用要点**：**质量问题退货的运费由经营者承担**，与无理由退货运费由消费者承担（第二十五条）相反。判定退款时必须先区分「无理由」与「质量问题」，两者的运费归属、窗口期、商品完好要求均不同。",
+            "score": 0.8097258949279785,
+            "doc_id": "L01",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2014-03-15",
+            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
+            "reason": "相关性 0.900 × 先验 0.45 → 0.810；命中 1/law/dense#1, 1/law/bm25#1, 2/law/dense#1, 2/law/bm25#4"
+          },
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第七章 附则 > 第三十五条 【质量问题退货的法律适用】",
+            "text": "网络商品销售者提供的商品不符合质量要求，消费者要求退货的，适用《消费者权益保护法》第二十四条以及其他相关规定。\n\n> **判定要点**：本办法**只管无理由退货**。质量问题退货走消保法第二十四条与三包规定（[L05]），窗口期、运费、举证责任都不同。\n\n经营者采用电视、电话、邮购等方式销售商品，依照本办法执行。\n\n本办法由国家市场监督管理总局负责解释。\n\n本办法自2017年3月15日起施行。",
+            "score": 0.6735006237030029,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.729 × 先验 0.45 → 0.674；命中 1/law/dense#2, 2/law/dense#4"
+          },
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十八条 【退货运费承担】",
+            "text": "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。\n\n七日期间自消费者签收商品的次日开始起算。\n\n> **判定要点**：窗口期以**发出退货通知**的时间为准，不是商品寄回或卖家收到的时间；起算点是**签收次日**，签收当天不计入。\n\n网络商品销售者收到退货通知后应当及时向消费者提供真实、准确的退货地址、退货联系人、退货联系电话等有效联系信息。\n\n消费者获得上述信息后应当及时退回商品，并保留退货凭证。\n\n消费者退货时应当将商品本身、配件及赠品一并退回。\n\n赠品包括赠送的实物、积分、代金券、优惠券等形式。如果赠品不能一并退回，经营者可以要求消费者按照事先标明的赠品价格支付赠品价款。\n\n消费者退回的商品完好的，网络商品销售者应当在收到退回商品之日起七日内向消费者返还已支付的商品价款。\n\n> **判定要点**：法定退款时限是**收到退货之日起 7 日内**。平台承诺的「1-3 个工作日到账」快于法定要求，属于更优承诺。\n\n退款方式比照购买商品的支付方式。经营者与消费者另有约定的，从其约定。\n\n购买商品时采用多种方式支付价款的，一般应当按照各种支付方式的实际支付价款以相应方式退款。\n\n除征得消费者明确表示同意的以外，网络商品销售者不应当自行指定其他退款方式。\n\n> **判定要点**：**「原路退回」是法定默认方式**。未经消费者明确同意，不得以store credit、平台余额、优惠券等形式替代原路退款。\n\n消费者采用积分、代金券、优惠券等形式支付价款的，网络商品销售者在消费者退还商品后应当以相应形式返还消费者。对积分、代金券、优惠券的使用和返还有约定的，可以从其约定。\n\n消费者购买商品时采用信用卡支付方式并支付手续费的，网络商品销售者退款时可以不退回手续费。\n\n消费者购买商品时采用信用卡支付方式并被网络商品销售者免除手续费的，网络商品销售者可以在退款时扣除手续费。\n\n退货价款以消费者实际支出的价款为准。\n\n套装或者满减优惠活动中的部分商品退货，导致不能再享受优惠的，根据购买时各商品价格进行结算，多退少补。\n\n> **判定要点**：**退款基数是实付金额，不是商品标价**。部分退货导致优惠失效的，剩余订单需重新结算，可能出现「多退少补」。\n\n商品退回所产生的运费依法由消费者承担。经营者与消费者另有约定的，按照约定。\n\n消费者参加满足一定条件免运费活动，但退货后已不能达到免运费活动要求的，网络商品销售者在退款时可以扣除运费。\n\n> **判定要点**：**无理由退货运费由消费者承担**（本条）；**质量问题退货运费由经营者承担**（消保法第二十四条）。这是区分退款原因的直接后果之一。\n\n网络商品销售者可以与消费者约定退货方式，但不应当限制消费者的退货方式。\n\n网络商品销售者可以免费上门取货，也可以征得消费者同意后有偿上门取货。",
+            "score": 0.6328229808807373,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.679 × 先验 0.45 → 0.633；命中 2/law/dense#2, 2/law/bm25#2"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "872f9dbfb3fd8c35",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.018,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:14:58.427Z",
+      "updatedAt": "2026-08-19T05:14:58.447Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "59a7715f0e673bd6",
+      "traceId": "b37989b1a4c725ace1a87945713720a4",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-19 05:14:54.816000+00:00",
+      "endTime": "2026-08-19 05:14:55.523000+00:00",
+      "input": {
+        "query": "我收到的货跟网上图片和介绍对不上，这算不算质量问题？能退吗？退回去的邮费谁出？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 13,
         "min_score": 0.3,
         "dropped": [
-          "L05#017:00",
-          "P06#001:02",
-          "P05#005:00",
+          "P05#005:01",
+          "P09#000:00",
+          "L05#021:00",
           "P06#005:00",
-          "P06#001:00",
-          "P06#004:00"
+          "P10#001:03",
+          "L05#003:00",
+          "L05#013:00"
         ],
         "evidence": [
           {
@@ -769,14 +1087,6 @@
             "relevance": 0.9,
             "prior": 0.45,
             "excerpt": "经营者提供的商品或者服务不符合质量要求的，消费者可以依照国家规定、当事人约定退货，或者要求经营者履行更换、修理等义务。没有国家规定和当事人约定的，消费者可以自收到商品之日起七日内退货；七日后符合法定解除合同条件的，消费者可以及时退货，不符合…"
-          },
-          {
-            "chunk_id": "P06#002:03",
-            "section": "P06 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
-            "score": 0.717,
-            "relevance": 0.671,
-            "prior": 0.9,
-            "excerpt": "质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。"
           },
           {
             "chunk_id": "L02#007:00",
@@ -875,7 +1185,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "c2bd30a2eb83c91f",
+      "parentObservationId": "872f9dbfb3fd8c35",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -883,10 +1193,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.747,
+      "latency": 0.707,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:02.105Z",
-      "updatedAt": "2026-08-18T11:46:02.124Z",
+      "createdAt": "2026-08-19T05:14:58.427Z",
+      "updatedAt": "2026-08-19T05:14:58.447Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -907,259 +1217,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "ce9f5b8ba58ceeb1",
-      "traceId": "afd3185e14d80b2ea1ca8c65e804ff87",
-      "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:45:59.783000+00:00",
-      "endTime": "2026-08-18 11:45:59.806000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": [
-          "P09#004:01",
-          "L01#003:00",
-          "P06#002:03",
-          "L02#007:00",
-          "L02#003:08",
-          "P03#001:05",
-          "P01#003:01",
-          "P06#002:00",
-          "P06#000:00",
-          "P02#000:00",
-          "P06#002:02",
-          "P06#003:02",
-          "P09#004:00",
-          "P06#006:00"
-        ]
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题 … 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
-            "text": "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。\n\n生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。",
-            "score": 0.9386408138275147,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.948 × 先验 0.90 → 0.939；命中 1/platform/dense#1, 1/platform/bm25#2, 2/platform/dense#1, 2/platform/bm25#2"
-          },
-          {
-            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】",
-            "text": "经营者提供的商品或者服务不符合质量要求的，消费者可以依照国家规定、当事人约定退货，或者要求经营者履行更换、修理等义务。没有国家规定和当事人约定的，消费者可以自收到商品之日起七日内退货；七日后符合法定解除合同条件的，消费者可以及时退货，不符合法定解除合同条件的，可以要求经营者履行更换、修理等义务。\n\n依照前款规定进行退货、更换、修理的，经营者应当承担运输等必要费用。\n\n> **售后适用要点**：**质量问题退货的运费由经营者承担**，与无理由退货运费由消费者承担（第二十五条）相反。判定退款时必须先区分「无理由」与「质量问题」，两者的运费归属、窗口期、商品完好要求均不同。",
-            "score": 0.8097258949279785,
-            "doc_id": "L01",
-            "layer": "law",
-            "doc_type": "法律",
-            "effective_date": "2014-03-15",
-            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
-            "reason": "相关性 0.900 × 先验 0.45 → 0.810；命中 1/law/dense#1, 1/law/bm25#1, 2/law/dense#1, 2/law/bm25#2"
-          },
-          {
-            "section": "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.1 全额承担 … 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
-            "text": "商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。\n\n商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。\n\n商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。",
-            "score": 0.7165831375122071,
-            "doc_id": "P06",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P06-运费与退货物流规则.md",
-            "reason": "相关性 0.671 × 先验 0.90 → 0.717；命中 1/platform/bm25#18, 2/platform/dense#6, 2/platform/bm25#16"
-          },
-          {
-            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第七章 附则 > 第三十五条 【质量问题退货的法律适用】",
-            "text": "网络商品销售者提供的商品不符合质量要求，消费者要求退货的，适用《消费者权益保护法》第二十四条以及其他相关规定。\n\n> **判定要点**：本办法**只管无理由退货**。质量问题退货走消保法第二十四条与三包规定（[L05]），窗口期、运费、举证责任都不同。\n\n经营者采用电视、电话、邮购等方式销售商品，依照本办法执行。\n\n本办法由国家市场监督管理总局负责解释。\n\n本办法自2017年3月15日起施行。",
-            "score": 0.6735006237030029,
-            "doc_id": "L02",
-            "layer": "law",
-            "doc_type": "部门规章",
-            "effective_date": "2017-03-15",
-            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
-            "reason": "相关性 0.729 × 先验 0.45 → 0.674；命中 1/law/dense#2, 2/law/dense#4"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "c2bd30a2eb83c91f",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.023,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:02.105Z",
-      "updatedAt": "2026-08-18T11:46:02.124Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "c2bd30a2eb83c91f",
-      "traceId": "afd3185e14d80b2ea1ca8c65e804ff87",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:45:57.506000+00:00",
-      "endTime": "2026-08-18 11:45:59.806000+00:00",
-      "modelParameters": {},
-      "input": {
-        "query": "我收到的货跟网上图片和介绍对不上，这算不算质量问题？能退吗？退回去的邮费谁出？",
-        "top_k": 4
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题 … 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
-            "text": "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。\n\n生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。",
-            "score": 0.9386408138275147,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.948 × 先验 0.90 → 0.939；命中 1/platform/dense#1, 1/platform/bm25#2, 2/platform/dense#1, 2/platform/bm25#2"
-          },
-          {
-            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】",
-            "text": "经营者提供的商品或者服务不符合质量要求的，消费者可以依照国家规定、当事人约定退货，或者要求经营者履行更换、修理等义务。没有国家规定和当事人约定的，消费者可以自收到商品之日起七日内退货；七日后符合法定解除合同条件的，消费者可以及时退货，不符合法定解除合同条件的，可以要求经营者履行更换、修理等义务。\n\n依照前款规定进行退货、更换、修理的，经营者应当承担运输等必要费用。\n\n> **售后适用要点**：**质量问题退货的运费由经营者承担**，与无理由退货运费由消费者承担（第二十五条）相反。判定退款时必须先区分「无理由」与「质量问题」，两者的运费归属、窗口期、商品完好要求均不同。",
-            "score": 0.8097258949279785,
-            "doc_id": "L01",
-            "layer": "law",
-            "doc_type": "法律",
-            "effective_date": "2014-03-15",
-            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
-            "reason": "相关性 0.900 × 先验 0.45 → 0.810；命中 1/law/dense#1, 1/law/bm25#1, 2/law/dense#1, 2/law/bm25#2"
-          },
-          {
-            "section": "P06 星辰优选运费与退货物流规则 > 第三条 质量问题退货的运费 > 3.1 全额承担 … 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
-            "text": "商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。\n\n商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。\n\n商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。",
-            "score": 0.7165831375122071,
-            "doc_id": "P06",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P06-运费与退货物流规则.md",
-            "reason": "相关性 0.671 × 先验 0.90 → 0.717；命中 1/platform/bm25#18, 2/platform/dense#6, 2/platform/bm25#16"
-          },
-          {
-            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第七章 附则 > 第三十五条 【质量问题退货的法律适用】",
-            "text": "网络商品销售者提供的商品不符合质量要求，消费者要求退货的，适用《消费者权益保护法》第二十四条以及其他相关规定。\n\n> **判定要点**：本办法**只管无理由退货**。质量问题退货走消保法第二十四条与三包规定（[L05]），窗口期、运费、举证责任都不同。\n\n经营者采用电视、电话、邮购等方式销售商品，依照本办法执行。\n\n本办法由国家市场监督管理总局负责解释。\n\n本办法自2017年3月15日起施行。",
-            "score": 0.6735006237030029,
-            "doc_id": "L02",
-            "layer": "law",
-            "doc_type": "部门规章",
-            "effective_date": "2017-03-15",
-            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
-            "reason": "相关性 0.729 × 先验 0.45 → 0.674；命中 1/law/dense#2, 2/law/dense#4"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "c510863fdcf34ef3",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 2.3,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:02.105Z",
-      "updatedAt": "2026-08-18T11:46:02.120Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "2263a306e162a26a",
-      "traceId": "afd3185e14d80b2ea1ca8c65e804ff87",
+      "id": "4ff4504e093cb940",
+      "traceId": "b37989b1a4c725ace1a87945713720a4",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 11:45:58.916000+00:00",
-      "endTime": "2026-08-18 11:45:59.035000+00:00",
+      "startTime": "2026-08-19 05:14:54.697000+00:00",
+      "endTime": "2026-08-19 05:14:54.816000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1173,148 +1242,35 @@
       "output": {
         "candidates": [
           {
+            "chunk_id": "P09#004:01",
+            "section": "P09 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
+            "rrf": 0.1905,
+            "hits": [
+              "1/platform/dense#1",
+              "1/platform/bm25#1",
+              "2/platform/dense#1",
+              "2/platform/bm25#1"
+            ]
+          },
+          {
             "chunk_id": "L01#003:00",
             "section": "L01 第二十四条 【质量不符时的退货、更换、修理】",
-            "rrf": 0.1883,
+            "rrf": 0.1845,
             "hits": [
               "1/law/dense#1",
               "1/law/bm25#1",
               "2/law/dense#1",
-              "2/law/bm25#2"
-            ]
-          },
-          {
-            "chunk_id": "P09#004:01",
-            "section": "P09 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
-            "rrf": 0.1861,
-            "hits": [
-              "1/platform/dense#1",
-              "1/platform/bm25#2",
-              "2/platform/dense#1",
-              "2/platform/bm25#2"
-            ]
-          },
-          {
-            "chunk_id": "P06#002:02",
-            "section": "P06 第三条 质量问题退货的运费 > 3.3 大件商品",
-            "rrf": 0.1366,
-            "hits": [
-              "1/platform/dense#16",
-              "1/platform/bm25#10",
-              "2/platform/dense#7",
-              "2/platform/bm25#6"
+              "2/law/bm25#4"
             ]
           },
           {
             "chunk_id": "P01#003:01",
             "section": "P01 第三章 订单与合同 > 3.2 商品信息",
-            "rrf": 0.1234,
+            "rrf": 0.1324,
             "hits": [
               "1/platform/dense#2",
               "1/platform/bm25#3",
-              "2/platform/bm25#9"
-            ]
-          },
-          {
-            "chunk_id": "P06#002:00",
-            "section": "P06 第三条 质量问题退货的运费 > 3.1 全额承担",
-            "rrf": 0.1139,
-            "hits": [
-              "1/platform/bm25#11",
-              "2/platform/dense#4",
-              "2/platform/bm25#5"
-            ]
-          },
-          {
-            "chunk_id": "P06#000:00",
-            "section": "P06 第一条 运费承担的基本原则",
-            "rrf": 0.1119,
-            "hits": [
-              "1/platform/bm25#7",
-              "2/platform/dense#2",
-              "2/platform/bm25#14"
-            ]
-          },
-          {
-            "chunk_id": "L02#003:08",
-            "section": "L02 第三章 退货程序 > 第十八条 【退货运费承担】",
-            "rrf": 0.0931,
-            "hits": [
-              "2/law/dense#2",
-              "2/law/bm25#1"
-            ]
-          },
-          {
-            "chunk_id": "P06#002:03",
-            "section": "P06 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
-            "rrf": 0.0926,
-            "hits": [
-              "1/platform/bm25#18",
-              "2/platform/dense#6",
-              "2/platform/bm25#16"
-            ]
-          },
-          {
-            "chunk_id": "L02#007:00",
-            "section": "L02 第七章 附则 > 第三十五条 【质量问题退货的法律适用】",
-            "rrf": 0.0871,
-            "hits": [
-              "1/law/dense#2",
-              "2/law/dense#4"
-            ]
-          },
-          {
-            "chunk_id": "P03#001:05",
-            "section": "P03 第二条 退款金额的计算 > 2.6 运费",
-            "rrf": 0.0835,
-            "hits": [
-              "2/platform/dense#5",
               "2/platform/bm25#3"
-            ]
-          },
-          {
-            "chunk_id": "P06#003:02",
-            "section": "P06 第四条 运费险 > 4.3 赔付不足",
-            "rrf": 0.0805,
-            "hits": [
-              "2/platform/dense#3",
-              "2/platform/bm25#7"
-            ]
-          },
-          {
-            "chunk_id": "L05#017:00",
-            "section": "L05 第十七条 【不实行三包的情形】",
-            "rrf": 0.08,
-            "hits": [
-              "1/law/bm25#5",
-              "2/law/bm25#5"
-            ]
-          },
-          {
-            "chunk_id": "P06#006:00",
-            "section": "P06 相关文件",
-            "rrf": 0.0789,
-            "hits": [
-              "2/platform/dense#12",
-              "2/platform/bm25#1"
-            ]
-          },
-          {
-            "chunk_id": "P06#001:02",
-            "section": "P06 第二条 无理由退货的运费 > 2.3 包邮订单的处理",
-            "rrf": 0.0774,
-            "hits": [
-              "2/platform/dense#8",
-              "2/platform/bm25#4"
-            ]
-          },
-          {
-            "chunk_id": "P02#000:00",
-            "section": "P02 第一条 适用范围与基本原则",
-            "rrf": 0.0739,
-            "hits": [
-              "1/platform/bm25#1",
-              "2/platform/bm25#18"
             ]
           },
           {
@@ -1327,39 +1283,147 @@
             ]
           },
           {
-            "chunk_id": "P05#005:00",
-            "section": "P05 第五条 举证责任 > 5.1 商家举证",
-            "rrf": 0.0667,
+            "chunk_id": "P05#005:01",
+            "section": "P05 第五条 举证责任 > 5.2 消费者举证",
+            "rrf": 0.0634,
             "hits": [
-              "1/platform/dense#9",
-              "2/platform/dense#11"
+              "1/platform/dense#7",
+              "1/platform/bm25#18"
+            ]
+          },
+          {
+            "chunk_id": "P06#002:02",
+            "section": "P06 第三条 质量问题退货的运费 > 3.3 大件商品",
+            "rrf": 0.1313,
+            "hits": [
+              "1/platform/dense#16",
+              "1/platform/bm25#10",
+              "2/platform/dense#8",
+              "2/platform/bm25#9"
+            ]
+          },
+          {
+            "chunk_id": "P09#000:00",
+            "section": "P09 第一条 适用范围",
+            "rrf": 0.0589,
+            "hits": [
+              "1/platform/dense#13",
+              "1/platform/bm25#15"
+            ]
+          },
+          {
+            "chunk_id": "P02#000:00",
+            "section": "P02 第一条 适用范围与基本原则",
+            "rrf": 0.0758,
+            "hits": [
+              "1/platform/bm25#2",
+              "2/platform/bm25#13"
+            ]
+          },
+          {
+            "chunk_id": "L02#007:00",
+            "section": "L02 第七章 附则 > 第三十五条 【质量问题退货的法律适用】",
+            "rrf": 0.0871,
+            "hits": [
+              "1/law/dense#2",
+              "2/law/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "L05#021:00",
+            "section": "L05 第二十一条 【纠纷调解】",
+            "rrf": 0.0455,
+            "hits": [
+              "1/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:08",
+            "section": "L02 第三章 退货程序 > 第十八条 【退货运费承担】",
+            "rrf": 0.0909,
+            "hits": [
+              "2/law/dense#2",
+              "2/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P03#001:05",
+            "section": "P03 第二条 退款金额的计算 > 2.6 运费",
+            "rrf": 0.0839,
+            "hits": [
+              "2/platform/dense#6",
+              "2/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P06#002:00",
+            "section": "P06 第三条 质量问题退货的运费 > 3.1 全额承担",
+            "rrf": 0.111,
+            "hits": [
+              "1/platform/bm25#11",
+              "2/platform/dense#2",
+              "2/platform/bm25#10"
             ]
           },
           {
             "chunk_id": "P06#005:00",
             "section": "P06 第六条 物流异常的处理 > 6.1 退货途中丢失",
-            "rrf": 0.0667,
+            "rrf": 0.0723,
             "hits": [
-              "2/platform/dense#9",
+              "2/platform/dense#11",
+              "2/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P10#001:03",
+            "section": "P10 第二条 满减与套装的部分退货 > 2.4 套装商品",
+            "rrf": 0.072,
+            "hits": [
+              "2/platform/dense#13",
+              "2/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P06#003:02",
+            "section": "P06 第四条 运费险 > 4.3 赔付不足",
+            "rrf": 0.0678,
+            "hits": [
+              "2/platform/dense#5",
+              "2/platform/bm25#16"
+            ]
+          },
+          {
+            "chunk_id": "P06#006:00",
+            "section": "P06 相关文件",
+            "rrf": 0.0586,
+            "hits": [
+              "2/platform/dense#18",
               "2/platform/bm25#11"
             ]
           },
           {
-            "chunk_id": "P06#001:00",
-            "section": "P06 第二条 无理由退货的运费 > 2.1 寄回运费",
-            "rrf": 0.0636,
+            "chunk_id": "L05#003:00",
+            "section": "L05 第三条 【谁经销谁负责】",
+            "rrf": 0.0476,
             "hits": [
-              "2/platform/dense#13",
-              "2/platform/bm25#10"
+              "2/law/bm25#1"
             ]
           },
           {
-            "chunk_id": "P06#004:00",
-            "section": "P06 第五条 退货物流 > 5.1 商家提供退货信息的义务",
-            "rrf": 0.0604,
+            "chunk_id": "P06#000:00",
+            "section": "P06 第一条 运费承担的基本原则",
+            "rrf": 0.0805,
             "hits": [
-              "1/platform/bm25#17",
-              "2/platform/dense#10"
+              "1/platform/bm25#7",
+              "2/platform/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "L05#013:00",
+            "section": "L05 第十三条 【无同型号产品时的退货与折旧】",
+            "rrf": 0.0435,
+            "hits": [
+              "2/law/dense#3"
             ]
           }
         ]
@@ -1371,7 +1435,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "c2bd30a2eb83c91f",
+      "parentObservationId": "872f9dbfb3fd8c35",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1381,8 +1445,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.119,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:02.105Z",
-      "updatedAt": "2026-08-18T11:46:02.120Z",
+      "createdAt": "2026-08-19T05:14:58.427Z",
+      "updatedAt": "2026-08-19T05:14:58.442Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1404,18 +1468,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "ba1c4a35fba2f6c5",
-      "traceId": "afd3185e14d80b2ea1ca8c65e804ff87",
+      "id": "ce5af5618f4166b6",
+      "traceId": "b37989b1a4c725ace1a87945713720a4",
       "type": "SPAN",
       "name": "rag.route",
-      "startTime": "2026-08-18 11:45:58.916000+00:00",
-      "endTime": "2026-08-18 11:45:58.916000+00:00",
+      "startTime": "2026-08-19 05:14:54.697000+00:00",
+      "endTime": "2026-08-19 05:14:54.697000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1453,7 +1517,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "c2bd30a2eb83c91f",
+      "parentObservationId": "872f9dbfb3fd8c35",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1463,8 +1527,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:02.105Z",
-      "updatedAt": "2026-08-18T11:46:02.120Z",
+      "createdAt": "2026-08-19T05:14:58.427Z",
+      "updatedAt": "2026-08-19T05:14:58.438Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1486,12 +1550,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "5046e8807dd73df6",
-      "traceId": "afd3185e14d80b2ea1ca8c65e804ff87",
+      "id": "aa2bbb473fb4caea",
+      "traceId": "b37989b1a4c725ace1a87945713720a4",
       "type": "SPAN",
       "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:45:57.506000+00:00",
-      "endTime": "2026-08-18 11:45:58.915000+00:00",
+      "startTime": "2026-08-19 05:14:53.338000+00:00",
+      "endTime": "2026-08-19 05:14:54.696000+00:00",
       "input": {
         "query": "我收到的货跟网上图片和介绍对不上，这算不算质量问题？能退吗？退回去的邮费谁出？"
       },
@@ -1500,7 +1564,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1518,12 +1582,12 @@
           {
             "id": "1",
             "intent": "condition",
-            "text": "收到的商品与网上图片和介绍不符，这算不算质量问题，能否申请退货？"
+            "text": "收到的商品与网上图片和介绍描述不符，这算不算质量问题，可以申请退货吗？"
           },
           {
             "id": "2",
             "intent": "refund",
-            "text": "因商品与描述不符退货，退货运费由谁承担？"
+            "text": "因商品与描述不符退货，退回去的邮费由谁承担？"
           }
         ]
       },
@@ -1534,7 +1598,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "c2bd30a2eb83c91f",
+      "parentObservationId": "872f9dbfb3fd8c35",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1542,10 +1606,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.409,
+      "latency": 1.358,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:02.105Z",
-      "updatedAt": "2026-08-18T11:46:02.116Z",
+      "createdAt": "2026-08-19T05:14:58.427Z",
+      "updatedAt": "2026-08-19T05:14:58.436Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,

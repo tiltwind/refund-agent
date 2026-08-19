@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-051",
+    "query": "若退款中扣除了运费但未在退款结果中列明扣除项与金额，该扣除是否有效？",
     "type": "single",
     "style": "formal",
     "doc_id": "P06",
@@ -9,6 +10,7 @@
     "seed_chunk_id": [
       "P06#001:03"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
@@ -19,15 +21,32 @@
       "context_recall": 1.0,
       "context_relevance": 0.057
     },
-    "elapsed_s": 2.3,
+    "elapsed_s": 2.4,
     "seed_rank": {
       "candidate": {
-        "P06#001:03": 4
+        "P06#001:03": 1
       },
       "evidence": {
         "P06#001:03": 1
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "refund",
+          "text": "退款中扣除了运费但未在退款结果中列明扣除项与金额，该扣除是否有效？"
+        },
+        {
+          "id": "2",
+          "intent": "dispute",
+          "text": "退款金额与预期不符且未列明扣除明细，消费者如何申诉或维权？"
+        }
+      ]
+    },
+    "rewrite_hash": "1c1563d3b287028c",
     "sections": [
       "P06 星辰优选运费与退货物流规则 > 第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
       "P10 星辰优选优惠券、赠品与发票处理规则 > 第二条 满减与套装的部分退货 > 2.3 结算结果的告知",
@@ -42,12 +61,12 @@
           {
             "claim": "未列明的扣除无效。",
             "supported": true,
-            "reason": "P06 和 P10 均写明未列明的扣除无效。"
+            "reason": "P06 和 P10 均明确未列明的扣除无效。"
           },
           {
             "claim": "消费者可申请补退。",
             "supported": true,
-            "reason": "P06 和 P10 均写明消费者可申请补退。"
+            "reason": "P06 和 P10 均提到消费者可申请补退。"
           }
         ],
         "error": null
@@ -57,7 +76,7 @@
         "n": 35,
         "hit": 2,
         "truncated": false,
-        "note": "其他单元多为运费归属或优惠重算规则，未直接回答扣除未列明是否有效。",
+        "note": "其他单元多为运费归属规则或优惠重算，未直接回答扣除未列明是否有效。",
         "irrelevant": [
           "无理由退货所产生的寄回运费由消费者承担。",
           "消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。",
@@ -73,423 +92,21 @@
         "error": null
       }
     },
-    "trace_id": "efd0e57cf3afd8cdd8f70f93cc33415b"
+    "trace_id": "9ebd996244f5bfe209a13a5c95a683ba"
   },
   "trace": {
-    "id": "efd0e57cf3afd8cdd8f70f93cc33415b",
+    "id": "9ebd996244f5bfe209a13a5c95a683ba",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:47:52.412000+00:00"
+    "timestamp": "2026-08-19 05:16:41.812000+00:00"
   },
   "observations": [
     {
-      "id": "3b2172f6012d4c24",
-      "traceId": "efd0e57cf3afd8cdd8f70f93cc33415b",
-      "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:47:14.815000+00:00",
-      "endTime": "2026-08-18 11:47:58.276000+00:00",
-      "input": {
-        "query": "若退款中扣除了运费但未在退款结果中列明扣除项与金额，该扣除是否有效？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-051",
-        "kind": "text",
-        "type": "single",
-        "layer": "platform",
-        "style": "formal",
-        "doc_id": "P06",
-        "section": "第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.593,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-051",
-        "type": "single",
-        "style": "formal",
-        "doc_id": "P06",
-        "layer": "platform",
-        "kind": "text",
-        "seed_chunk_id": [
-          "P06#001:03"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 766,
-          "duplicate_ratio": 0,
-          "context_recall": 1,
-          "context_relevance": 0.057
-        },
-        "elapsed_s": 2.3,
-        "seed_rank": {
-          "candidate": {
-            "P06#001:03": 4
-          },
-          "evidence": {
-            "P06#001:03": 1
-          }
-        },
-        "sections": [
-          "P06 星辰优选运费与退货物流规则 > 第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
-          "P10 星辰优选优惠券、赠品与发票处理规则 > 第二条 满减与套装的部分退货 > 2.3 结算结果的告知",
-          "P10 星辰优选优惠券、赠品与发票处理规则 > 第七条 退款金额的构成告知"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 2,
-            "hit": 2,
-            "detail": [
-              {
-                "claim": "未列明的扣除无效。",
-                "supported": true,
-                "reason": "P06 和 P10 均写明未列明的扣除无效。"
-              },
-              {
-                "claim": "消费者可申请补退。",
-                "supported": true,
-                "reason": "P06 和 P10 均写明消费者可申请补退。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.057,
-            "n": 35,
-            "hit": 2,
-            "truncated": false,
-            "note": "其他单元多为运费归属或优惠重算规则，未直接回答扣除未列明是否有效。",
-            "irrelevant": [
-              "无理由退货所产生的寄回运费由消费者承担。",
-              "消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。",
-              "订单原本收取的运费属于已实际发生的履约成本，无理由退货时**不予退还**。",
-              "| 情形 | 处理方式 |",
-              "|---|---|",
-              "| 商家无条件包邮，全部退货 | 消费者仅承担寄回运费 |",
-              "| 商家无条件包邮，部分退货 | 消费者仅承担寄回运费 |",
-              "| 满额包邮，全部退货 | 消费者仅承担寄回运费 |",
-              "| **满额包邮，部分退货后剩余金额不满足包邮条件** | **平台可从退款中扣除原订单应付运费** |",
-              "| 未包邮订单 | 原订单运费不退，寄回运费自理 |"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 43.461,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:02.940Z",
-      "updatedAt": "2026-08-18T11:48:02.961Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "parentObservationId": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "96b5134a31051b1f",
-      "traceId": "efd0e57cf3afd8cdd8f70f93cc33415b",
-      "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:47:14.815000+00:00",
-      "endTime": "2026-08-18 11:47:58.274000+00:00",
-      "input": {
-        "query": "若退款中扣除了运费但未在退款结果中列明扣除项与金额，该扣除是否有效？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-051",
-        "kind": "text",
-        "type": "single",
-        "layer": "platform",
-        "style": "formal",
-        "doc_id": "P06",
-        "section": "第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.593,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-051",
-        "type": "single",
-        "style": "formal",
-        "doc_id": "P06",
-        "layer": "platform",
-        "kind": "text",
-        "seed_chunk_id": [
-          "P06#001:03"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 766,
-          "duplicate_ratio": 0,
-          "context_recall": 1,
-          "context_relevance": 0.057
-        },
-        "elapsed_s": 2.3,
-        "seed_rank": {
-          "candidate": {
-            "P06#001:03": 4
-          },
-          "evidence": {
-            "P06#001:03": 1
-          }
-        },
-        "sections": [
-          "P06 星辰优选运费与退货物流规则 > 第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
-          "P10 星辰优选优惠券、赠品与发票处理规则 > 第二条 满减与套装的部分退货 > 2.3 结算结果的告知",
-          "P10 星辰优选优惠券、赠品与发票处理规则 > 第七条 退款金额的构成告知"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 2,
-            "hit": 2,
-            "detail": [
-              {
-                "claim": "未列明的扣除无效。",
-                "supported": true,
-                "reason": "P06 和 P10 均写明未列明的扣除无效。"
-              },
-              {
-                "claim": "消费者可申请补退。",
-                "supported": true,
-                "reason": "P06 和 P10 均写明消费者可申请补退。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.057,
-            "n": 35,
-            "hit": 2,
-            "truncated": false,
-            "note": "其他单元多为运费归属或优惠重算规则，未直接回答扣除未列明是否有效。",
-            "irrelevant": [
-              "无理由退货所产生的寄回运费由消费者承担。",
-              "消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。",
-              "订单原本收取的运费属于已实际发生的履约成本，无理由退货时**不予退还**。",
-              "| 情形 | 处理方式 |",
-              "|---|---|",
-              "| 商家无条件包邮，全部退货 | 消费者仅承担寄回运费 |",
-              "| 商家无条件包邮，部分退货 | 消费者仅承担寄回运费 |",
-              "| 满额包邮，全部退货 | 消费者仅承担寄回运费 |",
-              "| **满额包邮，部分退货后剩余金额不满足包邮条件** | **平台可从退款中扣除原订单应付运费** |",
-              "| 未包邮订单 | 原订单运费不退，寄回运费自理 |"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "3b2172f6012d4c24",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 43.459,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:02.940Z",
-      "updatedAt": "2026-08-18T11:48:02.959Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "436b228d26fbdfb7",
-      "traceId": "efd0e57cf3afd8cdd8f70f93cc33415b",
-      "type": "SPAN",
-      "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:47:58.275000+00:00",
-      "endTime": "2026-08-18 11:47:58.276000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "evaluator_count": 1,
-        "evaluation_count": 8,
-        "failed_evaluator_count": 0,
-        "skipped_evaluator_count": 0
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "3b2172f6012d4c24",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.001,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:02.940Z",
-      "updatedAt": "2026-08-18T11:48:02.956Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "a8903a54f5207505",
-      "traceId": "efd0e57cf3afd8cdd8f70f93cc33415b",
+      "id": "9a271e989cfdb0fc",
+      "traceId": "9ebd996244f5bfe209a13a5c95a683ba",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:47:58.275000+00:00",
-      "endTime": "2026-08-18 11:47:58.276000+00:00",
+      "startTime": "2026-08-19 05:16:47.590000+00:00",
+      "endTime": "2026-08-19 05:16:47.591000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -497,6 +114,7 @@
         },
         "output": {
           "case_id": "R1-051",
+          "query": "若退款中扣除了运费但未在退款结果中列明扣除项与金额，该扣除是否有效？",
           "type": "single",
           "style": "formal",
           "doc_id": "P06",
@@ -505,6 +123,7 @@
           "seed_chunk_id": [
             "P06#001:03"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
@@ -515,15 +134,32 @@
             "context_recall": 1,
             "context_relevance": 0.057
           },
-          "elapsed_s": 2.3,
+          "elapsed_s": 2.4,
           "seed_rank": {
             "candidate": {
-              "P06#001:03": 4
+              "P06#001:03": 1
             },
             "evidence": {
               "P06#001:03": 1
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "refund",
+                "text": "退款中扣除了运费但未在退款结果中列明扣除项与金额，该扣除是否有效？"
+              },
+              {
+                "id": "2",
+                "intent": "dispute",
+                "text": "退款金额与预期不符且未列明扣除明细，消费者如何申诉或维权？"
+              }
+            ]
+          },
+          "rewrite_hash": "1c1563d3b287028c",
           "sections": [
             "P06 星辰优选运费与退货物流规则 > 第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
             "P10 星辰优选优惠券、赠品与发票处理规则 > 第二条 满减与套装的部分退货 > 2.3 结算结果的告知",
@@ -538,12 +174,12 @@
                 {
                   "claim": "未列明的扣除无效。",
                   "supported": true,
-                  "reason": "P06 和 P10 均写明未列明的扣除无效。"
+                  "reason": "P06 和 P10 均明确未列明的扣除无效。"
                 },
                 {
                   "claim": "消费者可申请补退。",
                   "supported": true,
-                  "reason": "P06 和 P10 均写明消费者可申请补退。"
+                  "reason": "P06 和 P10 均提到消费者可申请补退。"
                 }
               ],
               "error": null
@@ -553,7 +189,7 @@
               "n": 35,
               "hit": 2,
               "truncated": false,
-              "note": "其他单元多为运费归属或优惠重算规则，未直接回答扣除未列明是否有效。",
+              "note": "其他单元多为运费归属规则或优惠重算，未直接回答扣除未列明是否有效。",
               "irrelevant": [
                 "无理由退货所产生的寄回运费由消费者承担。",
                 "消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。",
@@ -578,7 +214,8 @@
           "seed_chunk_id": [
             "P06#001:03"
           ],
-          "reference_answer": "未列明的扣除无效，消费者可申请补退。"
+          "reference_answer": "未列明的扣除无效，消费者可申请补退。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "text",
@@ -600,7 +237,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -615,7 +252,7 @@
         {
           "name": "recall@10",
           "value": 1,
-          "comment": "种子块名次 P06#001:03=4"
+          "comment": "种子块名次 P06#001:03=1"
         },
         {
           "name": "recall@3",
@@ -645,7 +282,7 @@
         {
           "name": "context_relevance",
           "value": 0.057,
-          "comment": "2/35 个内容单元相关；其他单元多为运费归属或优惠重算规则，未直接回答扣除未列明是否有效。"
+          "comment": "2/35 个内容单元相关；其他单元多为运费归属规则或优惠重算，未直接回答扣除未列明是否有效。"
         },
         {
           "name": "run_error",
@@ -660,7 +297,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "436b228d26fbdfb7",
+      "parentObservationId": "90e8399a309e93aa",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -670,8 +307,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:02.940Z",
-      "updatedAt": "2026-08-18T11:48:02.950Z",
+      "createdAt": "2026-08-19T05:16:49.073Z",
+      "updatedAt": "2026-08-19T05:16:49.091Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -691,12 +328,198 @@
       "usagePricingTierName": null
     },
     {
-      "id": "f08abab132224674",
-      "traceId": "efd0e57cf3afd8cdd8f70f93cc33415b",
+      "id": "1d357fafb9c6ee15",
+      "traceId": "9ebd996244f5bfe209a13a5c95a683ba",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:16:16.391000+00:00",
+      "endTime": "2026-08-19 05:16:47.589000+00:00",
+      "input": {
+        "query": "若退款中扣除了运费但未在退款结果中列明扣除项与金额，该扣除是否有效？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-051",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "formal",
+        "doc_id": "P06",
+        "section": "第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.593,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-051",
+        "query": "若退款中扣除了运费但未在退款结果中列明扣除项与金额，该扣除是否有效？",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "P06",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P06#001:03"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 766,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.057
+        },
+        "elapsed_s": 2.4,
+        "seed_rank": {
+          "candidate": {
+            "P06#001:03": 1
+          },
+          "evidence": {
+            "P06#001:03": 1
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "refund",
+              "text": "退款中扣除了运费但未在退款结果中列明扣除项与金额，该扣除是否有效？"
+            },
+            {
+              "id": "2",
+              "intent": "dispute",
+              "text": "退款金额与预期不符且未列明扣除明细，消费者如何申诉或维权？"
+            }
+          ]
+        },
+        "rewrite_hash": "1c1563d3b287028c",
+        "sections": [
+          "P06 星辰优选运费与退货物流规则 > 第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
+          "P10 星辰优选优惠券、赠品与发票处理规则 > 第二条 满减与套装的部分退货 > 2.3 结算结果的告知",
+          "P10 星辰优选优惠券、赠品与发票处理规则 > 第七条 退款金额的构成告知"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "未列明的扣除无效。",
+                "supported": true,
+                "reason": "P06 和 P10 均明确未列明的扣除无效。"
+              },
+              {
+                "claim": "消费者可申请补退。",
+                "supported": true,
+                "reason": "P06 和 P10 均提到消费者可申请补退。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.057,
+            "n": 35,
+            "hit": 2,
+            "truncated": false,
+            "note": "其他单元多为运费归属规则或优惠重算，未直接回答扣除未列明是否有效。",
+            "irrelevant": [
+              "无理由退货所产生的寄回运费由消费者承担。",
+              "消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。",
+              "订单原本收取的运费属于已实际发生的履约成本，无理由退货时**不予退还**。",
+              "| 情形 | 处理方式 |",
+              "|---|---|",
+              "| 商家无条件包邮，全部退货 | 消费者仅承担寄回运费 |",
+              "| 商家无条件包邮，部分退货 | 消费者仅承担寄回运费 |",
+              "| 满额包邮，全部退货 | 消费者仅承担寄回运费 |",
+              "| **满额包邮，部分退货后剩余金额不满足包邮条件** | **平台可从退款中扣除原订单应付运费** |",
+              "| 未包邮订单 | 原订单运费不退，寄回运费自理 |"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "c58a23b9f85bf2e1",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 31.198,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:16:49.073Z",
+      "updatedAt": "2026-08-19T05:16:49.091Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "00ed2f719adbe1f2",
+      "traceId": "9ebd996244f5bfe209a13a5c95a683ba",
       "type": "RETRIEVER",
       "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:47:52.412000+00:00",
-      "endTime": "2026-08-18 11:47:54.750000+00:00",
+      "startTime": "2026-08-19 05:16:41.812000+00:00",
+      "endTime": "2026-08-19 05:16:44.207000+00:00",
       "modelParameters": {},
       "input": {
         "query": "若退款中扣除了运费但未在退款结果中列明扣除项与金额，该扣除是否有效？",
@@ -707,7 +530,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -762,7 +585,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "96b5134a31051b1f",
+      "parentObservationId": "1d357fafb9c6ee15",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -770,10 +593,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 2.338,
+      "latency": 2.395,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:57.893Z",
-      "updatedAt": "2026-08-18T11:47:57.903Z",
+      "createdAt": "2026-08-19T05:16:49.073Z",
+      "updatedAt": "2026-08-19T05:16:49.089Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -793,12 +616,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "058aa69535696a93",
-      "traceId": "efd0e57cf3afd8cdd8f70f93cc33415b",
+      "id": "4630a9836fa0839d",
+      "traceId": "9ebd996244f5bfe209a13a5c95a683ba",
       "type": "SPAN",
       "name": "rag.assemble",
-      "startTime": "2026-08-18 11:47:54.738000+00:00",
-      "endTime": "2026-08-18 11:47:54.750000+00:00",
+      "startTime": "2026-08-19 05:16:44.196000+00:00",
+      "endTime": "2026-08-19 05:16:44.206000+00:00",
       "input": {
         "top_k": 4,
         "evidence": [
@@ -812,7 +635,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -867,7 +690,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "f08abab132224674",
+      "parentObservationId": "00ed2f719adbe1f2",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -875,10 +698,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.012,
+      "latency": 0.01,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:57.893Z",
-      "updatedAt": "2026-08-18T11:47:57.902Z",
+      "createdAt": "2026-08-19T05:16:49.073Z",
+      "updatedAt": "2026-08-19T05:16:49.088Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -899,21 +722,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "5fe34c02fa897708",
-      "traceId": "efd0e57cf3afd8cdd8f70f93cc33415b",
+      "id": "90e8399a309e93aa",
+      "traceId": "9ebd996244f5bfe209a13a5c95a683ba",
       "type": "SPAN",
-      "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:47:52.412000+00:00",
-      "endTime": "2026-08-18 11:47:53.906000+00:00",
-      "input": {
-        "query": "若退款中扣除了运费但未在退款结果中列明扣除项与金额，该扣除是否有效？"
-      },
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-19 05:16:47.590000+00:00",
+      "endTime": "2026-08-19 05:16:47.591000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -925,20 +745,10 @@
         }
       },
       "output": {
-        "rewritten": true,
-        "needs_law": false,
-        "sub_queries": [
-          {
-            "id": "1",
-            "intent": "refund",
-            "text": "退款中扣除了运费但未在退款结果中列明扣除项与金额，该扣除是否有效？"
-          },
-          {
-            "id": "2",
-            "intent": "dispute",
-            "text": "退款金额与预期不符且未列明扣除明细，消费者如何申诉或维权？"
-          }
-        ]
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
       },
       "usage": {
         "input": 0,
@@ -947,7 +757,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "f08abab132224674",
+      "parentObservationId": "c58a23b9f85bf2e1",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -955,10 +765,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.494,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:57.893Z",
-      "updatedAt": "2026-08-18T11:47:57.902Z",
+      "createdAt": "2026-08-19T05:16:49.073Z",
+      "updatedAt": "2026-08-19T05:16:49.088Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -966,6 +776,7 @@
       "completionStartTime": null,
       "model": null,
       "modelParameters": null,
+      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -979,12 +790,198 @@
       "usagePricingTierName": null
     },
     {
-      "id": "26be420e524b3967",
-      "traceId": "efd0e57cf3afd8cdd8f70f93cc33415b",
+      "id": "c58a23b9f85bf2e1",
+      "traceId": "9ebd996244f5bfe209a13a5c95a683ba",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-19 05:16:16.391000+00:00",
+      "endTime": "2026-08-19 05:16:47.591000+00:00",
+      "input": {
+        "query": "若退款中扣除了运费但未在退款结果中列明扣除项与金额，该扣除是否有效？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-051",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "formal",
+        "doc_id": "P06",
+        "section": "第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.593,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-051",
+        "query": "若退款中扣除了运费但未在退款结果中列明扣除项与金额，该扣除是否有效？",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "P06",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P06#001:03"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 766,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.057
+        },
+        "elapsed_s": 2.4,
+        "seed_rank": {
+          "candidate": {
+            "P06#001:03": 1
+          },
+          "evidence": {
+            "P06#001:03": 1
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "refund",
+              "text": "退款中扣除了运费但未在退款结果中列明扣除项与金额，该扣除是否有效？"
+            },
+            {
+              "id": "2",
+              "intent": "dispute",
+              "text": "退款金额与预期不符且未列明扣除明细，消费者如何申诉或维权？"
+            }
+          ]
+        },
+        "rewrite_hash": "1c1563d3b287028c",
+        "sections": [
+          "P06 星辰优选运费与退货物流规则 > 第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
+          "P10 星辰优选优惠券、赠品与发票处理规则 > 第二条 满减与套装的部分退货 > 2.3 结算结果的告知",
+          "P10 星辰优选优惠券、赠品与发票处理规则 > 第七条 退款金额的构成告知"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "未列明的扣除无效。",
+                "supported": true,
+                "reason": "P06 和 P10 均明确未列明的扣除无效。"
+              },
+              {
+                "claim": "消费者可申请补退。",
+                "supported": true,
+                "reason": "P06 和 P10 均提到消费者可申请补退。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.057,
+            "n": 35,
+            "hit": 2,
+            "truncated": false,
+            "note": "其他单元多为运费归属规则或优惠重算，未直接回答扣除未列明是否有效。",
+            "irrelevant": [
+              "无理由退货所产生的寄回运费由消费者承担。",
+              "消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。",
+              "订单原本收取的运费属于已实际发生的履约成本，无理由退货时**不予退还**。",
+              "| 情形 | 处理方式 |",
+              "|---|---|",
+              "| 商家无条件包邮，全部退货 | 消费者仅承担寄回运费 |",
+              "| 商家无条件包邮，部分退货 | 消费者仅承担寄回运费 |",
+              "| 满额包邮，全部退货 | 消费者仅承担寄回运费 |",
+              "| **满额包邮，部分退货后剩余金额不满足包邮条件** | **平台可从退款中扣除原订单应付运费** |",
+              "| 未包邮订单 | 原订单运费不退，寄回运费自理 |"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 31.2,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:16:49.073Z",
+      "updatedAt": "2026-08-19T05:16:49.084Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "fd04af4a5baf1bd5",
+      "traceId": "9ebd996244f5bfe209a13a5c95a683ba",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 11:47:54.038000+00:00",
-      "endTime": "2026-08-18 11:47:54.738000+00:00",
+      "startTime": "2026-08-19 05:16:43.548000+00:00",
+      "endTime": "2026-08-19 05:16:44.196000+00:00",
       "input": {
         "query": "若退款中扣除了运费但未在退款结果中列明扣除项与金额，该扣除是否有效？",
         "candidates": 20
@@ -994,7 +991,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1009,23 +1006,23 @@
         "passed": 3,
         "min_score": 0.3,
         "dropped": [
-          "L05#013:00",
           "L02#003:08",
-          "L02#003:07",
-          "P03#001:05",
+          "L05#013:00",
           "L02#003:06",
-          "L05#025:00",
-          "L05#008:00",
           "P10#002:01",
+          "P03#001:05",
+          "P10#002:03",
+          "P03#002:03",
           "L05#022:00",
-          "L03#004:00",
           "L01#009:00",
+          "L02#003:07",
           "L02#004:04",
           "P09#004:01",
           "P11#003:01",
-          "P06#001:02",
           "P11#002:02",
-          "P10#002:03"
+          "L05#025:00",
+          "L02#006:01",
+          "P09#004:02"
         ],
         "evidence": [
           {
@@ -1061,7 +1058,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "f08abab132224674",
+      "parentObservationId": "00ed2f719adbe1f2",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1069,10 +1066,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.7,
+      "latency": 0.648,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:57.893Z",
-      "updatedAt": "2026-08-18T11:47:57.900Z",
+      "createdAt": "2026-08-19T05:16:49.073Z",
+      "updatedAt": "2026-08-19T05:16:49.082Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1093,18 +1090,355 @@
       "usagePricingTierName": null
     },
     {
-      "id": "738915cb1af6987a",
-      "traceId": "efd0e57cf3afd8cdd8f70f93cc33415b",
+      "id": "1ddf6310b5e387e6",
+      "traceId": "9ebd996244f5bfe209a13a5c95a683ba",
       "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:47:53.906000+00:00",
-      "endTime": "2026-08-18 11:47:53.907000+00:00",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-19 05:16:41.812000+00:00",
+      "endTime": "2026-08-19 05:16:43.419000+00:00",
+      "input": {
+        "query": "若退款中扣除了运费但未在退款结果中列明扣除项与金额，该扣除是否有效？"
+      },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "refund",
+            "text": "退款中扣除了运费但未在退款结果中列明扣除项与金额，该扣除是否有效？"
+          },
+          {
+            "id": "2",
+            "intent": "dispute",
+            "text": "退款金额与预期不符且未列明扣除明细，消费者如何申诉或维权？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "00ed2f719adbe1f2",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.607,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:16:44.118Z",
+      "updatedAt": "2026-08-19T05:16:44.136Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "69a86fb56d09a093",
+      "traceId": "9ebd996244f5bfe209a13a5c95a683ba",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-19 05:16:43.420000+00:00",
+      "endTime": "2026-08-19 05:16:43.548000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "P06#001:03",
+            "section": "P06 第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
+            "rrf": 0.1407,
+            "hits": [
+              "1/platform/dense#1",
+              "1/platform/bm25#1",
+              "2/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:08",
+            "section": "L02 第三章 退货程序 > 第十八条 【退货运费承担】",
+            "rrf": 0.1276,
+            "hits": [
+              "1/law/dense#1",
+              "1/law/bm25#2",
+              "2/law/bm25#9"
+            ]
+          },
+          {
+            "chunk_id": "P10#006:00",
+            "section": "P10 第七条 退款金额的构成告知",
+            "rrf": 0.184,
+            "hits": [
+              "1/platform/dense#2",
+              "1/platform/bm25#2",
+              "2/platform/dense#2",
+              "2/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L05#013:00",
+            "section": "L05 第十三条 【无同型号产品时的退货与折旧】",
+            "rrf": 0.1668,
+            "hits": [
+              "1/law/dense#4",
+              "1/law/bm25#3",
+              "2/law/dense#5",
+              "2/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P10#001:02",
+            "section": "P10 第二条 满减与套装的部分退货 > 2.3 结算结果的告知",
+            "rrf": 0.1704,
+            "hits": [
+              "1/platform/dense#5",
+              "1/platform/bm25#3",
+              "2/platform/dense#3",
+              "2/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:06",
+            "section": "L02 第三章 退货程序 > 第十六条 【信用卡手续费】",
+            "rrf": 0.1192,
+            "hits": [
+              "1/law/dense#3",
+              "1/law/bm25#5",
+              "2/law/bm25#8"
+            ]
+          },
+          {
+            "chunk_id": "P10#002:01",
+            "section": "P10 第三条 赠品 > 3.2 赠品不能退回的处理",
+            "rrf": 0.0833,
+            "hits": [
+              "1/platform/dense#4",
+              "1/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P03#001:05",
+            "section": "P03 第二条 退款金额的计算 > 2.6 运费",
+            "rrf": 0.1219,
+            "hits": [
+              "1/platform/dense#3",
+              "1/platform/bm25#6",
+              "2/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P10#002:03",
+            "section": "P10 第三条 赠品 > 3.4 商家原因导致的退款",
+            "rrf": 0.0688,
+            "hits": [
+              "1/platform/dense#6",
+              "1/platform/bm25#13"
+            ]
+          },
+          {
+            "chunk_id": "P03#002:03",
+            "section": "P03 第三条 到账时效 > 3.4 手续费",
+            "rrf": 0.0678,
+            "hits": [
+              "1/platform/dense#9",
+              "1/platform/bm25#10"
+            ]
+          },
+          {
+            "chunk_id": "L05#022:00",
+            "section": "L05 第二十二条 【申诉与诉讼】",
+            "rrf": 0.0833,
+            "hits": [
+              "2/law/dense#8",
+              "2/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L01#009:00",
+            "section": "L01 第五十五条 【惩罚性赔偿】",
+            "rrf": 0.0789,
+            "hits": [
+              "2/law/dense#1",
+              "2/law/bm25#12"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:07",
+            "section": "L02 第三章 退货程序 > 第十七条 【退款金额的计算】",
+            "rrf": 0.1242,
+            "hits": [
+              "1/law/dense#2",
+              "2/law/dense#2",
+              "2/law/bm25#10"
+            ]
+          },
+          {
+            "chunk_id": "L02#004:04",
+            "section": "L02 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
+            "rrf": 0.0777,
+            "hits": [
+              "2/law/dense#11",
+              "2/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P09#004:01",
+            "section": "P09 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
+            "rrf": 0.077,
+            "hits": [
+              "2/platform/dense#5",
+              "2/platform/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "P11#003:01",
+            "section": "P11 第三条 虚拟商品 > 3.2 未核销可退",
+            "rrf": 0.075,
+            "hits": [
+              "2/platform/dense#4",
+              "2/platform/bm25#10"
+            ]
+          },
+          {
+            "chunk_id": "P11#002:02",
+            "section": "P11 第二条 定制商品 > 2.3 与约定规格不符",
+            "rrf": 0.0742,
+            "hits": [
+              "2/platform/dense#8",
+              "2/platform/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "L05#025:00",
+            "section": "L05 与无理由退货的对照",
+            "rrf": 0.1129,
+            "hits": [
+              "1/law/bm25#4",
+              "2/law/dense#12",
+              "2/law/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "L02#006:01",
+            "section": "L02 第六章 法律责任 > 第三十一条 【拒绝退货、拖延退款】",
+            "rrf": 0.0667,
+            "hits": [
+              "2/law/dense#9",
+              "2/law/bm25#11"
+            ]
+          },
+          {
+            "chunk_id": "P09#004:02",
+            "section": "P09 第五条 特定场景的处理口径 > 5.3 假冒伪劣与虚假宣传",
+            "rrf": 0.0476,
+            "hits": [
+              "2/platform/dense#1"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "00ed2f719adbe1f2",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.128,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:16:44.118Z",
+      "updatedAt": "2026-08-19T05:16:44.136Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "f2aae3801b921cba",
+      "traceId": "9ebd996244f5bfe209a13a5c95a683ba",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:16:43.420000+00:00",
+      "endTime": "2026-08-19 05:16:43.420000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1142,7 +1476,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "f08abab132224674",
+      "parentObservationId": "00ed2f719adbe1f2",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1150,268 +1484,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.001,
+      "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:57.893Z",
-      "updatedAt": "2026-08-18T11:47:57.900Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "4ed19078278fd2f0",
-      "traceId": "efd0e57cf3afd8cdd8f70f93cc33415b",
-      "type": "SPAN",
-      "name": "rag.recall",
-      "startTime": "2026-08-18 11:47:53.907000+00:00",
-      "endTime": "2026-08-18 11:47:54.038000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "candidates": [
-          {
-            "chunk_id": "P10#006:00",
-            "section": "P10 第七条 退款金额的构成告知",
-            "rrf": 0.184,
-            "hits": [
-              "1/platform/dense#2",
-              "1/platform/bm25#2",
-              "2/platform/dense#2",
-              "2/platform/bm25#1"
-            ]
-          },
-          {
-            "chunk_id": "P10#001:02",
-            "section": "P10 第二条 满减与套装的部分退货 > 2.3 结算结果的告知",
-            "rrf": 0.1704,
-            "hits": [
-              "1/platform/dense#5",
-              "1/platform/bm25#3",
-              "2/platform/dense#3",
-              "2/platform/bm25#3"
-            ]
-          },
-          {
-            "chunk_id": "L05#013:00",
-            "section": "L05 第十三条 【无同型号产品时的退货与折旧】",
-            "rrf": 0.1668,
-            "hits": [
-              "1/law/dense#4",
-              "1/law/bm25#3",
-              "2/law/dense#5",
-              "2/law/bm25#4"
-            ]
-          },
-          {
-            "chunk_id": "P06#001:03",
-            "section": "P06 第二条 无理由退货的运费 > 2.4 扣除运费的前置条件",
-            "rrf": 0.1407,
-            "hits": [
-              "1/platform/dense#1",
-              "1/platform/bm25#1",
-              "2/platform/bm25#2"
-            ]
-          },
-          {
-            "chunk_id": "L02#003:08",
-            "section": "L02 第三章 退货程序 > 第十八条 【退货运费承担】",
-            "rrf": 0.1276,
-            "hits": [
-              "1/law/dense#1",
-              "1/law/bm25#2",
-              "2/law/bm25#9"
-            ]
-          },
-          {
-            "chunk_id": "L02#003:07",
-            "section": "L02 第三章 退货程序 > 第十七条 【退款金额的计算】",
-            "rrf": 0.1242,
-            "hits": [
-              "1/law/dense#2",
-              "2/law/dense#2",
-              "2/law/bm25#10"
-            ]
-          },
-          {
-            "chunk_id": "P03#001:05",
-            "section": "P03 第二条 退款金额的计算 > 2.6 运费",
-            "rrf": 0.1219,
-            "hits": [
-              "1/platform/dense#3",
-              "1/platform/bm25#6",
-              "2/platform/bm25#5"
-            ]
-          },
-          {
-            "chunk_id": "L02#003:06",
-            "section": "L02 第三章 退货程序 > 第十六条 【信用卡手续费】",
-            "rrf": 0.1192,
-            "hits": [
-              "1/law/dense#3",
-              "1/law/bm25#5",
-              "2/law/bm25#8"
-            ]
-          },
-          {
-            "chunk_id": "L05#025:00",
-            "section": "L05 与无理由退货的对照",
-            "rrf": 0.1129,
-            "hits": [
-              "1/law/bm25#4",
-              "2/law/dense#12",
-              "2/law/bm25#5"
-            ]
-          },
-          {
-            "chunk_id": "L05#008:00",
-            "section": "L05 第八条 【三包有效期的计算】",
-            "rrf": 0.0911,
-            "hits": [
-              "1/law/bm25#1",
-              "2/law/bm25#3"
-            ]
-          },
-          {
-            "chunk_id": "P10#002:01",
-            "section": "P10 第三条 赠品 > 3.2 赠品不能退回的处理",
-            "rrf": 0.0833,
-            "hits": [
-              "1/platform/dense#4",
-              "1/platform/bm25#4"
-            ]
-          },
-          {
-            "chunk_id": "L05#022:00",
-            "section": "L05 第二十二条 【申诉与诉讼】",
-            "rrf": 0.0833,
-            "hits": [
-              "2/law/dense#8",
-              "2/law/bm25#1"
-            ]
-          },
-          {
-            "chunk_id": "L03#004:00",
-            "section": "L03 第十八条 【售后有效期起算与退款金额】",
-            "rrf": 0.0817,
-            "hits": [
-              "1/law/dense#5",
-              "2/law/dense#4"
-            ]
-          },
-          {
-            "chunk_id": "L01#009:00",
-            "section": "L01 第五十五条 【惩罚性赔偿】",
-            "rrf": 0.0789,
-            "hits": [
-              "2/law/dense#1",
-              "2/law/bm25#12"
-            ]
-          },
-          {
-            "chunk_id": "L02#004:04",
-            "section": "L02 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
-            "rrf": 0.0777,
-            "hits": [
-              "2/law/dense#11",
-              "2/law/bm25#2"
-            ]
-          },
-          {
-            "chunk_id": "P09#004:01",
-            "section": "P09 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
-            "rrf": 0.077,
-            "hits": [
-              "2/platform/dense#5",
-              "2/platform/bm25#7"
-            ]
-          },
-          {
-            "chunk_id": "P11#003:01",
-            "section": "P11 第三条 虚拟商品 > 3.2 未核销可退",
-            "rrf": 0.075,
-            "hits": [
-              "2/platform/dense#4",
-              "2/platform/bm25#10"
-            ]
-          },
-          {
-            "chunk_id": "P06#001:02",
-            "section": "P06 第二条 无理由退货的运费 > 2.3 包邮订单的处理",
-            "rrf": 0.0745,
-            "hits": [
-              "1/platform/bm25#5",
-              "2/platform/bm25#9"
-            ]
-          },
-          {
-            "chunk_id": "P11#002:02",
-            "section": "P11 第二条 定制商品 > 2.3 与约定规格不符",
-            "rrf": 0.0742,
-            "hits": [
-              "2/platform/dense#8",
-              "2/platform/bm25#6"
-            ]
-          },
-          {
-            "chunk_id": "P10#002:03",
-            "section": "P10 第三条 赠品 > 3.4 商家原因导致的退款",
-            "rrf": 0.0688,
-            "hits": [
-              "1/platform/dense#6",
-              "1/platform/bm25#13"
-            ]
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "f08abab132224674",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.131,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:57.893Z",
-      "updatedAt": "2026-08-18T11:47:57.899Z",
+      "createdAt": "2026-08-19T05:16:44.118Z",
+      "updatedAt": "2026-08-19T05:16:44.136Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,

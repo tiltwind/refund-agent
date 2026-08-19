@@ -2,8 +2,9 @@
 
 用 [4 · 检索评测数据集](https://tiltwind.github.io/refund-agent/doc/get-start/4-rag-dataset.md)的 `r1` 评[六步检索链路](https://tiltwind.github.io/refund-agent/doc/get-start/3-rag-impl.md#七第-6-步--检索链路-ragretrieving)。被测对象是 `search_policy` 及其内部各步，不含 Agent。实验目录 `rag/experiments/rag-ex-1/`。
 
-一次全量 102 条，`recall@1 / @3 / @10` = 0.625 / 0.760 / 0.885，`Context Recall` 0.915、
-`Context Relevance` 0.238，跑出四个待处理的问题，见第五、六节。
+当前基线是 `baseline-5`：全量 102 条，`recall@1 / @3 / @10` = 0.650 / 0.760 / 0.896，
+`Context Recall` 0.919、`Context Relevance` 0.238。`baseline-4` 保留为历史对照；它开启了
+judge thinking，两个 LLM 指标与 baseline-5 不可直接比较。当前基线暴露的问题见第五、六节。
 
 ---
 
@@ -40,7 +41,7 @@ Context Relevance 管的是另一个方向：前两个指标都在问「捞得�
 
 [`PolicySection`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/protocol.py) 上没有 `chunk_id`：装配把命中的子块还原成完整小节，还可能合并相邻父块，一条 `PolicySection` 对应一组子块。所以 Recall@k 取重排那一层的 ID，两个 LLM 指标取 `PolicySection.text`。
 
-分开挂是因为装配自己会出错。[`assemble`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/pipeline/assemble.py) 按 `(parent_seq, parent_id, section_path)` 分组回填父块，而同一父块的子块 `section_path` 各不相同，同一个 `parent_id` 因此被登记多次，父块正文被重复拼进上下文。种子块召回了，Recall 满分，注入模型的上下文里却有一大截是重复正文 —— 这类缺陷只有落在装配产物上的指标才抓得住。
+分开挂是因为装配产物才是真正注入模型的上下文。[`assemble`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/pipeline/assemble.py) 会按父块回填、合并相邻父块并做预算截断；同一父块是否被重复拼接，必须在这一层验证。种子块召回了，Recall 满分，但上下文仍可能有重复正文或过量注水 —— 这类问题只有落在装配产物上的指标才抓得住。
 
 ### 2.1 中间产物的取法
 
@@ -118,7 +119,7 @@ python rag/experiments/rag-ex-1/run_experiment.py --judge --concurrency 8
 
 # dataset run：样本从 Langfuse 数据集拉，分数写回，六步上报 trace
 python rag/evals/push_dataset.py
-python rag/experiments/rag-ex-1/run_experiment.py --langfuse --judge --run-name baseline-4
+python rag/experiments/rag-ex-1/run_experiment.py --langfuse --judge --run-name baseline-5
 ```
 
 `--judge` 默认关：调参迭代要的是三档 Recall，每跑一轮多付 200 多次 judge 调用不划算，而且那两个数不进门禁。出报告、做版本留档时再带上。
@@ -130,15 +131,17 @@ python rag/experiments/rag-ex-1/run_experiment.py --langfuse --judge --run-name 
 | 默认（离线） | 调参。三档 Recall 是要进门禁的数，不该被一个本地 Langfuse 实例的死活卡住；脚本会把 `REFUND_AGENT_RAG_SPAN` 关掉，免得堆一批不挂在任何 dataset run 上的 trace |
 | `--langfuse` | 留档与版本对比。run 页上能并排看两次跑批，逐条 `trace_id` 落进结果文件 |
 
-102 条全量，离线约 75s，`--langfuse` 约 210s，加 `--judge` 是 2940s —— 慢一个量级半，而且慢的全在 judge 上：
+102 条全量，离线约 75s，`--langfuse` 约 210s，baseline-5 加 `--judge` 约 600s；baseline-4
+开启 thinking 时为 2940s。两者耗时和 LLM 指标不可直接横比：慢的主要是 judge。
 
 | 路径 | 耗时 | 其中检索 |
 |---|---|---|
 | 离线 | 75.6s | 全部 |
 | `--langfuse` | 206s | 大部分，差额是上报开销 |
-| `--langfuse --judge` | 2940s | 224s（7.6%） |
+| `--langfuse --judge`（baseline-5，thinking off） | 约 600s | — |
+| `--langfuse --judge`（baseline-4，thinking on） | 2940s | 224s（7.6%） |
 
-judge 开着思考模式，这是 7.2 那个取舍的代价：实测一次 Context Relevance 调用（104 个内容单元）输出 21168 token，其中 20963 是思考 token，占 99%。两个指标的性价比不同 —— Context Recall 只判 4~6 条 claim，Context Relevance 要逐个判上百个单元，思考量随单元数线性涨。跑批时每条一行：
+baseline-4 的 judge 开着思考模式，这是 7.2 那个取舍的代价：实测一次 Context Relevance 调用（104 个内容单元）输出 21168 token，其中 20963 是思考 token，占 99%。baseline-5 关闭 thinking，速度更快，但两个 LLM 指标的数值不可与 baseline-4 直接比较。两个指标的性价比不同 —— Context Recall 只判 4~6 条 claim，Context Relevance 要逐个判上百个单元，思考量随单元数线性涨。跑批时每条一行：
 
 ```
   [ 46/102] R1-046 2.7s · @1/@3/@10=001 · 2604 token · CR=0.0 · CRel=0.812
@@ -162,16 +165,16 @@ judge 开着思考模式，这是 7.2 那个取舍的代价：实测一次 Conte
 
 ## 五、跑批结果
 
-run `baseline-4`，102 条样本、96 条计分（6 条 `unanswerable` 不进 Recall 均值），2940s，无执行失败，judge 调用 0 次失败。
+run `baseline-5`，102 条样本、96 条计分（6 条 `unanswerable` 不进 Recall 均值），约 600s，无执行失败，judge 调用 0 次失败。
 
 | 指标 | 值 | 分母 |
 |---|---|---|
-| `recall@1` | 0.625 | 80（不含 multi_hop） |
+| `recall@1` | 0.650 | 80（不含 multi_hop） |
 | `recall@3` | 0.760 | 96 |
-| `recall@10` | 0.885 | 96 |
-| `evidence_tokens` | 1229 | 预算 3000 |
-| `duplicate_ratio` | 0.206 | 96 条中 57 条含重复正文 |
-| `context_recall` | 0.915 | 96 |
+| `recall@10` | 0.896 | 96 |
+| `evidence_tokens` | 1255 | 预算 3000 |
+| `duplicate_ratio` | 0.208 | 96 条中 57 条含重复正文 |
+| `context_recall` | 0.919 | 96 |
 | `context_relevance` | 0.238 | 92（4 条空证据没有分母） |
 
 分档（`unanswerable` 除外）：
@@ -206,7 +209,7 @@ rag.rerank     passed=0, min_score=0.3, dropped=[全部 20 条]
 rag.assemble   sections=[]
 ```
 
-链路对「一条候选都没有」是显式抛异常的，但「重排后一条都不剩」走的不是这条路：`assemble([])` 返回空列表，工具层拿到空证据，Agent 退回凭记忆答政策。阈值偏高和空结果不报错是两件事，前者调参，后者是口径漏洞。
+链路现在把两类情况分开：召回层没有候选抛 `NoCandidatesError`；候选存在但重排/装配后没有证据抛 `NoEvidenceError`。后者不再把空列表交给工具层，避免 Agent 退回凭记忆答政策。阈值偏高和“无适用条款”仍是两件事，前者要调参，后者要单独校准。
 
 ### 6.2 链路给不出「无适用条款」这个结论
 
@@ -217,13 +220,13 @@ rag.assemble   sections=[]
 | 重排全滤，返回空证据 | 5 |
 | 返回不相关的条款（`context_relevance = 0.000`） | 1 |
 
-`MIN_SCORE` 在这类 query 上多半已经把候选全砍掉了，所以缺的不是「不硬凑证据」，而是链路说不出「语料里没有适用条款」：它返回的空列表，与 6.1 那种「有正确条款却被阈值误杀」返回的空列表是同一个值，调用方无从区分。
+`MIN_SCORE` 在这类 query 上多半已经把候选全砍掉了，所以缺的不是「不硬凑证据」，而是链路说不出「语料里没有适用条款」。现在它与 answerable 请求的阈值误杀都会留下显式 `NoEvidenceError`，但二者仍需通过最高分/相关性分布继续校准，不能仅凭异常类型断言“无适用条款”。
 
 两条路：给链路加「最高分低于下限即判无适用条款」，或者把这类样本的判据改成 Context Relevance —— 后者现在有实测支撑，那唯一一条有证据的样本判出 0.000，正常样本均值 0.238。
 
 ### 6.3 重复正文占 20.6%
 
-96 条里 57 条含重复，最高一条 75%。成因是第二节说的分组键。`recall@3` 满分的用例里照样有 0.4 以上的重复率，ID 级 Recall 对它无感 —— 这是配套记辅助数的理由。
+96 条里 57 条含重复，最高一条 75%。当前代码已经按 `parent_id` 去重，因此不能再把这项数字直接归因于旧的分组键；应先补装配单测并逐条核实高重复样本，区分装配重复和语料中本来就重复的正文。`recall@3` 满分的用例里照样有 0.4 以上的重复率，ID 级 Recall 对它无感 —— 这是配套记辅助数的理由。
 
 Context Relevance 也抓不到它：重复率 ≥ 0.4 的 18 条 `CRel` 均值 0.326，比无重复的 35 条（0.245）还高。被拼两遍的正是命中的那一小节，两份拷贝都判「相关」。`duplicate_ratio` 因此不能由 `CRel` 取代。
 
@@ -301,9 +304,9 @@ judge 调用失败**不写分数**，那一条从均值里少掉，失败清单�
 
 一条 `PolicySection` 是回填后的完整小节，里面必然混有不相关的句子，那是父块回填故意带进来的（[3 · 五](https://tiltwind.github.io/refund-agent/doc/get-start/3-rag-impl.md#五第-4-步--切片-ragchunking)）。按块判会把这个设计判成缺陷，分数一律接近 1。所以按句切，表格行整行作一个单元（`| 已拆封 | 不支持 |` 里没有句号，按句切只会切出没有主语的碎片）。
 
-它的绝对值不该追求高（`baseline-4` 实测 92 条：最低 0.019、中位 0.193、均值 0.238、最高 1.0），用途是横向对比：`top_k` 调大时 Context Recall 上升、它下降，两个一起看才知道是净赚还是净亏。`unanswerable` 样本也算这个数 —— 那 6 条没有 claim，但 6.2 说的那件事正好由它量化：其中 5 条是空证据没有分母，剩下一条判出 0.000。它单列在 `summary.unanswerable_relevance`。
+它的绝对值不该追求高（`baseline-5` 实测 92 条：最低 0.019、中位 0.193、均值 0.238、最高 1.0），用途是横向对比：`top_k` 调大时 Context Recall 上升、它下降，两个一起看才知道是净赚还是净亏。`unanswerable` 样本也算这个数 —— 那 6 条没有 claim，但 6.2 说的那件事正好由它量化：其中 5 条是空证据没有分母，剩下一条判出 0.000。它单列在 `summary.unanswerable_relevance`。
 
-它抓不到的是重复正文（6.3）：被拼两遍的是命中的那一小节，两份拷贝都判「相关」。
+它抓不到的是重复正文（6.3）：如果相同段落确实被拼两遍，两份拷贝都会判「相关」。
 
 ### 7.4 三个指标联合读
 
@@ -315,7 +318,7 @@ judge 调用失败**不写分数**，那一条从均值里少掉，失败清单�
 | 高 | 高 | 低 | 召回对，但上下文注水 | 装配：去重、合并上限、`top_k` |
 | 高 | 高 | 高 | 检索没问题 | 答复仍然错的话，问题在生成阶段 |
 
-第二行把「检索失败」和「标注不全」区分开。只报 Recall 的话这两种情况长得一样，会导致朝着拟合标注去调参。`baseline-4` 落在这四个格子里的分布（`CR` 以 0.8 分界）：
+第二行把「检索失败」和「标注不全」区分开。只报 Recall 的话这两种情况长得一样，会导致朝着拟合标注去调参。`baseline-5` 落在这四个格子里的分布（`CR` 以 0.8 分界）：
 
 | 象限 | n | 占比 |
 |---|---|---|
@@ -330,7 +333,7 @@ judge 调用失败**不写分数**，那一条从均值里少掉，失败清单�
 
 两个指标现在**只记录、进报告，不参与 pass / fail**。同一批 10 条样本连跑两遍，`context_recall` 有一条从 0.833 翻到 1.0，`context_relevance` 每条都在动（0.163→0.234、0.615→0.567、0.376→0.282）。这里面既有链路自身的非确定性（改写那一步调模型，6.4），也有 judge 的噪声，两者从跑批结果上分不开 —— 这正是校准要单独做的事：把上下文固定住，只让 judge 重复判定。
 
-`baseline-4` 的分布本身就是要校准的证据：96 条里 85 条 `context_recall` 判满分，`@3` 命中的用例没有一条低于 0.8（上表第三行是 0）。判负的 11 条里 4 条是空证据、分子必然为 0，真正「有上下文但撑不住」的只有几条。
+`baseline-5` 的分布本身就是要校准的证据：96 条里 85 条 `context_recall` 判满分，`@3` 命中的用例没有一条低于 0.8（上表第三行是 0）。判负的 11 条里 4 条是空证据、分子必然为 0，真正「有上下文但撑不住」的只有几条。
 
 那几条里 R1-046 是另一类问题：`CR = 0`，两条 claim 说「拆封不支持无理由退货」，检回的正文写的是「查验性拆封不影响商品完好、可以退货」。judge 判的是「上下文里有没有」，判负没错，暴露的是参考答案与语料相互矛盾 —— 数据集的事，不是检索的事。这类只有逐条判定理由在场才看得出来。
 

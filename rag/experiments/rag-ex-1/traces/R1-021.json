@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-021",
+    "query": "三包有效期内的修理费用由哪一方承担？",
     "type": "single",
     "style": "formal",
     "doc_id": "L05",
@@ -9,6 +10,7 @@
     "seed_chunk_id": [
       "L05#018:00"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
@@ -19,7 +21,7 @@
       "context_recall": 1.0,
       "context_relevance": 0.368
     },
-    "elapsed_s": 1.6,
+    "elapsed_s": 1.5,
     "seed_rank": {
       "candidate": {
         "L05#018:00": 5
@@ -28,6 +30,18 @@
         "L05#018:00": 3
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": true,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "refund",
+          "text": "三包有效期内的商品修理费用由哪一方承担？"
+        }
+      ]
+    },
+    "rewrite_hash": "d4e814860e12562e",
     "sections": [
       "L05 部分商品修理更换退货责任规定（三包规定） > 第十四条 【换货标准与有效期重算】 … 第十六条 【上门服务】",
       "L05 部分商品修理更换退货责任规定（三包规定） > 第十一条 【修理两次仍不能正常使用】 … 第十二条 【超期未修好】",
@@ -43,12 +57,12 @@
           {
             "claim": "修理费用由生产者提供。",
             "supported": true,
-            "reason": "第十八条明确“修理费用由生产者提供”。"
+            "reason": "第十八条明确写明修理费用由生产者提供。"
           },
           {
             "claim": "修理费用指三包有效期内保证正常修理的待支费用。",
             "supported": true,
-            "reason": "第十八条明确“修理费用指三包有效期内保证正常修理的待支费用”。"
+            "reason": "第十八条明确写明修理费用指三包有效期内保证正常修理的待支费用。"
           }
         ],
         "error": null
@@ -74,44 +88,687 @@
         "error": null
       }
     },
-    "trace_id": "f9923b80353fe67bd553853b50cf8be7"
+    "trace_id": "e1224761ebf86f57819f4295c49bba49"
   },
   "trace": {
-    "id": "f9923b80353fe67bd553853b50cf8be7",
+    "id": "e1224761ebf86f57819f4295c49bba49",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:50:24.996000+00:00"
+    "timestamp": "2026-08-19 05:19:45.842000+00:00"
   },
   "observations": [
     {
-      "id": "23f7efa061f890e6",
-      "traceId": "f9923b80353fe67bd553853b50cf8be7",
+      "id": "882f07376a75a1a0",
+      "traceId": "e1224761ebf86f57819f4295c49bba49",
       "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:50:59.724000+00:00",
-      "endTime": "2026-08-18 11:50:59.752000+00:00",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-19 05:19:30.505000+00:00",
+      "endTime": "2026-08-19 05:19:50.517000+00:00",
       "input": {
+        "query": "三包有效期内的修理费用由哪一方承担？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
         "top_k": 4,
-        "evidence": [
-          "L05#015:00",
-          "L05#012:00",
-          "L05#018:00",
-          "L05#019:00",
-          "L05#011:00",
-          "L05#003:00",
-          "L05#001:00",
-          "L05#008:00",
-          "L05#007:00",
-          "L05#016:00",
-          "L05#014:00",
-          "P11#004:01"
-        ]
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-021",
+        "kind": "text",
+        "type": "single",
+        "layer": "law",
+        "style": "formal",
+        "doc_id": "L05",
+        "section": "第十八条 【修理费用来源】",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.562,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-021",
+        "query": "三包有效期内的修理费用由哪一方承担？",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "L05",
+        "layer": "law",
+        "kind": "text",
+        "seed_chunk_id": [
+          "L05#018:00"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 0,
+          "evidence_tokens": 498,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.368
+        },
+        "elapsed_s": 1.5,
+        "seed_rank": {
+          "candidate": {
+            "L05#018:00": 5
+          },
+          "evidence": {
+            "L05#018:00": 3
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": true,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "refund",
+              "text": "三包有效期内的商品修理费用由哪一方承担？"
+            }
+          ]
+        },
+        "rewrite_hash": "d4e814860e12562e",
+        "sections": [
+          "L05 部分商品修理更换退货责任规定（三包规定） > 第十四条 【换货标准与有效期重算】 … 第十六条 【上门服务】",
+          "L05 部分商品修理更换退货责任规定（三包规定） > 第十一条 【修理两次仍不能正常使用】 … 第十二条 【超期未修好】",
+          "L05 部分商品修理更换退货责任规定（三包规定） > 第十八条 【修理费用来源】 … 第十九条 【修理费用的支付形式】",
+          "L05 部分商品修理更换退货责任规定（三包规定） > 第三条 【谁经销谁负责】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "修理费用由生产者提供。",
+                "supported": true,
+                "reason": "第十八条明确写明修理费用由生产者提供。"
+              },
+              {
+                "claim": "修理费用指三包有效期内保证正常修理的待支费用。",
+                "supported": true,
+                "reason": "第十八条明确写明修理费用指三包有效期内保证正常修理的待支费用。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.368,
+            "n": 19,
+            "hit": 7,
+            "truncated": false,
+            "note": "不相关的主要是换货、运输、上门服务、修理次数等条款。",
+            "irrelevant": [
+              "换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。",
+              "换货后的三包有效期自换货之日起重新计算。",
+              "由销售者在发票背面加盖更换章并提供新的三包凭证或者在三包凭证背面加盖更换章。",
+              "对应当进行三包的大件产品，修理者应当提供合理的运输费用，然后依法向生产者或者销售者追偿，或者按合同办理。",
+              "在三包有效期内，提倡销售者、修理者、生产者上门提供三包服务。",
+              "在三包有效期内，修理两次，仍不能正常使用的产品，凭修理者提供的修理记录和证明，由销售者负责为消费者免费调换同型号同规格的",
+              "在三包有效期内，因生产者未供应零配件，自送修之日起超过90日未修好的，修理者应当在修理状况中注明，销售者凭此据免费为消费",
+              "然后依法向生产者、供货者追偿或者按购销合同办理。",
+              "因修理者自身原因使修理期超过30日的，由其免费为消费者调换同型号同规格产品。",
+              "专款专用。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 20.012,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:19:55.233Z",
+      "updatedAt": "2026-08-19T05:19:55.262Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "cfba860a3487151f",
+      "traceId": "e1224761ebf86f57819f4295c49bba49",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-19 05:19:50.515000+00:00",
+      "endTime": "2026-08-19 05:19:50.516000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "882f07376a75a1a0",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:19:55.233Z",
+      "updatedAt": "2026-08-19T05:19:55.262Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "fc9a4930e7d798a9",
+      "traceId": "e1224761ebf86f57819f4295c49bba49",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:19:30.505000+00:00",
+      "endTime": "2026-08-19 05:19:50.514000+00:00",
+      "input": {
+        "query": "三包有效期内的修理费用由哪一方承担？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-021",
+        "kind": "text",
+        "type": "single",
+        "layer": "law",
+        "style": "formal",
+        "doc_id": "L05",
+        "section": "第十八条 【修理费用来源】",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.562,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-021",
+        "query": "三包有效期内的修理费用由哪一方承担？",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "L05",
+        "layer": "law",
+        "kind": "text",
+        "seed_chunk_id": [
+          "L05#018:00"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 0,
+          "evidence_tokens": 498,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.368
+        },
+        "elapsed_s": 1.5,
+        "seed_rank": {
+          "candidate": {
+            "L05#018:00": 5
+          },
+          "evidence": {
+            "L05#018:00": 3
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": true,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "refund",
+              "text": "三包有效期内的商品修理费用由哪一方承担？"
+            }
+          ]
+        },
+        "rewrite_hash": "d4e814860e12562e",
+        "sections": [
+          "L05 部分商品修理更换退货责任规定（三包规定） > 第十四条 【换货标准与有效期重算】 … 第十六条 【上门服务】",
+          "L05 部分商品修理更换退货责任规定（三包规定） > 第十一条 【修理两次仍不能正常使用】 … 第十二条 【超期未修好】",
+          "L05 部分商品修理更换退货责任规定（三包规定） > 第十八条 【修理费用来源】 … 第十九条 【修理费用的支付形式】",
+          "L05 部分商品修理更换退货责任规定（三包规定） > 第三条 【谁经销谁负责】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "修理费用由生产者提供。",
+                "supported": true,
+                "reason": "第十八条明确写明修理费用由生产者提供。"
+              },
+              {
+                "claim": "修理费用指三包有效期内保证正常修理的待支费用。",
+                "supported": true,
+                "reason": "第十八条明确写明修理费用指三包有效期内保证正常修理的待支费用。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.368,
+            "n": 19,
+            "hit": 7,
+            "truncated": false,
+            "note": "不相关的主要是换货、运输、上门服务、修理次数等条款。",
+            "irrelevant": [
+              "换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。",
+              "换货后的三包有效期自换货之日起重新计算。",
+              "由销售者在发票背面加盖更换章并提供新的三包凭证或者在三包凭证背面加盖更换章。",
+              "对应当进行三包的大件产品，修理者应当提供合理的运输费用，然后依法向生产者或者销售者追偿，或者按合同办理。",
+              "在三包有效期内，提倡销售者、修理者、生产者上门提供三包服务。",
+              "在三包有效期内，修理两次，仍不能正常使用的产品，凭修理者提供的修理记录和证明，由销售者负责为消费者免费调换同型号同规格的",
+              "在三包有效期内，因生产者未供应零配件，自送修之日起超过90日未修好的，修理者应当在修理状况中注明，销售者凭此据免费为消费",
+              "然后依法向生产者、供货者追偿或者按购销合同办理。",
+              "因修理者自身原因使修理期超过30日的，由其免费为消费者调换同型号同规格产品。",
+              "专款专用。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "882f07376a75a1a0",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 20.009,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:19:55.233Z",
+      "updatedAt": "2026-08-19T05:19:55.258Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "2cae82657552e828",
+      "traceId": "e1224761ebf86f57819f4295c49bba49",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-19 05:19:50.515000+00:00",
+      "endTime": "2026-08-19 05:19:50.516000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "三包有效期内的修理费用由哪一方承担？"
+        },
+        "output": {
+          "case_id": "R1-021",
+          "query": "三包有效期内的修理费用由哪一方承担？",
+          "type": "single",
+          "style": "formal",
+          "doc_id": "L05",
+          "layer": "law",
+          "kind": "text",
+          "seed_chunk_id": [
+            "L05#018:00"
+          ],
+          "acceptable_seed_chunk_ids": null,
+          "error": null,
+          "scores": {
+            "recall@10": 1,
+            "recall@3": 1,
+            "recall@1": 0,
+            "evidence_tokens": 498,
+            "duplicate_ratio": 0,
+            "context_recall": 1,
+            "context_relevance": 0.368
+          },
+          "elapsed_s": 1.5,
+          "seed_rank": {
+            "candidate": {
+              "L05#018:00": 5
+            },
+            "evidence": {
+              "L05#018:00": 3
+            }
+          },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": true,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "refund",
+                "text": "三包有效期内的商品修理费用由哪一方承担？"
+              }
+            ]
+          },
+          "rewrite_hash": "d4e814860e12562e",
+          "sections": [
+            "L05 部分商品修理更换退货责任规定（三包规定） > 第十四条 【换货标准与有效期重算】 … 第十六条 【上门服务】",
+            "L05 部分商品修理更换退货责任规定（三包规定） > 第十一条 【修理两次仍不能正常使用】 … 第十二条 【超期未修好】",
+            "L05 部分商品修理更换退货责任规定（三包规定） > 第十八条 【修理费用来源】 … 第十九条 【修理费用的支付形式】",
+            "L05 部分商品修理更换退货责任规定（三包规定） > 第三条 【谁经销谁负责】"
+          ],
+          "judge": {
+            "context_recall": {
+              "score": 1,
+              "n": 2,
+              "hit": 2,
+              "detail": [
+                {
+                  "claim": "修理费用由生产者提供。",
+                  "supported": true,
+                  "reason": "第十八条明确写明修理费用由生产者提供。"
+                },
+                {
+                  "claim": "修理费用指三包有效期内保证正常修理的待支费用。",
+                  "supported": true,
+                  "reason": "第十八条明确写明修理费用指三包有效期内保证正常修理的待支费用。"
+                }
+              ],
+              "error": null
+            },
+            "context_relevance": {
+              "score": 0.368,
+              "n": 19,
+              "hit": 7,
+              "truncated": false,
+              "note": "不相关的主要是换货、运输、上门服务、修理次数等条款。",
+              "irrelevant": [
+                "换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。",
+                "换货后的三包有效期自换货之日起重新计算。",
+                "由销售者在发票背面加盖更换章并提供新的三包凭证或者在三包凭证背面加盖更换章。",
+                "对应当进行三包的大件产品，修理者应当提供合理的运输费用，然后依法向生产者或者销售者追偿，或者按合同办理。",
+                "在三包有效期内，提倡销售者、修理者、生产者上门提供三包服务。",
+                "在三包有效期内，修理两次，仍不能正常使用的产品，凭修理者提供的修理记录和证明，由销售者负责为消费者免费调换同型号同规格的",
+                "在三包有效期内，因生产者未供应零配件，自送修之日起超过90日未修好的，修理者应当在修理状况中注明，销售者凭此据免费为消费",
+                "然后依法向生产者、供货者追偿或者按购销合同办理。",
+                "因修理者自身原因使修理期超过30日的，由其免费为消费者调换同型号同规格产品。",
+                "专款专用。"
+              ],
+              "error": null
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [
+            "修理费用由生产者提供。",
+            "修理费用指三包有效期内保证正常修理的待支费用。"
+          ],
+          "seed_chunk_id": [
+            "L05#018:00"
+          ],
+          "reference_answer": "修理费用由生产者提供。修理费用指三包有效期内保证正常修理的待支费用。",
+          "acceptable_seed_chunk_ids": []
+        },
+        "metadata": {
+          "kind": "text",
+          "type": "single",
+          "layer": "law",
+          "style": "formal",
+          "doc_id": "L05",
+          "section": "第十八条 【修理费用来源】",
+          "reviewed": false,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.562
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 1,
+          "comment": "种子块名次 L05#018:00=5"
+        },
+        {
+          "name": "recall@3",
+          "value": 1,
+          "comment": "种子块名次 L05#018:00=3"
+        },
+        {
+          "name": "recall@1",
+          "value": 0,
+          "comment": "种子块名次 L05#018:00=3"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 498,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "context_recall",
+          "value": 1,
+          "comment": "2/2 条 claim 被支撑"
+        },
+        {
+          "name": "context_relevance",
+          "value": 0.368,
+          "comment": "7/19 个内容单元相关；不相关的主要是换货、运输、上门服务、修理次数等条款。"
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "cfba860a3487151f",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:19:55.233Z",
+      "updatedAt": "2026-08-19T05:19:55.246Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "4cf950c30853e401",
+      "traceId": "e1224761ebf86f57819f4295c49bba49",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:19:45.841000+00:00",
+      "endTime": "2026-08-19 05:19:47.364000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "三包有效期内的修理费用由哪一方承担？",
+        "top_k": 4
       },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -177,7 +834,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "e81d8d83ebae3035",
+      "parentObservationId": "fc9a4930e7d798a9",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -185,17 +842,16 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.028,
+      "latency": 1.523,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:04.116Z",
-      "updatedAt": "2026-08-18T11:51:04.133Z",
+      "createdAt": "2026-08-19T05:19:50.272Z",
+      "updatedAt": "2026-08-19T05:19:50.293Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
       "totalTokens": 0,
       "completionStartTime": null,
       "model": null,
-      "modelParameters": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -209,18 +865,35 @@
       "usagePricingTierName": null
     },
     {
-      "id": "cdcae3eb5cc0981f",
-      "traceId": "f9923b80353fe67bd553853b50cf8be7",
+      "id": "666d0a2c917ed7dd",
+      "traceId": "e1224761ebf86f57819f4295c49bba49",
       "type": "SPAN",
-      "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:51:03.288000+00:00",
-      "endTime": "2026-08-18 11:51:03.290000+00:00",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:19:47.340000+00:00",
+      "endTime": "2026-08-19 05:19:47.364000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "L05#015:00",
+          "L05#012:00",
+          "L05#018:00",
+          "L05#019:00",
+          "L05#011:00",
+          "L05#003:00",
+          "L05#001:00",
+          "L05#008:00",
+          "L05#007:00",
+          "L05#016:00",
+          "L05#014:00",
+          "P11#004:01"
+        ]
+      },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -232,10 +905,52 @@
         }
       },
       "output": {
-        "evaluator_count": 1,
-        "evaluation_count": 8,
-        "failed_evaluator_count": 0,
-        "skipped_evaluator_count": 0
+        "sections": [
+          {
+            "section": "L05 部分商品修理更换退货责任规定（三包规定） > 第十四条 【换货标准与有效期重算】 … 第十六条 【上门服务】",
+            "text": "换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。\n\n换货后的三包有效期自换货之日起重新计算。由销售者在发票背面加盖更换章并提供新的三包凭证或者在三包凭证背面加盖更换章。\n\n在三包有效期内，除因消费者使用保管不当致使产品不能正常使用外，由修理者免费修理（包括材料费和工时费）。\n\n对应当进行三包的大件产品，修理者应当提供合理的运输费用，然后依法向生产者或者销售者追偿，或者按合同办理。\n\n在三包有效期内，提倡销售者、修理者、生产者上门提供三包服务。",
+            "score": 0.9387108612060547,
+            "doc_id": "L05",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "1995-08-25",
+            "source_path": "doc/policy/law/L05-部分商品修理更换退货责任规定.md",
+            "reason": "相关性 0.948 × 先验 0.90 → 0.939；命中 1/law/dense#1, 1/law/bm25#3"
+          },
+          {
+            "section": "L05 部分商品修理更换退货责任规定（三包规定） > 第十一条 【修理两次仍不能正常使用】 … 第十二条 【超期未修好】",
+            "text": "在三包有效期内，修理两次，仍不能正常使用的产品，凭修理者提供的修理记录和证明，由销售者负责为消费者免费调换同型号同规格的产品或者按本规定第十三条的规定退货，然后依法向生产者、供货者追偿或者按购销合同办理。\n\n在三包有效期内，因生产者未供应零配件，自送修之日起超过90日未修好的，修理者应当在修理状况中注明，销售者凭此据免费为消费者调换同型号同规格产品。然后依法向生产者、供货者追偿或者按购销合同办理。\n\n因修理者自身原因使修理期超过30日的，由其免费为消费者调换同型号同规格产品。费用由修理者承担。",
+            "score": 0.9158165740966798,
+            "doc_id": "L05",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "1995-08-25",
+            "source_path": "doc/policy/law/L05-部分商品修理更换退货责任规定.md",
+            "reason": "相关性 0.920 × 先验 0.90 → 0.916；命中 1/law/dense#9, 1/law/bm25#4"
+          },
+          {
+            "section": "L05 部分商品修理更换退货责任规定（三包规定） > 第十八条 【修理费用来源】 … 第十九条 【修理费用的支付形式】",
+            "text": "修理费用由生产者提供。修理费用指三包有效期内保证正常修理的待支费用。\n\n销售者负责修理的产品，生产者按照合同或者协议一次拨出费用，具体办法由产销双方商定。销售者委托或者指定修理者的，其修理费的支付形式由销售者和修理者双方合同约定。专款专用。生产者自行选择其他方式或者自行设置修理网点的，由生产者直接提供修理费用。",
+            "score": 0.9120397377014161,
+            "doc_id": "L05",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "1995-08-25",
+            "source_path": "doc/policy/law/L05-部分商品修理更换退货责任规定.md",
+            "reason": "相关性 0.915 × 先验 0.90 → 0.912；命中 1/law/dense#6, 1/law/bm25#1"
+          },
+          {
+            "section": "L05 部分商品修理更换退货责任规定（三包规定） > 第三条 【谁经销谁负责】",
+            "text": "列入目录的产品实行谁经销谁负责三包的原则。销售者与生产者、销售者与供货者、销售者与修理者之间订立的合同，不得免除本规定的三包责任和义务。",
+            "score": 0.6603081989288331,
+            "doc_id": "L05",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "1995-08-25",
+            "source_path": "doc/policy/law/L05-部分商品修理更换退货责任规定.md",
+            "reason": "相关性 0.600 × 先验 0.90 → 0.660；命中 1/law/dense#3"
+          }
+        ]
       },
       "usage": {
         "input": 0,
@@ -244,7 +959,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "56f2b68a7afbc6f2",
+      "parentObservationId": "4cf950c30853e401",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -252,10 +967,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.002,
+      "latency": 0.024,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:04.116Z",
-      "updatedAt": "2026-08-18T11:51:04.132Z",
+      "createdAt": "2026-08-19T05:19:50.272Z",
+      "updatedAt": "2026-08-19T05:19:50.293Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -263,7 +978,6 @@
       "completionStartTime": null,
       "model": null,
       "modelParameters": null,
-      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -277,12 +991,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "f8103bbe21a9a0b1",
-      "traceId": "f9923b80353fe67bd553853b50cf8be7",
+      "id": "d655aeed251532bb",
+      "traceId": "e1224761ebf86f57819f4295c49bba49",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 11:50:59.211000+00:00",
-      "endTime": "2026-08-18 11:50:59.724000+00:00",
+      "startTime": "2026-08-19 05:19:46.833000+00:00",
+      "endTime": "2026-08-19 05:19:47.340000+00:00",
       "input": {
         "query": "三包有效期内的修理费用由哪一方承担？",
         "candidates": 20
@@ -292,7 +1006,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -422,7 +1136,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "e81d8d83ebae3035",
+      "parentObservationId": "4cf950c30853e401",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -430,10 +1144,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.513,
+      "latency": 0.507,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:04.116Z",
-      "updatedAt": "2026-08-18T11:51:04.132Z",
+      "createdAt": "2026-08-19T05:19:50.272Z",
+      "updatedAt": "2026-08-19T05:19:50.293Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -454,507 +1168,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "fbdbd7b93e40e07a",
-      "traceId": "f9923b80353fe67bd553853b50cf8be7",
-      "type": "EVALUATOR",
-      "name": "evaluate",
-      "startTime": "2026-08-18 11:51:03.289000+00:00",
-      "endTime": "2026-08-18 11:51:03.290000+00:00",
-      "modelParameters": {},
-      "input": {
-        "input": {
-          "query": "三包有效期内的修理费用由哪一方承担？"
-        },
-        "output": {
-          "case_id": "R1-021",
-          "type": "single",
-          "style": "formal",
-          "doc_id": "L05",
-          "layer": "law",
-          "kind": "text",
-          "seed_chunk_id": [
-            "L05#018:00"
-          ],
-          "error": null,
-          "scores": {
-            "recall@10": 1,
-            "recall@3": 1,
-            "recall@1": 0,
-            "evidence_tokens": 498,
-            "duplicate_ratio": 0,
-            "context_recall": 1,
-            "context_relevance": 0.368
-          },
-          "elapsed_s": 1.6,
-          "seed_rank": {
-            "candidate": {
-              "L05#018:00": 5
-            },
-            "evidence": {
-              "L05#018:00": 3
-            }
-          },
-          "sections": [
-            "L05 部分商品修理更换退货责任规定（三包规定） > 第十四条 【换货标准与有效期重算】 … 第十六条 【上门服务】",
-            "L05 部分商品修理更换退货责任规定（三包规定） > 第十一条 【修理两次仍不能正常使用】 … 第十二条 【超期未修好】",
-            "L05 部分商品修理更换退货责任规定（三包规定） > 第十八条 【修理费用来源】 … 第十九条 【修理费用的支付形式】",
-            "L05 部分商品修理更换退货责任规定（三包规定） > 第三条 【谁经销谁负责】"
-          ],
-          "judge": {
-            "context_recall": {
-              "score": 1,
-              "n": 2,
-              "hit": 2,
-              "detail": [
-                {
-                  "claim": "修理费用由生产者提供。",
-                  "supported": true,
-                  "reason": "第十八条明确“修理费用由生产者提供”。"
-                },
-                {
-                  "claim": "修理费用指三包有效期内保证正常修理的待支费用。",
-                  "supported": true,
-                  "reason": "第十八条明确“修理费用指三包有效期内保证正常修理的待支费用”。"
-                }
-              ],
-              "error": null
-            },
-            "context_relevance": {
-              "score": 0.368,
-              "n": 19,
-              "hit": 7,
-              "truncated": false,
-              "note": "不相关的主要是换货、运输、上门服务、修理次数等条款。",
-              "irrelevant": [
-                "换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。",
-                "换货后的三包有效期自换货之日起重新计算。",
-                "由销售者在发票背面加盖更换章并提供新的三包凭证或者在三包凭证背面加盖更换章。",
-                "对应当进行三包的大件产品，修理者应当提供合理的运输费用，然后依法向生产者或者销售者追偿，或者按合同办理。",
-                "在三包有效期内，提倡销售者、修理者、生产者上门提供三包服务。",
-                "在三包有效期内，修理两次，仍不能正常使用的产品，凭修理者提供的修理记录和证明，由销售者负责为消费者免费调换同型号同规格的",
-                "在三包有效期内，因生产者未供应零配件，自送修之日起超过90日未修好的，修理者应当在修理状况中注明，销售者凭此据免费为消费",
-                "然后依法向生产者、供货者追偿或者按购销合同办理。",
-                "因修理者自身原因使修理期超过30日的，由其免费为消费者调换同型号同规格产品。",
-                "专款专用。"
-              ],
-              "error": null
-            }
-          }
-        },
-        "expected_output": {
-          "claims": [
-            "修理费用由生产者提供。",
-            "修理费用指三包有效期内保证正常修理的待支费用。"
-          ],
-          "seed_chunk_id": [
-            "L05#018:00"
-          ],
-          "reference_answer": "修理费用由生产者提供。修理费用指三包有效期内保证正常修理的待支费用。"
-        },
-        "metadata": {
-          "kind": "text",
-          "type": "single",
-          "layer": "law",
-          "style": "formal",
-          "doc_id": "L05",
-          "section": "第十八条 【修理费用来源】",
-          "reviewed": false,
-          "claims_by": "openai:deepseek-v4-pro",
-          "generated_by": "openai:deepseek-v4-flash",
-          "overlap_ratio": 0.562
-        }
-      },
-      "metadata": {
-        "evaluator_kind": "item",
-        "evaluator_index": 0,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": [
-        {
-          "name": "recall@10",
-          "value": 1,
-          "comment": "种子块名次 L05#018:00=5"
-        },
-        {
-          "name": "recall@3",
-          "value": 1,
-          "comment": "种子块名次 L05#018:00=3"
-        },
-        {
-          "name": "recall@1",
-          "value": 0,
-          "comment": "种子块名次 L05#018:00=3"
-        },
-        {
-          "name": "evidence_tokens",
-          "value": 498,
-          "comment": ""
-        },
-        {
-          "name": "duplicate_ratio",
-          "value": 0,
-          "comment": ""
-        },
-        {
-          "name": "context_recall",
-          "value": 1,
-          "comment": "2/2 条 claim 被支撑"
-        },
-        {
-          "name": "context_relevance",
-          "value": 0.368,
-          "comment": "7/19 个内容单元相关；不相关的主要是换货、运输、上门服务、修理次数等条款。"
-        },
-        {
-          "name": "run_error",
-          "value": 0,
-          "comment": "ok"
-        }
-      ],
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "cdcae3eb5cc0981f",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.001,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:04.116Z",
-      "updatedAt": "2026-08-18T11:51:04.131Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "e81d8d83ebae3035",
-      "traceId": "f9923b80353fe67bd553853b50cf8be7",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:50:58.171000+00:00",
-      "endTime": "2026-08-18 11:50:59.753000+00:00",
-      "modelParameters": {},
-      "input": {
-        "query": "三包有效期内的修理费用由哪一方承担？",
-        "top_k": 4
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "L05 部分商品修理更换退货责任规定（三包规定） > 第十四条 【换货标准与有效期重算】 … 第十六条 【上门服务】",
-            "text": "换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。\n\n换货后的三包有效期自换货之日起重新计算。由销售者在发票背面加盖更换章并提供新的三包凭证或者在三包凭证背面加盖更换章。\n\n在三包有效期内，除因消费者使用保管不当致使产品不能正常使用外，由修理者免费修理（包括材料费和工时费）。\n\n对应当进行三包的大件产品，修理者应当提供合理的运输费用，然后依法向生产者或者销售者追偿，或者按合同办理。\n\n在三包有效期内，提倡销售者、修理者、生产者上门提供三包服务。",
-            "score": 0.9387108612060547,
-            "doc_id": "L05",
-            "layer": "law",
-            "doc_type": "部门规章",
-            "effective_date": "1995-08-25",
-            "source_path": "doc/policy/law/L05-部分商品修理更换退货责任规定.md",
-            "reason": "相关性 0.948 × 先验 0.90 → 0.939；命中 1/law/dense#1, 1/law/bm25#3"
-          },
-          {
-            "section": "L05 部分商品修理更换退货责任规定（三包规定） > 第十一条 【修理两次仍不能正常使用】 … 第十二条 【超期未修好】",
-            "text": "在三包有效期内，修理两次，仍不能正常使用的产品，凭修理者提供的修理记录和证明，由销售者负责为消费者免费调换同型号同规格的产品或者按本规定第十三条的规定退货，然后依法向生产者、供货者追偿或者按购销合同办理。\n\n在三包有效期内，因生产者未供应零配件，自送修之日起超过90日未修好的，修理者应当在修理状况中注明，销售者凭此据免费为消费者调换同型号同规格产品。然后依法向生产者、供货者追偿或者按购销合同办理。\n\n因修理者自身原因使修理期超过30日的，由其免费为消费者调换同型号同规格产品。费用由修理者承担。",
-            "score": 0.9158165740966798,
-            "doc_id": "L05",
-            "layer": "law",
-            "doc_type": "部门规章",
-            "effective_date": "1995-08-25",
-            "source_path": "doc/policy/law/L05-部分商品修理更换退货责任规定.md",
-            "reason": "相关性 0.920 × 先验 0.90 → 0.916；命中 1/law/dense#9, 1/law/bm25#4"
-          },
-          {
-            "section": "L05 部分商品修理更换退货责任规定（三包规定） > 第十八条 【修理费用来源】 … 第十九条 【修理费用的支付形式】",
-            "text": "修理费用由生产者提供。修理费用指三包有效期内保证正常修理的待支费用。\n\n销售者负责修理的产品，生产者按照合同或者协议一次拨出费用，具体办法由产销双方商定。销售者委托或者指定修理者的，其修理费的支付形式由销售者和修理者双方合同约定。专款专用。生产者自行选择其他方式或者自行设置修理网点的，由生产者直接提供修理费用。",
-            "score": 0.9120397377014161,
-            "doc_id": "L05",
-            "layer": "law",
-            "doc_type": "部门规章",
-            "effective_date": "1995-08-25",
-            "source_path": "doc/policy/law/L05-部分商品修理更换退货责任规定.md",
-            "reason": "相关性 0.915 × 先验 0.90 → 0.912；命中 1/law/dense#6, 1/law/bm25#1"
-          },
-          {
-            "section": "L05 部分商品修理更换退货责任规定（三包规定） > 第三条 【谁经销谁负责】",
-            "text": "列入目录的产品实行谁经销谁负责三包的原则。销售者与生产者、销售者与供货者、销售者与修理者之间订立的合同，不得免除本规定的三包责任和义务。",
-            "score": 0.6603081989288331,
-            "doc_id": "L05",
-            "layer": "law",
-            "doc_type": "部门规章",
-            "effective_date": "1995-08-25",
-            "source_path": "doc/policy/law/L05-部分商品修理更换退货责任规定.md",
-            "reason": "相关性 0.600 × 先验 0.90 → 0.660；命中 1/law/dense#3"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "e1cee648850e4c49",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 1.582,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:04.116Z",
-      "updatedAt": "2026-08-18T11:51:04.131Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "56f2b68a7afbc6f2",
-      "traceId": "f9923b80353fe67bd553853b50cf8be7",
-      "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:50:24.996000+00:00",
-      "endTime": "2026-08-18 11:51:03.290000+00:00",
-      "input": {
-        "query": "三包有效期内的修理费用由哪一方承担？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-021",
-        "kind": "text",
-        "type": "single",
-        "layer": "law",
-        "style": "formal",
-        "doc_id": "L05",
-        "section": "第十八条 【修理费用来源】",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.562,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-021",
-        "type": "single",
-        "style": "formal",
-        "doc_id": "L05",
-        "layer": "law",
-        "kind": "text",
-        "seed_chunk_id": [
-          "L05#018:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 0,
-          "evidence_tokens": 498,
-          "duplicate_ratio": 0,
-          "context_recall": 1,
-          "context_relevance": 0.368
-        },
-        "elapsed_s": 1.6,
-        "seed_rank": {
-          "candidate": {
-            "L05#018:00": 5
-          },
-          "evidence": {
-            "L05#018:00": 3
-          }
-        },
-        "sections": [
-          "L05 部分商品修理更换退货责任规定（三包规定） > 第十四条 【换货标准与有效期重算】 … 第十六条 【上门服务】",
-          "L05 部分商品修理更换退货责任规定（三包规定） > 第十一条 【修理两次仍不能正常使用】 … 第十二条 【超期未修好】",
-          "L05 部分商品修理更换退货责任规定（三包规定） > 第十八条 【修理费用来源】 … 第十九条 【修理费用的支付形式】",
-          "L05 部分商品修理更换退货责任规定（三包规定） > 第三条 【谁经销谁负责】"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 2,
-            "hit": 2,
-            "detail": [
-              {
-                "claim": "修理费用由生产者提供。",
-                "supported": true,
-                "reason": "第十八条明确“修理费用由生产者提供”。"
-              },
-              {
-                "claim": "修理费用指三包有效期内保证正常修理的待支费用。",
-                "supported": true,
-                "reason": "第十八条明确“修理费用指三包有效期内保证正常修理的待支费用”。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.368,
-            "n": 19,
-            "hit": 7,
-            "truncated": false,
-            "note": "不相关的主要是换货、运输、上门服务、修理次数等条款。",
-            "irrelevant": [
-              "换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。",
-              "换货后的三包有效期自换货之日起重新计算。",
-              "由销售者在发票背面加盖更换章并提供新的三包凭证或者在三包凭证背面加盖更换章。",
-              "对应当进行三包的大件产品，修理者应当提供合理的运输费用，然后依法向生产者或者销售者追偿，或者按合同办理。",
-              "在三包有效期内，提倡销售者、修理者、生产者上门提供三包服务。",
-              "在三包有效期内，修理两次，仍不能正常使用的产品，凭修理者提供的修理记录和证明，由销售者负责为消费者免费调换同型号同规格的",
-              "在三包有效期内，因生产者未供应零配件，自送修之日起超过90日未修好的，修理者应当在修理状况中注明，销售者凭此据免费为消费",
-              "然后依法向生产者、供货者追偿或者按购销合同办理。",
-              "因修理者自身原因使修理期超过30日的，由其免费为消费者调换同型号同规格产品。",
-              "专款专用。"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 38.294,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:04.116Z",
-      "updatedAt": "2026-08-18T11:51:04.130Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "parentObservationId": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "5a5f99d3500eba5e",
-      "traceId": "f9923b80353fe67bd553853b50cf8be7",
+      "id": "347872032e7b49dc",
+      "traceId": "e1224761ebf86f57819f4295c49bba49",
       "type": "SPAN",
       "name": "rag.route",
-      "startTime": "2026-08-18 11:50:59.142000+00:00",
-      "endTime": "2026-08-18 11:50:59.142000+00:00",
+      "startTime": "2026-08-19 05:19:46.741000+00:00",
+      "endTime": "2026-08-19 05:19:46.741000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -984,7 +1209,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "e81d8d83ebae3035",
+      "parentObservationId": "4cf950c30853e401",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -994,8 +1219,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:04.116Z",
-      "updatedAt": "2026-08-18T11:51:04.129Z",
+      "createdAt": "2026-08-19T05:19:50.272Z",
+      "updatedAt": "2026-08-19T05:19:50.292Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1017,18 +1242,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "9810e070b74345e5",
-      "traceId": "f9923b80353fe67bd553853b50cf8be7",
+      "id": "949cc21b16d1657d",
+      "traceId": "e1224761ebf86f57819f4295c49bba49",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 11:50:59.143000+00:00",
-      "endTime": "2026-08-18 11:50:59.211000+00:00",
+      "startTime": "2026-08-19 05:19:46.742000+00:00",
+      "endTime": "2026-08-19 05:19:46.833000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1223,7 +1448,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "e81d8d83ebae3035",
+      "parentObservationId": "4cf950c30853e401",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1231,10 +1456,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.068,
+      "latency": 0.091,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:04.116Z",
-      "updatedAt": "2026-08-18T11:51:04.129Z",
+      "createdAt": "2026-08-19T05:19:50.272Z",
+      "updatedAt": "2026-08-19T05:19:50.292Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1256,180 +1481,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "e1cee648850e4c49",
-      "traceId": "f9923b80353fe67bd553853b50cf8be7",
-      "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:50:24.996000+00:00",
-      "endTime": "2026-08-18 11:51:03.287000+00:00",
-      "input": {
-        "query": "三包有效期内的修理费用由哪一方承担？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-021",
-        "kind": "text",
-        "type": "single",
-        "layer": "law",
-        "style": "formal",
-        "doc_id": "L05",
-        "section": "第十八条 【修理费用来源】",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.562,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-021",
-        "type": "single",
-        "style": "formal",
-        "doc_id": "L05",
-        "layer": "law",
-        "kind": "text",
-        "seed_chunk_id": [
-          "L05#018:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 0,
-          "evidence_tokens": 498,
-          "duplicate_ratio": 0,
-          "context_recall": 1,
-          "context_relevance": 0.368
-        },
-        "elapsed_s": 1.6,
-        "seed_rank": {
-          "candidate": {
-            "L05#018:00": 5
-          },
-          "evidence": {
-            "L05#018:00": 3
-          }
-        },
-        "sections": [
-          "L05 部分商品修理更换退货责任规定（三包规定） > 第十四条 【换货标准与有效期重算】 … 第十六条 【上门服务】",
-          "L05 部分商品修理更换退货责任规定（三包规定） > 第十一条 【修理两次仍不能正常使用】 … 第十二条 【超期未修好】",
-          "L05 部分商品修理更换退货责任规定（三包规定） > 第十八条 【修理费用来源】 … 第十九条 【修理费用的支付形式】",
-          "L05 部分商品修理更换退货责任规定（三包规定） > 第三条 【谁经销谁负责】"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 2,
-            "hit": 2,
-            "detail": [
-              {
-                "claim": "修理费用由生产者提供。",
-                "supported": true,
-                "reason": "第十八条明确“修理费用由生产者提供”。"
-              },
-              {
-                "claim": "修理费用指三包有效期内保证正常修理的待支费用。",
-                "supported": true,
-                "reason": "第十八条明确“修理费用指三包有效期内保证正常修理的待支费用”。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.368,
-            "n": 19,
-            "hit": 7,
-            "truncated": false,
-            "note": "不相关的主要是换货、运输、上门服务、修理次数等条款。",
-            "irrelevant": [
-              "换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。",
-              "换货后的三包有效期自换货之日起重新计算。",
-              "由销售者在发票背面加盖更换章并提供新的三包凭证或者在三包凭证背面加盖更换章。",
-              "对应当进行三包的大件产品，修理者应当提供合理的运输费用，然后依法向生产者或者销售者追偿，或者按合同办理。",
-              "在三包有效期内，提倡销售者、修理者、生产者上门提供三包服务。",
-              "在三包有效期内，修理两次，仍不能正常使用的产品，凭修理者提供的修理记录和证明，由销售者负责为消费者免费调换同型号同规格的",
-              "在三包有效期内，因生产者未供应零配件，自送修之日起超过90日未修好的，修理者应当在修理状况中注明，销售者凭此据免费为消费",
-              "然后依法向生产者、供货者追偿或者按购销合同办理。",
-              "因修理者自身原因使修理期超过30日的，由其免费为消费者调换同型号同规格产品。",
-              "专款专用。"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "56f2b68a7afbc6f2",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 38.291,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:04.116Z",
-      "updatedAt": "2026-08-18T11:51:04.129Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "b7184d7b51bdfeec",
-      "traceId": "f9923b80353fe67bd553853b50cf8be7",
+      "id": "7946d5279956af1e",
+      "traceId": "e1224761ebf86f57819f4295c49bba49",
       "type": "SPAN",
       "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:50:58.171000+00:00",
-      "endTime": "2026-08-18 11:50:59.142000+00:00",
+      "startTime": "2026-08-19 05:19:45.842000+00:00",
+      "endTime": "2026-08-19 05:19:46.740000+00:00",
       "input": {
         "query": "三包有效期内的修理费用由哪一方承担？"
       },
@@ -1438,7 +1495,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1467,7 +1524,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "e81d8d83ebae3035",
+      "parentObservationId": "4cf950c30853e401",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1475,10 +1532,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.971,
+      "latency": 0.898,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:51:04.116Z",
-      "updatedAt": "2026-08-18T11:51:04.124Z",
+      "createdAt": "2026-08-19T05:19:50.272Z",
+      "updatedAt": "2026-08-19T05:19:50.290Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,

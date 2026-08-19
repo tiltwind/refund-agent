@@ -4,6 +4,18 @@ from dataclasses import dataclass, field
 from typing import Protocol
 
 
+class RetrievalError(RuntimeError):
+    """检索链路无法提供可用证据。"""
+
+
+class NoCandidatesError(RetrievalError):
+    """召回层没有任何候选，通常表示知识库或过滤配置故障。"""
+
+
+class NoEvidenceError(RetrievalError):
+    """候选存在，但重排/装配后没有可交付证据。"""
+
+
 @dataclass
 class PolicySection:
     """一条装配好的证据。
@@ -48,6 +60,8 @@ class RetrievalTrace:
 
     query: str = ""
     steps: list[tuple[str, str]] = field(default_factory=list)
+    rewrite_plan: dict | None = None
+    rewrite_hash: str = ""
 
     candidate_ids: list[str] = field(default_factory=list)
     """召回融合后的候选，按 RRF 序。`recall@10` 读它。"""

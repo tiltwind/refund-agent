@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-023",
+    "query": "在七日无理由退货与三包质量问题两种情形下，退货产生的运费分别由哪一方承担？",
     "type": "single",
     "style": "formal",
     "doc_id": "L05",
@@ -9,30 +10,55 @@
     "seed_chunk_id": [
       "L05#025:00"
     ],
+    "acceptable_seed_chunk_ids": [
+      [
+        "L05#025:00",
+        "P06#000:00",
+        "P06#001:00",
+        "P06#002:00"
+      ]
+    ],
     "error": null,
     "scores": {
-      "recall@10": 0.0,
-      "recall@3": 0.0,
+      "recall@10": 1.0,
+      "recall@3": 1.0,
       "recall@1": 0.0,
-      "evidence_tokens": 2909,
-      "duplicate_ratio": 0.266,
+      "evidence_tokens": 2742,
+      "duplicate_ratio": 0.338,
       "context_recall": 1.0,
-      "context_relevance": 0.569
+      "context_relevance": 0.548
     },
-    "elapsed_s": 2.0,
+    "elapsed_s": 2.2,
     "seed_rank": {
       "candidate": {
         "L05#025:00": 11
       },
       "evidence": {
-        "L05#025:00": 8
+        "L05#025:00": 7
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "refund",
+          "text": "七日无理由退货情形下，退货产生的运费由哪一方承担？"
+        },
+        {
+          "id": "2",
+          "intent": "refund",
+          "text": "三包质量问题退货情形下，退货产生的运费由哪一方承担？"
+        }
+      ]
+    },
+    "rewrite_hash": "69c505c349472b82",
     "sections": [
       "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.6 运费",
       "P06 星辰优选运费与退货物流规则 > 第一条 运费承担的基本原则 … 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
       "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十八条 【退货运费承担】",
-      "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】 … 第二十五条 【网络购物七日无理由退货】"
+      "L02 网络购买商品七日无理由退货暂行办法 > 第七章 附则 > 第三十五条 【质量问题退货的法律适用】"
     ],
     "judge": {
       "context_recall": {
@@ -48,17 +74,17 @@
           {
             "claim": "三包质量问题退货的运费由经营者承担。",
             "supported": true,
-            "reason": "P06表格及L01第二十四条明确质量问题退货运费由经营者承担。"
+            "reason": "P06表格及多处明确质量问题退货运费由经营者承担。"
           }
         ],
         "error": null
       },
       "context_relevance": {
-        "score": 0.569,
-        "n": 123,
-        "hit": 70,
+        "score": 0.548,
+        "n": 115,
+        "hit": 63,
         "truncated": false,
-        "note": "不相关的主要是退款金额、优惠券、赠品、退货时限、支付方式等与运费承担无关的内容。",
+        "note": "不相关的主要是退款金额、优惠券、赠品、退货时限、支付方式等非运费承担规则。",
         "irrelevant": [
           "**退款金额以消费者实际支付的金额为准**，不是商品标价。",
           "使用优惠券的订单，**按实付金额退款，优惠券不予退还**。",
@@ -74,27 +100,27 @@
         "error": null
       }
     },
-    "trace_id": "c5f13b7f5aefeb943835b8f670698cd6"
+    "trace_id": "2b1a6a1460ee469220f75542c1ba3eb2"
   },
   "trace": {
-    "id": "c5f13b7f5aefeb943835b8f670698cd6",
+    "id": "2b1a6a1460ee469220f75542c1ba3eb2",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:49:56.592000+00:00"
+    "timestamp": "2026-08-19 05:18:54.549000+00:00"
   },
   "observations": [
     {
-      "id": "bc6e37ddc70e179b",
-      "traceId": "c5f13b7f5aefeb943835b8f670698cd6",
+      "id": "9f456fe6f8469055",
+      "traceId": "2b1a6a1460ee469220f75542c1ba3eb2",
       "type": "SPAN",
       "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:49:40.807000+00:00",
-      "endTime": "2026-08-18 11:50:03.857000+00:00",
+      "startTime": "2026-08-19 05:18:44.553000+00:00",
+      "endTime": "2026-08-19 05:19:02.034000+00:00",
       "input": {
         "query": "在七日无理由退货与三包质量问题两种情形下，退货产生的运费分别由哪一方承担？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -125,7 +151,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -138,6 +164,7 @@
       },
       "output": {
         "case_id": "R1-023",
+        "query": "在七日无理由退货与三包质量问题两种情形下，退货产生的运费分别由哪一方承担？",
         "type": "single",
         "style": "formal",
         "doc_id": "L05",
@@ -146,30 +173,55 @@
         "seed_chunk_id": [
           "L05#025:00"
         ],
+        "acceptable_seed_chunk_ids": [
+          [
+            "L05#025:00",
+            "P06#000:00",
+            "P06#001:00",
+            "P06#002:00"
+          ]
+        ],
         "error": null,
         "scores": {
-          "recall@10": 0,
-          "recall@3": 0,
+          "recall@10": 1,
+          "recall@3": 1,
           "recall@1": 0,
-          "evidence_tokens": 2909,
-          "duplicate_ratio": 0.266,
+          "evidence_tokens": 2742,
+          "duplicate_ratio": 0.338,
           "context_recall": 1,
-          "context_relevance": 0.569
+          "context_relevance": 0.548
         },
-        "elapsed_s": 2,
+        "elapsed_s": 2.2,
         "seed_rank": {
           "candidate": {
             "L05#025:00": 11
           },
           "evidence": {
-            "L05#025:00": 8
+            "L05#025:00": 7
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "refund",
+              "text": "七日无理由退货情形下，退货产生的运费由哪一方承担？"
+            },
+            {
+              "id": "2",
+              "intent": "refund",
+              "text": "三包质量问题退货情形下，退货产生的运费由哪一方承担？"
+            }
+          ]
+        },
+        "rewrite_hash": "69c505c349472b82",
         "sections": [
           "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.6 运费",
           "P06 星辰优选运费与退货物流规则 > 第一条 运费承担的基本原则 … 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
           "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十八条 【退货运费承担】",
-          "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】 … 第二十五条 【网络购物七日无理由退货】"
+          "L02 网络购买商品七日无理由退货暂行办法 > 第七章 附则 > 第三十五条 【质量问题退货的法律适用】"
         ],
         "judge": {
           "context_recall": {
@@ -185,17 +237,17 @@
               {
                 "claim": "三包质量问题退货的运费由经营者承担。",
                 "supported": true,
-                "reason": "P06表格及L01第二十四条明确质量问题退货运费由经营者承担。"
+                "reason": "P06表格及多处明确质量问题退货运费由经营者承担。"
               }
             ],
             "error": null
           },
           "context_relevance": {
-            "score": 0.569,
-            "n": 123,
-            "hit": 70,
+            "score": 0.548,
+            "n": 115,
+            "hit": 63,
             "truncated": false,
-            "note": "不相关的主要是退款金额、优惠券、赠品、退货时限、支付方式等与运费承担无关的内容。",
+            "note": "不相关的主要是退款金额、优惠券、赠品、退货时限、支付方式等非运费承担规则。",
             "irrelevant": [
               "**退款金额以消费者实际支付的金额为准**，不是商品标价。",
               "使用优惠券的订单，**按实付金额退款，优惠券不予退还**。",
@@ -226,10 +278,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 23.05,
+      "latency": 17.481,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:08.771Z",
-      "updatedAt": "2026-08-18T11:50:08.791Z",
+      "createdAt": "2026-08-19T05:19:04.889Z",
+      "updatedAt": "2026-08-19T05:19:04.923Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -251,12 +303,80 @@
       "usagePricingTierName": null
     },
     {
-      "id": "5956072122b64803",
-      "traceId": "c5f13b7f5aefeb943835b8f670698cd6",
+      "id": "e7947208d14c2a10",
+      "traceId": "2b1a6a1460ee469220f75542c1ba3eb2",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-19 05:19:02.032000+00:00",
+      "endTime": "2026-08-19 05:19:02.034000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "9f456fe6f8469055",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.002,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:19:04.889Z",
+      "updatedAt": "2026-08-19T05:19:04.921Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "91e262514ef981cd",
+      "traceId": "2b1a6a1460ee469220f75542c1ba3eb2",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:50:03.856000+00:00",
-      "endTime": "2026-08-18 11:50:03.856000+00:00",
+      "startTime": "2026-08-19 05:19:02.033000+00:00",
+      "endTime": "2026-08-19 05:19:02.034000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -264,6 +384,7 @@
         },
         "output": {
           "case_id": "R1-023",
+          "query": "在七日无理由退货与三包质量问题两种情形下，退货产生的运费分别由哪一方承担？",
           "type": "single",
           "style": "formal",
           "doc_id": "L05",
@@ -272,30 +393,55 @@
           "seed_chunk_id": [
             "L05#025:00"
           ],
+          "acceptable_seed_chunk_ids": [
+            [
+              "L05#025:00",
+              "P06#000:00",
+              "P06#001:00",
+              "P06#002:00"
+            ]
+          ],
           "error": null,
           "scores": {
-            "recall@10": 0,
-            "recall@3": 0,
+            "recall@10": 1,
+            "recall@3": 1,
             "recall@1": 0,
-            "evidence_tokens": 2909,
-            "duplicate_ratio": 0.266,
+            "evidence_tokens": 2742,
+            "duplicate_ratio": 0.338,
             "context_recall": 1,
-            "context_relevance": 0.569
+            "context_relevance": 0.548
           },
-          "elapsed_s": 2,
+          "elapsed_s": 2.2,
           "seed_rank": {
             "candidate": {
               "L05#025:00": 11
             },
             "evidence": {
-              "L05#025:00": 8
+              "L05#025:00": 7
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "refund",
+                "text": "七日无理由退货情形下，退货产生的运费由哪一方承担？"
+              },
+              {
+                "id": "2",
+                "intent": "refund",
+                "text": "三包质量问题退货情形下，退货产生的运费由哪一方承担？"
+              }
+            ]
+          },
+          "rewrite_hash": "69c505c349472b82",
           "sections": [
             "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.6 运费",
             "P06 星辰优选运费与退货物流规则 > 第一条 运费承担的基本原则 … 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
             "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十八条 【退货运费承担】",
-            "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】 … 第二十五条 【网络购物七日无理由退货】"
+            "L02 网络购买商品七日无理由退货暂行办法 > 第七章 附则 > 第三十五条 【质量问题退货的法律适用】"
           ],
           "judge": {
             "context_recall": {
@@ -311,17 +457,17 @@
                 {
                   "claim": "三包质量问题退货的运费由经营者承担。",
                   "supported": true,
-                  "reason": "P06表格及L01第二十四条明确质量问题退货运费由经营者承担。"
+                  "reason": "P06表格及多处明确质量问题退货运费由经营者承担。"
                 }
               ],
               "error": null
             },
             "context_relevance": {
-              "score": 0.569,
-              "n": 123,
-              "hit": 70,
+              "score": 0.548,
+              "n": 115,
+              "hit": 63,
               "truncated": false,
-              "note": "不相关的主要是退款金额、优惠券、赠品、退货时限、支付方式等与运费承担无关的内容。",
+              "note": "不相关的主要是退款金额、优惠券、赠品、退货时限、支付方式等非运费承担规则。",
               "irrelevant": [
                 "**退款金额以消费者实际支付的金额为准**，不是商品标价。",
                 "使用优惠券的订单，**按实付金额退款，优惠券不予退还**。",
@@ -346,7 +492,15 @@
           "seed_chunk_id": [
             "L05#025:00"
           ],
-          "reference_answer": "七日无理由退货的运费由消费者承担；三包质量问题退货的运费由经营者承担。"
+          "reference_answer": "七日无理由退货的运费由消费者承担；三包质量问题退货的运费由经营者承担。",
+          "acceptable_seed_chunk_ids": [
+            [
+              "L05#025:00",
+              "P06#000:00",
+              "P06#001:00",
+              "P06#002:00"
+            ]
+          ]
         },
         "metadata": {
           "kind": "table",
@@ -368,7 +522,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -382,27 +536,27 @@
       "output": [
         {
           "name": "recall@10",
-          "value": 0,
+          "value": 1,
           "comment": "种子块名次 L05#025:00=11"
         },
         {
           "name": "recall@3",
-          "value": 0,
-          "comment": "种子块名次 L05#025:00=8"
+          "value": 1,
+          "comment": "种子块名次 L05#025:00=7"
         },
         {
           "name": "recall@1",
           "value": 0,
-          "comment": "种子块名次 L05#025:00=8"
+          "comment": "种子块名次 L05#025:00=7"
         },
         {
           "name": "evidence_tokens",
-          "value": 2909,
+          "value": 2742,
           "comment": ""
         },
         {
           "name": "duplicate_ratio",
-          "value": 0.266,
+          "value": 0.338,
           "comment": ""
         },
         {
@@ -412,8 +566,8 @@
         },
         {
           "name": "context_relevance",
-          "value": 0.569,
-          "comment": "70/123 个内容单元相关；不相关的主要是退款金额、优惠券、赠品、退货时限、支付方式等与运费承担无关的内容。"
+          "value": 0.548,
+          "comment": "63/115 个内容单元相关；不相关的主要是退款金额、优惠券、赠品、退货时限、支付方式等非运费承担规则。"
         },
         {
           "name": "run_error",
@@ -428,7 +582,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "d79b49457daff9ac",
+      "parentObservationId": "e7947208d14c2a10",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -436,10 +590,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.0,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:08.771Z",
-      "updatedAt": "2026-08-18T11:50:08.788Z",
+      "createdAt": "2026-08-19T05:19:04.889Z",
+      "updatedAt": "2026-08-19T05:19:04.920Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -459,18 +613,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "213939b7f59aeebe",
-      "traceId": "c5f13b7f5aefeb943835b8f670698cd6",
+      "id": "9e620f42c0a92158",
+      "traceId": "2b1a6a1460ee469220f75542c1ba3eb2",
       "type": "SPAN",
       "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:49:40.807000+00:00",
-      "endTime": "2026-08-18 11:50:03.854000+00:00",
+      "startTime": "2026-08-19 05:18:44.553000+00:00",
+      "endTime": "2026-08-19 05:19:02.031000+00:00",
       "input": {
         "query": "在七日无理由退货与三包质量问题两种情形下，退货产生的运费分别由哪一方承担？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -501,7 +655,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -514,6 +668,7 @@
       },
       "output": {
         "case_id": "R1-023",
+        "query": "在七日无理由退货与三包质量问题两种情形下，退货产生的运费分别由哪一方承担？",
         "type": "single",
         "style": "formal",
         "doc_id": "L05",
@@ -522,30 +677,55 @@
         "seed_chunk_id": [
           "L05#025:00"
         ],
+        "acceptable_seed_chunk_ids": [
+          [
+            "L05#025:00",
+            "P06#000:00",
+            "P06#001:00",
+            "P06#002:00"
+          ]
+        ],
         "error": null,
         "scores": {
-          "recall@10": 0,
-          "recall@3": 0,
+          "recall@10": 1,
+          "recall@3": 1,
           "recall@1": 0,
-          "evidence_tokens": 2909,
-          "duplicate_ratio": 0.266,
+          "evidence_tokens": 2742,
+          "duplicate_ratio": 0.338,
           "context_recall": 1,
-          "context_relevance": 0.569
+          "context_relevance": 0.548
         },
-        "elapsed_s": 2,
+        "elapsed_s": 2.2,
         "seed_rank": {
           "candidate": {
             "L05#025:00": 11
           },
           "evidence": {
-            "L05#025:00": 8
+            "L05#025:00": 7
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "refund",
+              "text": "七日无理由退货情形下，退货产生的运费由哪一方承担？"
+            },
+            {
+              "id": "2",
+              "intent": "refund",
+              "text": "三包质量问题退货情形下，退货产生的运费由哪一方承担？"
+            }
+          ]
+        },
+        "rewrite_hash": "69c505c349472b82",
         "sections": [
           "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.6 运费",
           "P06 星辰优选运费与退货物流规则 > 第一条 运费承担的基本原则 … 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
           "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十八条 【退货运费承担】",
-          "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】 … 第二十五条 【网络购物七日无理由退货】"
+          "L02 网络购买商品七日无理由退货暂行办法 > 第七章 附则 > 第三十五条 【质量问题退货的法律适用】"
         ],
         "judge": {
           "context_recall": {
@@ -561,17 +741,17 @@
               {
                 "claim": "三包质量问题退货的运费由经营者承担。",
                 "supported": true,
-                "reason": "P06表格及L01第二十四条明确质量问题退货运费由经营者承担。"
+                "reason": "P06表格及多处明确质量问题退货运费由经营者承担。"
               }
             ],
             "error": null
           },
           "context_relevance": {
-            "score": 0.569,
-            "n": 123,
-            "hit": 70,
+            "score": 0.548,
+            "n": 115,
+            "hit": 63,
             "truncated": false,
-            "note": "不相关的主要是退款金额、优惠券、赠品、退货时限、支付方式等与运费承担无关的内容。",
+            "note": "不相关的主要是退款金额、优惠券、赠品、退货时限、支付方式等非运费承担规则。",
             "irrelevant": [
               "**退款金额以消费者实际支付的金额为准**，不是商品标价。",
               "使用优惠券的订单，**按实付金额退款，优惠券不予退还**。",
@@ -595,7 +775,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "bc6e37ddc70e179b",
+      "parentObservationId": "9f456fe6f8469055",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -603,10 +783,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 23.047,
+      "latency": 17.478,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:08.771Z",
-      "updatedAt": "2026-08-18T11:50:08.787Z",
+      "createdAt": "2026-08-19T05:19:04.889Z",
+      "updatedAt": "2026-08-19T05:19:04.900Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -627,18 +807,23 @@
       "usagePricingTierName": null
     },
     {
-      "id": "d79b49457daff9ac",
-      "traceId": "c5f13b7f5aefeb943835b8f670698cd6",
-      "type": "SPAN",
-      "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:50:03.855000+00:00",
-      "endTime": "2026-08-18 11:50:03.857000+00:00",
+      "id": "11083c14c2b024ad",
+      "traceId": "2b1a6a1460ee469220f75542c1ba3eb2",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:18:54.549000+00:00",
+      "endTime": "2026-08-19 05:18:56.751000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "在七日无理由退货与三包质量问题两种情形下，退货产生的运费分别由哪一方承担？",
+        "top_k": 4
+      },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -650,10 +835,52 @@
         }
       },
       "output": {
-        "evaluator_count": 1,
-        "evaluation_count": 8,
-        "failed_evaluator_count": 0,
-        "skipped_evaluator_count": 0
+        "sections": [
+          {
+            "section": "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.6 运费",
+            "text": "**退款金额以消费者实际支付的金额为准**，不是商品标价。\n\n使用优惠券的订单，**按实付金额退款，优惠券不予退还**。\n\n套装商品或满减活动订单中部分商品退货，导致剩余订单不再满足优惠条件的，按购买时各商品的原价重新结算，**多退少补**。\n\n以积分、储值余额支付的部分，退款时以相同形式返还至原账户。\n\n退货时须将商品本身、配件及赠品一并退回。赠品不能一并退回的，平台可按事先标明的赠品价格从退款中扣除相应价款。详见 [P10]。\n\n运费的承担与扣除规则详见 [P06]。核心区别：**无理由退货的退回运费由消费者承担，质量问题退货的运费由平台或商家承担。**",
+            "score": 0.9324667263031007,
+            "doc_id": "P03",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P03-退款规则与到账时效.md",
+            "reason": "相关性 0.941 × 先验 0.90 → 0.932；命中 1/platform/dense#3, 1/platform/bm25#2, 2/platform/dense#6, 2/platform/bm25#3"
+          },
+          {
+            "section": "P06 星辰优选运费与退货物流规则 > 第一条 运费承担的基本原则 … 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
+            "text": "**运费归属完全取决于退款原因类型**，这是「无理由」与「质量问题」两类申请最直接的差别之一：\n\n| 退款原因 | 寄回运费 | 原订单已付运费 | 依据 |\n|---|---|---|---|\n| **无理由退货** | 消费者承担 | 不退还 | [L02] 第十八条 |\n| **质量问题退货** | 经营者承担 | 一并退还 | [L01] 第二十四条 |\n| **错发、漏发、少件** | 经营者承担 | 一并退还 | 归入质量问题 |\n| **运输破损、丢失** | 经营者承担 | 一并退还 | [L04] 第二十条 |\n| **未发货取消订单** | 无 | 全额退还 | 未产生物流成本 |\n\n> 消费者主张质量问题但经查验不成立的，运费改由消费者承担。\n\n无理由退货所产生的寄回运费由消费者承担。消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。\n\n订单原本收取的运费属于已实际发生的履约成本，无理由退货时**不予退还**。\n\n| 情形 | 处理方式 |\n|---|---|\n| 商家无条件包邮，全部退货 | 消费者仅承担寄回运费 |\n| 商家无条件包邮，部分退货 | 消费者仅承担寄回运费 |\n| 满额包邮，全部退货 | 消费者仅承担寄回运费 |\n| **满额包邮，部分退货后剩余金额不满足包邮条件** | **平台可从退款中扣除原订单应付运费** |\n| 未包邮订单 | 原订单运费不退，寄回运费自理 |\n\n从退款中扣除运费的，须在退款结果中列明扣除项与金额。**未列明的扣除无效**，消费者可申请补退。\n\n无理由退货所产生的寄回运费由消费者承担。消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。\n\n订单原本收取的运费属于已实际发生的履约成本，无理由退货时**不予退还**。\n\n| 情形 | 处理方式 |\n|---|---|\n| 商家无条件包邮，全部退货 | 消费者仅承担寄回运费 |\n| 商家无条件包邮，部分退货 | 消费者仅承担寄回运费 |\n| 满额包邮，全部退货 | 消费者仅承担寄回运费 |\n| **满额包邮，部分退货后剩余金额不满足包邮条件** | **平台可从退款中扣除原订单应付运费** |\n| 未包邮订单 | 原订单运费不退，寄回运费自理 |\n\n从退款中扣除运费的，须在退款结果中列明扣除项与金额。**未列明的扣除无效**，消费者可申请补退。\n\n无理由退货所产生的寄回运费由消费者承担。消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。\n\n订单原本收取的运费属于已实际发生的履约成本，无理由退货时**不予退还**。\n\n| 情形 | 处理方式 |\n|---|---|\n| 商家无条件包邮，全部退货 | 消费者仅承担寄回运费 |\n| 商家无条件包邮，部分退货 | 消费者仅承担寄回运费 |\n| 满额包邮，全部退货 | 消费者仅承担寄回运费 |\n| **满额包邮，部分退货后剩余金额不满足包邮条件** | **平台可从退款中扣除原订单应付运费** |\n| 未包邮订单 | 原订单运费不退，寄回运费自理 |\n\n从退款中扣除运费的，须在退款结果中列明扣除项与金额。**未列明的扣除无效**，消费者可申请补退。\n\n商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。\n\n商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。\n\n商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。\n\n商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。",
+            "score": 0.8893847751617433,
+            "doc_id": "P06",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P06-运费与退货物流规则.md",
+            "reason": "相关性 0.887 × 先验 0.90 → 0.889；命中 1/platform/dense#1, 1/platform/bm25#4, 2/platform/dense#3, 2/platform/bm25#2"
+          },
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十八条 【退货运费承担】",
+            "text": "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。\n\n七日期间自消费者签收商品的次日开始起算。\n\n> **判定要点**：窗口期以**发出退货通知**的时间为准，不是商品寄回或卖家收到的时间；起算点是**签收次日**，签收当天不计入。\n\n网络商品销售者收到退货通知后应当及时向消费者提供真实、准确的退货地址、退货联系人、退货联系电话等有效联系信息。\n\n消费者获得上述信息后应当及时退回商品，并保留退货凭证。\n\n消费者退货时应当将商品本身、配件及赠品一并退回。\n\n赠品包括赠送的实物、积分、代金券、优惠券等形式。如果赠品不能一并退回，经营者可以要求消费者按照事先标明的赠品价格支付赠品价款。\n\n消费者退回的商品完好的，网络商品销售者应当在收到退回商品之日起七日内向消费者返还已支付的商品价款。\n\n> **判定要点**：法定退款时限是**收到退货之日起 7 日内**。平台承诺的「1-3 个工作日到账」快于法定要求，属于更优承诺。\n\n退款方式比照购买商品的支付方式。经营者与消费者另有约定的，从其约定。\n\n购买商品时采用多种方式支付价款的，一般应当按照各种支付方式的实际支付价款以相应方式退款。\n\n除征得消费者明确表示同意的以外，网络商品销售者不应当自行指定其他退款方式。\n\n> **判定要点**：**「原路退回」是法定默认方式**。未经消费者明确同意，不得以store credit、平台余额、优惠券等形式替代原路退款。\n\n消费者采用积分、代金券、优惠券等形式支付价款的，网络商品销售者在消费者退还商品后应当以相应形式返还消费者。对积分、代金券、优惠券的使用和返还有约定的，可以从其约定。\n\n消费者购买商品时采用信用卡支付方式并支付手续费的，网络商品销售者退款时可以不退回手续费。\n\n消费者购买商品时采用信用卡支付方式并被网络商品销售者免除手续费的，网络商品销售者可以在退款时扣除手续费。\n\n退货价款以消费者实际支出的价款为准。\n\n套装或者满减优惠活动中的部分商品退货，导致不能再享受优惠的，根据购买时各商品价格进行结算，多退少补。\n\n> **判定要点**：**退款基数是实付金额，不是商品标价**。部分退货导致优惠失效的，剩余订单需重新结算，可能出现「多退少补」。\n\n商品退回所产生的运费依法由消费者承担。经营者与消费者另有约定的，按照约定。\n\n消费者参加满足一定条件免运费活动，但退货后已不能达到免运费活动要求的，网络商品销售者在退款时可以扣除运费。\n\n> **判定要点**：**无理由退货运费由消费者承担**（本条）；**质量问题退货运费由经营者承担**（消保法第二十四条）。这是区分退款原因的直接后果之一。\n\n网络商品销售者可以与消费者约定退货方式，但不应当限制消费者的退货方式。\n\n网络商品销售者可以免费上门取货，也可以征得消费者同意后有偿上门取货。",
+            "score": 0.8870824241638183,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.996 × 先验 0.45 → 0.887；命中 1/law/dense#1, 1/law/bm25#1, 2/law/dense#4, 2/law/bm25#1"
+          },
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第七章 附则 > 第三十五条 【质量问题退货的法律适用】",
+            "text": "网络商品销售者提供的商品不符合质量要求，消费者要求退货的，适用《消费者权益保护法》第二十四条以及其他相关规定。\n\n> **判定要点**：本办法**只管无理由退货**。质量问题退货走消保法第二十四条与三包规定（[L05]），窗口期、运费、举证责任都不同。\n\n经营者采用电视、电话、邮购等方式销售商品，依照本办法执行。\n\n本办法由国家市场监督管理总局负责解释。\n\n本办法自2017年3月15日起施行。",
+            "score": 0.8588915729522705,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.961 × 先验 0.45 → 0.859；命中 2/law/dense#2"
+          }
+        ]
       },
       "usage": {
         "input": 0,
@@ -662,7 +889,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "bc6e37ddc70e179b",
+      "parentObservationId": "9e620f42c0a92158",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -670,18 +897,16 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.002,
+      "latency": 2.202,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:08.771Z",
-      "updatedAt": "2026-08-18T11:50:08.787Z",
+      "createdAt": "2026-08-19T05:18:59.855Z",
+      "updatedAt": "2026-08-19T05:18:59.871Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
       "totalTokens": 0,
       "completionStartTime": null,
       "model": null,
-      "modelParameters": null,
-      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -695,18 +920,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "636b64afa3f9df0c",
-      "traceId": "c5f13b7f5aefeb943835b8f670698cd6",
+      "id": "48fc3440695b2c6e",
+      "traceId": "2b1a6a1460ee469220f75542c1ba3eb2",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 11:49:57.725000+00:00",
-      "endTime": "2026-08-18 11:49:57.842000+00:00",
+      "startTime": "2026-08-19 05:18:55.933000+00:00",
+      "endTime": "2026-08-19 05:18:56.038000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -742,28 +967,6 @@
             ]
           },
           {
-            "chunk_id": "P03#001:05",
-            "section": "P03 第二条 退款金额的计算 > 2.6 运费",
-            "rrf": 0.1709,
-            "hits": [
-              "1/platform/dense#3",
-              "1/platform/bm25#2",
-              "2/platform/dense#6",
-              "2/platform/bm25#3"
-            ]
-          },
-          {
-            "chunk_id": "P06#002:00",
-            "section": "P06 第三条 质量问题退货的运费 > 3.1 全额承担",
-            "rrf": 0.1694,
-            "hits": [
-              "1/platform/dense#6",
-              "1/platform/bm25#8",
-              "2/platform/dense#1",
-              "2/platform/bm25#1"
-            ]
-          },
-          {
             "chunk_id": "P06#001:00",
             "section": "P06 第二条 无理由退货的运费 > 2.1 寄回运费",
             "rrf": 0.1563,
@@ -772,6 +975,17 @@
               "1/platform/bm25#1",
               "2/platform/dense#15",
               "2/platform/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "P03#001:05",
+            "section": "P03 第二条 退款金额的计算 > 2.6 运费",
+            "rrf": 0.1709,
+            "hits": [
+              "1/platform/dense#3",
+              "1/platform/bm25#2",
+              "2/platform/dense#6",
+              "2/platform/bm25#3"
             ]
           },
           {
@@ -786,36 +1000,12 @@
             ]
           },
           {
-            "chunk_id": "P06#002:02",
-            "section": "P06 第三条 质量问题退货的运费 > 3.3 大件商品",
-            "rrf": 0.1491,
+            "chunk_id": "L01#004:00",
+            "section": "L01 第二十五条 【网络购物七日无理由退货】",
+            "rrf": 0.0835,
             "hits": [
-              "1/platform/dense#12",
-              "1/platform/bm25#9",
-              "2/platform/dense#4",
-              "2/platform/bm25#4"
-            ]
-          },
-          {
-            "chunk_id": "P06#003:02",
-            "section": "P06 第四条 运费险 > 4.3 赔付不足",
-            "rrf": 0.1475,
-            "hits": [
-              "1/platform/dense#10",
-              "1/platform/bm25#6",
-              "2/platform/dense#8",
-              "2/platform/bm25#5"
-            ]
-          },
-          {
-            "chunk_id": "P06#002:03",
-            "section": "P06 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
-            "rrf": 0.1447,
-            "hits": [
-              "1/platform/dense#8",
-              "1/platform/bm25#16",
-              "2/platform/dense#2",
-              "2/platform/bm25#8"
+              "1/law/dense#3",
+              "1/law/bm25#5"
             ]
           },
           {
@@ -830,6 +1020,37 @@
             ]
           },
           {
+            "chunk_id": "P06#002:00",
+            "section": "P06 第三条 质量问题退货的运费 > 3.1 全额承担",
+            "rrf": 0.1694,
+            "hits": [
+              "1/platform/dense#6",
+              "1/platform/bm25#8",
+              "2/platform/dense#1",
+              "2/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P06#001:01",
+            "section": "P06 第二条 无理由退货的运费 > 2.2 原订单运费",
+            "rrf": 0.0723,
+            "hits": [
+              "1/platform/dense#5",
+              "1/platform/bm25#11"
+            ]
+          },
+          {
+            "chunk_id": "P06#003:02",
+            "section": "P06 第四条 运费险 > 4.3 赔付不足",
+            "rrf": 0.1475,
+            "hits": [
+              "1/platform/dense#10",
+              "1/platform/bm25#6",
+              "2/platform/dense#8",
+              "2/platform/bm25#5"
+            ]
+          },
+          {
             "chunk_id": "L05#025:00",
             "section": "L05 与无理由退货的对照",
             "rrf": 0.1286,
@@ -837,6 +1058,37 @@
               "1/law/bm25#3",
               "2/law/dense#3",
               "2/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P06#002:02",
+            "section": "P06 第三条 质量问题退货的运费 > 3.3 大件商品",
+            "rrf": 0.1491,
+            "hits": [
+              "1/platform/dense#12",
+              "1/platform/bm25#9",
+              "2/platform/dense#4",
+              "2/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P06#002:03",
+            "section": "P06 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
+            "rrf": 0.1447,
+            "hits": [
+              "1/platform/dense#8",
+              "1/platform/bm25#16",
+              "2/platform/dense#2",
+              "2/platform/bm25#8"
+            ]
+          },
+          {
+            "chunk_id": "P01#003:02",
+            "section": "P01 第三章 订单与合同 > 3.3 交付与运输风险",
+            "rrf": 0.0646,
+            "hits": [
+              "2/platform/dense#10",
+              "2/platform/bm25#12"
             ]
           },
           {
@@ -850,75 +1102,46 @@
             ]
           },
           {
-            "chunk_id": "L01#003:00",
-            "section": "L01 第二十四条 【质量不符时的退货、更换、修理】",
-            "rrf": 0.0889,
+            "chunk_id": "P09#004:04",
+            "section": "P09 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
+            "rrf": 0.0586,
             "hits": [
-              "1/law/bm25#2",
-              "2/law/bm25#3"
+              "2/platform/dense#11",
+              "2/platform/bm25#18"
             ]
           },
           {
-            "chunk_id": "L01#004:00",
-            "section": "L01 第二十五条 【网络购物七日无理由退货】",
-            "rrf": 0.0835,
+            "chunk_id": "P11#004:04",
+            "section": "P11 第四条 数码与家用电器 > 4.5 不实行三包的情形",
+            "rrf": 0.0583,
             "hits": [
-              "1/law/dense#3",
-              "1/law/bm25#5"
+              "2/platform/dense#12",
+              "2/platform/bm25#17"
             ]
           },
           {
-            "chunk_id": "L04#002:00",
-            "section": "L04 第二十条 【交付与运输风险】",
-            "rrf": 0.0817,
+            "chunk_id": "P06#002:01",
+            "section": "P06 第三条 质量问题退货的运费 > 3.2 垫付与返还",
+            "rrf": 0.058,
             "hits": [
-              "1/law/bm25#4",
-              "2/law/bm25#5"
+              "2/platform/dense#14",
+              "2/platform/bm25#15"
             ]
           },
           {
-            "chunk_id": "P06#001:01",
-            "section": "P06 第二条 无理由退货的运费 > 2.2 原订单运费",
-            "rrf": 0.0723,
+            "chunk_id": "L05#015:00",
+            "section": "L05 第十五条 【免费修理与运输费】",
+            "rrf": 0.0476,
             "hits": [
-              "1/platform/dense#5",
-              "1/platform/bm25#11"
+              "2/law/dense#1"
             ]
           },
           {
-            "chunk_id": "P06#005:00",
-            "section": "P06 第六条 物流异常的处理 > 6.1 退货途中丢失",
-            "rrf": 0.0715,
+            "chunk_id": "L02#007:00",
+            "section": "L02 第七章 附则 > 第三十五条 【质量问题退货的法律适用】",
+            "rrf": 0.0455,
             "hits": [
-              "1/platform/dense#7",
-              "2/platform/dense#9"
-            ]
-          },
-          {
-            "chunk_id": "P06#004:02",
-            "section": "P06 第五条 退货物流 > 5.3 退货凭证",
-            "rrf": 0.0715,
-            "hits": [
-              "1/platform/bm25#7",
-              "2/platform/bm25#9"
-            ]
-          },
-          {
-            "chunk_id": "P01#003:02",
-            "section": "P01 第三章 订单与合同 > 3.3 交付与运输风险",
-            "rrf": 0.0646,
-            "hits": [
-              "2/platform/dense#10",
-              "2/platform/bm25#12"
-            ]
-          },
-          {
-            "chunk_id": "P06#003:00",
-            "section": "P06 第四条 运费险 > 4.1 运费险的性质",
-            "rrf": 0.0627,
-            "hits": [
-              "1/platform/bm25#10",
-              "2/platform/bm25#14"
+              "2/law/dense#2"
             ]
           }
         ]
@@ -930,7 +1153,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "5e03e0b6734b09bb",
+      "parentObservationId": "11083c14c2b024ad",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -938,10 +1161,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.117,
+      "latency": 0.105,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:49:58.687Z",
-      "updatedAt": "2026-08-18T11:49:58.706Z",
+      "createdAt": "2026-08-19T05:18:59.855Z",
+      "updatedAt": "2026-08-19T05:18:59.870Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -963,153 +1186,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "5e03e0b6734b09bb",
-      "traceId": "c5f13b7f5aefeb943835b8f670698cd6",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:49:56.591000+00:00",
-      "endTime": "2026-08-18 11:49:58.562000+00:00",
-      "modelParameters": {},
-      "input": {
-        "query": "在七日无理由退货与三包质量问题两种情形下，退货产生的运费分别由哪一方承担？",
-        "top_k": 4
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.6 运费",
-            "text": "**退款金额以消费者实际支付的金额为准**，不是商品标价。\n\n使用优惠券的订单，**按实付金额退款，优惠券不予退还**。\n\n套装商品或满减活动订单中部分商品退货，导致剩余订单不再满足优惠条件的，按购买时各商品的原价重新结算，**多退少补**。\n\n以积分、储值余额支付的部分，退款时以相同形式返还至原账户。\n\n退货时须将商品本身、配件及赠品一并退回。赠品不能一并退回的，平台可按事先标明的赠品价格从退款中扣除相应价款。详见 [P10]。\n\n运费的承担与扣除规则详见 [P06]。核心区别：**无理由退货的退回运费由消费者承担，质量问题退货的运费由平台或商家承担。**",
-            "score": 0.9324667263031007,
-            "doc_id": "P03",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P03-退款规则与到账时效.md",
-            "reason": "相关性 0.941 × 先验 0.90 → 0.932；命中 1/platform/dense#3, 1/platform/bm25#2, 2/platform/dense#6, 2/platform/bm25#3"
-          },
-          {
-            "section": "P06 星辰优选运费与退货物流规则 > 第一条 运费承担的基本原则 … 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
-            "text": "**运费归属完全取决于退款原因类型**，这是「无理由」与「质量问题」两类申请最直接的差别之一：\n\n| 退款原因 | 寄回运费 | 原订单已付运费 | 依据 |\n|---|---|---|---|\n| **无理由退货** | 消费者承担 | 不退还 | [L02] 第十八条 |\n| **质量问题退货** | 经营者承担 | 一并退还 | [L01] 第二十四条 |\n| **错发、漏发、少件** | 经营者承担 | 一并退还 | 归入质量问题 |\n| **运输破损、丢失** | 经营者承担 | 一并退还 | [L04] 第二十条 |\n| **未发货取消订单** | 无 | 全额退还 | 未产生物流成本 |\n\n> 消费者主张质量问题但经查验不成立的，运费改由消费者承担。\n\n无理由退货所产生的寄回运费由消费者承担。消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。\n\n订单原本收取的运费属于已实际发生的履约成本，无理由退货时**不予退还**。\n\n| 情形 | 处理方式 |\n|---|---|\n| 商家无条件包邮，全部退货 | 消费者仅承担寄回运费 |\n| 商家无条件包邮，部分退货 | 消费者仅承担寄回运费 |\n| 满额包邮，全部退货 | 消费者仅承担寄回运费 |\n| **满额包邮，部分退货后剩余金额不满足包邮条件** | **平台可从退款中扣除原订单应付运费** |\n| 未包邮订单 | 原订单运费不退，寄回运费自理 |\n\n从退款中扣除运费的，须在退款结果中列明扣除项与金额。**未列明的扣除无效**，消费者可申请补退。\n\n无理由退货所产生的寄回运费由消费者承担。消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。\n\n订单原本收取的运费属于已实际发生的履约成本，无理由退货时**不予退还**。\n\n| 情形 | 处理方式 |\n|---|---|\n| 商家无条件包邮，全部退货 | 消费者仅承担寄回运费 |\n| 商家无条件包邮，部分退货 | 消费者仅承担寄回运费 |\n| 满额包邮，全部退货 | 消费者仅承担寄回运费 |\n| **满额包邮，部分退货后剩余金额不满足包邮条件** | **平台可从退款中扣除原订单应付运费** |\n| 未包邮订单 | 原订单运费不退，寄回运费自理 |\n\n从退款中扣除运费的，须在退款结果中列明扣除项与金额。**未列明的扣除无效**，消费者可申请补退。\n\n无理由退货所产生的寄回运费由消费者承担。消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。\n\n订单原本收取的运费属于已实际发生的履约成本，无理由退货时**不予退还**。\n\n| 情形 | 处理方式 |\n|---|---|\n| 商家无条件包邮，全部退货 | 消费者仅承担寄回运费 |\n| 商家无条件包邮，部分退货 | 消费者仅承担寄回运费 |\n| 满额包邮，全部退货 | 消费者仅承担寄回运费 |\n| **满额包邮，部分退货后剩余金额不满足包邮条件** | **平台可从退款中扣除原订单应付运费** |\n| 未包邮订单 | 原订单运费不退，寄回运费自理 |\n\n从退款中扣除运费的，须在退款结果中列明扣除项与金额。**未列明的扣除无效**，消费者可申请补退。\n\n商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。\n\n商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。\n\n商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。",
-            "score": 0.8893847751617433,
-            "doc_id": "P06",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P06-运费与退货物流规则.md",
-            "reason": "相关性 0.887 × 先验 0.90 → 0.889；命中 1/platform/dense#1, 1/platform/bm25#4, 2/platform/dense#3, 2/platform/bm25#2"
-          },
-          {
-            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十八条 【退货运费承担】",
-            "text": "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。\n\n七日期间自消费者签收商品的次日开始起算。\n\n> **判定要点**：窗口期以**发出退货通知**的时间为准，不是商品寄回或卖家收到的时间；起算点是**签收次日**，签收当天不计入。\n\n网络商品销售者收到退货通知后应当及时向消费者提供真实、准确的退货地址、退货联系人、退货联系电话等有效联系信息。\n\n消费者获得上述信息后应当及时退回商品，并保留退货凭证。\n\n消费者退货时应当将商品本身、配件及赠品一并退回。\n\n赠品包括赠送的实物、积分、代金券、优惠券等形式。如果赠品不能一并退回，经营者可以要求消费者按照事先标明的赠品价格支付赠品价款。\n\n消费者退回的商品完好的，网络商品销售者应当在收到退回商品之日起七日内向消费者返还已支付的商品价款。\n\n> **判定要点**：法定退款时限是**收到退货之日起 7 日内**。平台承诺的「1-3 个工作日到账」快于法定要求，属于更优承诺。\n\n退款方式比照购买商品的支付方式。经营者与消费者另有约定的，从其约定。\n\n购买商品时采用多种方式支付价款的，一般应当按照各种支付方式的实际支付价款以相应方式退款。\n\n除征得消费者明确表示同意的以外，网络商品销售者不应当自行指定其他退款方式。\n\n> **判定要点**：**「原路退回」是法定默认方式**。未经消费者明确同意，不得以store credit、平台余额、优惠券等形式替代原路退款。\n\n消费者采用积分、代金券、优惠券等形式支付价款的，网络商品销售者在消费者退还商品后应当以相应形式返还消费者。对积分、代金券、优惠券的使用和返还有约定的，可以从其约定。\n\n消费者购买商品时采用信用卡支付方式并支付手续费的，网络商品销售者退款时可以不退回手续费。\n\n消费者购买商品时采用信用卡支付方式并被网络商品销售者免除手续费的，网络商品销售者可以在退款时扣除手续费。\n\n退货价款以消费者实际支出的价款为准。\n\n套装或者满减优惠活动中的部分商品退货，导致不能再享受优惠的，根据购买时各商品价格进行结算，多退少补。\n\n> **判定要点**：**退款基数是实付金额，不是商品标价**。部分退货导致优惠失效的，剩余订单需重新结算，可能出现「多退少补」。\n\n商品退回所产生的运费依法由消费者承担。经营者与消费者另有约定的，按照约定。\n\n消费者参加满足一定条件免运费活动，但退货后已不能达到免运费活动要求的，网络商品销售者在退款时可以扣除运费。\n\n> **判定要点**：**无理由退货运费由消费者承担**（本条）；**质量问题退货运费由经营者承担**（消保法第二十四条）。这是区分退款原因的直接后果之一。\n\n网络商品销售者可以与消费者约定退货方式，但不应当限制消费者的退货方式。\n\n网络商品销售者可以免费上门取货，也可以征得消费者同意后有偿上门取货。",
-            "score": 0.8870824241638183,
-            "doc_id": "L02",
-            "layer": "law",
-            "doc_type": "部门规章",
-            "effective_date": "2017-03-15",
-            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
-            "reason": "相关性 0.996 × 先验 0.45 → 0.887；命中 1/law/dense#1, 1/law/bm25#1, 2/law/dense#4, 2/law/bm25#1"
-          },
-          {
-            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】 … 第二十五条 【网络购物七日无理由退货】",
-            "text": "经营者提供的商品或者服务不符合质量要求的，消费者可以依照国家规定、当事人约定退货，或者要求经营者履行更换、修理等义务。没有国家规定和当事人约定的，消费者可以自收到商品之日起七日内退货；七日后符合法定解除合同条件的，消费者可以及时退货，不符合法定解除合同条件的，可以要求经营者履行更换、修理等义务。\n\n依照前款规定进行退货、更换、修理的，经营者应当承担运输等必要费用。\n\n> **售后适用要点**：**质量问题退货的运费由经营者承担**，与无理由退货运费由消费者承担（第二十五条）相反。判定退款时必须先区分「无理由」与「质量问题」，两者的运费归属、窗口期、商品完好要求均不同。\n\n经营者采用网络、电视、电话、邮购等方式销售商品，消费者有权自收到商品之日起七日内退货，且无需说明理由，但下列商品除外：\n\n（一）消费者定作的；\n\n（二）鲜活易腐的；\n\n（三）在线下载或者消费者拆封的音像制品、计算机软件等数字化商品；\n\n（四）交付的报纸、期刊。\n\n除前款所列商品外，其他根据商品性质并经消费者在购买时确认不宜退货的商品，不适用无理由退货。\n\n消费者退货的商品应当完好。经营者应当自收到退回商品之日起七日内返还消费者支付的商品价款。退回商品的运费由消费者承担；经营者和消费者另有约定的，按照约定。\n\n> **售后适用要点**：这是「七天无理由退货」的法律出处。四类法定除外商品是**排除项的封闭清单**，经营者不得擅自扩大（见 [L03] 实施条例第十九条）。第五款所列「其他不宜退货商品」必须**逐单经消费者购买时确认**才能排除，默认勾选无效。",
-            "score": 0.8820986652374267,
-            "doc_id": "L01",
-            "layer": "law",
-            "doc_type": "法律",
-            "effective_date": "2014-03-15",
-            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
-            "reason": "相关性 0.990 × 先验 0.45 → 0.882；命中 1/law/bm25#2, 2/law/bm25#3"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "213939b7f59aeebe",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 1.971,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:49:58.688Z",
-      "updatedAt": "2026-08-18T11:49:58.702Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "7987737577666af0",
-      "traceId": "c5f13b7f5aefeb943835b8f670698cd6",
+      "id": "bfbb0341627fb0ab",
+      "traceId": "2b1a6a1460ee469220f75542c1ba3eb2",
       "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:49:58.546000+00:00",
-      "endTime": "2026-08-18 11:49:58.562000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": [
-          "P03#001:05",
-          "P06#000:00",
-          "L02#003:08",
-          "L01#003:00",
-          "P06#006:00",
-          "L04#002:00",
-          "P06#003:02",
-          "L05#025:00",
-          "L01#004:00",
-          "P06#001:00",
-          "P06#002:00",
-          "P06#002:03",
-          "P06#002:02",
-          "P09#004:01",
-          "P06#001:02",
-          "P01#003:02",
-          "P06#001:01"
-        ]
-      },
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:18:55.933000+00:00",
+      "endTime": "2026-08-19 05:18:55.933000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1121,50 +1209,22 @@
         }
       },
       "output": {
-        "sections": [
+        "routes": [
           {
-            "section": "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.6 运费",
-            "text": "**退款金额以消费者实际支付的金额为准**，不是商品标价。\n\n使用优惠券的订单，**按实付金额退款，优惠券不予退还**。\n\n套装商品或满减活动订单中部分商品退货，导致剩余订单不再满足优惠条件的，按购买时各商品的原价重新结算，**多退少补**。\n\n以积分、储值余额支付的部分，退款时以相同形式返还至原账户。\n\n退货时须将商品本身、配件及赠品一并退回。赠品不能一并退回的，平台可按事先标明的赠品价格从退款中扣除相应价款。详见 [P10]。\n\n运费的承担与扣除规则详见 [P06]。核心区别：**无理由退货的退回运费由消费者承担，质量问题退货的运费由平台或商家承担。**",
-            "score": 0.9324667263031007,
-            "doc_id": "P03",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P03-退款规则与到账时效.md",
-            "reason": "相关性 0.941 × 先验 0.90 → 0.932；命中 1/platform/dense#3, 1/platform/bm25#2, 2/platform/dense#6, 2/platform/bm25#3"
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
           },
           {
-            "section": "P06 星辰优选运费与退货物流规则 > 第一条 运费承担的基本原则 … 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
-            "text": "**运费归属完全取决于退款原因类型**，这是「无理由」与「质量问题」两类申请最直接的差别之一：\n\n| 退款原因 | 寄回运费 | 原订单已付运费 | 依据 |\n|---|---|---|---|\n| **无理由退货** | 消费者承担 | 不退还 | [L02] 第十八条 |\n| **质量问题退货** | 经营者承担 | 一并退还 | [L01] 第二十四条 |\n| **错发、漏发、少件** | 经营者承担 | 一并退还 | 归入质量问题 |\n| **运输破损、丢失** | 经营者承担 | 一并退还 | [L04] 第二十条 |\n| **未发货取消订单** | 无 | 全额退还 | 未产生物流成本 |\n\n> 消费者主张质量问题但经查验不成立的，运费改由消费者承担。\n\n无理由退货所产生的寄回运费由消费者承担。消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。\n\n订单原本收取的运费属于已实际发生的履约成本，无理由退货时**不予退还**。\n\n| 情形 | 处理方式 |\n|---|---|\n| 商家无条件包邮，全部退货 | 消费者仅承担寄回运费 |\n| 商家无条件包邮，部分退货 | 消费者仅承担寄回运费 |\n| 满额包邮，全部退货 | 消费者仅承担寄回运费 |\n| **满额包邮，部分退货后剩余金额不满足包邮条件** | **平台可从退款中扣除原订单应付运费** |\n| 未包邮订单 | 原订单运费不退，寄回运费自理 |\n\n从退款中扣除运费的，须在退款结果中列明扣除项与金额。**未列明的扣除无效**，消费者可申请补退。\n\n无理由退货所产生的寄回运费由消费者承担。消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。\n\n订单原本收取的运费属于已实际发生的履约成本，无理由退货时**不予退还**。\n\n| 情形 | 处理方式 |\n|---|---|\n| 商家无条件包邮，全部退货 | 消费者仅承担寄回运费 |\n| 商家无条件包邮，部分退货 | 消费者仅承担寄回运费 |\n| 满额包邮，全部退货 | 消费者仅承担寄回运费 |\n| **满额包邮，部分退货后剩余金额不满足包邮条件** | **平台可从退款中扣除原订单应付运费** |\n| 未包邮订单 | 原订单运费不退，寄回运费自理 |\n\n从退款中扣除运费的，须在退款结果中列明扣除项与金额。**未列明的扣除无效**，消费者可申请补退。\n\n无理由退货所产生的寄回运费由消费者承担。消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。\n\n订单原本收取的运费属于已实际发生的履约成本，无理由退货时**不予退还**。\n\n| 情形 | 处理方式 |\n|---|---|\n| 商家无条件包邮，全部退货 | 消费者仅承担寄回运费 |\n| 商家无条件包邮，部分退货 | 消费者仅承担寄回运费 |\n| 满额包邮，全部退货 | 消费者仅承担寄回运费 |\n| **满额包邮，部分退货后剩余金额不满足包邮条件** | **平台可从退款中扣除原订单应付运费** |\n| 未包邮订单 | 原订单运费不退，寄回运费自理 |\n\n从退款中扣除运费的，须在退款结果中列明扣除项与金额。**未列明的扣除无效**，消费者可申请补退。\n\n商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。\n\n商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。\n\n商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。",
-            "score": 0.8893847751617433,
-            "doc_id": "P06",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P06-运费与退货物流规则.md",
-            "reason": "相关性 0.887 × 先验 0.90 → 0.889；命中 1/platform/dense#1, 1/platform/bm25#4, 2/platform/dense#3, 2/platform/bm25#2"
-          },
-          {
-            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十八条 【退货运费承担】",
-            "text": "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。\n\n七日期间自消费者签收商品的次日开始起算。\n\n> **判定要点**：窗口期以**发出退货通知**的时间为准，不是商品寄回或卖家收到的时间；起算点是**签收次日**，签收当天不计入。\n\n网络商品销售者收到退货通知后应当及时向消费者提供真实、准确的退货地址、退货联系人、退货联系电话等有效联系信息。\n\n消费者获得上述信息后应当及时退回商品，并保留退货凭证。\n\n消费者退货时应当将商品本身、配件及赠品一并退回。\n\n赠品包括赠送的实物、积分、代金券、优惠券等形式。如果赠品不能一并退回，经营者可以要求消费者按照事先标明的赠品价格支付赠品价款。\n\n消费者退回的商品完好的，网络商品销售者应当在收到退回商品之日起七日内向消费者返还已支付的商品价款。\n\n> **判定要点**：法定退款时限是**收到退货之日起 7 日内**。平台承诺的「1-3 个工作日到账」快于法定要求，属于更优承诺。\n\n退款方式比照购买商品的支付方式。经营者与消费者另有约定的，从其约定。\n\n购买商品时采用多种方式支付价款的，一般应当按照各种支付方式的实际支付价款以相应方式退款。\n\n除征得消费者明确表示同意的以外，网络商品销售者不应当自行指定其他退款方式。\n\n> **判定要点**：**「原路退回」是法定默认方式**。未经消费者明确同意，不得以store credit、平台余额、优惠券等形式替代原路退款。\n\n消费者采用积分、代金券、优惠券等形式支付价款的，网络商品销售者在消费者退还商品后应当以相应形式返还消费者。对积分、代金券、优惠券的使用和返还有约定的，可以从其约定。\n\n消费者购买商品时采用信用卡支付方式并支付手续费的，网络商品销售者退款时可以不退回手续费。\n\n消费者购买商品时采用信用卡支付方式并被网络商品销售者免除手续费的，网络商品销售者可以在退款时扣除手续费。\n\n退货价款以消费者实际支出的价款为准。\n\n套装或者满减优惠活动中的部分商品退货，导致不能再享受优惠的，根据购买时各商品价格进行结算，多退少补。\n\n> **判定要点**：**退款基数是实付金额，不是商品标价**。部分退货导致优惠失效的，剩余订单需重新结算，可能出现「多退少补」。\n\n商品退回所产生的运费依法由消费者承担。经营者与消费者另有约定的，按照约定。\n\n消费者参加满足一定条件免运费活动，但退货后已不能达到免运费活动要求的，网络商品销售者在退款时可以扣除运费。\n\n> **判定要点**：**无理由退货运费由消费者承担**（本条）；**质量问题退货运费由经营者承担**（消保法第二十四条）。这是区分退款原因的直接后果之一。\n\n网络商品销售者可以与消费者约定退货方式，但不应当限制消费者的退货方式。\n\n网络商品销售者可以免费上门取货，也可以征得消费者同意后有偿上门取货。",
-            "score": 0.8870824241638183,
-            "doc_id": "L02",
-            "layer": "law",
-            "doc_type": "部门规章",
-            "effective_date": "2017-03-15",
-            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
-            "reason": "相关性 0.996 × 先验 0.45 → 0.887；命中 1/law/dense#1, 1/law/bm25#1, 2/law/dense#4, 2/law/bm25#1"
-          },
-          {
-            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十四条 【质量不符时的退货、更换、修理】 … 第二十五条 【网络购物七日无理由退货】",
-            "text": "经营者提供的商品或者服务不符合质量要求的，消费者可以依照国家规定、当事人约定退货，或者要求经营者履行更换、修理等义务。没有国家规定和当事人约定的，消费者可以自收到商品之日起七日内退货；七日后符合法定解除合同条件的，消费者可以及时退货，不符合法定解除合同条件的，可以要求经营者履行更换、修理等义务。\n\n依照前款规定进行退货、更换、修理的，经营者应当承担运输等必要费用。\n\n> **售后适用要点**：**质量问题退货的运费由经营者承担**，与无理由退货运费由消费者承担（第二十五条）相反。判定退款时必须先区分「无理由」与「质量问题」，两者的运费归属、窗口期、商品完好要求均不同。\n\n经营者采用网络、电视、电话、邮购等方式销售商品，消费者有权自收到商品之日起七日内退货，且无需说明理由，但下列商品除外：\n\n（一）消费者定作的；\n\n（二）鲜活易腐的；\n\n（三）在线下载或者消费者拆封的音像制品、计算机软件等数字化商品；\n\n（四）交付的报纸、期刊。\n\n除前款所列商品外，其他根据商品性质并经消费者在购买时确认不宜退货的商品，不适用无理由退货。\n\n消费者退货的商品应当完好。经营者应当自收到退回商品之日起七日内返还消费者支付的商品价款。退回商品的运费由消费者承担；经营者和消费者另有约定的，按照约定。\n\n> **售后适用要点**：这是「七天无理由退货」的法律出处。四类法定除外商品是**排除项的封闭清单**，经营者不得擅自扩大（见 [L03] 实施条例第十九条）。第五款所列「其他不宜退货商品」必须**逐单经消费者购买时确认**才能排除，默认勾选无效。",
-            "score": 0.8820986652374267,
-            "doc_id": "L01",
-            "layer": "law",
-            "doc_type": "法律",
-            "effective_date": "2014-03-15",
-            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
-            "reason": "相关性 0.990 × 先验 0.45 → 0.882；命中 1/law/bm25#2, 2/law/bm25#3"
+            "sub_query": "2",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
           }
         ]
       },
@@ -1175,7 +1235,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "5e03e0b6734b09bb",
+      "parentObservationId": "11083c14c2b024ad",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1183,10 +1243,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.016,
+      "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:49:58.688Z",
-      "updatedAt": "2026-08-18T11:49:58.702Z",
+      "createdAt": "2026-08-19T05:18:59.855Z",
+      "updatedAt": "2026-08-19T05:18:59.870Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1194,6 +1254,7 @@
       "completionStartTime": null,
       "model": null,
       "modelParameters": null,
+      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -1207,12 +1268,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "218a09b9b216a28c",
-      "traceId": "c5f13b7f5aefeb943835b8f670698cd6",
+      "id": "1ebd402358ecb239",
+      "traceId": "2b1a6a1460ee469220f75542c1ba3eb2",
       "type": "SPAN",
       "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:49:56.592000+00:00",
-      "endTime": "2026-08-18 11:49:57.724000+00:00",
+      "startTime": "2026-08-19 05:18:54.549000+00:00",
+      "endTime": "2026-08-19 05:18:55.933000+00:00",
       "input": {
         "query": "在七日无理由退货与三包质量问题两种情形下，退货产生的运费分别由哪一方承担？"
       },
@@ -1221,7 +1282,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1255,7 +1316,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "5e03e0b6734b09bb",
+      "parentObservationId": "11083c14c2b024ad",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1263,10 +1324,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.132,
+      "latency": 1.384,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:49:58.687Z",
-      "updatedAt": "2026-08-18T11:49:58.700Z",
+      "createdAt": "2026-08-19T05:18:59.855Z",
+      "updatedAt": "2026-08-19T05:18:59.866Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1287,12 +1348,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "370e6848e1c5bd10",
-      "traceId": "c5f13b7f5aefeb943835b8f670698cd6",
+      "id": "41dc820125a5572e",
+      "traceId": "2b1a6a1460ee469220f75542c1ba3eb2",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 11:49:57.842000+00:00",
-      "endTime": "2026-08-18 11:49:58.546000+00:00",
+      "startTime": "2026-08-19 05:18:56.039000+00:00",
+      "endTime": "2026-08-19 05:18:56.717000+00:00",
       "input": {
         "query": "在七日无理由退货与三包质量问题两种情形下，退货产生的运费分别由哪一方承担？",
         "candidates": 20
@@ -1302,7 +1363,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1317,9 +1378,9 @@
         "passed": 17,
         "min_score": 0.3,
         "dropped": [
-          "P06#005:00",
-          "P06#004:02",
-          "P06#003:00"
+          "P09#004:04",
+          "P11#004:04",
+          "L05#015:00"
         ],
         "evidence": [
           {
@@ -1347,12 +1408,12 @@
             "excerpt": "商品退回所产生的运费依法由消费者承担。经营者与消费者另有约定的，按照约定。 消费者参加满足一定条件免运费活动，但退货后已不能达到免运费活动要求的，网络商品销售者在退款时可以扣除运费。 > **判定要点**：**无理由退货运费由消费者承担**…"
           },
           {
-            "chunk_id": "L01#003:00",
-            "section": "L01 第二十四条 【质量不符时的退货、更换、修理】",
-            "score": 0.882,
-            "relevance": 0.99,
+            "chunk_id": "L02#007:00",
+            "section": "L02 第七章 附则 > 第三十五条 【质量问题退货的法律适用】",
+            "score": 0.859,
+            "relevance": 0.961,
             "prior": 0.45,
-            "excerpt": "经营者提供的商品或者服务不符合质量要求的，消费者可以依照国家规定、当事人约定退货，或者要求经营者履行更换、修理等义务。没有国家规定和当事人约定的，消费者可以自收到商品之日起七日内退货；七日后符合法定解除合同条件的，消费者可以及时退货，不符合…"
+            "excerpt": "网络商品销售者提供的商品不符合质量要求，消费者要求退货的，适用《消费者权益保护法》第二十四条以及其他相关规定。 > **判定要点**：本办法**只管无理由退货**。质量问题退货走消保法第二十四条与三包规定（[L05]），窗口期、运费、举证责…"
           },
           {
             "chunk_id": "P06#006:00",
@@ -1361,14 +1422,6 @@
             "relevance": 0.847,
             "prior": 0.9,
             "excerpt": "- [P02] 售后服务与退换货政策——退款原因的分类 - [P03] 退款规则与到账时效——运费扣除后的退款金额计算 - [P05] 商品完好标准与验收规范 - [L01] 消费者权益保护法第二十四条——质量问题运费由经营者承担 - [L…"
-          },
-          {
-            "chunk_id": "L04#002:00",
-            "section": "L04 第二十条 【交付与运输风险】",
-            "score": 0.798,
-            "relevance": 0.884,
-            "prior": 0.45,
-            "excerpt": "电子商务经营者应当按照承诺或者与消费者约定的方式、时限向消费者交付商品或者服务，并承担商品运输中的风险和责任。但是，消费者另行选择快递物流服务提供者的除外。 > **适用要点**：**运输途中的破损、丢失由经营者承担**，不能以「已交给快递…"
           },
           {
             "chunk_id": "P06#003:02",
@@ -1457,6 +1510,14 @@
             "relevance": 0.177,
             "prior": 0.9,
             "excerpt": "订单原本收取的运费属于已实际发生的履约成本，无理由退货时**不予退还**。"
+          },
+          {
+            "chunk_id": "P06#002:01",
+            "section": "P06 第三条 质量问题退货的运费 > 3.2 垫付与返还",
+            "score": 0.31,
+            "relevance": 0.162,
+            "prior": 0.9,
+            "excerpt": "消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。"
           }
         ]
       },
@@ -1467,7 +1528,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "5e03e0b6734b09bb",
+      "parentObservationId": "11083c14c2b024ad",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1475,10 +1536,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.704,
+      "latency": 0.678,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:49:58.688Z",
-      "updatedAt": "2026-08-18T11:49:58.698Z",
+      "createdAt": "2026-08-19T05:18:59.855Z",
+      "updatedAt": "2026-08-19T05:18:59.866Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1499,18 +1560,40 @@
       "usagePricingTierName": null
     },
     {
-      "id": "90d1cd208357a8eb",
-      "traceId": "c5f13b7f5aefeb943835b8f670698cd6",
+      "id": "74e8242082d0c03a",
+      "traceId": "2b1a6a1460ee469220f75542c1ba3eb2",
       "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:49:57.724000+00:00",
-      "endTime": "2026-08-18 11:49:57.725000+00:00",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:18:56.717000+00:00",
+      "endTime": "2026-08-19 05:18:56.751000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "P03#001:05",
+          "P06#000:00",
+          "L02#003:08",
+          "L02#007:00",
+          "P06#006:00",
+          "P06#003:02",
+          "L05#025:00",
+          "L01#004:00",
+          "P06#001:00",
+          "P06#002:00",
+          "P06#002:03",
+          "P06#002:02",
+          "P09#004:01",
+          "P06#001:02",
+          "P01#003:02",
+          "P06#001:01",
+          "P06#002:01"
+        ]
+      },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1522,22 +1605,50 @@
         }
       },
       "output": {
-        "routes": [
+        "sections": [
           {
-            "sub_query": "1",
-            "layer_k": {
-              "platform": 18,
-              "law": 5
-            },
-            "law_weight": 0.5
+            "section": "P03 星辰优选退款规则与到账时效 > 第二条 退款金额的计算 > 2.6 运费",
+            "text": "**退款金额以消费者实际支付的金额为准**，不是商品标价。\n\n使用优惠券的订单，**按实付金额退款，优惠券不予退还**。\n\n套装商品或满减活动订单中部分商品退货，导致剩余订单不再满足优惠条件的，按购买时各商品的原价重新结算，**多退少补**。\n\n以积分、储值余额支付的部分，退款时以相同形式返还至原账户。\n\n退货时须将商品本身、配件及赠品一并退回。赠品不能一并退回的，平台可按事先标明的赠品价格从退款中扣除相应价款。详见 [P10]。\n\n运费的承担与扣除规则详见 [P06]。核心区别：**无理由退货的退回运费由消费者承担，质量问题退货的运费由平台或商家承担。**",
+            "score": 0.9324667263031007,
+            "doc_id": "P03",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P03-退款规则与到账时效.md",
+            "reason": "相关性 0.941 × 先验 0.90 → 0.932；命中 1/platform/dense#3, 1/platform/bm25#2, 2/platform/dense#6, 2/platform/bm25#3"
           },
           {
-            "sub_query": "2",
-            "layer_k": {
-              "platform": 18,
-              "law": 5
-            },
-            "law_weight": 0.5
+            "section": "P06 星辰优选运费与退货物流规则 > 第一条 运费承担的基本原则 … 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
+            "text": "**运费归属完全取决于退款原因类型**，这是「无理由」与「质量问题」两类申请最直接的差别之一：\n\n| 退款原因 | 寄回运费 | 原订单已付运费 | 依据 |\n|---|---|---|---|\n| **无理由退货** | 消费者承担 | 不退还 | [L02] 第十八条 |\n| **质量问题退货** | 经营者承担 | 一并退还 | [L01] 第二十四条 |\n| **错发、漏发、少件** | 经营者承担 | 一并退还 | 归入质量问题 |\n| **运输破损、丢失** | 经营者承担 | 一并退还 | [L04] 第二十条 |\n| **未发货取消订单** | 无 | 全额退还 | 未产生物流成本 |\n\n> 消费者主张质量问题但经查验不成立的，运费改由消费者承担。\n\n无理由退货所产生的寄回运费由消费者承担。消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。\n\n订单原本收取的运费属于已实际发生的履约成本，无理由退货时**不予退还**。\n\n| 情形 | 处理方式 |\n|---|---|\n| 商家无条件包邮，全部退货 | 消费者仅承担寄回运费 |\n| 商家无条件包邮，部分退货 | 消费者仅承担寄回运费 |\n| 满额包邮，全部退货 | 消费者仅承担寄回运费 |\n| **满额包邮，部分退货后剩余金额不满足包邮条件** | **平台可从退款中扣除原订单应付运费** |\n| 未包邮订单 | 原订单运费不退，寄回运费自理 |\n\n从退款中扣除运费的，须在退款结果中列明扣除项与金额。**未列明的扣除无效**，消费者可申请补退。\n\n无理由退货所产生的寄回运费由消费者承担。消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。\n\n订单原本收取的运费属于已实际发生的履约成本，无理由退货时**不予退还**。\n\n| 情形 | 处理方式 |\n|---|---|\n| 商家无条件包邮，全部退货 | 消费者仅承担寄回运费 |\n| 商家无条件包邮，部分退货 | 消费者仅承担寄回运费 |\n| 满额包邮，全部退货 | 消费者仅承担寄回运费 |\n| **满额包邮，部分退货后剩余金额不满足包邮条件** | **平台可从退款中扣除原订单应付运费** |\n| 未包邮订单 | 原订单运费不退，寄回运费自理 |\n\n从退款中扣除运费的，须在退款结果中列明扣除项与金额。**未列明的扣除无效**，消费者可申请补退。\n\n无理由退货所产生的寄回运费由消费者承担。消费者可自行选择快递，也可使用平台的上门取件服务（费用从退款中扣除）。\n\n订单原本收取的运费属于已实际发生的履约成本，无理由退货时**不予退还**。\n\n| 情形 | 处理方式 |\n|---|---|\n| 商家无条件包邮，全部退货 | 消费者仅承担寄回运费 |\n| 商家无条件包邮，部分退货 | 消费者仅承担寄回运费 |\n| 满额包邮，全部退货 | 消费者仅承担寄回运费 |\n| **满额包邮，部分退货后剩余金额不满足包邮条件** | **平台可从退款中扣除原订单应付运费** |\n| 未包邮订单 | 原订单运费不退，寄回运费自理 |\n\n从退款中扣除运费的，须在退款结果中列明扣除项与金额。**未列明的扣除无效**，消费者可申请补退。\n\n商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。\n\n商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。\n\n商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。\n\n商品存在质量问题的，**寄回运费与原订单已付运费均由经营者承担**，不得以任何形式转嫁给消费者。\n\n消费者先行垫付寄回运费的，凭快递单据申请返还，平台在退款到账时一并返还。返还金额以实际支付的合理运费为限。\n\n大件商品（家电、家具、大型健身器材）的质量问题退换货，由经营者提供上门取件，**取件费用由经营者承担**。\n\n质量问题存在争议、需第三方检测的，运费先由消费者垫付，检测结论支持消费者的，由经营者全额返还。",
+            "score": 0.8893847751617433,
+            "doc_id": "P06",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P06-运费与退货物流规则.md",
+            "reason": "相关性 0.887 × 先验 0.90 → 0.889；命中 1/platform/dense#1, 1/platform/bm25#4, 2/platform/dense#3, 2/platform/bm25#2"
+          },
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十八条 【退货运费承担】",
+            "text": "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。\n\n七日期间自消费者签收商品的次日开始起算。\n\n> **判定要点**：窗口期以**发出退货通知**的时间为准，不是商品寄回或卖家收到的时间；起算点是**签收次日**，签收当天不计入。\n\n网络商品销售者收到退货通知后应当及时向消费者提供真实、准确的退货地址、退货联系人、退货联系电话等有效联系信息。\n\n消费者获得上述信息后应当及时退回商品，并保留退货凭证。\n\n消费者退货时应当将商品本身、配件及赠品一并退回。\n\n赠品包括赠送的实物、积分、代金券、优惠券等形式。如果赠品不能一并退回，经营者可以要求消费者按照事先标明的赠品价格支付赠品价款。\n\n消费者退回的商品完好的，网络商品销售者应当在收到退回商品之日起七日内向消费者返还已支付的商品价款。\n\n> **判定要点**：法定退款时限是**收到退货之日起 7 日内**。平台承诺的「1-3 个工作日到账」快于法定要求，属于更优承诺。\n\n退款方式比照购买商品的支付方式。经营者与消费者另有约定的，从其约定。\n\n购买商品时采用多种方式支付价款的，一般应当按照各种支付方式的实际支付价款以相应方式退款。\n\n除征得消费者明确表示同意的以外，网络商品销售者不应当自行指定其他退款方式。\n\n> **判定要点**：**「原路退回」是法定默认方式**。未经消费者明确同意，不得以store credit、平台余额、优惠券等形式替代原路退款。\n\n消费者采用积分、代金券、优惠券等形式支付价款的，网络商品销售者在消费者退还商品后应当以相应形式返还消费者。对积分、代金券、优惠券的使用和返还有约定的，可以从其约定。\n\n消费者购买商品时采用信用卡支付方式并支付手续费的，网络商品销售者退款时可以不退回手续费。\n\n消费者购买商品时采用信用卡支付方式并被网络商品销售者免除手续费的，网络商品销售者可以在退款时扣除手续费。\n\n退货价款以消费者实际支出的价款为准。\n\n套装或者满减优惠活动中的部分商品退货，导致不能再享受优惠的，根据购买时各商品价格进行结算，多退少补。\n\n> **判定要点**：**退款基数是实付金额，不是商品标价**。部分退货导致优惠失效的，剩余订单需重新结算，可能出现「多退少补」。\n\n商品退回所产生的运费依法由消费者承担。经营者与消费者另有约定的，按照约定。\n\n消费者参加满足一定条件免运费活动，但退货后已不能达到免运费活动要求的，网络商品销售者在退款时可以扣除运费。\n\n> **判定要点**：**无理由退货运费由消费者承担**（本条）；**质量问题退货运费由经营者承担**（消保法第二十四条）。这是区分退款原因的直接后果之一。\n\n网络商品销售者可以与消费者约定退货方式，但不应当限制消费者的退货方式。\n\n网络商品销售者可以免费上门取货，也可以征得消费者同意后有偿上门取货。",
+            "score": 0.8870824241638183,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.996 × 先验 0.45 → 0.887；命中 1/law/dense#1, 1/law/bm25#1, 2/law/dense#4, 2/law/bm25#1"
+          },
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第七章 附则 > 第三十五条 【质量问题退货的法律适用】",
+            "text": "网络商品销售者提供的商品不符合质量要求，消费者要求退货的，适用《消费者权益保护法》第二十四条以及其他相关规定。\n\n> **判定要点**：本办法**只管无理由退货**。质量问题退货走消保法第二十四条与三包规定（[L05]），窗口期、运费、举证责任都不同。\n\n经营者采用电视、电话、邮购等方式销售商品，依照本办法执行。\n\n本办法由国家市场监督管理总局负责解释。\n\n本办法自2017年3月15日起施行。",
+            "score": 0.8588915729522705,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.961 × 先验 0.45 → 0.859；命中 2/law/dense#2"
           }
         ]
       },
@@ -1548,7 +1659,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "5e03e0b6734b09bb",
+      "parentObservationId": "11083c14c2b024ad",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1556,10 +1667,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.001,
+      "latency": 0.034,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:49:58.687Z",
-      "updatedAt": "2026-08-18T11:49:58.698Z",
+      "createdAt": "2026-08-19T05:18:59.855Z",
+      "updatedAt": "2026-08-19T05:18:59.865Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1567,7 +1678,6 @@
       "completionStartTime": null,
       "model": null,
       "modelParameters": null,
-      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,

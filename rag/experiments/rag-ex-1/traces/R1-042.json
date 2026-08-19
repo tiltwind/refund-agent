@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-042",
+    "query": "我按自己要求定做的东西，尺寸图案都是我自己给的，这种能随便退吗？",
     "type": "single",
     "style": "colloquial",
     "doc_id": "P04",
@@ -9,6 +10,7 @@
     "seed_chunk_id": [
       "P04#003:02"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
@@ -17,7 +19,7 @@
       "evidence_tokens": 1544,
       "duplicate_ratio": 0.307,
       "context_recall": 1.0,
-      "context_relevance": 0.068
+      "context_relevance": 0.095
     },
     "elapsed_s": 2.0,
     "seed_rank": {
@@ -28,6 +30,18 @@
         "P04#003:02": 2
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "condition",
+          "text": "按用户要求定制的商品（尺寸图案由用户提供），是否适用无理由退货政策？"
+        }
+      ]
+    },
+    "rewrite_hash": "039b7b0b7a91d185",
     "sections": [
       "P11 星辰优选特殊类目售后细则 > 第二条 定制商品 > 2.1 退款限制 … 第二条 定制商品 > 2.4 稿件确认",
       "P04 星辰优选不适用无理由退货商品清单 > 第三条 平台特殊类目：不支持任何形式的退款 > 3.2 定制商品",
@@ -43,22 +57,22 @@
           {
             "claim": "按消费者提供的尺寸、图案、文字、配置单独制作的商品，对其他消费者无通用价值。",
             "supported": true,
-            "reason": "P04 3.2 定制商品说明此类商品对其他消费者无通用价值。"
+            "reason": "P04 3.2 定制商品说明“此类商品对其他消费者无通用价值”。"
           },
           {
             "claim": "按消费者提供的尺寸、图案、文字、配置单独制作的商品不适用无理由退货。",
             "supported": true,
-            "reason": "P11 2.1 明确定制商品不支持无理由退货。"
+            "reason": "P11 2.1 明确“不支持无理由退货”。"
           }
         ],
         "error": null
       },
       "context_relevance": {
-        "score": 0.068,
+        "score": 0.095,
         "n": 74,
-        "hit": 5,
+        "hit": 7,
         "truncated": false,
-        "note": "不相关的多为定制商品的质量争议处理、特殊类目退款限制及售后流程。",
+        "note": "不相关的多为生鲜、虚拟商品、逾期、欺诈等条款。",
         "irrelevant": [
           "商家开始生产前，消费者可无条件取消订单并全额退款。",
           "商家应在接单后 **24 小时**内告知预计开工时间。",
@@ -74,27 +88,332 @@
         "error": null
       }
     },
-    "trace_id": "a6700bc66a595d43ba8842b1c53bf3a5"
+    "trace_id": "bb164bbb577e163d860748404c5eabe9"
   },
   "trace": {
-    "id": "a6700bc66a595d43ba8842b1c53bf3a5",
+    "id": "bb164bbb577e163d860748404c5eabe9",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:48:21.467000+00:00"
+    "timestamp": "2026-08-19 05:17:07.266000+00:00"
   },
   "observations": [
     {
-      "id": "de72b807a6495e15",
-      "traceId": "a6700bc66a595d43ba8842b1c53bf3a5",
+      "id": "2ad324d83954068d",
+      "traceId": "bb164bbb577e163d860748404c5eabe9",
       "type": "SPAN",
-      "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:48:26.738000+00:00",
-      "endTime": "2026-08-18 11:48:26.740000+00:00",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:17:07.266000+00:00",
+      "endTime": "2026-08-19 05:17:19.027000+00:00",
+      "input": {
+        "query": "我按自己要求定做的东西，尺寸图案都是我自己给的，这种能随便退吗？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-042",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P04",
+        "section": "第三条 平台特殊类目：不支持任何形式的退款 > 3.2 定制商品",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.091,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-042",
+        "query": "我按自己要求定做的东西，尺寸图案都是我自己给的，这种能随便退吗？",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P04",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P04#003:02"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 0,
+          "evidence_tokens": 1544,
+          "duplicate_ratio": 0.307,
+          "context_recall": 1,
+          "context_relevance": 0.095
+        },
+        "elapsed_s": 2,
+        "seed_rank": {
+          "candidate": {
+            "P04#003:02": 2
+          },
+          "evidence": {
+            "P04#003:02": 2
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "condition",
+              "text": "按用户要求定制的商品（尺寸图案由用户提供），是否适用无理由退货政策？"
+            }
+          ]
+        },
+        "rewrite_hash": "039b7b0b7a91d185",
+        "sections": [
+          "P11 星辰优选特殊类目售后细则 > 第二条 定制商品 > 2.1 退款限制 … 第二条 定制商品 > 2.4 稿件确认",
+          "P04 星辰优选不适用无理由退货商品清单 > 第三条 平台特殊类目：不支持任何形式的退款 > 3.2 定制商品",
+          "P02 星辰优选售后服务与退换货政策 > 第四条 特殊类目",
+          "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "按消费者提供的尺寸、图案、文字、配置单独制作的商品，对其他消费者无通用价值。",
+                "supported": true,
+                "reason": "P04 3.2 定制商品说明“此类商品对其他消费者无通用价值”。"
+              },
+              {
+                "claim": "按消费者提供的尺寸、图案、文字、配置单独制作的商品不适用无理由退货。",
+                "supported": true,
+                "reason": "P11 2.1 明确“不支持无理由退货”。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.095,
+            "n": 74,
+            "hit": 7,
+            "truncated": false,
+            "note": "不相关的多为生鲜、虚拟商品、逾期、欺诈等条款。",
+            "irrelevant": [
+              "商家开始生产前，消费者可无条件取消订单并全额退款。",
+              "商家应在接单后 **24 小时**内告知预计开工时间。",
+              "定制成品与消费者确认的稿件、尺寸、材质不符的，属商家违约：",
+              "| 情形 | 处理 |",
+              "|---|---|",
+              "| 完全不符（做错款式、尺寸严重偏差） | 全额退款或重做 |",
+              "| 局部偏差（可修改） | 免费返工，或折价补偿后保留 |",
+              "| 工艺瑕疵（明显毛边、色差超标） | 返工、重做或折价补偿 |",
+              "| 交付逾期超过约定时间 | 消费者可取消并全额退款 |",
+              "消费者确认生产稿件后，因个人审美变化提出的修改与退货诉求不予支持。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "f78d97cd3f09d392",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 11.761,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:17:19.238Z",
+      "updatedAt": "2026-08-19T05:17:19.251Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "8154567afdfac32c",
+      "traceId": "bb164bbb577e163d860748404c5eabe9",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:17:15.249000+00:00",
+      "endTime": "2026-08-19 05:17:15.269000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "P11#002:00",
+          "P04#003:02",
+          "P11#002:03",
+          "P02#003:00",
+          "P09#004:00",
+          "L02#002:00",
+          "L01#004:00",
+          "P04#001:00",
+          "P11#002:02"
+        ]
+      },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P11 星辰优选特殊类目售后细则 > 第二条 定制商品 > 2.1 退款限制 … 第二条 定制商品 > 2.4 稿件确认",
+            "text": "按消费者提供的尺寸、图案、文字、配置单独制作的商品，**不支持无理由退货**。\n\n商家开始生产前，消费者可无条件取消订单并全额退款。商家应在接单后 **24 小时**内告知预计开工时间。\n\n定制成品与消费者确认的稿件、尺寸、材质不符的，属商家违约：\n\n| 情形 | 处理 |\n|---|---|\n| 完全不符（做错款式、尺寸严重偏差） | 全额退款或重做 |\n| 局部偏差（可修改） | 免费返工，或折价补偿后保留 |\n| 工艺瑕疵（明显毛边、色差超标） | 返工、重做或折价补偿 |\n| 交付逾期超过约定时间 | 消费者可取消并全额退款 |\n\n消费者确认生产稿件后，因个人审美变化提出的修改与退货诉求不予支持。**稿件确认记录由商家保存并在争议中举证。**\n\n按消费者提供的尺寸、图案、文字、配置单独制作的商品，**不支持无理由退货**。\n\n商家开始生产前，消费者可无条件取消订单并全额退款。商家应在接单后 **24 小时**内告知预计开工时间。\n\n定制成品与消费者确认的稿件、尺寸、材质不符的，属商家违约：\n\n| 情形 | 处理 |\n|---|---|\n| 完全不符（做错款式、尺寸严重偏差） | 全额退款或重做 |\n| 局部偏差（可修改） | 免费返工，或折价补偿后保留 |\n| 工艺瑕疵（明显毛边、色差超标） | 返工、重做或折价补偿 |\n| 交付逾期超过约定时间 | 消费者可取消并全额退款 |\n\n消费者确认生产稿件后，因个人审美变化提出的修改与退货诉求不予支持。**稿件确认记录由商家保存并在争议中举证。**\n\n按消费者提供的尺寸、图案、文字、配置单独制作的商品，**不支持无理由退货**。\n\n商家开始生产前，消费者可无条件取消订单并全额退款。商家应在接单后 **24 小时**内告知预计开工时间。\n\n定制成品与消费者确认的稿件、尺寸、材质不符的，属商家违约：\n\n| 情形 | 处理 |\n|---|---|\n| 完全不符（做错款式、尺寸严重偏差） | 全额退款或重做 |\n| 局部偏差（可修改） | 免费返工，或折价补偿后保留 |\n| 工艺瑕疵（明显毛边、色差超标） | 返工、重做或折价补偿 |\n| 交付逾期超过约定时间 | 消费者可取消并全额退款 |\n\n消费者确认生产稿件后，因个人审美变化提出的修改与退货诉求不予支持。**稿件确认记录由商家保存并在争议中举证。**",
+            "score": 0.8914098548889161,
+            "doc_id": "P11",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P11-特殊类目售后细则.md",
+            "reason": "相关性 0.889 × 先验 0.90 → 0.891；命中 1/platform/dense#1, 1/platform/bm25#2"
+          },
+          {
+            "section": "P04 星辰优选不适用无理由退货商品清单 > 第三条 平台特殊类目：不支持任何形式的退款 > 3.2 定制商品",
+            "text": "以下三类商品在星辰优选**不支持任何形式的退款**，不区分退款原因：\n\n鲜活水产、冷鲜肉禽、新鲜果蔬、鲜切花、现制食品等。签收后商品品质随时间迅速变化，无法核验退货时的实际状态，亦无二次销售可能。\n\n按消费者提供的尺寸、图案、文字、配置单独制作的商品。此类商品对其他消费者无通用价值。\n\n充值卡、会员权益、卡券码、点卡、激活码等。交付即完成核销，无法收回。\n\n> **重要**：本条限制**不区分退款原因**。消费者主张质量问题的，同样不走自动退款通道，转入争议处理流程（[P09]）由人工核实后按个案处理——生鲜变质、卡密无效、定制商品与约定规格不符等情形，经核实后仍可能获得赔付或补偿。",
+            "score": 0.7106895732879639,
+            "doc_id": "P04",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P04-不适用无理由退货商品清单.md",
+            "reason": "相关性 0.663 × 先验 0.90 → 0.711；命中 1/platform/dense#2, 1/platform/bm25#1"
+          },
+          {
+            "section": "P02 星辰优选售后服务与退换货政策 > 第四条 特殊类目",
+            "text": "4.1 以下类目不支持任何形式的退款：\n\n- **生鲜食品**——鲜活易腐，签收后无法二次销售；\n- **定制商品**——按消费者要求单独制作，无通用价值；\n- **虚拟商品**——充值卡、会员权益、卡券码等，交付即核销。\n\n4.2 上述限制**不区分退款原因**：即使消费者主张质量问题，亦不通过自动退款通道。此类诉求转入争议处理流程（[P09]），由人工核实后按个案处理。\n\n4.3 特殊类目限制在商品详情页以显著方式标注，并在下单必经流程中提示确认。**未经标注与确认的商品不适用本条**（依据 [L02] 第二十条、[L03] 第十九条）。\n\n4.4 本条清单与不适用无理由退货的完整商品目录，详见 [P04]。",
+            "score": 0.3930952072143555,
+            "doc_id": "P02",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
+            "reason": "相关性 0.241 × 先验 1.00 → 0.393；命中 1/platform/dense#10, 1/platform/bm25#5"
+          },
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
+            "text": "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。",
+            "score": 0.34735290288925175,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.209 × 先验 0.90 → 0.347；命中 1/platform/dense#4"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "47993877cb247056",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.02,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:17:19.238Z",
+      "updatedAt": "2026-08-19T05:17:19.251Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "8be638558e601b6f",
+      "traceId": "bb164bbb577e163d860748404c5eabe9",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-19 05:17:19.028000+00:00",
+      "endTime": "2026-08-19 05:17:19.029000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -118,7 +437,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "f0ac7f24a2eb900a",
+      "parentObservationId": "f78d97cd3f09d392",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -126,10 +445,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.002,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:28.026Z",
-      "updatedAt": "2026-08-18T11:48:28.041Z",
+      "createdAt": "2026-08-19T05:17:19.238Z",
+      "updatedAt": "2026-08-19T05:17:19.251Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -151,12 +470,194 @@
       "usagePricingTierName": null
     },
     {
-      "id": "a804057f5334e2a0",
-      "traceId": "a6700bc66a595d43ba8842b1c53bf3a5",
+      "id": "f78d97cd3f09d392",
+      "traceId": "bb164bbb577e163d860748404c5eabe9",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-19 05:17:07.266000+00:00",
+      "endTime": "2026-08-19 05:17:19.029000+00:00",
+      "input": {
+        "query": "我按自己要求定做的东西，尺寸图案都是我自己给的，这种能随便退吗？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-042",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P04",
+        "section": "第三条 平台特殊类目：不支持任何形式的退款 > 3.2 定制商品",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.091,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-042",
+        "query": "我按自己要求定做的东西，尺寸图案都是我自己给的，这种能随便退吗？",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P04",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P04#003:02"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 0,
+          "evidence_tokens": 1544,
+          "duplicate_ratio": 0.307,
+          "context_recall": 1,
+          "context_relevance": 0.095
+        },
+        "elapsed_s": 2,
+        "seed_rank": {
+          "candidate": {
+            "P04#003:02": 2
+          },
+          "evidence": {
+            "P04#003:02": 2
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "condition",
+              "text": "按用户要求定制的商品（尺寸图案由用户提供），是否适用无理由退货政策？"
+            }
+          ]
+        },
+        "rewrite_hash": "039b7b0b7a91d185",
+        "sections": [
+          "P11 星辰优选特殊类目售后细则 > 第二条 定制商品 > 2.1 退款限制 … 第二条 定制商品 > 2.4 稿件确认",
+          "P04 星辰优选不适用无理由退货商品清单 > 第三条 平台特殊类目：不支持任何形式的退款 > 3.2 定制商品",
+          "P02 星辰优选售后服务与退换货政策 > 第四条 特殊类目",
+          "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "按消费者提供的尺寸、图案、文字、配置单独制作的商品，对其他消费者无通用价值。",
+                "supported": true,
+                "reason": "P04 3.2 定制商品说明“此类商品对其他消费者无通用价值”。"
+              },
+              {
+                "claim": "按消费者提供的尺寸、图案、文字、配置单独制作的商品不适用无理由退货。",
+                "supported": true,
+                "reason": "P11 2.1 明确“不支持无理由退货”。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.095,
+            "n": 74,
+            "hit": 7,
+            "truncated": false,
+            "note": "不相关的多为生鲜、虚拟商品、逾期、欺诈等条款。",
+            "irrelevant": [
+              "商家开始生产前，消费者可无条件取消订单并全额退款。",
+              "商家应在接单后 **24 小时**内告知预计开工时间。",
+              "定制成品与消费者确认的稿件、尺寸、材质不符的，属商家违约：",
+              "| 情形 | 处理 |",
+              "|---|---|",
+              "| 完全不符（做错款式、尺寸严重偏差） | 全额退款或重做 |",
+              "| 局部偏差（可修改） | 免费返工，或折价补偿后保留 |",
+              "| 工艺瑕疵（明显毛边、色差超标） | 返工、重做或折价补偿 |",
+              "| 交付逾期超过约定时间 | 消费者可取消并全额退款 |",
+              "消费者确认生产稿件后，因个人审美变化提出的修改与退货诉求不予支持。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 11.763,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:17:19.238Z",
+      "updatedAt": "2026-08-19T05:17:19.251Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "1ac940b96129c93e",
+      "traceId": "bb164bbb577e163d860748404c5eabe9",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:48:26.738000+00:00",
-      "endTime": "2026-08-18 11:48:26.739000+00:00",
+      "startTime": "2026-08-19 05:17:19.028000+00:00",
+      "endTime": "2026-08-19 05:17:19.029000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -164,6 +665,7 @@
         },
         "output": {
           "case_id": "R1-042",
+          "query": "我按自己要求定做的东西，尺寸图案都是我自己给的，这种能随便退吗？",
           "type": "single",
           "style": "colloquial",
           "doc_id": "P04",
@@ -172,6 +674,7 @@
           "seed_chunk_id": [
             "P04#003:02"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
@@ -180,7 +683,7 @@
             "evidence_tokens": 1544,
             "duplicate_ratio": 0.307,
             "context_recall": 1,
-            "context_relevance": 0.068
+            "context_relevance": 0.095
           },
           "elapsed_s": 2,
           "seed_rank": {
@@ -191,6 +694,18 @@
               "P04#003:02": 2
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "condition",
+                "text": "按用户要求定制的商品（尺寸图案由用户提供），是否适用无理由退货政策？"
+              }
+            ]
+          },
+          "rewrite_hash": "039b7b0b7a91d185",
           "sections": [
             "P11 星辰优选特殊类目售后细则 > 第二条 定制商品 > 2.1 退款限制 … 第二条 定制商品 > 2.4 稿件确认",
             "P04 星辰优选不适用无理由退货商品清单 > 第三条 平台特殊类目：不支持任何形式的退款 > 3.2 定制商品",
@@ -206,22 +721,22 @@
                 {
                   "claim": "按消费者提供的尺寸、图案、文字、配置单独制作的商品，对其他消费者无通用价值。",
                   "supported": true,
-                  "reason": "P04 3.2 定制商品说明此类商品对其他消费者无通用价值。"
+                  "reason": "P04 3.2 定制商品说明“此类商品对其他消费者无通用价值”。"
                 },
                 {
                   "claim": "按消费者提供的尺寸、图案、文字、配置单独制作的商品不适用无理由退货。",
                   "supported": true,
-                  "reason": "P11 2.1 明确定制商品不支持无理由退货。"
+                  "reason": "P11 2.1 明确“不支持无理由退货”。"
                 }
               ],
               "error": null
             },
             "context_relevance": {
-              "score": 0.068,
+              "score": 0.095,
               "n": 74,
-              "hit": 5,
+              "hit": 7,
               "truncated": false,
-              "note": "不相关的多为定制商品的质量争议处理、特殊类目退款限制及售后流程。",
+              "note": "不相关的多为生鲜、虚拟商品、逾期、欺诈等条款。",
               "irrelevant": [
                 "商家开始生产前，消费者可无条件取消订单并全额退款。",
                 "商家应在接单后 **24 小时**内告知预计开工时间。",
@@ -246,7 +761,8 @@
           "seed_chunk_id": [
             "P04#003:02"
           ],
-          "reference_answer": "按消费者提供的尺寸、图案、文字、配置单独制作的商品，对其他消费者无通用价值，不适用无理由退货。"
+          "reference_answer": "按消费者提供的尺寸、图案、文字、配置单独制作的商品，对其他消费者无通用价值，不适用无理由退货。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "text",
@@ -268,7 +784,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -312,8 +828,8 @@
         },
         {
           "name": "context_relevance",
-          "value": 0.068,
-          "comment": "5/74 个内容单元相关；不相关的多为定制商品的质量争议处理、特殊类目退款限制及售后流程。"
+          "value": 0.095,
+          "comment": "7/74 个内容单元相关；不相关的多为生鲜、虚拟商品、逾期、欺诈等条款。"
         },
         {
           "name": "run_error",
@@ -328,7 +844,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "de72b807a6495e15",
+      "parentObservationId": "8be638558e601b6f",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -338,8 +854,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:28.026Z",
-      "updatedAt": "2026-08-18T11:48:28.039Z",
+      "createdAt": "2026-08-19T05:17:19.238Z",
+      "updatedAt": "2026-08-19T05:17:19.250Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -359,49 +875,23 @@
       "usagePricingTierName": null
     },
     {
-      "id": "6417d39b2bcd6640",
-      "traceId": "a6700bc66a595d43ba8842b1c53bf3a5",
-      "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:48:05.542000+00:00",
-      "endTime": "2026-08-18 11:48:26.737000+00:00",
+      "id": "47993877cb247056",
+      "traceId": "bb164bbb577e163d860748404c5eabe9",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:17:13.277000+00:00",
+      "endTime": "2026-08-19 05:17:15.270000+00:00",
+      "modelParameters": {},
       "input": {
-        "query": "我按自己要求定做的东西，尺寸图案都是我自己给的，这种能随便退吗？"
+        "query": "我按自己要求定做的东西，尺寸图案都是我自己给的，这种能随便退吗？",
+        "top_k": 4
       },
       "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-042",
-        "kind": "text",
-        "type": "single",
-        "layer": "platform",
-        "style": "colloquial",
-        "doc_id": "P04",
-        "section": "第三条 平台特殊类目：不支持任何形式的退款 > 3.2 定制商品",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.091,
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -413,80 +903,52 @@
         }
       },
       "output": {
-        "case_id": "R1-042",
-        "type": "single",
-        "style": "colloquial",
-        "doc_id": "P04",
-        "layer": "platform",
-        "kind": "text",
-        "seed_chunk_id": [
-          "P04#003:02"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 0,
-          "evidence_tokens": 1544,
-          "duplicate_ratio": 0.307,
-          "context_recall": 1,
-          "context_relevance": 0.068
-        },
-        "elapsed_s": 2,
-        "seed_rank": {
-          "candidate": {
-            "P04#003:02": 2
-          },
-          "evidence": {
-            "P04#003:02": 2
-          }
-        },
         "sections": [
-          "P11 星辰优选特殊类目售后细则 > 第二条 定制商品 > 2.1 退款限制 … 第二条 定制商品 > 2.4 稿件确认",
-          "P04 星辰优选不适用无理由退货商品清单 > 第三条 平台特殊类目：不支持任何形式的退款 > 3.2 定制商品",
-          "P02 星辰优选售后服务与退换货政策 > 第四条 特殊类目",
-          "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 2,
-            "hit": 2,
-            "detail": [
-              {
-                "claim": "按消费者提供的尺寸、图案、文字、配置单独制作的商品，对其他消费者无通用价值。",
-                "supported": true,
-                "reason": "P04 3.2 定制商品说明此类商品对其他消费者无通用价值。"
-              },
-              {
-                "claim": "按消费者提供的尺寸、图案、文字、配置单独制作的商品不适用无理由退货。",
-                "supported": true,
-                "reason": "P11 2.1 明确定制商品不支持无理由退货。"
-              }
-            ],
-            "error": null
+          {
+            "section": "P11 星辰优选特殊类目售后细则 > 第二条 定制商品 > 2.1 退款限制 … 第二条 定制商品 > 2.4 稿件确认",
+            "text": "按消费者提供的尺寸、图案、文字、配置单独制作的商品，**不支持无理由退货**。\n\n商家开始生产前，消费者可无条件取消订单并全额退款。商家应在接单后 **24 小时**内告知预计开工时间。\n\n定制成品与消费者确认的稿件、尺寸、材质不符的，属商家违约：\n\n| 情形 | 处理 |\n|---|---|\n| 完全不符（做错款式、尺寸严重偏差） | 全额退款或重做 |\n| 局部偏差（可修改） | 免费返工，或折价补偿后保留 |\n| 工艺瑕疵（明显毛边、色差超标） | 返工、重做或折价补偿 |\n| 交付逾期超过约定时间 | 消费者可取消并全额退款 |\n\n消费者确认生产稿件后，因个人审美变化提出的修改与退货诉求不予支持。**稿件确认记录由商家保存并在争议中举证。**\n\n按消费者提供的尺寸、图案、文字、配置单独制作的商品，**不支持无理由退货**。\n\n商家开始生产前，消费者可无条件取消订单并全额退款。商家应在接单后 **24 小时**内告知预计开工时间。\n\n定制成品与消费者确认的稿件、尺寸、材质不符的，属商家违约：\n\n| 情形 | 处理 |\n|---|---|\n| 完全不符（做错款式、尺寸严重偏差） | 全额退款或重做 |\n| 局部偏差（可修改） | 免费返工，或折价补偿后保留 |\n| 工艺瑕疵（明显毛边、色差超标） | 返工、重做或折价补偿 |\n| 交付逾期超过约定时间 | 消费者可取消并全额退款 |\n\n消费者确认生产稿件后，因个人审美变化提出的修改与退货诉求不予支持。**稿件确认记录由商家保存并在争议中举证。**\n\n按消费者提供的尺寸、图案、文字、配置单独制作的商品，**不支持无理由退货**。\n\n商家开始生产前，消费者可无条件取消订单并全额退款。商家应在接单后 **24 小时**内告知预计开工时间。\n\n定制成品与消费者确认的稿件、尺寸、材质不符的，属商家违约：\n\n| 情形 | 处理 |\n|---|---|\n| 完全不符（做错款式、尺寸严重偏差） | 全额退款或重做 |\n| 局部偏差（可修改） | 免费返工，或折价补偿后保留 |\n| 工艺瑕疵（明显毛边、色差超标） | 返工、重做或折价补偿 |\n| 交付逾期超过约定时间 | 消费者可取消并全额退款 |\n\n消费者确认生产稿件后，因个人审美变化提出的修改与退货诉求不予支持。**稿件确认记录由商家保存并在争议中举证。**",
+            "score": 0.8914098548889161,
+            "doc_id": "P11",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P11-特殊类目售后细则.md",
+            "reason": "相关性 0.889 × 先验 0.90 → 0.891；命中 1/platform/dense#1, 1/platform/bm25#2"
           },
-          "context_relevance": {
-            "score": 0.068,
-            "n": 74,
-            "hit": 5,
-            "truncated": false,
-            "note": "不相关的多为定制商品的质量争议处理、特殊类目退款限制及售后流程。",
-            "irrelevant": [
-              "商家开始生产前，消费者可无条件取消订单并全额退款。",
-              "商家应在接单后 **24 小时**内告知预计开工时间。",
-              "定制成品与消费者确认的稿件、尺寸、材质不符的，属商家违约：",
-              "| 情形 | 处理 |",
-              "|---|---|",
-              "| 完全不符（做错款式、尺寸严重偏差） | 全额退款或重做 |",
-              "| 局部偏差（可修改） | 免费返工，或折价补偿后保留 |",
-              "| 工艺瑕疵（明显毛边、色差超标） | 返工、重做或折价补偿 |",
-              "| 交付逾期超过约定时间 | 消费者可取消并全额退款 |",
-              "消费者确认生产稿件后，因个人审美变化提出的修改与退货诉求不予支持。"
-            ],
-            "error": null
+          {
+            "section": "P04 星辰优选不适用无理由退货商品清单 > 第三条 平台特殊类目：不支持任何形式的退款 > 3.2 定制商品",
+            "text": "以下三类商品在星辰优选**不支持任何形式的退款**，不区分退款原因：\n\n鲜活水产、冷鲜肉禽、新鲜果蔬、鲜切花、现制食品等。签收后商品品质随时间迅速变化，无法核验退货时的实际状态，亦无二次销售可能。\n\n按消费者提供的尺寸、图案、文字、配置单独制作的商品。此类商品对其他消费者无通用价值。\n\n充值卡、会员权益、卡券码、点卡、激活码等。交付即完成核销，无法收回。\n\n> **重要**：本条限制**不区分退款原因**。消费者主张质量问题的，同样不走自动退款通道，转入争议处理流程（[P09]）由人工核实后按个案处理——生鲜变质、卡密无效、定制商品与约定规格不符等情形，经核实后仍可能获得赔付或补偿。",
+            "score": 0.7106895732879639,
+            "doc_id": "P04",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P04-不适用无理由退货商品清单.md",
+            "reason": "相关性 0.663 × 先验 0.90 → 0.711；命中 1/platform/dense#2, 1/platform/bm25#1"
+          },
+          {
+            "section": "P02 星辰优选售后服务与退换货政策 > 第四条 特殊类目",
+            "text": "4.1 以下类目不支持任何形式的退款：\n\n- **生鲜食品**——鲜活易腐，签收后无法二次销售；\n- **定制商品**——按消费者要求单独制作，无通用价值；\n- **虚拟商品**——充值卡、会员权益、卡券码等，交付即核销。\n\n4.2 上述限制**不区分退款原因**：即使消费者主张质量问题，亦不通过自动退款通道。此类诉求转入争议处理流程（[P09]），由人工核实后按个案处理。\n\n4.3 特殊类目限制在商品详情页以显著方式标注，并在下单必经流程中提示确认。**未经标注与确认的商品不适用本条**（依据 [L02] 第二十条、[L03] 第十九条）。\n\n4.4 本条清单与不适用无理由退货的完整商品目录，详见 [P04]。",
+            "score": 0.3930952072143555,
+            "doc_id": "P02",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
+            "reason": "相关性 0.241 × 先验 1.00 → 0.393；命中 1/platform/dense#10, 1/platform/bm25#5"
+          },
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
+            "text": "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。",
+            "score": 0.34735290288925175,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.209 × 先验 0.90 → 0.347；命中 1/platform/dense#4"
           }
-        }
+        ]
       },
       "usage": {
         "input": 0,
@@ -495,7 +957,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "f0ac7f24a2eb900a",
+      "parentObservationId": "2ad324d83954068d",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -503,17 +965,16 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 21.195,
+      "latency": 1.993,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:28.026Z",
-      "updatedAt": "2026-08-18T11:48:28.036Z",
+      "createdAt": "2026-08-19T05:17:19.238Z",
+      "updatedAt": "2026-08-19T05:17:19.250Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
       "totalTokens": 0,
       "completionStartTime": null,
       "model": null,
-      "modelParameters": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -527,12 +988,86 @@
       "usagePricingTierName": null
     },
     {
-      "id": "6879d6e2ef641df5",
-      "traceId": "a6700bc66a595d43ba8842b1c53bf3a5",
+      "id": "1ce62bf779fb1211",
+      "traceId": "bb164bbb577e163d860748404c5eabe9",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:17:14.341000+00:00",
+      "endTime": "2026-08-19 05:17:14.341000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "47993877cb247056",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:17:19.238Z",
+      "updatedAt": "2026-08-19T05:17:19.249Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "28c1cee22ed09a50",
+      "traceId": "bb164bbb577e163d860748404c5eabe9",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 11:48:22.605000+00:00",
-      "endTime": "2026-08-18 11:48:23.406000+00:00",
+      "startTime": "2026-08-19 05:17:14.428000+00:00",
+      "endTime": "2026-08-19 05:17:15.249000+00:00",
       "input": {
         "query": "我按自己要求定做的东西，尺寸图案都是我自己给的，这种能随便退吗？",
         "candidates": 20
@@ -542,7 +1077,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -651,7 +1186,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "e786212ef810b22e",
+      "parentObservationId": "47993877cb247056",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -659,10 +1194,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.801,
+      "latency": 0.821,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:28.026Z",
-      "updatedAt": "2026-08-18T11:48:28.035Z",
+      "createdAt": "2026-08-19T05:17:19.238Z",
+      "updatedAt": "2026-08-19T05:17:19.249Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -683,422 +1218,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "8776968d565d7566",
-      "traceId": "a6700bc66a595d43ba8842b1c53bf3a5",
-      "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:48:23.406000+00:00",
-      "endTime": "2026-08-18 11:48:23.420000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": [
-          "P11#002:00",
-          "P04#003:02",
-          "P11#002:03",
-          "P02#003:00",
-          "P09#004:00",
-          "L02#002:00",
-          "L01#004:00",
-          "P04#001:00",
-          "P11#002:02"
-        ]
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "P11 星辰优选特殊类目售后细则 > 第二条 定制商品 > 2.1 退款限制 … 第二条 定制商品 > 2.4 稿件确认",
-            "text": "按消费者提供的尺寸、图案、文字、配置单独制作的商品，**不支持无理由退货**。\n\n商家开始生产前，消费者可无条件取消订单并全额退款。商家应在接单后 **24 小时**内告知预计开工时间。\n\n定制成品与消费者确认的稿件、尺寸、材质不符的，属商家违约：\n\n| 情形 | 处理 |\n|---|---|\n| 完全不符（做错款式、尺寸严重偏差） | 全额退款或重做 |\n| 局部偏差（可修改） | 免费返工，或折价补偿后保留 |\n| 工艺瑕疵（明显毛边、色差超标） | 返工、重做或折价补偿 |\n| 交付逾期超过约定时间 | 消费者可取消并全额退款 |\n\n消费者确认生产稿件后，因个人审美变化提出的修改与退货诉求不予支持。**稿件确认记录由商家保存并在争议中举证。**\n\n按消费者提供的尺寸、图案、文字、配置单独制作的商品，**不支持无理由退货**。\n\n商家开始生产前，消费者可无条件取消订单并全额退款。商家应在接单后 **24 小时**内告知预计开工时间。\n\n定制成品与消费者确认的稿件、尺寸、材质不符的，属商家违约：\n\n| 情形 | 处理 |\n|---|---|\n| 完全不符（做错款式、尺寸严重偏差） | 全额退款或重做 |\n| 局部偏差（可修改） | 免费返工，或折价补偿后保留 |\n| 工艺瑕疵（明显毛边、色差超标） | 返工、重做或折价补偿 |\n| 交付逾期超过约定时间 | 消费者可取消并全额退款 |\n\n消费者确认生产稿件后，因个人审美变化提出的修改与退货诉求不予支持。**稿件确认记录由商家保存并在争议中举证。**\n\n按消费者提供的尺寸、图案、文字、配置单独制作的商品，**不支持无理由退货**。\n\n商家开始生产前，消费者可无条件取消订单并全额退款。商家应在接单后 **24 小时**内告知预计开工时间。\n\n定制成品与消费者确认的稿件、尺寸、材质不符的，属商家违约：\n\n| 情形 | 处理 |\n|---|---|\n| 完全不符（做错款式、尺寸严重偏差） | 全额退款或重做 |\n| 局部偏差（可修改） | 免费返工，或折价补偿后保留 |\n| 工艺瑕疵（明显毛边、色差超标） | 返工、重做或折价补偿 |\n| 交付逾期超过约定时间 | 消费者可取消并全额退款 |\n\n消费者确认生产稿件后，因个人审美变化提出的修改与退货诉求不予支持。**稿件确认记录由商家保存并在争议中举证。**",
-            "score": 0.8914098548889161,
-            "doc_id": "P11",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P11-特殊类目售后细则.md",
-            "reason": "相关性 0.889 × 先验 0.90 → 0.891；命中 1/platform/dense#1, 1/platform/bm25#2"
-          },
-          {
-            "section": "P04 星辰优选不适用无理由退货商品清单 > 第三条 平台特殊类目：不支持任何形式的退款 > 3.2 定制商品",
-            "text": "以下三类商品在星辰优选**不支持任何形式的退款**，不区分退款原因：\n\n鲜活水产、冷鲜肉禽、新鲜果蔬、鲜切花、现制食品等。签收后商品品质随时间迅速变化，无法核验退货时的实际状态，亦无二次销售可能。\n\n按消费者提供的尺寸、图案、文字、配置单独制作的商品。此类商品对其他消费者无通用价值。\n\n充值卡、会员权益、卡券码、点卡、激活码等。交付即完成核销，无法收回。\n\n> **重要**：本条限制**不区分退款原因**。消费者主张质量问题的，同样不走自动退款通道，转入争议处理流程（[P09]）由人工核实后按个案处理——生鲜变质、卡密无效、定制商品与约定规格不符等情形，经核实后仍可能获得赔付或补偿。",
-            "score": 0.7106895732879639,
-            "doc_id": "P04",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P04-不适用无理由退货商品清单.md",
-            "reason": "相关性 0.663 × 先验 0.90 → 0.711；命中 1/platform/dense#2, 1/platform/bm25#1"
-          },
-          {
-            "section": "P02 星辰优选售后服务与退换货政策 > 第四条 特殊类目",
-            "text": "4.1 以下类目不支持任何形式的退款：\n\n- **生鲜食品**——鲜活易腐，签收后无法二次销售；\n- **定制商品**——按消费者要求单独制作，无通用价值；\n- **虚拟商品**——充值卡、会员权益、卡券码等，交付即核销。\n\n4.2 上述限制**不区分退款原因**：即使消费者主张质量问题，亦不通过自动退款通道。此类诉求转入争议处理流程（[P09]），由人工核实后按个案处理。\n\n4.3 特殊类目限制在商品详情页以显著方式标注，并在下单必经流程中提示确认。**未经标注与确认的商品不适用本条**（依据 [L02] 第二十条、[L03] 第十九条）。\n\n4.4 本条清单与不适用无理由退货的完整商品目录，详见 [P04]。",
-            "score": 0.3930952072143555,
-            "doc_id": "P02",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
-            "reason": "相关性 0.241 × 先验 1.00 → 0.393；命中 1/platform/dense#10, 1/platform/bm25#5"
-          },
-          {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
-            "text": "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。",
-            "score": 0.34735290288925175,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.209 × 先验 0.90 → 0.347；命中 1/platform/dense#4"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "e786212ef810b22e",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.014,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:28.026Z",
-      "updatedAt": "2026-08-18T11:48:28.035Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "f0ac7f24a2eb900a",
-      "traceId": "a6700bc66a595d43ba8842b1c53bf3a5",
-      "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:48:05.541000+00:00",
-      "endTime": "2026-08-18 11:48:26.740000+00:00",
-      "input": {
-        "query": "我按自己要求定做的东西，尺寸图案都是我自己给的，这种能随便退吗？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-042",
-        "kind": "text",
-        "type": "single",
-        "layer": "platform",
-        "style": "colloquial",
-        "doc_id": "P04",
-        "section": "第三条 平台特殊类目：不支持任何形式的退款 > 3.2 定制商品",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.091,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-042",
-        "type": "single",
-        "style": "colloquial",
-        "doc_id": "P04",
-        "layer": "platform",
-        "kind": "text",
-        "seed_chunk_id": [
-          "P04#003:02"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 0,
-          "evidence_tokens": 1544,
-          "duplicate_ratio": 0.307,
-          "context_recall": 1,
-          "context_relevance": 0.068
-        },
-        "elapsed_s": 2,
-        "seed_rank": {
-          "candidate": {
-            "P04#003:02": 2
-          },
-          "evidence": {
-            "P04#003:02": 2
-          }
-        },
-        "sections": [
-          "P11 星辰优选特殊类目售后细则 > 第二条 定制商品 > 2.1 退款限制 … 第二条 定制商品 > 2.4 稿件确认",
-          "P04 星辰优选不适用无理由退货商品清单 > 第三条 平台特殊类目：不支持任何形式的退款 > 3.2 定制商品",
-          "P02 星辰优选售后服务与退换货政策 > 第四条 特殊类目",
-          "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 2,
-            "hit": 2,
-            "detail": [
-              {
-                "claim": "按消费者提供的尺寸、图案、文字、配置单独制作的商品，对其他消费者无通用价值。",
-                "supported": true,
-                "reason": "P04 3.2 定制商品说明此类商品对其他消费者无通用价值。"
-              },
-              {
-                "claim": "按消费者提供的尺寸、图案、文字、配置单独制作的商品不适用无理由退货。",
-                "supported": true,
-                "reason": "P11 2.1 明确定制商品不支持无理由退货。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.068,
-            "n": 74,
-            "hit": 5,
-            "truncated": false,
-            "note": "不相关的多为定制商品的质量争议处理、特殊类目退款限制及售后流程。",
-            "irrelevant": [
-              "商家开始生产前，消费者可无条件取消订单并全额退款。",
-              "商家应在接单后 **24 小时**内告知预计开工时间。",
-              "定制成品与消费者确认的稿件、尺寸、材质不符的，属商家违约：",
-              "| 情形 | 处理 |",
-              "|---|---|",
-              "| 完全不符（做错款式、尺寸严重偏差） | 全额退款或重做 |",
-              "| 局部偏差（可修改） | 免费返工，或折价补偿后保留 |",
-              "| 工艺瑕疵（明显毛边、色差超标） | 返工、重做或折价补偿 |",
-              "| 交付逾期超过约定时间 | 消费者可取消并全额退款 |",
-              "消费者确认生产稿件后，因个人审美变化提出的修改与退货诉求不予支持。"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 21.199,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:28.026Z",
-      "updatedAt": "2026-08-18T11:48:28.035Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "parentObservationId": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "e786212ef810b22e",
-      "traceId": "a6700bc66a595d43ba8842b1c53bf3a5",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:48:21.467000+00:00",
-      "endTime": "2026-08-18 11:48:23.420000+00:00",
-      "modelParameters": {},
-      "input": {
-        "query": "我按自己要求定做的东西，尺寸图案都是我自己给的，这种能随便退吗？",
-        "top_k": 4
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "P11 星辰优选特殊类目售后细则 > 第二条 定制商品 > 2.1 退款限制 … 第二条 定制商品 > 2.4 稿件确认",
-            "text": "按消费者提供的尺寸、图案、文字、配置单独制作的商品，**不支持无理由退货**。\n\n商家开始生产前，消费者可无条件取消订单并全额退款。商家应在接单后 **24 小时**内告知预计开工时间。\n\n定制成品与消费者确认的稿件、尺寸、材质不符的，属商家违约：\n\n| 情形 | 处理 |\n|---|---|\n| 完全不符（做错款式、尺寸严重偏差） | 全额退款或重做 |\n| 局部偏差（可修改） | 免费返工，或折价补偿后保留 |\n| 工艺瑕疵（明显毛边、色差超标） | 返工、重做或折价补偿 |\n| 交付逾期超过约定时间 | 消费者可取消并全额退款 |\n\n消费者确认生产稿件后，因个人审美变化提出的修改与退货诉求不予支持。**稿件确认记录由商家保存并在争议中举证。**\n\n按消费者提供的尺寸、图案、文字、配置单独制作的商品，**不支持无理由退货**。\n\n商家开始生产前，消费者可无条件取消订单并全额退款。商家应在接单后 **24 小时**内告知预计开工时间。\n\n定制成品与消费者确认的稿件、尺寸、材质不符的，属商家违约：\n\n| 情形 | 处理 |\n|---|---|\n| 完全不符（做错款式、尺寸严重偏差） | 全额退款或重做 |\n| 局部偏差（可修改） | 免费返工，或折价补偿后保留 |\n| 工艺瑕疵（明显毛边、色差超标） | 返工、重做或折价补偿 |\n| 交付逾期超过约定时间 | 消费者可取消并全额退款 |\n\n消费者确认生产稿件后，因个人审美变化提出的修改与退货诉求不予支持。**稿件确认记录由商家保存并在争议中举证。**\n\n按消费者提供的尺寸、图案、文字、配置单独制作的商品，**不支持无理由退货**。\n\n商家开始生产前，消费者可无条件取消订单并全额退款。商家应在接单后 **24 小时**内告知预计开工时间。\n\n定制成品与消费者确认的稿件、尺寸、材质不符的，属商家违约：\n\n| 情形 | 处理 |\n|---|---|\n| 完全不符（做错款式、尺寸严重偏差） | 全额退款或重做 |\n| 局部偏差（可修改） | 免费返工，或折价补偿后保留 |\n| 工艺瑕疵（明显毛边、色差超标） | 返工、重做或折价补偿 |\n| 交付逾期超过约定时间 | 消费者可取消并全额退款 |\n\n消费者确认生产稿件后，因个人审美变化提出的修改与退货诉求不予支持。**稿件确认记录由商家保存并在争议中举证。**",
-            "score": 0.8914098548889161,
-            "doc_id": "P11",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P11-特殊类目售后细则.md",
-            "reason": "相关性 0.889 × 先验 0.90 → 0.891；命中 1/platform/dense#1, 1/platform/bm25#2"
-          },
-          {
-            "section": "P04 星辰优选不适用无理由退货商品清单 > 第三条 平台特殊类目：不支持任何形式的退款 > 3.2 定制商品",
-            "text": "以下三类商品在星辰优选**不支持任何形式的退款**，不区分退款原因：\n\n鲜活水产、冷鲜肉禽、新鲜果蔬、鲜切花、现制食品等。签收后商品品质随时间迅速变化，无法核验退货时的实际状态，亦无二次销售可能。\n\n按消费者提供的尺寸、图案、文字、配置单独制作的商品。此类商品对其他消费者无通用价值。\n\n充值卡、会员权益、卡券码、点卡、激活码等。交付即完成核销，无法收回。\n\n> **重要**：本条限制**不区分退款原因**。消费者主张质量问题的，同样不走自动退款通道，转入争议处理流程（[P09]）由人工核实后按个案处理——生鲜变质、卡密无效、定制商品与约定规格不符等情形，经核实后仍可能获得赔付或补偿。",
-            "score": 0.7106895732879639,
-            "doc_id": "P04",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P04-不适用无理由退货商品清单.md",
-            "reason": "相关性 0.663 × 先验 0.90 → 0.711；命中 1/platform/dense#2, 1/platform/bm25#1"
-          },
-          {
-            "section": "P02 星辰优选售后服务与退换货政策 > 第四条 特殊类目",
-            "text": "4.1 以下类目不支持任何形式的退款：\n\n- **生鲜食品**——鲜活易腐，签收后无法二次销售；\n- **定制商品**——按消费者要求单独制作，无通用价值；\n- **虚拟商品**——充值卡、会员权益、卡券码等，交付即核销。\n\n4.2 上述限制**不区分退款原因**：即使消费者主张质量问题，亦不通过自动退款通道。此类诉求转入争议处理流程（[P09]），由人工核实后按个案处理。\n\n4.3 特殊类目限制在商品详情页以显著方式标注，并在下单必经流程中提示确认。**未经标注与确认的商品不适用本条**（依据 [L02] 第二十条、[L03] 第十九条）。\n\n4.4 本条清单与不适用无理由退货的完整商品目录，详见 [P04]。",
-            "score": 0.3930952072143555,
-            "doc_id": "P02",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
-            "reason": "相关性 0.241 × 先验 1.00 → 0.393；命中 1/platform/dense#10, 1/platform/bm25#5"
-          },
-          {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
-            "text": "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。",
-            "score": 0.34735290288925175,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.209 × 先验 0.90 → 0.347；命中 1/platform/dense#4"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "6417d39b2bcd6640",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 1.953,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:28.026Z",
-      "updatedAt": "2026-08-18T11:48:28.034Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "f48991c9ff5c8e3c",
-      "traceId": "a6700bc66a595d43ba8842b1c53bf3a5",
+      "id": "6d5c06585b32aa7c",
+      "traceId": "bb164bbb577e163d860748404c5eabe9",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 11:48:22.518000+00:00",
-      "endTime": "2026-08-18 11:48:22.604000+00:00",
+      "startTime": "2026-08-19 05:17:14.341000+00:00",
+      "endTime": "2026-08-19 05:17:14.428000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1289,7 +1420,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "e786212ef810b22e",
+      "parentObservationId": "47993877cb247056",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1297,10 +1428,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.086,
+      "latency": 0.087,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:23.006Z",
-      "updatedAt": "2026-08-18T11:48:23.046Z",
+      "createdAt": "2026-08-19T05:17:19.238Z",
+      "updatedAt": "2026-08-19T05:17:19.247Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1322,86 +1453,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "8db33834af83b657",
-      "traceId": "a6700bc66a595d43ba8842b1c53bf3a5",
-      "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:48:22.518000+00:00",
-      "endTime": "2026-08-18 11:48:22.518000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "routes": [
-          {
-            "sub_query": "1",
-            "layer_k": {
-              "platform": 18,
-              "law": 5
-            },
-            "law_weight": 0.5
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "e786212ef810b22e",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.0,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:23.006Z",
-      "updatedAt": "2026-08-18T11:48:23.043Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "4550f1f66944742c",
-      "traceId": "a6700bc66a595d43ba8842b1c53bf3a5",
+      "id": "3578887100bf2015",
+      "traceId": "bb164bbb577e163d860748404c5eabe9",
       "type": "SPAN",
       "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:48:21.467000+00:00",
-      "endTime": "2026-08-18 11:48:22.517000+00:00",
+      "startTime": "2026-08-19 05:17:13.277000+00:00",
+      "endTime": "2026-08-19 05:17:14.340000+00:00",
       "input": {
         "query": "我按自己要求定做的东西，尺寸图案都是我自己给的，这种能随便退吗？"
       },
@@ -1410,7 +1467,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1439,7 +1496,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "e786212ef810b22e",
+      "parentObservationId": "47993877cb247056",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1447,10 +1504,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.05,
+      "latency": 1.063,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:23.006Z",
-      "updatedAt": "2026-08-18T11:48:23.042Z",
+      "createdAt": "2026-08-19T05:17:19.238Z",
+      "updatedAt": "2026-08-19T05:17:19.244Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,

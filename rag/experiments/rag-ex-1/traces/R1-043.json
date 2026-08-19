@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-043",
+    "query": "金牌会员在购买商品超过7天后，是否仍可主张无理由退货？",
     "type": "single",
     "style": "formal",
     "doc_id": "P04",
@@ -9,6 +10,7 @@
     "seed_chunk_id": [
       "P04#005:00"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
@@ -17,9 +19,9 @@
       "evidence_tokens": 1526,
       "duplicate_ratio": 0.422,
       "context_recall": 1.0,
-      "context_relevance": 0.152
+      "context_relevance": 0.197
     },
-    "elapsed_s": 2.1,
+    "elapsed_s": 2.2,
     "seed_rank": {
       "candidate": {
         "P04#005:00": 7
@@ -28,6 +30,18 @@
         "P04#005:00": 4
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "window",
+          "text": "金牌会员购买商品超过7天后，无理由退货的窗口期是否已经结束？"
+        }
+      ]
+    },
+    "rewrite_hash": "a89714f6a5df69ad",
     "sections": [
       "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
       "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
@@ -64,11 +78,11 @@
         "error": null
       },
       "context_relevance": {
-        "score": 0.152,
+        "score": 0.197,
         "n": 66,
-        "hit": 10,
+        "hit": 13,
         "truncated": false,
-        "note": "不相关的多为重复内容、风控、商品状态限制等",
+        "note": "不相关的主要是重复内容、风控、商品状态限制等",
         "irrelevant": [
           "2.1 **无理由退货**：",
           "- 普通会员：自签收之日起 **7 天**内可申请；",
@@ -84,383 +98,27 @@
         "error": null
       }
     },
-    "trace_id": "ef571dee15286b4da631af058475e378"
+    "trace_id": "085666f5603f58b150006fd01954196a"
   },
   "trace": {
-    "id": "ef571dee15286b4da631af058475e378",
+    "id": "085666f5603f58b150006fd01954196a",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:48:45.511000+00:00"
+    "timestamp": "2026-08-19 05:17:39.028000+00:00"
   },
   "observations": [
     {
-      "id": "031e54d4111477ac",
-      "traceId": "ef571dee15286b4da631af058475e378",
-      "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:48:05.541000+00:00",
-      "endTime": "2026-08-18 11:48:51.458000+00:00",
-      "input": {
-        "query": "金牌会员在购买商品超过7天后，是否仍可主张无理由退货？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-043",
-        "kind": "table",
-        "type": "single",
-        "layer": "platform",
-        "style": "formal",
-        "doc_id": "P04",
-        "section": "第五条 不属于排除范围的常见误区",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.455,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-043",
-        "type": "single",
-        "style": "formal",
-        "doc_id": "P04",
-        "layer": "platform",
-        "kind": "table",
-        "seed_chunk_id": [
-          "P04#005:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 0,
-          "recall@1": 0,
-          "evidence_tokens": 1526,
-          "duplicate_ratio": 0.422,
-          "context_recall": 1,
-          "context_relevance": 0.152
-        },
-        "elapsed_s": 2.1,
-        "seed_rank": {
-          "candidate": {
-            "P04#005:00": 7
-          },
-          "evidence": {
-            "P04#005:00": 4
-          }
-        },
-        "sections": [
-          "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
-          "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
-          "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.1 风控优先于会员权益 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
-          "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 4,
-            "hit": 4,
-            "detail": [
-              {
-                "claim": "金牌会员无理由退货窗口为7天的说法不成立。",
-                "supported": true,
-                "reason": "P04表格明确「已过7天不能退」（金牌会员）不成立。"
-              },
-              {
-                "claim": "金牌会员的无理由退货窗口为15天。",
-                "supported": true,
-                "reason": "P02 2.1规定金牌会员无理由退货窗口为15天。"
-              },
-              {
-                "claim": "金牌会员的无理由退货窗口不是7天。",
-                "supported": true,
-                "reason": "P02 2.1规定金牌会员窗口为15天，非7天。"
-              },
-              {
-                "claim": "超过7天但未满15天仍可退货。",
-                "supported": true,
-                "reason": "P02 2.1金牌会员15天窗口，超过7天未满15天可退。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.152,
-            "n": 66,
-            "hit": 10,
-            "truncated": false,
-            "note": "不相关的多为重复内容、风控、商品状态限制等",
-            "irrelevant": [
-              "2.1 **无理由退货**：",
-              "- 普通会员：自签收之日起 **7 天**内可申请；",
-              "2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 15 天**内可申请，需描述具体问题。",
-              "退款申请的受理条件、判定标准、处理时效，适用《售后服务与退换货政策》（[P02]）。",
-              "**退款是否通过，以平台依据本协议及各项交易规则作出的正式审核结论为准。",
-              "** 接待人员不得自行裁量退款是否通过，其职责限于理解消费者诉求、如实转述审核结论、说明所适用的政策条款。",
-              "任何退款批准或拒绝的答复，均须以实际生成的退款单号或受理编号为前提。",
-              "**未生成单号的口头承诺不构成平台的处理结论**，消费者可据此要求重新处理。",
-              "**账户被判定为高风险账户的，会员等级不产生豁免效力。",
-              "** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 45.917,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:53.248Z",
-      "updatedAt": "2026-08-18T11:48:53.265Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "parentObservationId": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "18eb9940fd25b2e2",
-      "traceId": "ef571dee15286b4da631af058475e378",
-      "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:48:05.541000+00:00",
-      "endTime": "2026-08-18 11:48:51.455000+00:00",
-      "input": {
-        "query": "金牌会员在购买商品超过7天后，是否仍可主张无理由退货？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-043",
-        "kind": "table",
-        "type": "single",
-        "layer": "platform",
-        "style": "formal",
-        "doc_id": "P04",
-        "section": "第五条 不属于排除范围的常见误区",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.455,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-043",
-        "type": "single",
-        "style": "formal",
-        "doc_id": "P04",
-        "layer": "platform",
-        "kind": "table",
-        "seed_chunk_id": [
-          "P04#005:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 0,
-          "recall@1": 0,
-          "evidence_tokens": 1526,
-          "duplicate_ratio": 0.422,
-          "context_recall": 1,
-          "context_relevance": 0.152
-        },
-        "elapsed_s": 2.1,
-        "seed_rank": {
-          "candidate": {
-            "P04#005:00": 7
-          },
-          "evidence": {
-            "P04#005:00": 4
-          }
-        },
-        "sections": [
-          "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
-          "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
-          "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.1 风控优先于会员权益 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
-          "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 4,
-            "hit": 4,
-            "detail": [
-              {
-                "claim": "金牌会员无理由退货窗口为7天的说法不成立。",
-                "supported": true,
-                "reason": "P04表格明确「已过7天不能退」（金牌会员）不成立。"
-              },
-              {
-                "claim": "金牌会员的无理由退货窗口为15天。",
-                "supported": true,
-                "reason": "P02 2.1规定金牌会员无理由退货窗口为15天。"
-              },
-              {
-                "claim": "金牌会员的无理由退货窗口不是7天。",
-                "supported": true,
-                "reason": "P02 2.1规定金牌会员窗口为15天，非7天。"
-              },
-              {
-                "claim": "超过7天但未满15天仍可退货。",
-                "supported": true,
-                "reason": "P02 2.1金牌会员15天窗口，超过7天未满15天可退。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.152,
-            "n": 66,
-            "hit": 10,
-            "truncated": false,
-            "note": "不相关的多为重复内容、风控、商品状态限制等",
-            "irrelevant": [
-              "2.1 **无理由退货**：",
-              "- 普通会员：自签收之日起 **7 天**内可申请；",
-              "2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 15 天**内可申请，需描述具体问题。",
-              "退款申请的受理条件、判定标准、处理时效，适用《售后服务与退换货政策》（[P02]）。",
-              "**退款是否通过，以平台依据本协议及各项交易规则作出的正式审核结论为准。",
-              "** 接待人员不得自行裁量退款是否通过，其职责限于理解消费者诉求、如实转述审核结论、说明所适用的政策条款。",
-              "任何退款批准或拒绝的答复，均须以实际生成的退款单号或受理编号为前提。",
-              "**未生成单号的口头承诺不构成平台的处理结论**，消费者可据此要求重新处理。",
-              "**账户被判定为高风险账户的，会员等级不产生豁免效力。",
-              "** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "031e54d4111477ac",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 45.914,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:53.248Z",
-      "updatedAt": "2026-08-18T11:48:53.264Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "399d50487e760e4a",
-      "traceId": "ef571dee15286b4da631af058475e378",
+      "id": "30072ca6e186f19b",
+      "traceId": "085666f5603f58b150006fd01954196a",
       "type": "SPAN",
       "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:48:51.456000+00:00",
-      "endTime": "2026-08-18 11:48:51.458000+00:00",
+      "startTime": "2026-08-19 05:17:45.860000+00:00",
+      "endTime": "2026-08-19 05:17:45.862000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -484,7 +142,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "031e54d4111477ac",
+      "parentObservationId": "cd6b5fddb306461b",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -494,8 +152,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.002,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:53.248Z",
-      "updatedAt": "2026-08-18T11:48:53.264Z",
+      "createdAt": "2026-08-19T05:17:49.398Z",
+      "updatedAt": "2026-08-19T05:17:49.423Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -517,12 +175,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "f55952306e20b78e",
-      "traceId": "ef571dee15286b4da631af058475e378",
+      "id": "e209bbdfefe09864",
+      "traceId": "085666f5603f58b150006fd01954196a",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:48:51.457000+00:00",
-      "endTime": "2026-08-18 11:48:51.457000+00:00",
+      "startTime": "2026-08-19 05:17:45.861000+00:00",
+      "endTime": "2026-08-19 05:17:45.862000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -530,6 +188,7 @@
         },
         "output": {
           "case_id": "R1-043",
+          "query": "金牌会员在购买商品超过7天后，是否仍可主张无理由退货？",
           "type": "single",
           "style": "formal",
           "doc_id": "P04",
@@ -538,6 +197,7 @@
           "seed_chunk_id": [
             "P04#005:00"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
@@ -546,9 +206,9 @@
             "evidence_tokens": 1526,
             "duplicate_ratio": 0.422,
             "context_recall": 1,
-            "context_relevance": 0.152
+            "context_relevance": 0.197
           },
-          "elapsed_s": 2.1,
+          "elapsed_s": 2.2,
           "seed_rank": {
             "candidate": {
               "P04#005:00": 7
@@ -557,6 +217,18 @@
               "P04#005:00": 4
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "window",
+                "text": "金牌会员购买商品超过7天后，无理由退货的窗口期是否已经结束？"
+              }
+            ]
+          },
+          "rewrite_hash": "a89714f6a5df69ad",
           "sections": [
             "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
             "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
@@ -593,11 +265,11 @@
               "error": null
             },
             "context_relevance": {
-              "score": 0.152,
+              "score": 0.197,
               "n": 66,
-              "hit": 10,
+              "hit": 13,
               "truncated": false,
-              "note": "不相关的多为重复内容、风控、商品状态限制等",
+              "note": "不相关的主要是重复内容、风控、商品状态限制等",
               "irrelevant": [
                 "2.1 **无理由退货**：",
                 "- 普通会员：自签收之日起 **7 天**内可申请；",
@@ -624,7 +296,8 @@
           "seed_chunk_id": [
             "P04#005:00"
           ],
-          "reference_answer": "不成立。金牌会员的无理由退货窗口为15天，而非7天，因此超过7天但未满15天仍可退货。"
+          "reference_answer": "不成立。金牌会员的无理由退货窗口为15天，而非7天，因此超过7天但未满15天仍可退货。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "table",
@@ -646,7 +319,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -690,8 +363,8 @@
         },
         {
           "name": "context_relevance",
-          "value": 0.152,
-          "comment": "10/66 个内容单元相关；不相关的多为重复内容、风控、商品状态限制等"
+          "value": 0.197,
+          "comment": "13/66 个内容单元相关；不相关的主要是重复内容、风控、商品状态限制等"
         },
         {
           "name": "run_error",
@@ -706,7 +379,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "399d50487e760e4a",
+      "parentObservationId": "30072ca6e186f19b",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -714,10 +387,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.0,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:53.248Z",
-      "updatedAt": "2026-08-18T11:48:53.256Z",
+      "createdAt": "2026-08-19T05:17:49.398Z",
+      "updatedAt": "2026-08-19T05:17:49.417Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -737,12 +410,396 @@
       "usagePricingTierName": null
     },
     {
-      "id": "9af6c6444be43ca5",
-      "traceId": "ef571dee15286b4da631af058475e378",
+      "id": "246d633159cc2dd3",
+      "traceId": "085666f5603f58b150006fd01954196a",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:17:07.266000+00:00",
+      "endTime": "2026-08-19 05:17:45.859000+00:00",
+      "input": {
+        "query": "金牌会员在购买商品超过7天后，是否仍可主张无理由退货？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-043",
+        "kind": "table",
+        "type": "single",
+        "layer": "platform",
+        "style": "formal",
+        "doc_id": "P04",
+        "section": "第五条 不属于排除范围的常见误区",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.455,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-043",
+        "query": "金牌会员在购买商品超过7天后，是否仍可主张无理由退货？",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "P04",
+        "layer": "platform",
+        "kind": "table",
+        "seed_chunk_id": [
+          "P04#005:00"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 0,
+          "recall@1": 0,
+          "evidence_tokens": 1526,
+          "duplicate_ratio": 0.422,
+          "context_recall": 1,
+          "context_relevance": 0.197
+        },
+        "elapsed_s": 2.2,
+        "seed_rank": {
+          "candidate": {
+            "P04#005:00": 7
+          },
+          "evidence": {
+            "P04#005:00": 4
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "window",
+              "text": "金牌会员购买商品超过7天后，无理由退货的窗口期是否已经结束？"
+            }
+          ]
+        },
+        "rewrite_hash": "a89714f6a5df69ad",
+        "sections": [
+          "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
+          "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
+          "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.1 风控优先于会员权益 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
+          "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 4,
+            "hit": 4,
+            "detail": [
+              {
+                "claim": "金牌会员无理由退货窗口为7天的说法不成立。",
+                "supported": true,
+                "reason": "P04表格明确「已过7天不能退」（金牌会员）不成立。"
+              },
+              {
+                "claim": "金牌会员的无理由退货窗口为15天。",
+                "supported": true,
+                "reason": "P02 2.1规定金牌会员无理由退货窗口为15天。"
+              },
+              {
+                "claim": "金牌会员的无理由退货窗口不是7天。",
+                "supported": true,
+                "reason": "P02 2.1规定金牌会员窗口为15天，非7天。"
+              },
+              {
+                "claim": "超过7天但未满15天仍可退货。",
+                "supported": true,
+                "reason": "P02 2.1金牌会员15天窗口，超过7天未满15天可退。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.197,
+            "n": 66,
+            "hit": 13,
+            "truncated": false,
+            "note": "不相关的主要是重复内容、风控、商品状态限制等",
+            "irrelevant": [
+              "2.1 **无理由退货**：",
+              "- 普通会员：自签收之日起 **7 天**内可申请；",
+              "2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 15 天**内可申请，需描述具体问题。",
+              "退款申请的受理条件、判定标准、处理时效，适用《售后服务与退换货政策》（[P02]）。",
+              "**退款是否通过，以平台依据本协议及各项交易规则作出的正式审核结论为准。",
+              "** 接待人员不得自行裁量退款是否通过，其职责限于理解消费者诉求、如实转述审核结论、说明所适用的政策条款。",
+              "任何退款批准或拒绝的答复，均须以实际生成的退款单号或受理编号为前提。",
+              "**未生成单号的口头承诺不构成平台的处理结论**，消费者可据此要求重新处理。",
+              "**账户被判定为高风险账户的，会员等级不产生豁免效力。",
+              "** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "cd6b5fddb306461b",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 38.593,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:17:49.398Z",
+      "updatedAt": "2026-08-19T05:17:49.414Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "cd6b5fddb306461b",
+      "traceId": "085666f5603f58b150006fd01954196a",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-19 05:17:07.266000+00:00",
+      "endTime": "2026-08-19 05:17:45.862000+00:00",
+      "input": {
+        "query": "金牌会员在购买商品超过7天后，是否仍可主张无理由退货？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-043",
+        "kind": "table",
+        "type": "single",
+        "layer": "platform",
+        "style": "formal",
+        "doc_id": "P04",
+        "section": "第五条 不属于排除范围的常见误区",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.455,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-043",
+        "query": "金牌会员在购买商品超过7天后，是否仍可主张无理由退货？",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "P04",
+        "layer": "platform",
+        "kind": "table",
+        "seed_chunk_id": [
+          "P04#005:00"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 0,
+          "recall@1": 0,
+          "evidence_tokens": 1526,
+          "duplicate_ratio": 0.422,
+          "context_recall": 1,
+          "context_relevance": 0.197
+        },
+        "elapsed_s": 2.2,
+        "seed_rank": {
+          "candidate": {
+            "P04#005:00": 7
+          },
+          "evidence": {
+            "P04#005:00": 4
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "window",
+              "text": "金牌会员购买商品超过7天后，无理由退货的窗口期是否已经结束？"
+            }
+          ]
+        },
+        "rewrite_hash": "a89714f6a5df69ad",
+        "sections": [
+          "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
+          "P01 星辰优选用户服务协议 > 第五章 售后与退款 > 5.1 售后服务承诺",
+          "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.1 风控优先于会员权益 … 第四条 会员权益的边界 > 4.4 等级以申请时为准",
+          "P04 星辰优选不适用无理由退货商品清单 > 第五条 不属于排除范围的常见误区"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 4,
+            "hit": 4,
+            "detail": [
+              {
+                "claim": "金牌会员无理由退货窗口为7天的说法不成立。",
+                "supported": true,
+                "reason": "P04表格明确「已过7天不能退」（金牌会员）不成立。"
+              },
+              {
+                "claim": "金牌会员的无理由退货窗口为15天。",
+                "supported": true,
+                "reason": "P02 2.1规定金牌会员无理由退货窗口为15天。"
+              },
+              {
+                "claim": "金牌会员的无理由退货窗口不是7天。",
+                "supported": true,
+                "reason": "P02 2.1规定金牌会员窗口为15天，非7天。"
+              },
+              {
+                "claim": "超过7天但未满15天仍可退货。",
+                "supported": true,
+                "reason": "P02 2.1金牌会员15天窗口，超过7天未满15天可退。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.197,
+            "n": 66,
+            "hit": 13,
+            "truncated": false,
+            "note": "不相关的主要是重复内容、风控、商品状态限制等",
+            "irrelevant": [
+              "2.1 **无理由退货**：",
+              "- 普通会员：自签收之日起 **7 天**内可申请；",
+              "2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 15 天**内可申请，需描述具体问题。",
+              "退款申请的受理条件、判定标准、处理时效，适用《售后服务与退换货政策》（[P02]）。",
+              "**退款是否通过，以平台依据本协议及各项交易规则作出的正式审核结论为准。",
+              "** 接待人员不得自行裁量退款是否通过，其职责限于理解消费者诉求、如实转述审核结论、说明所适用的政策条款。",
+              "任何退款批准或拒绝的答复，均须以实际生成的退款单号或受理编号为前提。",
+              "**未生成单号的口头承诺不构成平台的处理结论**，消费者可据此要求重新处理。",
+              "**账户被判定为高风险账户的，会员等级不产生豁免效力。",
+              "** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 38.596,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:17:49.398Z",
+      "updatedAt": "2026-08-19T05:17:49.414Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "ff179cecb9c41164",
+      "traceId": "085666f5603f58b150006fd01954196a",
       "type": "RETRIEVER",
       "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:48:45.511000+00:00",
-      "endTime": "2026-08-18 11:48:47.565000+00:00",
+      "startTime": "2026-08-19 05:17:39.028000+00:00",
+      "endTime": "2026-08-19 05:17:41.179000+00:00",
       "modelParameters": {},
       "input": {
         "query": "金牌会员在购买商品超过7天后，是否仍可主张无理由退货？",
@@ -753,7 +810,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -819,7 +876,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "18eb9940fd25b2e2",
+      "parentObservationId": "246d633159cc2dd3",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -827,10 +884,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 2.054,
+      "latency": 2.151,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:48.202Z",
-      "updatedAt": "2026-08-18T11:48:48.231Z",
+      "createdAt": "2026-08-19T05:17:44.253Z",
+      "updatedAt": "2026-08-19T05:17:44.262Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -850,86 +907,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "b0ff5ce1f84e986c",
-      "traceId": "ef571dee15286b4da631af058475e378",
-      "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:48:46.704000+00:00",
-      "endTime": "2026-08-18 11:48:46.704000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "routes": [
-          {
-            "sub_query": "1",
-            "layer_k": {
-              "platform": 18,
-              "law": 5
-            },
-            "law_weight": 0.5
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "9af6c6444be43ca5",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.0,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:48.202Z",
-      "updatedAt": "2026-08-18T11:48:48.231Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "0439cb7fa275ab10",
-      "traceId": "ef571dee15286b4da631af058475e378",
+      "id": "82c2fd7c4bd35c01",
+      "traceId": "085666f5603f58b150006fd01954196a",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 11:48:46.790000+00:00",
-      "endTime": "2026-08-18 11:48:47.540000+00:00",
+      "startTime": "2026-08-19 05:17:40.416000+00:00",
+      "endTime": "2026-08-19 05:17:41.152000+00:00",
       "input": {
         "query": "金牌会员在购买商品超过7天后，是否仍可主张无理由退货？",
         "candidates": 20
@@ -939,7 +922,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1104,7 +1087,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "9af6c6444be43ca5",
+      "parentObservationId": "ff179cecb9c41164",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1112,10 +1095,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.75,
+      "latency": 0.736,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:48.202Z",
-      "updatedAt": "2026-08-18T11:48:48.230Z",
+      "createdAt": "2026-08-19T05:17:44.253Z",
+      "updatedAt": "2026-08-19T05:17:44.261Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1136,12 +1119,87 @@
       "usagePricingTierName": null
     },
     {
-      "id": "f62bf3dd099edd90",
-      "traceId": "ef571dee15286b4da631af058475e378",
+      "id": "d640ae92d1716f5f",
+      "traceId": "085666f5603f58b150006fd01954196a",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-19 05:17:39.028000+00:00",
+      "endTime": "2026-08-19 05:17:40.330000+00:00",
+      "input": {
+        "query": "金牌会员在购买商品超过7天后，是否仍可主张无理由退货？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "window",
+            "text": "金牌会员购买商品超过7天后，无理由退货的窗口期是否已经结束？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "ff179cecb9c41164",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.302,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:17:44.253Z",
+      "updatedAt": "2026-08-19T05:17:44.261Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "052a505d255c6ac4",
+      "traceId": "085666f5603f58b150006fd01954196a",
       "type": "SPAN",
       "name": "rag.assemble",
-      "startTime": "2026-08-18 11:48:47.540000+00:00",
-      "endTime": "2026-08-18 11:48:47.565000+00:00",
+      "startTime": "2026-08-19 05:17:41.152000+00:00",
+      "endTime": "2026-08-19 05:17:41.179000+00:00",
       "input": {
         "top_k": 4,
         "evidence": [
@@ -1169,7 +1227,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1235,7 +1293,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "9af6c6444be43ca5",
+      "parentObservationId": "ff179cecb9c41164",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1243,10 +1301,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.025,
+      "latency": 0.027,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:48.202Z",
-      "updatedAt": "2026-08-18T11:48:48.230Z",
+      "createdAt": "2026-08-19T05:17:44.253Z",
+      "updatedAt": "2026-08-19T05:17:44.260Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1267,18 +1325,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "93b2eece8f991bab",
-      "traceId": "ef571dee15286b4da631af058475e378",
+      "id": "bb9765747bc9af7a",
+      "traceId": "085666f5603f58b150006fd01954196a",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 11:48:46.704000+00:00",
-      "endTime": "2026-08-18 11:48:46.790000+00:00",
+      "startTime": "2026-08-19 05:17:40.331000+00:00",
+      "endTime": "2026-08-19 05:17:40.416000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1476,7 +1534,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "9af6c6444be43ca5",
+      "parentObservationId": "ff179cecb9c41164",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1484,10 +1542,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.086,
+      "latency": 0.085,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:48.202Z",
-      "updatedAt": "2026-08-18T11:48:48.228Z",
+      "createdAt": "2026-08-19T05:17:44.253Z",
+      "updatedAt": "2026-08-19T05:17:44.260Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1509,21 +1567,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "d7428a6d99dca45c",
-      "traceId": "ef571dee15286b4da631af058475e378",
+      "id": "87e5d1e08dcdb4d7",
+      "traceId": "085666f5603f58b150006fd01954196a",
       "type": "SPAN",
-      "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:48:45.511000+00:00",
-      "endTime": "2026-08-18 11:48:46.703000+00:00",
-      "input": {
-        "query": "金牌会员在购买商品超过7天后，是否仍可主张无理由退货？"
-      },
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:17:40.330000+00:00",
+      "endTime": "2026-08-19 05:17:40.331000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1535,13 +1590,14 @@
         }
       },
       "output": {
-        "rewritten": true,
-        "needs_law": false,
-        "sub_queries": [
+        "routes": [
           {
-            "id": "1",
-            "intent": "window",
-            "text": "金牌会员购买商品超过7天后，无理由退货的窗口期是否已经结束？"
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
           }
         ]
       },
@@ -1552,7 +1608,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "9af6c6444be43ca5",
+      "parentObservationId": "ff179cecb9c41164",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1560,10 +1616,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.192,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:48:48.202Z",
-      "updatedAt": "2026-08-18T11:48:48.227Z",
+      "createdAt": "2026-08-19T05:17:44.253Z",
+      "updatedAt": "2026-08-19T05:17:44.259Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1571,6 +1627,7 @@
       "completionStartTime": null,
       "model": null,
       "modelParameters": null,
+      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,

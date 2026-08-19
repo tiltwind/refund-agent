@@ -16,14 +16,15 @@ Context Relevance 在 `judge.py`，那两个有噪声，只进报告不进门禁
 from rag.retrieving.protocol import PolicySection
 
 
-def recall_at_k(retrieved: list[str], seeds: list[str], k: int) -> float:
+def recall_at_k(retrieved: list[str], seeds: list[str], k: int, equivalent: list[list[str]] | None = None) -> float:
     """全部种子块都落在前 k 个里才算命中，不给部分分。
 
     `multi_hop` 的两个种子块是一套规则的两半，只召回一半答案照样是错的
     （4-rag-dataset 5.4）。给部分分会把「答不全」和「答对了」在均值里混成一个
     中间数，分档报表也就跟着失去意义。
     """
-    return float(set(seeds) <= set(retrieved[:k]))
+    groups = equivalent or [[seed] for seed in seeds]
+    return float(all(any(chunk_id in retrieved[:k] for chunk_id in group) for group in groups))
 
 
 def seed_ranks(retrieved: list[str], seeds: list[str]) -> dict[str, int | None]:
@@ -48,13 +49,10 @@ def evidence_tokens(sections: list[PolicySection]) -> int:
 
 
 def duplicate_ratio(sections: list[PolicySection]) -> float:
-    """重复正文的字符占比。
+    """同一批装配上下文中，重复段落占总字符数的比例。
 
-    装配按 `(parent_seq, parent_id, section_path)` 分组回填父块，而同一父块的子块
-    `section_path` 各不相同，同一个 `parent_id` 会被登记多次，父块正文重复拼进
-    上下文（5-rag-eval 二）。这类缺陷 chunk 级 Recall 看不见 —— 种子块召回了，
-    Recall 满分，注入模型的上下文里却有一大截是重复正文。它是纯字符串比对就能
-    抓住的，不必等人去读 trace。
+    这是一个内容重复信号，不证明重复一定由装配造成；不同父块或不同文档本身
+    也可能包含相同的标准表述。具体归因要结合 trace 和装配测试。
     """
     seen: set[str] = set()
     duplicated = total = 0

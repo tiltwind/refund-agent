@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-059",
+    "query": "消费者被采取一至四级阶梯措施后，其法定七日无理由退货权是否会受到影响？",
     "type": "single",
     "style": "formal",
     "doc_id": "P08",
@@ -9,6 +10,7 @@
     "seed_chunk_id": [
       "P08#004:00"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
@@ -17,9 +19,9 @@
       "evidence_tokens": 805,
       "duplicate_ratio": 0.0,
       "context_recall": 1.0,
-      "context_relevance": 0.139
+      "context_relevance": 0.111
     },
-    "elapsed_s": 2.0,
+    "elapsed_s": 2.4,
     "seed_rank": {
       "candidate": {
         "P08#004:00": 1
@@ -28,6 +30,23 @@
         "P08#004:00": 1
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": true,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "condition",
+          "text": "消费者被采取一至四级阶梯措施后，其法定七日无理由退货权是否会受到影响？"
+        },
+        {
+          "id": "2",
+          "intent": "validity",
+          "text": "被采取阶梯措施的用户是否仍享有法定七日无理由退货权？"
+        }
+      ]
+    },
+    "rewrite_hash": "80854dda8203bf10",
     "sections": [
       "P08 星辰优选风控与异常退款治理规则 > 第四条 处置措施",
       "P08 星辰优选风控与异常退款治理规则 > 第二条 触发后的处理 > 2.5 法定权利不受影响",
@@ -54,11 +73,11 @@
         "error": null
       },
       "context_relevance": {
-        "score": 0.139,
+        "score": 0.111,
         "n": 36,
-        "hit": 5,
+        "hit": 4,
         "truncated": false,
-        "note": "不相关的多为具体措施层级、程序性规定或一般性法律条款。",
+        "note": "不相关的多为阶梯措施具体情形、程序性规定及法律依据说明。",
         "irrelevant": [
           "平台按行为性质与严重程度采取阶梯式措施：",
           "| 层级 | 措施 | 适用情形 |",
@@ -74,471 +93,27 @@
         "error": null
       }
     },
-    "trace_id": "52e7c3513c0c8b41853877a8a8f1e134"
+    "trace_id": "d14bf14033ca4a4c9ae9ad483535c090"
   },
   "trace": {
-    "id": "52e7c3513c0c8b41853877a8a8f1e134",
+    "id": "d14bf14033ca4a4c9ae9ad483535c090",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:46:57.863000+00:00"
+    "timestamp": "2026-08-19 05:15:57.138000+00:00"
   },
   "observations": [
     {
-      "id": "11dc70d8908fa0b4",
-      "traceId": "52e7c3513c0c8b41853877a8a8f1e134",
-      "type": "EVALUATOR",
-      "name": "evaluate",
-      "startTime": "2026-08-18 11:47:03.526000+00:00",
-      "endTime": "2026-08-18 11:47:03.527000+00:00",
-      "modelParameters": {},
-      "input": {
-        "input": {
-          "query": "消费者被采取一至四级阶梯措施后，其法定七日无理由退货权是否会受到影响？"
-        },
-        "output": {
-          "case_id": "R1-059",
-          "type": "single",
-          "style": "formal",
-          "doc_id": "P08",
-          "layer": "platform",
-          "kind": "table",
-          "seed_chunk_id": [
-            "P08#004:00"
-          ],
-          "error": null,
-          "scores": {
-            "recall@10": 1,
-            "recall@3": 1,
-            "recall@1": 1,
-            "evidence_tokens": 805,
-            "duplicate_ratio": 0,
-            "context_recall": 1,
-            "context_relevance": 0.139
-          },
-          "elapsed_s": 2,
-          "seed_rank": {
-            "candidate": {
-              "P08#004:00": 1
-            },
-            "evidence": {
-              "P08#004:00": 1
-            }
-          },
-          "sections": [
-            "P08 星辰优选风控与异常退款治理规则 > 第四条 处置措施",
-            "P08 星辰优选风控与异常退款治理规则 > 第二条 触发后的处理 > 2.5 法定权利不受影响",
-            "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.2 违规导致的权益冻结",
-            "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】"
-          ],
-          "judge": {
-            "context_recall": {
-              "score": 1,
-              "n": 2,
-              "hit": 2,
-              "detail": [
-                {
-                  "claim": "一至四级措施均不剥夺法定七日无理由退货权",
-                  "supported": true,
-                  "reason": "P08第四条4.1明确写明一至四级措施均不剥夺法定七日无理由退货权"
-                },
-                {
-                  "claim": "一至四级措施仅调整处理通道与平台额外权益",
-                  "supported": true,
-                  "reason": "P08第四条4.1明确写明仅调整处理通道与平台额外权益"
-                }
-              ],
-              "error": null
-            },
-            "context_relevance": {
-              "score": 0.139,
-              "n": 36,
-              "hit": 5,
-              "truncated": false,
-              "note": "不相关的多为具体措施层级、程序性规定或一般性法律条款。",
-              "irrelevant": [
-                "平台按行为性质与严重程度采取阶梯式措施：",
-                "| 层级 | 措施 | 适用情形 |",
-                "|---|---|---|",
-                "| 一级 | 转人工审核 | 退款频次异常，无实质证据 |",
-                "| 二级 | 暂停极速退款 | 出现一次调包或虚假凭证 |",
-                "| 三级 | 冻结会员售后延长权益 | 经查实的滥用行为 |",
-                "| 四级 | 限制下单、账户功能受限 | 反复滥用、涉及职业索赔 |",
-                "| 五级 | 移送司法机关 | 涉嫌诈骗、敲诈勒索 |",
-                "4.2 采取二级以上措施的，平台须向消费者告知具体行为、认定依据与申诉途径。",
-                "高风险账户的**全部退款申请关闭自动通道**，一律转人工客服审核。"
-              ],
-              "error": null
-            }
-          }
-        },
-        "expected_output": {
-          "claims": [
-            "一至四级措施均不剥夺法定七日无理由退货权",
-            "一至四级措施仅调整处理通道与平台额外权益"
-          ],
-          "seed_chunk_id": [
-            "P08#004:00"
-          ],
-          "reference_answer": "一至四级措施均不剥夺法定七日无理由退货权，仅调整处理通道与平台额外权益。"
-        },
-        "metadata": {
-          "kind": "table",
-          "type": "single",
-          "layer": "platform",
-          "style": "formal",
-          "doc_id": "P08",
-          "section": "第四条 处置措施",
-          "reviewed": false,
-          "claims_by": "openai:deepseek-v4-pro",
-          "generated_by": "openai:deepseek-v4-flash",
-          "overlap_ratio": 0.548
-        }
-      },
-      "metadata": {
-        "evaluator_kind": "item",
-        "evaluator_index": 0,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": [
-        {
-          "name": "recall@10",
-          "value": 1,
-          "comment": "种子块名次 P08#004:00=1"
-        },
-        {
-          "name": "recall@3",
-          "value": 1,
-          "comment": "种子块名次 P08#004:00=1"
-        },
-        {
-          "name": "recall@1",
-          "value": 1,
-          "comment": "种子块名次 P08#004:00=1"
-        },
-        {
-          "name": "evidence_tokens",
-          "value": 805,
-          "comment": ""
-        },
-        {
-          "name": "duplicate_ratio",
-          "value": 0,
-          "comment": ""
-        },
-        {
-          "name": "context_recall",
-          "value": 1,
-          "comment": "2/2 条 claim 被支撑"
-        },
-        {
-          "name": "context_relevance",
-          "value": 0.139,
-          "comment": "5/36 个内容单元相关；不相关的多为具体措施层级、程序性规定或一般性法律条款。"
-        },
-        {
-          "name": "run_error",
-          "value": 0,
-          "comment": "ok"
-        }
-      ],
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "320d9b9f40c0d28c",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.001,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:07.482Z",
-      "updatedAt": "2026-08-18T11:47:07.494Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "a3e413edaa1ac561",
-      "traceId": "52e7c3513c0c8b41853877a8a8f1e134",
-      "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:46:31.018000+00:00",
-      "endTime": "2026-08-18 11:47:03.527000+00:00",
-      "input": {
-        "query": "消费者被采取一至四级阶梯措施后，其法定七日无理由退货权是否会受到影响？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-059",
-        "kind": "table",
-        "type": "single",
-        "layer": "platform",
-        "style": "formal",
-        "doc_id": "P08",
-        "section": "第四条 处置措施",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.548,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-059",
-        "type": "single",
-        "style": "formal",
-        "doc_id": "P08",
-        "layer": "platform",
-        "kind": "table",
-        "seed_chunk_id": [
-          "P08#004:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 805,
-          "duplicate_ratio": 0,
-          "context_recall": 1,
-          "context_relevance": 0.139
-        },
-        "elapsed_s": 2,
-        "seed_rank": {
-          "candidate": {
-            "P08#004:00": 1
-          },
-          "evidence": {
-            "P08#004:00": 1
-          }
-        },
-        "sections": [
-          "P08 星辰优选风控与异常退款治理规则 > 第四条 处置措施",
-          "P08 星辰优选风控与异常退款治理规则 > 第二条 触发后的处理 > 2.5 法定权利不受影响",
-          "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.2 违规导致的权益冻结",
-          "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 2,
-            "hit": 2,
-            "detail": [
-              {
-                "claim": "一至四级措施均不剥夺法定七日无理由退货权",
-                "supported": true,
-                "reason": "P08第四条4.1明确写明一至四级措施均不剥夺法定七日无理由退货权"
-              },
-              {
-                "claim": "一至四级措施仅调整处理通道与平台额外权益",
-                "supported": true,
-                "reason": "P08第四条4.1明确写明仅调整处理通道与平台额外权益"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.139,
-            "n": 36,
-            "hit": 5,
-            "truncated": false,
-            "note": "不相关的多为具体措施层级、程序性规定或一般性法律条款。",
-            "irrelevant": [
-              "平台按行为性质与严重程度采取阶梯式措施：",
-              "| 层级 | 措施 | 适用情形 |",
-              "|---|---|---|",
-              "| 一级 | 转人工审核 | 退款频次异常，无实质证据 |",
-              "| 二级 | 暂停极速退款 | 出现一次调包或虚假凭证 |",
-              "| 三级 | 冻结会员售后延长权益 | 经查实的滥用行为 |",
-              "| 四级 | 限制下单、账户功能受限 | 反复滥用、涉及职业索赔 |",
-              "| 五级 | 移送司法机关 | 涉嫌诈骗、敲诈勒索 |",
-              "4.2 采取二级以上措施的，平台须向消费者告知具体行为、认定依据与申诉途径。",
-              "高风险账户的**全部退款申请关闭自动通道**，一律转人工客服审核。"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 32.509,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:07.482Z",
-      "updatedAt": "2026-08-18T11:47:07.493Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "parentObservationId": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "320d9b9f40c0d28c",
-      "traceId": "52e7c3513c0c8b41853877a8a8f1e134",
-      "type": "SPAN",
-      "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:47:03.526000+00:00",
-      "endTime": "2026-08-18 11:47:03.527000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "evaluator_count": 1,
-        "evaluation_count": 8,
-        "failed_evaluator_count": 0,
-        "skipped_evaluator_count": 0
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "a3e413edaa1ac561",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.001,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:07.482Z",
-      "updatedAt": "2026-08-18T11:47:07.491Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "4b25291290edffde",
-      "traceId": "52e7c3513c0c8b41853877a8a8f1e134",
+      "id": "324804316d634f6d",
+      "traceId": "d14bf14033ca4a4c9ae9ad483535c090",
       "type": "SPAN",
       "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:46:31.018000+00:00",
-      "endTime": "2026-08-18 11:47:03.524000+00:00",
+      "startTime": "2026-08-19 05:15:27.007000+00:00",
+      "endTime": "2026-08-19 05:16:03.022000+00:00",
       "input": {
         "query": "消费者被采取一至四级阶梯措施后，其法定七日无理由退货权是否会受到影响？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -569,7 +144,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -582,6 +157,7 @@
       },
       "output": {
         "case_id": "R1-059",
+        "query": "消费者被采取一至四级阶梯措施后，其法定七日无理由退货权是否会受到影响？",
         "type": "single",
         "style": "formal",
         "doc_id": "P08",
@@ -590,6 +166,7 @@
         "seed_chunk_id": [
           "P08#004:00"
         ],
+        "acceptable_seed_chunk_ids": null,
         "error": null,
         "scores": {
           "recall@10": 1,
@@ -598,9 +175,9 @@
           "evidence_tokens": 805,
           "duplicate_ratio": 0,
           "context_recall": 1,
-          "context_relevance": 0.139
+          "context_relevance": 0.111
         },
-        "elapsed_s": 2,
+        "elapsed_s": 2.4,
         "seed_rank": {
           "candidate": {
             "P08#004:00": 1
@@ -609,6 +186,23 @@
             "P08#004:00": 1
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": true,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "condition",
+              "text": "消费者被采取一至四级阶梯措施后，其法定七日无理由退货权是否会受到影响？"
+            },
+            {
+              "id": "2",
+              "intent": "validity",
+              "text": "被采取阶梯措施的用户是否仍享有法定七日无理由退货权？"
+            }
+          ]
+        },
+        "rewrite_hash": "80854dda8203bf10",
         "sections": [
           "P08 星辰优选风控与异常退款治理规则 > 第四条 处置措施",
           "P08 星辰优选风控与异常退款治理规则 > 第二条 触发后的处理 > 2.5 法定权利不受影响",
@@ -635,11 +229,11 @@
             "error": null
           },
           "context_relevance": {
-            "score": 0.139,
+            "score": 0.111,
             "n": 36,
-            "hit": 5,
+            "hit": 4,
             "truncated": false,
-            "note": "不相关的多为具体措施层级、程序性规定或一般性法律条款。",
+            "note": "不相关的多为阶梯措施具体情形、程序性规定及法律依据说明。",
             "irrelevant": [
               "平台按行为性质与严重程度采取阶梯式措施：",
               "| 层级 | 措施 | 适用情形 |",
@@ -663,7 +257,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "a3e413edaa1ac561",
+      "parentObservationId": "df6110fb06477eb0",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -671,10 +265,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 32.506,
+      "latency": 36.015,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:07.482Z",
-      "updatedAt": "2026-08-18T11:47:07.490Z",
+      "createdAt": "2026-08-19T05:16:03.865Z",
+      "updatedAt": "2026-08-19T05:16:03.882Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -695,18 +289,23 @@
       "usagePricingTierName": null
     },
     {
-      "id": "901c2571070c01a1",
-      "traceId": "52e7c3513c0c8b41853877a8a8f1e134",
-      "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:46:59.069000+00:00",
-      "endTime": "2026-08-18 11:46:59.070000+00:00",
+      "id": "79d8ed8fa0f3cbac",
+      "traceId": "d14bf14033ca4a4c9ae9ad483535c090",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:15:57.137000+00:00",
+      "endTime": "2026-08-19 05:15:59.498000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "消费者被采取一至四级阶梯措施后，其法定七日无理由退货权是否会受到影响？",
+        "top_k": 4
+      },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -718,22 +317,50 @@
         }
       },
       "output": {
-        "routes": [
+        "sections": [
           {
-            "sub_query": "1",
-            "layer_k": {
-              "platform": 12,
-              "law": 12
-            },
-            "law_weight": 1
+            "section": "P08 星辰优选风控与异常退款治理规则 > 第四条 处置措施",
+            "text": "平台按行为性质与严重程度采取阶梯式措施：\n\n| 层级 | 措施 | 适用情形 |\n|---|---|---|\n| 一级 | 转人工审核 | 退款频次异常，无实质证据 |\n| 二级 | 暂停极速退款 | 出现一次调包或虚假凭证 |\n| 三级 | 冻结会员售后延长权益 | 经查实的滥用行为 |\n| 四级 | 限制下单、账户功能受限 | 反复滥用、涉及职业索赔 |\n| 五级 | 移送司法机关 | 涉嫌诈骗、敲诈勒索 |\n\n4.1 **一至四级措施均不剥夺法定七日无理由退货权**，仅调整处理通道与平台额外权益。\n\n4.2 采取二级以上措施的，平台须向消费者告知具体行为、认定依据与申诉途径。",
+            "score": 0.9642072486877442,
+            "doc_id": "P08",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
+            "reason": "相关性 0.980 × 先验 0.90 → 0.964；命中 1/platform/dense#1, 1/platform/bm25#1, 2/platform/dense#1, 2/platform/bm25#1"
           },
           {
-            "sub_query": "2",
-            "layer_k": {
-              "platform": 12,
-              "law": 12
-            },
-            "law_weight": 1
+            "section": "P08 星辰优选风控与异常退款治理规则 > 第二条 触发后的处理 > 2.5 法定权利不受影响",
+            "text": "高风险账户的**全部退款申请关闭自动通道**，一律转人工客服审核。\n\n人工审核周期为 **1-3 个工作日**。审核期间订单状态保持待处理，不影响退货窗口的时效。\n\n**高风险判定只改变处理通道，不预先否定诉求。** 人工审核后符合退款条件的，照常批准退款。风控的作用是引入人工核验环节，不是拒绝退款的理由。\n\n风控规则的优先级**高于**会员等级权益。金牌会员触发高风险的，同样关闭自动通道。\n\n**风控措施不得剥夺消费者的法定七日无理由退货权。** 高风险账户的合规退货申请，经人工核验后仍应予以受理。措施应与滥用程度相当。",
+            "score": 0.9415638732910158,
+            "doc_id": "P08",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
+            "reason": "相关性 0.952 × 先验 0.90 → 0.942；命中 1/platform/dense#2, 1/platform/bm25#2, 2/platform/dense#2, 2/platform/bm25#2"
+          },
+          {
+            "section": "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.2 违规导致的权益冻结",
+            "text": "会员等级降级后，权益随之调整，平台提前 7 日通知。\n\n出现以下情形的，平台可冻结会员售后权益，恢复至普通会员标准：\n\n（一）经查实的调包退货、虚假质量问题申报；\n（二）恶意批量下单退货，影响商家正常经营；\n（三）以投诉、差评相要挟索取不当利益。\n\n权益冻结**不影响消费者的法定 7 日无理由退货权**——冻结的只是平台额外给予的延长部分。\n\n消费者对权益冻结有异议的，可通过专属客服通道申诉，平台在 3 个工作日内回复。",
+            "score": 0.559226851463318,
+            "doc_id": "P07",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
+            "reason": "相关性 0.474 × 先验 0.90 → 0.559；命中 1/platform/bm25#5, 2/platform/dense#12, 2/platform/bm25#11"
+          },
+          {
+            "section": "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】",
+            "text": "经营者通过网络、电视、电话、邮购等方式销售商品的，应当遵守消费者权益保护法第二十五条规定，不得擅自扩大不适用无理由退货的商品范围。\n\n经营者应当以显著方式对不适用无理由退货的商品进行标注，提示消费者在购买时进行确认，不得将不适用无理由退货作为消费者默认同意的选项。未经消费者确认，经营者不得拒绝无理由退货。\n\n消费者退货的商品应当完好。消费者基于查验需要打开商品包装，或者为确认商品的品质和功能进行合理调试而不影响商品原有品质、功能和外观的，经营者应当予以退货。\n\n消费者无理由退货应当遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。\n\n> **适用要点**：本条是**平台风控规则的法律依据**。第四款首次在行政法规层面确立「无理由退货不得滥用」，平台对高频异常退款账户采取限制自动通道、转人工审核等措施，据此具备合法性——但措施须与滥用程度相当，不得直接剥夺法定退货权。",
+            "score": 0.44266937255859373,
+            "doc_id": "L03",
+            "layer": "law",
+            "doc_type": "行政法规",
+            "effective_date": "2024-07-01",
+            "source_path": "doc/policy/law/L03-消费者权益保护法实施条例-摘录.md",
+            "reason": "相关性 0.328 × 先验 0.90 → 0.443；命中 1/law/bm25#1, 2/law/bm25#2"
           }
         ]
       },
@@ -744,7 +371,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "bb0306adaa15d968",
+      "parentObservationId": "324804316d634f6d",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -752,18 +379,16 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.001,
+      "latency": 2.361,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:02.454Z",
-      "updatedAt": "2026-08-18T11:47:02.474Z",
+      "createdAt": "2026-08-19T05:16:03.865Z",
+      "updatedAt": "2026-08-19T05:16:03.881Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
       "totalTokens": 0,
       "completionStartTime": null,
       "model": null,
-      "modelParameters": null,
-      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -777,18 +402,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "d3ffbcbc1ad13d99",
-      "traceId": "52e7c3513c0c8b41853877a8a8f1e134",
+      "id": "da1f9c7e57c106d4",
+      "traceId": "d14bf14033ca4a4c9ae9ad483535c090",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 11:46:59.070000+00:00",
-      "endTime": "2026-08-18 11:46:59.168000+00:00",
+      "startTime": "2026-08-19 05:15:58.584000+00:00",
+      "endTime": "2026-08-19 05:15:58.695000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -835,14 +460,13 @@
             ]
           },
           {
-            "chunk_id": "P08#007:00",
-            "section": "P08 第七条 合法性依据",
-            "rrf": 0.1521,
+            "chunk_id": "L02#002:01",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】",
+            "rrf": 0.1135,
             "hits": [
-              "1/platform/dense#12",
-              "1/platform/bm25#4",
-              "2/platform/dense#8",
-              "2/platform/bm25#3"
+              "1/law/dense#4",
+              "1/law/bm25#10",
+              "2/law/dense#6"
             ]
           },
           {
@@ -856,13 +480,14 @@
             ]
           },
           {
-            "chunk_id": "L02#002:01",
-            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】",
-            "rrf": 0.1135,
+            "chunk_id": "P08#007:00",
+            "section": "P08 第七条 合法性依据",
+            "rrf": 0.1521,
             "hits": [
-              "1/law/dense#4",
-              "1/law/bm25#10",
-              "2/law/dense#6"
+              "1/platform/dense#12",
+              "1/platform/bm25#4",
+              "2/platform/dense#8",
+              "2/platform/bm25#3"
             ]
           },
           {
@@ -876,13 +501,30 @@
             ]
           },
           {
-            "chunk_id": "P07#004:01",
-            "section": "P07 第五条 权益的调整与失效 > 5.2 违规导致的权益冻结",
-            "rrf": 0.1035,
+            "chunk_id": "L02#006:00",
+            "section": "L02 第六章 法律责任 > 第三十条 【擅自扩大不适用范围】",
+            "rrf": 0.0893,
             "hits": [
-              "1/platform/bm25#5",
-              "2/platform/dense#12",
-              "2/platform/bm25#11"
+              "1/law/dense#1",
+              "2/law/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "L03#005:00",
+            "section": "L03 第十九条 【无理由退货的边界与滥用治理】",
+            "rrf": 0.0931,
+            "hits": [
+              "1/law/bm25#1",
+              "2/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L02#006:01",
+            "section": "L02 第六章 法律责任 > 第三十一条 【拒绝退货、拖延退款】",
+            "rrf": 0.0931,
+            "hits": [
+              "1/law/dense#2",
+              "2/law/dense#1"
             ]
           },
           {
@@ -906,39 +548,13 @@
             ]
           },
           {
-            "chunk_id": "L02#006:01",
-            "section": "L02 第六章 法律责任 > 第三十一条 【拒绝退货、拖延退款】",
-            "rrf": 0.0931,
+            "chunk_id": "P07#004:01",
+            "section": "P07 第五条 权益的调整与失效 > 5.2 违规导致的权益冻结",
+            "rrf": 0.1035,
             "hits": [
-              "1/law/dense#2",
-              "2/law/dense#1"
-            ]
-          },
-          {
-            "chunk_id": "L03#005:00",
-            "section": "L03 第十九条 【无理由退货的边界与滥用治理】",
-            "rrf": 0.0931,
-            "hits": [
-              "1/law/bm25#1",
-              "2/law/bm25#2"
-            ]
-          },
-          {
-            "chunk_id": "L02#006:00",
-            "section": "L02 第六章 法律责任 > 第三十条 【擅自扩大不适用范围】",
-            "rrf": 0.0893,
-            "hits": [
-              "1/law/dense#1",
-              "2/law/dense#4"
-            ]
-          },
-          {
-            "chunk_id": "L02#004:03",
-            "section": "L02 第四章 特别规定 > 第二十三条 【平台检查监控义务】",
-            "rrf": 0.0889,
-            "hits": [
-              "1/law/bm25#2",
-              "2/law/bm25#3"
+              "1/platform/bm25#5",
+              "2/platform/dense#12",
+              "2/platform/bm25#11"
             ]
           },
           {
@@ -951,12 +567,12 @@
             ]
           },
           {
-            "chunk_id": "P04#005:00",
-            "section": "P04 第五条 不属于排除范围的常见误区",
-            "rrf": 0.0851,
+            "chunk_id": "L02#004:03",
+            "section": "L02 第四章 特别规定 > 第二十三条 【平台检查监控义务】",
+            "rrf": 0.0889,
             "hits": [
-              "1/platform/bm25#3",
-              "2/platform/bm25#4"
+              "1/law/bm25#2",
+              "2/law/bm25#3"
             ]
           },
           {
@@ -969,6 +585,15 @@
             ]
           },
           {
+            "chunk_id": "P04#005:00",
+            "section": "P04 第五条 不属于排除范围的常见误区",
+            "rrf": 0.0851,
+            "hits": [
+              "1/platform/bm25#3",
+              "2/platform/bm25#4"
+            ]
+          },
+          {
             "chunk_id": "L02#006:04",
             "section": "L02 第六章 法律责任 > 第三十四条 【平台拒绝协助调查】",
             "rrf": 0.0817,
@@ -978,21 +603,20 @@
             ]
           },
           {
-            "chunk_id": "L02#001:01",
-            "section": "L02 第一章 总则 > 第二条 【适用范围】",
-            "rrf": 0.08,
+            "chunk_id": "P07#002:02",
+            "section": "P07 第三条 极速退款 > 3.3 垫付后的处理",
+            "rrf": 0.04,
             "hits": [
-              "1/law/dense#5",
-              "2/law/dense#5"
+              "2/platform/dense#5"
             ]
           },
           {
-            "chunk_id": "P03#007:00",
-            "section": "P03 相关文件",
-            "rrf": 0.0755,
+            "chunk_id": "P01#005:00",
+            "section": "P01 第五章 售后与退款 > 5.1 售后服务承诺",
+            "rrf": 0.0713,
             "hits": [
-              "1/platform/bm25#7",
-              "2/platform/bm25#6"
+              "1/platform/bm25#12",
+              "2/platform/bm25#5"
             ]
           }
         ]
@@ -1004,7 +628,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "bb0306adaa15d968",
+      "parentObservationId": "79d8ed8fa0f3cbac",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1012,10 +636,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.098,
+      "latency": 0.111,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:02.454Z",
-      "updatedAt": "2026-08-18T11:47:02.473Z",
+      "createdAt": "2026-08-19T05:16:03.865Z",
+      "updatedAt": "2026-08-19T05:16:03.881Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1037,12 +661,495 @@
       "usagePricingTierName": null
     },
     {
-      "id": "91cb1921bc401261",
-      "traceId": "52e7c3513c0c8b41853877a8a8f1e134",
+      "id": "df6110fb06477eb0",
+      "traceId": "d14bf14033ca4a4c9ae9ad483535c090",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-19 05:15:27.007000+00:00",
+      "endTime": "2026-08-19 05:16:03.025000+00:00",
+      "input": {
+        "query": "消费者被采取一至四级阶梯措施后，其法定七日无理由退货权是否会受到影响？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-059",
+        "kind": "table",
+        "type": "single",
+        "layer": "platform",
+        "style": "formal",
+        "doc_id": "P08",
+        "section": "第四条 处置措施",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.548,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-059",
+        "query": "消费者被采取一至四级阶梯措施后，其法定七日无理由退货权是否会受到影响？",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "P08",
+        "layer": "platform",
+        "kind": "table",
+        "seed_chunk_id": [
+          "P08#004:00"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 805,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.111
+        },
+        "elapsed_s": 2.4,
+        "seed_rank": {
+          "candidate": {
+            "P08#004:00": 1
+          },
+          "evidence": {
+            "P08#004:00": 1
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": true,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "condition",
+              "text": "消费者被采取一至四级阶梯措施后，其法定七日无理由退货权是否会受到影响？"
+            },
+            {
+              "id": "2",
+              "intent": "validity",
+              "text": "被采取阶梯措施的用户是否仍享有法定七日无理由退货权？"
+            }
+          ]
+        },
+        "rewrite_hash": "80854dda8203bf10",
+        "sections": [
+          "P08 星辰优选风控与异常退款治理规则 > 第四条 处置措施",
+          "P08 星辰优选风控与异常退款治理规则 > 第二条 触发后的处理 > 2.5 法定权利不受影响",
+          "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.2 违规导致的权益冻结",
+          "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "一至四级措施均不剥夺法定七日无理由退货权",
+                "supported": true,
+                "reason": "P08第四条4.1明确写明一至四级措施均不剥夺法定七日无理由退货权"
+              },
+              {
+                "claim": "一至四级措施仅调整处理通道与平台额外权益",
+                "supported": true,
+                "reason": "P08第四条4.1明确写明仅调整处理通道与平台额外权益"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.111,
+            "n": 36,
+            "hit": 4,
+            "truncated": false,
+            "note": "不相关的多为阶梯措施具体情形、程序性规定及法律依据说明。",
+            "irrelevant": [
+              "平台按行为性质与严重程度采取阶梯式措施：",
+              "| 层级 | 措施 | 适用情形 |",
+              "|---|---|---|",
+              "| 一级 | 转人工审核 | 退款频次异常，无实质证据 |",
+              "| 二级 | 暂停极速退款 | 出现一次调包或虚假凭证 |",
+              "| 三级 | 冻结会员售后延长权益 | 经查实的滥用行为 |",
+              "| 四级 | 限制下单、账户功能受限 | 反复滥用、涉及职业索赔 |",
+              "| 五级 | 移送司法机关 | 涉嫌诈骗、敲诈勒索 |",
+              "4.2 采取二级以上措施的，平台须向消费者告知具体行为、认定依据与申诉途径。",
+              "高风险账户的**全部退款申请关闭自动通道**，一律转人工客服审核。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 36.018,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:16:03.865Z",
+      "updatedAt": "2026-08-19T05:16:03.880Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "1b8348de1ca4f602",
+      "traceId": "d14bf14033ca4a4c9ae9ad483535c090",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-19 05:16:03.024000+00:00",
+      "endTime": "2026-08-19 05:16:03.024000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "消费者被采取一至四级阶梯措施后，其法定七日无理由退货权是否会受到影响？"
+        },
+        "output": {
+          "case_id": "R1-059",
+          "query": "消费者被采取一至四级阶梯措施后，其法定七日无理由退货权是否会受到影响？",
+          "type": "single",
+          "style": "formal",
+          "doc_id": "P08",
+          "layer": "platform",
+          "kind": "table",
+          "seed_chunk_id": [
+            "P08#004:00"
+          ],
+          "acceptable_seed_chunk_ids": null,
+          "error": null,
+          "scores": {
+            "recall@10": 1,
+            "recall@3": 1,
+            "recall@1": 1,
+            "evidence_tokens": 805,
+            "duplicate_ratio": 0,
+            "context_recall": 1,
+            "context_relevance": 0.111
+          },
+          "elapsed_s": 2.4,
+          "seed_rank": {
+            "candidate": {
+              "P08#004:00": 1
+            },
+            "evidence": {
+              "P08#004:00": 1
+            }
+          },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": true,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "condition",
+                "text": "消费者被采取一至四级阶梯措施后，其法定七日无理由退货权是否会受到影响？"
+              },
+              {
+                "id": "2",
+                "intent": "validity",
+                "text": "被采取阶梯措施的用户是否仍享有法定七日无理由退货权？"
+              }
+            ]
+          },
+          "rewrite_hash": "80854dda8203bf10",
+          "sections": [
+            "P08 星辰优选风控与异常退款治理规则 > 第四条 处置措施",
+            "P08 星辰优选风控与异常退款治理规则 > 第二条 触发后的处理 > 2.5 法定权利不受影响",
+            "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.2 违规导致的权益冻结",
+            "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】"
+          ],
+          "judge": {
+            "context_recall": {
+              "score": 1,
+              "n": 2,
+              "hit": 2,
+              "detail": [
+                {
+                  "claim": "一至四级措施均不剥夺法定七日无理由退货权",
+                  "supported": true,
+                  "reason": "P08第四条4.1明确写明一至四级措施均不剥夺法定七日无理由退货权"
+                },
+                {
+                  "claim": "一至四级措施仅调整处理通道与平台额外权益",
+                  "supported": true,
+                  "reason": "P08第四条4.1明确写明仅调整处理通道与平台额外权益"
+                }
+              ],
+              "error": null
+            },
+            "context_relevance": {
+              "score": 0.111,
+              "n": 36,
+              "hit": 4,
+              "truncated": false,
+              "note": "不相关的多为阶梯措施具体情形、程序性规定及法律依据说明。",
+              "irrelevant": [
+                "平台按行为性质与严重程度采取阶梯式措施：",
+                "| 层级 | 措施 | 适用情形 |",
+                "|---|---|---|",
+                "| 一级 | 转人工审核 | 退款频次异常，无实质证据 |",
+                "| 二级 | 暂停极速退款 | 出现一次调包或虚假凭证 |",
+                "| 三级 | 冻结会员售后延长权益 | 经查实的滥用行为 |",
+                "| 四级 | 限制下单、账户功能受限 | 反复滥用、涉及职业索赔 |",
+                "| 五级 | 移送司法机关 | 涉嫌诈骗、敲诈勒索 |",
+                "4.2 采取二级以上措施的，平台须向消费者告知具体行为、认定依据与申诉途径。",
+                "高风险账户的**全部退款申请关闭自动通道**，一律转人工客服审核。"
+              ],
+              "error": null
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [
+            "一至四级措施均不剥夺法定七日无理由退货权",
+            "一至四级措施仅调整处理通道与平台额外权益"
+          ],
+          "seed_chunk_id": [
+            "P08#004:00"
+          ],
+          "reference_answer": "一至四级措施均不剥夺法定七日无理由退货权，仅调整处理通道与平台额外权益。",
+          "acceptable_seed_chunk_ids": []
+        },
+        "metadata": {
+          "kind": "table",
+          "type": "single",
+          "layer": "platform",
+          "style": "formal",
+          "doc_id": "P08",
+          "section": "第四条 处置措施",
+          "reviewed": false,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.548
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 1,
+          "comment": "种子块名次 P08#004:00=1"
+        },
+        {
+          "name": "recall@3",
+          "value": 1,
+          "comment": "种子块名次 P08#004:00=1"
+        },
+        {
+          "name": "recall@1",
+          "value": 1,
+          "comment": "种子块名次 P08#004:00=1"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 805,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "context_recall",
+          "value": 1,
+          "comment": "2/2 条 claim 被支撑"
+        },
+        {
+          "name": "context_relevance",
+          "value": 0.111,
+          "comment": "4/36 个内容单元相关；不相关的多为阶梯措施具体情形、程序性规定及法律依据说明。"
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "59059dacd24e866f",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:16:03.865Z",
+      "updatedAt": "2026-08-19T05:16:03.878Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "59059dacd24e866f",
+      "traceId": "d14bf14033ca4a4c9ae9ad483535c090",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-19 05:16:03.023000+00:00",
+      "endTime": "2026-08-19 05:16:03.025000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "df6110fb06477eb0",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.002,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:16:03.865Z",
+      "updatedAt": "2026-08-19T05:16:03.878Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "866550c7fbbfa9a9",
+      "traceId": "d14bf14033ca4a4c9ae9ad483535c090",
       "type": "SPAN",
       "name": "rag.assemble",
-      "startTime": "2026-08-18 11:46:59.871000+00:00",
-      "endTime": "2026-08-18 11:46:59.888000+00:00",
+      "startTime": "2026-08-19 05:15:59.483000+00:00",
+      "endTime": "2026-08-19 05:15:59.498000+00:00",
       "input": {
         "top_k": 4,
         "evidence": [
@@ -1051,7 +1158,6 @@
           "P07#004:01",
           "L03#005:00",
           "P08#007:00",
-          "L02#001:01",
           "L02#006:01"
         ]
       },
@@ -1060,7 +1166,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1126,7 +1232,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "bb0306adaa15d968",
+      "parentObservationId": "79d8ed8fa0f3cbac",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1134,10 +1240,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.017,
+      "latency": 0.015,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:02.454Z",
-      "updatedAt": "2026-08-18T11:47:02.472Z",
+      "createdAt": "2026-08-19T05:16:03.865Z",
+      "updatedAt": "2026-08-19T05:16:03.876Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1158,12 +1264,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "97aa106a54891dfe",
-      "traceId": "52e7c3513c0c8b41853877a8a8f1e134",
+      "id": "226917d0a9d0209b",
+      "traceId": "d14bf14033ca4a4c9ae9ad483535c090",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 11:46:59.169000+00:00",
-      "endTime": "2026-08-18 11:46:59.871000+00:00",
+      "startTime": "2026-08-19 05:15:58.695000+00:00",
+      "endTime": "2026-08-19 05:15:59.483000+00:00",
       "input": {
         "query": "消费者被采取一至四级阶梯措施后，其法定七日无理由退货权是否会受到影响？",
         "candidates": 20
@@ -1173,7 +1279,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1185,22 +1291,23 @@
         }
       },
       "output": {
-        "passed": 7,
+        "passed": 6,
         "min_score": 0.3,
         "dropped": [
           "L02#004:00",
-          "L02#004:02",
           "L02#002:01",
+          "L02#004:02",
           "P01#006:01",
+          "L02#006:00",
           "L02#001:02",
           "L02#004:05",
-          "L02#006:00",
-          "L02#004:03",
           "P07#002:03",
-          "P04#005:00",
+          "L02#004:03",
           "P07#003:03",
+          "P04#005:00",
           "L02#006:04",
-          "P03#007:00"
+          "P07#002:02",
+          "P01#005:00"
         ],
         "evidence": [
           {
@@ -1244,14 +1351,6 @@
             "excerpt": "7.1 《消费者权益保护法实施条例》第十九条第四款规定：**消费者无理由退货应当遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。** 这是平台风控措施的直接法律依据。 7.2 平台风控措施须与滥用程度相当，**不得…"
           },
           {
-            "chunk_id": "L02#001:01",
-            "section": "L02 第一章 总则 > 第二条 【适用范围】",
-            "score": 0.314,
-            "relevance": 0.168,
-            "prior": 0.9,
-            "excerpt": "消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。"
-          },
-          {
             "chunk_id": "L02#006:01",
             "section": "L02 第六章 法律责任 > 第三十一条 【拒绝退货、拖延退款】",
             "score": 0.308,
@@ -1268,7 +1367,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "bb0306adaa15d968",
+      "parentObservationId": "79d8ed8fa0f3cbac",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1276,10 +1375,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.702,
+      "latency": 0.788,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:02.454Z",
-      "updatedAt": "2026-08-18T11:47:02.472Z",
+      "createdAt": "2026-08-19T05:16:03.865Z",
+      "updatedAt": "2026-08-19T05:16:03.875Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1300,12 +1399,94 @@
       "usagePricingTierName": null
     },
     {
-      "id": "fd6588c930559ea7",
-      "traceId": "52e7c3513c0c8b41853877a8a8f1e134",
+      "id": "10d71187ee20791d",
+      "traceId": "d14bf14033ca4a4c9ae9ad483535c090",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:15:58.584000+00:00",
+      "endTime": "2026-08-19 05:15:58.584000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 12,
+              "law": 12
+            },
+            "law_weight": 1
+          },
+          {
+            "sub_query": "2",
+            "layer_k": {
+              "platform": 12,
+              "law": 12
+            },
+            "law_weight": 1
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "79d8ed8fa0f3cbac",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:15:58.750Z",
+      "updatedAt": "2026-08-19T05:15:58.778Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "7de7d1ad7eb33832",
+      "traceId": "d14bf14033ca4a4c9ae9ad483535c090",
       "type": "SPAN",
       "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:46:57.863000+00:00",
-      "endTime": "2026-08-18 11:46:59.069000+00:00",
+      "startTime": "2026-08-19 05:15:57.138000+00:00",
+      "endTime": "2026-08-19 05:15:58.584000+00:00",
       "input": {
         "query": "消费者被采取一至四级阶梯措施后，其法定七日无理由退货权是否会受到影响？"
       },
@@ -1314,7 +1495,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1348,7 +1529,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "bb0306adaa15d968",
+      "parentObservationId": "79d8ed8fa0f3cbac",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1356,10 +1537,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.206,
+      "latency": 1.446,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:02.454Z",
-      "updatedAt": "2026-08-18T11:47:02.470Z",
+      "createdAt": "2026-08-19T05:15:58.750Z",
+      "updatedAt": "2026-08-19T05:15:58.777Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1367,119 +1548,6 @@
       "completionStartTime": null,
       "model": null,
       "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "bb0306adaa15d968",
-      "traceId": "52e7c3513c0c8b41853877a8a8f1e134",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:46:57.863000+00:00",
-      "endTime": "2026-08-18 11:46:59.888000+00:00",
-      "modelParameters": {},
-      "input": {
-        "query": "消费者被采取一至四级阶梯措施后，其法定七日无理由退货权是否会受到影响？",
-        "top_k": 4
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "P08 星辰优选风控与异常退款治理规则 > 第四条 处置措施",
-            "text": "平台按行为性质与严重程度采取阶梯式措施：\n\n| 层级 | 措施 | 适用情形 |\n|---|---|---|\n| 一级 | 转人工审核 | 退款频次异常，无实质证据 |\n| 二级 | 暂停极速退款 | 出现一次调包或虚假凭证 |\n| 三级 | 冻结会员售后延长权益 | 经查实的滥用行为 |\n| 四级 | 限制下单、账户功能受限 | 反复滥用、涉及职业索赔 |\n| 五级 | 移送司法机关 | 涉嫌诈骗、敲诈勒索 |\n\n4.1 **一至四级措施均不剥夺法定七日无理由退货权**，仅调整处理通道与平台额外权益。\n\n4.2 采取二级以上措施的，平台须向消费者告知具体行为、认定依据与申诉途径。",
-            "score": 0.9642072486877442,
-            "doc_id": "P08",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
-            "reason": "相关性 0.980 × 先验 0.90 → 0.964；命中 1/platform/dense#1, 1/platform/bm25#1, 2/platform/dense#1, 2/platform/bm25#1"
-          },
-          {
-            "section": "P08 星辰优选风控与异常退款治理规则 > 第二条 触发后的处理 > 2.5 法定权利不受影响",
-            "text": "高风险账户的**全部退款申请关闭自动通道**，一律转人工客服审核。\n\n人工审核周期为 **1-3 个工作日**。审核期间订单状态保持待处理，不影响退货窗口的时效。\n\n**高风险判定只改变处理通道，不预先否定诉求。** 人工审核后符合退款条件的，照常批准退款。风控的作用是引入人工核验环节，不是拒绝退款的理由。\n\n风控规则的优先级**高于**会员等级权益。金牌会员触发高风险的，同样关闭自动通道。\n\n**风控措施不得剥夺消费者的法定七日无理由退货权。** 高风险账户的合规退货申请，经人工核验后仍应予以受理。措施应与滥用程度相当。",
-            "score": 0.9415638732910158,
-            "doc_id": "P08",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
-            "reason": "相关性 0.952 × 先验 0.90 → 0.942；命中 1/platform/dense#2, 1/platform/bm25#2, 2/platform/dense#2, 2/platform/bm25#2"
-          },
-          {
-            "section": "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.2 违规导致的权益冻结",
-            "text": "会员等级降级后，权益随之调整，平台提前 7 日通知。\n\n出现以下情形的，平台可冻结会员售后权益，恢复至普通会员标准：\n\n（一）经查实的调包退货、虚假质量问题申报；\n（二）恶意批量下单退货，影响商家正常经营；\n（三）以投诉、差评相要挟索取不当利益。\n\n权益冻结**不影响消费者的法定 7 日无理由退货权**——冻结的只是平台额外给予的延长部分。\n\n消费者对权益冻结有异议的，可通过专属客服通道申诉，平台在 3 个工作日内回复。",
-            "score": 0.559226851463318,
-            "doc_id": "P07",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
-            "reason": "相关性 0.474 × 先验 0.90 → 0.559；命中 1/platform/bm25#5, 2/platform/dense#12, 2/platform/bm25#11"
-          },
-          {
-            "section": "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】",
-            "text": "经营者通过网络、电视、电话、邮购等方式销售商品的，应当遵守消费者权益保护法第二十五条规定，不得擅自扩大不适用无理由退货的商品范围。\n\n经营者应当以显著方式对不适用无理由退货的商品进行标注，提示消费者在购买时进行确认，不得将不适用无理由退货作为消费者默认同意的选项。未经消费者确认，经营者不得拒绝无理由退货。\n\n消费者退货的商品应当完好。消费者基于查验需要打开商品包装，或者为确认商品的品质和功能进行合理调试而不影响商品原有品质、功能和外观的，经营者应当予以退货。\n\n消费者无理由退货应当遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。\n\n> **适用要点**：本条是**平台风控规则的法律依据**。第四款首次在行政法规层面确立「无理由退货不得滥用」，平台对高频异常退款账户采取限制自动通道、转人工审核等措施，据此具备合法性——但措施须与滥用程度相当，不得直接剥夺法定退货权。",
-            "score": 0.44266937255859373,
-            "doc_id": "L03",
-            "layer": "law",
-            "doc_type": "行政法规",
-            "effective_date": "2024-07-01",
-            "source_path": "doc/policy/law/L03-消费者权益保护法实施条例-摘录.md",
-            "reason": "相关性 0.328 × 先验 0.90 → 0.443；命中 1/law/bm25#1, 2/law/bm25#2"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "4b25291290edffde",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 2.025,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:02.454Z",
-      "updatedAt": "2026-08-18T11:47:02.466Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,

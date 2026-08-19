@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-063",
+    "query": "当消费者主张退回的商品存在不完好、缺件或调包情形时，举证责任由哪一方承担？",
     "type": "single",
     "style": "formal",
     "doc_id": "P09",
@@ -9,6 +10,7 @@
     "seed_chunk_id": [
       "P09#003:03"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
@@ -19,7 +21,7 @@
       "context_recall": 1.0,
       "context_relevance": 0.086
     },
-    "elapsed_s": 2.0,
+    "elapsed_s": 2.1,
     "seed_rank": {
       "candidate": {
         "P09#003:03": 3
@@ -28,6 +30,18 @@
         "P09#003:03": 2
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "dispute",
+          "text": "消费者退回的商品存在不完好、缺件或调包情形时，举证责任由哪一方承担？"
+        }
+      ]
+    },
+    "rewrite_hash": "b4d70144f229dfa0",
     "sections": [
       "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.1 商家举证 … 第五条 举证责任 > 5.4 举证不能的后果",
       "P09 星辰优选争议处理与平台介入规则 > 第四条 平台介入的处理 > 4.4 举证责任分配",
@@ -43,7 +57,7 @@
           {
             "claim": "退回商品不完好、缺件、调包的举证责任由商家承担。",
             "supported": true,
-            "reason": "P05和P09均明确商家承担退回商品不完好、缺件、调包的举证责任。"
+            "reason": "P05 和 P09 均明确商家承担此类举证责任。"
           }
         ],
         "error": null
@@ -53,7 +67,7 @@
         "n": 70,
         "hit": 6,
         "truncated": false,
-        "note": "不相关的主要是举证材料、消费者举证、平台流程、其他争议事项等。",
+        "note": "不相关的多为消费者举证、平台流程、耐用商品质量争议等。",
         "irrelevant": [
           "举证材料包括但不限于：",
           "- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；",
@@ -69,27 +83,27 @@
         "error": null
       }
     },
-    "trace_id": "4562b1a3e6156236c923d12c184f58e0"
+    "trace_id": "a4793e3462cfa31946f91b5af4aed11e"
   },
   "trace": {
-    "id": "4562b1a3e6156236c923d12c184f58e0",
+    "id": "a4793e3462cfa31946f91b5af4aed11e",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:45:45.657000+00:00"
+    "timestamp": "2026-08-19 05:15:06.344000+00:00"
   },
   "observations": [
     {
-      "id": "12cfc37481237068",
-      "traceId": "4562b1a3e6156236c923d12c184f58e0",
+      "id": "271a6b3c64d708e0",
+      "traceId": "a4793e3462cfa31946f91b5af4aed11e",
       "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:45:39.582000+00:00",
-      "endTime": "2026-08-18 11:45:50.694000+00:00",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:14:31.396000+00:00",
+      "endTime": "2026-08-19 05:15:11.899000+00:00",
       "input": {
         "query": "当消费者主张退回的商品存在不完好、缺件或调包情形时，举证责任由哪一方承担？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -120,7 +134,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -133,6 +147,7 @@
       },
       "output": {
         "case_id": "R1-063",
+        "query": "当消费者主张退回的商品存在不完好、缺件或调包情形时，举证责任由哪一方承担？",
         "type": "single",
         "style": "formal",
         "doc_id": "P09",
@@ -141,6 +156,7 @@
         "seed_chunk_id": [
           "P09#003:03"
         ],
+        "acceptable_seed_chunk_ids": null,
         "error": null,
         "scores": {
           "recall@10": 1,
@@ -151,7 +167,7 @@
           "context_recall": 1,
           "context_relevance": 0.086
         },
-        "elapsed_s": 2,
+        "elapsed_s": 2.1,
         "seed_rank": {
           "candidate": {
             "P09#003:03": 3
@@ -160,6 +176,18 @@
             "P09#003:03": 2
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "dispute",
+              "text": "消费者退回的商品存在不完好、缺件或调包情形时，举证责任由哪一方承担？"
+            }
+          ]
+        },
+        "rewrite_hash": "b4d70144f229dfa0",
         "sections": [
           "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.1 商家举证 … 第五条 举证责任 > 5.4 举证不能的后果",
           "P09 星辰优选争议处理与平台介入规则 > 第四条 平台介入的处理 > 4.4 举证责任分配",
@@ -175,7 +203,7 @@
               {
                 "claim": "退回商品不完好、缺件、调包的举证责任由商家承担。",
                 "supported": true,
-                "reason": "P05和P09均明确商家承担退回商品不完好、缺件、调包的举证责任。"
+                "reason": "P05 和 P09 均明确商家承担此类举证责任。"
               }
             ],
             "error": null
@@ -185,7 +213,7 @@
             "n": 70,
             "hit": 6,
             "truncated": false,
-            "note": "不相关的主要是举证材料、消费者举证、平台流程、其他争议事项等。",
+            "note": "不相关的多为消费者举证、平台流程、耐用商品质量争议等。",
             "irrelevant": [
               "举证材料包括但不限于：",
               "- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；",
@@ -209,6 +237,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
+      "parentObservationId": "6133794292354e37",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -216,10 +245,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 11.112,
+      "latency": 40.503,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:51.965Z",
-      "updatedAt": "2026-08-18T11:45:51.984Z",
+      "createdAt": "2026-08-19T05:15:13.513Z",
+      "updatedAt": "2026-08-19T05:15:13.526Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -229,7 +258,6 @@
       "modelParameters": null,
       "version": null,
       "statusMessage": null,
-      "parentObservationId": null,
       "promptId": null,
       "promptName": null,
       "promptVersion": null,
@@ -241,293 +269,33 @@
       "usagePricingTierName": null
     },
     {
-      "id": "2879109011617346",
-      "traceId": "4562b1a3e6156236c923d12c184f58e0",
-      "type": "EVALUATOR",
-      "name": "evaluate",
-      "startTime": "2026-08-18 11:45:50.693000+00:00",
-      "endTime": "2026-08-18 11:45:50.694000+00:00",
-      "modelParameters": {},
-      "input": {
-        "input": {
-          "query": "当消费者主张退回的商品存在不完好、缺件或调包情形时，举证责任由哪一方承担？"
-        },
-        "output": {
-          "case_id": "R1-063",
-          "type": "single",
-          "style": "formal",
-          "doc_id": "P09",
-          "layer": "platform",
-          "kind": "table",
-          "seed_chunk_id": [
-            "P09#003:03"
-          ],
-          "error": null,
-          "scores": {
-            "recall@10": 1,
-            "recall@3": 1,
-            "recall@1": 0,
-            "evidence_tokens": 1490,
-            "duplicate_ratio": 0.397,
-            "context_recall": 1,
-            "context_relevance": 0.086
-          },
-          "elapsed_s": 2,
-          "seed_rank": {
-            "candidate": {
-              "P09#003:03": 3
-            },
-            "evidence": {
-              "P09#003:03": 2
-            }
-          },
-          "sections": [
-            "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.1 商家举证 … 第五条 举证责任 > 5.4 举证不能的后果",
-            "P09 星辰优选争议处理与平台介入规则 > 第四条 平台介入的处理 > 4.4 举证责任分配",
-            "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】",
-            "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.3 垫付后的处理"
-          ],
-          "judge": {
-            "context_recall": {
-              "score": 1,
-              "n": 1,
-              "hit": 1,
-              "detail": [
-                {
-                  "claim": "退回商品不完好、缺件、调包的举证责任由商家承担。",
-                  "supported": true,
-                  "reason": "P05和P09均明确商家承担退回商品不完好、缺件、调包的举证责任。"
-                }
-              ],
-              "error": null
-            },
-            "context_relevance": {
-              "score": 0.086,
-              "n": 70,
-              "hit": 6,
-              "truncated": false,
-              "note": "不相关的主要是举证材料、消费者举证、平台流程、其他争议事项等。",
-              "irrelevant": [
-                "举证材料包括但不限于：",
-                "- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；",
-                "- 出库时的商品序列号记录与质检照片；",
-                "- 收发件重量记录。",
-                "消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。",
-                "**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承",
-                "** 此期间内不得要求消费者自证商品存在质量问题。",
-                "争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。",
-                "举证材料包括但不限于：",
-                "- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；"
-              ],
-              "error": null
-            }
-          }
-        },
-        "expected_output": {
-          "claims": [
-            "退回商品不完好、缺件、调包的举证责任由商家承担。"
-          ],
-          "seed_chunk_id": [
-            "P09#003:03"
-          ],
-          "reference_answer": "退回商品不完好、缺件、调包的举证责任由商家承担。"
-        },
-        "metadata": {
-          "kind": "table",
-          "type": "single",
-          "layer": "platform",
-          "style": "formal",
-          "doc_id": "P09",
-          "section": "第四条 平台介入的处理 > 4.4 举证责任分配",
-          "reviewed": false,
-          "claims_by": "openai:deepseek-v4-pro",
-          "generated_by": "openai:deepseek-v4-flash",
-          "overlap_ratio": 0.5
-        }
-      },
-      "metadata": {
-        "evaluator_kind": "item",
-        "evaluator_index": 0,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": [
-        {
-          "name": "recall@10",
-          "value": 1,
-          "comment": "种子块名次 P09#003:03=3"
-        },
-        {
-          "name": "recall@3",
-          "value": 1,
-          "comment": "种子块名次 P09#003:03=2"
-        },
-        {
-          "name": "recall@1",
-          "value": 0,
-          "comment": "种子块名次 P09#003:03=2"
-        },
-        {
-          "name": "evidence_tokens",
-          "value": 1490,
-          "comment": ""
-        },
-        {
-          "name": "duplicate_ratio",
-          "value": 0.397,
-          "comment": ""
-        },
-        {
-          "name": "context_recall",
-          "value": 1,
-          "comment": "1/1 条 claim 被支撑"
-        },
-        {
-          "name": "context_relevance",
-          "value": 0.086,
-          "comment": "6/70 个内容单元相关；不相关的主要是举证材料、消费者举证、平台流程、其他争议事项等。"
-        },
-        {
-          "name": "run_error",
-          "value": 0,
-          "comment": "ok"
-        }
-      ],
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "5060c7b8769c6322",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.001,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:51.965Z",
-      "updatedAt": "2026-08-18T11:45:51.981Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "5060c7b8769c6322",
-      "traceId": "4562b1a3e6156236c923d12c184f58e0",
+      "id": "2fdb901f1595dd77",
+      "traceId": "a4793e3462cfa31946f91b5af4aed11e",
       "type": "SPAN",
-      "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:45:50.693000+00:00",
-      "endTime": "2026-08-18 11:45:50.694000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "evaluator_count": 1,
-        "evaluation_count": 8,
-        "failed_evaluator_count": 0,
-        "skipped_evaluator_count": 0
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "12cfc37481237068",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.001,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:51.965Z",
-      "updatedAt": "2026-08-18T11:45:51.980Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "9808fefa716d9857",
-      "traceId": "4562b1a3e6156236c923d12c184f58e0",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:45:45.657000+00:00",
-      "endTime": "2026-08-18 11:45:47.672000+00:00",
-      "modelParameters": {},
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:15:08.387000+00:00",
+      "endTime": "2026-08-19 05:15:08.402000+00:00",
       "input": {
-        "query": "当消费者主张退回的商品存在不完好、缺件或调包情形时，举证责任由哪一方承担？",
-        "top_k": 4
+        "top_k": 4,
+        "evidence": [
+          "P05#005:00",
+          "P09#003:03",
+          "L01#002:00",
+          "P05#005:02",
+          "P05#005:01",
+          "P07#002:02",
+          "L02#002:02",
+          "P06#004:02",
+          "P05#005:03",
+          "L02#007:00"
+        ]
       },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -593,7 +361,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "3511d6e5a6c9df92",
+      "parentObservationId": "35f8b6a3115008fd",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -601,16 +369,17 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 2.015,
+      "latency": 0.015,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:51.965Z",
-      "updatedAt": "2026-08-18T11:45:51.979Z",
+      "createdAt": "2026-08-19T05:15:13.513Z",
+      "updatedAt": "2026-08-19T05:15:13.526Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
       "totalTokens": 0,
       "completionStartTime": null,
       "model": null,
+      "modelParameters": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -624,18 +393,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "3511d6e5a6c9df92",
-      "traceId": "4562b1a3e6156236c923d12c184f58e0",
+      "id": "6133794292354e37",
+      "traceId": "a4793e3462cfa31946f91b5af4aed11e",
       "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:45:39.582000+00:00",
-      "endTime": "2026-08-18 11:45:50.692000+00:00",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-19 05:14:31.396000+00:00",
+      "endTime": "2026-08-19 05:15:11.902000+00:00",
       "input": {
         "query": "当消费者主张退回的商品存在不完好、缺件或调包情形时，举证责任由哪一方承担？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -666,7 +435,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -679,6 +448,7 @@
       },
       "output": {
         "case_id": "R1-063",
+        "query": "当消费者主张退回的商品存在不完好、缺件或调包情形时，举证责任由哪一方承担？",
         "type": "single",
         "style": "formal",
         "doc_id": "P09",
@@ -687,6 +457,7 @@
         "seed_chunk_id": [
           "P09#003:03"
         ],
+        "acceptable_seed_chunk_ids": null,
         "error": null,
         "scores": {
           "recall@10": 1,
@@ -697,7 +468,7 @@
           "context_recall": 1,
           "context_relevance": 0.086
         },
-        "elapsed_s": 2,
+        "elapsed_s": 2.1,
         "seed_rank": {
           "candidate": {
             "P09#003:03": 3
@@ -706,6 +477,18 @@
             "P09#003:03": 2
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "dispute",
+              "text": "消费者退回的商品存在不完好、缺件或调包情形时，举证责任由哪一方承担？"
+            }
+          ]
+        },
+        "rewrite_hash": "b4d70144f229dfa0",
         "sections": [
           "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.1 商家举证 … 第五条 举证责任 > 5.4 举证不能的后果",
           "P09 星辰优选争议处理与平台介入规则 > 第四条 平台介入的处理 > 4.4 举证责任分配",
@@ -721,7 +504,7 @@
               {
                 "claim": "退回商品不完好、缺件、调包的举证责任由商家承担。",
                 "supported": true,
-                "reason": "P05和P09均明确商家承担退回商品不完好、缺件、调包的举证责任。"
+                "reason": "P05 和 P09 均明确商家承担此类举证责任。"
               }
             ],
             "error": null
@@ -731,7 +514,7 @@
             "n": 70,
             "hit": 6,
             "truncated": false,
-            "note": "不相关的主要是举证材料、消费者举证、平台流程、其他争议事项等。",
+            "note": "不相关的多为消费者举证、平台流程、耐用商品质量争议等。",
             "irrelevant": [
               "举证材料包括但不限于：",
               "- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；",
@@ -755,7 +538,6 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "12cfc37481237068",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -763,10 +545,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 11.11,
+      "latency": 40.506,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:51.965Z",
-      "updatedAt": "2026-08-18T11:45:51.979Z",
+      "createdAt": "2026-08-19T05:15:13.513Z",
+      "updatedAt": "2026-08-19T05:15:13.525Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -774,6 +556,120 @@
       "completionStartTime": null,
       "model": null,
       "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "35f8b6a3115008fd",
+      "traceId": "a4793e3462cfa31946f91b5af4aed11e",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:15:06.344000+00:00",
+      "endTime": "2026-08-19 05:15:08.403000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "当消费者主张退回的商品存在不完好、缺件或调包情形时，举证责任由哪一方承担？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.1 商家举证 … 第五条 举证责任 > 5.4 举证不能的后果",
+            "text": "商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。\n\n商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。\n\n商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。\n\n商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。",
+            "score": 0.9756155300140382,
+            "doc_id": "P05",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P05-商品完好标准与验收规范.md",
+            "reason": "相关性 0.995 × 先验 0.90 → 0.976；命中 1/platform/dense#1, 1/platform/bm25#2"
+          },
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第四条 平台介入的处理 > 4.4 举证责任分配",
+            "text": "平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。\n\n举证期结束后，平台在 **72 小时**内出具判定结论，并向双方说明判定依据的具体条款。\n\n平台按以下顺序适用规则：\n\n1. 法律、行政法规、部门规章的强制性规定；\n2. 平台在首页显著位置公示的各项交易规则；\n3. 商家在商品页面作出的更优承诺；\n4. 双方的约定与交易记录；\n5. 行业惯例与公平原则。\n\n| 争议事项 | 举证责任方 |\n|---|---|\n| 退回商品不完好、缺件、调包 | 商家 |\n| 商品存在质量问题 | 消费者（耐用商品 6 个月内除外） |\n| 耐用商品签收 6 个月内的瑕疵 | **商家** |\n| 已履行发货义务 | 商家 |\n| 已履行寄回义务 | 消费者 |\n| 曾作出特别承诺 | 主张一方 |\n\n双方均无法举证的，平台结合物流轨迹、历史交易行为、账户风险状况、商家服务记录综合判定，并在结论中说明推定理由。\n\n判定结论作出后系统自动执行——支持消费者的即时退款，支持商家的关闭申请。**判定结论须附具体理由与所依据的条款，不得仅告知结果。**",
+            "score": 0.9388090896606446,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.949 × 先验 0.90 → 0.939；命中 1/platform/dense#3, 1/platform/bm25#1"
+          },
+          {
+            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】",
+            "text": "经营者应当保证在正常使用商品或者接受服务的情况下其提供的商品或者服务应当具有的质量、性能、用途和有效期限；但消费者在购买该商品或者接受该服务前已经知道其存在瑕疵，且存在该瑕疵不违反法律强制性规定的除外。\n\n经营者以广告、产品说明、实物样品或者其他方式表明商品或者服务的质量状况的，应当保证其提供的商品或者服务的实际质量与表明的质量状况相符。\n\n**经营者提供的机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品或者装饰装修等服务，消费者自接受商品或者服务之日起六个月内发现瑕疵，发生争议的，由经营者承担有关瑕疵的举证责任。**\n\n> **售后适用要点**：耐用商品六个月内的质量争议，举证责任在经营者一方，不能要求消费者自证商品有质量问题。",
+            "score": 0.9241193580627443,
+            "doc_id": "L01",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2014-03-15",
+            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
+            "reason": "相关性 0.930 × 先验 0.90 → 0.924；命中 1/law/dense#1, 1/law/bm25#1"
+          },
+          {
+            "section": "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.3 垫付后的处理",
+            "text": "金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款项即时到账。\n\n（一）会员等级为金牌会员；\n（二）账户未被判定为高风险账户；\n（三）订单金额未超过极速退款额度上限；\n（四）商品类目不属于特殊类目。\n\n商家收货验收不通过的，平台按 [P09] 的争议规则处理。经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。\n\n消费者出现调包退货、退空包裹、虚构退货物流等行为的，**平台暂停其极速退款资格**，恢复需人工审核。",
+            "score": 0.6468120384216309,
+            "doc_id": "P07",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
+            "reason": "相关性 0.584 × 先验 0.90 → 0.647；命中 1/platform/bm25#5"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "271a6b3c64d708e0",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 2.059,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:15:13.513Z",
+      "updatedAt": "2026-08-19T05:15:13.524Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -787,12 +683,229 @@
       "usagePricingTierName": null
     },
     {
-      "id": "d63f90cfb0c5bd89",
-      "traceId": "4562b1a3e6156236c923d12c184f58e0",
+      "id": "8b2d8f46f7ab05cb",
+      "traceId": "a4793e3462cfa31946f91b5af4aed11e",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-19 05:15:11.901000+00:00",
+      "endTime": "2026-08-19 05:15:11.902000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "当消费者主张退回的商品存在不完好、缺件或调包情形时，举证责任由哪一方承担？"
+        },
+        "output": {
+          "case_id": "R1-063",
+          "query": "当消费者主张退回的商品存在不完好、缺件或调包情形时，举证责任由哪一方承担？",
+          "type": "single",
+          "style": "formal",
+          "doc_id": "P09",
+          "layer": "platform",
+          "kind": "table",
+          "seed_chunk_id": [
+            "P09#003:03"
+          ],
+          "acceptable_seed_chunk_ids": null,
+          "error": null,
+          "scores": {
+            "recall@10": 1,
+            "recall@3": 1,
+            "recall@1": 0,
+            "evidence_tokens": 1490,
+            "duplicate_ratio": 0.397,
+            "context_recall": 1,
+            "context_relevance": 0.086
+          },
+          "elapsed_s": 2.1,
+          "seed_rank": {
+            "candidate": {
+              "P09#003:03": 3
+            },
+            "evidence": {
+              "P09#003:03": 2
+            }
+          },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "dispute",
+                "text": "消费者退回的商品存在不完好、缺件或调包情形时，举证责任由哪一方承担？"
+              }
+            ]
+          },
+          "rewrite_hash": "b4d70144f229dfa0",
+          "sections": [
+            "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.1 商家举证 … 第五条 举证责任 > 5.4 举证不能的后果",
+            "P09 星辰优选争议处理与平台介入规则 > 第四条 平台介入的处理 > 4.4 举证责任分配",
+            "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】",
+            "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.3 垫付后的处理"
+          ],
+          "judge": {
+            "context_recall": {
+              "score": 1,
+              "n": 1,
+              "hit": 1,
+              "detail": [
+                {
+                  "claim": "退回商品不完好、缺件、调包的举证责任由商家承担。",
+                  "supported": true,
+                  "reason": "P05 和 P09 均明确商家承担此类举证责任。"
+                }
+              ],
+              "error": null
+            },
+            "context_relevance": {
+              "score": 0.086,
+              "n": 70,
+              "hit": 6,
+              "truncated": false,
+              "note": "不相关的多为消费者举证、平台流程、耐用商品质量争议等。",
+              "irrelevant": [
+                "举证材料包括但不限于：",
+                "- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；",
+                "- 出库时的商品序列号记录与质检照片；",
+                "- 收发件重量记录。",
+                "消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。",
+                "**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承",
+                "** 此期间内不得要求消费者自证商品存在质量问题。",
+                "争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。",
+                "举证材料包括但不限于：",
+                "- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；"
+              ],
+              "error": null
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [
+            "退回商品不完好、缺件、调包的举证责任由商家承担。"
+          ],
+          "seed_chunk_id": [
+            "P09#003:03"
+          ],
+          "reference_answer": "退回商品不完好、缺件、调包的举证责任由商家承担。",
+          "acceptable_seed_chunk_ids": []
+        },
+        "metadata": {
+          "kind": "table",
+          "type": "single",
+          "layer": "platform",
+          "style": "formal",
+          "doc_id": "P09",
+          "section": "第四条 平台介入的处理 > 4.4 举证责任分配",
+          "reviewed": false,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.5
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 1,
+          "comment": "种子块名次 P09#003:03=3"
+        },
+        {
+          "name": "recall@3",
+          "value": 1,
+          "comment": "种子块名次 P09#003:03=2"
+        },
+        {
+          "name": "recall@1",
+          "value": 0,
+          "comment": "种子块名次 P09#003:03=2"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 1490,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0.397,
+          "comment": ""
+        },
+        {
+          "name": "context_recall",
+          "value": 1,
+          "comment": "1/1 条 claim 被支撑"
+        },
+        {
+          "name": "context_relevance",
+          "value": 0.086,
+          "comment": "6/70 个内容单元相关；不相关的多为消费者举证、平台流程、耐用商品质量争议等。"
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "c84831aa4221f03c",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:15:13.513Z",
+      "updatedAt": "2026-08-19T05:15:13.522Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "af264416c0973851",
+      "traceId": "a4793e3462cfa31946f91b5af4aed11e",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 11:45:46.888000+00:00",
-      "endTime": "2026-08-18 11:45:47.647000+00:00",
+      "startTime": "2026-08-19 05:15:07.633000+00:00",
+      "endTime": "2026-08-19 05:15:08.387000+00:00",
       "input": {
         "query": "当消费者主张退回的商品存在不完好、缺件或调包情形时，举证责任由哪一方承担？",
         "candidates": 20
@@ -802,7 +915,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -918,7 +1031,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "9808fefa716d9857",
+      "parentObservationId": "35f8b6a3115008fd",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -926,10 +1039,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.759,
+      "latency": 0.754,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:51.965Z",
-      "updatedAt": "2026-08-18T11:45:51.979Z",
+      "createdAt": "2026-08-19T05:15:13.513Z",
+      "updatedAt": "2026-08-19T05:15:13.522Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -950,33 +1063,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "e6bcba819e1143f1",
-      "traceId": "4562b1a3e6156236c923d12c184f58e0",
+      "id": "c84831aa4221f03c",
+      "traceId": "a4793e3462cfa31946f91b5af4aed11e",
       "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:45:47.647000+00:00",
-      "endTime": "2026-08-18 11:45:47.672000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": [
-          "P05#005:00",
-          "P09#003:03",
-          "L01#002:00",
-          "P05#005:02",
-          "P05#005:01",
-          "P07#002:02",
-          "L02#002:02",
-          "P06#004:02",
-          "P05#005:03",
-          "L02#007:00"
-        ]
-      },
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-19 05:15:11.900000+00:00",
+      "endTime": "2026-08-19 05:15:11.902000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -988,52 +1086,10 @@
         }
       },
       "output": {
-        "sections": [
-          {
-            "section": "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.1 商家举证 … 第五条 举证责任 > 5.4 举证不能的后果",
-            "text": "商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。\n\n商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。\n\n商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。\n\n商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。",
-            "score": 0.9756155300140382,
-            "doc_id": "P05",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P05-商品完好标准与验收规范.md",
-            "reason": "相关性 0.995 × 先验 0.90 → 0.976；命中 1/platform/dense#1, 1/platform/bm25#2"
-          },
-          {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第四条 平台介入的处理 > 4.4 举证责任分配",
-            "text": "平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。\n\n举证期结束后，平台在 **72 小时**内出具判定结论，并向双方说明判定依据的具体条款。\n\n平台按以下顺序适用规则：\n\n1. 法律、行政法规、部门规章的强制性规定；\n2. 平台在首页显著位置公示的各项交易规则；\n3. 商家在商品页面作出的更优承诺；\n4. 双方的约定与交易记录；\n5. 行业惯例与公平原则。\n\n| 争议事项 | 举证责任方 |\n|---|---|\n| 退回商品不完好、缺件、调包 | 商家 |\n| 商品存在质量问题 | 消费者（耐用商品 6 个月内除外） |\n| 耐用商品签收 6 个月内的瑕疵 | **商家** |\n| 已履行发货义务 | 商家 |\n| 已履行寄回义务 | 消费者 |\n| 曾作出特别承诺 | 主张一方 |\n\n双方均无法举证的，平台结合物流轨迹、历史交易行为、账户风险状况、商家服务记录综合判定，并在结论中说明推定理由。\n\n判定结论作出后系统自动执行——支持消费者的即时退款，支持商家的关闭申请。**判定结论须附具体理由与所依据的条款，不得仅告知结果。**",
-            "score": 0.9388090896606446,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.949 × 先验 0.90 → 0.939；命中 1/platform/dense#3, 1/platform/bm25#1"
-          },
-          {
-            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第二十三条 【瑕疵举证责任倒置】",
-            "text": "经营者应当保证在正常使用商品或者接受服务的情况下其提供的商品或者服务应当具有的质量、性能、用途和有效期限；但消费者在购买该商品或者接受该服务前已经知道其存在瑕疵，且存在该瑕疵不违反法律强制性规定的除外。\n\n经营者以广告、产品说明、实物样品或者其他方式表明商品或者服务的质量状况的，应当保证其提供的商品或者服务的实际质量与表明的质量状况相符。\n\n**经营者提供的机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品或者装饰装修等服务，消费者自接受商品或者服务之日起六个月内发现瑕疵，发生争议的，由经营者承担有关瑕疵的举证责任。**\n\n> **售后适用要点**：耐用商品六个月内的质量争议，举证责任在经营者一方，不能要求消费者自证商品有质量问题。",
-            "score": 0.9241193580627443,
-            "doc_id": "L01",
-            "layer": "law",
-            "doc_type": "法律",
-            "effective_date": "2014-03-15",
-            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
-            "reason": "相关性 0.930 × 先验 0.90 → 0.924；命中 1/law/dense#1, 1/law/bm25#1"
-          },
-          {
-            "section": "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.3 垫付后的处理",
-            "text": "金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款项即时到账。\n\n（一）会员等级为金牌会员；\n（二）账户未被判定为高风险账户；\n（三）订单金额未超过极速退款额度上限；\n（四）商品类目不属于特殊类目。\n\n商家收货验收不通过的，平台按 [P09] 的争议规则处理。经核实退回商品确不完好或存在调包的，平台有权向消费者追回已垫付款项。\n\n消费者出现调包退货、退空包裹、虚构退货物流等行为的，**平台暂停其极速退款资格**，恢复需人工审核。",
-            "score": 0.6468120384216309,
-            "doc_id": "P07",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
-            "reason": "相关性 0.584 × 先验 0.90 → 0.647；命中 1/platform/bm25#5"
-          }
-        ]
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
       },
       "usage": {
         "input": 0,
@@ -1042,7 +1098,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "9808fefa716d9857",
+      "parentObservationId": "6133794292354e37",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1050,10 +1106,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.025,
+      "latency": 0.002,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:51.965Z",
-      "updatedAt": "2026-08-18T11:45:51.978Z",
+      "createdAt": "2026-08-19T05:15:13.513Z",
+      "updatedAt": "2026-08-19T05:15:13.520Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1061,6 +1117,7 @@
       "completionStartTime": null,
       "model": null,
       "modelParameters": null,
+      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -1074,18 +1131,92 @@
       "usagePricingTierName": null
     },
     {
-      "id": "95bfa83a81ea48b9",
-      "traceId": "4562b1a3e6156236c923d12c184f58e0",
+      "id": "8da2dab402479127",
+      "traceId": "a4793e3462cfa31946f91b5af4aed11e",
       "type": "SPAN",
-      "name": "rag.recall",
-      "startTime": "2026-08-18 11:45:46.826000+00:00",
-      "endTime": "2026-08-18 11:45:46.888000+00:00",
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:15:07.541000+00:00",
+      "endTime": "2026-08-19 05:15:07.542000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 12,
+              "law": 12
+            },
+            "law_weight": 1
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "35f8b6a3115008fd",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:15:08.436Z",
+      "updatedAt": "2026-08-19T05:15:08.450Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "5e44c15de02dd6d7",
+      "traceId": "a4793e3462cfa31946f91b5af4aed11e",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-19 05:15:07.542000+00:00",
+      "endTime": "2026-08-19 05:15:07.633000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1280,7 +1411,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "9808fefa716d9857",
+      "parentObservationId": "35f8b6a3115008fd",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1288,10 +1419,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.062,
+      "latency": 0.091,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:47.041Z",
-      "updatedAt": "2026-08-18T11:45:47.057Z",
+      "createdAt": "2026-08-19T05:15:08.436Z",
+      "updatedAt": "2026-08-19T05:15:08.447Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1313,86 +1444,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "f6d016d0da02d913",
-      "traceId": "4562b1a3e6156236c923d12c184f58e0",
-      "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:45:46.825000+00:00",
-      "endTime": "2026-08-18 11:45:46.826000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "routes": [
-          {
-            "sub_query": "1",
-            "layer_k": {
-              "platform": 12,
-              "law": 12
-            },
-            "law_weight": 1
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "9808fefa716d9857",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.001,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:47.041Z",
-      "updatedAt": "2026-08-18T11:45:47.057Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "8bc47d93787441a3",
-      "traceId": "4562b1a3e6156236c923d12c184f58e0",
+      "id": "a8fe734cdf2f4ef7",
+      "traceId": "a4793e3462cfa31946f91b5af4aed11e",
       "type": "SPAN",
       "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:45:45.657000+00:00",
-      "endTime": "2026-08-18 11:45:46.825000+00:00",
+      "startTime": "2026-08-19 05:15:06.344000+00:00",
+      "endTime": "2026-08-19 05:15:07.541000+00:00",
       "input": {
         "query": "当消费者主张退回的商品存在不完好、缺件或调包情形时，举证责任由哪一方承担？"
       },
@@ -1401,7 +1458,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1430,7 +1487,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "9808fefa716d9857",
+      "parentObservationId": "35f8b6a3115008fd",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1438,10 +1495,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.168,
+      "latency": 1.197,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:47.041Z",
-      "updatedAt": "2026-08-18T11:45:47.056Z",
+      "createdAt": "2026-08-19T05:15:08.436Z",
+      "updatedAt": "2026-08-19T05:15:08.447Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,

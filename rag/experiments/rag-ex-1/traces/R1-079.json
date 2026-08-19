@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-079",
+    "query": "签收时商品已过保质期，消费者可以主张哪些权利？",
     "type": "single",
     "style": "formal",
     "doc_id": "P11",
@@ -9,17 +10,18 @@
     "seed_chunk_id": [
       "P11#006:01"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
       "recall@3": 1.0,
       "recall@1": 1.0,
-      "evidence_tokens": 1218,
-      "duplicate_ratio": 0.325,
+      "evidence_tokens": 1415,
+      "duplicate_ratio": 0.425,
       "context_recall": 1.0,
-      "context_relevance": 0.094
+      "context_relevance": 0.081
     },
-    "elapsed_s": 2.3,
+    "elapsed_s": 2.4,
     "seed_rank": {
       "candidate": {
         "P11#006:01": 1
@@ -28,10 +30,27 @@
         "P11#006:01": 1
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": true,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "dispute",
+          "text": "签收时商品已过保质期，消费者可以主张哪些权利？"
+        },
+        {
+          "id": "2",
+          "intent": "refund",
+          "text": "签收时商品已过保质期，消费者可以要求退款或赔偿吗？"
+        }
+      ]
+    },
+    "rewrite_hash": "19b9e6f5df513dbe",
     "sections": [
       "P11 星辰优选特殊类目售后细则 > 第六条 食品、保健食品、化妆品 > 6.2 保质期",
       "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题 … 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
-      "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
+      "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.2 消费者举证 … 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
       "L05 部分商品修理更换退货责任规定（三包规定） > 第二十二条 【申诉与诉讼】"
     ],
     "judge": {
@@ -43,22 +62,22 @@
           {
             "claim": "签收时已过保质期的，全额退款。",
             "supported": true,
-            "reason": "P11 6.2 表格中明确列出签收时已过保质期全额退款。"
+            "reason": "P11 6.2 表格明确：签收时已过保质期，全额退款。"
           },
           {
             "claim": "签收时已过保质期的，按食品安全相关规定赔付。",
             "supported": true,
-            "reason": "P11 6.2 表格中明确列出签收时已过保质期按食品安全相关规定赔付。"
+            "reason": "P11 6.2 表格明确：签收时已过保质期，按食品安全相关规定赔付。"
           }
         ],
         "error": null
       },
       "context_relevance": {
-        "score": 0.094,
-        "n": 53,
+        "score": 0.081,
+        "n": 62,
         "hit": 5,
         "truncated": false,
-        "note": "不相关的多为其他情形、特殊类目、举证责任等。",
+        "note": "不相关的主要是其他情形、举证责任、三包及争议处理等。",
         "irrelevant": [
           "**必要的一次性密封包装被损坏的，视为不完好**，不支持无理由退货。",
           "| 情形 | 处理 |",
@@ -74,27 +93,27 @@
         "error": null
       }
     },
-    "trace_id": "6c155658f58b1dd62e9a2f25c40d8ccb"
+    "trace_id": "e7733952a9c70343e97e4275dc9dbecc"
   },
   "trace": {
-    "id": "6c155658f58b1dd62e9a2f25c40d8ccb",
+    "id": "e7733952a9c70343e97e4275dc9dbecc",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:44:30.588000+00:00"
+    "timestamp": "2026-08-19 05:13:35.061000+00:00"
   },
   "observations": [
     {
-      "id": "12a256eb2767c3e7",
-      "traceId": "6c155658f58b1dd62e9a2f25c40d8ccb",
+      "id": "d9e2f39fd42a9699",
+      "traceId": "e7733952a9c70343e97e4275dc9dbecc",
       "type": "SPAN",
       "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:43:59.505000+00:00",
-      "endTime": "2026-08-18 11:44:36.581000+00:00",
+      "startTime": "2026-08-19 05:12:54.874000+00:00",
+      "endTime": "2026-08-19 05:13:41.456000+00:00",
       "input": {
         "query": "签收时商品已过保质期，消费者可以主张哪些权利？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -125,7 +144,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -138,6 +157,7 @@
       },
       "output": {
         "case_id": "R1-079",
+        "query": "签收时商品已过保质期，消费者可以主张哪些权利？",
         "type": "single",
         "style": "formal",
         "doc_id": "P11",
@@ -146,17 +166,18 @@
         "seed_chunk_id": [
           "P11#006:01"
         ],
+        "acceptable_seed_chunk_ids": null,
         "error": null,
         "scores": {
           "recall@10": 1,
           "recall@3": 1,
           "recall@1": 1,
-          "evidence_tokens": 1218,
-          "duplicate_ratio": 0.325,
+          "evidence_tokens": 1415,
+          "duplicate_ratio": 0.425,
           "context_recall": 1,
-          "context_relevance": 0.094
+          "context_relevance": 0.081
         },
-        "elapsed_s": 2.3,
+        "elapsed_s": 2.4,
         "seed_rank": {
           "candidate": {
             "P11#006:01": 1
@@ -165,10 +186,27 @@
             "P11#006:01": 1
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": true,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "dispute",
+              "text": "签收时商品已过保质期，消费者可以主张哪些权利？"
+            },
+            {
+              "id": "2",
+              "intent": "refund",
+              "text": "签收时商品已过保质期，消费者可以要求退款或赔偿吗？"
+            }
+          ]
+        },
+        "rewrite_hash": "19b9e6f5df513dbe",
         "sections": [
           "P11 星辰优选特殊类目售后细则 > 第六条 食品、保健食品、化妆品 > 6.2 保质期",
           "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题 … 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
-          "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
+          "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.2 消费者举证 … 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
           "L05 部分商品修理更换退货责任规定（三包规定） > 第二十二条 【申诉与诉讼】"
         ],
         "judge": {
@@ -180,22 +218,22 @@
               {
                 "claim": "签收时已过保质期的，全额退款。",
                 "supported": true,
-                "reason": "P11 6.2 表格中明确列出签收时已过保质期全额退款。"
+                "reason": "P11 6.2 表格明确：签收时已过保质期，全额退款。"
               },
               {
                 "claim": "签收时已过保质期的，按食品安全相关规定赔付。",
                 "supported": true,
-                "reason": "P11 6.2 表格中明确列出签收时已过保质期按食品安全相关规定赔付。"
+                "reason": "P11 6.2 表格明确：签收时已过保质期，按食品安全相关规定赔付。"
               }
             ],
             "error": null
           },
           "context_relevance": {
-            "score": 0.094,
-            "n": 53,
+            "score": 0.081,
+            "n": 62,
             "hit": 5,
             "truncated": false,
-            "note": "不相关的多为其他情形、特殊类目、举证责任等。",
+            "note": "不相关的主要是其他情形、举证责任、三包及争议处理等。",
             "irrelevant": [
               "**必要的一次性密封包装被损坏的，视为不完好**，不支持无理由退货。",
               "| 情形 | 处理 |",
@@ -226,10 +264,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 37.076,
+      "latency": 46.582,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:41.555Z",
-      "updatedAt": "2026-08-18T11:44:41.569Z",
+      "createdAt": "2026-08-19T05:13:42.949Z",
+      "updatedAt": "2026-08-19T05:13:42.962Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -251,248 +289,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "347ad9f2f3223e80",
-      "traceId": "6c155658f58b1dd62e9a2f25c40d8ccb",
-      "type": "SPAN",
-      "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:44:36.580000+00:00",
-      "endTime": "2026-08-18 11:44:36.581000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "evaluator_count": 1,
-        "evaluation_count": 8,
-        "failed_evaluator_count": 0,
-        "skipped_evaluator_count": 0
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "12a256eb2767c3e7",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.001,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:41.555Z",
-      "updatedAt": "2026-08-18T11:44:41.566Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "ced391c95e96ad5c",
-      "traceId": "6c155658f58b1dd62e9a2f25c40d8ccb",
-      "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:43:59.505000+00:00",
-      "endTime": "2026-08-18 11:44:36.579000+00:00",
-      "input": {
-        "query": "签收时商品已过保质期，消费者可以主张哪些权利？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-079",
-        "kind": "table",
-        "type": "single",
-        "layer": "platform",
-        "style": "formal",
-        "doc_id": "P11",
-        "section": "第六条 食品、保健食品、化妆品 > 6.2 保质期",
-        "reviewed": true,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.389,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-079",
-        "type": "single",
-        "style": "formal",
-        "doc_id": "P11",
-        "layer": "platform",
-        "kind": "table",
-        "seed_chunk_id": [
-          "P11#006:01"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 1218,
-          "duplicate_ratio": 0.325,
-          "context_recall": 1,
-          "context_relevance": 0.094
-        },
-        "elapsed_s": 2.3,
-        "seed_rank": {
-          "candidate": {
-            "P11#006:01": 1
-          },
-          "evidence": {
-            "P11#006:01": 1
-          }
-        },
-        "sections": [
-          "P11 星辰优选特殊类目售后细则 > 第六条 食品、保健食品、化妆品 > 6.2 保质期",
-          "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题 … 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
-          "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
-          "L05 部分商品修理更换退货责任规定（三包规定） > 第二十二条 【申诉与诉讼】"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 2,
-            "hit": 2,
-            "detail": [
-              {
-                "claim": "签收时已过保质期的，全额退款。",
-                "supported": true,
-                "reason": "P11 6.2 表格中明确列出签收时已过保质期全额退款。"
-              },
-              {
-                "claim": "签收时已过保质期的，按食品安全相关规定赔付。",
-                "supported": true,
-                "reason": "P11 6.2 表格中明确列出签收时已过保质期按食品安全相关规定赔付。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.094,
-            "n": 53,
-            "hit": 5,
-            "truncated": false,
-            "note": "不相关的多为其他情形、特殊类目、举证责任等。",
-            "irrelevant": [
-              "**必要的一次性密封包装被损坏的，视为不完好**，不支持无理由退货。",
-              "| 情形 | 处理 |",
-              "|---|---|",
-              "| 剩余保质期不足商品页面承诺的 | 全额退款 |",
-              "| 临期专区商品（已明示并确认） | 不支持无理由退货 |",
-              "发现异物、变质、胀袋、发霉的，**保留实物与包装**，全额退款并可另行主张赔偿。",
-              "此类诉求转专项处理。",
-              "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：",
-              "| 情形 | 处理 |",
-              "|---|---|"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "12a256eb2767c3e7",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 37.074,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:41.555Z",
-      "updatedAt": "2026-08-18T11:44:41.565Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "4c5f66c734a05342",
-      "traceId": "6c155658f58b1dd62e9a2f25c40d8ccb",
+      "id": "6b99e824e6b523b2",
+      "traceId": "e7733952a9c70343e97e4275dc9dbecc",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:44:36.580000+00:00",
-      "endTime": "2026-08-18 11:44:36.581000+00:00",
+      "startTime": "2026-08-19 05:13:41.455000+00:00",
+      "endTime": "2026-08-19 05:13:41.455000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -500,6 +302,7 @@
         },
         "output": {
           "case_id": "R1-079",
+          "query": "签收时商品已过保质期，消费者可以主张哪些权利？",
           "type": "single",
           "style": "formal",
           "doc_id": "P11",
@@ -508,17 +311,18 @@
           "seed_chunk_id": [
             "P11#006:01"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
             "recall@3": 1,
             "recall@1": 1,
-            "evidence_tokens": 1218,
-            "duplicate_ratio": 0.325,
+            "evidence_tokens": 1415,
+            "duplicate_ratio": 0.425,
             "context_recall": 1,
-            "context_relevance": 0.094
+            "context_relevance": 0.081
           },
-          "elapsed_s": 2.3,
+          "elapsed_s": 2.4,
           "seed_rank": {
             "candidate": {
               "P11#006:01": 1
@@ -527,10 +331,27 @@
               "P11#006:01": 1
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": true,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "dispute",
+                "text": "签收时商品已过保质期，消费者可以主张哪些权利？"
+              },
+              {
+                "id": "2",
+                "intent": "refund",
+                "text": "签收时商品已过保质期，消费者可以要求退款或赔偿吗？"
+              }
+            ]
+          },
+          "rewrite_hash": "19b9e6f5df513dbe",
           "sections": [
             "P11 星辰优选特殊类目售后细则 > 第六条 食品、保健食品、化妆品 > 6.2 保质期",
             "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题 … 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
-            "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
+            "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.2 消费者举证 … 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
             "L05 部分商品修理更换退货责任规定（三包规定） > 第二十二条 【申诉与诉讼】"
           ],
           "judge": {
@@ -542,22 +363,22 @@
                 {
                   "claim": "签收时已过保质期的，全额退款。",
                   "supported": true,
-                  "reason": "P11 6.2 表格中明确列出签收时已过保质期全额退款。"
+                  "reason": "P11 6.2 表格明确：签收时已过保质期，全额退款。"
                 },
                 {
                   "claim": "签收时已过保质期的，按食品安全相关规定赔付。",
                   "supported": true,
-                  "reason": "P11 6.2 表格中明确列出签收时已过保质期按食品安全相关规定赔付。"
+                  "reason": "P11 6.2 表格明确：签收时已过保质期，按食品安全相关规定赔付。"
                 }
               ],
               "error": null
             },
             "context_relevance": {
-              "score": 0.094,
-              "n": 53,
+              "score": 0.081,
+              "n": 62,
               "hit": 5,
               "truncated": false,
-              "note": "不相关的多为其他情形、特殊类目、举证责任等。",
+              "note": "不相关的主要是其他情形、举证责任、三包及争议处理等。",
               "irrelevant": [
                 "**必要的一次性密封包装被损坏的，视为不完好**，不支持无理由退货。",
                 "| 情形 | 处理 |",
@@ -582,7 +403,8 @@
           "seed_chunk_id": [
             "P11#006:01"
           ],
-          "reference_answer": "签收时已过保质期的，全额退款，并按食品安全相关规定赔付。"
+          "reference_answer": "签收时已过保质期的，全额退款，并按食品安全相关规定赔付。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "table",
@@ -604,7 +426,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -633,12 +455,12 @@
         },
         {
           "name": "evidence_tokens",
-          "value": 1218,
+          "value": 1415,
           "comment": ""
         },
         {
           "name": "duplicate_ratio",
-          "value": 0.325,
+          "value": 0.425,
           "comment": ""
         },
         {
@@ -648,8 +470,8 @@
         },
         {
           "name": "context_relevance",
-          "value": 0.094,
-          "comment": "5/53 个内容单元相关；不相关的多为其他情形、特殊类目、举证责任等。"
+          "value": 0.081,
+          "comment": "5/62 个内容单元相关；不相关的主要是其他情形、举证责任、三包及争议处理等。"
         },
         {
           "name": "run_error",
@@ -664,7 +486,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "347ad9f2f3223e80",
+      "parentObservationId": "e174ceeb117449d3",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -672,10 +494,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.001,
+      "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:41.555Z",
-      "updatedAt": "2026-08-18T11:44:41.564Z",
+      "createdAt": "2026-08-19T05:13:42.949Z",
+      "updatedAt": "2026-08-19T05:13:42.961Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -695,12 +517,409 @@
       "usagePricingTierName": null
     },
     {
-      "id": "4d3cd947849fbee7",
-      "traceId": "6c155658f58b1dd62e9a2f25c40d8ccb",
+      "id": "e174ceeb117449d3",
+      "traceId": "e7733952a9c70343e97e4275dc9dbecc",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-19 05:13:41.454000+00:00",
+      "endTime": "2026-08-19 05:13:41.456000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d9e2f39fd42a9699",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.002,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:13:42.949Z",
+      "updatedAt": "2026-08-19T05:13:42.961Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "11b112630b56da6f",
+      "traceId": "e7733952a9c70343e97e4275dc9dbecc",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:12:54.874000+00:00",
+      "endTime": "2026-08-19 05:13:41.454000+00:00",
+      "input": {
+        "query": "签收时商品已过保质期，消费者可以主张哪些权利？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-079",
+        "kind": "table",
+        "type": "single",
+        "layer": "platform",
+        "style": "formal",
+        "doc_id": "P11",
+        "section": "第六条 食品、保健食品、化妆品 > 6.2 保质期",
+        "reviewed": true,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.389,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-079",
+        "query": "签收时商品已过保质期，消费者可以主张哪些权利？",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "P11",
+        "layer": "platform",
+        "kind": "table",
+        "seed_chunk_id": [
+          "P11#006:01"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 1415,
+          "duplicate_ratio": 0.425,
+          "context_recall": 1,
+          "context_relevance": 0.081
+        },
+        "elapsed_s": 2.4,
+        "seed_rank": {
+          "candidate": {
+            "P11#006:01": 1
+          },
+          "evidence": {
+            "P11#006:01": 1
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": true,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "dispute",
+              "text": "签收时商品已过保质期，消费者可以主张哪些权利？"
+            },
+            {
+              "id": "2",
+              "intent": "refund",
+              "text": "签收时商品已过保质期，消费者可以要求退款或赔偿吗？"
+            }
+          ]
+        },
+        "rewrite_hash": "19b9e6f5df513dbe",
+        "sections": [
+          "P11 星辰优选特殊类目售后细则 > 第六条 食品、保健食品、化妆品 > 6.2 保质期",
+          "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题 … 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
+          "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.2 消费者举证 … 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
+          "L05 部分商品修理更换退货责任规定（三包规定） > 第二十二条 【申诉与诉讼】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "签收时已过保质期的，全额退款。",
+                "supported": true,
+                "reason": "P11 6.2 表格明确：签收时已过保质期，全额退款。"
+              },
+              {
+                "claim": "签收时已过保质期的，按食品安全相关规定赔付。",
+                "supported": true,
+                "reason": "P11 6.2 表格明确：签收时已过保质期，按食品安全相关规定赔付。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.081,
+            "n": 62,
+            "hit": 5,
+            "truncated": false,
+            "note": "不相关的主要是其他情形、举证责任、三包及争议处理等。",
+            "irrelevant": [
+              "**必要的一次性密封包装被损坏的，视为不完好**，不支持无理由退货。",
+              "| 情形 | 处理 |",
+              "|---|---|",
+              "| 剩余保质期不足商品页面承诺的 | 全额退款 |",
+              "| 临期专区商品（已明示并确认） | 不支持无理由退货 |",
+              "发现异物、变质、胀袋、发霉的，**保留实物与包装**，全额退款并可另行主张赔偿。",
+              "此类诉求转专项处理。",
+              "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：",
+              "| 情形 | 处理 |",
+              "|---|---|"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "d9e2f39fd42a9699",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 46.58,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:13:42.949Z",
+      "updatedAt": "2026-08-19T05:13:42.957Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "bf576bbacafe472d",
+      "traceId": "e7733952a9c70343e97e4275dc9dbecc",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-19 05:13:36.616000+00:00",
+      "endTime": "2026-08-19 05:13:37.413000+00:00",
+      "input": {
+        "query": "签收时商品已过保质期，消费者可以主张哪些权利？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 7,
+        "min_score": 0.3,
+        "dropped": [
+          "L01#003:00",
+          "L05#010:00",
+          "L05#009:00",
+          "P02#001:00",
+          "P05#005:00",
+          "L02#002:01",
+          "L01#009:00",
+          "P09#004:02",
+          "P04#002:03",
+          "L03#004:00",
+          "P11#001:02",
+          "L01#006:00",
+          "P11#006:02"
+        ],
+        "evidence": [
+          {
+            "chunk_id": "P11#006:01",
+            "section": "P11 第六条 食品、保健食品、化妆品 > 6.2 保质期",
+            "score": 0.654,
+            "relevance": 0.593,
+            "prior": 0.9,
+            "excerpt": "| 情形 | 处理 | |---|---| | 签收时已过保质期 | 全额退款，并按食品安全相关规定赔付 | | 剩余保质期不足商品页面承诺的 | 全额退款 | | 临期专区商品（已明示并确认） | 不支持无理由退货 |"
+          },
+          {
+            "chunk_id": "P09#004:00",
+            "section": "P09 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
+            "score": 0.468,
+            "relevance": 0.36,
+            "prior": 0.9,
+            "excerpt": "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**： | 情形 | 处理 | |---|---| | 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 | | 生鲜商品缺斤少两 | …"
+          },
+          {
+            "chunk_id": "P05#005:02",
+            "section": "P05 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
+            "score": 0.381,
+            "relevance": 0.251,
+            "prior": 0.9,
+            "excerpt": "**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。"
+          },
+          {
+            "chunk_id": "L05#022:00",
+            "section": "L05 第二十二条 【申诉与诉讼】",
+            "score": 0.372,
+            "relevance": 0.24,
+            "prior": 0.9,
+            "excerpt": "销售者、修理者、生产者未按本规定执行三包的，消费者可以向产品质量监督管理部门或者工商行政管理部门申诉，由上述部门责令其按三包规定办理。消费者也可以依法申请仲裁解决，还可以直接向人民法院起诉。"
+          },
+          {
+            "chunk_id": "P09#004:04",
+            "section": "P09 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
+            "score": 0.37,
+            "relevance": 0.237,
+            "prior": 0.9,
+            "excerpt": "超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。"
+          },
+          {
+            "chunk_id": "P05#005:01",
+            "section": "P05 第五条 举证责任 > 5.2 消费者举证",
+            "score": 0.355,
+            "relevance": 0.218,
+            "prior": 0.9,
+            "excerpt": "消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。"
+          },
+          {
+            "chunk_id": "P11#001:01",
+            "section": "P11 第一条 生鲜食品 > 1.2 签收时验货",
+            "score": 0.317,
+            "relevance": 0.171,
+            "prior": 0.9,
+            "excerpt": "生鲜商品实行**签收时验货**制度。消费者应在签收时当场查验，发现变质、腐坏、缺斤少两的，当场拍照留证并拒收或立即申请售后。"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "5fb8a6ee95c55615",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.797,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:13:37.927Z",
+      "updatedAt": "2026-08-19T05:13:37.946Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "5fb8a6ee95c55615",
+      "traceId": "e7733952a9c70343e97e4275dc9dbecc",
       "type": "RETRIEVER",
       "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:44:30.588000+00:00",
-      "endTime": "2026-08-18 11:44:32.892000+00:00",
+      "startTime": "2026-08-19 05:13:35.061000+00:00",
+      "endTime": "2026-08-19 05:13:37.436000+00:00",
       "modelParameters": {},
       "input": {
         "query": "签收时商品已过保质期，消费者可以主张哪些权利？",
@@ -711,7 +930,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -747,8 +966,8 @@
             "reason": "相关性 0.360 × 先验 0.90 → 0.468；命中 1/platform/bm25#7, 2/platform/dense#6, 2/platform/bm25#4"
           },
           {
-            "section": "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
-            "text": "商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。",
+            "section": "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.2 消费者举证 … 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
+            "text": "商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。\n\n商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。",
             "score": 0.3805141973495484,
             "doc_id": "P05",
             "layer": "platform",
@@ -777,7 +996,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "ced391c95e96ad5c",
+      "parentObservationId": "11b112630b56da6f",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -785,10 +1004,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 2.304,
+      "latency": 2.375,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:36.495Z",
-      "updatedAt": "2026-08-18T11:44:36.512Z",
+      "createdAt": "2026-08-19T05:13:37.927Z",
+      "updatedAt": "2026-08-19T05:13:37.945Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -808,92 +1027,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "646a8cd0289d192f",
-      "traceId": "6c155658f58b1dd62e9a2f25c40d8ccb",
-      "type": "SPAN",
-      "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:44:30.588000+00:00",
-      "endTime": "2026-08-18 11:44:32.034000+00:00",
-      "input": {
-        "query": "签收时商品已过保质期，消费者可以主张哪些权利？"
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "rewritten": true,
-        "needs_law": true,
-        "sub_queries": [
-          {
-            "id": "1",
-            "intent": "dispute",
-            "text": "签收时商品已过保质期，消费者可以主张哪些权利？"
-          },
-          {
-            "id": "2",
-            "intent": "refund",
-            "text": "签收时商品已过保质期，消费者可以要求退款或赔偿吗？"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "4d3cd947849fbee7",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 1.446,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:36.495Z",
-      "updatedAt": "2026-08-18T11:44:36.509Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "d582beecfd99a30f",
-      "traceId": "6c155658f58b1dd62e9a2f25c40d8ccb",
+      "id": "563b8936d19977ca",
+      "traceId": "e7733952a9c70343e97e4275dc9dbecc",
       "type": "SPAN",
       "name": "rag.assemble",
-      "startTime": "2026-08-18 11:44:32.872000+00:00",
-      "endTime": "2026-08-18 11:44:32.892000+00:00",
+      "startTime": "2026-08-19 05:13:37.413000+00:00",
+      "endTime": "2026-08-19 05:13:37.436000+00:00",
       "input": {
         "top_k": 4,
         "evidence": [
@@ -902,6 +1041,7 @@
           "P05#005:02",
           "L05#022:00",
           "P09#004:04",
+          "P05#005:01",
           "P11#001:01"
         ]
       },
@@ -910,7 +1050,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -946,8 +1086,8 @@
             "reason": "相关性 0.360 × 先验 0.90 → 0.468；命中 1/platform/bm25#7, 2/platform/dense#6, 2/platform/bm25#4"
           },
           {
-            "section": "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
-            "text": "商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。",
+            "section": "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.2 消费者举证 … 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
+            "text": "商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。\n\n商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。",
             "score": 0.3805141973495484,
             "doc_id": "P05",
             "layer": "platform",
@@ -976,7 +1116,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "4d3cd947849fbee7",
+      "parentObservationId": "5fb8a6ee95c55615",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -984,10 +1124,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.02,
+      "latency": 0.023,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:36.495Z",
-      "updatedAt": "2026-08-18T11:44:36.509Z",
+      "createdAt": "2026-08-19T05:13:37.927Z",
+      "updatedAt": "2026-08-19T05:13:37.944Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1008,18 +1148,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "4d0aead7fd53ac5e",
-      "traceId": "6c155658f58b1dd62e9a2f25c40d8ccb",
+      "id": "e98abd699358969d",
+      "traceId": "e7733952a9c70343e97e4275dc9dbecc",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 11:44:32.035000+00:00",
-      "endTime": "2026-08-18 11:44:32.146000+00:00",
+      "startTime": "2026-08-19 05:13:36.502000+00:00",
+      "endTime": "2026-08-19 05:13:36.616000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1088,6 +1228,15 @@
             ]
           },
           {
+            "chunk_id": "P05#005:01",
+            "section": "P05 第五条 举证责任 > 5.2 消费者举证",
+            "rrf": 0.0729,
+            "hits": [
+              "1/platform/dense#6",
+              "1/platform/bm25#9"
+            ]
+          },
+          {
             "chunk_id": "P02#001:00",
             "section": "P02 第二条 退货窗口",
             "rrf": 0.147,
@@ -1096,26 +1245,6 @@
               "1/platform/bm25#5",
               "2/platform/dense#8",
               "2/platform/bm25#5"
-            ]
-          },
-          {
-            "chunk_id": "P09#004:00",
-            "section": "P09 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
-            "rrf": 0.1172,
-            "hits": [
-              "1/platform/bm25#7",
-              "2/platform/dense#6",
-              "2/platform/bm25#4"
-            ]
-          },
-          {
-            "chunk_id": "P05#005:02",
-            "section": "P05 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
-            "rrf": 0.1062,
-            "hits": [
-              "1/platform/dense#4",
-              "2/platform/dense#10",
-              "2/platform/bm25#12"
             ]
           },
           {
@@ -1129,48 +1258,21 @@
             ]
           },
           {
+            "chunk_id": "P05#005:00",
+            "section": "P05 第五条 举证责任 > 5.1 商家举证",
+            "rrf": 0.0656,
+            "hits": [
+              "1/platform/dense#11",
+              "1/platform/bm25#10"
+            ]
+          },
+          {
             "chunk_id": "L02#002:01",
             "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】",
             "rrf": 0.0952,
             "hits": [
               "1/law/bm25#1",
               "2/law/bm25#1"
-            ]
-          },
-          {
-            "chunk_id": "P04#002:03",
-            "section": "P04 第二条 经消费者确认后不适用无理由退货的商品 > 2.3 销售时已明示的临期或瑕疵商品",
-            "rrf": 0.0909,
-            "hits": [
-              "1/platform/bm25#2",
-              "2/platform/bm25#2"
-            ]
-          },
-          {
-            "chunk_id": "P09#004:04",
-            "section": "P09 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
-            "rrf": 0.0889,
-            "hits": [
-              "1/platform/dense#3",
-              "2/platform/dense#2"
-            ]
-          },
-          {
-            "chunk_id": "L03#004:00",
-            "section": "L03 第十八条 【售后有效期起算与退款金额】",
-            "rrf": 0.0889,
-            "hits": [
-              "1/law/dense#3",
-              "2/law/dense#2"
-            ]
-          },
-          {
-            "chunk_id": "L02#003:06",
-            "section": "L02 第三章 退货程序 > 第十六条 【信用卡手续费】",
-            "rrf": 0.0855,
-            "hits": [
-              "1/law/bm25#2",
-              "2/law/bm25#5"
             ]
           },
           {
@@ -1183,39 +1285,59 @@
             ]
           },
           {
-            "chunk_id": "L01#002:00",
-            "section": "L01 第二十三条 【瑕疵举证责任倒置】",
-            "rrf": 0.0812,
+            "chunk_id": "P09#004:00",
+            "section": "P09 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
+            "rrf": 0.1172,
             "hits": [
-              "1/law/dense#2",
-              "2/law/dense#8"
+              "1/platform/bm25#7",
+              "2/platform/dense#6",
+              "2/platform/bm25#4"
             ]
           },
           {
-            "chunk_id": "L05#014:00",
-            "section": "L05 第十四条 【换货标准与有效期重算】",
-            "rrf": 0.0785,
+            "chunk_id": "P09#004:02",
+            "section": "P09 第五条 特定场景的处理口径 > 5.3 假冒伪劣与虚假宣传",
+            "rrf": 0.0741,
             "hits": [
-              "1/law/dense#5",
-              "2/law/dense#6"
+              "2/platform/dense#7",
+              "2/platform/bm25#7"
             ]
           },
           {
-            "chunk_id": "P11#001:03",
-            "section": "P11 第一条 生鲜食品 > 1.4 有效凭证",
-            "rrf": 0.0769,
+            "chunk_id": "P05#005:02",
+            "section": "P05 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
+            "rrf": 0.1062,
             "hits": [
-              "1/platform/bm25#6",
-              "2/platform/bm25#6"
+              "1/platform/dense#4",
+              "2/platform/dense#10",
+              "2/platform/bm25#12"
             ]
           },
           {
-            "chunk_id": "P11#006:02",
-            "section": "P11 第六条 食品、保健食品、化妆品 > 6.3 食品安全问题",
-            "rrf": 0.0757,
+            "chunk_id": "P09#004:04",
+            "section": "P09 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
+            "rrf": 0.0889,
             "hits": [
-              "1/platform/dense#8",
-              "2/platform/dense#5"
+              "1/platform/dense#3",
+              "2/platform/dense#2"
+            ]
+          },
+          {
+            "chunk_id": "P04#002:03",
+            "section": "P04 第二条 经消费者确认后不适用无理由退货的商品 > 2.3 销售时已明示的临期或瑕疵商品",
+            "rrf": 0.0909,
+            "hits": [
+              "1/platform/bm25#2",
+              "2/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L03#004:00",
+            "section": "L03 第十八条 【售后有效期起算与退款金额】",
+            "rrf": 0.0889,
+            "hits": [
+              "1/law/dense#3",
+              "2/law/dense#2"
             ]
           },
           {
@@ -1225,6 +1347,24 @@
             "hits": [
               "1/platform/dense#10",
               "2/platform/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "L01#006:00",
+            "section": "L01 第四十四条 【网络交易平台提供者责任】",
+            "rrf": 0.0739,
+            "hits": [
+              "1/law/dense#11",
+              "2/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P11#006:02",
+            "section": "P11 第六条 食品、保健食品、化妆品 > 6.3 食品安全问题",
+            "rrf": 0.0757,
+            "hits": [
+              "1/platform/dense#8",
+              "2/platform/dense#5"
             ]
           }
         ]
@@ -1236,7 +1376,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "4d3cd947849fbee7",
+      "parentObservationId": "5fb8a6ee95c55615",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1244,10 +1384,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.111,
+      "latency": 0.114,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:36.495Z",
-      "updatedAt": "2026-08-18T11:44:36.508Z",
+      "createdAt": "2026-08-19T05:13:37.927Z",
+      "updatedAt": "2026-08-19T05:13:37.943Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1269,18 +1409,98 @@
       "usagePricingTierName": null
     },
     {
-      "id": "4e5924f0a95cf4ca",
-      "traceId": "6c155658f58b1dd62e9a2f25c40d8ccb",
+      "id": "6d84ff1c9d2cbe68",
+      "traceId": "e7733952a9c70343e97e4275dc9dbecc",
       "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:44:32.035000+00:00",
-      "endTime": "2026-08-18 11:44:32.035000+00:00",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-19 05:13:35.061000+00:00",
+      "endTime": "2026-08-19 05:13:36.501000+00:00",
+      "input": {
+        "query": "签收时商品已过保质期，消费者可以主张哪些权利？"
+      },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": true,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "dispute",
+            "text": "签收时商品已过保质期，消费者可以主张哪些权利？"
+          },
+          {
+            "id": "2",
+            "intent": "refund",
+            "text": "签收时商品已过保质期，消费者可以要求退款或赔偿吗？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "5fb8a6ee95c55615",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.44,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:13:37.927Z",
+      "updatedAt": "2026-08-19T05:13:37.942Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "27e7da1d46a1a0b6",
+      "traceId": "e7733952a9c70343e97e4275dc9dbecc",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:13:36.501000+00:00",
+      "endTime": "2026-08-19 05:13:36.502000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1318,7 +1538,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "4d3cd947849fbee7",
+      "parentObservationId": "5fb8a6ee95c55615",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1326,10 +1546,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.0,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:36.495Z",
-      "updatedAt": "2026-08-18T11:44:36.508Z",
+      "createdAt": "2026-08-19T05:13:37.927Z",
+      "updatedAt": "2026-08-19T05:13:37.941Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1338,141 +1558,6 @@
       "model": null,
       "modelParameters": null,
       "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "39d2e585da2ec26f",
-      "traceId": "6c155658f58b1dd62e9a2f25c40d8ccb",
-      "type": "SPAN",
-      "name": "rag.rerank",
-      "startTime": "2026-08-18 11:44:32.146000+00:00",
-      "endTime": "2026-08-18 11:44:32.872000+00:00",
-      "input": {
-        "query": "签收时商品已过保质期，消费者可以主张哪些权利？",
-        "candidates": 20
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "passed": 6,
-        "min_score": 0.3,
-        "dropped": [
-          "L01#003:00",
-          "L05#010:00",
-          "L05#009:00",
-          "P02#001:00",
-          "L02#002:01",
-          "P04#002:03",
-          "L03#004:00",
-          "L02#003:06",
-          "L01#009:00",
-          "L01#002:00",
-          "L05#014:00",
-          "P11#001:03",
-          "P11#006:02",
-          "P11#001:02"
-        ],
-        "evidence": [
-          {
-            "chunk_id": "P11#006:01",
-            "section": "P11 第六条 食品、保健食品、化妆品 > 6.2 保质期",
-            "score": 0.654,
-            "relevance": 0.593,
-            "prior": 0.9,
-            "excerpt": "| 情形 | 处理 | |---|---| | 签收时已过保质期 | 全额退款，并按食品安全相关规定赔付 | | 剩余保质期不足商品页面承诺的 | 全额退款 | | 临期专区商品（已明示并确认） | 不支持无理由退货 |"
-          },
-          {
-            "chunk_id": "P09#004:00",
-            "section": "P09 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
-            "score": 0.468,
-            "relevance": 0.36,
-            "prior": 0.9,
-            "excerpt": "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**： | 情形 | 处理 | |---|---| | 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 | | 生鲜商品缺斤少两 | …"
-          },
-          {
-            "chunk_id": "P05#005:02",
-            "section": "P05 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
-            "score": 0.381,
-            "relevance": 0.251,
-            "prior": 0.9,
-            "excerpt": "**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。"
-          },
-          {
-            "chunk_id": "L05#022:00",
-            "section": "L05 第二十二条 【申诉与诉讼】",
-            "score": 0.372,
-            "relevance": 0.24,
-            "prior": 0.9,
-            "excerpt": "销售者、修理者、生产者未按本规定执行三包的，消费者可以向产品质量监督管理部门或者工商行政管理部门申诉，由上述部门责令其按三包规定办理。消费者也可以依法申请仲裁解决，还可以直接向人民法院起诉。"
-          },
-          {
-            "chunk_id": "P09#004:04",
-            "section": "P09 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
-            "score": 0.37,
-            "relevance": 0.237,
-            "prior": 0.9,
-            "excerpt": "超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。"
-          },
-          {
-            "chunk_id": "P11#001:01",
-            "section": "P11 第一条 生鲜食品 > 1.2 签收时验货",
-            "score": 0.317,
-            "relevance": 0.171,
-            "prior": 0.9,
-            "excerpt": "生鲜商品实行**签收时验货**制度。消费者应在签收时当场查验，发现变质、腐坏、缺斤少两的，当场拍照留证并拒收或立即申请售后。"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "4d3cd947849fbee7",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.726,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:36.495Z",
-      "updatedAt": "2026-08-18T11:44:36.505Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,

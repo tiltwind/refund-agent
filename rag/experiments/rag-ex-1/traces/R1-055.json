@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-055",
+    "query": "金牌会员的评定条件具体包括哪些？",
     "type": "single",
     "style": "formal",
     "doc_id": "P07",
@@ -9,6 +10,7 @@
     "seed_chunk_id": [
       "P07#000:00"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
@@ -19,7 +21,7 @@
       "context_recall": 1.0,
       "context_relevance": 0.071
     },
-    "elapsed_s": 1.7,
+    "elapsed_s": 2.0,
     "seed_rank": {
       "candidate": {
         "P07#000:00": 2
@@ -28,6 +30,18 @@
         "P07#000:00": 1
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "condition",
+          "text": "金牌会员的评定条件具体包括哪些？"
+        }
+      ]
+    },
+    "rewrite_hash": "c3951784b579677e",
     "sections": [
       "P07 星辰优选会员权益与售后延长规则 > 第一条 会员等级",
       "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.2 适用条件"
@@ -51,12 +65,12 @@
           {
             "claim": "会员等级按月评定。",
             "supported": true,
-            "reason": "第一条末尾写明会员等级按月评定"
+            "reason": "第一条末尾明确会员等级按月评定"
           },
           {
             "claim": "会员等级变化在次月生效。",
             "supported": true,
-            "reason": "第一条末尾写明等级变化在次月生效"
+            "reason": "第一条末尾明确等级变化在次月生效"
           }
         ],
         "error": null
@@ -66,7 +80,7 @@
         "n": 14,
         "hit": 1,
         "truncated": false,
-        "note": "其余多为普通会员、极速退款、退货争议等内容",
+        "note": "其余多为普通会员、极速退款、退货争议等内容，与金牌会员评定条件无关。",
         "irrelevant": [
           "星辰优选设两个会员等级，等级由累计消费金额与账户状态综合评定：",
           "| 等级 | 评定标准 |",
@@ -82,95 +96,27 @@
         "error": null
       }
     },
-    "trace_id": "1723b27d0223ac523719bd92cfc738f9"
+    "trace_id": "c23cb11d1aaa0068a61ca757675f0b8c"
   },
   "trace": {
-    "id": "1723b27d0223ac523719bd92cfc738f9",
+    "id": "c23cb11d1aaa0068a61ca757675f0b8c",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:47:03.528000+00:00"
+    "timestamp": "2026-08-19 05:15:39.210000+00:00"
   },
   "observations": [
     {
-      "id": "33733e7e1def2b9e",
-      "traceId": "1723b27d0223ac523719bd92cfc738f9",
-      "type": "SPAN",
-      "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:47:08.645000+00:00",
-      "endTime": "2026-08-18 11:47:08.647000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "evaluator_count": 1,
-        "evaluation_count": 8,
-        "failed_evaluator_count": 0,
-        "skipped_evaluator_count": 0
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "2da2933d70ea2b87",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.002,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:12.524Z",
-      "updatedAt": "2026-08-18T11:47:12.543Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "2da2933d70ea2b87",
-      "traceId": "1723b27d0223ac523719bd92cfc738f9",
+      "id": "c0b3259f524b3f53",
+      "traceId": "c23cb11d1aaa0068a61ca757675f0b8c",
       "type": "SPAN",
       "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:46:31.021000+00:00",
-      "endTime": "2026-08-18 11:47:08.647000+00:00",
+      "startTime": "2026-08-19 05:15:27.008000+00:00",
+      "endTime": "2026-08-19 05:15:45.460000+00:00",
       "input": {
         "query": "金牌会员的评定条件具体包括哪些？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -201,7 +147,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -214,6 +160,7 @@
       },
       "output": {
         "case_id": "R1-055",
+        "query": "金牌会员的评定条件具体包括哪些？",
         "type": "single",
         "style": "formal",
         "doc_id": "P07",
@@ -222,6 +169,7 @@
         "seed_chunk_id": [
           "P07#000:00"
         ],
+        "acceptable_seed_chunk_ids": null,
         "error": null,
         "scores": {
           "recall@10": 1,
@@ -232,7 +180,7 @@
           "context_recall": 1,
           "context_relevance": 0.071
         },
-        "elapsed_s": 1.7,
+        "elapsed_s": 2,
         "seed_rank": {
           "candidate": {
             "P07#000:00": 2
@@ -241,6 +189,18 @@
             "P07#000:00": 1
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "condition",
+              "text": "金牌会员的评定条件具体包括哪些？"
+            }
+          ]
+        },
+        "rewrite_hash": "c3951784b579677e",
         "sections": [
           "P07 星辰优选会员权益与售后延长规则 > 第一条 会员等级",
           "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.2 适用条件"
@@ -264,12 +224,12 @@
               {
                 "claim": "会员等级按月评定。",
                 "supported": true,
-                "reason": "第一条末尾写明会员等级按月评定"
+                "reason": "第一条末尾明确会员等级按月评定"
               },
               {
                 "claim": "会员等级变化在次月生效。",
                 "supported": true,
-                "reason": "第一条末尾写明等级变化在次月生效"
+                "reason": "第一条末尾明确等级变化在次月生效"
               }
             ],
             "error": null
@@ -279,7 +239,7 @@
             "n": 14,
             "hit": 1,
             "truncated": false,
-            "note": "其余多为普通会员、极速退款、退货争议等内容",
+            "note": "其余多为普通会员、极速退款、退货争议等内容，与金牌会员评定条件无关。",
             "irrelevant": [
               "星辰优选设两个会员等级，等级由累计消费金额与账户状态综合评定：",
               "| 等级 | 评定标准 |",
@@ -310,10 +270,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 37.626,
+      "latency": 18.452,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:12.524Z",
-      "updatedAt": "2026-08-18T11:47:12.542Z",
+      "createdAt": "2026-08-19T05:15:48.694Z",
+      "updatedAt": "2026-08-19T05:15:48.715Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -335,12 +295,202 @@
       "usagePricingTierName": null
     },
     {
-      "id": "3dff06f1bae12d93",
-      "traceId": "1723b27d0223ac523719bd92cfc738f9",
+      "id": "6a5b90d20259abc2",
+      "traceId": "c23cb11d1aaa0068a61ca757675f0b8c",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:15:27.008000+00:00",
+      "endTime": "2026-08-19 05:15:45.458000+00:00",
+      "input": {
+        "query": "金牌会员的评定条件具体包括哪些？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-055",
+        "kind": "table",
+        "type": "single",
+        "layer": "platform",
+        "style": "formal",
+        "doc_id": "P07",
+        "section": "第一条 会员等级",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.286,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-055",
+        "query": "金牌会员的评定条件具体包括哪些？",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "P07",
+        "layer": "platform",
+        "kind": "table",
+        "seed_chunk_id": [
+          "P07#000:00"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 274,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.071
+        },
+        "elapsed_s": 2,
+        "seed_rank": {
+          "candidate": {
+            "P07#000:00": 2
+          },
+          "evidence": {
+            "P07#000:00": 1
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "condition",
+              "text": "金牌会员的评定条件具体包括哪些？"
+            }
+          ]
+        },
+        "rewrite_hash": "c3951784b579677e",
+        "sections": [
+          "P07 星辰优选会员权益与售后延长规则 > 第一条 会员等级",
+          "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.2 适用条件"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 4,
+            "hit": 4,
+            "detail": [
+              {
+                "claim": "金牌会员需满足近12个月累计消费达标。",
+                "supported": true,
+                "reason": "第一条表格中金牌会员标准含近12个月累计消费达标"
+              },
+              {
+                "claim": "金牌会员需满足账户无严重违规记录。",
+                "supported": true,
+                "reason": "第一条表格中金牌会员标准含账户无严重违规记录"
+              },
+              {
+                "claim": "会员等级按月评定。",
+                "supported": true,
+                "reason": "第一条末尾明确会员等级按月评定"
+              },
+              {
+                "claim": "会员等级变化在次月生效。",
+                "supported": true,
+                "reason": "第一条末尾明确等级变化在次月生效"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.071,
+            "n": 14,
+            "hit": 1,
+            "truncated": false,
+            "note": "其余多为普通会员、极速退款、退货争议等内容，与金牌会员评定条件无关。",
+            "irrelevant": [
+              "星辰优选设两个会员等级，等级由累计消费金额与账户状态综合评定：",
+              "| 等级 | 评定标准 |",
+              "|---|---|",
+              "| **普通会员** | 完成注册的全部消费者 |",
+              "会员等级按月评定，等级变化在次月生效。",
+              "金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款项即时到账。",
+              "（一）会员等级为金牌会员；",
+              "（二）账户未被判定为高风险账户；",
+              "（三）订单金额未超过极速退款额度上限；",
+              "（四）商品类目不属于特殊类目。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "c0b3259f524b3f53",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 18.45,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:15:48.694Z",
+      "updatedAt": "2026-08-19T05:15:48.714Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "74b87672dfaf3700",
+      "traceId": "c23cb11d1aaa0068a61ca757675f0b8c",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:47:08.646000+00:00",
-      "endTime": "2026-08-18 11:47:08.646000+00:00",
+      "startTime": "2026-08-19 05:15:45.459000+00:00",
+      "endTime": "2026-08-19 05:15:45.460000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -348,6 +498,7 @@
         },
         "output": {
           "case_id": "R1-055",
+          "query": "金牌会员的评定条件具体包括哪些？",
           "type": "single",
           "style": "formal",
           "doc_id": "P07",
@@ -356,6 +507,7 @@
           "seed_chunk_id": [
             "P07#000:00"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
@@ -366,7 +518,7 @@
             "context_recall": 1,
             "context_relevance": 0.071
           },
-          "elapsed_s": 1.7,
+          "elapsed_s": 2,
           "seed_rank": {
             "candidate": {
               "P07#000:00": 2
@@ -375,6 +527,18 @@
               "P07#000:00": 1
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "condition",
+                "text": "金牌会员的评定条件具体包括哪些？"
+              }
+            ]
+          },
+          "rewrite_hash": "c3951784b579677e",
           "sections": [
             "P07 星辰优选会员权益与售后延长规则 > 第一条 会员等级",
             "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.2 适用条件"
@@ -398,12 +562,12 @@
                 {
                   "claim": "会员等级按月评定。",
                   "supported": true,
-                  "reason": "第一条末尾写明会员等级按月评定"
+                  "reason": "第一条末尾明确会员等级按月评定"
                 },
                 {
                   "claim": "会员等级变化在次月生效。",
                   "supported": true,
-                  "reason": "第一条末尾写明等级变化在次月生效"
+                  "reason": "第一条末尾明确等级变化在次月生效"
                 }
               ],
               "error": null
@@ -413,7 +577,7 @@
               "n": 14,
               "hit": 1,
               "truncated": false,
-              "note": "其余多为普通会员、极速退款、退货争议等内容",
+              "note": "其余多为普通会员、极速退款、退货争议等内容，与金牌会员评定条件无关。",
               "irrelevant": [
                 "星辰优选设两个会员等级，等级由累计消费金额与账户状态综合评定：",
                 "| 等级 | 评定标准 |",
@@ -440,7 +604,8 @@
           "seed_chunk_id": [
             "P07#000:00"
           ],
-          "reference_answer": "金牌会员需满足近12个月累计消费达标，且账户无严重违规记录。会员等级按月评定，等级变化在次月生效。"
+          "reference_answer": "金牌会员需满足近12个月累计消费达标，且账户无严重违规记录。会员等级按月评定，等级变化在次月生效。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "table",
@@ -462,7 +627,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -507,7 +672,7 @@
         {
           "name": "context_relevance",
           "value": 0.071,
-          "comment": "1/14 个内容单元相关；其余多为普通会员、极速退款、退货争议等内容"
+          "comment": "1/14 个内容单元相关；其余多为普通会员、极速退款、退货争议等内容，与金牌会员评定条件无关。"
         },
         {
           "name": "run_error",
@@ -522,7 +687,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "33733e7e1def2b9e",
+      "parentObservationId": "f95e4927b14dcaa7",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -530,10 +695,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.0,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:12.524Z",
-      "updatedAt": "2026-08-18T11:47:12.534Z",
+      "createdAt": "2026-08-19T05:15:48.694Z",
+      "updatedAt": "2026-08-19T05:15:48.713Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -553,49 +718,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "c07d3e9f450e21b8",
-      "traceId": "1723b27d0223ac523719bd92cfc738f9",
+      "id": "f95e4927b14dcaa7",
+      "traceId": "c23cb11d1aaa0068a61ca757675f0b8c",
       "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:46:31.021000+00:00",
-      "endTime": "2026-08-18 11:47:08.645000+00:00",
-      "input": {
-        "query": "金牌会员的评定条件具体包括哪些？"
-      },
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-19 05:15:45.459000+00:00",
+      "endTime": "2026-08-19 05:15:45.460000+00:00",
       "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-055",
-        "kind": "table",
-        "type": "single",
-        "layer": "platform",
-        "style": "formal",
-        "doc_id": "P07",
-        "section": "第一条 会员等级",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.286,
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -607,88 +741,10 @@
         }
       },
       "output": {
-        "case_id": "R1-055",
-        "type": "single",
-        "style": "formal",
-        "doc_id": "P07",
-        "layer": "platform",
-        "kind": "table",
-        "seed_chunk_id": [
-          "P07#000:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 274,
-          "duplicate_ratio": 0,
-          "context_recall": 1,
-          "context_relevance": 0.071
-        },
-        "elapsed_s": 1.7,
-        "seed_rank": {
-          "candidate": {
-            "P07#000:00": 2
-          },
-          "evidence": {
-            "P07#000:00": 1
-          }
-        },
-        "sections": [
-          "P07 星辰优选会员权益与售后延长规则 > 第一条 会员等级",
-          "P07 星辰优选会员权益与售后延长规则 > 第三条 极速退款 > 3.2 适用条件"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 4,
-            "hit": 4,
-            "detail": [
-              {
-                "claim": "金牌会员需满足近12个月累计消费达标。",
-                "supported": true,
-                "reason": "第一条表格中金牌会员标准含近12个月累计消费达标"
-              },
-              {
-                "claim": "金牌会员需满足账户无严重违规记录。",
-                "supported": true,
-                "reason": "第一条表格中金牌会员标准含账户无严重违规记录"
-              },
-              {
-                "claim": "会员等级按月评定。",
-                "supported": true,
-                "reason": "第一条末尾写明会员等级按月评定"
-              },
-              {
-                "claim": "会员等级变化在次月生效。",
-                "supported": true,
-                "reason": "第一条末尾写明等级变化在次月生效"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.071,
-            "n": 14,
-            "hit": 1,
-            "truncated": false,
-            "note": "其余多为普通会员、极速退款、退货争议等内容",
-            "irrelevant": [
-              "星辰优选设两个会员等级，等级由累计消费金额与账户状态综合评定：",
-              "| 等级 | 评定标准 |",
-              "|---|---|",
-              "| **普通会员** | 完成注册的全部消费者 |",
-              "会员等级按月评定，等级变化在次月生效。",
-              "金牌会员发起退货退款申请并填写有效退货物流单号后，平台**在商家收到退货前先行垫付退款**，款项即时到账。",
-              "（一）会员等级为金牌会员；",
-              "（二）账户未被判定为高风险账户；",
-              "（三）订单金额未超过极速退款额度上限；",
-              "（四）商品类目不属于特殊类目。"
-            ],
-            "error": null
-          }
-        }
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
       },
       "usage": {
         "input": 0,
@@ -697,7 +753,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "2da2933d70ea2b87",
+      "parentObservationId": "c0b3259f524b3f53",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -705,10 +761,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 37.624,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:12.524Z",
-      "updatedAt": "2026-08-18T11:47:12.533Z",
+      "createdAt": "2026-08-19T05:15:48.694Z",
+      "updatedAt": "2026-08-19T05:15:48.705Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -716,6 +772,7 @@
       "completionStartTime": null,
       "model": null,
       "modelParameters": null,
+      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -729,12 +786,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "ae22e524325fcab8",
-      "traceId": "1723b27d0223ac523719bd92cfc738f9",
+      "id": "7f2ae5a84d9837ef",
+      "traceId": "c23cb11d1aaa0068a61ca757675f0b8c",
       "type": "RETRIEVER",
       "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:47:03.527000+00:00",
-      "endTime": "2026-08-18 11:47:05.194000+00:00",
+      "startTime": "2026-08-19 05:15:39.210000+00:00",
+      "endTime": "2026-08-19 05:15:41.221000+00:00",
       "modelParameters": {},
       "input": {
         "query": "金牌会员的评定条件具体包括哪些？",
@@ -745,7 +802,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -789,7 +846,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "c07d3e9f450e21b8",
+      "parentObservationId": "6a5b90d20259abc2",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -797,10 +854,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.667,
+      "latency": 2.011,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:07.482Z",
-      "updatedAt": "2026-08-18T11:47:07.500Z",
+      "createdAt": "2026-08-19T05:15:43.737Z",
+      "updatedAt": "2026-08-19T05:15:43.766Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -820,12 +877,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "7554227e6f6ad1f1",
-      "traceId": "1723b27d0223ac523719bd92cfc738f9",
+      "id": "e17e560757444727",
+      "traceId": "c23cb11d1aaa0068a61ca757675f0b8c",
       "type": "SPAN",
       "name": "rag.assemble",
-      "startTime": "2026-08-18 11:47:05.185000+00:00",
-      "endTime": "2026-08-18 11:47:05.194000+00:00",
+      "startTime": "2026-08-19 05:15:41.217000+00:00",
+      "endTime": "2026-08-19 05:15:41.221000+00:00",
       "input": {
         "top_k": 4,
         "evidence": [
@@ -838,7 +895,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -882,7 +939,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "ae22e524325fcab8",
+      "parentObservationId": "7f2ae5a84d9837ef",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -890,10 +947,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.009,
+      "latency": 0.004,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:07.482Z",
-      "updatedAt": "2026-08-18T11:47:07.499Z",
+      "createdAt": "2026-08-19T05:15:43.737Z",
+      "updatedAt": "2026-08-19T05:15:43.766Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -914,12 +971,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "d246e23c572c6ce4",
-      "traceId": "1723b27d0223ac523719bd92cfc738f9",
+      "id": "b872c080c4e6cfd9",
+      "traceId": "c23cb11d1aaa0068a61ca757675f0b8c",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 11:47:04.538000+00:00",
-      "endTime": "2026-08-18 11:47:05.185000+00:00",
+      "startTime": "2026-08-19 05:15:40.575000+00:00",
+      "endTime": "2026-08-19 05:15:41.217000+00:00",
       "input": {
         "query": "金牌会员的评定条件具体包括哪些？",
         "candidates": 20
@@ -929,7 +986,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -989,7 +1046,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "ae22e524325fcab8",
+      "parentObservationId": "7f2ae5a84d9837ef",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -997,10 +1054,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.647,
+      "latency": 0.642,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:07.482Z",
-      "updatedAt": "2026-08-18T11:47:07.499Z",
+      "createdAt": "2026-08-19T05:15:43.737Z",
+      "updatedAt": "2026-08-19T05:15:43.765Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1021,18 +1078,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "dd5bd2f7f07fa03c",
-      "traceId": "1723b27d0223ac523719bd92cfc738f9",
+      "id": "1e42ff9297bf1647",
+      "traceId": "c23cb11d1aaa0068a61ca757675f0b8c",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 11:47:04.446000+00:00",
-      "endTime": "2026-08-18 11:47:04.538000+00:00",
+      "startTime": "2026-08-19 05:15:40.489000+00:00",
+      "endTime": "2026-08-19 05:15:40.575000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1227,7 +1284,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "ae22e524325fcab8",
+      "parentObservationId": "7f2ae5a84d9837ef",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1235,10 +1292,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.092,
+      "latency": 0.086,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:07.482Z",
-      "updatedAt": "2026-08-18T11:47:07.497Z",
+      "createdAt": "2026-08-19T05:15:43.737Z",
+      "updatedAt": "2026-08-19T05:15:43.762Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1260,12 +1317,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "a678fe791945bd2d",
-      "traceId": "1723b27d0223ac523719bd92cfc738f9",
+      "id": "f962f5ad1834d80a",
+      "traceId": "c23cb11d1aaa0068a61ca757675f0b8c",
       "type": "SPAN",
       "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:47:03.528000+00:00",
-      "endTime": "2026-08-18 11:47:04.445000+00:00",
+      "startTime": "2026-08-19 05:15:39.210000+00:00",
+      "endTime": "2026-08-19 05:15:40.488000+00:00",
       "input": {
         "query": "金牌会员的评定条件具体包括哪些？"
       },
@@ -1274,7 +1331,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1303,7 +1360,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "ae22e524325fcab8",
+      "parentObservationId": "7f2ae5a84d9837ef",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1311,10 +1368,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.917,
+      "latency": 1.278,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:07.482Z",
-      "updatedAt": "2026-08-18T11:47:07.495Z",
+      "createdAt": "2026-08-19T05:15:43.737Z",
+      "updatedAt": "2026-08-19T05:15:43.759Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1335,18 +1392,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "9f8aa6e6774836b8",
-      "traceId": "1723b27d0223ac523719bd92cfc738f9",
+      "id": "1a7acd2401365864",
+      "traceId": "c23cb11d1aaa0068a61ca757675f0b8c",
       "type": "SPAN",
       "name": "rag.route",
-      "startTime": "2026-08-18 11:47:04.445000+00:00",
-      "endTime": "2026-08-18 11:47:04.446000+00:00",
+      "startTime": "2026-08-19 05:15:40.489000+00:00",
+      "endTime": "2026-08-19 05:15:40.489000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1376,7 +1433,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "ae22e524325fcab8",
+      "parentObservationId": "7f2ae5a84d9837ef",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1384,10 +1441,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.001,
+      "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:07.482Z",
-      "updatedAt": "2026-08-18T11:47:07.494Z",
+      "createdAt": "2026-08-19T05:15:43.737Z",
+      "updatedAt": "2026-08-19T05:15:43.754Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,

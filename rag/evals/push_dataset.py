@@ -33,6 +33,8 @@ def to_item(case: dict) -> dict:
         "input": {"query": case["query"]},
         "expected_output": {
             "seed_chunk_id": case["seed_chunk_id"],
+            # 等价块分组也一起推：判分口径的一部分，落在这里两条路径才给同一个数
+            "acceptable_seed_chunk_ids": case.get("acceptable_seed_chunk_ids") or [],
             "reference_answer": case["reference_answer"],
             # claim 一起推：dataset run 里判 Context Recall 时读的是 item 自己带的这份，
             # 不回头读本地文件，两边不一致的风险就没了

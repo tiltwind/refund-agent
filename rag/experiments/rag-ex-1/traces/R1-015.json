@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-015",
+    "query": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？",
     "type": "single",
     "style": "formal",
     "doc_id": "L04",
@@ -9,6 +10,7 @@
     "seed_chunk_id": [
       "L04#008:00"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
@@ -19,7 +21,7 @@
       "context_recall": 1.0,
       "context_relevance": 0.056
     },
-    "elapsed_s": 1.9,
+    "elapsed_s": 1.8,
     "seed_rank": {
       "candidate": {
         "L04#008:00": 1
@@ -28,6 +30,18 @@
         "L04#008:00": 1
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "other",
+          "text": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？"
+        }
+      ]
+    },
+    "rewrite_hash": "d5c378d02c66c41b",
     "sections": [
       "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】",
       "P01 星辰优选用户服务协议 > 第四章 平台的角色与责任 > 4.3 平台的连带责任 … 第四章 平台的角色与责任 > 4.4 平台的协助义务",
@@ -42,7 +56,7 @@
           {
             "claim": "双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。",
             "supported": true,
-            "reason": "L04第五十八条第二款明确要求双方就保证金提取数额、管理、使用和退还办法等作出明确约定。"
+            "reason": "L04第五十八条明确要求双方就保证金提取数额、管理、使用和退还办法等作出明确约定。"
           }
         ],
         "error": null
@@ -68,32 +82,141 @@
         "error": null
       }
     },
-    "trace_id": "6f2380e9c38c2acd2ad8b0f4d830667a"
+    "trace_id": "8dffee4f014a2ca34db44b62ec3b0b8a"
   },
   "trace": {
-    "id": "6f2380e9c38c2acd2ad8b0f4d830667a",
+    "id": "8dffee4f014a2ca34db44b62ec3b0b8a",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:50:24.998000+00:00"
+    "timestamp": "2026-08-19 05:19:50.517000+00:00"
   },
   "observations": [
     {
-      "id": "de371b5832e0b851",
-      "traceId": "6f2380e9c38c2acd2ad8b0f4d830667a",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:50:52.722000+00:00",
-      "endTime": "2026-08-18 11:50:54.605000+00:00",
+      "id": "4c8353f8b2a34993",
+      "traceId": "8dffee4f014a2ca34db44b62ec3b0b8a",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-19 05:19:55.326000+00:00",
+      "endTime": "2026-08-19 05:19:55.327000+00:00",
       "modelParameters": {},
       "input": {
-        "query": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？",
-        "top_k": 4
+        "input": {
+          "query": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？"
+        },
+        "output": {
+          "case_id": "R1-015",
+          "query": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？",
+          "type": "single",
+          "style": "formal",
+          "doc_id": "L04",
+          "layer": "law",
+          "kind": "text",
+          "seed_chunk_id": [
+            "L04#008:00"
+          ],
+          "acceptable_seed_chunk_ids": null,
+          "error": null,
+          "scores": {
+            "recall@10": 1,
+            "recall@3": 1,
+            "recall@1": 1,
+            "evidence_tokens": 473,
+            "duplicate_ratio": 0.294,
+            "context_recall": 1,
+            "context_relevance": 0.056
+          },
+          "elapsed_s": 1.8,
+          "seed_rank": {
+            "candidate": {
+              "L04#008:00": 1
+            },
+            "evidence": {
+              "L04#008:00": 1
+            }
+          },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "other",
+                "text": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？"
+              }
+            ]
+          },
+          "rewrite_hash": "d5c378d02c66c41b",
+          "sections": [
+            "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】",
+            "P01 星辰优选用户服务协议 > 第四章 平台的角色与责任 > 4.3 平台的连带责任 … 第四章 平台的角色与责任 > 4.4 平台的协助义务",
+            "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第三十二条 【平台交易规则的制定】"
+          ],
+          "judge": {
+            "context_recall": {
+              "score": 1,
+              "n": 1,
+              "hit": 1,
+              "detail": [
+                {
+                  "claim": "双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。",
+                  "supported": true,
+                  "reason": "L04第五十八条明确要求双方就保证金提取数额、管理、使用和退还办法等作出明确约定。"
+                }
+              ],
+              "error": null
+            },
+            "context_relevance": {
+              "score": 0.056,
+              "n": 18,
+              "hit": 1,
+              "truncated": false,
+              "note": "其余内容涉及平台责任、先行赔付、商家义务等，与保证金协议事项无关。",
+              "irrelevant": [
+                "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。",
+                "消费者要求电子商务平台经营者承担先行赔偿责任以及电子商务平台经营者赔偿后向平台内经营者的追偿，适用《中华人民共和国消费者",
+                "> **适用要点**：「消费者保障金」「先行赔付」的制度出处。",
+                "平台垫付退款后向商家追偿，依据在此。",
+                "平台为交易提供技术服务与规则保障。",
+                "商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。",
+                "**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。",
+                "** 平台先行赔付后，有权向商家追偿。",
+                "平台知道或应当知道商家销售的商品不符合保障人身、财产安全要求，或有其他侵害消费者合法权益行为而未采取必要措施的，依法与该",
+                "消费者与商家发生争议时，平台应积极协助消费者维权，并应消费者要求提供商家的真实名称、地址和有效联系方式。"
+              ],
+              "error": null
+            }
+          }
+        },
+        "expected_output": {
+          "claims": [
+            "双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。"
+          ],
+          "seed_chunk_id": [
+            "L04#008:00"
+          ],
+          "reference_answer": "双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。",
+          "acceptable_seed_chunk_ids": []
+        },
+        "metadata": {
+          "kind": "text",
+          "type": "single",
+          "layer": "law",
+          "style": "formal",
+          "doc_id": "L04",
+          "section": "第五十八条 【质量担保机制】",
+          "reviewed": false,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.633
+        }
       },
       "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -104,43 +227,48 @@
           }
         }
       },
-      "output": {
-        "sections": [
-          {
-            "section": "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】",
-            "text": "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。\n\n电子商务平台经营者与平台内经营者协议设立消费者权益保证金的，双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。\n\n消费者要求电子商务平台经营者承担先行赔偿责任以及电子商务平台经营者赔偿后向平台内经营者的追偿，适用《中华人民共和国消费者权益保护法》的有关规定。\n\n> **适用要点**：「消费者保障金」「先行赔付」的制度出处。平台垫付退款后向商家追偿，依据在此。",
-            "score": 0.8893481159210205,
-            "doc_id": "L04",
-            "layer": "law",
-            "doc_type": "法律",
-            "effective_date": "2019-01-01",
-            "source_path": "doc/policy/law/L04-电子商务法-平台责任条款摘录.md",
-            "reason": "相关性 0.999 × 先验 0.45 → 0.889；命中 1/law/dense#1, 1/law/bm25#1"
-          },
-          {
-            "section": "P01 星辰优选用户服务协议 > 第四章 平台的角色与责任 > 4.3 平台的连带责任 … 第四章 平台的角色与责任 > 4.4 平台的协助义务",
-            "text": "平台为交易提供技术服务与规则保障。商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。\n\n**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。** 平台先行赔付后，有权向商家追偿。\n\n平台知道或应当知道商家销售的商品不符合保障人身、财产安全要求，或有其他侵害消费者合法权益行为而未采取必要措施的，依法与该商家承担连带责任。\n\n消费者与商家发生争议时，平台应积极协助消费者维权，并应消费者要求提供商家的真实名称、地址和有效联系方式。\n\n平台为交易提供技术服务与规则保障。商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。\n\n**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。** 平台先行赔付后，有权向商家追偿。\n\n平台知道或应当知道商家销售的商品不符合保障人身、财产安全要求，或有其他侵害消费者合法权益行为而未采取必要措施的，依法与该商家承担连带责任。\n\n消费者与商家发生争议时，平台应积极协助消费者维权，并应消费者要求提供商家的真实名称、地址和有效联系方式。",
-            "score": 0.5323046016693116,
-            "doc_id": "P01",
-            "layer": "platform",
-            "doc_type": "平台服务协议",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P01-用户服务协议.md",
-            "reason": "相关性 0.440 × 先验 0.90 → 0.532；命中 1/platform/dense#3, 1/platform/bm25#5"
-          },
-          {
-            "section": "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第三十二条 【平台交易规则的制定】",
-            "text": "电子商务平台经营者应当遵循公开、公平、公正的原则，制定平台服务协议和交易规则，明确进入和退出平台、商品和服务质量保障、消费者权益保护、个人信息保护等方面的权利和义务。",
-            "score": 0.32260362148284916,
-            "doc_id": "L04",
-            "layer": "law",
-            "doc_type": "法律",
-            "effective_date": "2019-01-01",
-            "source_path": "doc/policy/law/L04-电子商务法-平台责任条款摘录.md",
-            "reason": "相关性 0.291 × 先验 0.45 → 0.323；命中 1/law/dense#2"
-          }
-        ]
-      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 1,
+          "comment": "种子块名次 L04#008:00=1"
+        },
+        {
+          "name": "recall@3",
+          "value": 1,
+          "comment": "种子块名次 L04#008:00=1"
+        },
+        {
+          "name": "recall@1",
+          "value": 1,
+          "comment": "种子块名次 L04#008:00=1"
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 473,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0.294,
+          "comment": ""
+        },
+        {
+          "name": "context_recall",
+          "value": 1,
+          "comment": "1/1 条 claim 被支撑"
+        },
+        {
+          "name": "context_relevance",
+          "value": 0.056,
+          "comment": "1/18 个内容单元相关；其余内容涉及平台责任、先行赔付、商家义务等，与保证金协议事项无关。"
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "ok"
+        }
+      ],
       "usage": {
         "input": 0,
         "output": 0,
@@ -148,7 +276,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "660eda5d7772beb2",
+      "parentObservationId": "04e9ed0375e431da",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -156,10 +284,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.883,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:59.065Z",
-      "updatedAt": "2026-08-18T11:50:59.093Z",
+      "createdAt": "2026-08-19T05:20:00.327Z",
+      "updatedAt": "2026-08-19T05:20:00.352Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -179,22 +307,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "45f3e8d504afbd07",
-      "traceId": "6f2380e9c38c2acd2ad8b0f4d830667a",
+      "id": "04e9ed0375e431da",
+      "traceId": "8dffee4f014a2ca34db44b62ec3b0b8a",
       "type": "SPAN",
-      "name": "rag.rerank",
-      "startTime": "2026-08-18 11:50:54.106000+00:00",
-      "endTime": "2026-08-18 11:50:54.596000+00:00",
-      "input": {
-        "query": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？",
-        "candidates": 20
-      },
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-19 05:19:55.326000+00:00",
+      "endTime": "2026-08-19 05:19:55.327000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -206,60 +330,10 @@
         }
       },
       "output": {
-        "passed": 4,
-        "min_score": 0.3,
-        "dropped": [
-          "P01#004:01",
-          "P09#005:01",
-          "P09#003:03",
-          "P01#001:00",
-          "P09#005:02",
-          "P09#003:02",
-          "P09#002:00",
-          "P01#003:00",
-          "P01#004:00",
-          "L02#004:01",
-          "L04#005:00",
-          "L01#001:00",
-          "L01#006:00",
-          "L02#003:04",
-          "L04#007:00",
-          "L05#005:00"
-        ],
-        "evidence": [
-          {
-            "chunk_id": "L04#008:00",
-            "section": "L04 第五十八条 【质量担保机制】",
-            "score": 0.889,
-            "relevance": 0.999,
-            "prior": 0.45,
-            "excerpt": "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。 电子商务平台经营者与平台内经营者协议设立消费者权益保证金的，双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。 消费者要求电…"
-          },
-          {
-            "chunk_id": "P01#004:03",
-            "section": "P01 第四章 平台的角色与责任 > 4.4 平台的协助义务",
-            "score": 0.532,
-            "relevance": 0.44,
-            "prior": 0.9,
-            "excerpt": "消费者与商家发生争议时，平台应积极协助消费者维权，并应消费者要求提供商家的真实名称、地址和有效联系方式。"
-          },
-          {
-            "chunk_id": "P01#004:02",
-            "section": "P01 第四章 平台的角色与责任 > 4.3 平台的连带责任",
-            "score": 0.454,
-            "relevance": 0.343,
-            "prior": 0.9,
-            "excerpt": "平台知道或应当知道商家销售的商品不符合保障人身、财产安全要求，或有其他侵害消费者合法权益行为而未采取必要措施的，依法与该商家承担连带责任。"
-          },
-          {
-            "chunk_id": "L04#004:00",
-            "section": "L04 第三十二条 【平台交易规则的制定】",
-            "score": 0.323,
-            "relevance": 0.291,
-            "prior": 0.45,
-            "excerpt": "电子商务平台经营者应当遵循公开、公平、公正的原则，制定平台服务协议和交易规则，明确进入和退出平台、商品和服务质量保障、消费者权益保护、个人信息保护等方面的权利和义务。"
-          }
-        ]
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
       },
       "usage": {
         "input": 0,
@@ -268,7 +342,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "de371b5832e0b851",
+      "parentObservationId": "fec403a5ff974a3c",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -276,10 +350,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.49,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:59.065Z",
-      "updatedAt": "2026-08-18T11:50:59.093Z",
+      "createdAt": "2026-08-19T05:20:00.327Z",
+      "updatedAt": "2026-08-19T05:20:00.352Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -287,6 +361,7 @@
       "completionStartTime": null,
       "model": null,
       "modelParameters": null,
+      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -300,18 +375,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "d10bc359d8dbc9fa",
-      "traceId": "6f2380e9c38c2acd2ad8b0f4d830667a",
+      "id": "fec403a5ff974a3c",
+      "traceId": "8dffee4f014a2ca34db44b62ec3b0b8a",
       "type": "SPAN",
       "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:50:24.998000+00:00",
-      "endTime": "2026-08-18 11:50:58.171000+00:00",
+      "startTime": "2026-08-19 05:19:30.507000+00:00",
+      "endTime": "2026-08-19 05:19:55.327000+00:00",
       "input": {
         "query": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -342,7 +417,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -355,6 +430,7 @@
       },
       "output": {
         "case_id": "R1-015",
+        "query": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？",
         "type": "single",
         "style": "formal",
         "doc_id": "L04",
@@ -363,6 +439,7 @@
         "seed_chunk_id": [
           "L04#008:00"
         ],
+        "acceptable_seed_chunk_ids": null,
         "error": null,
         "scores": {
           "recall@10": 1,
@@ -373,7 +450,7 @@
           "context_recall": 1,
           "context_relevance": 0.056
         },
-        "elapsed_s": 1.9,
+        "elapsed_s": 1.8,
         "seed_rank": {
           "candidate": {
             "L04#008:00": 1
@@ -382,6 +459,18 @@
             "L04#008:00": 1
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "other",
+              "text": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？"
+            }
+          ]
+        },
+        "rewrite_hash": "d5c378d02c66c41b",
         "sections": [
           "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】",
           "P01 星辰优选用户服务协议 > 第四章 平台的角色与责任 > 4.3 平台的连带责任 … 第四章 平台的角色与责任 > 4.4 平台的协助义务",
@@ -396,7 +485,7 @@
               {
                 "claim": "双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。",
                 "supported": true,
-                "reason": "L04第五十八条第二款明确要求双方就保证金提取数额、管理、使用和退还办法等作出明确约定。"
+                "reason": "L04第五十八条明确要求双方就保证金提取数额、管理、使用和退还办法等作出明确约定。"
               }
             ],
             "error": null
@@ -437,10 +526,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 33.173,
+      "latency": 24.82,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:59.065Z",
-      "updatedAt": "2026-08-18T11:50:59.092Z",
+      "createdAt": "2026-08-19T05:20:00.327Z",
+      "updatedAt": "2026-08-19T05:20:00.352Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -462,18 +551,49 @@
       "usagePricingTierName": null
     },
     {
-      "id": "1284d20790fc011a",
-      "traceId": "6f2380e9c38c2acd2ad8b0f4d830667a",
+      "id": "e4e0a13527787307",
+      "traceId": "8dffee4f014a2ca34db44b62ec3b0b8a",
       "type": "SPAN",
-      "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:50:58.170000+00:00",
-      "endTime": "2026-08-18 11:50:58.171000+00:00",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:19:30.507000+00:00",
+      "endTime": "2026-08-19 05:19:55.325000+00:00",
+      "input": {
+        "query": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？"
+      },
       "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-015",
+        "kind": "text",
+        "type": "single",
+        "layer": "law",
+        "style": "formal",
+        "doc_id": "L04",
+        "section": "第五十八条 【质量担保机制】",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.633,
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -485,10 +605,88 @@
         }
       },
       "output": {
-        "evaluator_count": 1,
-        "evaluation_count": 8,
-        "failed_evaluator_count": 0,
-        "skipped_evaluator_count": 0
+        "case_id": "R1-015",
+        "query": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "L04",
+        "layer": "law",
+        "kind": "text",
+        "seed_chunk_id": [
+          "L04#008:00"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 473,
+          "duplicate_ratio": 0.294,
+          "context_recall": 1,
+          "context_relevance": 0.056
+        },
+        "elapsed_s": 1.8,
+        "seed_rank": {
+          "candidate": {
+            "L04#008:00": 1
+          },
+          "evidence": {
+            "L04#008:00": 1
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "other",
+              "text": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？"
+            }
+          ]
+        },
+        "rewrite_hash": "d5c378d02c66c41b",
+        "sections": [
+          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】",
+          "P01 星辰优选用户服务协议 > 第四章 平台的角色与责任 > 4.3 平台的连带责任 … 第四章 平台的角色与责任 > 4.4 平台的协助义务",
+          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第三十二条 【平台交易规则的制定】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 1,
+            "hit": 1,
+            "detail": [
+              {
+                "claim": "双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。",
+                "supported": true,
+                "reason": "L04第五十八条明确要求双方就保证金提取数额、管理、使用和退还办法等作出明确约定。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.056,
+            "n": 18,
+            "hit": 1,
+            "truncated": false,
+            "note": "其余内容涉及平台责任、先行赔付、商家义务等，与保证金协议事项无关。",
+            "irrelevant": [
+              "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。",
+              "消费者要求电子商务平台经营者承担先行赔偿责任以及电子商务平台经营者赔偿后向平台内经营者的追偿，适用《中华人民共和国消费者",
+              "> **适用要点**：「消费者保障金」「先行赔付」的制度出处。",
+              "平台垫付退款后向商家追偿，依据在此。",
+              "平台为交易提供技术服务与规则保障。",
+              "商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。",
+              "**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。",
+              "** 平台先行赔付后，有权向商家追偿。",
+              "平台知道或应当知道商家销售的商品不符合保障人身、财产安全要求，或有其他侵害消费者合法权益行为而未采取必要措施的，依法与该",
+              "消费者与商家发生争议时，平台应积极协助消费者维权，并应消费者要求提供商家的真实名称、地址和有效联系方式。"
+            ],
+            "error": null
+          }
+        }
       },
       "usage": {
         "input": 0,
@@ -497,7 +695,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "d10bc359d8dbc9fa",
+      "parentObservationId": "fec403a5ff974a3c",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -505,10 +703,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.001,
+      "latency": 24.818,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:59.065Z",
-      "updatedAt": "2026-08-18T11:50:59.091Z",
+      "createdAt": "2026-08-19T05:20:00.327Z",
+      "updatedAt": "2026-08-19T05:20:00.347Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -516,7 +714,6 @@
       "completionStartTime": null,
       "model": null,
       "modelParameters": null,
-      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -530,27 +727,23 @@
       "usagePricingTierName": null
     },
     {
-      "id": "691391eea2f0e0f4",
-      "traceId": "6f2380e9c38c2acd2ad8b0f4d830667a",
-      "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:50:54.596000+00:00",
-      "endTime": "2026-08-18 11:50:54.605000+00:00",
+      "id": "13025ef31de27cf3",
+      "traceId": "8dffee4f014a2ca34db44b62ec3b0b8a",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:19:50.517000+00:00",
+      "endTime": "2026-08-19 05:19:52.275000+00:00",
+      "modelParameters": {},
       "input": {
-        "top_k": 4,
-        "evidence": [
-          "L04#008:00",
-          "P01#004:03",
-          "P01#004:02",
-          "L04#004:00"
-        ]
+        "query": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？",
+        "top_k": 4
       },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -605,7 +798,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "de371b5832e0b851",
+      "parentObservationId": "e4e0a13527787307",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -613,17 +806,16 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.009,
+      "latency": 1.758,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:59.065Z",
-      "updatedAt": "2026-08-18T11:50:59.091Z",
+      "createdAt": "2026-08-19T05:19:55.233Z",
+      "updatedAt": "2026-08-19T05:19:55.261Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
       "totalTokens": 0,
       "completionStartTime": null,
       "model": null,
-      "modelParameters": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -637,18 +829,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "c0e292db563129e2",
-      "traceId": "6f2380e9c38c2acd2ad8b0f4d830667a",
+      "id": "122bed4c33310da2",
+      "traceId": "8dffee4f014a2ca34db44b62ec3b0b8a",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 11:50:54.031000+00:00",
-      "endTime": "2026-08-18 11:50:54.106000+00:00",
+      "startTime": "2026-08-19 05:19:51.697000+00:00",
+      "endTime": "2026-08-19 05:19:51.786000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -841,7 +1033,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "de371b5832e0b851",
+      "parentObservationId": "13025ef31de27cf3",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -849,10 +1041,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.075,
+      "latency": 0.089,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:59.065Z",
-      "updatedAt": "2026-08-18T11:50:59.090Z",
+      "createdAt": "2026-08-19T05:19:55.233Z",
+      "updatedAt": "2026-08-19T05:19:55.261Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -874,250 +1066,27 @@
       "usagePricingTierName": null
     },
     {
-      "id": "f1a7e3891d4a4480",
-      "traceId": "6f2380e9c38c2acd2ad8b0f4d830667a",
-      "type": "EVALUATOR",
-      "name": "evaluate",
-      "startTime": "2026-08-18 11:50:58.170000+00:00",
-      "endTime": "2026-08-18 11:50:58.171000+00:00",
-      "modelParameters": {},
-      "input": {
-        "input": {
-          "query": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？"
-        },
-        "output": {
-          "case_id": "R1-015",
-          "type": "single",
-          "style": "formal",
-          "doc_id": "L04",
-          "layer": "law",
-          "kind": "text",
-          "seed_chunk_id": [
-            "L04#008:00"
-          ],
-          "error": null,
-          "scores": {
-            "recall@10": 1,
-            "recall@3": 1,
-            "recall@1": 1,
-            "evidence_tokens": 473,
-            "duplicate_ratio": 0.294,
-            "context_recall": 1,
-            "context_relevance": 0.056
-          },
-          "elapsed_s": 1.9,
-          "seed_rank": {
-            "candidate": {
-              "L04#008:00": 1
-            },
-            "evidence": {
-              "L04#008:00": 1
-            }
-          },
-          "sections": [
-            "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】",
-            "P01 星辰优选用户服务协议 > 第四章 平台的角色与责任 > 4.3 平台的连带责任 … 第四章 平台的角色与责任 > 4.4 平台的协助义务",
-            "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第三十二条 【平台交易规则的制定】"
-          ],
-          "judge": {
-            "context_recall": {
-              "score": 1,
-              "n": 1,
-              "hit": 1,
-              "detail": [
-                {
-                  "claim": "双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。",
-                  "supported": true,
-                  "reason": "L04第五十八条第二款明确要求双方就保证金提取数额、管理、使用和退还办法等作出明确约定。"
-                }
-              ],
-              "error": null
-            },
-            "context_relevance": {
-              "score": 0.056,
-              "n": 18,
-              "hit": 1,
-              "truncated": false,
-              "note": "其余内容涉及平台责任、先行赔付、商家义务等，与保证金协议事项无关。",
-              "irrelevant": [
-                "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。",
-                "消费者要求电子商务平台经营者承担先行赔偿责任以及电子商务平台经营者赔偿后向平台内经营者的追偿，适用《中华人民共和国消费者",
-                "> **适用要点**：「消费者保障金」「先行赔付」的制度出处。",
-                "平台垫付退款后向商家追偿，依据在此。",
-                "平台为交易提供技术服务与规则保障。",
-                "商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。",
-                "**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。",
-                "** 平台先行赔付后，有权向商家追偿。",
-                "平台知道或应当知道商家销售的商品不符合保障人身、财产安全要求，或有其他侵害消费者合法权益行为而未采取必要措施的，依法与该",
-                "消费者与商家发生争议时，平台应积极协助消费者维权，并应消费者要求提供商家的真实名称、地址和有效联系方式。"
-              ],
-              "error": null
-            }
-          }
-        },
-        "expected_output": {
-          "claims": [
-            "双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。"
-          ],
-          "seed_chunk_id": [
-            "L04#008:00"
-          ],
-          "reference_answer": "双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。"
-        },
-        "metadata": {
-          "kind": "text",
-          "type": "single",
-          "layer": "law",
-          "style": "formal",
-          "doc_id": "L04",
-          "section": "第五十八条 【质量担保机制】",
-          "reviewed": false,
-          "claims_by": "openai:deepseek-v4-pro",
-          "generated_by": "openai:deepseek-v4-flash",
-          "overlap_ratio": 0.633
-        }
-      },
-      "metadata": {
-        "evaluator_kind": "item",
-        "evaluator_index": 0,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": [
-        {
-          "name": "recall@10",
-          "value": 1,
-          "comment": "种子块名次 L04#008:00=1"
-        },
-        {
-          "name": "recall@3",
-          "value": 1,
-          "comment": "种子块名次 L04#008:00=1"
-        },
-        {
-          "name": "recall@1",
-          "value": 1,
-          "comment": "种子块名次 L04#008:00=1"
-        },
-        {
-          "name": "evidence_tokens",
-          "value": 473,
-          "comment": ""
-        },
-        {
-          "name": "duplicate_ratio",
-          "value": 0.294,
-          "comment": ""
-        },
-        {
-          "name": "context_recall",
-          "value": 1,
-          "comment": "1/1 条 claim 被支撑"
-        },
-        {
-          "name": "context_relevance",
-          "value": 0.056,
-          "comment": "1/18 个内容单元相关；其余内容涉及平台责任、先行赔付、商家义务等，与保证金协议事项无关。"
-        },
-        {
-          "name": "run_error",
-          "value": 0,
-          "comment": "ok"
-        }
-      ],
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "1284d20790fc011a",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.001,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:59.065Z",
-      "updatedAt": "2026-08-18T11:50:59.089Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "660eda5d7772beb2",
-      "traceId": "6f2380e9c38c2acd2ad8b0f4d830667a",
+      "id": "6d8ed962e3b28010",
+      "traceId": "8dffee4f014a2ca34db44b62ec3b0b8a",
       "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:50:24.998000+00:00",
-      "endTime": "2026-08-18 11:50:58.170000+00:00",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:19:52.259000+00:00",
+      "endTime": "2026-08-19 05:19:52.275000+00:00",
       "input": {
-        "query": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？"
+        "top_k": 4,
+        "evidence": [
+          "L04#008:00",
+          "P01#004:03",
+          "P01#004:02",
+          "L04#004:00"
+        ]
       },
       "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-015",
-        "kind": "text",
-        "type": "single",
-        "layer": "law",
-        "style": "formal",
-        "doc_id": "L04",
-        "section": "第五十八条 【质量担保机制】",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.633,
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1129,74 +1098,41 @@
         }
       },
       "output": {
-        "case_id": "R1-015",
-        "type": "single",
-        "style": "formal",
-        "doc_id": "L04",
-        "layer": "law",
-        "kind": "text",
-        "seed_chunk_id": [
-          "L04#008:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 473,
-          "duplicate_ratio": 0.294,
-          "context_recall": 1,
-          "context_relevance": 0.056
-        },
-        "elapsed_s": 1.9,
-        "seed_rank": {
-          "candidate": {
-            "L04#008:00": 1
-          },
-          "evidence": {
-            "L04#008:00": 1
-          }
-        },
         "sections": [
-          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】",
-          "P01 星辰优选用户服务协议 > 第四章 平台的角色与责任 > 4.3 平台的连带责任 … 第四章 平台的角色与责任 > 4.4 平台的协助义务",
-          "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第三十二条 【平台交易规则的制定】"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 1,
-            "hit": 1,
-            "detail": [
-              {
-                "claim": "双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。",
-                "supported": true,
-                "reason": "L04第五十八条第二款明确要求双方就保证金提取数额、管理、使用和退还办法等作出明确约定。"
-              }
-            ],
-            "error": null
+          {
+            "section": "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第五十八条 【质量担保机制】",
+            "text": "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。\n\n电子商务平台经营者与平台内经营者协议设立消费者权益保证金的，双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。\n\n消费者要求电子商务平台经营者承担先行赔偿责任以及电子商务平台经营者赔偿后向平台内经营者的追偿，适用《中华人民共和国消费者权益保护法》的有关规定。\n\n> **适用要点**：「消费者保障金」「先行赔付」的制度出处。平台垫付退款后向商家追偿，依据在此。",
+            "score": 0.8893481159210205,
+            "doc_id": "L04",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2019-01-01",
+            "source_path": "doc/policy/law/L04-电子商务法-平台责任条款摘录.md",
+            "reason": "相关性 0.999 × 先验 0.45 → 0.889；命中 1/law/dense#1, 1/law/bm25#1"
           },
-          "context_relevance": {
-            "score": 0.056,
-            "n": 18,
-            "hit": 1,
-            "truncated": false,
-            "note": "其余内容涉及平台责任、先行赔付、商家义务等，与保证金协议事项无关。",
-            "irrelevant": [
-              "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。",
-              "消费者要求电子商务平台经营者承担先行赔偿责任以及电子商务平台经营者赔偿后向平台内经营者的追偿，适用《中华人民共和国消费者",
-              "> **适用要点**：「消费者保障金」「先行赔付」的制度出处。",
-              "平台垫付退款后向商家追偿，依据在此。",
-              "平台为交易提供技术服务与规则保障。",
-              "商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。",
-              "**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。",
-              "** 平台先行赔付后，有权向商家追偿。",
-              "平台知道或应当知道商家销售的商品不符合保障人身、财产安全要求，或有其他侵害消费者合法权益行为而未采取必要措施的，依法与该",
-              "消费者与商家发生争议时，平台应积极协助消费者维权，并应消费者要求提供商家的真实名称、地址和有效联系方式。"
-            ],
-            "error": null
+          {
+            "section": "P01 星辰优选用户服务协议 > 第四章 平台的角色与责任 > 4.3 平台的连带责任 … 第四章 平台的角色与责任 > 4.4 平台的协助义务",
+            "text": "平台为交易提供技术服务与规则保障。商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。\n\n**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。** 平台先行赔付后，有权向商家追偿。\n\n平台知道或应当知道商家销售的商品不符合保障人身、财产安全要求，或有其他侵害消费者合法权益行为而未采取必要措施的，依法与该商家承担连带责任。\n\n消费者与商家发生争议时，平台应积极协助消费者维权，并应消费者要求提供商家的真实名称、地址和有效联系方式。\n\n平台为交易提供技术服务与规则保障。商品由平台内商家或平台自营主体销售，销售者是履行售后义务的第一责任人。\n\n**平台就其公示的服务承诺自行担责，不以「这是商家责任」为由推诿。** 平台先行赔付后，有权向商家追偿。\n\n平台知道或应当知道商家销售的商品不符合保障人身、财产安全要求，或有其他侵害消费者合法权益行为而未采取必要措施的，依法与该商家承担连带责任。\n\n消费者与商家发生争议时，平台应积极协助消费者维权，并应消费者要求提供商家的真实名称、地址和有效联系方式。",
+            "score": 0.5323046016693116,
+            "doc_id": "P01",
+            "layer": "platform",
+            "doc_type": "平台服务协议",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P01-用户服务协议.md",
+            "reason": "相关性 0.440 × 先验 0.90 → 0.532；命中 1/platform/dense#3, 1/platform/bm25#5"
+          },
+          {
+            "section": "L04 中华人民共和国电子商务法（平台责任与争议解决条款摘录） > 第三十二条 【平台交易规则的制定】",
+            "text": "电子商务平台经营者应当遵循公开、公平、公正的原则，制定平台服务协议和交易规则，明确进入和退出平台、商品和服务质量保障、消费者权益保护、个人信息保护等方面的权利和义务。",
+            "score": 0.32260362148284916,
+            "doc_id": "L04",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2019-01-01",
+            "source_path": "doc/policy/law/L04-电子商务法-平台责任条款摘录.md",
+            "reason": "相关性 0.291 × 先验 0.45 → 0.323；命中 1/law/dense#2"
           }
-        }
+        ]
       },
       "usage": {
         "input": 0,
@@ -1205,7 +1141,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "d10bc359d8dbc9fa",
+      "parentObservationId": "13025ef31de27cf3",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1213,10 +1149,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 33.172,
+      "latency": 0.016,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:59.065Z",
-      "updatedAt": "2026-08-18T11:50:59.088Z",
+      "createdAt": "2026-08-19T05:19:55.233Z",
+      "updatedAt": "2026-08-19T05:19:55.260Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1237,18 +1173,214 @@
       "usagePricingTierName": null
     },
     {
-      "id": "db4de4e495f0d585",
-      "traceId": "6f2380e9c38c2acd2ad8b0f4d830667a",
+      "id": "8a08f1ce138064bf",
+      "traceId": "8dffee4f014a2ca34db44b62ec3b0b8a",
       "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:50:54.030000+00:00",
-      "endTime": "2026-08-18 11:50:54.030000+00:00",
+      "name": "rag.rerank",
+      "startTime": "2026-08-19 05:19:51.786000+00:00",
+      "endTime": "2026-08-19 05:19:52.259000+00:00",
+      "input": {
+        "query": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？",
+        "candidates": 20
+      },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 4,
+        "min_score": 0.3,
+        "dropped": [
+          "P01#004:01",
+          "P09#005:01",
+          "P09#003:03",
+          "P01#001:00",
+          "P09#005:02",
+          "P09#003:02",
+          "P09#002:00",
+          "P01#003:00",
+          "P01#004:00",
+          "L02#004:01",
+          "L04#005:00",
+          "L01#001:00",
+          "L01#006:00",
+          "L02#003:04",
+          "L04#007:00",
+          "L05#005:00"
+        ],
+        "evidence": [
+          {
+            "chunk_id": "L04#008:00",
+            "section": "L04 第五十八条 【质量担保机制】",
+            "score": 0.889,
+            "relevance": 0.999,
+            "prior": 0.45,
+            "excerpt": "国家鼓励电子商务平台经营者建立有利于电子商务发展和消费者权益保护的商品、服务质量担保机制。 电子商务平台经营者与平台内经营者协议设立消费者权益保证金的，双方应当就消费者权益保证金的提取数额、管理、使用和退还办法等作出明确约定。 消费者要求电…"
+          },
+          {
+            "chunk_id": "P01#004:03",
+            "section": "P01 第四章 平台的角色与责任 > 4.4 平台的协助义务",
+            "score": 0.532,
+            "relevance": 0.44,
+            "prior": 0.9,
+            "excerpt": "消费者与商家发生争议时，平台应积极协助消费者维权，并应消费者要求提供商家的真实名称、地址和有效联系方式。"
+          },
+          {
+            "chunk_id": "P01#004:02",
+            "section": "P01 第四章 平台的角色与责任 > 4.3 平台的连带责任",
+            "score": 0.454,
+            "relevance": 0.343,
+            "prior": 0.9,
+            "excerpt": "平台知道或应当知道商家销售的商品不符合保障人身、财产安全要求，或有其他侵害消费者合法权益行为而未采取必要措施的，依法与该商家承担连带责任。"
+          },
+          {
+            "chunk_id": "L04#004:00",
+            "section": "L04 第三十二条 【平台交易规则的制定】",
+            "score": 0.323,
+            "relevance": 0.291,
+            "prior": 0.45,
+            "excerpt": "电子商务平台经营者应当遵循公开、公平、公正的原则，制定平台服务协议和交易规则，明确进入和退出平台、商品和服务质量保障、消费者权益保护、个人信息保护等方面的权利和义务。"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "13025ef31de27cf3",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.473,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:19:55.233Z",
+      "updatedAt": "2026-08-19T05:19:55.260Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "cf3942676e4ce9ea",
+      "traceId": "8dffee4f014a2ca34db44b62ec3b0b8a",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-19 05:19:50.517000+00:00",
+      "endTime": "2026-08-19 05:19:51.697000+00:00",
+      "input": {
+        "query": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "other",
+            "text": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "13025ef31de27cf3",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.18,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:19:55.233Z",
+      "updatedAt": "2026-08-19T05:19:55.260Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "9f2feb8ab54557ed",
+      "traceId": "8dffee4f014a2ca34db44b62ec3b0b8a",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:19:51.697000+00:00",
+      "endTime": "2026-08-19 05:19:51.697000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1278,7 +1410,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "de371b5832e0b851",
+      "parentObservationId": "13025ef31de27cf3",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1288,8 +1420,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:59.065Z",
-      "updatedAt": "2026-08-18T11:50:59.087Z",
+      "createdAt": "2026-08-19T05:19:55.233Z",
+      "updatedAt": "2026-08-19T05:19:55.259Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1298,81 +1430,6 @@
       "model": null,
       "modelParameters": null,
       "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "c7ec6f0db54cc0be",
-      "traceId": "6f2380e9c38c2acd2ad8b0f4d830667a",
-      "type": "SPAN",
-      "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:50:52.722000+00:00",
-      "endTime": "2026-08-18 11:50:54.030000+00:00",
-      "input": {
-        "query": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？"
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "rewritten": true,
-        "needs_law": false,
-        "sub_queries": [
-          {
-            "id": "1",
-            "intent": "other",
-            "text": "平台与商家协议设立消费者权益保证金时，双方需要就哪些事项作出明确约定？"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "de371b5832e0b851",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 1.308,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:59.065Z",
-      "updatedAt": "2026-08-18T11:50:59.078Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,

@@ -4,7 +4,7 @@
     python rag/experiments/rag-ex-1/report.py --result /tmp/v2.json --out /tmp/v2.html
 
 报告只读结果文件，不连 Langfuse —— 那是本地实例，换台机器 run 页就打不开。结论性的
-文字在 [baseline-report.md] 里，这份是同一批数据的可视化：三档、分档、102 条明细。
+这份是 result.json 的可视化：三档、分档、102 条明细。
 
 HISTORY 那张表是人填的：result.json 只存最近一次，而 run 间的抖动幅度恰恰要几次才看得出来。
 """
@@ -337,9 +337,14 @@ def build(result: dict) -> str:
     summary = result["summary"]
     config = result["config"]
     counted = summary["counted"]
-    scored = [r for r in result["cases"] if r["type"] != "unanswerable" and not r["error"]]
+    # 与 run_experiment.summarize 同一条口径：空证据是被测链路的结果（判负、留在分母里），
+    # 只有真正的执行失败才排除。这里若改用 `not r["error"]`，报告的数就和 summary 对不上。
+    scored = [r for r in result["cases"]
+              if r["type"] != "unanswerable" and r.get("outcome", "success") != "error"]
     # 跑批没带 --judge 时结果文件里没有这两个键，相关的列与整节都不出现
     judged = summary.get("context_recall") is not None
+
+    una = [r for r in result["cases"] if r["type"] == "unanswerable"]
 
     chips = "".join(f'<span class="chip">{esc(k)} <b>{esc(v)}</b></span>' for k, v in config.items())
     judge_line = (f'两个 LLM 指标由 <code>{esc(config["judge_model"])}</code> 判定。'
@@ -363,28 +368,29 @@ def build(result: dict) -> str:
         f'<div class="v">{fmt(summary["duplicate_ratio"])}</div>'
         f'<div class="n">{sum(1 for r in scored if r["scores"].get("duplicate_ratio", 0) > 0)} / '
         f'{len(scored)} 条含重复正文</div></div>',
-        f'<div class="tile bad"><div class="k">unanswerable_raised</div>'
+        f'<div class="tile{"" if summary["unanswerable_raised"] == 1 else " bad"}">'
+        f'<div class="k">unanswerable_raised</div>'
         f'<div class="v">{fmt(summary["unanswerable_raised"])}</div>'
-        f'<div class="n">6 条全部没抛异常</div></div>',
+        f'<div class="n">{len(una)} 条中 {sum(1 for r in una if r["scores"].get("unanswerable_raised") == 1)} '
+        f'条按口径抛异常</div></div>',
     ] + judge_tiles(summary, scored))
 
-    una = [r for r in result["cases"] if r["type"] == "unanswerable"]
     una_empty = sum(1 for r in una if not r.get("sections"))
     una_judged = len(una) - una_empty
     una_rel = fmt(summary.get("unanswerable_relevance"))
-    empty_rows = [r for r in scored if r["scores"].get("evidence_tokens") == 0]
-    empty_cut = sorted((r for r in empty_rows if r["scores"].get("recall@10") == 1),
-                       key=lambda r: r["case_id"])
-    empty_miss = sorted((r for r in empty_rows if r["scores"].get("recall@10") != 1),
+    # 空证据的那批在链路里是抛异常返回的，`run_case` 拿不到 trace，因而没有 seed_rank：
+    # 下面每一处用到候选名次的地方都要先把它们摘出去，否则分类表会把「名次未知」
+    # 算成「种子块没进候选」，那是两回事。
+    empty_rows = sorted((r for r in scored if r.get("outcome") == "no_evidence"),
                         key=lambda r: r["case_id"])
-    cut_list = "、".join(
-        f'{r["case_id"]}（候选第 {min(v for v in r["seed_rank"]["candidate"].values() if v)}）'
-        for r in empty_cut)
-    miss_list = "、".join(r["case_id"] for r in empty_miss)
+    empty_list = "、".join(r["case_id"] for r in empty_rows)
     lost = [r for r in scored if r["scores"].get("recall@10") == 0]
-    unranked = [r["case_id"] for r in lost if None in (r.get("seed_rank") or {}).get("candidate", {}).values()]
+    ranked_lost = [r for r in lost if r.get("seed_rank")]
+    empty_lost = [r["case_id"] for r in lost if not r.get("seed_rank")]
+    unranked = [r["case_id"] for r in ranked_lost
+                if None in r["seed_rank"]["candidate"].values()]
     tail = [f'{r["case_id"]}({max(v for v in r["seed_rank"]["candidate"].values() if v)})'
-            for r in lost if r["case_id"] not in unranked]
+            for r in ranked_lost if r["case_id"] not in unranked]
     pressed = [r for r in scored
                if r["scores"].get("recall@10") == 1 and r["scores"].get("recall@3") == 0]
     dup_top = sorted(scored, key=lambda r: -r["scores"].get("duplicate_ratio", 0))[0]
@@ -438,41 +444,40 @@ def build(result: dict) -> str:
 
 <h2>四、四个链路问题</h2>
 <div class="issue">
-<h3><code>MIN_SCORE = {config["min_score"]}</code> 把召回层排第一的种子块也滤掉了</h3>
-<p>{len(empty_cut)} 条重排后一条证据都不剩，而它们的 <code>recall@10</code> 全部判正：
-<code>{esc(cut_list)}</code>。种子块在召回层排在最前面，重排给出的分低于
-{config["min_score"]}，20 条候选连同它一起被砍光，<code>recall@3</code> 与 <code>recall@1</code>
-各因此丢 {len(empty_cut)} 条。</p>
-<pre>rag.recall     candidates[0] = P10#004:03      ← 种子块排第 1
+<h3>空证据现在显式抛异常，代价是三档全记 0</h3>
+<p>重排后一条证据都不剩时，<code>search_policy</code> 抛 <code>NoEvidenceError</code>，不再把空列表
+交给 Agent —— 调用方能区分「没有适用条款」与正常结果了。answerable 里有
+{len(empty_rows)} 条走到这条路：<code>{esc(empty_list)}</code>。</p>
+<p>判分口径跟着定成：这几条留在 Recall 分母里、三档一律判负，否则新增的兜底会让均值看起来变好。
+代价是 <strong><code>recall@10</code> 对它们不再是召回层的读数</strong> —— 异常在装配前抛出，
+跑批拿不到 trace，种子块在候选里排第几没有记录。第五节那张表因此单列了一类。</p>
+<pre>rag.recall     candidates = 20 条
 rag.rerank     passed=0, min_score={config["min_score"]}, dropped=[全部 20 条]
-rag.assemble   sections=[]</pre>
-<p>这是调参：阈值往下调能救回这几条，代价是低分噪声一并进证据。它与第五节那张「候选 → 证据」
-表动的是同一组参数，要一起调、一起看。</p>
+rag.assemble   → NoEvidenceError</pre>
 </div>
 <div class="issue">
-<h3>重排后一条不剩时，<code>search_policy</code> 返回空列表而不抛异常</h3>
-<p>候选为空时链路是显式抛异常的，重排后为空时不是 —— <code>assemble([])</code> 返回空列表，
-工具层拿到零证据，Agent 退回凭记忆答政策那条路。这次有 {len(empty_rows)} 条走到这里：
-上一条那 {len(empty_cut)} 条，加上种子块本就没进候选的 <code>{esc(miss_list)}</code>。</p>
-<p>这不是上一条的另一种说法。把 <code>MIN_SCORE</code> 调低只是让这几条不再触发，口径不变：
-<strong>「一条可用证据都没有」与正常结果在返回值上仍是同一种东西</strong>，调用方无从区分。
-下面 <code>unanswerable</code> 那 6 条撞的也是这一条。</p>
+<h3><code>MIN_SCORE = {config["min_score"]}</code> 是这 {len(empty_rows)} 条的直接原因</h3>
+<p>候选层每次都能捞回 {config["candidate_limit"]} 条，被砍光发生在重排：全部候选的相关度都低于
+{config["min_score"]}。阈值往下调能救回它们，代价是低分噪声一并进证据 —— 它与第五节那张
+「候选 → 证据」表动的是同一组参数，要一起调、一起看。</p>
+<p>要判断这几条到底是「重排压低了本该命中的块」还是「召回层本来就没捞到」，得让异常路径也把
+trace 带出来。现在只能从 <a href="./traces/">现场记录</a> 逐条看。</p>
 </div>
 <div class="issue">
-<h3><code>unanswerable</code> 的兜底口径不成立</h3>
-<p>6 条全部没抛异常（<code>unanswerable_raised = 0</code>）。异常只在候选为空时触发，而召回层对任何
-query 都能捞回 20 条。实际发生的是另一回事：{una_empty} 条被 <code>MIN_SCORE</code> 全滤成空证据，
-剩下 {una_judged} 条返回了不相关的条款、相关度判出来是 {una_rel}。</p>
-<p>也就是说链路对这类问题多半已经「什么都没给」，但给不出与前一个问题的区别 ——
-<strong>空证据与「语料里没有适用条款」在返回值上是同一个空列表</strong>。要么给链路加一个
-「最高分低于下限即判无适用条款」的显式结论，要么把这类样本的判据改成 Context Relevance。</p>
+<h3><code>unanswerable</code> 的兜底口径已经成立</h3>
+<p>{len(una)} 条全部按口径抛异常（<code>unanswerable_raised = {fmt(summary["unanswerable_raised"])}</code>）。
+走的正是上面那条路：语料里没有适用条款时，召回层照样捞回 {config["candidate_limit"]} 条，
+但没有一条过得了 {config["min_score"]}。</p>
+<p>口径成立不等于判据可靠 —— 现在「没有适用条款」与「有条款但重排分偏低」触发的是同一个异常，
+两者只有靠阈值分开。这一档的把握程度取决于 <code>MIN_SCORE</code> 定得准不准，
+校准要跟 Context Relevance 一起做。</p>
 </div>
 <div class="issue">
 <h3>重复正文占 {summary["duplicate_ratio"]:.1%}</h3>
-<p>最高是 {esc(dup_top["case_id"])} 的 {dup_top["scores"]["duplicate_ratio"]:.0%}。成因在装配的分组键
-<code>(parent_seq, parent_id, section_path)</code>：同一父块的子块 <code>section_path</code> 各不相同，
-同一个 <code>parent_id</code> 被登记多次。<code>recall@3</code> 满分的用例里照样有 0.4 以上的重复率，
-ID 级 Recall 对它完全无感。</p>
+<p>最高是 {esc(dup_top["case_id"])} 的 {dup_top["scores"]["duplicate_ratio"]:.0%}。这是一个内容重复信号，
+不证明重复一定由装配造成：不同父块、不同文档本身也可能含相同的标准表述。
+<code>recall@3</code> 满分的用例里照样有 0.4 以上的重复率，ID 级 Recall 对它完全无感 ——
+归因要对着 trace 和装配测试看。</p>
 </div>
 
 <h2>五、Recall 丢在哪一层</h2>
@@ -484,9 +489,12 @@ ID 级 Recall 对它完全无感。</p>
   f'<td class="tag">{esc("、".join(unranked))}</td></tr>',
   f'<tr><td>候选里排 11~19</td><td class="n">{len(tail)}</td>'
   f'<td class="tag">{esc("、".join(tail))}</td></tr>',
+  f'<tr><td>空证据，名次未记录</td><td class="n">{len(empty_lost)}</td>'
+  f'<td class="tag">{esc("、".join(empty_lost))}</td></tr>',
 ])}
 <p>第二类落在 <code>CANDIDATE_LIMIT={config["candidate_limit"]}</code> 之内，重排还救得回来；
-第一类救不回来，要回去看切片、块头、BM25 分析器和过滤条件。</p>
+第一类救不回来，要回去看切片、块头、BM25 分析器和过滤条件。第三类是判负口径带来的 ——
+它们判负在重排，落在这张表里只是因为三档一起记了 0，不能当召回层的账读。</p>
 </div>
 <div>
 <h3><code>@10</code> 命中而 <code>@3</code> 丢的 {len(pressed)} 条</h3>
@@ -505,6 +513,10 @@ ID 级 Recall 对它完全无感。</p>
 <p>同一套参数跑了 {len(HISTORY)} 次。打分器是纯函数，被测链路不是 —— 改写那一步调模型，
 温度 0 也不保证网关每次返回同一份拆分。定门禁容差之前先看这张表。</p>
 {table(["run", "@1", "@3", "@10", "重复", "token", "耗时"], history_rows)}
+<p class="note"><b>本次 run <code>{esc(result["run_name"])}</code> 不在这张表里。</b>召回层加了子查询配额与
+多样性先验、重排加了每子查询保底、空证据改成抛异常、<code>multi_hop</code> 的 <code>top_k</code> 提到 6，
+被测链路已经不是同一套。与上表并排读会把改动的效果算成抖动。要接着攒抖动数据，
+得先固定这一版参数再跑几次。</p>
 <div class="note">翻转的都是种子块在候选里排 11~13 名、来回跨 <code>k=10</code> 那条线的用例。
 五次的实测幅度：<code>@1</code> ±0.012（1 条），<code>@3</code> ±0.010（1 条），
 <code>@10</code> ±0.021（2 条）。<code>@1</code> 前四次纹丝不动，第五次也翻了一条 ——
@@ -520,14 +532,16 @@ ID 级 Recall 对它完全无感。</p>
 
 <h2>八、下一步</h2>
 <ol>
-<li>空结果口径，与 <code>MIN_SCORE</code> 一起看。这是唯一会让 Agent 拿不到证据的问题。</li>
+<li>让 <code>NoEvidenceError</code> 把 trace 带出来。现在这 {len(empty_rows)} 条的候选名次是空白，
+分不清是重排压的还是召回就没捞到 —— 第五节那一类只能单列，正是因为这个。</li>
+<li><code>MIN_SCORE</code> 的校准。它同时决定空证据判负和 <code>unanswerable</code> 判正，
+两边的代价方向相反，要一起定。</li>
 <li>表格块的切片，对着 <code>table</code> / <code>table+text</code> 两档跑一次对比。</li>
-<li>judge 提示词与校准，接 Context Recall 与 Context Relevance。</li>
-<li>改写的噪声先处理，之后才谈得上定门禁容差。</li>
+<li>固定这一版参数再跑几次，把抖动幅度重新量出来，之后才谈得上定门禁容差。</li>
 </ol>
 
 <footer>由 <code>rag/experiments/rag-ex-1/report.py</code> 从 <code>result.json</code> 生成。
-结论性的文字见 <a href="./baseline-report.md">baseline-report.md</a>，现场记录见
+口径与参数见 <a href="./README.md">README.md</a>，现场记录见
 <a href="./traces/README.md">traces/</a>。</footer>
 </main>
 </body>

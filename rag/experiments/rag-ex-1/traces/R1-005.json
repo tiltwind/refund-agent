@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-005",
+    "query": "消费者在行使七日无理由退货权利时，应当遵循哪些基本原则？",
     "type": "single",
     "style": "formal",
     "doc_id": "L02",
@@ -9,6 +10,7 @@
     "seed_chunk_id": [
       "L02#001:03"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
@@ -19,7 +21,7 @@
       "context_recall": 1.0,
       "context_relevance": 0.088
     },
-    "elapsed_s": 2.0,
+    "elapsed_s": 1.8,
     "seed_rank": {
       "candidate": {
         "L02#001:03": 1
@@ -28,6 +30,18 @@
         "L02#001:03": 1
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": true,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "condition",
+          "text": "消费者行使七日无理由退货权利时应当遵循哪些基本原则？"
+        }
+      ]
+    },
+    "rewrite_hash": "618d00dc908be5c4",
     "sections": [
       "L02 网络购买商品七日无理由退货暂行办法 > 第一章 总则 > 第三条 【销售者与平台的义务分工】 … 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】",
       "P01 星辰优选用户服务协议 > 第六章 消费者的义务 > 6.1 诚实信用",
@@ -48,7 +62,7 @@
           {
             "claim": "消费者行使七日无理由退货权利应当遵守商业道德。",
             "supported": true,
-            "reason": "上下文明确写有该要求。"
+            "reason": "上下文明确写有遵守商业道德。"
           }
         ],
         "error": null
@@ -58,7 +72,7 @@
         "n": 68,
         "hit": 6,
         "truncated": false,
-        "note": "不相关的多为适用范围、销售者义务、不适用商品清单及商品完好标准等。",
+        "note": "不相关的主要是适用范围、经营者义务、不适用商品清单、商品完好标准等。",
         "irrelevant": [
           "为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等",
           "消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。",
@@ -74,21 +88,21 @@
         "error": null
       }
     },
-    "trace_id": "6e920e0032d954987b2c199984227997"
+    "trace_id": "dfce473ea374ee601187347899df338c"
   },
   "trace": {
-    "id": "6e920e0032d954987b2c199984227997",
+    "id": "dfce473ea374ee601187347899df338c",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:52:25.287000+00:00"
+    "timestamp": "2026-08-19 05:21:01.716000+00:00"
   },
   "observations": [
     {
-      "id": "ba0c7ef19d43fa5f",
-      "traceId": "6e920e0032d954987b2c199984227997",
+      "id": "753bb1260a825968",
+      "traceId": "dfce473ea374ee601187347899df338c",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:52:30.915000+00:00",
-      "endTime": "2026-08-18 11:52:30.916000+00:00",
+      "startTime": "2026-08-19 05:21:06.874000+00:00",
+      "endTime": "2026-08-19 05:21:06.874000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -96,6 +110,7 @@
         },
         "output": {
           "case_id": "R1-005",
+          "query": "消费者在行使七日无理由退货权利时，应当遵循哪些基本原则？",
           "type": "single",
           "style": "formal",
           "doc_id": "L02",
@@ -104,6 +119,7 @@
           "seed_chunk_id": [
             "L02#001:03"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
@@ -114,7 +130,7 @@
             "context_recall": 1,
             "context_relevance": 0.088
           },
-          "elapsed_s": 2,
+          "elapsed_s": 1.8,
           "seed_rank": {
             "candidate": {
               "L02#001:03": 1
@@ -123,6 +139,18 @@
               "L02#001:03": 1
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": true,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "condition",
+                "text": "消费者行使七日无理由退货权利时应当遵循哪些基本原则？"
+              }
+            ]
+          },
+          "rewrite_hash": "618d00dc908be5c4",
           "sections": [
             "L02 网络购买商品七日无理由退货暂行办法 > 第一章 总则 > 第三条 【销售者与平台的义务分工】 … 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】",
             "P01 星辰优选用户服务协议 > 第六章 消费者的义务 > 6.1 诚实信用",
@@ -143,7 +171,7 @@
                 {
                   "claim": "消费者行使七日无理由退货权利应当遵守商业道德。",
                   "supported": true,
-                  "reason": "上下文明确写有该要求。"
+                  "reason": "上下文明确写有遵守商业道德。"
                 }
               ],
               "error": null
@@ -153,7 +181,7 @@
               "n": 68,
               "hit": 6,
               "truncated": false,
-              "note": "不相关的多为适用范围、销售者义务、不适用商品清单及商品完好标准等。",
+              "note": "不相关的主要是适用范围、经营者义务、不适用商品清单、商品完好标准等。",
               "irrelevant": [
                 "为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等",
                 "消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。",
@@ -178,7 +206,8 @@
           "seed_chunk_id": [
             "L02#001:03"
           ],
-          "reference_answer": "消费者行使七日无理由退货权利应当遵循公平、诚实信用的原则，遵守商业道德。"
+          "reference_answer": "消费者行使七日无理由退货权利应当遵循公平、诚实信用的原则，遵守商业道德。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "text",
@@ -200,7 +229,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -245,7 +274,7 @@
         {
           "name": "context_relevance",
           "value": 0.088,
-          "comment": "6/68 个内容单元相关；不相关的多为适用范围、销售者义务、不适用商品清单及商品完好标准等。"
+          "comment": "6/68 个内容单元相关；不相关的主要是适用范围、经营者义务、不适用商品清单、商品完好标准等。"
         },
         {
           "name": "run_error",
@@ -260,7 +289,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "2ceb7f2fb0ea08dd",
+      "parentObservationId": "e95189c75faf3255",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -268,10 +297,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.001,
+      "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:52:30.952Z",
-      "updatedAt": "2026-08-18T11:52:30.964Z",
+      "createdAt": "2026-08-19T05:21:10.817Z",
+      "updatedAt": "2026-08-19T05:21:10.833Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -291,18 +320,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "5e62a7952108dd23",
-      "traceId": "6e920e0032d954987b2c199984227997",
+      "id": "560c1e6ede339b7b",
+      "traceId": "dfce473ea374ee601187347899df338c",
       "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:51:56.327000+00:00",
-      "endTime": "2026-08-18 11:52:30.914000+00:00",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-19 05:20:59.764000+00:00",
+      "endTime": "2026-08-19 05:21:06.875000+00:00",
       "input": {
         "query": "消费者在行使七日无理由退货权利时，应当遵循哪些基本原则？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -333,7 +362,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -346,6 +375,7 @@
       },
       "output": {
         "case_id": "R1-005",
+        "query": "消费者在行使七日无理由退货权利时，应当遵循哪些基本原则？",
         "type": "single",
         "style": "formal",
         "doc_id": "L02",
@@ -354,6 +384,7 @@
         "seed_chunk_id": [
           "L02#001:03"
         ],
+        "acceptable_seed_chunk_ids": null,
         "error": null,
         "scores": {
           "recall@10": 1,
@@ -364,7 +395,7 @@
           "context_recall": 1,
           "context_relevance": 0.088
         },
-        "elapsed_s": 2,
+        "elapsed_s": 1.8,
         "seed_rank": {
           "candidate": {
             "L02#001:03": 1
@@ -373,6 +404,18 @@
             "L02#001:03": 1
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": true,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "condition",
+              "text": "消费者行使七日无理由退货权利时应当遵循哪些基本原则？"
+            }
+          ]
+        },
+        "rewrite_hash": "618d00dc908be5c4",
         "sections": [
           "L02 网络购买商品七日无理由退货暂行办法 > 第一章 总则 > 第三条 【销售者与平台的义务分工】 … 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】",
           "P01 星辰优选用户服务协议 > 第六章 消费者的义务 > 6.1 诚实信用",
@@ -393,7 +436,7 @@
               {
                 "claim": "消费者行使七日无理由退货权利应当遵守商业道德。",
                 "supported": true,
-                "reason": "上下文明确写有该要求。"
+                "reason": "上下文明确写有遵守商业道德。"
               }
             ],
             "error": null
@@ -403,7 +446,7 @@
             "n": 68,
             "hit": 6,
             "truncated": false,
-            "note": "不相关的多为适用范围、销售者义务、不适用商品清单及商品完好标准等。",
+            "note": "不相关的主要是适用范围、经营者义务、不适用商品清单、商品完好标准等。",
             "irrelevant": [
               "为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等",
               "消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。",
@@ -427,7 +470,6 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "9ac8b40f9552bf86",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -435,10 +477,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 34.587,
+      "latency": 7.111,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:52:30.952Z",
-      "updatedAt": "2026-08-18T11:52:30.964Z",
+      "createdAt": "2026-08-19T05:21:10.817Z",
+      "updatedAt": "2026-08-19T05:21:10.833Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -448,6 +490,7 @@
       "modelParameters": null,
       "version": null,
       "statusMessage": null,
+      "parentObservationId": null,
       "promptId": null,
       "promptName": null,
       "promptVersion": null,
@@ -459,18 +502,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "2ceb7f2fb0ea08dd",
-      "traceId": "6e920e0032d954987b2c199984227997",
+      "id": "e95189c75faf3255",
+      "traceId": "dfce473ea374ee601187347899df338c",
       "type": "SPAN",
       "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:52:30.915000+00:00",
-      "endTime": "2026-08-18 11:52:30.916000+00:00",
+      "startTime": "2026-08-19 05:21:06.874000+00:00",
+      "endTime": "2026-08-19 05:21:06.875000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -494,7 +537,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "9ac8b40f9552bf86",
+      "parentObservationId": "560c1e6ede339b7b",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -504,8 +547,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:52:30.952Z",
-      "updatedAt": "2026-08-18T11:52:30.963Z",
+      "createdAt": "2026-08-19T05:21:10.817Z",
+      "updatedAt": "2026-08-19T05:21:10.833Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -527,18 +570,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "9ac8b40f9552bf86",
-      "traceId": "6e920e0032d954987b2c199984227997",
+      "id": "3012ccc3568c2c56",
+      "traceId": "dfce473ea374ee601187347899df338c",
       "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:51:56.327000+00:00",
-      "endTime": "2026-08-18 11:52:30.916000+00:00",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:20:59.764000+00:00",
+      "endTime": "2026-08-19 05:21:06.873000+00:00",
       "input": {
         "query": "消费者在行使七日无理由退货权利时，应当遵循哪些基本原则？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -569,7 +612,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -582,6 +625,7 @@
       },
       "output": {
         "case_id": "R1-005",
+        "query": "消费者在行使七日无理由退货权利时，应当遵循哪些基本原则？",
         "type": "single",
         "style": "formal",
         "doc_id": "L02",
@@ -590,6 +634,7 @@
         "seed_chunk_id": [
           "L02#001:03"
         ],
+        "acceptable_seed_chunk_ids": null,
         "error": null,
         "scores": {
           "recall@10": 1,
@@ -600,7 +645,7 @@
           "context_recall": 1,
           "context_relevance": 0.088
         },
-        "elapsed_s": 2,
+        "elapsed_s": 1.8,
         "seed_rank": {
           "candidate": {
             "L02#001:03": 1
@@ -609,6 +654,18 @@
             "L02#001:03": 1
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": true,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "condition",
+              "text": "消费者行使七日无理由退货权利时应当遵循哪些基本原则？"
+            }
+          ]
+        },
+        "rewrite_hash": "618d00dc908be5c4",
         "sections": [
           "L02 网络购买商品七日无理由退货暂行办法 > 第一章 总则 > 第三条 【销售者与平台的义务分工】 … 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】",
           "P01 星辰优选用户服务协议 > 第六章 消费者的义务 > 6.1 诚实信用",
@@ -629,7 +686,7 @@
               {
                 "claim": "消费者行使七日无理由退货权利应当遵守商业道德。",
                 "supported": true,
-                "reason": "上下文明确写有该要求。"
+                "reason": "上下文明确写有遵守商业道德。"
               }
             ],
             "error": null
@@ -639,7 +696,7 @@
             "n": 68,
             "hit": 6,
             "truncated": false,
-            "note": "不相关的多为适用范围、销售者义务、不适用商品清单及商品完好标准等。",
+            "note": "不相关的主要是适用范围、经营者义务、不适用商品清单、商品完好标准等。",
             "irrelevant": [
               "为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等",
               "消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。",
@@ -663,6 +720,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
+      "parentObservationId": "560c1e6ede339b7b",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -670,86 +728,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 34.589,
+      "latency": 7.109,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:52:30.952Z",
-      "updatedAt": "2026-08-18T11:52:30.963Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "parentObservationId": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "a48bd4cd4443cdc8",
-      "traceId": "6e920e0032d954987b2c199984227997",
-      "type": "SPAN",
-      "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:52:25.287000+00:00",
-      "endTime": "2026-08-18 11:52:26.318000+00:00",
-      "input": {
-        "query": "消费者在行使七日无理由退货权利时，应当遵循哪些基本原则？"
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "rewritten": true,
-        "needs_law": true,
-        "sub_queries": [
-          {
-            "id": "1",
-            "intent": "condition",
-            "text": "消费者行使七日无理由退货权利时应当遵循哪些基本原则？"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "97778032094508f0",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 1.031,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:52:29.703Z",
-      "updatedAt": "2026-08-18T11:52:29.727Z",
+      "createdAt": "2026-08-19T05:21:10.816Z",
+      "updatedAt": "2026-08-19T05:21:10.827Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -770,12 +752,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "d95ce9202ab01b28",
-      "traceId": "6e920e0032d954987b2c199984227997",
+      "id": "6e1451eab3e8fa22",
+      "traceId": "dfce473ea374ee601187347899df338c",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 11:52:26.409000+00:00",
-      "endTime": "2026-08-18 11:52:27.217000+00:00",
+      "startTime": "2026-08-19 05:21:02.733000+00:00",
+      "endTime": "2026-08-19 05:21:03.514000+00:00",
       "input": {
         "query": "消费者在行使七日无理由退货权利时，应当遵循哪些基本原则？",
         "candidates": 20
@@ -785,7 +767,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -943,7 +925,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "97778032094508f0",
+      "parentObservationId": "a33547caeaf3d5df",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -951,10 +933,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.808,
+      "latency": 0.781,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:52:29.703Z",
-      "updatedAt": "2026-08-18T11:52:29.727Z",
+      "createdAt": "2026-08-19T05:21:05.773Z",
+      "updatedAt": "2026-08-19T05:21:05.796Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -975,335 +957,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "8b47ced3caf05c44",
-      "traceId": "6e920e0032d954987b2c199984227997",
-      "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:52:27.217000+00:00",
-      "endTime": "2026-08-18 11:52:27.242000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": [
-          "L02#001:03",
-          "P01#006:00",
-          "L03#005:00",
-          "P08#007:00",
-          "L01#004:00",
-          "P08#000:00",
-          "L02#005:02",
-          "L02#003:00",
-          "L02#001:01",
-          "P08#002:04",
-          "L02#002:01",
-          "L02#004:00",
-          "L02#004:01",
-          "L02#001:02",
-          "P02#000:00",
-          "P04#001:00"
-        ]
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第一章 总则 > 第三条 【销售者与平台的义务分工】 … 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】",
-            "text": "为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等相关法律、行政法规，制定本办法。\n\n消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。\n\n网络商品销售者应当依法履行七日无理由退货义务。\n\n网络交易平台提供者应当引导和督促平台上的网络商品销售者履行七日无理由退货义务，进行监督检查，并提供技术保障。\n\n消费者行使七日无理由退货权利和网络商品销售者履行七日无理由退货义务都应当遵循公平、诚实信用的原则，遵守商业道德。\n\n鼓励网络商品销售者作出比本办法更有利于消费者的无理由退货承诺。\n\n> **适用要点**：平台把窗口期从 7 天延长到 15 天、对特定会员延长售后期，属于本条鼓励的「更优承诺」，合法有效；反向缩短则无效。\n\n为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等相关法律、行政法规，制定本办法。\n\n消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。\n\n网络商品销售者应当依法履行七日无理由退货义务。\n\n网络交易平台提供者应当引导和督促平台上的网络商品销售者履行七日无理由退货义务，进行监督检查，并提供技术保障。\n\n消费者行使七日无理由退货权利和网络商品销售者履行七日无理由退货义务都应当遵循公平、诚实信用的原则，遵守商业道德。\n\n鼓励网络商品销售者作出比本办法更有利于消费者的无理由退货承诺。\n\n> **适用要点**：平台把窗口期从 7 天延长到 15 天、对特定会员延长售后期，属于本条鼓励的「更优承诺」，合法有效；反向缩短则无效。\n\n为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等相关法律、行政法规，制定本办法。\n\n消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。\n\n网络商品销售者应当依法履行七日无理由退货义务。\n\n网络交易平台提供者应当引导和督促平台上的网络商品销售者履行七日无理由退货义务，进行监督检查，并提供技术保障。\n\n消费者行使七日无理由退货权利和网络商品销售者履行七日无理由退货义务都应当遵循公平、诚实信用的原则，遵守商业道德。\n\n鼓励网络商品销售者作出比本办法更有利于消费者的无理由退货承诺。\n\n> **适用要点**：平台把窗口期从 7 天延长到 15 天、对特定会员延长售后期，属于本条鼓励的「更优承诺」，合法有效；反向缩短则无效。\n\n下列商品不适用七日无理由退货规定：\n\n（一）消费者定作的商品；\n\n（二）鲜活易腐的商品；\n\n（三）在线下载或者消费者拆封的音像制品、计算机软件等数字化商品；\n\n（四）交付的报纸、期刊。\n\n> **判定要点**：这是**封闭清单**，四类之外的商品不得以「商品性质特殊」为由直接排除。定制商品、生鲜商品、已激活的虚拟商品分别落在第（一）（二）（三）项。\n\n下列性质的商品经消费者在购买时确认，可以不适用七日无理由退货规定：\n\n（一）拆封后易影响人身安全或者生命健康的商品，或者拆封后易导致商品品质发生改变的商品；\n\n（二）一经激活或者试用后价值贬损较大的商品；\n\n（三）销售时已明示的临近保质期的商品、有瑕疵的商品。\n\n> **判定要点**：本条商品**必须有消费者购买时的确认记录**才能排除退货。没有确认记录的，销售者不得拒绝退货（见第二十条第二款）。\n\n消费者退回的商品应当完好。\n\n商品能够保持原有品质、功能，商品本身、配件、商标标识齐全的，视为商品完好。\n\n消费者基于查验需要而打开商品包装，或者为确认商品的品质、功能而进行合理的调试不影响商品的完好。\n\n> **判定要点**：**「拆封」不等于「不完好」**。仅因买家拆开包装查验即拒绝退货，属违法。判定商品状态时须区分「拆封查验」与「超出查验需要的使用」。\n\n对超出查验和确认商品品质、功能需要而使用商品，导致商品价值贬损较大的，视为商品不完好。具体判定标准如下：\n\n（一）食品（含保健食品）、化妆品、医疗器械、计生用品：必要的一次性密封包装被损坏；\n\n（二）电子电器类：进行未经授权的维修、改动，破坏、涂改强制性产品认证标志、指示标贴、机器序列号等，有难以恢复原状的外观类使用痕迹，或者产生激活、授权信息、不合理的个人使用数据留存等数据类使用痕迹；\n\n（三）服装、鞋帽、箱包、玩具、家纺、家居类：商标标识被摘、标识被剪，商品受污、受损。",
-            "score": 0.9790667819976807,
-            "doc_id": "L02",
-            "layer": "law",
-            "doc_type": "部门规章",
-            "effective_date": "2017-03-15",
-            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
-            "reason": "相关性 0.999 × 先验 0.90 → 0.979；命中 1/law/dense#1, 1/law/bm25#1"
-          },
-          {
-            "section": "P01 星辰优选用户服务协议 > 第六章 消费者的义务 > 6.1 诚实信用",
-            "text": "消费者行使退货权利应遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。\n\n以下行为构成对售后规则的滥用，平台可依 [P08] 采取限制措施：\n\n（一）恶意批量下单后集中退货，影响商家正常经营的；\n（二）调包退货、以次充好、退回非原件商品的；\n（三）虚构质量问题骗取退款或赔付的；\n（四）以投诉、举报、差评相要挟索取不当利益的。\n\n在售后处理期间，消费者应妥善保管待退商品及其配件、赠品、包装，不得自行处置。",
-            "score": 0.9709410476684571,
-            "doc_id": "P01",
-            "layer": "platform",
-            "doc_type": "平台服务协议",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P01-用户服务协议.md",
-            "reason": "相关性 0.989 × 先验 0.90 → 0.971；命中 1/platform/dense#1, 1/platform/bm25#2"
-          },
-          {
-            "section": "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】",
-            "text": "经营者通过网络、电视、电话、邮购等方式销售商品的，应当遵守消费者权益保护法第二十五条规定，不得擅自扩大不适用无理由退货的商品范围。\n\n经营者应当以显著方式对不适用无理由退货的商品进行标注，提示消费者在购买时进行确认，不得将不适用无理由退货作为消费者默认同意的选项。未经消费者确认，经营者不得拒绝无理由退货。\n\n消费者退货的商品应当完好。消费者基于查验需要打开商品包装，或者为确认商品的品质和功能进行合理调试而不影响商品原有品质、功能和外观的，经营者应当予以退货。\n\n消费者无理由退货应当遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。\n\n> **适用要点**：本条是**平台风控规则的法律依据**。第四款首次在行政法规层面确立「无理由退货不得滥用」，平台对高频异常退款账户采取限制自动通道、转人工审核等措施，据此具备合法性——但措施须与滥用程度相当，不得直接剥夺法定退货权。",
-            "score": 0.939832000732422,
-            "doc_id": "L03",
-            "layer": "law",
-            "doc_type": "行政法规",
-            "effective_date": "2024-07-01",
-            "source_path": "doc/policy/law/L03-消费者权益保护法实施条例-摘录.md",
-            "reason": "相关性 0.950 × 先验 0.90 → 0.940；命中 1/law/bm25#3"
-          },
-          {
-            "section": "P08 星辰优选风控与异常退款治理规则 > 第七条 合法性依据",
-            "text": "7.1 《消费者权益保护法实施条例》第十九条第四款规定：**消费者无理由退货应当遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。** 这是平台风控措施的直接法律依据。\n\n7.2 平台风控措施须与滥用程度相当，**不得以风控之名变相限制法定退货权**。\n\n7.3 平台风控规则在首页显著位置持续公示。未经公示的风控标准不得作为对消费者不利判定的依据。",
-            "score": 0.9245631980895997,
-            "doc_id": "P08",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
-            "reason": "相关性 0.931 × 先验 0.90 → 0.925；命中 1/platform/dense#2, 1/platform/bm25#3"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "97778032094508f0",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.025,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:52:29.703Z",
-      "updatedAt": "2026-08-18T11:52:29.726Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "eb76b2bccf4aa25c",
-      "traceId": "6e920e0032d954987b2c199984227997",
-      "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:52:26.318000+00:00",
-      "endTime": "2026-08-18 11:52:26.319000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "routes": [
-          {
-            "sub_query": "1",
-            "layer_k": {
-              "platform": 12,
-              "law": 12
-            },
-            "law_weight": 1
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "97778032094508f0",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.001,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:52:29.703Z",
-      "updatedAt": "2026-08-18T11:52:29.724Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "97778032094508f0",
-      "traceId": "6e920e0032d954987b2c199984227997",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:52:25.287000+00:00",
-      "endTime": "2026-08-18 11:52:27.242000+00:00",
-      "modelParameters": {},
-      "input": {
-        "query": "消费者在行使七日无理由退货权利时，应当遵循哪些基本原则？",
-        "top_k": 4
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第一章 总则 > 第三条 【销售者与平台的义务分工】 … 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】",
-            "text": "为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等相关法律、行政法规，制定本办法。\n\n消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。\n\n网络商品销售者应当依法履行七日无理由退货义务。\n\n网络交易平台提供者应当引导和督促平台上的网络商品销售者履行七日无理由退货义务，进行监督检查，并提供技术保障。\n\n消费者行使七日无理由退货权利和网络商品销售者履行七日无理由退货义务都应当遵循公平、诚实信用的原则，遵守商业道德。\n\n鼓励网络商品销售者作出比本办法更有利于消费者的无理由退货承诺。\n\n> **适用要点**：平台把窗口期从 7 天延长到 15 天、对特定会员延长售后期，属于本条鼓励的「更优承诺」，合法有效；反向缩短则无效。\n\n为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等相关法律、行政法规，制定本办法。\n\n消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。\n\n网络商品销售者应当依法履行七日无理由退货义务。\n\n网络交易平台提供者应当引导和督促平台上的网络商品销售者履行七日无理由退货义务，进行监督检查，并提供技术保障。\n\n消费者行使七日无理由退货权利和网络商品销售者履行七日无理由退货义务都应当遵循公平、诚实信用的原则，遵守商业道德。\n\n鼓励网络商品销售者作出比本办法更有利于消费者的无理由退货承诺。\n\n> **适用要点**：平台把窗口期从 7 天延长到 15 天、对特定会员延长售后期，属于本条鼓励的「更优承诺」，合法有效；反向缩短则无效。\n\n为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等相关法律、行政法规，制定本办法。\n\n消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。\n\n网络商品销售者应当依法履行七日无理由退货义务。\n\n网络交易平台提供者应当引导和督促平台上的网络商品销售者履行七日无理由退货义务，进行监督检查，并提供技术保障。\n\n消费者行使七日无理由退货权利和网络商品销售者履行七日无理由退货义务都应当遵循公平、诚实信用的原则，遵守商业道德。\n\n鼓励网络商品销售者作出比本办法更有利于消费者的无理由退货承诺。\n\n> **适用要点**：平台把窗口期从 7 天延长到 15 天、对特定会员延长售后期，属于本条鼓励的「更优承诺」，合法有效；反向缩短则无效。\n\n下列商品不适用七日无理由退货规定：\n\n（一）消费者定作的商品；\n\n（二）鲜活易腐的商品；\n\n（三）在线下载或者消费者拆封的音像制品、计算机软件等数字化商品；\n\n（四）交付的报纸、期刊。\n\n> **判定要点**：这是**封闭清单**，四类之外的商品不得以「商品性质特殊」为由直接排除。定制商品、生鲜商品、已激活的虚拟商品分别落在第（一）（二）（三）项。\n\n下列性质的商品经消费者在购买时确认，可以不适用七日无理由退货规定：\n\n（一）拆封后易影响人身安全或者生命健康的商品，或者拆封后易导致商品品质发生改变的商品；\n\n（二）一经激活或者试用后价值贬损较大的商品；\n\n（三）销售时已明示的临近保质期的商品、有瑕疵的商品。\n\n> **判定要点**：本条商品**必须有消费者购买时的确认记录**才能排除退货。没有确认记录的，销售者不得拒绝退货（见第二十条第二款）。\n\n消费者退回的商品应当完好。\n\n商品能够保持原有品质、功能，商品本身、配件、商标标识齐全的，视为商品完好。\n\n消费者基于查验需要而打开商品包装，或者为确认商品的品质、功能而进行合理的调试不影响商品的完好。\n\n> **判定要点**：**「拆封」不等于「不完好」**。仅因买家拆开包装查验即拒绝退货，属违法。判定商品状态时须区分「拆封查验」与「超出查验需要的使用」。\n\n对超出查验和确认商品品质、功能需要而使用商品，导致商品价值贬损较大的，视为商品不完好。具体判定标准如下：\n\n（一）食品（含保健食品）、化妆品、医疗器械、计生用品：必要的一次性密封包装被损坏；\n\n（二）电子电器类：进行未经授权的维修、改动，破坏、涂改强制性产品认证标志、指示标贴、机器序列号等，有难以恢复原状的外观类使用痕迹，或者产生激活、授权信息、不合理的个人使用数据留存等数据类使用痕迹；\n\n（三）服装、鞋帽、箱包、玩具、家纺、家居类：商标标识被摘、标识被剪，商品受污、受损。",
-            "score": 0.9790667819976807,
-            "doc_id": "L02",
-            "layer": "law",
-            "doc_type": "部门规章",
-            "effective_date": "2017-03-15",
-            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
-            "reason": "相关性 0.999 × 先验 0.90 → 0.979；命中 1/law/dense#1, 1/law/bm25#1"
-          },
-          {
-            "section": "P01 星辰优选用户服务协议 > 第六章 消费者的义务 > 6.1 诚实信用",
-            "text": "消费者行使退货权利应遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。\n\n以下行为构成对售后规则的滥用，平台可依 [P08] 采取限制措施：\n\n（一）恶意批量下单后集中退货，影响商家正常经营的；\n（二）调包退货、以次充好、退回非原件商品的；\n（三）虚构质量问题骗取退款或赔付的；\n（四）以投诉、举报、差评相要挟索取不当利益的。\n\n在售后处理期间，消费者应妥善保管待退商品及其配件、赠品、包装，不得自行处置。",
-            "score": 0.9709410476684571,
-            "doc_id": "P01",
-            "layer": "platform",
-            "doc_type": "平台服务协议",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P01-用户服务协议.md",
-            "reason": "相关性 0.989 × 先验 0.90 → 0.971；命中 1/platform/dense#1, 1/platform/bm25#2"
-          },
-          {
-            "section": "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】",
-            "text": "经营者通过网络、电视、电话、邮购等方式销售商品的，应当遵守消费者权益保护法第二十五条规定，不得擅自扩大不适用无理由退货的商品范围。\n\n经营者应当以显著方式对不适用无理由退货的商品进行标注，提示消费者在购买时进行确认，不得将不适用无理由退货作为消费者默认同意的选项。未经消费者确认，经营者不得拒绝无理由退货。\n\n消费者退货的商品应当完好。消费者基于查验需要打开商品包装，或者为确认商品的品质和功能进行合理调试而不影响商品原有品质、功能和外观的，经营者应当予以退货。\n\n消费者无理由退货应当遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。\n\n> **适用要点**：本条是**平台风控规则的法律依据**。第四款首次在行政法规层面确立「无理由退货不得滥用」，平台对高频异常退款账户采取限制自动通道、转人工审核等措施，据此具备合法性——但措施须与滥用程度相当，不得直接剥夺法定退货权。",
-            "score": 0.939832000732422,
-            "doc_id": "L03",
-            "layer": "law",
-            "doc_type": "行政法规",
-            "effective_date": "2024-07-01",
-            "source_path": "doc/policy/law/L03-消费者权益保护法实施条例-摘录.md",
-            "reason": "相关性 0.950 × 先验 0.90 → 0.940；命中 1/law/bm25#3"
-          },
-          {
-            "section": "P08 星辰优选风控与异常退款治理规则 > 第七条 合法性依据",
-            "text": "7.1 《消费者权益保护法实施条例》第十九条第四款规定：**消费者无理由退货应当遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。** 这是平台风控措施的直接法律依据。\n\n7.2 平台风控措施须与滥用程度相当，**不得以风控之名变相限制法定退货权**。\n\n7.3 平台风控规则在首页显著位置持续公示。未经公示的风控标准不得作为对消费者不利判定的依据。",
-            "score": 0.9245631980895997,
-            "doc_id": "P08",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
-            "reason": "相关性 0.931 × 先验 0.90 → 0.925；命中 1/platform/dense#2, 1/platform/bm25#3"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "5e62a7952108dd23",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 1.955,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:52:29.703Z",
-      "updatedAt": "2026-08-18T11:52:29.719Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "0ee9a60f96ed3243",
-      "traceId": "6e920e0032d954987b2c199984227997",
+      "id": "348396f17e2a7ab0",
+      "traceId": "dfce473ea374ee601187347899df338c",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 11:52:26.319000+00:00",
-      "endTime": "2026-08-18 11:52:26.408000+00:00",
+      "startTime": "2026-08-19 05:21:02.691000+00:00",
+      "endTime": "2026-08-19 05:21:02.733000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1496,7 +1161,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "97778032094508f0",
+      "parentObservationId": "a33547caeaf3d5df",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1504,10 +1169,402 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.089,
+      "latency": 0.042,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:52:29.703Z",
-      "updatedAt": "2026-08-18T11:52:29.714Z",
+      "createdAt": "2026-08-19T05:21:05.773Z",
+      "updatedAt": "2026-08-19T05:21:05.795Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "903bcc23af4f5789",
+      "traceId": "dfce473ea374ee601187347899df338c",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:21:03.515000+00:00",
+      "endTime": "2026-08-19 05:21:03.528000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "L02#001:03",
+          "P01#006:00",
+          "L03#005:00",
+          "P08#007:00",
+          "L01#004:00",
+          "P08#000:00",
+          "L02#005:02",
+          "L02#003:00",
+          "L02#001:01",
+          "P08#002:04",
+          "L02#002:01",
+          "L02#004:00",
+          "L02#004:01",
+          "L02#001:02",
+          "P02#000:00",
+          "P04#001:00"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第一章 总则 > 第三条 【销售者与平台的义务分工】 … 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】",
+            "text": "为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等相关法律、行政法规，制定本办法。\n\n消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。\n\n网络商品销售者应当依法履行七日无理由退货义务。\n\n网络交易平台提供者应当引导和督促平台上的网络商品销售者履行七日无理由退货义务，进行监督检查，并提供技术保障。\n\n消费者行使七日无理由退货权利和网络商品销售者履行七日无理由退货义务都应当遵循公平、诚实信用的原则，遵守商业道德。\n\n鼓励网络商品销售者作出比本办法更有利于消费者的无理由退货承诺。\n\n> **适用要点**：平台把窗口期从 7 天延长到 15 天、对特定会员延长售后期，属于本条鼓励的「更优承诺」，合法有效；反向缩短则无效。\n\n为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等相关法律、行政法规，制定本办法。\n\n消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。\n\n网络商品销售者应当依法履行七日无理由退货义务。\n\n网络交易平台提供者应当引导和督促平台上的网络商品销售者履行七日无理由退货义务，进行监督检查，并提供技术保障。\n\n消费者行使七日无理由退货权利和网络商品销售者履行七日无理由退货义务都应当遵循公平、诚实信用的原则，遵守商业道德。\n\n鼓励网络商品销售者作出比本办法更有利于消费者的无理由退货承诺。\n\n> **适用要点**：平台把窗口期从 7 天延长到 15 天、对特定会员延长售后期，属于本条鼓励的「更优承诺」，合法有效；反向缩短则无效。\n\n为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等相关法律、行政法规，制定本办法。\n\n消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。\n\n网络商品销售者应当依法履行七日无理由退货义务。\n\n网络交易平台提供者应当引导和督促平台上的网络商品销售者履行七日无理由退货义务，进行监督检查，并提供技术保障。\n\n消费者行使七日无理由退货权利和网络商品销售者履行七日无理由退货义务都应当遵循公平、诚实信用的原则，遵守商业道德。\n\n鼓励网络商品销售者作出比本办法更有利于消费者的无理由退货承诺。\n\n> **适用要点**：平台把窗口期从 7 天延长到 15 天、对特定会员延长售后期，属于本条鼓励的「更优承诺」，合法有效；反向缩短则无效。\n\n下列商品不适用七日无理由退货规定：\n\n（一）消费者定作的商品；\n\n（二）鲜活易腐的商品；\n\n（三）在线下载或者消费者拆封的音像制品、计算机软件等数字化商品；\n\n（四）交付的报纸、期刊。\n\n> **判定要点**：这是**封闭清单**，四类之外的商品不得以「商品性质特殊」为由直接排除。定制商品、生鲜商品、已激活的虚拟商品分别落在第（一）（二）（三）项。\n\n下列性质的商品经消费者在购买时确认，可以不适用七日无理由退货规定：\n\n（一）拆封后易影响人身安全或者生命健康的商品，或者拆封后易导致商品品质发生改变的商品；\n\n（二）一经激活或者试用后价值贬损较大的商品；\n\n（三）销售时已明示的临近保质期的商品、有瑕疵的商品。\n\n> **判定要点**：本条商品**必须有消费者购买时的确认记录**才能排除退货。没有确认记录的，销售者不得拒绝退货（见第二十条第二款）。\n\n消费者退回的商品应当完好。\n\n商品能够保持原有品质、功能，商品本身、配件、商标标识齐全的，视为商品完好。\n\n消费者基于查验需要而打开商品包装，或者为确认商品的品质、功能而进行合理的调试不影响商品的完好。\n\n> **判定要点**：**「拆封」不等于「不完好」**。仅因买家拆开包装查验即拒绝退货，属违法。判定商品状态时须区分「拆封查验」与「超出查验需要的使用」。\n\n对超出查验和确认商品品质、功能需要而使用商品，导致商品价值贬损较大的，视为商品不完好。具体判定标准如下：\n\n（一）食品（含保健食品）、化妆品、医疗器械、计生用品：必要的一次性密封包装被损坏；\n\n（二）电子电器类：进行未经授权的维修、改动，破坏、涂改强制性产品认证标志、指示标贴、机器序列号等，有难以恢复原状的外观类使用痕迹，或者产生激活、授权信息、不合理的个人使用数据留存等数据类使用痕迹；\n\n（三）服装、鞋帽、箱包、玩具、家纺、家居类：商标标识被摘、标识被剪，商品受污、受损。",
+            "score": 0.9790667819976807,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.999 × 先验 0.90 → 0.979；命中 1/law/dense#1, 1/law/bm25#1"
+          },
+          {
+            "section": "P01 星辰优选用户服务协议 > 第六章 消费者的义务 > 6.1 诚实信用",
+            "text": "消费者行使退货权利应遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。\n\n以下行为构成对售后规则的滥用，平台可依 [P08] 采取限制措施：\n\n（一）恶意批量下单后集中退货，影响商家正常经营的；\n（二）调包退货、以次充好、退回非原件商品的；\n（三）虚构质量问题骗取退款或赔付的；\n（四）以投诉、举报、差评相要挟索取不当利益的。\n\n在售后处理期间，消费者应妥善保管待退商品及其配件、赠品、包装，不得自行处置。",
+            "score": 0.9709410476684571,
+            "doc_id": "P01",
+            "layer": "platform",
+            "doc_type": "平台服务协议",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P01-用户服务协议.md",
+            "reason": "相关性 0.989 × 先验 0.90 → 0.971；命中 1/platform/dense#1, 1/platform/bm25#2"
+          },
+          {
+            "section": "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】",
+            "text": "经营者通过网络、电视、电话、邮购等方式销售商品的，应当遵守消费者权益保护法第二十五条规定，不得擅自扩大不适用无理由退货的商品范围。\n\n经营者应当以显著方式对不适用无理由退货的商品进行标注，提示消费者在购买时进行确认，不得将不适用无理由退货作为消费者默认同意的选项。未经消费者确认，经营者不得拒绝无理由退货。\n\n消费者退货的商品应当完好。消费者基于查验需要打开商品包装，或者为确认商品的品质和功能进行合理调试而不影响商品原有品质、功能和外观的，经营者应当予以退货。\n\n消费者无理由退货应当遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。\n\n> **适用要点**：本条是**平台风控规则的法律依据**。第四款首次在行政法规层面确立「无理由退货不得滥用」，平台对高频异常退款账户采取限制自动通道、转人工审核等措施，据此具备合法性——但措施须与滥用程度相当，不得直接剥夺法定退货权。",
+            "score": 0.939832000732422,
+            "doc_id": "L03",
+            "layer": "law",
+            "doc_type": "行政法规",
+            "effective_date": "2024-07-01",
+            "source_path": "doc/policy/law/L03-消费者权益保护法实施条例-摘录.md",
+            "reason": "相关性 0.950 × 先验 0.90 → 0.940；命中 1/law/bm25#3"
+          },
+          {
+            "section": "P08 星辰优选风控与异常退款治理规则 > 第七条 合法性依据",
+            "text": "7.1 《消费者权益保护法实施条例》第十九条第四款规定：**消费者无理由退货应当遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。** 这是平台风控措施的直接法律依据。\n\n7.2 平台风控措施须与滥用程度相当，**不得以风控之名变相限制法定退货权**。\n\n7.3 平台风控规则在首页显著位置持续公示。未经公示的风控标准不得作为对消费者不利判定的依据。",
+            "score": 0.9245631980895997,
+            "doc_id": "P08",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
+            "reason": "相关性 0.931 × 先验 0.90 → 0.925；命中 1/platform/dense#2, 1/platform/bm25#3"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "a33547caeaf3d5df",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.013,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:21:05.773Z",
+      "updatedAt": "2026-08-19T05:21:05.795Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "dbf929fdf50e158a",
+      "traceId": "dfce473ea374ee601187347899df338c",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-19 05:21:01.716000+00:00",
+      "endTime": "2026-08-19 05:21:02.691000+00:00",
+      "input": {
+        "query": "消费者在行使七日无理由退货权利时，应当遵循哪些基本原则？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": true,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "condition",
+            "text": "消费者行使七日无理由退货权利时应当遵循哪些基本原则？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "a33547caeaf3d5df",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.975,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:21:05.773Z",
+      "updatedAt": "2026-08-19T05:21:05.795Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "a33547caeaf3d5df",
+      "traceId": "dfce473ea374ee601187347899df338c",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:21:01.716000+00:00",
+      "endTime": "2026-08-19 05:21:03.528000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "消费者在行使七日无理由退货权利时，应当遵循哪些基本原则？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第一章 总则 > 第三条 【销售者与平台的义务分工】 … 第二章 不适用退货的商品范围和商品完好标准 > 第七条 【约定不适用商品（须消费者购买时逐单确认）】",
+            "text": "为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等相关法律、行政法规，制定本办法。\n\n消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。\n\n网络商品销售者应当依法履行七日无理由退货义务。\n\n网络交易平台提供者应当引导和督促平台上的网络商品销售者履行七日无理由退货义务，进行监督检查，并提供技术保障。\n\n消费者行使七日无理由退货权利和网络商品销售者履行七日无理由退货义务都应当遵循公平、诚实信用的原则，遵守商业道德。\n\n鼓励网络商品销售者作出比本办法更有利于消费者的无理由退货承诺。\n\n> **适用要点**：平台把窗口期从 7 天延长到 15 天、对特定会员延长售后期，属于本条鼓励的「更优承诺」，合法有效；反向缩短则无效。\n\n为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等相关法律、行政法规，制定本办法。\n\n消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。\n\n网络商品销售者应当依法履行七日无理由退货义务。\n\n网络交易平台提供者应当引导和督促平台上的网络商品销售者履行七日无理由退货义务，进行监督检查，并提供技术保障。\n\n消费者行使七日无理由退货权利和网络商品销售者履行七日无理由退货义务都应当遵循公平、诚实信用的原则，遵守商业道德。\n\n鼓励网络商品销售者作出比本办法更有利于消费者的无理由退货承诺。\n\n> **适用要点**：平台把窗口期从 7 天延长到 15 天、对特定会员延长售后期，属于本条鼓励的「更优承诺」，合法有效；反向缩短则无效。\n\n为保障《消费者权益保护法》七日无理由退货规定的实施，保护消费者合法权益，促进电子商务健康发展，根据《消费者权益保护法》等相关法律、行政法规，制定本办法。\n\n消费者为生活消费需要通过网络购买商品，自收到商品之日起七日内依照《消费者权益保护法》第二十五条规定退货的，适用本办法。\n\n网络商品销售者应当依法履行七日无理由退货义务。\n\n网络交易平台提供者应当引导和督促平台上的网络商品销售者履行七日无理由退货义务，进行监督检查，并提供技术保障。\n\n消费者行使七日无理由退货权利和网络商品销售者履行七日无理由退货义务都应当遵循公平、诚实信用的原则，遵守商业道德。\n\n鼓励网络商品销售者作出比本办法更有利于消费者的无理由退货承诺。\n\n> **适用要点**：平台把窗口期从 7 天延长到 15 天、对特定会员延长售后期，属于本条鼓励的「更优承诺」，合法有效；反向缩短则无效。\n\n下列商品不适用七日无理由退货规定：\n\n（一）消费者定作的商品；\n\n（二）鲜活易腐的商品；\n\n（三）在线下载或者消费者拆封的音像制品、计算机软件等数字化商品；\n\n（四）交付的报纸、期刊。\n\n> **判定要点**：这是**封闭清单**，四类之外的商品不得以「商品性质特殊」为由直接排除。定制商品、生鲜商品、已激活的虚拟商品分别落在第（一）（二）（三）项。\n\n下列性质的商品经消费者在购买时确认，可以不适用七日无理由退货规定：\n\n（一）拆封后易影响人身安全或者生命健康的商品，或者拆封后易导致商品品质发生改变的商品；\n\n（二）一经激活或者试用后价值贬损较大的商品；\n\n（三）销售时已明示的临近保质期的商品、有瑕疵的商品。\n\n> **判定要点**：本条商品**必须有消费者购买时的确认记录**才能排除退货。没有确认记录的，销售者不得拒绝退货（见第二十条第二款）。\n\n消费者退回的商品应当完好。\n\n商品能够保持原有品质、功能，商品本身、配件、商标标识齐全的，视为商品完好。\n\n消费者基于查验需要而打开商品包装，或者为确认商品的品质、功能而进行合理的调试不影响商品的完好。\n\n> **判定要点**：**「拆封」不等于「不完好」**。仅因买家拆开包装查验即拒绝退货，属违法。判定商品状态时须区分「拆封查验」与「超出查验需要的使用」。\n\n对超出查验和确认商品品质、功能需要而使用商品，导致商品价值贬损较大的，视为商品不完好。具体判定标准如下：\n\n（一）食品（含保健食品）、化妆品、医疗器械、计生用品：必要的一次性密封包装被损坏；\n\n（二）电子电器类：进行未经授权的维修、改动，破坏、涂改强制性产品认证标志、指示标贴、机器序列号等，有难以恢复原状的外观类使用痕迹，或者产生激活、授权信息、不合理的个人使用数据留存等数据类使用痕迹；\n\n（三）服装、鞋帽、箱包、玩具、家纺、家居类：商标标识被摘、标识被剪，商品受污、受损。",
+            "score": 0.9790667819976807,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.999 × 先验 0.90 → 0.979；命中 1/law/dense#1, 1/law/bm25#1"
+          },
+          {
+            "section": "P01 星辰优选用户服务协议 > 第六章 消费者的义务 > 6.1 诚实信用",
+            "text": "消费者行使退货权利应遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。\n\n以下行为构成对售后规则的滥用，平台可依 [P08] 采取限制措施：\n\n（一）恶意批量下单后集中退货，影响商家正常经营的；\n（二）调包退货、以次充好、退回非原件商品的；\n（三）虚构质量问题骗取退款或赔付的；\n（四）以投诉、举报、差评相要挟索取不当利益的。\n\n在售后处理期间，消费者应妥善保管待退商品及其配件、赠品、包装，不得自行处置。",
+            "score": 0.9709410476684571,
+            "doc_id": "P01",
+            "layer": "platform",
+            "doc_type": "平台服务协议",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P01-用户服务协议.md",
+            "reason": "相关性 0.989 × 先验 0.90 → 0.971；命中 1/platform/dense#1, 1/platform/bm25#2"
+          },
+          {
+            "section": "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十九条 【无理由退货的边界与滥用治理】",
+            "text": "经营者通过网络、电视、电话、邮购等方式销售商品的，应当遵守消费者权益保护法第二十五条规定，不得擅自扩大不适用无理由退货的商品范围。\n\n经营者应当以显著方式对不适用无理由退货的商品进行标注，提示消费者在购买时进行确认，不得将不适用无理由退货作为消费者默认同意的选项。未经消费者确认，经营者不得拒绝无理由退货。\n\n消费者退货的商品应当完好。消费者基于查验需要打开商品包装，或者为确认商品的品质和功能进行合理调试而不影响商品原有品质、功能和外观的，经营者应当予以退货。\n\n消费者无理由退货应当遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。\n\n> **适用要点**：本条是**平台风控规则的法律依据**。第四款首次在行政法规层面确立「无理由退货不得滥用」，平台对高频异常退款账户采取限制自动通道、转人工审核等措施，据此具备合法性——但措施须与滥用程度相当，不得直接剥夺法定退货权。",
+            "score": 0.939832000732422,
+            "doc_id": "L03",
+            "layer": "law",
+            "doc_type": "行政法规",
+            "effective_date": "2024-07-01",
+            "source_path": "doc/policy/law/L03-消费者权益保护法实施条例-摘录.md",
+            "reason": "相关性 0.950 × 先验 0.90 → 0.940；命中 1/law/bm25#3"
+          },
+          {
+            "section": "P08 星辰优选风控与异常退款治理规则 > 第七条 合法性依据",
+            "text": "7.1 《消费者权益保护法实施条例》第十九条第四款规定：**消费者无理由退货应当遵循诚实信用原则，不得利用无理由退货规则损害经营者和其他消费者的合法权益。** 这是平台风控措施的直接法律依据。\n\n7.2 平台风控措施须与滥用程度相当，**不得以风控之名变相限制法定退货权**。\n\n7.3 平台风控规则在首页显著位置持续公示。未经公示的风控标准不得作为对消费者不利判定的依据。",
+            "score": 0.9245631980895997,
+            "doc_id": "P08",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
+            "reason": "相关性 0.931 × 先验 0.90 → 0.925；命中 1/platform/dense#2, 1/platform/bm25#3"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "3012ccc3568c2c56",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.812,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:21:05.773Z",
+      "updatedAt": "2026-08-19T05:21:05.794Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "d4794373b99e8e68",
+      "traceId": "dfce473ea374ee601187347899df338c",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:21:02.691000+00:00",
+      "endTime": "2026-08-19 05:21:02.691000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 12,
+              "law": 12
+            },
+            "law_weight": 1
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "a33547caeaf3d5df",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:21:05.773Z",
+      "updatedAt": "2026-08-19T05:21:05.794Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,

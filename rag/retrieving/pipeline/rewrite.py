@@ -41,6 +41,8 @@ Agent 按 prompt 拼出来的 query 长这样：`金牌会员 耳机 未拆封 �
 """
 
 import os
+import json
+from pathlib import Path
 from dataclasses import dataclass
 from functools import lru_cache
 from typing import Literal
@@ -172,6 +174,21 @@ def _passthrough(query: str) -> RetrievalPlan:
 
 def rewrite(query: str) -> RetrievalPlan:
     from llm import chat
+
+    cache_path = os.getenv("REFUND_AGENT_REWRITE_CACHE", "").strip()
+    if cache_path:
+        try:
+            cached = json.loads(Path(cache_path).read_text(encoding="utf-8"))
+            plan = cached.get(query)
+            if plan:
+                return RetrievalPlan(
+                    original=query,
+                    sub_queries=[SubQuery.model_validate(q) for q in plan["sub_queries"]],
+                    needs_law=bool(plan["needs_law"]),
+                    rewritten=bool(plan.get("rewritten", True)),
+                )
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            print(f"[warn] rewrite cache 读取失败（{type(exc).__name__}: {exc}），回退模型改写")
 
     # 没凭据是「本来就没打算调模型」，不是「调用出错」—— 先探一下，省得每次检索都
     # 从异常路径走一遍、再打一行看着像故障的 warn。

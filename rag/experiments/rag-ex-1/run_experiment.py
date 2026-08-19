@@ -96,29 +96,49 @@ class Progress:
 def run_case(service, case: dict, judge_on: bool = False) -> dict:
     """跑一条用例并判分。`judge_on` 是 `--judge`，多算两个 LLM 指标。"""
     seeds = case["seed_chunk_id"]
+    equivalent = case.get("acceptable_seed_chunk_ids")
     meta = case["meta"]
     row = {
         "case_id": case["case_id"],
+        "query": case["query"],
         "type": case["type"],
         "style": case["style"],
         "doc_id": meta.get("doc_id", ""),
         "layer": meta.get("layer", ""),
         "kind": meta.get("kind", ""),
         "seed_chunk_id": seeds,
+        "acceptable_seed_chunk_ids": equivalent,
         "error": None,
         "scores": {},
     }
 
     t0 = time.monotonic()
     try:
-        sections, trace = service.search_with_trace(case["query"])
+        top_k = 6 if case["type"] == "multi_hop" else None
+        if top_k is None:
+            sections, trace = service.search_with_trace(case["query"])
+        else:
+            sections, trace = service.search_with_trace(case["query"], top_k=top_k)
     except Exception as exc:  # noqa: BLE001
         # 链路对「一条候选都没有」的口径是显式抛异常（milvus.py），unanswerable
         # 样本要的正是这个。其余类型抛异常就是执行失败，与判负分开统计。
         row["error"] = f"{type(exc).__name__}: {exc}"
+        row["outcome"] = "no_evidence" if type(exc).__name__ == "NoEvidenceError" else (
+            "no_candidates" if type(exc).__name__ == "NoCandidatesError" else "error"
+        )
         row["elapsed_s"] = round(time.monotonic() - t0, 1)
         if case["type"] == "unanswerable":
             row["scores"]["unanswerable_raised"] = 1.0
+        elif row["outcome"] == "no_evidence":
+            # 空证据是被测链路的结果，不是跑批执行失败；answerable 用例必须留在
+            # Recall 分母里，并明确记为未命中。否则新增的安全兜底会让均值看起来变好。
+            row["scores"] = {
+                name: 0.0
+                for name, k in (("recall@10", 10), ("recall@3", 3), ("recall@1", 1))
+                if k >= len(seeds)
+            }
+            row["scores"].update({"evidence_tokens": 0, "duplicate_ratio": 0.0})
+            row["sections"] = []
         return row
     row["elapsed_s"] = round(time.monotonic() - t0, 1)
 
@@ -138,7 +158,7 @@ def run_case(service, case: dict, judge_on: bool = False) -> dict:
     # `multi_hop` 的 recall@1 是结构性的 0。算进均值就等于按 multi_hop 的占比
     # 给 recall@1 加了一个固定折扣，改参数动不了它，版本间对比也读不出东西。
     row["scores"] = {
-        name: scorers.recall_at_k(ids, seeds, k)
+        name: scorers.recall_at_k(ids, seeds, k, equivalent)
         for name, ids, k in (
             ("recall@10", trace.candidate_ids, 10),
             ("recall@3", trace.evidence_ids, 3),
@@ -153,6 +173,8 @@ def run_case(service, case: dict, judge_on: bool = False) -> dict:
         "candidate": scorers.seed_ranks(trace.candidate_ids, seeds),
         "evidence": scorers.seed_ranks(trace.evidence_ids, seeds),
     }
+    row["rewrite_plan"] = trace.rewrite_plan
+    row["rewrite_hash"] = trace.rewrite_hash
     row["sections"] = [s.section for s in sections]
     if judge_on:
         # claim 跟样本走（cases.jsonl 的 claims 字段），不在这里现拆：分母要在两次
@@ -217,6 +239,7 @@ def case_of(item) -> dict:
         "case_id": item.id,
         "query": item.input["query"],
         "seed_chunk_id": item.expected_output["seed_chunk_id"],
+        "acceptable_seed_chunk_ids": item.expected_output.get("acceptable_seed_chunk_ids") or None,
         "claims": item.expected_output.get("claims") or [],
         "type": meta.get("type", ""),
         "style": meta.get("style", ""),
@@ -263,7 +286,7 @@ def aggregate(*, item_results, **_):
     from langfuse import Evaluation
 
     rows = [r.output for r in item_results if isinstance(r.output, dict)]
-    scored = [row for row in rows if row["type"] != "unanswerable" and not row["error"]]
+    scored = [row for row in rows if row["type"] != "unanswerable" and row.get("outcome", "success") != "error"]
     stats = summarize(scored)
     out = [
         Evaluation(name=name, value=stats[name], comment=f"n={stats['counted'][name]}")
@@ -406,9 +429,12 @@ def judge_errors(rows: list[dict]) -> list[str]:
 
 def write_result(path: Path, *, dataset: str, run_name: str, run_url: str | None,
                  elapsed_s: float, rows: list[dict], judge_on: bool) -> None:
-    scored = [row for row in rows if row["type"] != "unanswerable" and not row["error"]]
+    scored = [row for row in rows if row["type"] != "unanswerable" and row.get("outcome", "success") != "error"]
     unanswerable = [row for row in rows if row["type"] == "unanswerable"]
-    errors = [row for row in rows if row["error"] and row["type"] != "unanswerable"]
+    errors = [row for row in rows if row.get("outcome", "success") == "error"]
+    outcomes = defaultdict(int)
+    for row in rows:
+        outcomes[row.get("outcome", "success" if not row["error"] else "error")] += 1
 
     payload = {
         "experiment": "rag-ex-1",
@@ -424,6 +450,7 @@ def write_result(path: Path, *, dataset: str, run_name: str, run_url: str | None
         | {
             "unanswerable_raised": _mean(unanswerable, "unanswerable_raised"),
             "error_rate": round(len(errors) / len(rows), 3) if rows else 0.0,
+            "outcomes": dict(sorted(outcomes.items())),
             # unanswerable 不进 Recall 均值，但它的 Context Relevance 有用：
             # 语料里没有的问题，检回的东西相关度应当明显低于正常样本（6.2）
             "unanswerable_relevance": _mean(unanswerable, "context_relevance"),
@@ -509,7 +536,7 @@ def main() -> None:
     runner = run_dataset_run if args.langfuse else run_local
     rows, run_url, progress = runner(args, service, wanted, args.judge)
 
-    scored = [row for row in rows if row["type"] != "unanswerable" and not row["error"]]
+    scored = [row for row in rows if row["type"] != "unanswerable" and row.get("outcome", "success") != "error"]
     summary = summarize(scored)
     print(f"\n{'=' * 70}")
     print(f"  {len(scored)} 条计分 · 用时 {progress.elapsed():.1f}s")

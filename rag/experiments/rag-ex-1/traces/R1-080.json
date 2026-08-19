@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-080",
+    "query": "我收到货的时候东西就已经过期了，这种情况我能怎么办？",
     "type": "single",
     "style": "colloquial",
     "doc_id": "P11",
@@ -9,774 +10,39 @@
     "seed_chunk_id": [
       "P11#006:01"
     ],
-    "error": null,
+    "acceptable_seed_chunk_ids": null,
+    "error": "NoEvidenceError: 重排后没有可交付政策证据（candidates=20, evidence=0, min_score=0.3）",
     "scores": {
-      "recall@10": 1.0,
-      "recall@3": 1.0,
-      "recall@1": 1.0,
-      "evidence_tokens": 158,
-      "duplicate_ratio": 0.0,
-      "context_recall": 1.0,
-      "context_relevance": 0.125
+      "recall@10": 0.0,
+      "recall@3": 0.0,
+      "recall@1": 0.0,
+      "evidence_tokens": 0,
+      "duplicate_ratio": 0.0
     },
-    "elapsed_s": 2.2,
-    "seed_rank": {
-      "candidate": {
-        "P11#006:01": 10
-      },
-      "evidence": {
-        "P11#006:01": 1
-      }
-    },
-    "sections": [
-      "P11 星辰优选特殊类目售后细则 > 第六条 食品、保健食品、化妆品 > 6.2 保质期"
-    ],
-    "judge": {
-      "context_recall": {
-        "score": 1.0,
-        "n": 2,
-        "hit": 2,
-        "detail": [
-          {
-            "claim": "签收时已过保质期的，全额退款。",
-            "supported": true,
-            "reason": "表格中“签收时已过保质期”对应“全额退款”。"
-          },
-          {
-            "claim": "签收时已过保质期的，按食品安全相关规定赔付。",
-            "supported": true,
-            "reason": "表格中“签收时已过保质期”对应“按食品安全相关规定赔付”。"
-          }
-        ],
-        "error": null
-      },
-      "context_relevance": {
-        "score": 0.125,
-        "n": 8,
-        "hit": 1,
-        "truncated": false,
-        "note": "其余多为无理由退货规则或临期商品情形，与签收时已过期不直接相关。",
-        "irrelevant": [
-          "**必要的一次性密封包装被损坏的，视为不完好**，不支持无理由退货。",
-          "| 情形 | 处理 |",
-          "|---|---|",
-          "| 剩余保质期不足商品页面承诺的 | 全额退款 |",
-          "| 临期专区商品（已明示并确认） | 不支持无理由退货 |",
-          "发现异物、变质、胀袋、发霉的，**保留实物与包装**，全额退款并可另行主张赔偿。",
-          "此类诉求转专项处理。"
-        ],
-        "error": null
-      }
-    },
-    "trace_id": "bf4338d6bb9960f48f1a8634446b26e6"
+    "outcome": "no_evidence",
+    "elapsed_s": 2.4,
+    "sections": [],
+    "trace_id": "888ca10d55a179d64e3d97fd1decb9c3"
   },
   "trace": {
-    "id": "bf4338d6bb9960f48f1a8634446b26e6",
+    "id": "888ca10d55a179d64e3d97fd1decb9c3",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:44:44.367000+00:00"
+    "timestamp": "2026-08-19 05:12:54.874000+00:00"
   },
   "observations": [
     {
-      "id": "248a1b89e44b146d",
-      "traceId": "bf4338d6bb9960f48f1a8634446b26e6",
-      "type": "EVALUATOR",
-      "name": "evaluate",
-      "startTime": "2026-08-18 11:44:50.324000+00:00",
-      "endTime": "2026-08-18 11:44:50.325000+00:00",
-      "modelParameters": {},
-      "input": {
-        "input": {
-          "query": "我收到货的时候东西就已经过期了，这种情况我能怎么办？"
-        },
-        "output": {
-          "case_id": "R1-080",
-          "type": "single",
-          "style": "colloquial",
-          "doc_id": "P11",
-          "layer": "platform",
-          "kind": "table",
-          "seed_chunk_id": [
-            "P11#006:01"
-          ],
-          "error": null,
-          "scores": {
-            "recall@10": 1,
-            "recall@3": 1,
-            "recall@1": 1,
-            "evidence_tokens": 158,
-            "duplicate_ratio": 0,
-            "context_recall": 1,
-            "context_relevance": 0.125
-          },
-          "elapsed_s": 2.2,
-          "seed_rank": {
-            "candidate": {
-              "P11#006:01": 10
-            },
-            "evidence": {
-              "P11#006:01": 1
-            }
-          },
-          "sections": [
-            "P11 星辰优选特殊类目售后细则 > 第六条 食品、保健食品、化妆品 > 6.2 保质期"
-          ],
-          "judge": {
-            "context_recall": {
-              "score": 1,
-              "n": 2,
-              "hit": 2,
-              "detail": [
-                {
-                  "claim": "签收时已过保质期的，全额退款。",
-                  "supported": true,
-                  "reason": "表格中“签收时已过保质期”对应“全额退款”。"
-                },
-                {
-                  "claim": "签收时已过保质期的，按食品安全相关规定赔付。",
-                  "supported": true,
-                  "reason": "表格中“签收时已过保质期”对应“按食品安全相关规定赔付”。"
-                }
-              ],
-              "error": null
-            },
-            "context_relevance": {
-              "score": 0.125,
-              "n": 8,
-              "hit": 1,
-              "truncated": false,
-              "note": "其余多为无理由退货规则或临期商品情形，与签收时已过期不直接相关。",
-              "irrelevant": [
-                "**必要的一次性密封包装被损坏的，视为不完好**，不支持无理由退货。",
-                "| 情形 | 处理 |",
-                "|---|---|",
-                "| 剩余保质期不足商品页面承诺的 | 全额退款 |",
-                "| 临期专区商品（已明示并确认） | 不支持无理由退货 |",
-                "发现异物、变质、胀袋、发霉的，**保留实物与包装**，全额退款并可另行主张赔偿。",
-                "此类诉求转专项处理。"
-              ],
-              "error": null
-            }
-          }
-        },
-        "expected_output": {
-          "claims": [
-            "签收时已过保质期的，全额退款。",
-            "签收时已过保质期的，按食品安全相关规定赔付。"
-          ],
-          "seed_chunk_id": [
-            "P11#006:01"
-          ],
-          "reference_answer": "签收时已过保质期的，全额退款，并按食品安全相关规定赔付。"
-        },
-        "metadata": {
-          "kind": "table",
-          "type": "single",
-          "layer": "platform",
-          "style": "colloquial",
-          "doc_id": "P11",
-          "section": "第六条 食品、保健食品、化妆品 > 6.2 保质期",
-          "reviewed": true,
-          "claims_by": "openai:deepseek-v4-pro",
-          "generated_by": "openai:deepseek-v4-flash",
-          "overlap_ratio": 0
-        }
-      },
-      "metadata": {
-        "evaluator_kind": "item",
-        "evaluator_index": 0,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": [
-        {
-          "name": "recall@10",
-          "value": 1,
-          "comment": "种子块名次 P11#006:01=10"
-        },
-        {
-          "name": "recall@3",
-          "value": 1,
-          "comment": "种子块名次 P11#006:01=1"
-        },
-        {
-          "name": "recall@1",
-          "value": 1,
-          "comment": "种子块名次 P11#006:01=1"
-        },
-        {
-          "name": "evidence_tokens",
-          "value": 158,
-          "comment": ""
-        },
-        {
-          "name": "duplicate_ratio",
-          "value": 0,
-          "comment": ""
-        },
-        {
-          "name": "context_recall",
-          "value": 1,
-          "comment": "2/2 条 claim 被支撑"
-        },
-        {
-          "name": "context_relevance",
-          "value": 0.125,
-          "comment": "1/8 个内容单元相关；其余多为无理由退货规则或临期商品情形，与签收时已过期不直接相关。"
-        },
-        {
-          "name": "run_error",
-          "value": 0,
-          "comment": "ok"
-        }
-      ],
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "6f20f56f0bf9e6ac",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.001,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:51.616Z",
-      "updatedAt": "2026-08-18T11:44:51.635Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "2e26dd658d743a3b",
-      "traceId": "bf4338d6bb9960f48f1a8634446b26e6",
-      "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:43:59.504000+00:00",
-      "endTime": "2026-08-18 11:44:50.326000+00:00",
-      "input": {
-        "query": "我收到货的时候东西就已经过期了，这种情况我能怎么办？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-080",
-        "kind": "table",
-        "type": "single",
-        "layer": "platform",
-        "style": "colloquial",
-        "doc_id": "P11",
-        "section": "第六条 食品、保健食品、化妆品 > 6.2 保质期",
-        "reviewed": true,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-080",
-        "type": "single",
-        "style": "colloquial",
-        "doc_id": "P11",
-        "layer": "platform",
-        "kind": "table",
-        "seed_chunk_id": [
-          "P11#006:01"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 158,
-          "duplicate_ratio": 0,
-          "context_recall": 1,
-          "context_relevance": 0.125
-        },
-        "elapsed_s": 2.2,
-        "seed_rank": {
-          "candidate": {
-            "P11#006:01": 10
-          },
-          "evidence": {
-            "P11#006:01": 1
-          }
-        },
-        "sections": [
-          "P11 星辰优选特殊类目售后细则 > 第六条 食品、保健食品、化妆品 > 6.2 保质期"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 2,
-            "hit": 2,
-            "detail": [
-              {
-                "claim": "签收时已过保质期的，全额退款。",
-                "supported": true,
-                "reason": "表格中“签收时已过保质期”对应“全额退款”。"
-              },
-              {
-                "claim": "签收时已过保质期的，按食品安全相关规定赔付。",
-                "supported": true,
-                "reason": "表格中“签收时已过保质期”对应“按食品安全相关规定赔付”。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.125,
-            "n": 8,
-            "hit": 1,
-            "truncated": false,
-            "note": "其余多为无理由退货规则或临期商品情形，与签收时已过期不直接相关。",
-            "irrelevant": [
-              "**必要的一次性密封包装被损坏的，视为不完好**，不支持无理由退货。",
-              "| 情形 | 处理 |",
-              "|---|---|",
-              "| 剩余保质期不足商品页面承诺的 | 全额退款 |",
-              "| 临期专区商品（已明示并确认） | 不支持无理由退货 |",
-              "发现异物、变质、胀袋、发霉的，**保留实物与包装**，全额退款并可另行主张赔偿。",
-              "此类诉求转专项处理。"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 50.822,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:51.616Z",
-      "updatedAt": "2026-08-18T11:44:51.635Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "parentObservationId": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "51ac127f6b4952c3",
-      "traceId": "bf4338d6bb9960f48f1a8634446b26e6",
-      "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:44:46.514000+00:00",
-      "endTime": "2026-08-18 11:44:46.518000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": [
-          "P11#006:01"
-        ]
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "P11 星辰优选特殊类目售后细则 > 第六条 食品、保健食品、化妆品 > 6.2 保质期",
-            "text": "**必要的一次性密封包装被损坏的，视为不完好**，不支持无理由退货。\n\n| 情形 | 处理 |\n|---|---|\n| 签收时已过保质期 | 全额退款，并按食品安全相关规定赔付 |\n| 剩余保质期不足商品页面承诺的 | 全额退款 |\n| 临期专区商品（已明示并确认） | 不支持无理由退货 |\n\n发现异物、变质、胀袋、发霉的，**保留实物与包装**，全额退款并可另行主张赔偿。此类诉求转专项处理。",
-            "score": 0.32920375347137454,
-            "doc_id": "P11",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P11-特殊类目售后细则.md",
-            "reason": "相关性 0.187 × 先验 0.90 → 0.329；命中 1/platform/dense#1, 2/platform/dense#4"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "e9c5eadf70c85a70",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.004,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:51.616Z",
-      "updatedAt": "2026-08-18T11:44:51.630Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "87a21bbcad6a626c",
-      "traceId": "bf4338d6bb9960f48f1a8634446b26e6",
-      "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:43:59.504000+00:00",
-      "endTime": "2026-08-18 11:44:50.323000+00:00",
-      "input": {
-        "query": "我收到货的时候东西就已经过期了，这种情况我能怎么办？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-080",
-        "kind": "table",
-        "type": "single",
-        "layer": "platform",
-        "style": "colloquial",
-        "doc_id": "P11",
-        "section": "第六条 食品、保健食品、化妆品 > 6.2 保质期",
-        "reviewed": true,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-080",
-        "type": "single",
-        "style": "colloquial",
-        "doc_id": "P11",
-        "layer": "platform",
-        "kind": "table",
-        "seed_chunk_id": [
-          "P11#006:01"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 158,
-          "duplicate_ratio": 0,
-          "context_recall": 1,
-          "context_relevance": 0.125
-        },
-        "elapsed_s": 2.2,
-        "seed_rank": {
-          "candidate": {
-            "P11#006:01": 10
-          },
-          "evidence": {
-            "P11#006:01": 1
-          }
-        },
-        "sections": [
-          "P11 星辰优选特殊类目售后细则 > 第六条 食品、保健食品、化妆品 > 6.2 保质期"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 2,
-            "hit": 2,
-            "detail": [
-              {
-                "claim": "签收时已过保质期的，全额退款。",
-                "supported": true,
-                "reason": "表格中“签收时已过保质期”对应“全额退款”。"
-              },
-              {
-                "claim": "签收时已过保质期的，按食品安全相关规定赔付。",
-                "supported": true,
-                "reason": "表格中“签收时已过保质期”对应“按食品安全相关规定赔付”。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.125,
-            "n": 8,
-            "hit": 1,
-            "truncated": false,
-            "note": "其余多为无理由退货规则或临期商品情形，与签收时已过期不直接相关。",
-            "irrelevant": [
-              "**必要的一次性密封包装被损坏的，视为不完好**，不支持无理由退货。",
-              "| 情形 | 处理 |",
-              "|---|---|",
-              "| 剩余保质期不足商品页面承诺的 | 全额退款 |",
-              "| 临期专区商品（已明示并确认） | 不支持无理由退货 |",
-              "发现异物、变质、胀袋、发霉的，**保留实物与包装**，全额退款并可另行主张赔偿。",
-              "此类诉求转专项处理。"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "2e26dd658d743a3b",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 50.819,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:51.616Z",
-      "updatedAt": "2026-08-18T11:44:51.629Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "e9c5eadf70c85a70",
-      "traceId": "bf4338d6bb9960f48f1a8634446b26e6",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:44:44.366000+00:00",
-      "endTime": "2026-08-18 11:44:46.518000+00:00",
-      "modelParameters": {},
-      "input": {
-        "query": "我收到货的时候东西就已经过期了，这种情况我能怎么办？",
-        "top_k": 4
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "P11 星辰优选特殊类目售后细则 > 第六条 食品、保健食品、化妆品 > 6.2 保质期",
-            "text": "**必要的一次性密封包装被损坏的，视为不完好**，不支持无理由退货。\n\n| 情形 | 处理 |\n|---|---|\n| 签收时已过保质期 | 全额退款，并按食品安全相关规定赔付 |\n| 剩余保质期不足商品页面承诺的 | 全额退款 |\n| 临期专区商品（已明示并确认） | 不支持无理由退货 |\n\n发现异物、变质、胀袋、发霉的，**保留实物与包装**，全额退款并可另行主张赔偿。此类诉求转专项处理。",
-            "score": 0.32920375347137454,
-            "doc_id": "P11",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P11-特殊类目售后细则.md",
-            "reason": "相关性 0.187 × 先验 0.90 → 0.329；命中 1/platform/dense#1, 2/platform/dense#4"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "87a21bbcad6a626c",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 2.152,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:51.616Z",
-      "updatedAt": "2026-08-18T11:44:51.626Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "6f20f56f0bf9e6ac",
-      "traceId": "bf4338d6bb9960f48f1a8634446b26e6",
+      "id": "3460a03f76ee322f",
+      "traceId": "888ca10d55a179d64e3d97fd1decb9c3",
       "type": "SPAN",
       "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:44:50.324000+00:00",
-      "endTime": "2026-08-18 11:44:50.325000+00:00",
+      "startTime": "2026-08-19 05:13:12.567000+00:00",
+      "endTime": "2026-08-19 05:13:12.568000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -789,7 +55,7 @@
       },
       "output": {
         "evaluator_count": 1,
-        "evaluation_count": 8,
+        "evaluation_count": 6,
         "failed_evaluator_count": 0,
         "skipped_evaluator_count": 0
       },
@@ -800,7 +66,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "2e26dd658d743a3b",
+      "parentObservationId": "025f9cda96399850",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -810,8 +76,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:51.616Z",
-      "updatedAt": "2026-08-18T11:44:51.624Z",
+      "createdAt": "2026-08-19T05:13:12.798Z",
+      "updatedAt": "2026-08-19T05:13:12.843Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -833,121 +99,49 @@
       "usagePricingTierName": null
     },
     {
-      "id": "eab6ba46f9af2c24",
-      "traceId": "bf4338d6bb9960f48f1a8634446b26e6",
+      "id": "a12883493e868a55",
+      "traceId": "888ca10d55a179d64e3d97fd1decb9c3",
       "type": "SPAN",
-      "name": "rag.rerank",
-      "startTime": "2026-08-18 11:44:45.800000+00:00",
-      "endTime": "2026-08-18 11:44:46.514000+00:00",
-      "input": {
-        "query": "我收到货的时候东西就已经过期了，这种情况我能怎么办？",
-        "candidates": 20
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "passed": 1,
-        "min_score": 0.3,
-        "dropped": [
-          "L01#003:00",
-          "L05#009:00",
-          "P03#004:03",
-          "L05#022:00",
-          "P09#004:00",
-          "P11#006:02",
-          "L02#006:01",
-          "P09#004:04",
-          "L03#004:00",
-          "L01#006:00",
-          "L05#014:00",
-          "L02#003:06",
-          "L02#003:09",
-          "P02#001:00",
-          "L01#009:00",
-          "P03#004:02",
-          "P08#006:00",
-          "L05#010:00",
-          "L05#012:00"
-        ],
-        "evidence": [
-          {
-            "chunk_id": "P11#006:01",
-            "section": "P11 第六条 食品、保健食品、化妆品 > 6.2 保质期",
-            "score": 0.329,
-            "relevance": 0.187,
-            "prior": 0.9,
-            "excerpt": "| 情形 | 处理 | |---|---| | 签收时已过保质期 | 全额退款，并按食品安全相关规定赔付 | | 剩余保质期不足商品页面承诺的 | 全额退款 | | 临期专区商品（已明示并确认） | 不支持无理由退货 |"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "e9c5eadf70c85a70",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.714,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:51.616Z",
-      "updatedAt": "2026-08-18T11:44:51.622Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "6ab1b0d35de7f310",
-      "traceId": "bf4338d6bb9960f48f1a8634446b26e6",
-      "type": "SPAN",
-      "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:44:44.367000+00:00",
-      "endTime": "2026-08-18 11:44:45.679000+00:00",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:12:54.874000+00:00",
+      "endTime": "2026-08-19 05:13:12.567000+00:00",
       "input": {
         "query": "我收到货的时候东西就已经过期了，这种情况我能怎么办？"
       },
       "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-080",
+        "kind": "table",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P11",
+        "section": "第六条 食品、保健食品、化妆品 > 6.2 保质期",
+        "reviewed": true,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0,
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -959,20 +153,28 @@
         }
       },
       "output": {
-        "rewritten": true,
-        "needs_law": true,
-        "sub_queries": [
-          {
-            "id": "1",
-            "intent": "dispute",
-            "text": "收到货时商品已经过期，消费者可以采取哪些处理方式？"
-          },
-          {
-            "id": "2",
-            "intent": "refund",
-            "text": "收到货时商品已经过期，可以申请退款或赔偿吗？"
-          }
-        ]
+        "case_id": "R1-080",
+        "query": "我收到货的时候东西就已经过期了，这种情况我能怎么办？",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P11",
+        "layer": "platform",
+        "kind": "table",
+        "seed_chunk_id": [
+          "P11#006:01"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": "NoEvidenceError: 重排后没有可交付政策证据（candidates=20, evidence=0, min_score=0.3）",
+        "scores": {
+          "recall@10": 0,
+          "recall@3": 0,
+          "recall@1": 0,
+          "evidence_tokens": 0,
+          "duplicate_ratio": 0
+        },
+        "outcome": "no_evidence",
+        "elapsed_s": 2.4,
+        "sections": []
       },
       "usage": {
         "input": 0,
@@ -981,7 +183,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "e9c5eadf70c85a70",
+      "parentObservationId": "025f9cda96399850",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -989,10 +191,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.312,
+      "latency": 17.693,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:46.593Z",
-      "updatedAt": "2026-08-18T11:44:46.606Z",
+      "createdAt": "2026-08-19T05:13:12.798Z",
+      "updatedAt": "2026-08-19T05:13:12.843Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1013,18 +215,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "73e08fd2d2b4069d",
-      "traceId": "bf4338d6bb9960f48f1a8634446b26e6",
+      "id": "73de9731d27ac342",
+      "traceId": "888ca10d55a179d64e3d97fd1decb9c3",
       "type": "SPAN",
       "name": "rag.route",
-      "startTime": "2026-08-18 11:44:45.679000+00:00",
-      "endTime": "2026-08-18 11:44:45.680000+00:00",
+      "startTime": "2026-08-19 05:13:11.642000+00:00",
+      "endTime": "2026-08-19 05:13:11.643000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1048,10 +250,10 @@
           {
             "sub_query": "2",
             "layer_k": {
-              "platform": 12,
-              "law": 12
+              "platform": 18,
+              "law": 5
             },
-            "law_weight": 1
+            "law_weight": 0.5
           }
         ]
       },
@@ -1062,7 +264,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "e9c5eadf70c85a70",
+      "parentObservationId": "84772b349817ad3c",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1072,8 +274,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:46.593Z",
-      "updatedAt": "2026-08-18T11:44:46.606Z",
+      "createdAt": "2026-08-19T05:13:12.798Z",
+      "updatedAt": "2026-08-19T05:13:12.841Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1095,18 +297,281 @@
       "usagePricingTierName": null
     },
     {
-      "id": "c9484353e5a4f31e",
-      "traceId": "bf4338d6bb9960f48f1a8634446b26e6",
+      "id": "7333627e64e1ac6c",
+      "traceId": "888ca10d55a179d64e3d97fd1decb9c3",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-19 05:13:12.567000+00:00",
+      "endTime": "2026-08-19 05:13:12.568000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "我收到货的时候东西就已经过期了，这种情况我能怎么办？"
+        },
+        "output": {
+          "case_id": "R1-080",
+          "query": "我收到货的时候东西就已经过期了，这种情况我能怎么办？",
+          "type": "single",
+          "style": "colloquial",
+          "doc_id": "P11",
+          "layer": "platform",
+          "kind": "table",
+          "seed_chunk_id": [
+            "P11#006:01"
+          ],
+          "acceptable_seed_chunk_ids": null,
+          "error": "NoEvidenceError: 重排后没有可交付政策证据（candidates=20, evidence=0, min_score=0.3）",
+          "scores": {
+            "recall@10": 0,
+            "recall@3": 0,
+            "recall@1": 0,
+            "evidence_tokens": 0,
+            "duplicate_ratio": 0
+          },
+          "outcome": "no_evidence",
+          "elapsed_s": 2.4,
+          "sections": []
+        },
+        "expected_output": {
+          "claims": [
+            "签收时已过保质期的，全额退款。",
+            "签收时已过保质期的，按食品安全相关规定赔付。"
+          ],
+          "seed_chunk_id": [
+            "P11#006:01"
+          ],
+          "reference_answer": "签收时已过保质期的，全额退款，并按食品安全相关规定赔付。",
+          "acceptable_seed_chunk_ids": []
+        },
+        "metadata": {
+          "kind": "table",
+          "type": "single",
+          "layer": "platform",
+          "style": "colloquial",
+          "doc_id": "P11",
+          "section": "第六条 食品、保健食品、化妆品 > 6.2 保质期",
+          "reviewed": true,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 0,
+          "comment": "种子块名次 "
+        },
+        {
+          "name": "recall@3",
+          "value": 0,
+          "comment": "种子块名次 "
+        },
+        {
+          "name": "recall@1",
+          "value": 0,
+          "comment": "种子块名次 "
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "run_error",
+          "value": 1,
+          "comment": "NoEvidenceError: 重排后没有可交付政策证据（candidates=20, evidence=0, min_score=0.3）"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "3460a03f76ee322f",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:13:12.798Z",
+      "updatedAt": "2026-08-19T05:13:12.836Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "025f9cda96399850",
+      "traceId": "888ca10d55a179d64e3d97fd1decb9c3",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-19 05:12:54.874000+00:00",
+      "endTime": "2026-08-19 05:13:12.568000+00:00",
+      "input": {
+        "query": "我收到货的时候东西就已经过期了，这种情况我能怎么办？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-080",
+        "kind": "table",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P11",
+        "section": "第六条 食品、保健食品、化妆品 > 6.2 保质期",
+        "reviewed": true,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-080",
+        "query": "我收到货的时候东西就已经过期了，这种情况我能怎么办？",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P11",
+        "layer": "platform",
+        "kind": "table",
+        "seed_chunk_id": [
+          "P11#006:01"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": "NoEvidenceError: 重排后没有可交付政策证据（candidates=20, evidence=0, min_score=0.3）",
+        "scores": {
+          "recall@10": 0,
+          "recall@3": 0,
+          "recall@1": 0,
+          "evidence_tokens": 0,
+          "duplicate_ratio": 0
+        },
+        "outcome": "no_evidence",
+        "elapsed_s": 2.4,
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 17.694,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:13:12.798Z",
+      "updatedAt": "2026-08-19T05:13:12.835Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "fa34026ed3c5a204",
+      "traceId": "888ca10d55a179d64e3d97fd1decb9c3",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 11:44:45.680000+00:00",
-      "endTime": "2026-08-18 11:44:45.799000+00:00",
+      "startTime": "2026-08-19 05:13:11.643000+00:00",
+      "endTime": "2026-08-19 05:13:11.770000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1122,189 +587,185 @@
           {
             "chunk_id": "L01#003:00",
             "section": "L01 第二十四条 【质量不符时的退货、更换、修理】",
-            "rrf": 0.1822,
+            "rrf": 0.1863,
             "hits": [
               "1/law/dense#1",
-              "1/law/bm25#3",
+              "1/law/bm25#1",
               "2/law/dense#1",
               "2/law/bm25#3"
             ]
           },
           {
-            "chunk_id": "L05#009:00",
-            "section": "L05 第九条 【售出 7 日内：可退可换可修】",
-            "rrf": 0.1192,
+            "chunk_id": "L01#002:00",
+            "section": "L01 第二十三条 【瑕疵举证责任倒置】",
+            "rrf": 0.0871,
             "hits": [
-              "1/law/dense#5",
-              "2/law/dense#3",
-              "2/law/bm25#8"
+              "1/law/dense#2",
+              "1/law/bm25#4"
             ]
           },
           {
-            "chunk_id": "P03#004:03",
-            "section": "P03 第五条 商家处理时效与超时机制 > 5.4 超时机制的性质",
-            "rrf": 0.1164,
+            "chunk_id": "P09#004:01",
+            "section": "P09 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
+            "rrf": 0.1214,
             "hits": [
-              "1/platform/dense#9",
-              "2/platform/dense#3",
-              "2/platform/bm25#6"
+              "1/platform/dense#3",
+              "1/platform/bm25#3",
+              "2/platform/dense#9"
             ]
           },
           {
             "chunk_id": "L05#022:00",
             "section": "L05 第二十二条 【申诉与诉讼】",
-            "rrf": 0.1102,
+            "rrf": 0.1251,
             "hits": [
-              "1/law/dense#8",
-              "1/law/bm25#9",
+              "1/law/dense#4",
+              "1/law/bm25#3",
               "2/law/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P01#003:01",
+            "section": "P01 第三章 订单与合同 > 3.2 商品信息",
+            "rrf": 0.1047,
+            "hits": [
+              "1/platform/dense#2",
+              "1/platform/bm25#11",
+              "2/platform/dense#17"
+            ]
+          },
+          {
+            "chunk_id": "L02#007:00",
+            "section": "L02 第七章 附则 > 第三十五条 【质量问题退货的法律适用】",
+            "rrf": 0.077,
+            "hits": [
+              "1/law/dense#7",
+              "1/law/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P05#005:01",
+            "section": "P05 第五条 举证责任 > 5.2 消费者举证",
+            "rrf": 0.0683,
+            "hits": [
+              "1/platform/dense#7",
+              "1/platform/bm25#12"
             ]
           },
           {
             "chunk_id": "P09#004:00",
             "section": "P09 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
-            "rrf": 0.11,
+            "rrf": 0.1445,
             "hits": [
-              "1/platform/dense#12",
+              "1/platform/dense#9",
+              "1/platform/bm25#10",
               "2/platform/dense#2",
-              "2/platform/bm25#10"
-            ]
-          },
-          {
-            "chunk_id": "P11#006:02",
-            "section": "P11 第六条 食品、保健食品、化妆品 > 6.3 食品安全问题",
-            "rrf": 0.104,
-            "hits": [
-              "1/platform/dense#7",
-              "2/platform/dense#8",
               "2/platform/bm25#12"
-            ]
-          },
-          {
-            "chunk_id": "L02#006:01",
-            "section": "L02 第六章 法律责任 > 第三十一条 【拒绝退货、拖延退款】",
-            "rrf": 0.1026,
-            "hits": [
-              "1/law/dense#10",
-              "2/law/dense#7",
-              "2/law/bm25#11"
             ]
           },
           {
             "chunk_id": "P09#004:04",
             "section": "P09 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
-            "rrf": 0.0911,
+            "rrf": 0.0952,
             "hits": [
-              "1/platform/dense#3",
+              "1/platform/dense#1",
               "2/platform/dense#1"
             ]
           },
           {
-            "chunk_id": "L03#004:00",
-            "section": "L03 第十八条 【售后有效期起算与退款金额】",
-            "rrf": 0.0909,
+            "chunk_id": "P09#006:03",
+            "section": "P09 第七条 外部维权途径 > 7.4 质量鉴定",
+            "rrf": 0.0476,
             "hits": [
-              "1/law/dense#2",
-              "2/law/dense#2"
+              "1/platform/bm25#1"
             ]
           },
           {
-            "chunk_id": "P11#006:01",
-            "section": "P11 第六条 食品、保健食品、化妆品 > 6.2 保质期",
-            "rrf": 0.0893,
+            "chunk_id": "P03#004:03",
+            "section": "P03 第五条 商家处理时效与超时机制 > 5.4 超时机制的性质",
+            "rrf": 0.1114,
             "hits": [
-              "1/platform/dense#1",
-              "2/platform/dense#4"
-            ]
-          },
-          {
-            "chunk_id": "L01#006:00",
-            "section": "L01 第四十四条 【网络交易平台提供者责任】",
-            "rrf": 0.0871,
-            "hits": [
-              "1/law/bm25#4",
-              "2/law/bm25#2"
-            ]
-          },
-          {
-            "chunk_id": "L05#014:00",
-            "section": "L05 第十四条 【换货标准与有效期重算】",
-            "rrf": 0.0835,
-            "hits": [
-              "1/law/dense#3",
-              "2/law/dense#5"
-            ]
-          },
-          {
-            "chunk_id": "L02#003:06",
-            "section": "L02 第三章 退货程序 > 第十六条 【信用卡手续费】",
-            "rrf": 0.0825,
-            "hits": [
-              "1/law/bm25#2",
-              "2/law/bm25#7"
-            ]
-          },
-          {
-            "chunk_id": "L02#003:09",
-            "section": "L02 第三章 退货程序 > 第十九条 【退货方式】",
-            "rrf": 0.081,
-            "hits": [
-              "1/law/bm25#1",
-              "2/law/bm25#10"
+              "1/platform/dense#12",
+              "2/platform/dense#4",
+              "2/platform/bm25#6"
             ]
           },
           {
             "chunk_id": "P02#001:00",
             "section": "P02 第二条 退货窗口",
-            "rrf": 0.081,
+            "rrf": 0.1115,
             "hits": [
-              "2/platform/dense#10",
+              "1/platform/bm25#8",
+              "2/platform/dense#11",
+              "2/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P09#004:02",
+            "section": "P09 第五条 特定场景的处理口径 > 5.3 假冒伪劣与虚假宣传",
+            "rrf": 0.0683,
+            "hits": [
+              "2/platform/dense#12",
+              "2/platform/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "P03#004:01",
+            "section": "P03 第五条 商家处理时效与超时机制 > 5.2 已发货未签收订单的退款",
+            "rrf": 0.0656,
+            "hits": [
+              "2/platform/dense#7",
+              "2/platform/bm25#15"
+            ]
+          },
+          {
+            "chunk_id": "P03#002:02",
+            "section": "P03 第三条 到账时效 > 3.3 法定时限",
+            "rrf": 0.0573,
+            "hits": [
+              "2/platform/dense#13",
+              "2/platform/bm25#17"
+            ]
+          },
+          {
+            "chunk_id": "P08#006:00",
+            "section": "P08 第六条 申诉 > 6.1 申诉渠道",
+            "rrf": 0.0476,
+            "hits": [
               "2/platform/bm25#1"
             ]
           },
           {
             "chunk_id": "L01#009:00",
             "section": "L01 第五十五条 【惩罚性赔偿】",
-            "rrf": 0.081,
+            "rrf": 0.0476,
             "hits": [
-              "2/law/dense#10",
               "2/law/bm25#1"
             ]
           },
           {
-            "chunk_id": "P03#004:02",
-            "section": "P03 第五条 商家处理时效与超时机制 > 5.3 已签收订单的退货退款",
-            "rrf": 0.08,
+            "chunk_id": "P09#004:03",
+            "section": "P09 第五条 特定场景的处理口径 > 5.4 商品导致人身或财产损害",
+            "rrf": 0.0455,
             "hits": [
-              "1/platform/dense#5",
-              "2/platform/dense#5"
-            ]
-          },
-          {
-            "chunk_id": "P08#006:00",
-            "section": "P08 第六条 申诉 > 6.1 申诉渠道",
-            "rrf": 0.0799,
-            "hits": [
-              "1/platform/bm25#9",
               "2/platform/bm25#2"
             ]
           },
           {
-            "chunk_id": "L05#010:00",
-            "section": "L05 第十条 【售出 15 日内：可换可修】",
-            "rrf": 0.0787,
+            "chunk_id": "L03#004:00",
+            "section": "L03 第十八条 【售后有效期起算与退款金额】",
+            "rrf": 0.0812,
             "hits": [
-              "1/law/dense#7",
-              "2/law/dense#4"
+              "1/law/dense#8",
+              "2/law/dense#2"
             ]
           },
           {
-            "chunk_id": "L05#012:00",
-            "section": "L05 第十二条 【超期未修好】",
-            "rrf": 0.0774,
+            "chunk_id": "L01#006:00",
+            "section": "L01 第四十四条 【网络交易平台提供者责任】",
+            "rrf": 0.0455,
             "hits": [
-              "1/law/dense#4",
-              "2/law/dense#8"
+              "2/law/bm25#2"
             ]
           }
         ]
@@ -1316,7 +777,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "e9c5eadf70c85a70",
+      "parentObservationId": "84772b349817ad3c",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1324,10 +785,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.119,
+      "latency": 0.127,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:44:46.593Z",
-      "updatedAt": "2026-08-18T11:44:46.603Z",
+      "createdAt": "2026-08-19T05:13:12.798Z",
+      "updatedAt": "2026-08-19T05:13:12.835Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1336,6 +797,312 @@
       "model": null,
       "modelParameters": null,
       "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "84772b349817ad3c",
+      "traceId": "888ca10d55a179d64e3d97fd1decb9c3",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:13:10.191000+00:00",
+      "endTime": "2026-08-19 05:13:12.567000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "我收到货的时候东西就已经过期了，这种情况我能怎么办？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "ERROR",
+      "statusMessage": "NoEvidenceError: 重排后没有可交付政策证据（candidates=20, evidence=0, min_score=0.3）",
+      "parentObservationId": "a12883493e868a55",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 2.376,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:13:12.798Z",
+      "updatedAt": "2026-08-19T05:13:12.834Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "output": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "f827c2d8919b4365",
+      "traceId": "888ca10d55a179d64e3d97fd1decb9c3",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-19 05:13:11.770000+00:00",
+      "endTime": "2026-08-19 05:13:12.566000+00:00",
+      "input": {
+        "query": "我收到货的时候东西就已经过期了，这种情况我能怎么办？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 0,
+        "min_score": 0.3,
+        "dropped": [
+          "L01#003:00",
+          "L01#002:00",
+          "P09#004:01",
+          "L05#022:00",
+          "P01#003:01",
+          "L02#007:00",
+          "P05#005:01",
+          "P09#004:00",
+          "P09#004:04",
+          "P09#006:03",
+          "P03#004:03",
+          "P02#001:00",
+          "P09#004:02",
+          "P03#004:01",
+          "P03#002:02",
+          "P08#006:00",
+          "L01#009:00",
+          "P09#004:03",
+          "L03#004:00",
+          "L01#006:00"
+        ],
+        "evidence": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "84772b349817ad3c",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.796,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:13:12.798Z",
+      "updatedAt": "2026-08-19T05:13:12.834Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "b96893e2bceb849c",
+      "traceId": "888ca10d55a179d64e3d97fd1decb9c3",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:13:12.566000+00:00",
+      "endTime": "2026-08-19 05:13:12.566000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": []
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "84772b349817ad3c",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:13:12.798Z",
+      "updatedAt": "2026-08-19T05:13:12.831Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "45874fd7e21489c7",
+      "traceId": "888ca10d55a179d64e3d97fd1decb9c3",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-19 05:13:10.191000+00:00",
+      "endTime": "2026-08-19 05:13:11.642000+00:00",
+      "input": {
+        "query": "我收到货的时候东西就已经过期了，这种情况我能怎么办？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "dispute",
+            "text": "收到货时商品已经过期，属于商品质量问题，消费者可以要求商家如何处理？"
+          },
+          {
+            "id": "2",
+            "intent": "refund",
+            "text": "收到货时商品已过期，消费者可以申请退款或赔偿吗？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "84772b349817ad3c",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.451,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:13:12.798Z",
+      "updatedAt": "2026-08-19T05:13:12.818Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,

@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-090",
+    "query": "我普通会员，签收那天不算，从第二天开始数，那我第几天之前把退货申请发出去才算没超时？",
     "type": "multi_hop",
     "style": "colloquial",
     "doc_id": "P02+L02",
@@ -10,16 +11,17 @@
       "P02#001:00",
       "L02#003:00"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
       "recall@3": 1.0,
-      "evidence_tokens": 1753,
-      "duplicate_ratio": 0.134,
+      "evidence_tokens": 1997,
+      "duplicate_ratio": 0.119,
       "context_recall": 1.0,
-      "context_relevance": 0.12
+      "context_relevance": 0.108
     },
-    "elapsed_s": 2.3,
+    "elapsed_s": 2.2,
     "seed_rank": {
       "candidate": {
         "P02#001:00": 1,
@@ -30,11 +32,24 @@
         "L02#003:00": 2
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "window",
+          "text": "普通会员签收后从第二天开始计算，第几天之前发出退货申请才算没有超过无理由退货窗口期？"
+        }
+      ]
+    },
+    "rewrite_hash": "578c6fbe16ab5f4c",
     "sections": [
       "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
       "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十条 【退货通知期限与起算点】",
       "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.4 等级以申请时为准",
-      "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.2 质量问题退货窗口"
+      "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.2 质量问题退货窗口",
+      "P03 星辰优选退款规则与到账时效 > 第五条 商家处理时效与超时机制 > 5.2 已发货未签收订单的退款"
     ],
     "judge": {
       "context_recall": {
@@ -50,7 +65,7 @@
           {
             "claim": "签收当天不计入普通会员无理由退货的7天窗口期。",
             "supported": true,
-            "reason": "L02 第十条判定要点：起算点是签收次日，签收当天不计入。"
+            "reason": "L02 第十条：七日期间自签收次日开始起算，签收当天不计入。"
           },
           {
             "claim": "普通会员无理由退货的7天窗口期自签收次日开始起算。",
@@ -60,12 +75,12 @@
           {
             "claim": "普通会员无理由退货窗口期以发出退货通知的时间为准。",
             "supported": true,
-            "reason": "L02 第十条判定要点：窗口期以发出退货通知的时间为准。"
+            "reason": "L02 第十条：窗口期以发出退货通知的时间为准。"
           },
           {
             "claim": "签收天数等于7天的当天仍在普通会员无理由退货窗口期内。",
             "supported": true,
-            "reason": "P02 2.3：签收天数等于窗口值的当天仍在窗口内。"
+            "reason": "P02 2.3：签收天数等于窗口值当天仍在窗口内。"
           },
           {
             "claim": "签收天数大于7天即为超出普通会员无理由退货窗口期。",
@@ -76,8 +91,8 @@
         "error": null
       },
       "context_relevance": {
-        "score": 0.12,
-        "n": 83,
+        "score": 0.108,
+        "n": 93,
         "hit": 10,
         "truncated": false,
         "note": "不相关的主要是金牌会员权益、质量问题退货、退款流程、运费、风控等。",
@@ -96,27 +111,27 @@
         "error": null
       }
     },
-    "trace_id": "bafb9ba291a2ecd8e00db3b18f37567a"
+    "trace_id": "bfbe3bb7d4d1306fa5f9ec93b557cf2e"
   },
   "trace": {
-    "id": "bafb9ba291a2ecd8e00db3b18f37567a",
+    "id": "bfbe3bb7d4d1306fa5f9ec93b557cf2e",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:43:30.338000+00:00"
+    "timestamp": "2026-08-19 05:12:25.013000+00:00"
   },
   "observations": [
     {
-      "id": "0d3a144ecb15b0c3",
-      "traceId": "bafb9ba291a2ecd8e00db3b18f37567a",
+      "id": "b21014bbb336079f",
+      "traceId": "bfbe3bb7d4d1306fa5f9ec93b557cf2e",
       "type": "SPAN",
       "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:43:00.144000+00:00",
-      "endTime": "2026-08-18 11:43:37.465000+00:00",
+      "startTime": "2026-08-19 05:11:56.345000+00:00",
+      "endTime": "2026-08-19 05:12:32.879000+00:00",
       "input": {
         "query": "我普通会员，签收那天不算，从第二天开始数，那我第几天之前把退货申请发出去才算没超时？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -148,7 +163,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -161,6 +176,7 @@
       },
       "output": {
         "case_id": "R1-090",
+        "query": "我普通会员，签收那天不算，从第二天开始数，那我第几天之前把退货申请发出去才算没超时？",
         "type": "multi_hop",
         "style": "colloquial",
         "doc_id": "P02+L02",
@@ -170,16 +186,17 @@
           "P02#001:00",
           "L02#003:00"
         ],
+        "acceptable_seed_chunk_ids": null,
         "error": null,
         "scores": {
           "recall@10": 1,
           "recall@3": 1,
-          "evidence_tokens": 1753,
-          "duplicate_ratio": 0.134,
+          "evidence_tokens": 1997,
+          "duplicate_ratio": 0.119,
           "context_recall": 1,
-          "context_relevance": 0.12
+          "context_relevance": 0.108
         },
-        "elapsed_s": 2.3,
+        "elapsed_s": 2.2,
         "seed_rank": {
           "candidate": {
             "P02#001:00": 1,
@@ -190,11 +207,24 @@
             "L02#003:00": 2
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "window",
+              "text": "普通会员签收后从第二天开始计算，第几天之前发出退货申请才算没有超过无理由退货窗口期？"
+            }
+          ]
+        },
+        "rewrite_hash": "578c6fbe16ab5f4c",
         "sections": [
           "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
           "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十条 【退货通知期限与起算点】",
           "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.4 等级以申请时为准",
-          "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.2 质量问题退货窗口"
+          "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.2 质量问题退货窗口",
+          "P03 星辰优选退款规则与到账时效 > 第五条 商家处理时效与超时机制 > 5.2 已发货未签收订单的退款"
         ],
         "judge": {
           "context_recall": {
@@ -210,7 +240,7 @@
               {
                 "claim": "签收当天不计入普通会员无理由退货的7天窗口期。",
                 "supported": true,
-                "reason": "L02 第十条判定要点：起算点是签收次日，签收当天不计入。"
+                "reason": "L02 第十条：七日期间自签收次日开始起算，签收当天不计入。"
               },
               {
                 "claim": "普通会员无理由退货的7天窗口期自签收次日开始起算。",
@@ -220,12 +250,12 @@
               {
                 "claim": "普通会员无理由退货窗口期以发出退货通知的时间为准。",
                 "supported": true,
-                "reason": "L02 第十条判定要点：窗口期以发出退货通知的时间为准。"
+                "reason": "L02 第十条：窗口期以发出退货通知的时间为准。"
               },
               {
                 "claim": "签收天数等于7天的当天仍在普通会员无理由退货窗口期内。",
                 "supported": true,
-                "reason": "P02 2.3：签收天数等于窗口值的当天仍在窗口内。"
+                "reason": "P02 2.3：签收天数等于窗口值当天仍在窗口内。"
               },
               {
                 "claim": "签收天数大于7天即为超出普通会员无理由退货窗口期。",
@@ -236,8 +266,8 @@
             "error": null
           },
           "context_relevance": {
-            "score": 0.12,
-            "n": 83,
+            "score": 0.108,
+            "n": 93,
             "hit": 10,
             "truncated": false,
             "note": "不相关的主要是金牌会员权益、质量问题退货、退款流程、运费、风控等。",
@@ -271,10 +301,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 37.321,
+      "latency": 36.534,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:41.101Z",
-      "updatedAt": "2026-08-18T11:43:41.126Z",
+      "createdAt": "2026-08-19T05:12:37.647Z",
+      "updatedAt": "2026-08-19T05:12:37.675Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -296,12 +326,286 @@
       "usagePricingTierName": null
     },
     {
-      "id": "ebc0c10de2ecec0b",
-      "traceId": "bafb9ba291a2ecd8e00db3b18f37567a",
+      "id": "fef0931afe43dffe",
+      "traceId": "bfbe3bb7d4d1306fa5f9ec93b557cf2e",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-19 05:12:32.878000+00:00",
+      "endTime": "2026-08-19 05:12:32.879000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 7,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "b21014bbb336079f",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:12:37.647Z",
+      "updatedAt": "2026-08-19T05:12:37.675Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "8618181b2c48d83c",
+      "traceId": "bfbe3bb7d4d1306fa5f9ec93b557cf2e",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:11:56.345000+00:00",
+      "endTime": "2026-08-19 05:12:32.877000+00:00",
+      "input": {
+        "query": "我普通会员，签收那天不算，从第二天开始数，那我第几天之前把退货申请发出去才算没超时？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-090",
+        "kind": "text",
+        "type": "multi_hop",
+        "layer": "law+platform",
+        "style": "colloquial",
+        "topic": "平台的七天口径和法规原文差在哪",
+        "doc_id": "P02+L02",
+        "section": "第二条 退货窗口 / 第三章 退货程序 > 第十条 【退货通知期限与起算点】",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.273,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-090",
+        "query": "我普通会员，签收那天不算，从第二天开始数，那我第几天之前把退货申请发出去才算没超时？",
+        "type": "multi_hop",
+        "style": "colloquial",
+        "doc_id": "P02+L02",
+        "layer": "law+platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P02#001:00",
+          "L02#003:00"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "evidence_tokens": 1997,
+          "duplicate_ratio": 0.119,
+          "context_recall": 1,
+          "context_relevance": 0.108
+        },
+        "elapsed_s": 2.2,
+        "seed_rank": {
+          "candidate": {
+            "P02#001:00": 1,
+            "L02#003:00": 2
+          },
+          "evidence": {
+            "P02#001:00": 1,
+            "L02#003:00": 2
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "window",
+              "text": "普通会员签收后从第二天开始计算，第几天之前发出退货申请才算没有超过无理由退货窗口期？"
+            }
+          ]
+        },
+        "rewrite_hash": "578c6fbe16ab5f4c",
+        "sections": [
+          "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
+          "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十条 【退货通知期限与起算点】",
+          "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.4 等级以申请时为准",
+          "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.2 质量问题退货窗口",
+          "P03 星辰优选退款规则与到账时效 > 第五条 商家处理时效与超时机制 > 5.2 已发货未签收订单的退款"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 6,
+            "hit": 6,
+            "detail": [
+              {
+                "claim": "普通会员无理由退货窗口为自签收之日起7天。",
+                "supported": true,
+                "reason": "P02 2.1 明确普通会员自签收之日起7天内可申请。"
+              },
+              {
+                "claim": "签收当天不计入普通会员无理由退货的7天窗口期。",
+                "supported": true,
+                "reason": "L02 第十条：七日期间自签收次日开始起算，签收当天不计入。"
+              },
+              {
+                "claim": "普通会员无理由退货的7天窗口期自签收次日开始起算。",
+                "supported": true,
+                "reason": "L02 第十条：七日期间自签收次日开始起算。"
+              },
+              {
+                "claim": "普通会员无理由退货窗口期以发出退货通知的时间为准。",
+                "supported": true,
+                "reason": "L02 第十条：窗口期以发出退货通知的时间为准。"
+              },
+              {
+                "claim": "签收天数等于7天的当天仍在普通会员无理由退货窗口期内。",
+                "supported": true,
+                "reason": "P02 2.3：签收天数等于窗口值当天仍在窗口内。"
+              },
+              {
+                "claim": "签收天数大于7天即为超出普通会员无理由退货窗口期。",
+                "supported": true,
+                "reason": "P02 2.3：签收天数大于窗口值即为超出。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.108,
+            "n": 93,
+            "hit": 10,
+            "truncated": false,
+            "note": "不相关的主要是金牌会员权益、质量问题退货、退款流程、运费、风控等。",
+            "irrelevant": [
+              "2.1 **无理由退货**：",
+              "- 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。",
+              "2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 15 天**内可申请，需描述具体问题。",
+              "> 例：金牌会员无理由退货，签收第 15 天 → 在窗口内，可申请；",
+              "签收第 16 天 → 超出，不予受理。",
+              "2.4 **超出窗口的申请一律不予受理**，不因会员等级、商品金额、历史消费而例外。",
+              "2.5 **最宽窗口为 15 天**。",
+              "签收超过 15 天的订单，无论退款原因为何、商品状态如何，判定结论均为不通过——此时无需再向消费者追问退款原因或商品状态",
+              "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。",
+              "网络商品销售者收到退货通知后应当及时向消费者提供真实、准确的退货地址、退货联系人、退货联系电话等有效联系信息。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "b21014bbb336079f",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 36.532,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:12:37.647Z",
+      "updatedAt": "2026-08-19T05:12:37.664Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "e4235bc1463481fe",
+      "traceId": "bfbe3bb7d4d1306fa5f9ec93b557cf2e",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:43:37.463000+00:00",
-      "endTime": "2026-08-18 11:43:37.464000+00:00",
+      "startTime": "2026-08-19 05:12:32.878000+00:00",
+      "endTime": "2026-08-19 05:12:32.878000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -309,6 +613,7 @@
         },
         "output": {
           "case_id": "R1-090",
+          "query": "我普通会员，签收那天不算，从第二天开始数，那我第几天之前把退货申请发出去才算没超时？",
           "type": "multi_hop",
           "style": "colloquial",
           "doc_id": "P02+L02",
@@ -318,16 +623,17 @@
             "P02#001:00",
             "L02#003:00"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
             "recall@3": 1,
-            "evidence_tokens": 1753,
-            "duplicate_ratio": 0.134,
+            "evidence_tokens": 1997,
+            "duplicate_ratio": 0.119,
             "context_recall": 1,
-            "context_relevance": 0.12
+            "context_relevance": 0.108
           },
-          "elapsed_s": 2.3,
+          "elapsed_s": 2.2,
           "seed_rank": {
             "candidate": {
               "P02#001:00": 1,
@@ -338,11 +644,24 @@
               "L02#003:00": 2
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "window",
+                "text": "普通会员签收后从第二天开始计算，第几天之前发出退货申请才算没有超过无理由退货窗口期？"
+              }
+            ]
+          },
+          "rewrite_hash": "578c6fbe16ab5f4c",
           "sections": [
             "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
             "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十条 【退货通知期限与起算点】",
             "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.4 等级以申请时为准",
-            "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.2 质量问题退货窗口"
+            "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.2 质量问题退货窗口",
+            "P03 星辰优选退款规则与到账时效 > 第五条 商家处理时效与超时机制 > 5.2 已发货未签收订单的退款"
           ],
           "judge": {
             "context_recall": {
@@ -358,7 +677,7 @@
                 {
                   "claim": "签收当天不计入普通会员无理由退货的7天窗口期。",
                   "supported": true,
-                  "reason": "L02 第十条判定要点：起算点是签收次日，签收当天不计入。"
+                  "reason": "L02 第十条：七日期间自签收次日开始起算，签收当天不计入。"
                 },
                 {
                   "claim": "普通会员无理由退货的7天窗口期自签收次日开始起算。",
@@ -368,12 +687,12 @@
                 {
                   "claim": "普通会员无理由退货窗口期以发出退货通知的时间为准。",
                   "supported": true,
-                  "reason": "L02 第十条判定要点：窗口期以发出退货通知的时间为准。"
+                  "reason": "L02 第十条：窗口期以发出退货通知的时间为准。"
                 },
                 {
                   "claim": "签收天数等于7天的当天仍在普通会员无理由退货窗口期内。",
                   "supported": true,
-                  "reason": "P02 2.3：签收天数等于窗口值的当天仍在窗口内。"
+                  "reason": "P02 2.3：签收天数等于窗口值当天仍在窗口内。"
                 },
                 {
                   "claim": "签收天数大于7天即为超出普通会员无理由退货窗口期。",
@@ -384,8 +703,8 @@
               "error": null
             },
             "context_relevance": {
-              "score": 0.12,
-              "n": 83,
+              "score": 0.108,
+              "n": 93,
               "hit": 10,
               "truncated": false,
               "note": "不相关的主要是金牌会员权益、质量问题退货、退款流程、运费、风控等。",
@@ -418,7 +737,8 @@
             "P02#001:00",
             "L02#003:00"
           ],
-          "reference_answer": "普通会员无理由退货窗口为自签收之日起7天，且签收当天不计入，自签收次日开始起算；窗口期以发出退货通知的时间为准，签收天数等于7天的当天仍在窗口内，大于7天即为超出。"
+          "reference_answer": "普通会员无理由退货窗口为自签收之日起7天，且签收当天不计入，自签收次日开始起算；窗口期以发出退货通知的时间为准，签收天数等于7天的当天仍在窗口内，大于7天即为超出。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "text",
@@ -441,7 +761,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -465,12 +785,12 @@
         },
         {
           "name": "evidence_tokens",
-          "value": 1753,
+          "value": 1997,
           "comment": ""
         },
         {
           "name": "duplicate_ratio",
-          "value": 0.134,
+          "value": 0.119,
           "comment": ""
         },
         {
@@ -480,8 +800,8 @@
         },
         {
           "name": "context_relevance",
-          "value": 0.12,
-          "comment": "10/83 个内容单元相关；不相关的主要是金牌会员权益、质量问题退货、退款流程、运费、风控等。"
+          "value": 0.108,
+          "comment": "10/93 个内容单元相关；不相关的主要是金牌会员权益、质量问题退货、退款流程、运费、风控等。"
         },
         {
           "name": "run_error",
@@ -496,7 +816,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "b1a53a8b3d4092bd",
+      "parentObservationId": "fef0931afe43dffe",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -504,10 +824,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.001,
+      "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:41.101Z",
-      "updatedAt": "2026-08-18T11:43:41.125Z",
+      "createdAt": "2026-08-19T05:12:37.647Z",
+      "updatedAt": "2026-08-19T05:12:37.658Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -527,50 +847,21 @@
       "usagePricingTierName": null
     },
     {
-      "id": "5ff9e4046c95cf6b",
-      "traceId": "bafb9ba291a2ecd8e00db3b18f37567a",
+      "id": "202878085b59f8ec",
+      "traceId": "bfbe3bb7d4d1306fa5f9ec93b557cf2e",
       "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:43:00.144000+00:00",
-      "endTime": "2026-08-18 11:43:37.461000+00:00",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-19 05:12:25.013000+00:00",
+      "endTime": "2026-08-19 05:12:26.226000+00:00",
       "input": {
         "query": "我普通会员，签收那天不算，从第二天开始数，那我第几天之前把退货申请发出去才算没超时？"
       },
       "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-090",
-        "kind": "text",
-        "type": "multi_hop",
-        "layer": "law+platform",
-        "style": "colloquial",
-        "topic": "平台的七天口径和法规原文差在哪",
-        "doc_id": "P02+L02",
-        "section": "第二条 退货窗口 / 第三章 退货程序 > 第十条 【退货通知期限与起算点】",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.273,
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -582,102 +873,15 @@
         }
       },
       "output": {
-        "case_id": "R1-090",
-        "type": "multi_hop",
-        "style": "colloquial",
-        "doc_id": "P02+L02",
-        "layer": "law+platform",
-        "kind": "text",
-        "seed_chunk_id": [
-          "P02#001:00",
-          "L02#003:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "evidence_tokens": 1753,
-          "duplicate_ratio": 0.134,
-          "context_recall": 1,
-          "context_relevance": 0.12
-        },
-        "elapsed_s": 2.3,
-        "seed_rank": {
-          "candidate": {
-            "P02#001:00": 1,
-            "L02#003:00": 2
-          },
-          "evidence": {
-            "P02#001:00": 1,
-            "L02#003:00": 2
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "window",
+            "text": "普通会员签收后从第二天开始计算，第几天之前发出退货申请才算没有超过无理由退货窗口期？"
           }
-        },
-        "sections": [
-          "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
-          "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十条 【退货通知期限与起算点】",
-          "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.4 等级以申请时为准",
-          "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.2 质量问题退货窗口"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 6,
-            "hit": 6,
-            "detail": [
-              {
-                "claim": "普通会员无理由退货窗口为自签收之日起7天。",
-                "supported": true,
-                "reason": "P02 2.1 明确普通会员自签收之日起7天内可申请。"
-              },
-              {
-                "claim": "签收当天不计入普通会员无理由退货的7天窗口期。",
-                "supported": true,
-                "reason": "L02 第十条判定要点：起算点是签收次日，签收当天不计入。"
-              },
-              {
-                "claim": "普通会员无理由退货的7天窗口期自签收次日开始起算。",
-                "supported": true,
-                "reason": "L02 第十条：七日期间自签收次日开始起算。"
-              },
-              {
-                "claim": "普通会员无理由退货窗口期以发出退货通知的时间为准。",
-                "supported": true,
-                "reason": "L02 第十条判定要点：窗口期以发出退货通知的时间为准。"
-              },
-              {
-                "claim": "签收天数等于7天的当天仍在普通会员无理由退货窗口期内。",
-                "supported": true,
-                "reason": "P02 2.3：签收天数等于窗口值的当天仍在窗口内。"
-              },
-              {
-                "claim": "签收天数大于7天即为超出普通会员无理由退货窗口期。",
-                "supported": true,
-                "reason": "P02 2.3：签收天数大于窗口值即为超出。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.12,
-            "n": 83,
-            "hit": 10,
-            "truncated": false,
-            "note": "不相关的主要是金牌会员权益、质量问题退货、退款流程、运费、风控等。",
-            "irrelevant": [
-              "2.1 **无理由退货**：",
-              "- 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。",
-              "2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 15 天**内可申请，需描述具体问题。",
-              "> 例：金牌会员无理由退货，签收第 15 天 → 在窗口内，可申请；",
-              "签收第 16 天 → 超出，不予受理。",
-              "2.4 **超出窗口的申请一律不予受理**，不因会员等级、商品金额、历史消费而例外。",
-              "2.5 **最宽窗口为 15 天**。",
-              "签收超过 15 天的订单，无论退款原因为何、商品状态如何，判定结论均为不通过——此时无需再向消费者追问退款原因或商品状态",
-              "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。",
-              "网络商品销售者收到退货通知后应当及时向消费者提供真实、准确的退货地址、退货联系人、退货联系电话等有效联系信息。"
-            ],
-            "error": null
-          }
-        }
+        ]
       },
       "usage": {
         "input": 0,
@@ -686,7 +890,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "0d3a144ecb15b0c3",
+      "parentObservationId": "42e3d1ecd0b4ac91",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -694,10 +898,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 37.317,
+      "latency": 1.213,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:41.101Z",
-      "updatedAt": "2026-08-18T11:43:41.125Z",
+      "createdAt": "2026-08-19T05:12:27.605Z",
+      "updatedAt": "2026-08-19T05:12:27.627Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -718,18 +922,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "b1a53a8b3d4092bd",
-      "traceId": "bafb9ba291a2ecd8e00db3b18f37567a",
+      "id": "384c12bec2731d6d",
+      "traceId": "bfbe3bb7d4d1306fa5f9ec93b557cf2e",
       "type": "SPAN",
-      "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:43:37.463000+00:00",
-      "endTime": "2026-08-18 11:43:37.465000+00:00",
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:12:26.226000+00:00",
+      "endTime": "2026-08-19 05:12:26.227000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -741,10 +945,16 @@
         }
       },
       "output": {
-        "evaluator_count": 1,
-        "evaluation_count": 7,
-        "failed_evaluator_count": 0,
-        "skipped_evaluator_count": 0
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
       },
       "usage": {
         "input": 0,
@@ -753,7 +963,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "0d3a144ecb15b0c3",
+      "parentObservationId": "42e3d1ecd0b4ac91",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -761,10 +971,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.002,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:41.101Z",
-      "updatedAt": "2026-08-18T11:43:41.125Z",
+      "createdAt": "2026-08-19T05:12:27.605Z",
+      "updatedAt": "2026-08-19T05:12:27.627Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -786,266 +996,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "d6c928f2bfcda474",
-      "traceId": "bafb9ba291a2ecd8e00db3b18f37567a",
-      "type": "SPAN",
-      "name": "rag.rerank",
-      "startTime": "2026-08-18 11:43:31.733000+00:00",
-      "endTime": "2026-08-18 11:43:32.644000+00:00",
-      "input": {
-        "query": "我普通会员，签收那天不算，从第二天开始数，那我第几天之前把退货申请发出去才算没超时？",
-        "candidates": 20
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "passed": 6,
-        "min_score": 0.3,
-        "dropped": [
-          "L02#001:04",
-          "P07#001:02",
-          "P04#005:00",
-          "P06#004:01",
-          "L05#008:00",
-          "L02#001:01",
-          "L02#003:03",
-          "L05#025:00",
-          "P02#005:00",
-          "L02#006:01",
-          "L01#003:00",
-          "P11#007:00",
-          "P07#003:02",
-          "P09#004:04"
-        ],
-        "evidence": [
-          {
-            "chunk_id": "P02#001:00",
-            "section": "P02 第二条 退货窗口",
-            "score": 0.745,
-            "relevance": 0.681,
-            "prior": 1,
-            "excerpt": "2.1 **无理由退货**： - 普通会员：自签收之日起 **7 天**内可申请； - 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。 2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 …"
-          },
-          {
-            "chunk_id": "L02#003:00",
-            "section": "L02 第三章 退货程序 > 第十条 【退货通知期限与起算点】",
-            "score": 0.638,
-            "relevance": 0.685,
-            "prior": 0.45,
-            "excerpt": "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。 七日期间自消费者签收商品的次日开始起算。 > **判定要点**：窗口期以**发出退货通知**的时间为准，不是商品寄回或卖家收到的时间；起算点是**签收次日**，…"
-          },
-          {
-            "chunk_id": "P07#003:03",
-            "section": "P07 第四条 会员权益的边界 > 4.4 等级以申请时为准",
-            "score": 0.631,
-            "relevance": 0.564,
-            "prior": 0.9,
-            "excerpt": "退款申请的窗口按**消费者提交退款申请时**的会员等级判定。下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；反之适用 7 天窗口。"
-          },
-          {
-            "chunk_id": "P07#001:00",
-            "section": "P07 第二条 售后权益差异 > 2.1 无理由退货窗口",
-            "score": 0.427,
-            "relevance": 0.309,
-            "prior": 0.9,
-            "excerpt": "| 会员等级 | 无理由退货窗口 | |---|---| | 普通会员 | 自签收之日起 **7 天** | | 金牌会员 | 自签收之日起 **15 天** | 金牌会员的 15 天窗口是平台在法定 7 日标准之上作出的更优承诺，对该等级…"
-          },
-          {
-            "chunk_id": "P03#004:01",
-            "section": "P03 第五条 商家处理时效与超时机制 > 5.2 已发货未签收订单的退款",
-            "score": 0.396,
-            "relevance": 0.27,
-            "prior": 0.9,
-            "excerpt": "消费者申请退款后，商家 **5 天**（虚拟商品 3 天）内未处理的，系统按申请金额自动完成退款。"
-          },
-          {
-            "chunk_id": "P07#001:01",
-            "section": "P07 第二条 售后权益差异 > 2.2 质量问题退货窗口",
-            "score": 0.3,
-            "relevance": 0.15,
-            "prior": 0.9,
-            "excerpt": "**质量问题退货不区分会员等级，所有消费者一律 15 天。** 会员等级不影响质量问题售后。"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "02fcf2c8ad8301cc",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.911,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:36.151Z",
-      "updatedAt": "2026-08-18T11:43:36.161Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "02fcf2c8ad8301cc",
-      "traceId": "bafb9ba291a2ecd8e00db3b18f37567a",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:43:30.338000+00:00",
-      "endTime": "2026-08-18 11:43:32.666000+00:00",
-      "modelParameters": {},
-      "input": {
-        "query": "我普通会员，签收那天不算，从第二天开始数，那我第几天之前把退货申请发出去才算没超时？",
-        "top_k": 4
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
-            "text": "2.1 **无理由退货**：\n\n- 普通会员：自签收之日起 **7 天**内可申请；\n- 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。\n\n2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 15 天**内可申请，需描述具体问题。\n\n2.3 **窗口判定为「大于即超出」**：签收天数**等于**窗口值的当天仍在窗口内，可以申请；签收天数**大于**窗口值即为超出。\n\n> 例：金牌会员无理由退货，签收第 15 天 → 在窗口内，可申请；签收第 16 天 → 超出，不予受理。\n\n2.4 **超出窗口的申请一律不予受理**，不因会员等级、商品金额、历史消费而例外。\n\n2.5 **最宽窗口为 15 天**。签收超过 15 天的订单，无论退款原因为何、商品状态如何，判定结论均为不通过——此时无需再向消费者追问退款原因或商品状态。",
-            "score": 0.7451366901397705,
-            "doc_id": "P02",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
-            "reason": "相关性 0.681 × 先验 1.00 → 0.745；命中 1/platform/dense#1, 1/platform/bm25#1"
-          },
-          {
-            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十条 【退货通知期限与起算点】",
-            "text": "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。\n\n七日期间自消费者签收商品的次日开始起算。\n\n> **判定要点**：窗口期以**发出退货通知**的时间为准，不是商品寄回或卖家收到的时间；起算点是**签收次日**，签收当天不计入。\n\n网络商品销售者收到退货通知后应当及时向消费者提供真实、准确的退货地址、退货联系人、退货联系电话等有效联系信息。\n\n消费者获得上述信息后应当及时退回商品，并保留退货凭证。\n\n消费者退货时应当将商品本身、配件及赠品一并退回。\n\n赠品包括赠送的实物、积分、代金券、优惠券等形式。如果赠品不能一并退回，经营者可以要求消费者按照事先标明的赠品价格支付赠品价款。\n\n消费者退回的商品完好的，网络商品销售者应当在收到退回商品之日起七日内向消费者返还已支付的商品价款。\n\n> **判定要点**：法定退款时限是**收到退货之日起 7 日内**。平台承诺的「1-3 个工作日到账」快于法定要求，属于更优承诺。\n\n退款方式比照购买商品的支付方式。经营者与消费者另有约定的，从其约定。\n\n购买商品时采用多种方式支付价款的，一般应当按照各种支付方式的实际支付价款以相应方式退款。\n\n除征得消费者明确表示同意的以外，网络商品销售者不应当自行指定其他退款方式。\n\n> **判定要点**：**「原路退回」是法定默认方式**。未经消费者明确同意，不得以store credit、平台余额、优惠券等形式替代原路退款。\n\n消费者采用积分、代金券、优惠券等形式支付价款的，网络商品销售者在消费者退还商品后应当以相应形式返还消费者。对积分、代金券、优惠券的使用和返还有约定的，可以从其约定。\n\n消费者购买商品时采用信用卡支付方式并支付手续费的，网络商品销售者退款时可以不退回手续费。\n\n消费者购买商品时采用信用卡支付方式并被网络商品销售者免除手续费的，网络商品销售者可以在退款时扣除手续费。\n\n退货价款以消费者实际支出的价款为准。\n\n套装或者满减优惠活动中的部分商品退货，导致不能再享受优惠的，根据购买时各商品价格进行结算，多退少补。\n\n> **判定要点**：**退款基数是实付金额，不是商品标价**。部分退货导致优惠失效的，剩余订单需重新结算，可能出现「多退少补」。\n\n商品退回所产生的运费依法由消费者承担。经营者与消费者另有约定的，按照约定。\n\n消费者参加满足一定条件免运费活动，但退货后已不能达到免运费活动要求的，网络商品销售者在退款时可以扣除运费。\n\n> **判定要点**：**无理由退货运费由消费者承担**（本条）；**质量问题退货运费由经营者承担**（消保法第二十四条）。这是区分退款原因的直接后果之一。\n\n网络商品销售者可以与消费者约定退货方式，但不应当限制消费者的退货方式。\n\n网络商品销售者可以免费上门取货，也可以征得消费者同意后有偿上门取货。",
-            "score": 0.6380587482452392,
-            "doc_id": "L02",
-            "layer": "law",
-            "doc_type": "部门规章",
-            "effective_date": "2017-03-15",
-            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
-            "reason": "相关性 0.685 × 先验 0.45 → 0.638；命中 1/law/dense#1, 1/law/bm25#1"
-          },
-          {
-            "section": "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.4 等级以申请时为准",
-            "text": "**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。\n\n> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。两者独立生效，风控不改变窗口，会员不豁免风控。\n\n生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。\n\n无理由退货「须未拆封」的要求对所有会员等级一律适用。金牌会员延长的是**时间窗口**，不是商品状态要求。\n\n退款申请的窗口按**消费者提交退款申请时**的会员等级判定。下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；反之适用 7 天窗口。",
-            "score": 0.6310530471801759,
-            "doc_id": "P07",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
-            "reason": "相关性 0.564 × 先验 0.90 → 0.631；命中 1/platform/dense#3, 1/platform/bm25#4"
-          },
-          {
-            "section": "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.2 质量问题退货窗口",
-            "text": "| 会员等级 | 无理由退货窗口 |\n|---|---|\n| 普通会员 | 自签收之日起 **7 天** |\n| 金牌会员 | 自签收之日起 **15 天** |\n\n金牌会员的 15 天窗口是平台在法定 7 日标准之上作出的更优承诺，对该等级会员的全部订单有效。\n\n**质量问题退货不区分会员等级，所有消费者一律 15 天。** 会员等级不影响质量问题售后。\n\n| 权益项 | 普通会员 | 金牌会员 |\n|---|---|---|\n| 无理由退货窗口 | 7 天 | 15 天 |\n| 质量问题退货窗口 | 15 天 | 15 天 |\n| 极速退款 | 不支持 | 支持（见第三条） |\n| 专属客服通道 | 不支持 | 支持 |\n| 退货上门取件 | 有偿 | 每月 2 次免费 |\n\n| 会员等级 | 无理由退货窗口 |\n|---|---|\n| 普通会员 | 自签收之日起 **7 天** |\n| 金牌会员 | 自签收之日起 **15 天** |\n\n金牌会员的 15 天窗口是平台在法定 7 日标准之上作出的更优承诺，对该等级会员的全部订单有效。\n\n**质量问题退货不区分会员等级，所有消费者一律 15 天。** 会员等级不影响质量问题售后。\n\n| 权益项 | 普通会员 | 金牌会员 |\n|---|---|---|\n| 无理由退货窗口 | 7 天 | 15 天 |\n| 质量问题退货窗口 | 15 天 | 15 天 |\n| 极速退款 | 不支持 | 支持（见第三条） |\n| 专属客服通道 | 不支持 | 支持 |\n| 退货上门取件 | 有偿 | 每月 2 次免费 |",
-            "score": 0.4269780206680298,
-            "doc_id": "P07",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
-            "reason": "相关性 0.309 × 先验 0.90 → 0.427；命中 1/platform/dense#2, 1/platform/bm25#2"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "5ff9e4046c95cf6b",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 2.328,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:36.151Z",
-      "updatedAt": "2026-08-18T11:43:36.161Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "00f4f78ed23bb0d7",
-      "traceId": "bafb9ba291a2ecd8e00db3b18f37567a",
+      "id": "9f88536f2ae5d970",
+      "traceId": "bfbe3bb7d4d1306fa5f9ec93b557cf2e",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 11:43:31.637000+00:00",
-      "endTime": "2026-08-18 11:43:31.732000+00:00",
+      "startTime": "2026-08-19 05:12:26.227000+00:00",
+      "endTime": "2026-08-19 05:12:26.306000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1236,7 +1198,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "02fcf2c8ad8301cc",
+      "parentObservationId": "42e3d1ecd0b4ac91",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1244,10 +1206,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.095,
+      "latency": 0.079,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:36.151Z",
-      "updatedAt": "2026-08-18T11:43:36.160Z",
+      "createdAt": "2026-08-19T05:12:27.605Z",
+      "updatedAt": "2026-08-19T05:12:27.627Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1269,29 +1231,23 @@
       "usagePricingTierName": null
     },
     {
-      "id": "794bca1fe030854e",
-      "traceId": "bafb9ba291a2ecd8e00db3b18f37567a",
-      "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:43:32.644000+00:00",
-      "endTime": "2026-08-18 11:43:32.666000+00:00",
+      "id": "42e3d1ecd0b4ac91",
+      "traceId": "bfbe3bb7d4d1306fa5f9ec93b557cf2e",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:12:25.013000+00:00",
+      "endTime": "2026-08-19 05:12:27.234000+00:00",
+      "modelParameters": {},
       "input": {
-        "top_k": 4,
-        "evidence": [
-          "P02#001:00",
-          "L02#003:00",
-          "P07#003:03",
-          "P07#001:00",
-          "P03#004:01",
-          "P07#001:01"
-        ]
+        "query": "我普通会员，签收那天不算，从第二天开始数，那我第几天之前把退货申请发出去才算没超时？",
+        "top_k": 6
       },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1347,6 +1303,17 @@
             "effective_date": "2024-01-01",
             "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
             "reason": "相关性 0.309 × 先验 0.90 → 0.427；命中 1/platform/dense#2, 1/platform/bm25#2"
+          },
+          {
+            "section": "P03 星辰优选退款规则与到账时效 > 第五条 商家处理时效与超时机制 > 5.2 已发货未签收订单的退款",
+            "text": "消费者申请退款后，商家 **24 小时**内未处理的，系统自动同意退款。\n\n消费者申请退款后，商家 **5 天**（虚拟商品 3 天）内未处理的，系统按申请金额自动完成退款。\n\n| 环节 | 时限 | 超时后果 |\n|---|---|---|\n| 商家审核退货申请 | 48 小时 | 超时视为同意退货 |\n| 消费者寄回并填写物流单号 | 7 天 | 超时申请自动关闭 |\n| 商家确认收货并退款（快递） | 10 天 | 超时系统自动退款 |\n| 商家确认收货并退款（平邮） | 30 天 | 超时系统自动退款 |\n\n超时自动同意是**对消费者的兜底保障**，不构成对商品状态或退款资格的实质认定。商家事后发现退回商品不完好的，可依 [P09] 申请争议处理。",
+            "score": 0.3963926601409913,
+            "doc_id": "P03",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P03-退款规则与到账时效.md",
+            "reason": "相关性 0.270 × 先验 0.90 → 0.396；命中 1/platform/dense#5"
           }
         ]
       },
@@ -1357,7 +1324,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "02fcf2c8ad8301cc",
+      "parentObservationId": "8618181b2c48d83c",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1365,17 +1332,16 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.022,
+      "latency": 2.221,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:36.151Z",
-      "updatedAt": "2026-08-18T11:43:36.160Z",
+      "createdAt": "2026-08-19T05:12:27.605Z",
+      "updatedAt": "2026-08-19T05:12:27.626Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
       "totalTokens": 0,
       "completionStartTime": null,
       "model": null,
-      "modelParameters": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -1389,21 +1355,22 @@
       "usagePricingTierName": null
     },
     {
-      "id": "c3715515d99a8d1b",
-      "traceId": "bafb9ba291a2ecd8e00db3b18f37567a",
+      "id": "1b2ac99e9a0cf426",
+      "traceId": "bfbe3bb7d4d1306fa5f9ec93b557cf2e",
       "type": "SPAN",
-      "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:43:30.338000+00:00",
-      "endTime": "2026-08-18 11:43:31.636000+00:00",
+      "name": "rag.rerank",
+      "startTime": "2026-08-19 05:12:26.306000+00:00",
+      "endTime": "2026-08-19 05:12:27.217000+00:00",
       "input": {
-        "query": "我普通会员，签收那天不算，从第二天开始数，那我第几天之前把退货申请发出去才算没超时？"
+        "query": "我普通会员，签收那天不算，从第二天开始数，那我第几天之前把退货申请发出去才算没超时？",
+        "candidates": 20
       },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1415,13 +1382,72 @@
         }
       },
       "output": {
-        "rewritten": true,
-        "needs_law": false,
-        "sub_queries": [
+        "passed": 6,
+        "min_score": 0.3,
+        "dropped": [
+          "L02#001:04",
+          "P07#001:02",
+          "P04#005:00",
+          "P06#004:01",
+          "L05#008:00",
+          "L02#001:01",
+          "L02#003:03",
+          "L05#025:00",
+          "P02#005:00",
+          "L02#006:01",
+          "L01#003:00",
+          "P11#007:00",
+          "P07#003:02",
+          "P09#004:04"
+        ],
+        "evidence": [
           {
-            "id": "1",
-            "intent": "window",
-            "text": "普通会员签收后从第二天开始计算，第几天之前发出退货申请才算没有超过无理由退货窗口期？"
+            "chunk_id": "P02#001:00",
+            "section": "P02 第二条 退货窗口",
+            "score": 0.745,
+            "relevance": 0.681,
+            "prior": 1,
+            "excerpt": "2.1 **无理由退货**： - 普通会员：自签收之日起 **7 天**内可申请； - 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。 2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 …"
+          },
+          {
+            "chunk_id": "L02#003:00",
+            "section": "L02 第三章 退货程序 > 第十条 【退货通知期限与起算点】",
+            "score": 0.638,
+            "relevance": 0.685,
+            "prior": 0.45,
+            "excerpt": "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。 七日期间自消费者签收商品的次日开始起算。 > **判定要点**：窗口期以**发出退货通知**的时间为准，不是商品寄回或卖家收到的时间；起算点是**签收次日**，…"
+          },
+          {
+            "chunk_id": "P07#003:03",
+            "section": "P07 第四条 会员权益的边界 > 4.4 等级以申请时为准",
+            "score": 0.631,
+            "relevance": 0.564,
+            "prior": 0.9,
+            "excerpt": "退款申请的窗口按**消费者提交退款申请时**的会员等级判定。下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；反之适用 7 天窗口。"
+          },
+          {
+            "chunk_id": "P07#001:00",
+            "section": "P07 第二条 售后权益差异 > 2.1 无理由退货窗口",
+            "score": 0.427,
+            "relevance": 0.309,
+            "prior": 0.9,
+            "excerpt": "| 会员等级 | 无理由退货窗口 | |---|---| | 普通会员 | 自签收之日起 **7 天** | | 金牌会员 | 自签收之日起 **15 天** | 金牌会员的 15 天窗口是平台在法定 7 日标准之上作出的更优承诺，对该等级…"
+          },
+          {
+            "chunk_id": "P03#004:01",
+            "section": "P03 第五条 商家处理时效与超时机制 > 5.2 已发货未签收订单的退款",
+            "score": 0.396,
+            "relevance": 0.27,
+            "prior": 0.9,
+            "excerpt": "消费者申请退款后，商家 **5 天**（虚拟商品 3 天）内未处理的，系统按申请金额自动完成退款。"
+          },
+          {
+            "chunk_id": "P07#001:01",
+            "section": "P07 第二条 售后权益差异 > 2.2 质量问题退货窗口",
+            "score": 0.3,
+            "relevance": 0.15,
+            "prior": 0.9,
+            "excerpt": "**质量问题退货不区分会员等级，所有消费者一律 15 天。** 会员等级不影响质量问题售后。"
           }
         ]
       },
@@ -1432,7 +1458,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "02fcf2c8ad8301cc",
+      "parentObservationId": "42e3d1ecd0b4ac91",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1440,10 +1466,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.298,
+      "latency": 0.911,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:36.151Z",
-      "updatedAt": "2026-08-18T11:43:36.160Z",
+      "createdAt": "2026-08-19T05:12:27.605Z",
+      "updatedAt": "2026-08-19T05:12:27.626Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1464,18 +1490,29 @@
       "usagePricingTierName": null
     },
     {
-      "id": "ab520e8d13dab15e",
-      "traceId": "bafb9ba291a2ecd8e00db3b18f37567a",
+      "id": "28750734af0d8c5e",
+      "traceId": "bfbe3bb7d4d1306fa5f9ec93b557cf2e",
       "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:43:31.636000+00:00",
-      "endTime": "2026-08-18 11:43:31.636000+00:00",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:12:27.217000+00:00",
+      "endTime": "2026-08-19 05:12:27.234000+00:00",
+      "input": {
+        "top_k": 6,
+        "evidence": [
+          "P02#001:00",
+          "L02#003:00",
+          "P07#003:03",
+          "P07#001:00",
+          "P03#004:01",
+          "P07#001:01"
+        ]
+      },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1487,14 +1524,61 @@
         }
       },
       "output": {
-        "routes": [
+        "sections": [
           {
-            "sub_query": "1",
-            "layer_k": {
-              "platform": 18,
-              "law": 5
-            },
-            "law_weight": 0.5
+            "section": "P02 星辰优选售后服务与退换货政策 > 第二条 退货窗口",
+            "text": "2.1 **无理由退货**：\n\n- 普通会员：自签收之日起 **7 天**内可申请；\n- 金牌会员：自签收之日起 **15 天**内可申请（会员权益延长，详见 [P07]）。\n\n2.2 **质量问题退货**：所有会员等级一律 **自签收之日起 15 天**内可申请，需描述具体问题。\n\n2.3 **窗口判定为「大于即超出」**：签收天数**等于**窗口值的当天仍在窗口内，可以申请；签收天数**大于**窗口值即为超出。\n\n> 例：金牌会员无理由退货，签收第 15 天 → 在窗口内，可申请；签收第 16 天 → 超出，不予受理。\n\n2.4 **超出窗口的申请一律不予受理**，不因会员等级、商品金额、历史消费而例外。\n\n2.5 **最宽窗口为 15 天**。签收超过 15 天的订单，无论退款原因为何、商品状态如何，判定结论均为不通过——此时无需再向消费者追问退款原因或商品状态。",
+            "score": 0.7451366901397705,
+            "doc_id": "P02",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P02-售后服务与退换货政策.md",
+            "reason": "相关性 0.681 × 先验 1.00 → 0.745；命中 1/platform/dense#1, 1/platform/bm25#1"
+          },
+          {
+            "section": "L02 网络购买商品七日无理由退货暂行办法 > 第三章 退货程序 > 第十条 【退货通知期限与起算点】",
+            "text": "选择无理由退货的消费者应当自收到商品之日起七日内向网络商品销售者发出退货通知。\n\n七日期间自消费者签收商品的次日开始起算。\n\n> **判定要点**：窗口期以**发出退货通知**的时间为准，不是商品寄回或卖家收到的时间；起算点是**签收次日**，签收当天不计入。\n\n网络商品销售者收到退货通知后应当及时向消费者提供真实、准确的退货地址、退货联系人、退货联系电话等有效联系信息。\n\n消费者获得上述信息后应当及时退回商品，并保留退货凭证。\n\n消费者退货时应当将商品本身、配件及赠品一并退回。\n\n赠品包括赠送的实物、积分、代金券、优惠券等形式。如果赠品不能一并退回，经营者可以要求消费者按照事先标明的赠品价格支付赠品价款。\n\n消费者退回的商品完好的，网络商品销售者应当在收到退回商品之日起七日内向消费者返还已支付的商品价款。\n\n> **判定要点**：法定退款时限是**收到退货之日起 7 日内**。平台承诺的「1-3 个工作日到账」快于法定要求，属于更优承诺。\n\n退款方式比照购买商品的支付方式。经营者与消费者另有约定的，从其约定。\n\n购买商品时采用多种方式支付价款的，一般应当按照各种支付方式的实际支付价款以相应方式退款。\n\n除征得消费者明确表示同意的以外，网络商品销售者不应当自行指定其他退款方式。\n\n> **判定要点**：**「原路退回」是法定默认方式**。未经消费者明确同意，不得以store credit、平台余额、优惠券等形式替代原路退款。\n\n消费者采用积分、代金券、优惠券等形式支付价款的，网络商品销售者在消费者退还商品后应当以相应形式返还消费者。对积分、代金券、优惠券的使用和返还有约定的，可以从其约定。\n\n消费者购买商品时采用信用卡支付方式并支付手续费的，网络商品销售者退款时可以不退回手续费。\n\n消费者购买商品时采用信用卡支付方式并被网络商品销售者免除手续费的，网络商品销售者可以在退款时扣除手续费。\n\n退货价款以消费者实际支出的价款为准。\n\n套装或者满减优惠活动中的部分商品退货，导致不能再享受优惠的，根据购买时各商品价格进行结算，多退少补。\n\n> **判定要点**：**退款基数是实付金额，不是商品标价**。部分退货导致优惠失效的，剩余订单需重新结算，可能出现「多退少补」。\n\n商品退回所产生的运费依法由消费者承担。经营者与消费者另有约定的，按照约定。\n\n消费者参加满足一定条件免运费活动，但退货后已不能达到免运费活动要求的，网络商品销售者在退款时可以扣除运费。\n\n> **判定要点**：**无理由退货运费由消费者承担**（本条）；**质量问题退货运费由经营者承担**（消保法第二十四条）。这是区分退款原因的直接后果之一。\n\n网络商品销售者可以与消费者约定退货方式，但不应当限制消费者的退货方式。\n\n网络商品销售者可以免费上门取货，也可以征得消费者同意后有偿上门取货。",
+            "score": 0.6380587482452392,
+            "doc_id": "L02",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "2017-03-15",
+            "source_path": "doc/policy/law/L02-网络购买商品七日无理由退货暂行办法.md",
+            "reason": "相关性 0.685 × 先验 0.45 → 0.638；命中 1/law/dense#1, 1/law/bm25#1"
+          },
+          {
+            "section": "P07 星辰优选会员权益与售后延长规则 > 第四条 会员权益的边界 > 4.4 等级以申请时为准",
+            "text": "**账户被判定为高风险账户的，会员等级不产生豁免效力。** 金牌会员触发风控规则的，同样关闭自动退款通道、转人工审核，其 15 天窗口权益仍然保留，但处理通道改变。\n\n> 换言之：会员等级影响**能不能退**（窗口长短），风控影响**怎么退**（自动还是人工）。两者独立生效，风控不改变窗口，会员不豁免风控。\n\n生鲜、定制、虚拟商品的退款限制对所有会员等级一律适用，金牌会员不例外。\n\n无理由退货「须未拆封」的要求对所有会员等级一律适用。金牌会员延长的是**时间窗口**，不是商品状态要求。\n\n退款申请的窗口按**消费者提交退款申请时**的会员等级判定。下单时为普通会员、申请时已升级为金牌会员的，适用 15 天窗口；反之适用 7 天窗口。",
+            "score": 0.6310530471801759,
+            "doc_id": "P07",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
+            "reason": "相关性 0.564 × 先验 0.90 → 0.631；命中 1/platform/dense#3, 1/platform/bm25#4"
+          },
+          {
+            "section": "P07 星辰优选会员权益与售后延长规则 > 第二条 售后权益差异 > 2.1 无理由退货窗口 … 第二条 售后权益差异 > 2.2 质量问题退货窗口",
+            "text": "| 会员等级 | 无理由退货窗口 |\n|---|---|\n| 普通会员 | 自签收之日起 **7 天** |\n| 金牌会员 | 自签收之日起 **15 天** |\n\n金牌会员的 15 天窗口是平台在法定 7 日标准之上作出的更优承诺，对该等级会员的全部订单有效。\n\n**质量问题退货不区分会员等级，所有消费者一律 15 天。** 会员等级不影响质量问题售后。\n\n| 权益项 | 普通会员 | 金牌会员 |\n|---|---|---|\n| 无理由退货窗口 | 7 天 | 15 天 |\n| 质量问题退货窗口 | 15 天 | 15 天 |\n| 极速退款 | 不支持 | 支持（见第三条） |\n| 专属客服通道 | 不支持 | 支持 |\n| 退货上门取件 | 有偿 | 每月 2 次免费 |\n\n| 会员等级 | 无理由退货窗口 |\n|---|---|\n| 普通会员 | 自签收之日起 **7 天** |\n| 金牌会员 | 自签收之日起 **15 天** |\n\n金牌会员的 15 天窗口是平台在法定 7 日标准之上作出的更优承诺，对该等级会员的全部订单有效。\n\n**质量问题退货不区分会员等级，所有消费者一律 15 天。** 会员等级不影响质量问题售后。\n\n| 权益项 | 普通会员 | 金牌会员 |\n|---|---|---|\n| 无理由退货窗口 | 7 天 | 15 天 |\n| 质量问题退货窗口 | 15 天 | 15 天 |\n| 极速退款 | 不支持 | 支持（见第三条） |\n| 专属客服通道 | 不支持 | 支持 |\n| 退货上门取件 | 有偿 | 每月 2 次免费 |",
+            "score": 0.4269780206680298,
+            "doc_id": "P07",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
+            "reason": "相关性 0.309 × 先验 0.90 → 0.427；命中 1/platform/dense#2, 1/platform/bm25#2"
+          },
+          {
+            "section": "P03 星辰优选退款规则与到账时效 > 第五条 商家处理时效与超时机制 > 5.2 已发货未签收订单的退款",
+            "text": "消费者申请退款后，商家 **24 小时**内未处理的，系统自动同意退款。\n\n消费者申请退款后，商家 **5 天**（虚拟商品 3 天）内未处理的，系统按申请金额自动完成退款。\n\n| 环节 | 时限 | 超时后果 |\n|---|---|---|\n| 商家审核退货申请 | 48 小时 | 超时视为同意退货 |\n| 消费者寄回并填写物流单号 | 7 天 | 超时申请自动关闭 |\n| 商家确认收货并退款（快递） | 10 天 | 超时系统自动退款 |\n| 商家确认收货并退款（平邮） | 30 天 | 超时系统自动退款 |\n\n超时自动同意是**对消费者的兜底保障**，不构成对商品状态或退款资格的实质认定。商家事后发现退回商品不完好的，可依 [P09] 申请争议处理。",
+            "score": 0.3963926601409913,
+            "doc_id": "P03",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P03-退款规则与到账时效.md",
+            "reason": "相关性 0.270 × 先验 0.90 → 0.396；命中 1/platform/dense#5"
           }
         ]
       },
@@ -1505,7 +1589,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "02fcf2c8ad8301cc",
+      "parentObservationId": "42e3d1ecd0b4ac91",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1513,10 +1597,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.0,
+      "latency": 0.017,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:43:36.151Z",
-      "updatedAt": "2026-08-18T11:43:36.158Z",
+      "createdAt": "2026-08-19T05:12:27.605Z",
+      "updatedAt": "2026-08-19T05:12:27.625Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1524,7 +1608,6 @@
       "completionStartTime": null,
       "model": null,
       "modelParameters": null,
-      "input": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,

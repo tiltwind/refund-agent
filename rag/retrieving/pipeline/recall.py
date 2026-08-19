@@ -62,21 +62,53 @@ class Candidate:
 
 def recall(routes: list[Route]) -> list[Candidate]:
     pool: dict[str, Candidate] = {}
+    local_ranked: list[list[Candidate]] = []
     model = embedder()
 
     for route_ in routes:
         query = route_.sub_query.text
         vector = model.encode_query(query)
+        route_pool: dict[str, Candidate] = {}
         for layer, k in route_.layer_k.items():
             # 按层分别检索，才能给每层单独的名额 —— 一次查两层再截断，
             # 平台条款会被措辞更像的法条挤出去（见 route.py）
             expr = build_filter([layer])
             tag = f"{route_.sub_query.id}/{layer}"
-            _fuse(pool, store.search_dense(vector, expr, k), f"{tag}/dense")
-            _fuse(pool, store.search_bm25(query, expr, k), f"{tag}/bm25")
+            dense = store.search_dense(vector, expr, k)
+            bm25 = store.search_bm25(query, expr, k)
+            _fuse(route_pool, dense, f"{tag}/dense")
+            _fuse(route_pool, bm25, f"{tag}/bm25")
+            _fuse(pool, dense, f"{tag}/dense")
+            _fuse(pool, bm25, f"{tag}/bm25")
+        local_ranked.append(
+            sorted(route_pool.values(), key=lambda c: c.rrf, reverse=True)
+        )
 
-    ranked = sorted(pool.values(), key=lambda c: c.rrf, reverse=True)
-    return ranked[:CANDIDATE_LIMIT]
+    # 多跳场景中，同一块被多个子查询重复命中会挤掉只服务于另一跳的候选；
+    # 给单子查询命中的块一个很小的多样性先验，避免第二跳落到候选尾部。
+    ranked = sorted(pool.values(), key=lambda c: (c.rrf + _diversity_bonus(c), c.rrf), reverse=True)
+    return _merge_with_route_quota(ranked, local_ranked, pool)[:CANDIDATE_LIMIT]
+
+
+def _merge_with_route_quota(
+    ranked: list[Candidate], local_ranked: list[list[Candidate]], pool: dict[str, Candidate]
+) -> list[Candidate]:
+    """先保留各子查询的局部候选配额，再按全局 RRF 补齐。"""
+    selected: list[Candidate] = []
+    selected_ids: set[str] = set()
+    quota = max(1, CANDIDATE_LIMIT // len(local_ranked)) if local_ranked else 0
+    for candidates in local_ranked:
+        added = 0
+        for local in candidates:
+            if local.chunk_id in selected_ids:
+                continue
+            selected.append(pool[local.chunk_id])
+            selected_ids.add(local.chunk_id)
+            added += 1
+            if added >= quota:
+                break
+    selected.extend(c for c in ranked if c.chunk_id not in selected_ids)
+    return selected
 
 
 def _fuse(pool: dict[str, Candidate], rows: list[dict], tag: str) -> None:
@@ -87,3 +119,8 @@ def _fuse(pool: dict[str, Candidate], rows: list[dict], tag: str) -> None:
             candidate = pool[row["chunk_id"]] = Candidate(row=row)
         candidate.rrf += 1.0 / (RRF_K + rank)
         candidate.hits.append(f"{tag}#{rank}")
+
+
+def _diversity_bonus(candidate: Candidate) -> float:
+    sub_queries = {hit.split("/", 1)[0] for hit in candidate.hits}
+    return 0.02 if len(sub_queries) == 1 else 0.0

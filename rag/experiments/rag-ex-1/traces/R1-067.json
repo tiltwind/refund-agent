@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-067",
+    "query": "在哪些情形下，平台会介入处理消费者的售后问题？",
     "type": "single",
     "style": "formal",
     "doc_id": "P09",
@@ -9,6 +10,7 @@
     "seed_chunk_id": [
       "P09#005:00"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
@@ -19,7 +21,7 @@
       "context_recall": 1.0,
       "context_relevance": 0.105
     },
-    "elapsed_s": 1.8,
+    "elapsed_s": 2.0,
     "seed_rank": {
       "candidate": {
         "P09#005:00": 2
@@ -28,6 +30,18 @@
         "P09#005:00": 2
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "dispute",
+          "text": "在哪些情形下，平台会介入处理消费者的售后问题？"
+        }
+      ]
+    },
+    "rewrite_hash": "613ffd158d112ace",
     "sections": [
       "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.1 申请条件 … 第五条 特定场景的处理口径 > 5.4 商品导致人身或财产损害",
       "P09 星辰优选争议处理与平台介入规则 > 第六条 平台的先行赔付 > 6.1 适用情形",
@@ -73,7 +87,7 @@
         "n": 86,
         "hit": 9,
         "truncated": false,
-        "note": "不相关的主要是举证、时限、特殊类目、赔付等具体处理规则。",
+        "note": "不相关的多为举证责任、处理时限、特殊类目赔付等具体规则。",
         "irrelevant": [
           "消费者应在争议产生后 **15 日**内申请介入。",
           "超过时限的，平台仍可受理，但举证难度增加。",
@@ -89,21 +103,483 @@
         "error": null
       }
     },
-    "trace_id": "803f5058fe1f8495a3633fa6a1b3d758"
+    "trace_id": "15b261d379e890a7c886d01a8edad0ce"
   },
   "trace": {
-    "id": "803f5058fe1f8495a3633fa6a1b3d758",
+    "id": "15b261d379e890a7c886d01a8edad0ce",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:45:50.695000+00:00"
+    "timestamp": "2026-08-19 05:14:47.012000+00:00"
   },
   "observations": [
     {
-      "id": "2837c26df8a4227c",
-      "traceId": "803f5058fe1f8495a3633fa6a1b3d758",
+      "id": "0548a99fe7cbe358",
+      "traceId": "15b261d379e890a7c886d01a8edad0ce",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:14:31.393000+00:00",
+      "endTime": "2026-08-19 05:14:53.336000+00:00",
+      "input": {
+        "query": "在哪些情形下，平台会介入处理消费者的售后问题？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-067",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "formal",
+        "doc_id": "P09",
+        "section": "第六条 平台的先行赔付 > 6.1 适用情形",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.105,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-067",
+        "query": "在哪些情形下，平台会介入处理消费者的售后问题？",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "P09",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P09#005:00"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 0,
+          "evidence_tokens": 1779,
+          "duplicate_ratio": 0.214,
+          "context_recall": 1,
+          "context_relevance": 0.105
+        },
+        "elapsed_s": 2,
+        "seed_rank": {
+          "candidate": {
+            "P09#005:00": 2
+          },
+          "evidence": {
+            "P09#005:00": 2
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "dispute",
+              "text": "在哪些情形下，平台会介入处理消费者的售后问题？"
+            }
+          ]
+        },
+        "rewrite_hash": "613ffd158d112ace",
+        "sections": [
+          "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.1 申请条件 … 第五条 特定场景的处理口径 > 5.4 商品导致人身或财产损害",
+          "P09 星辰优选争议处理与平台介入规则 > 第六条 平台的先行赔付 > 6.1 适用情形",
+          "P09 星辰优选争议处理与平台介入规则 > 第一条 适用范围 … 第二条 争议解决的层级",
+          "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第四十四条 【网络交易平台提供者责任】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 5,
+            "hit": 5,
+            "detail": [
+              {
+                "claim": "商家失联时，平台会介入处理。",
+                "supported": true,
+                "reason": "6.1 适用情形列出商家失联"
+              },
+              {
+                "claim": "商家闭店时，平台会介入处理。",
+                "supported": true,
+                "reason": "6.1 适用情形列出商家闭店"
+              },
+              {
+                "claim": "商家无法履行售后义务时，平台会介入处理。",
+                "supported": true,
+                "reason": "6.1 适用情形列出无法履行售后义务"
+              },
+              {
+                "claim": "商家拒不执行平台判定结论时，平台会介入处理。",
+                "supported": true,
+                "reason": "6.1 适用情形列出拒不执行判定结论"
+              },
+              {
+                "claim": "平台公示的服务承诺未能兑现时，平台会介入处理。",
+                "supported": true,
+                "reason": "6.1 适用情形列出服务承诺未兑现"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.105,
+            "n": 86,
+            "hit": 9,
+            "truncated": false,
+            "note": "不相关的多为举证责任、处理时限、特殊类目赔付等具体规则。",
+            "irrelevant": [
+              "消费者应在争议产生后 **15 日**内申请介入。",
+              "超过时限的，平台仍可受理，但举证难度增加。",
+              "申请方须提交：订单信息、争议诉求、支持诉求的凭证（照片、视频、聊天记录、检测报告、物流凭证）。",
+              "平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。",
+              "举证期结束后，平台在 **72 小时**内出具判定结论，并向双方说明判定依据的具体条款。",
+              "平台按以下顺序适用规则：",
+              "1. 法律、行政法规、部门规章的强制性规定；",
+              "2. 平台在首页显著位置公示的各项交易规则；",
+              "3. 商家在商品页面作出的更优承诺；",
+              "4. 双方的约定与交易记录；"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "6f2403603336ac74",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 21.943,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:14:58.427Z",
+      "updatedAt": "2026-08-19T05:14:58.437Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "6f2403603336ac74",
+      "traceId": "15b261d379e890a7c886d01a8edad0ce",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-19 05:14:31.393000+00:00",
+      "endTime": "2026-08-19 05:14:53.338000+00:00",
+      "input": {
+        "query": "在哪些情形下，平台会介入处理消费者的售后问题？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-067",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "formal",
+        "doc_id": "P09",
+        "section": "第六条 平台的先行赔付 > 6.1 适用情形",
+        "reviewed": false,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.105,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-067",
+        "query": "在哪些情形下，平台会介入处理消费者的售后问题？",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "P09",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P09#005:00"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 0,
+          "evidence_tokens": 1779,
+          "duplicate_ratio": 0.214,
+          "context_recall": 1,
+          "context_relevance": 0.105
+        },
+        "elapsed_s": 2,
+        "seed_rank": {
+          "candidate": {
+            "P09#005:00": 2
+          },
+          "evidence": {
+            "P09#005:00": 2
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "dispute",
+              "text": "在哪些情形下，平台会介入处理消费者的售后问题？"
+            }
+          ]
+        },
+        "rewrite_hash": "613ffd158d112ace",
+        "sections": [
+          "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.1 申请条件 … 第五条 特定场景的处理口径 > 5.4 商品导致人身或财产损害",
+          "P09 星辰优选争议处理与平台介入规则 > 第六条 平台的先行赔付 > 6.1 适用情形",
+          "P09 星辰优选争议处理与平台介入规则 > 第一条 适用范围 … 第二条 争议解决的层级",
+          "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第四十四条 【网络交易平台提供者责任】"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 5,
+            "hit": 5,
+            "detail": [
+              {
+                "claim": "商家失联时，平台会介入处理。",
+                "supported": true,
+                "reason": "6.1 适用情形列出商家失联"
+              },
+              {
+                "claim": "商家闭店时，平台会介入处理。",
+                "supported": true,
+                "reason": "6.1 适用情形列出商家闭店"
+              },
+              {
+                "claim": "商家无法履行售后义务时，平台会介入处理。",
+                "supported": true,
+                "reason": "6.1 适用情形列出无法履行售后义务"
+              },
+              {
+                "claim": "商家拒不执行平台判定结论时，平台会介入处理。",
+                "supported": true,
+                "reason": "6.1 适用情形列出拒不执行判定结论"
+              },
+              {
+                "claim": "平台公示的服务承诺未能兑现时，平台会介入处理。",
+                "supported": true,
+                "reason": "6.1 适用情形列出服务承诺未兑现"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.105,
+            "n": 86,
+            "hit": 9,
+            "truncated": false,
+            "note": "不相关的多为举证责任、处理时限、特殊类目赔付等具体规则。",
+            "irrelevant": [
+              "消费者应在争议产生后 **15 日**内申请介入。",
+              "超过时限的，平台仍可受理，但举证难度增加。",
+              "申请方须提交：订单信息、争议诉求、支持诉求的凭证（照片、视频、聊天记录、检测报告、物流凭证）。",
+              "平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。",
+              "举证期结束后，平台在 **72 小时**内出具判定结论，并向双方说明判定依据的具体条款。",
+              "平台按以下顺序适用规则：",
+              "1. 法律、行政法规、部门规章的强制性规定；",
+              "2. 平台在首页显著位置公示的各项交易规则；",
+              "3. 商家在商品页面作出的更优承诺；",
+              "4. 双方的约定与交易记录；"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 21.945,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:14:58.427Z",
+      "updatedAt": "2026-08-19T05:14:58.437Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "f95a630b0f889776",
+      "traceId": "15b261d379e890a7c886d01a8edad0ce",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-19 05:14:53.337000+00:00",
+      "endTime": "2026-08-19 05:14:53.338000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 8,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "6f2403603336ac74",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.001,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:14:58.427Z",
+      "updatedAt": "2026-08-19T05:14:58.436Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "3fd6373c0c993193",
+      "traceId": "15b261d379e890a7c886d01a8edad0ce",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:45:57.504000+00:00",
-      "endTime": "2026-08-18 11:45:57.505000+00:00",
+      "startTime": "2026-08-19 05:14:53.337000+00:00",
+      "endTime": "2026-08-19 05:14:53.337000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -111,6 +587,7 @@
         },
         "output": {
           "case_id": "R1-067",
+          "query": "在哪些情形下，平台会介入处理消费者的售后问题？",
           "type": "single",
           "style": "formal",
           "doc_id": "P09",
@@ -119,6 +596,7 @@
           "seed_chunk_id": [
             "P09#005:00"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
@@ -129,7 +607,7 @@
             "context_recall": 1,
             "context_relevance": 0.105
           },
-          "elapsed_s": 1.8,
+          "elapsed_s": 2,
           "seed_rank": {
             "candidate": {
               "P09#005:00": 2
@@ -138,6 +616,18 @@
               "P09#005:00": 2
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "dispute",
+                "text": "在哪些情形下，平台会介入处理消费者的售后问题？"
+              }
+            ]
+          },
+          "rewrite_hash": "613ffd158d112ace",
           "sections": [
             "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.1 申请条件 … 第五条 特定场景的处理口径 > 5.4 商品导致人身或财产损害",
             "P09 星辰优选争议处理与平台介入规则 > 第六条 平台的先行赔付 > 6.1 适用情形",
@@ -183,7 +673,7 @@
               "n": 86,
               "hit": 9,
               "truncated": false,
-              "note": "不相关的主要是举证、时限、特殊类目、赔付等具体处理规则。",
+              "note": "不相关的多为举证责任、处理时限、特殊类目赔付等具体规则。",
               "irrelevant": [
                 "消费者应在争议产生后 **15 日**内申请介入。",
                 "超过时限的，平台仍可受理，但举证难度增加。",
@@ -211,7 +701,8 @@
           "seed_chunk_id": [
             "P09#005:00"
           ],
-          "reference_answer": "商家失联、闭店、无法履行售后义务的，商家拒不执行平台判定结论的，以及平台公示的服务承诺未能兑现的，平台都会介入处理。"
+          "reference_answer": "商家失联、闭店、无法履行售后义务的，商家拒不执行平台判定结论的，以及平台公示的服务承诺未能兑现的，平台都会介入处理。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "text",
@@ -233,7 +724,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -278,7 +769,7 @@
         {
           "name": "context_relevance",
           "value": 0.105,
-          "comment": "9/86 个内容单元相关；不相关的主要是举证、时限、特殊类目、赔付等具体处理规则。"
+          "comment": "9/86 个内容单元相关；不相关的多为举证责任、处理时限、特殊类目赔付等具体规则。"
         },
         {
           "name": "run_error",
@@ -293,7 +784,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "32b87e433c7fcff3",
+      "parentObservationId": "f95a630b0f889776",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -301,10 +792,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.001,
+      "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:02.105Z",
-      "updatedAt": "2026-08-18T11:46:02.123Z",
+      "createdAt": "2026-08-19T05:14:58.427Z",
+      "updatedAt": "2026-08-19T05:14:58.434Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -324,49 +815,33 @@
       "usagePricingTierName": null
     },
     {
-      "id": "bffab069c2fa746f",
-      "traceId": "803f5058fe1f8495a3633fa6a1b3d758",
+      "id": "845712adbbe093a0",
+      "traceId": "15b261d379e890a7c886d01a8edad0ce",
       "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:45:39.582000+00:00",
-      "endTime": "2026-08-18 11:45:57.505000+00:00",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:14:49.013000+00:00",
+      "endTime": "2026-08-19 05:14:49.043000+00:00",
       "input": {
-        "query": "在哪些情形下，平台会介入处理消费者的售后问题？"
+        "top_k": 4,
+        "evidence": [
+          "P09#002:00",
+          "P09#005:00",
+          "P09#000:00",
+          "P09#003:03",
+          "P09#004:00",
+          "P09#004:03",
+          "P09#001:00",
+          "L01#006:00",
+          "P01#004:03",
+          "L04#014:00"
+        ]
       },
       "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-067",
-        "kind": "text",
-        "type": "single",
-        "layer": "platform",
-        "style": "formal",
-        "doc_id": "P09",
-        "section": "第六条 平台的先行赔付 > 6.1 适用情形",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.105,
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -378,95 +853,52 @@
         }
       },
       "output": {
-        "case_id": "R1-067",
-        "type": "single",
-        "style": "formal",
-        "doc_id": "P09",
-        "layer": "platform",
-        "kind": "text",
-        "seed_chunk_id": [
-          "P09#005:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 0,
-          "evidence_tokens": 1779,
-          "duplicate_ratio": 0.214,
-          "context_recall": 1,
-          "context_relevance": 0.105
-        },
-        "elapsed_s": 1.8,
-        "seed_rank": {
-          "candidate": {
-            "P09#005:00": 2
-          },
-          "evidence": {
-            "P09#005:00": 2
-          }
-        },
         "sections": [
-          "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.1 申请条件 … 第五条 特定场景的处理口径 > 5.4 商品导致人身或财产损害",
-          "P09 星辰优选争议处理与平台介入规则 > 第六条 平台的先行赔付 > 6.1 适用情形",
-          "P09 星辰优选争议处理与平台介入规则 > 第一条 适用范围 … 第二条 争议解决的层级",
-          "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第四十四条 【网络交易平台提供者责任】"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 5,
-            "hit": 5,
-            "detail": [
-              {
-                "claim": "商家失联时，平台会介入处理。",
-                "supported": true,
-                "reason": "6.1 适用情形列出商家失联"
-              },
-              {
-                "claim": "商家闭店时，平台会介入处理。",
-                "supported": true,
-                "reason": "6.1 适用情形列出商家闭店"
-              },
-              {
-                "claim": "商家无法履行售后义务时，平台会介入处理。",
-                "supported": true,
-                "reason": "6.1 适用情形列出无法履行售后义务"
-              },
-              {
-                "claim": "商家拒不执行平台判定结论时，平台会介入处理。",
-                "supported": true,
-                "reason": "6.1 适用情形列出拒不执行判定结论"
-              },
-              {
-                "claim": "平台公示的服务承诺未能兑现时，平台会介入处理。",
-                "supported": true,
-                "reason": "6.1 适用情形列出服务承诺未兑现"
-              }
-            ],
-            "error": null
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.1 申请条件 … 第五条 特定场景的处理口径 > 5.4 商品导致人身或财产损害",
+            "text": "出现以下任一情形，消费者可申请平台介入：\n\n（一）商家拒绝退款申请或超过 48 小时未响应；\n（二）商家提出的处理方案消费者不接受；\n（三）商家验收结论消费者有异议；\n（四）双方协商超过 3 个自然日仍未达成一致。\n\n消费者应在争议产生后 **15 日**内申请介入。超过时限的，平台仍可受理，但举证难度增加。\n\n申请方须提交：订单信息、争议诉求、支持诉求的凭证（照片、视频、聊天记录、检测报告、物流凭证）。\n\n平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。\n\n举证期结束后，平台在 **72 小时**内出具判定结论，并向双方说明判定依据的具体条款。\n\n平台按以下顺序适用规则：\n\n1. 法律、行政法规、部门规章的强制性规定；\n2. 平台在首页显著位置公示的各项交易规则；\n3. 商家在商品页面作出的更优承诺；\n4. 双方的约定与交易记录；\n5. 行业惯例与公平原则。\n\n| 争议事项 | 举证责任方 |\n|---|---|\n| 退回商品不完好、缺件、调包 | 商家 |\n| 商品存在质量问题 | 消费者（耐用商品 6 个月内除外） |\n| 耐用商品签收 6 个月内的瑕疵 | **商家** |\n| 已履行发货义务 | 商家 |\n| 已履行寄回义务 | 消费者 |\n| 曾作出特别承诺 | 主张一方 |\n\n双方均无法举证的，平台结合物流轨迹、历史交易行为、账户风险状况、商家服务记录综合判定，并在结论中说明推定理由。\n\n判定结论作出后系统自动执行——支持消费者的即时退款，支持商家的关闭申请。**判定结论须附具体理由与所依据的条款，不得仅告知结果。**\n\n生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。\n\n生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。",
+            "score": 0.9219365406036378,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.927 × 先验 0.90 → 0.922；命中 1/platform/dense#1, 1/platform/bm25#3"
           },
-          "context_relevance": {
-            "score": 0.105,
-            "n": 86,
-            "hit": 9,
-            "truncated": false,
-            "note": "不相关的主要是举证、时限、特殊类目、赔付等具体处理规则。",
-            "irrelevant": [
-              "消费者应在争议产生后 **15 日**内申请介入。",
-              "超过时限的，平台仍可受理，但举证难度增加。",
-              "申请方须提交：订单信息、争议诉求、支持诉求的凭证（照片、视频、聊天记录、检测报告、物流凭证）。",
-              "平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。",
-              "举证期结束后，平台在 **72 小时**内出具判定结论，并向双方说明判定依据的具体条款。",
-              "平台按以下顺序适用规则：",
-              "1. 法律、行政法规、部门规章的强制性规定；",
-              "2. 平台在首页显著位置公示的各项交易规则；",
-              "3. 商家在商品页面作出的更优承诺；",
-              "4. 双方的约定与交易记录；"
-            ],
-            "error": null
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第六条 平台的先行赔付 > 6.1 适用情形",
+            "text": "- 商家失联、闭店、无法履行售后义务的；\n- 商家拒不执行平台判定结论的；\n- 平台公示的服务承诺未能兑现的。\n\n平台先行赔付后，有权向商家追偿，并从商家保证金中扣划。\n\n**平台就其公示的服务承诺自行担责**，不以「这是商家责任」为由推诿。",
+            "score": 0.8984065818786622,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.898 × 先验 0.90 → 0.898；命中 1/platform/dense#8, 1/platform/bm25#5"
+          },
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第一条 适用范围 … 第二条 争议解决的层级",
+            "text": "本规则适用于消费者与商家在退款、退货、售后赔付过程中产生的全部争议，包括：\n\n- 商家拒绝退款申请，消费者有异议的；\n- 商家验收退回商品不通过，消费者有异议的；\n- 退款金额、运费扣除有异议的；\n- 特殊类目商品的质量问题诉求；\n- 涉及假冒伪劣、虚假宣传的赔付诉求。\n\n平台采用三层递进的处理机制：\n\n| 层级 | 处理方式 | 时限 |\n|---|---|---|\n| 第一层 | **双方自主协商** | 商家须在 48 小时内响应 |\n| 第二层 | **申请平台介入** | 平台 72 小时内出具判定 |\n| 第三层 | **外部维权** | 投诉、调解、仲裁、诉讼 |\n\n**平台鼓励双方通过自主协商解决争议**，但消费者申请介入的，平台不得以「请先自行协商」为由拒绝受理。",
+            "score": 0.8724476623535157,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.866 × 先验 0.90 → 0.872；命中 1/platform/dense#12, 1/platform/bm25#6"
+          },
+          {
+            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第四十四条 【网络交易平台提供者责任】",
+            "text": "消费者通过网络交易平台购买商品或者接受服务，其合法权益受到损害的，可以向销售者或者服务者要求赔偿。网络交易平台提供者不能提供销售者或者服务者的真实名称、地址和有效联系方式的，消费者也可以向网络交易平台提供者要求赔偿；网络交易平台提供者作出更有利于消费者的承诺的，应当履行承诺。网络交易平台提供者赔偿后，有权向销售者或者服务者追偿。\n\n网络交易平台提供者明知或者应知销售者或者服务者利用其平台侵害消费者合法权益，未采取必要措施的，依法与该销售者或者服务者承担连带责任。\n\n> **售后适用要点**：平台对外作出的售后承诺（如「假一赔十」「极速退款」）一经公示即具约束力，**平台须自行履行，不能以「这是商家的责任」推给商家**。",
+            "score": 0.33165234804153443,
+            "doc_id": "L01",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2014-03-15",
+            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
+            "reason": "相关性 0.190 × 先验 0.90 → 0.332；命中 1/law/dense#2"
           }
-        }
+        ]
       },
       "usage": {
         "input": 0,
@@ -475,6 +907,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
+      "parentObservationId": "da7bb4cd2a24e99f",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -482,10 +915,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 17.923,
+      "latency": 0.03,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:02.105Z",
-      "updatedAt": "2026-08-18T11:46:02.119Z",
+      "createdAt": "2026-08-19T05:14:53.414Z",
+      "updatedAt": "2026-08-19T05:14:53.426Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -495,7 +928,6 @@
       "modelParameters": null,
       "version": null,
       "statusMessage": null,
-      "parentObservationId": null,
       "promptId": null,
       "promptName": null,
       "promptVersion": null,
@@ -507,49 +939,23 @@
       "usagePricingTierName": null
     },
     {
-      "id": "a150bcf3f7ade442",
-      "traceId": "803f5058fe1f8495a3633fa6a1b3d758",
-      "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:45:39.582000+00:00",
-      "endTime": "2026-08-18 11:45:57.503000+00:00",
+      "id": "da7bb4cd2a24e99f",
+      "traceId": "15b261d379e890a7c886d01a8edad0ce",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:14:47.012000+00:00",
+      "endTime": "2026-08-19 05:14:49.044000+00:00",
+      "modelParameters": {},
       "input": {
-        "query": "在哪些情形下，平台会介入处理消费者的售后问题？"
+        "query": "在哪些情形下，平台会介入处理消费者的售后问题？",
+        "top_k": 4
       },
       "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-067",
-        "kind": "text",
-        "type": "single",
-        "layer": "platform",
-        "style": "formal",
-        "doc_id": "P09",
-        "section": "第六条 平台的先行赔付 > 6.1 适用情形",
-        "reviewed": false,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.105,
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -561,95 +967,52 @@
         }
       },
       "output": {
-        "case_id": "R1-067",
-        "type": "single",
-        "style": "formal",
-        "doc_id": "P09",
-        "layer": "platform",
-        "kind": "text",
-        "seed_chunk_id": [
-          "P09#005:00"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 0,
-          "evidence_tokens": 1779,
-          "duplicate_ratio": 0.214,
-          "context_recall": 1,
-          "context_relevance": 0.105
-        },
-        "elapsed_s": 1.8,
-        "seed_rank": {
-          "candidate": {
-            "P09#005:00": 2
-          },
-          "evidence": {
-            "P09#005:00": 2
-          }
-        },
         "sections": [
-          "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.1 申请条件 … 第五条 特定场景的处理口径 > 5.4 商品导致人身或财产损害",
-          "P09 星辰优选争议处理与平台介入规则 > 第六条 平台的先行赔付 > 6.1 适用情形",
-          "P09 星辰优选争议处理与平台介入规则 > 第一条 适用范围 … 第二条 争议解决的层级",
-          "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第四十四条 【网络交易平台提供者责任】"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 5,
-            "hit": 5,
-            "detail": [
-              {
-                "claim": "商家失联时，平台会介入处理。",
-                "supported": true,
-                "reason": "6.1 适用情形列出商家失联"
-              },
-              {
-                "claim": "商家闭店时，平台会介入处理。",
-                "supported": true,
-                "reason": "6.1 适用情形列出商家闭店"
-              },
-              {
-                "claim": "商家无法履行售后义务时，平台会介入处理。",
-                "supported": true,
-                "reason": "6.1 适用情形列出无法履行售后义务"
-              },
-              {
-                "claim": "商家拒不执行平台判定结论时，平台会介入处理。",
-                "supported": true,
-                "reason": "6.1 适用情形列出拒不执行判定结论"
-              },
-              {
-                "claim": "平台公示的服务承诺未能兑现时，平台会介入处理。",
-                "supported": true,
-                "reason": "6.1 适用情形列出服务承诺未兑现"
-              }
-            ],
-            "error": null
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.1 申请条件 … 第五条 特定场景的处理口径 > 5.4 商品导致人身或财产损害",
+            "text": "出现以下任一情形，消费者可申请平台介入：\n\n（一）商家拒绝退款申请或超过 48 小时未响应；\n（二）商家提出的处理方案消费者不接受；\n（三）商家验收结论消费者有异议；\n（四）双方协商超过 3 个自然日仍未达成一致。\n\n消费者应在争议产生后 **15 日**内申请介入。超过时限的，平台仍可受理，但举证难度增加。\n\n申请方须提交：订单信息、争议诉求、支持诉求的凭证（照片、视频、聊天记录、检测报告、物流凭证）。\n\n平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。\n\n举证期结束后，平台在 **72 小时**内出具判定结论，并向双方说明判定依据的具体条款。\n\n平台按以下顺序适用规则：\n\n1. 法律、行政法规、部门规章的强制性规定；\n2. 平台在首页显著位置公示的各项交易规则；\n3. 商家在商品页面作出的更优承诺；\n4. 双方的约定与交易记录；\n5. 行业惯例与公平原则。\n\n| 争议事项 | 举证责任方 |\n|---|---|\n| 退回商品不完好、缺件、调包 | 商家 |\n| 商品存在质量问题 | 消费者（耐用商品 6 个月内除外） |\n| 耐用商品签收 6 个月内的瑕疵 | **商家** |\n| 已履行发货义务 | 商家 |\n| 已履行寄回义务 | 消费者 |\n| 曾作出特别承诺 | 主张一方 |\n\n双方均无法举证的，平台结合物流轨迹、历史交易行为、账户风险状况、商家服务记录综合判定，并在结论中说明推定理由。\n\n判定结论作出后系统自动执行——支持消费者的即时退款，支持商家的关闭申请。**判定结论须附具体理由与所依据的条款，不得仅告知结果。**\n\n生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。\n\n生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。",
+            "score": 0.9219365406036378,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.927 × 先验 0.90 → 0.922；命中 1/platform/dense#1, 1/platform/bm25#3"
           },
-          "context_relevance": {
-            "score": 0.105,
-            "n": 86,
-            "hit": 9,
-            "truncated": false,
-            "note": "不相关的主要是举证、时限、特殊类目、赔付等具体处理规则。",
-            "irrelevant": [
-              "消费者应在争议产生后 **15 日**内申请介入。",
-              "超过时限的，平台仍可受理，但举证难度增加。",
-              "申请方须提交：订单信息、争议诉求、支持诉求的凭证（照片、视频、聊天记录、检测报告、物流凭证）。",
-              "平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。",
-              "举证期结束后，平台在 **72 小时**内出具判定结论，并向双方说明判定依据的具体条款。",
-              "平台按以下顺序适用规则：",
-              "1. 法律、行政法规、部门规章的强制性规定；",
-              "2. 平台在首页显著位置公示的各项交易规则；",
-              "3. 商家在商品页面作出的更优承诺；",
-              "4. 双方的约定与交易记录；"
-            ],
-            "error": null
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第六条 平台的先行赔付 > 6.1 适用情形",
+            "text": "- 商家失联、闭店、无法履行售后义务的；\n- 商家拒不执行平台判定结论的；\n- 平台公示的服务承诺未能兑现的。\n\n平台先行赔付后，有权向商家追偿，并从商家保证金中扣划。\n\n**平台就其公示的服务承诺自行担责**，不以「这是商家责任」为由推诿。",
+            "score": 0.8984065818786622,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.898 × 先验 0.90 → 0.898；命中 1/platform/dense#8, 1/platform/bm25#5"
+          },
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第一条 适用范围 … 第二条 争议解决的层级",
+            "text": "本规则适用于消费者与商家在退款、退货、售后赔付过程中产生的全部争议，包括：\n\n- 商家拒绝退款申请，消费者有异议的；\n- 商家验收退回商品不通过，消费者有异议的；\n- 退款金额、运费扣除有异议的；\n- 特殊类目商品的质量问题诉求；\n- 涉及假冒伪劣、虚假宣传的赔付诉求。\n\n平台采用三层递进的处理机制：\n\n| 层级 | 处理方式 | 时限 |\n|---|---|---|\n| 第一层 | **双方自主协商** | 商家须在 48 小时内响应 |\n| 第二层 | **申请平台介入** | 平台 72 小时内出具判定 |\n| 第三层 | **外部维权** | 投诉、调解、仲裁、诉讼 |\n\n**平台鼓励双方通过自主协商解决争议**，但消费者申请介入的，平台不得以「请先自行协商」为由拒绝受理。",
+            "score": 0.8724476623535157,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.866 × 先验 0.90 → 0.872；命中 1/platform/dense#12, 1/platform/bm25#6"
+          },
+          {
+            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第四十四条 【网络交易平台提供者责任】",
+            "text": "消费者通过网络交易平台购买商品或者接受服务，其合法权益受到损害的，可以向销售者或者服务者要求赔偿。网络交易平台提供者不能提供销售者或者服务者的真实名称、地址和有效联系方式的，消费者也可以向网络交易平台提供者要求赔偿；网络交易平台提供者作出更有利于消费者的承诺的，应当履行承诺。网络交易平台提供者赔偿后，有权向销售者或者服务者追偿。\n\n网络交易平台提供者明知或者应知销售者或者服务者利用其平台侵害消费者合法权益，未采取必要措施的，依法与该销售者或者服务者承担连带责任。\n\n> **售后适用要点**：平台对外作出的售后承诺（如「假一赔十」「极速退款」）一经公示即具约束力，**平台须自行履行，不能以「这是商家的责任」推给商家**。",
+            "score": 0.33165234804153443,
+            "doc_id": "L01",
+            "layer": "law",
+            "doc_type": "法律",
+            "effective_date": "2014-03-15",
+            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
+            "reason": "相关性 0.190 × 先验 0.90 → 0.332；命中 1/law/dense#2"
           }
-        }
+        ]
       },
       "usage": {
         "input": 0,
@@ -658,7 +1021,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "bffab069c2fa746f",
+      "parentObservationId": "0548a99fe7cbe358",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -666,17 +1029,16 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 17.921,
+      "latency": 2.032,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:02.105Z",
-      "updatedAt": "2026-08-18T11:46:02.118Z",
+      "createdAt": "2026-08-19T05:14:53.414Z",
+      "updatedAt": "2026-08-19T05:14:53.424Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
       "totalTokens": 0,
       "completionStartTime": null,
       "model": null,
-      "modelParameters": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,
@@ -690,80 +1052,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "32b87e433c7fcff3",
-      "traceId": "803f5058fe1f8495a3633fa6a1b3d758",
-      "type": "SPAN",
-      "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:45:57.504000+00:00",
-      "endTime": "2026-08-18 11:45:57.505000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "evaluator_count": 1,
-        "evaluation_count": 8,
-        "failed_evaluator_count": 0,
-        "skipped_evaluator_count": 0
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "bffab069c2fa746f",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.001,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:02.105Z",
-      "updatedAt": "2026-08-18T11:46:02.117Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "f76fca94beaea580",
-      "traceId": "803f5058fe1f8495a3633fa6a1b3d758",
+      "id": "78a3961fe00cf9eb",
+      "traceId": "15b261d379e890a7c886d01a8edad0ce",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 11:45:51.777000+00:00",
-      "endTime": "2026-08-18 11:45:52.494000+00:00",
+      "startTime": "2026-08-19 05:14:48.302000+00:00",
+      "endTime": "2026-08-19 05:14:49.013000+00:00",
       "input": {
         "query": "在哪些情形下，平台会介入处理消费者的售后问题？",
         "candidates": 20
@@ -773,7 +1067,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -889,7 +1183,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "21fe0ea22dfaab2d",
+      "parentObservationId": "da7bb4cd2a24e99f",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -897,10 +1191,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.717,
+      "latency": 0.711,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:57.046Z",
-      "updatedAt": "2026-08-18T11:45:57.057Z",
+      "createdAt": "2026-08-19T05:14:53.414Z",
+      "updatedAt": "2026-08-19T05:14:53.424Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -921,255 +1215,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "21fe0ea22dfaab2d",
-      "traceId": "803f5058fe1f8495a3633fa6a1b3d758",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:45:50.695000+00:00",
-      "endTime": "2026-08-18 11:45:52.520000+00:00",
-      "modelParameters": {},
-      "input": {
-        "query": "在哪些情形下，平台会介入处理消费者的售后问题？",
-        "top_k": 4
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.1 申请条件 … 第五条 特定场景的处理口径 > 5.4 商品导致人身或财产损害",
-            "text": "出现以下任一情形，消费者可申请平台介入：\n\n（一）商家拒绝退款申请或超过 48 小时未响应；\n（二）商家提出的处理方案消费者不接受；\n（三）商家验收结论消费者有异议；\n（四）双方协商超过 3 个自然日仍未达成一致。\n\n消费者应在争议产生后 **15 日**内申请介入。超过时限的，平台仍可受理，但举证难度增加。\n\n申请方须提交：订单信息、争议诉求、支持诉求的凭证（照片、视频、聊天记录、检测报告、物流凭证）。\n\n平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。\n\n举证期结束后，平台在 **72 小时**内出具判定结论，并向双方说明判定依据的具体条款。\n\n平台按以下顺序适用规则：\n\n1. 法律、行政法规、部门规章的强制性规定；\n2. 平台在首页显著位置公示的各项交易规则；\n3. 商家在商品页面作出的更优承诺；\n4. 双方的约定与交易记录；\n5. 行业惯例与公平原则。\n\n| 争议事项 | 举证责任方 |\n|---|---|\n| 退回商品不完好、缺件、调包 | 商家 |\n| 商品存在质量问题 | 消费者（耐用商品 6 个月内除外） |\n| 耐用商品签收 6 个月内的瑕疵 | **商家** |\n| 已履行发货义务 | 商家 |\n| 已履行寄回义务 | 消费者 |\n| 曾作出特别承诺 | 主张一方 |\n\n双方均无法举证的，平台结合物流轨迹、历史交易行为、账户风险状况、商家服务记录综合判定，并在结论中说明推定理由。\n\n判定结论作出后系统自动执行——支持消费者的即时退款，支持商家的关闭申请。**判定结论须附具体理由与所依据的条款，不得仅告知结果。**\n\n生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。\n\n生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。",
-            "score": 0.9219365406036378,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.927 × 先验 0.90 → 0.922；命中 1/platform/dense#1, 1/platform/bm25#3"
-          },
-          {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第六条 平台的先行赔付 > 6.1 适用情形",
-            "text": "- 商家失联、闭店、无法履行售后义务的；\n- 商家拒不执行平台判定结论的；\n- 平台公示的服务承诺未能兑现的。\n\n平台先行赔付后，有权向商家追偿，并从商家保证金中扣划。\n\n**平台就其公示的服务承诺自行担责**，不以「这是商家责任」为由推诿。",
-            "score": 0.8984065818786622,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.898 × 先验 0.90 → 0.898；命中 1/platform/dense#8, 1/platform/bm25#5"
-          },
-          {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第一条 适用范围 … 第二条 争议解决的层级",
-            "text": "本规则适用于消费者与商家在退款、退货、售后赔付过程中产生的全部争议，包括：\n\n- 商家拒绝退款申请，消费者有异议的；\n- 商家验收退回商品不通过，消费者有异议的；\n- 退款金额、运费扣除有异议的；\n- 特殊类目商品的质量问题诉求；\n- 涉及假冒伪劣、虚假宣传的赔付诉求。\n\n平台采用三层递进的处理机制：\n\n| 层级 | 处理方式 | 时限 |\n|---|---|---|\n| 第一层 | **双方自主协商** | 商家须在 48 小时内响应 |\n| 第二层 | **申请平台介入** | 平台 72 小时内出具判定 |\n| 第三层 | **外部维权** | 投诉、调解、仲裁、诉讼 |\n\n**平台鼓励双方通过自主协商解决争议**，但消费者申请介入的，平台不得以「请先自行协商」为由拒绝受理。",
-            "score": 0.8724476623535157,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.866 × 先验 0.90 → 0.872；命中 1/platform/dense#12, 1/platform/bm25#6"
-          },
-          {
-            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第四十四条 【网络交易平台提供者责任】",
-            "text": "消费者通过网络交易平台购买商品或者接受服务，其合法权益受到损害的，可以向销售者或者服务者要求赔偿。网络交易平台提供者不能提供销售者或者服务者的真实名称、地址和有效联系方式的，消费者也可以向网络交易平台提供者要求赔偿；网络交易平台提供者作出更有利于消费者的承诺的，应当履行承诺。网络交易平台提供者赔偿后，有权向销售者或者服务者追偿。\n\n网络交易平台提供者明知或者应知销售者或者服务者利用其平台侵害消费者合法权益，未采取必要措施的，依法与该销售者或者服务者承担连带责任。\n\n> **售后适用要点**：平台对外作出的售后承诺（如「假一赔十」「极速退款」）一经公示即具约束力，**平台须自行履行，不能以「这是商家的责任」推给商家**。",
-            "score": 0.33165234804153443,
-            "doc_id": "L01",
-            "layer": "law",
-            "doc_type": "法律",
-            "effective_date": "2014-03-15",
-            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
-            "reason": "相关性 0.190 × 先验 0.90 → 0.332；命中 1/law/dense#2"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "a150bcf3f7ade442",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 1.825,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:57.046Z",
-      "updatedAt": "2026-08-18T11:45:57.056Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "9817a2b73390b9b1",
-      "traceId": "803f5058fe1f8495a3633fa6a1b3d758",
-      "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:45:52.494000+00:00",
-      "endTime": "2026-08-18 11:45:52.519000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": [
-          "P09#002:00",
-          "P09#005:00",
-          "P09#000:00",
-          "P09#003:03",
-          "P09#004:00",
-          "P09#004:03",
-          "P09#001:00",
-          "L01#006:00",
-          "P01#004:03",
-          "L04#014:00"
-        ]
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.1 申请条件 … 第五条 特定场景的处理口径 > 5.4 商品导致人身或财产损害",
-            "text": "出现以下任一情形，消费者可申请平台介入：\n\n（一）商家拒绝退款申请或超过 48 小时未响应；\n（二）商家提出的处理方案消费者不接受；\n（三）商家验收结论消费者有异议；\n（四）双方协商超过 3 个自然日仍未达成一致。\n\n消费者应在争议产生后 **15 日**内申请介入。超过时限的，平台仍可受理，但举证难度增加。\n\n申请方须提交：订单信息、争议诉求、支持诉求的凭证（照片、视频、聊天记录、检测报告、物流凭证）。\n\n平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。\n\n举证期结束后，平台在 **72 小时**内出具判定结论，并向双方说明判定依据的具体条款。\n\n平台按以下顺序适用规则：\n\n1. 法律、行政法规、部门规章的强制性规定；\n2. 平台在首页显著位置公示的各项交易规则；\n3. 商家在商品页面作出的更优承诺；\n4. 双方的约定与交易记录；\n5. 行业惯例与公平原则。\n\n| 争议事项 | 举证责任方 |\n|---|---|\n| 退回商品不完好、缺件、调包 | 商家 |\n| 商品存在质量问题 | 消费者（耐用商品 6 个月内除外） |\n| 耐用商品签收 6 个月内的瑕疵 | **商家** |\n| 已履行发货义务 | 商家 |\n| 已履行寄回义务 | 消费者 |\n| 曾作出特别承诺 | 主张一方 |\n\n双方均无法举证的，平台结合物流轨迹、历史交易行为、账户风险状况、商家服务记录综合判定，并在结论中说明推定理由。\n\n判定结论作出后系统自动执行——支持消费者的即时退款，支持商家的关闭申请。**判定结论须附具体理由与所依据的条款，不得仅告知结果。**\n\n生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。\n\n生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。",
-            "score": 0.9219365406036378,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.927 × 先验 0.90 → 0.922；命中 1/platform/dense#1, 1/platform/bm25#3"
-          },
-          {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第六条 平台的先行赔付 > 6.1 适用情形",
-            "text": "- 商家失联、闭店、无法履行售后义务的；\n- 商家拒不执行平台判定结论的；\n- 平台公示的服务承诺未能兑现的。\n\n平台先行赔付后，有权向商家追偿，并从商家保证金中扣划。\n\n**平台就其公示的服务承诺自行担责**，不以「这是商家责任」为由推诿。",
-            "score": 0.8984065818786622,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.898 × 先验 0.90 → 0.898；命中 1/platform/dense#8, 1/platform/bm25#5"
-          },
-          {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第一条 适用范围 … 第二条 争议解决的层级",
-            "text": "本规则适用于消费者与商家在退款、退货、售后赔付过程中产生的全部争议，包括：\n\n- 商家拒绝退款申请，消费者有异议的；\n- 商家验收退回商品不通过，消费者有异议的；\n- 退款金额、运费扣除有异议的；\n- 特殊类目商品的质量问题诉求；\n- 涉及假冒伪劣、虚假宣传的赔付诉求。\n\n平台采用三层递进的处理机制：\n\n| 层级 | 处理方式 | 时限 |\n|---|---|---|\n| 第一层 | **双方自主协商** | 商家须在 48 小时内响应 |\n| 第二层 | **申请平台介入** | 平台 72 小时内出具判定 |\n| 第三层 | **外部维权** | 投诉、调解、仲裁、诉讼 |\n\n**平台鼓励双方通过自主协商解决争议**，但消费者申请介入的，平台不得以「请先自行协商」为由拒绝受理。",
-            "score": 0.8724476623535157,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.866 × 先验 0.90 → 0.872；命中 1/platform/dense#12, 1/platform/bm25#6"
-          },
-          {
-            "section": "L01 中华人民共和国消费者权益保护法（网购与售后条款摘录） > 第四十四条 【网络交易平台提供者责任】",
-            "text": "消费者通过网络交易平台购买商品或者接受服务，其合法权益受到损害的，可以向销售者或者服务者要求赔偿。网络交易平台提供者不能提供销售者或者服务者的真实名称、地址和有效联系方式的，消费者也可以向网络交易平台提供者要求赔偿；网络交易平台提供者作出更有利于消费者的承诺的，应当履行承诺。网络交易平台提供者赔偿后，有权向销售者或者服务者追偿。\n\n网络交易平台提供者明知或者应知销售者或者服务者利用其平台侵害消费者合法权益，未采取必要措施的，依法与该销售者或者服务者承担连带责任。\n\n> **售后适用要点**：平台对外作出的售后承诺（如「假一赔十」「极速退款」）一经公示即具约束力，**平台须自行履行，不能以「这是商家的责任」推给商家**。",
-            "score": 0.33165234804153443,
-            "doc_id": "L01",
-            "layer": "law",
-            "doc_type": "法律",
-            "effective_date": "2014-03-15",
-            "source_path": "doc/policy/law/L01-消费者权益保护法-网购与售后条款摘录.md",
-            "reason": "相关性 0.190 × 先验 0.90 → 0.332；命中 1/law/dense#2"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "21fe0ea22dfaab2d",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.025,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:57.046Z",
-      "updatedAt": "2026-08-18T11:45:57.056Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "1cce03f71ec8047f",
-      "traceId": "803f5058fe1f8495a3633fa6a1b3d758",
+      "id": "763059249a422505",
+      "traceId": "15b261d379e890a7c886d01a8edad0ce",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 11:45:51.693000+00:00",
-      "endTime": "2026-08-18 11:45:51.776000+00:00",
+      "startTime": "2026-08-19 05:14:48.218000+00:00",
+      "endTime": "2026-08-19 05:14:48.301000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1360,7 +1417,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "21fe0ea22dfaab2d",
+      "parentObservationId": "da7bb4cd2a24e99f",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1370,8 +1427,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.083,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:51.965Z",
-      "updatedAt": "2026-08-18T11:45:51.991Z",
+      "createdAt": "2026-08-19T05:14:53.414Z",
+      "updatedAt": "2026-08-19T05:14:53.420Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1393,18 +1450,93 @@
       "usagePricingTierName": null
     },
     {
-      "id": "0d91e2a990a9b4ae",
-      "traceId": "803f5058fe1f8495a3633fa6a1b3d758",
+      "id": "31d7e5af21f6f1ae",
+      "traceId": "15b261d379e890a7c886d01a8edad0ce",
       "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:45:51.693000+00:00",
-      "endTime": "2026-08-18 11:45:51.693000+00:00",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-19 05:14:47.012000+00:00",
+      "endTime": "2026-08-19 05:14:48.217000+00:00",
+      "input": {
+        "query": "在哪些情形下，平台会介入处理消费者的售后问题？"
+      },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "dispute",
+            "text": "在哪些情形下，平台会介入处理消费者的售后问题？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "da7bb4cd2a24e99f",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.205,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:14:48.297Z",
+      "updatedAt": "2026-08-19T05:14:48.322Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "69c9fcbcc2428b00",
+      "traceId": "15b261d379e890a7c886d01a8edad0ce",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:14:48.217000+00:00",
+      "endTime": "2026-08-19 05:14:48.218000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1434,7 +1566,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "21fe0ea22dfaab2d",
+      "parentObservationId": "da7bb4cd2a24e99f",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1442,10 +1574,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.0,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:51.965Z",
-      "updatedAt": "2026-08-18T11:45:51.988Z",
+      "createdAt": "2026-08-19T05:14:48.297Z",
+      "updatedAt": "2026-08-19T05:14:48.316Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1454,81 +1586,6 @@
       "model": null,
       "modelParameters": null,
       "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "2821758ba50af7a3",
-      "traceId": "803f5058fe1f8495a3633fa6a1b3d758",
-      "type": "SPAN",
-      "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:45:50.695000+00:00",
-      "endTime": "2026-08-18 11:45:51.692000+00:00",
-      "input": {
-        "query": "在哪些情形下，平台会介入处理消费者的售后问题？"
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "rewritten": true,
-        "needs_law": false,
-        "sub_queries": [
-          {
-            "id": "1",
-            "intent": "dispute",
-            "text": "在哪些情形下，平台会介入处理消费者的售后问题？"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "21fe0ea22dfaab2d",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.997,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:51.965Z",
-      "updatedAt": "2026-08-18T11:45:51.986Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,

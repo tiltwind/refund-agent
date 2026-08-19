@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-047",
+    "query": "消费者主张商品存在质量问题时，需要提供哪些材料，以及是否应当保留问题商品？",
     "type": "single",
     "style": "formal",
     "doc_id": "P05",
@@ -9,6 +10,7 @@
     "seed_chunk_id": [
       "P05#005:01"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
@@ -19,7 +21,7 @@
       "context_recall": 1.0,
       "context_relevance": 0.04
     },
-    "elapsed_s": 1.9,
+    "elapsed_s": 2.0,
     "seed_rank": {
       "candidate": {
         "P05#005:01": 1
@@ -28,6 +30,23 @@
         "P05#005:01": 1
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "condition",
+          "text": "消费者主张商品存在质量问题时，需要提供哪些证明材料？"
+        },
+        {
+          "id": "2",
+          "intent": "condition",
+          "text": "消费者主张商品存在质量问题时，是否应当保留问题商品？"
+        }
+      ]
+    },
+    "rewrite_hash": "dcf1105265d20150",
     "sections": [
       "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.1 商家举证 … 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
       "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.2 申诉材料",
@@ -43,12 +62,12 @@
           {
             "claim": "消费者主张商品存在质量问题的，应提供问题商品的照片或视频。",
             "supported": true,
-            "reason": "P05中明确要求提供照片或视频。"
+            "reason": "P05 中明确要求提供照片或视频。"
           },
           {
             "claim": "消费者主张商品存在质量问题的，应保留问题商品待查验。",
             "supported": true,
-            "reason": "P05中明确要求保留问题商品待查验。"
+            "reason": "P05 中明确要求保留问题商品待查验。"
           }
         ],
         "error": null
@@ -74,27 +93,27 @@
         "error": null
       }
     },
-    "trace_id": "6118b22801c80ebfaa1c3f4fa727a5d6"
+    "trace_id": "3521932ae3cf3b3dc5b0b8c36bf46aed"
   },
   "trace": {
-    "id": "6118b22801c80ebfaa1c3f4fa727a5d6",
+    "id": "3521932ae3cf3b3dc5b0b8c36bf46aed",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:47:14.816000+00:00"
+    "timestamp": "2026-08-19 05:16:36.236000+00:00"
   },
   "observations": [
     {
-      "id": "34160c1635cd3fc9",
-      "traceId": "6118b22801c80ebfaa1c3f4fa727a5d6",
+      "id": "ac95e720c7c42509",
+      "traceId": "3521932ae3cf3b3dc5b0b8c36bf46aed",
       "type": "SPAN",
       "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:47:52.410000+00:00",
-      "endTime": "2026-08-18 11:47:52.412000+00:00",
+      "startTime": "2026-08-19 05:16:41.809000+00:00",
+      "endTime": "2026-08-19 05:16:41.811000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -118,7 +137,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "a4006c10ae10039d",
+      "parentObservationId": "5724d804d853c474",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -128,8 +147,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.002,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:52.791Z",
-      "updatedAt": "2026-08-18T11:47:52.817Z",
+      "createdAt": "2026-08-19T05:16:44.118Z",
+      "updatedAt": "2026-08-19T05:16:44.137Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -151,12 +170,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "cd624a41c42e28a6",
-      "traceId": "6118b22801c80ebfaa1c3f4fa727a5d6",
+      "id": "c00616ca3c9106b6",
+      "traceId": "3521932ae3cf3b3dc5b0b8c36bf46aed",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:47:52.411000+00:00",
-      "endTime": "2026-08-18 11:47:52.411000+00:00",
+      "startTime": "2026-08-19 05:16:41.810000+00:00",
+      "endTime": "2026-08-19 05:16:41.811000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -164,6 +183,7 @@
         },
         "output": {
           "case_id": "R1-047",
+          "query": "消费者主张商品存在质量问题时，需要提供哪些材料，以及是否应当保留问题商品？",
           "type": "single",
           "style": "formal",
           "doc_id": "P05",
@@ -172,6 +192,7 @@
           "seed_chunk_id": [
             "P05#005:01"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
@@ -182,7 +203,7 @@
             "context_recall": 1,
             "context_relevance": 0.04
           },
-          "elapsed_s": 1.9,
+          "elapsed_s": 2,
           "seed_rank": {
             "candidate": {
               "P05#005:01": 1
@@ -191,6 +212,23 @@
               "P05#005:01": 1
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "condition",
+                "text": "消费者主张商品存在质量问题时，需要提供哪些证明材料？"
+              },
+              {
+                "id": "2",
+                "intent": "condition",
+                "text": "消费者主张商品存在质量问题时，是否应当保留问题商品？"
+              }
+            ]
+          },
+          "rewrite_hash": "dcf1105265d20150",
           "sections": [
             "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.1 商家举证 … 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
             "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.2 申诉材料",
@@ -206,12 +244,12 @@
                 {
                   "claim": "消费者主张商品存在质量问题的，应提供问题商品的照片或视频。",
                   "supported": true,
-                  "reason": "P05中明确要求提供照片或视频。"
+                  "reason": "P05 中明确要求提供照片或视频。"
                 },
                 {
                   "claim": "消费者主张商品存在质量问题的，应保留问题商品待查验。",
                   "supported": true,
-                  "reason": "P05中明确要求保留问题商品待查验。"
+                  "reason": "P05 中明确要求保留问题商品待查验。"
                 }
               ],
               "error": null
@@ -246,7 +284,8 @@
           "seed_chunk_id": [
             "P05#005:01"
           ],
-          "reference_answer": "消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。"
+          "reference_answer": "消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "text",
@@ -268,7 +307,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -328,7 +367,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "34160c1635cd3fc9",
+      "parentObservationId": "ac95e720c7c42509",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -336,10 +375,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.0,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:52.791Z",
-      "updatedAt": "2026-08-18T11:47:52.813Z",
+      "createdAt": "2026-08-19T05:16:44.118Z",
+      "updatedAt": "2026-08-19T05:16:44.136Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -359,336 +398,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "95f8705f40971bd4",
-      "traceId": "6118b22801c80ebfaa1c3f4fa727a5d6",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:47:46.638000+00:00",
-      "endTime": "2026-08-18 11:47:48.520000+00:00",
-      "modelParameters": {},
-      "input": {
-        "query": "消费者主张商品存在质量问题时，需要提供哪些材料，以及是否应当保留问题商品？",
-        "top_k": 4
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.1 商家举证 … 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
-            "text": "商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。\n\n商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。\n\n商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。",
-            "score": 0.9794169712066652,
-            "doc_id": "P05",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P05-商品完好标准与验收规范.md",
-            "reason": "相关性 0.999 × 先验 0.90 → 0.979；命中 1/platform/dense#1, 1/platform/bm25#1, 2/platform/dense#1, 2/platform/bm25#1"
-          },
-          {
-            "section": "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.2 申诉材料",
-            "text": "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
-            "score": 0.7936494159698487,
-            "doc_id": "P08",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
-            "reason": "相关性 0.767 × 先验 0.90 → 0.794；命中 1/platform/dense#5, 1/platform/bm25#2"
-          },
-          {
-            "section": "P01 星辰优选用户服务协议 > 第三章 订单与合同 > 3.2 商品信息",
-            "text": "商品页面展示的商品信息构成要约，消费者提交订单并支付成功后，买卖合同成立。\n\n平台不以格式条款约定「消费者支付价款后合同不成立」；含有该内容的条款无效。\n\n平台及商家应全面、真实、准确、及时地披露商品信息。商品实物与页面描述不符的，构成 [P02] 所定的「质量问题」，消费者可据此主张售后。\n\n**商品在运输途中的破损、丢失风险由经营者承担**，但消费者自行指定快递物流服务提供者的除外。\n\n物流原因导致的破损、丢失、错发，按「质量问题」处理，**运费不由消费者承担**。\n\n未发货订单，消费者可随时申请取消并全额退款，不受 [P02] 退货窗口限制。已发货订单进入退货退款流程。",
-            "score": 0.7024954128265382,
-            "doc_id": "P01",
-            "layer": "platform",
-            "doc_type": "平台服务协议",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P01-用户服务协议.md",
-            "reason": "相关性 0.653 × 先验 0.90 → 0.702；命中 1/platform/dense#4, 1/platform/bm25#11, 2/platform/dense#4, 2/platform/bm25#8"
-          },
-          {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.2 商品与描述不符 … 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
-            "text": "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。\n\n生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。",
-            "score": 0.5298937845230103,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.437 × 先验 0.90 → 0.530；命中 1/platform/dense#16, 1/platform/bm25#3, 2/platform/dense#8, 2/platform/bm25#2"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "cb182dd5b9aabd3d",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 1.882,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:52.791Z",
-      "updatedAt": "2026-08-18T11:47:52.813Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "5043ded19ff39fb5",
-      "traceId": "6118b22801c80ebfaa1c3f4fa727a5d6",
-      "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:47:48.502000+00:00",
-      "endTime": "2026-08-18 11:47:48.520000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": [
-          "P05#005:01",
-          "P08#006:01",
-          "P05#005:00",
-          "P01#003:01",
-          "P09#004:04",
-          "L01#002:00",
-          "P09#004:01",
-          "P05#005:02",
-          "P11#006:02"
-        ]
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.1 商家举证 … 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
-            "text": "商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。\n\n商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。\n\n商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。",
-            "score": 0.9794169712066652,
-            "doc_id": "P05",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P05-商品完好标准与验收规范.md",
-            "reason": "相关性 0.999 × 先验 0.90 → 0.979；命中 1/platform/dense#1, 1/platform/bm25#1, 2/platform/dense#1, 2/platform/bm25#1"
-          },
-          {
-            "section": "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.2 申诉材料",
-            "text": "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
-            "score": 0.7936494159698487,
-            "doc_id": "P08",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
-            "reason": "相关性 0.767 × 先验 0.90 → 0.794；命中 1/platform/dense#5, 1/platform/bm25#2"
-          },
-          {
-            "section": "P01 星辰优选用户服务协议 > 第三章 订单与合同 > 3.2 商品信息",
-            "text": "商品页面展示的商品信息构成要约，消费者提交订单并支付成功后，买卖合同成立。\n\n平台不以格式条款约定「消费者支付价款后合同不成立」；含有该内容的条款无效。\n\n平台及商家应全面、真实、准确、及时地披露商品信息。商品实物与页面描述不符的，构成 [P02] 所定的「质量问题」，消费者可据此主张售后。\n\n**商品在运输途中的破损、丢失风险由经营者承担**，但消费者自行指定快递物流服务提供者的除外。\n\n物流原因导致的破损、丢失、错发，按「质量问题」处理，**运费不由消费者承担**。\n\n未发货订单，消费者可随时申请取消并全额退款，不受 [P02] 退货窗口限制。已发货订单进入退货退款流程。",
-            "score": 0.7024954128265382,
-            "doc_id": "P01",
-            "layer": "platform",
-            "doc_type": "平台服务协议",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P01-用户服务协议.md",
-            "reason": "相关性 0.653 × 先验 0.90 → 0.702；命中 1/platform/dense#4, 1/platform/bm25#11, 2/platform/dense#4, 2/platform/bm25#8"
-          },
-          {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.2 商品与描述不符 … 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
-            "text": "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。\n\n生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。",
-            "score": 0.5298937845230103,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.437 × 先验 0.90 → 0.530；命中 1/platform/dense#16, 1/platform/bm25#3, 2/platform/dense#8, 2/platform/bm25#2"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "95f8705f40971bd4",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.018,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:52.791Z",
-      "updatedAt": "2026-08-18T11:47:52.812Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "99e546fba1999acf",
-      "traceId": "6118b22801c80ebfaa1c3f4fa727a5d6",
-      "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:47:47.712000+00:00",
-      "endTime": "2026-08-18 11:47:47.712000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "routes": [
-          {
-            "sub_query": "1",
-            "layer_k": {
-              "platform": 18,
-              "law": 5
-            },
-            "law_weight": 0.5
-          },
-          {
-            "sub_query": "2",
-            "layer_k": {
-              "platform": 18,
-              "law": 5
-            },
-            "law_weight": 0.5
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "95f8705f40971bd4",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.0,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:52.791Z",
-      "updatedAt": "2026-08-18T11:47:52.812Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "a4006c10ae10039d",
-      "traceId": "6118b22801c80ebfaa1c3f4fa727a5d6",
+      "id": "5724d804d853c474",
+      "traceId": "3521932ae3cf3b3dc5b0b8c36bf46aed",
       "type": "SPAN",
       "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:47:14.816000+00:00",
-      "endTime": "2026-08-18 11:47:52.412000+00:00",
+      "startTime": "2026-08-19 05:16:16.393000+00:00",
+      "endTime": "2026-08-19 05:16:41.811000+00:00",
       "input": {
         "query": "消费者主张商品存在质量问题时，需要提供哪些材料，以及是否应当保留问题商品？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -719,7 +440,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -732,6 +453,7 @@
       },
       "output": {
         "case_id": "R1-047",
+        "query": "消费者主张商品存在质量问题时，需要提供哪些材料，以及是否应当保留问题商品？",
         "type": "single",
         "style": "formal",
         "doc_id": "P05",
@@ -740,6 +462,7 @@
         "seed_chunk_id": [
           "P05#005:01"
         ],
+        "acceptable_seed_chunk_ids": null,
         "error": null,
         "scores": {
           "recall@10": 1,
@@ -750,7 +473,7 @@
           "context_recall": 1,
           "context_relevance": 0.04
         },
-        "elapsed_s": 1.9,
+        "elapsed_s": 2,
         "seed_rank": {
           "candidate": {
             "P05#005:01": 1
@@ -759,6 +482,23 @@
             "P05#005:01": 1
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "condition",
+              "text": "消费者主张商品存在质量问题时，需要提供哪些证明材料？"
+            },
+            {
+              "id": "2",
+              "intent": "condition",
+              "text": "消费者主张商品存在质量问题时，是否应当保留问题商品？"
+            }
+          ]
+        },
+        "rewrite_hash": "dcf1105265d20150",
         "sections": [
           "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.1 商家举证 … 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
           "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.2 申诉材料",
@@ -774,12 +514,12 @@
               {
                 "claim": "消费者主张商品存在质量问题的，应提供问题商品的照片或视频。",
                 "supported": true,
-                "reason": "P05中明确要求提供照片或视频。"
+                "reason": "P05 中明确要求提供照片或视频。"
               },
               {
                 "claim": "消费者主张商品存在质量问题的，应保留问题商品待查验。",
                 "supported": true,
-                "reason": "P05中明确要求保留问题商品待查验。"
+                "reason": "P05 中明确要求保留问题商品待查验。"
               }
             ],
             "error": null
@@ -820,10 +560,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 37.596,
+      "latency": 25.418,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:52.791Z",
-      "updatedAt": "2026-08-18T11:47:52.812Z",
+      "createdAt": "2026-08-19T05:16:44.118Z",
+      "updatedAt": "2026-08-19T05:16:44.134Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -845,18 +585,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "cb182dd5b9aabd3d",
-      "traceId": "6118b22801c80ebfaa1c3f4fa727a5d6",
+      "id": "89ce087323951b17",
+      "traceId": "3521932ae3cf3b3dc5b0b8c36bf46aed",
       "type": "SPAN",
       "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:47:14.816000+00:00",
-      "endTime": "2026-08-18 11:47:52.410000+00:00",
+      "startTime": "2026-08-19 05:16:16.393000+00:00",
+      "endTime": "2026-08-19 05:16:41.808000+00:00",
       "input": {
         "query": "消费者主张商品存在质量问题时，需要提供哪些材料，以及是否应当保留问题商品？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -887,7 +627,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -900,6 +640,7 @@
       },
       "output": {
         "case_id": "R1-047",
+        "query": "消费者主张商品存在质量问题时，需要提供哪些材料，以及是否应当保留问题商品？",
         "type": "single",
         "style": "formal",
         "doc_id": "P05",
@@ -908,6 +649,7 @@
         "seed_chunk_id": [
           "P05#005:01"
         ],
+        "acceptable_seed_chunk_ids": null,
         "error": null,
         "scores": {
           "recall@10": 1,
@@ -918,7 +660,7 @@
           "context_recall": 1,
           "context_relevance": 0.04
         },
-        "elapsed_s": 1.9,
+        "elapsed_s": 2,
         "seed_rank": {
           "candidate": {
             "P05#005:01": 1
@@ -927,6 +669,23 @@
             "P05#005:01": 1
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "condition",
+              "text": "消费者主张商品存在质量问题时，需要提供哪些证明材料？"
+            },
+            {
+              "id": "2",
+              "intent": "condition",
+              "text": "消费者主张商品存在质量问题时，是否应当保留问题商品？"
+            }
+          ]
+        },
+        "rewrite_hash": "dcf1105265d20150",
         "sections": [
           "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.1 商家举证 … 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
           "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.2 申诉材料",
@@ -942,12 +701,12 @@
               {
                 "claim": "消费者主张商品存在质量问题的，应提供问题商品的照片或视频。",
                 "supported": true,
-                "reason": "P05中明确要求提供照片或视频。"
+                "reason": "P05 中明确要求提供照片或视频。"
               },
               {
                 "claim": "消费者主张商品存在质量问题的，应保留问题商品待查验。",
                 "supported": true,
-                "reason": "P05中明确要求保留问题商品待查验。"
+                "reason": "P05 中明确要求保留问题商品待查验。"
               }
             ],
             "error": null
@@ -981,7 +740,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "a4006c10ae10039d",
+      "parentObservationId": "5724d804d853c474",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -989,10 +748,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 37.594,
+      "latency": 25.415,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:52.791Z",
-      "updatedAt": "2026-08-18T11:47:52.812Z",
+      "createdAt": "2026-08-19T05:16:44.118Z",
+      "updatedAt": "2026-08-19T05:16:44.125Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1013,21 +772,32 @@
       "usagePricingTierName": null
     },
     {
-      "id": "0eabfcac285c790b",
-      "traceId": "6118b22801c80ebfaa1c3f4fa727a5d6",
+      "id": "6c86bd5a71816e41",
+      "traceId": "3521932ae3cf3b3dc5b0b8c36bf46aed",
       "type": "SPAN",
-      "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:47:46.639000+00:00",
-      "endTime": "2026-08-18 11:47:47.712000+00:00",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:16:38.218000+00:00",
+      "endTime": "2026-08-19 05:16:38.229000+00:00",
       "input": {
-        "query": "消费者主张商品存在质量问题时，需要提供哪些材料，以及是否应当保留问题商品？"
+        "top_k": 4,
+        "evidence": [
+          "P05#005:01",
+          "P05#005:00",
+          "P08#006:01",
+          "P01#003:01",
+          "P09#004:04",
+          "L01#002:00",
+          "P09#004:01",
+          "P05#005:02",
+          "P11#006:02"
+        ]
       },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1039,18 +809,50 @@
         }
       },
       "output": {
-        "rewritten": true,
-        "needs_law": false,
-        "sub_queries": [
+        "sections": [
           {
-            "id": "1",
-            "intent": "condition",
-            "text": "消费者主张商品存在质量问题时，需要提供哪些证明材料？"
+            "section": "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.1 商家举证 … 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
+            "text": "商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。\n\n商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。\n\n商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。",
+            "score": 0.9794169712066652,
+            "doc_id": "P05",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P05-商品完好标准与验收规范.md",
+            "reason": "相关性 0.999 × 先验 0.90 → 0.979；命中 1/platform/dense#1, 1/platform/bm25#1, 2/platform/dense#1, 2/platform/bm25#1"
           },
           {
-            "id": "2",
-            "intent": "condition",
-            "text": "消费者主张商品存在质量问题时，是否应当保留问题商品？"
+            "section": "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.2 申诉材料",
+            "text": "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
+            "score": 0.7936494159698487,
+            "doc_id": "P08",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
+            "reason": "相关性 0.767 × 先验 0.90 → 0.794；命中 1/platform/dense#5, 1/platform/bm25#2"
+          },
+          {
+            "section": "P01 星辰优选用户服务协议 > 第三章 订单与合同 > 3.2 商品信息",
+            "text": "商品页面展示的商品信息构成要约，消费者提交订单并支付成功后，买卖合同成立。\n\n平台不以格式条款约定「消费者支付价款后合同不成立」；含有该内容的条款无效。\n\n平台及商家应全面、真实、准确、及时地披露商品信息。商品实物与页面描述不符的，构成 [P02] 所定的「质量问题」，消费者可据此主张售后。\n\n**商品在运输途中的破损、丢失风险由经营者承担**，但消费者自行指定快递物流服务提供者的除外。\n\n物流原因导致的破损、丢失、错发，按「质量问题」处理，**运费不由消费者承担**。\n\n未发货订单，消费者可随时申请取消并全额退款，不受 [P02] 退货窗口限制。已发货订单进入退货退款流程。",
+            "score": 0.7024954128265382,
+            "doc_id": "P01",
+            "layer": "platform",
+            "doc_type": "平台服务协议",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P01-用户服务协议.md",
+            "reason": "相关性 0.653 × 先验 0.90 → 0.702；命中 1/platform/dense#4, 1/platform/bm25#11, 2/platform/dense#4, 2/platform/bm25#8"
+          },
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.2 商品与描述不符 … 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
+            "text": "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。\n\n生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。",
+            "score": 0.5298937845230103,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.437 × 先验 0.90 → 0.530；命中 1/platform/dense#16, 1/platform/bm25#3, 2/platform/dense#8, 2/platform/bm25#2"
           }
         ]
       },
@@ -1061,7 +863,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "95f8705f40971bd4",
+      "parentObservationId": "fa1419a25cb3d597",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1069,10 +871,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.073,
+      "latency": 0.011,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:52.791Z",
-      "updatedAt": "2026-08-18T11:47:52.809Z",
+      "createdAt": "2026-08-19T05:16:39.012Z",
+      "updatedAt": "2026-08-19T05:16:39.031Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1093,18 +895,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "5c4f89dd5df12459",
-      "traceId": "6118b22801c80ebfaa1c3f4fa727a5d6",
+      "id": "bb58d4dbf3580a4d",
+      "traceId": "3521932ae3cf3b3dc5b0b8c36bf46aed",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 11:47:47.713000+00:00",
-      "endTime": "2026-08-18 11:47:47.812000+00:00",
+      "startTime": "2026-08-19 05:16:37.452000+00:00",
+      "endTime": "2026-08-19 05:16:37.575000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1151,25 +953,41 @@
             ]
           },
           {
-            "chunk_id": "P09#004:01",
-            "section": "P09 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
-            "rrf": 0.1543,
+            "chunk_id": "P08#006:01",
+            "section": "P08 第六条 申诉 > 6.2 申诉材料",
+            "rrf": 0.0855,
             "hits": [
-              "1/platform/dense#6",
-              "1/platform/bm25#10",
-              "2/platform/dense#2",
-              "2/platform/bm25#7"
+              "1/platform/dense#5",
+              "1/platform/bm25#2"
             ]
           },
           {
-            "chunk_id": "P09#004:04",
-            "section": "P09 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
-            "rrf": 0.1524,
+            "chunk_id": "P05#005:00",
+            "section": "P05 第五条 举证责任 > 5.1 商家举证",
+            "rrf": 0.121,
             "hits": [
-              "1/platform/dense#16",
-              "1/platform/bm25#3",
-              "2/platform/dense#8",
-              "2/platform/bm25#2"
+              "1/platform/dense#2",
+              "1/platform/bm25#6",
+              "2/platform/dense#7"
+            ]
+          },
+          {
+            "chunk_id": "L01#001:00",
+            "section": "L01 第二十条 【经营者信息告知义务】",
+            "rrf": 0.0833,
+            "hits": [
+              "1/law/dense#4",
+              "1/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P09#003:03",
+            "section": "P09 第四条 平台介入的处理 > 4.4 举证责任分配",
+            "rrf": 0.1209,
+            "hits": [
+              "1/platform/dense#8",
+              "1/platform/bm25#4",
+              "2/platform/bm25#3"
             ]
           },
           {
@@ -1195,33 +1013,25 @@
             ]
           },
           {
-            "chunk_id": "P05#005:00",
-            "section": "P05 第五条 举证责任 > 5.1 商家举证",
-            "rrf": 0.121,
+            "chunk_id": "P09#004:01",
+            "section": "P09 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
+            "rrf": 0.1543,
             "hits": [
-              "1/platform/dense#2",
-              "1/platform/bm25#6",
-              "2/platform/dense#7"
+              "1/platform/dense#6",
+              "1/platform/bm25#10",
+              "2/platform/dense#2",
+              "2/platform/bm25#7"
             ]
           },
           {
-            "chunk_id": "P09#003:03",
-            "section": "P09 第四条 平台介入的处理 > 4.4 举证责任分配",
-            "rrf": 0.1209,
+            "chunk_id": "P09#004:04",
+            "section": "P09 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
+            "rrf": 0.1524,
             "hits": [
-              "1/platform/dense#8",
-              "1/platform/bm25#4",
-              "2/platform/bm25#3"
-            ]
-          },
-          {
-            "chunk_id": "P09#004:00",
-            "section": "P09 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
-            "rrf": 0.1075,
-            "hits": [
-              "1/platform/bm25#8",
-              "2/platform/dense#10",
-              "2/platform/bm25#6"
+              "1/platform/dense#16",
+              "1/platform/bm25#3",
+              "2/platform/dense#8",
+              "2/platform/bm25#2"
             ]
           },
           {
@@ -1235,21 +1045,30 @@
             ]
           },
           {
-            "chunk_id": "L05#000:00",
-            "section": "L05 ",
-            "rrf": 0.0889,
+            "chunk_id": "P09#004:00",
+            "section": "P09 第五条 特定场景的处理口径 > 5.1 特殊类目的质量问题",
+            "rrf": 0.1075,
             "hits": [
-              "1/law/bm25#2",
-              "2/law/bm25#3"
+              "1/platform/bm25#8",
+              "2/platform/dense#10",
+              "2/platform/bm25#6"
             ]
           },
           {
-            "chunk_id": "P08#006:01",
-            "section": "P08 第六条 申诉 > 6.2 申诉材料",
-            "rrf": 0.0855,
+            "chunk_id": "P11#001:04",
+            "section": "P11 第一条 生鲜食品 > 1.5 商品无需退回",
+            "rrf": 0.0583,
             "hits": [
-              "1/platform/dense#5",
-              "1/platform/bm25#2"
+              "2/platform/dense#12",
+              "2/platform/bm25#17"
+            ]
+          },
+          {
+            "chunk_id": "L05#021:00",
+            "section": "L05 第二十一条 【纠纷调解】",
+            "rrf": 0.0476,
+            "hits": [
+              "2/law/bm25#1"
             ]
           },
           {
@@ -1262,12 +1081,12 @@
             ]
           },
           {
-            "chunk_id": "L01#001:00",
-            "section": "L01 第二十条 【经营者信息告知义务】",
-            "rrf": 0.0833,
+            "chunk_id": "L05#000:00",
+            "section": "L05 ",
+            "rrf": 0.0889,
             "hits": [
-              "1/law/dense#4",
-              "1/law/bm25#4"
+              "1/law/bm25#2",
+              "2/law/bm25#3"
             ]
           },
           {
@@ -1280,39 +1099,19 @@
             ]
           },
           {
-            "chunk_id": "P06#002:03",
-            "section": "P06 第三条 质量问题退货的运费 > 3.4 争议期间的运费垫付",
-            "rrf": 0.077,
+            "chunk_id": "L02#002:02",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+            "rrf": 0.0417,
             "hits": [
-              "1/platform/bm25#7",
-              "2/platform/bm25#5"
+              "2/law/dense#4"
             ]
           },
           {
-            "chunk_id": "P06#004:02",
-            "section": "P06 第五条 退货物流 > 5.3 退货凭证",
-            "rrf": 0.069,
+            "chunk_id": "P01#006:02",
+            "section": "P01 第六章 消费者的义务 > 6.3 商品的妥善保管",
+            "rrf": 0.04,
             "hits": [
-              "1/platform/dense#9",
-              "2/platform/dense#9"
-            ]
-          },
-          {
-            "chunk_id": "P11#001:02",
-            "section": "P11 第一条 生鲜食品 > 1.3 质量问题的补偿",
-            "rrf": 0.0636,
-            "hits": [
-              "1/platform/dense#10",
-              "2/platform/dense#13"
-            ]
-          },
-          {
-            "chunk_id": "P06#000:00",
-            "section": "P06 第一条 运费承担的基本原则",
-            "rrf": 0.0626,
-            "hits": [
-              "1/platform/bm25#13",
-              "2/platform/bm25#11"
+              "2/platform/dense#5"
             ]
           }
         ]
@@ -1324,7 +1123,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "95f8705f40971bd4",
+      "parentObservationId": "fa1419a25cb3d597",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1332,10 +1131,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.099,
+      "latency": 0.123,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:52.791Z",
-      "updatedAt": "2026-08-18T11:47:52.809Z",
+      "createdAt": "2026-08-19T05:16:39.012Z",
+      "updatedAt": "2026-08-19T05:16:39.031Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1357,12 +1156,125 @@
       "usagePricingTierName": null
     },
     {
-      "id": "7c270ada8f033767",
-      "traceId": "6118b22801c80ebfaa1c3f4fa727a5d6",
+      "id": "fa1419a25cb3d597",
+      "traceId": "3521932ae3cf3b3dc5b0b8c36bf46aed",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:16:36.236000+00:00",
+      "endTime": "2026-08-19 05:16:38.229000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "消费者主张商品存在质量问题时，需要提供哪些材料，以及是否应当保留问题商品？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P05 星辰优选商品完好标准与验收规范 > 第五条 举证责任 > 5.1 商家举证 … 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
+            "text": "商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。\n\n商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。\n\n商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于：\n\n- 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）；\n- 出库时的商品序列号记录与质检照片；\n- 收发件重量记录。\n\n消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。\n\n**机动车、计算机、电视机、电冰箱、空调器、洗衣机等耐用商品，消费者自签收之日起六个月内发现瑕疵并发生争议的，由经营者承担瑕疵举证责任。** 此期间内不得要求消费者自证商品存在质量问题。\n\n争议双方均无法举证的，平台按 [P09] 的争议处理规则，结合物流轨迹、历史行为、交易记录综合判定。",
+            "score": 0.9794169712066652,
+            "doc_id": "P05",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P05-商品完好标准与验收规范.md",
+            "reason": "相关性 0.999 × 先验 0.90 → 0.979；命中 1/platform/dense#1, 1/platform/bm25#1, 2/platform/dense#1, 2/platform/bm25#1"
+          },
+          {
+            "section": "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.2 申诉材料",
+            "text": "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
+            "score": 0.7936494159698487,
+            "doc_id": "P08",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
+            "reason": "相关性 0.767 × 先验 0.90 → 0.794；命中 1/platform/dense#5, 1/platform/bm25#2"
+          },
+          {
+            "section": "P01 星辰优选用户服务协议 > 第三章 订单与合同 > 3.2 商品信息",
+            "text": "商品页面展示的商品信息构成要约，消费者提交订单并支付成功后，买卖合同成立。\n\n平台不以格式条款约定「消费者支付价款后合同不成立」；含有该内容的条款无效。\n\n平台及商家应全面、真实、准确、及时地披露商品信息。商品实物与页面描述不符的，构成 [P02] 所定的「质量问题」，消费者可据此主张售后。\n\n**商品在运输途中的破损、丢失风险由经营者承担**，但消费者自行指定快递物流服务提供者的除外。\n\n物流原因导致的破损、丢失、错发，按「质量问题」处理，**运费不由消费者承担**。\n\n未发货订单，消费者可随时申请取消并全额退款，不受 [P02] 退货窗口限制。已发货订单进入退货退款流程。",
+            "score": 0.7024954128265382,
+            "doc_id": "P01",
+            "layer": "platform",
+            "doc_type": "平台服务协议",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P01-用户服务协议.md",
+            "reason": "相关性 0.653 × 先验 0.90 → 0.702；命中 1/platform/dense#4, 1/platform/bm25#11, 2/platform/dense#4, 2/platform/bm25#8"
+          },
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第五条 特定场景的处理口径 > 5.2 商品与描述不符 … 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
+            "text": "生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。\n\n生鲜、定制、虚拟商品不进入自动退款通道，但**质量问题诉求经核实后仍可获得赔付或补偿**：\n\n| 情形 | 处理 |\n|---|---|\n| 生鲜商品签收时已变质、腐坏 | 凭签收时的照片/视频，全额退款或补发 |\n| 生鲜商品缺斤少两 | 按差额比例退款 |\n| 定制商品与约定规格不符 | 返工、重做或退款 |\n| 定制商品因商家原因存在瑕疵 | 退款或折价补偿 |\n| 虚拟商品卡密无效、无法核销 | 全额退款或重新发放 |\n| 虚拟商品重复发放、错发 | 退还多付款项 |\n\n> **核心区别**：特殊类目限制的是**无理由退款的自动通道**，不是消费者对瑕疵履约的救济权。\n\n商品实物与页面描述、实物样品不一致的，构成质量问题，消费者可主张退货且运费由商家承担。\n\n经查实构成欺诈的，消费者可主张退还货款并要求**三倍赔偿；增加赔偿金额不足五百元的，为五百元**。此类诉求不进入普通退款流程，转专项处理。\n\n涉及人身伤害、财产损失的，超出售后范畴，立即转专项通道，平台协助消费者向责任方主张赔偿。\n\n超出 15 天退货窗口的订单，若商品属三包目录内商品且在三包有效期内出现性能故障，消费者可主张**修理、更换**；符合「修理两次仍不能正常使用」等条件的，可主张退货（详见 [P11]）。",
+            "score": 0.5298937845230103,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.437 × 先验 0.90 → 0.530；命中 1/platform/dense#16, 1/platform/bm25#3, 2/platform/dense#8, 2/platform/bm25#2"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "89ce087323951b17",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.993,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:16:39.012Z",
+      "updatedAt": "2026-08-19T05:16:39.028Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "65e52c5e5fd2d9cb",
+      "traceId": "3521932ae3cf3b3dc5b0b8c36bf46aed",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 11:47:47.812000+00:00",
-      "endTime": "2026-08-18 11:47:48.501000+00:00",
+      "startTime": "2026-08-19 05:16:37.575000+00:00",
+      "endTime": "2026-08-19 05:16:38.217000+00:00",
       "input": {
         "query": "消费者主张商品存在质量问题时，需要提供哪些材料，以及是否应当保留问题商品？",
         "candidates": 20
@@ -1372,7 +1284,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1388,16 +1300,16 @@
         "min_score": 0.3,
         "dropped": [
           "L01#003:00",
+          "L01#001:00",
           "P09#003:03",
           "P09#004:00",
-          "L05#000:00",
+          "P11#001:04",
+          "L05#021:00",
           "L02#007:00",
-          "L01#001:00",
+          "L05#000:00",
           "P06#002:00",
-          "P06#002:03",
-          "P06#004:02",
-          "P11#001:02",
-          "P06#000:00"
+          "L02#002:02",
+          "P01#006:02"
         ],
         "evidence": [
           {
@@ -1409,20 +1321,20 @@
             "excerpt": "消费者主张商品存在质量问题的，应提供问题商品的照片或视频，并保留问题商品待查验。"
           },
           {
-            "chunk_id": "P08#006:01",
-            "section": "P08 第六条 申诉 > 6.2 申诉材料",
-            "score": 0.794,
-            "relevance": 0.767,
-            "prior": 0.9,
-            "excerpt": "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。"
-          },
-          {
             "chunk_id": "P05#005:00",
             "section": "P05 第五条 举证责任 > 5.1 商家举证",
             "score": 0.709,
             "relevance": 0.661,
             "prior": 0.9,
             "excerpt": "商家主张退回商品不完好、被调包、缺件的，**由商家举证**。举证材料包括但不限于： - 完整的退货开箱视频（须显示快递面单、拆封全过程、商品全貌）； - 出库时的商品序列号记录与质检照片； - 收发件重量记录。"
+          },
+          {
+            "chunk_id": "P08#006:01",
+            "section": "P08 第六条 申诉 > 6.2 申诉材料",
+            "score": 0.794,
+            "relevance": 0.767,
+            "prior": 0.9,
+            "excerpt": "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。"
           },
           {
             "chunk_id": "P01#003:01",
@@ -1481,7 +1393,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "95f8705f40971bd4",
+      "parentObservationId": "fa1419a25cb3d597",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1489,10 +1401,172 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.689,
+      "latency": 0.642,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:47:52.791Z",
-      "updatedAt": "2026-08-18T11:47:52.808Z",
+      "createdAt": "2026-08-19T05:16:39.012Z",
+      "updatedAt": "2026-08-19T05:16:39.027Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "20220cf71481ac18",
+      "traceId": "3521932ae3cf3b3dc5b0b8c36bf46aed",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:16:37.451000+00:00",
+      "endTime": "2026-08-19 05:16:37.451000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          },
+          {
+            "sub_query": "2",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "fa1419a25cb3d597",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:16:39.012Z",
+      "updatedAt": "2026-08-19T05:16:39.024Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "58ef7cbf4a752d53",
+      "traceId": "3521932ae3cf3b3dc5b0b8c36bf46aed",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-19 05:16:36.236000+00:00",
+      "endTime": "2026-08-19 05:16:37.451000+00:00",
+      "input": {
+        "query": "消费者主张商品存在质量问题时，需要提供哪些材料，以及是否应当保留问题商品？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "condition",
+            "text": "消费者主张商品存在质量问题时，需要提供哪些证明材料？"
+          },
+          {
+            "id": "2",
+            "intent": "condition",
+            "text": "消费者主张商品存在质量问题时，是否应当保留问题商品？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "fa1419a25cb3d597",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.215,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:16:39.012Z",
+      "updatedAt": "2026-08-19T05:16:39.024Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,

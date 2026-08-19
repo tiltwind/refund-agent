@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-026",
+    "query": "我看协议上写的和那个售后政策里说的不太一样，到底听谁的啊？",
     "type": "single",
     "style": "colloquial",
     "doc_id": "P01",
@@ -9,142 +10,39 @@
     "seed_chunk_id": [
       "P01#001:00"
     ],
-    "error": null,
+    "acceptable_seed_chunk_ids": null,
+    "error": "NoEvidenceError: 重排后没有可交付政策证据（candidates=20, evidence=0, min_score=0.3）",
     "scores": {
-      "recall@10": 1.0,
+      "recall@10": 0.0,
       "recall@3": 0.0,
       "recall@1": 0.0,
       "evidence_tokens": 0,
-      "duplicate_ratio": 0.0,
-      "context_recall": 0.0
+      "duplicate_ratio": 0.0
     },
-    "elapsed_s": 1.6,
-    "seed_rank": {
-      "candidate": {
-        "P01#001:00": 1
-      },
-      "evidence": {
-        "P01#001:00": null
-      }
-    },
+    "outcome": "no_evidence",
+    "elapsed_s": 2.5,
     "sections": [],
-    "judge": {
-      "context_recall": {
-        "score": 0.0,
-        "n": 2,
-        "hit": 0,
-        "error": null,
-        "detail": [
-          {
-            "claim": "本协议与平台公示的各项交易规则共同构成完整约定。",
-            "supported": false,
-            "reason": "上下文为空"
-          },
-          {
-            "claim": "各规则文件与本协议不一致的，以专门规则文件为准。",
-            "supported": false,
-            "reason": "上下文为空"
-          }
-        ]
-      },
-      "context_relevance": {
-        "score": null,
-        "error": null,
-        "skipped": "上下文为空"
-      }
-    },
-    "trace_id": "fbad4829386dbb92475611f5fcbf3c37"
+    "trace_id": "2cfefa6dd82017dfa1d9d55977688a0b"
   },
   "trace": {
-    "id": "fbad4829386dbb92475611f5fcbf3c37",
+    "id": "2cfefa6dd82017dfa1d9d55977688a0b",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:49:40.806000+00:00"
+    "timestamp": "2026-08-19 05:18:44.552000+00:00"
   },
   "observations": [
     {
-      "id": "d615dd9e9d16e44a",
-      "traceId": "fbad4829386dbb92475611f5fcbf3c37",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:50:09.996000+00:00",
-      "endTime": "2026-08-18 11:50:11.576000+00:00",
-      "modelParameters": {},
-      "input": {
-        "query": "我看协议上写的和那个售后政策里说的不太一样，到底听谁的啊？",
-        "top_k": 4
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": []
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "29d9f2cfc15ee935",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 1.58,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:13.698Z",
-      "updatedAt": "2026-08-18T11:50:13.728Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "fb5903a6c4dc06a8",
-      "traceId": "fbad4829386dbb92475611f5fcbf3c37",
+      "id": "a81f58eb8df14a36",
+      "traceId": "2cfefa6dd82017dfa1d9d55977688a0b",
       "type": "SPAN",
-      "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:50:09.996000+00:00",
-      "endTime": "2026-08-18 11:50:10.939000+00:00",
-      "input": {
-        "query": "我看协议上写的和那个售后政策里说的不太一样，到底听谁的啊？"
-      },
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:19:03.748000+00:00",
+      "endTime": "2026-08-19 05:19:03.749000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -156,13 +54,22 @@
         }
       },
       "output": {
-        "rewritten": true,
-        "needs_law": false,
-        "sub_queries": [
+        "routes": [
           {
-            "id": "1",
-            "intent": "validity",
-            "text": "平台协议和售后政策内容不一致时，应以哪个文件为准？"
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 12,
+              "law": 12
+            },
+            "law_weight": 1
+          },
+          {
+            "sub_query": "2",
+            "layer_k": {
+              "platform": 12,
+              "law": 12
+            },
+            "law_weight": 1
           }
         ]
       },
@@ -173,7 +80,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "d615dd9e9d16e44a",
+      "parentObservationId": "54cf565ab6b4e249",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -181,248 +88,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.943,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:13.698Z",
-      "updatedAt": "2026-08-18T11:50:13.728Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "18c0a8f2bc70af9e",
-      "traceId": "fbad4829386dbb92475611f5fcbf3c37",
-      "type": "SPAN",
-      "name": "rag.recall",
-      "startTime": "2026-08-18 11:50:10.940000+00:00",
-      "endTime": "2026-08-18 11:50:11.029000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "candidates": [
-          {
-            "chunk_id": "P01#001:00",
-            "section": "P01 第一章 协议的接受与变更 > 1.1 协议范围",
-            "rrf": 0.0952,
-            "hits": [
-              "1/platform/dense#1",
-              "1/platform/bm25#1"
-            ]
-          },
-          {
-            "chunk_id": "L04#006:00",
-            "section": "L04 第三十四条 【规则变更的征求意见程序】",
-            "rrf": 0.0911,
-            "hits": [
-              "1/law/dense#3",
-              "1/law/bm25#1"
-            ]
-          },
-          {
-            "chunk_id": "L04#000:00",
-            "section": "L04 ",
-            "rrf": 0.0876,
-            "hits": [
-              "1/law/dense#1",
-              "1/law/bm25#5"
-            ]
-          },
-          {
-            "chunk_id": "P01#009:00",
-            "section": "P01 相关文件",
-            "rrf": 0.0855,
-            "hits": [
-              "1/platform/dense#2",
-              "1/platform/bm25#5"
-            ]
-          },
-          {
-            "chunk_id": "L01#005:00",
-            "section": "L01 第二十六条 【格式条款效力】",
-            "rrf": 0.0825,
-            "hits": [
-              "1/law/dense#7",
-              "1/law/bm25#2"
-            ]
-          },
-          {
-            "chunk_id": "L01#000:00",
-            "section": "L01 ",
-            "rrf": 0.0801,
-            "hits": [
-              "1/law/dense#6",
-              "1/law/bm25#4"
-            ]
-          },
-          {
-            "chunk_id": "P11#000:00",
-            "section": "P11 ",
-            "rrf": 0.078,
-            "hits": [
-              "1/platform/dense#9",
-              "1/platform/bm25#3"
-            ]
-          },
-          {
-            "chunk_id": "L04#004:00",
-            "section": "L04 第三十二条 【平台交易规则的制定】",
-            "rrf": 0.0761,
-            "hits": [
-              "1/law/dense#4",
-              "1/law/bm25#9"
-            ]
-          },
-          {
-            "chunk_id": "P01#005:03",
-            "section": "P01 第五章 售后与退款 > 5.4 结论以单号为准",
-            "rrf": 0.0742,
-            "hits": [
-              "1/platform/dense#8",
-              "1/platform/bm25#6"
-            ]
-          },
-          {
-            "chunk_id": "P01#001:02",
-            "section": "P01 第一章 协议的接受与变更 > 1.3 协议的变更",
-            "rrf": 0.0713,
-            "hits": [
-              "1/platform/dense#5",
-              "1/platform/bm25#12"
-            ]
-          },
-          {
-            "chunk_id": "L04#005:00",
-            "section": "L04 第三十三条 【平台规则的公示义务】",
-            "rrf": 0.0713,
-            "hits": [
-              "1/law/dense#5",
-              "1/law/bm25#12"
-            ]
-          },
-          {
-            "chunk_id": "L03#000:00",
-            "section": "L03 ",
-            "rrf": 0.0704,
-            "hits": [
-              "1/law/dense#10",
-              "1/law/bm25#7"
-            ]
-          },
-          {
-            "chunk_id": "L02#004:01",
-            "section": "L02 第四章 特别规定 > 第二十一条 【平台与商家的协议义务】",
-            "rrf": 0.0656,
-            "hits": [
-              "1/law/dense#11",
-              "1/law/bm25#10"
-            ]
-          },
-          {
-            "chunk_id": "P01#005:02",
-            "section": "P01 第五章 售后与退款 > 5.3 判定依据的唯一性",
-            "rrf": 0.0455,
-            "hits": [
-              "1/platform/bm25#2"
-            ]
-          },
-          {
-            "chunk_id": "L04#014:00",
-            "section": "L04 相关文件",
-            "rrf": 0.0455,
-            "hits": [
-              "1/law/dense#2"
-            ]
-          },
-          {
-            "chunk_id": "P01#003:01",
-            "section": "P01 第三章 订单与合同 > 3.2 商品信息",
-            "rrf": 0.0435,
-            "hits": [
-              "1/platform/dense#3"
-            ]
-          },
-          {
-            "chunk_id": "L03#002:00",
-            "section": "L03 第十条 【明码标价与自动续费告知】",
-            "rrf": 0.0435,
-            "hits": [
-              "1/law/bm25#3"
-            ]
-          },
-          {
-            "chunk_id": "P01#004:00",
-            "section": "P01 第四章 平台的角色与责任 > 4.1 平台与商家的关系",
-            "rrf": 0.0417,
-            "hits": [
-              "1/platform/dense#4"
-            ]
-          },
-          {
-            "chunk_id": "P01#004:03",
-            "section": "P01 第四章 平台的角色与责任 > 4.4 平台的协助义务",
-            "rrf": 0.0417,
-            "hits": [
-              "1/platform/bm25#4"
-            ]
-          },
-          {
-            "chunk_id": "P01#000:00",
-            "section": "P01 ",
-            "rrf": 0.0385,
-            "hits": [
-              "1/platform/dense#6"
-            ]
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "d615dd9e9d16e44a",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.089,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:13.698Z",
-      "updatedAt": "2026-08-18T11:50:13.727Z",
+      "createdAt": "2026-08-19T05:19:04.889Z",
+      "updatedAt": "2026-08-19T05:19:04.927Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -444,18 +113,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "db276466279033ad",
-      "traceId": "fbad4829386dbb92475611f5fcbf3c37",
+      "id": "33111395e4391e87",
+      "traceId": "2cfefa6dd82017dfa1d9d55977688a0b",
       "type": "SPAN",
       "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:49:40.806000+00:00",
-      "endTime": "2026-08-18 11:50:11.577000+00:00",
+      "startTime": "2026-08-19 05:18:44.552000+00:00",
+      "endTime": "2026-08-19 05:19:04.545000+00:00",
       "input": {
         "query": "我看协议上写的和那个售后政策里说的不太一样，到底听谁的啊？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -486,7 +155,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -499,6 +168,7 @@
       },
       "output": {
         "case_id": "R1-026",
+        "query": "我看协议上写的和那个售后政策里说的不太一样，到底听谁的啊？",
         "type": "single",
         "style": "colloquial",
         "doc_id": "P01",
@@ -507,50 +177,18 @@
         "seed_chunk_id": [
           "P01#001:00"
         ],
-        "error": null,
+        "acceptable_seed_chunk_ids": null,
+        "error": "NoEvidenceError: 重排后没有可交付政策证据（candidates=20, evidence=0, min_score=0.3）",
         "scores": {
-          "recall@10": 1,
+          "recall@10": 0,
           "recall@3": 0,
           "recall@1": 0,
           "evidence_tokens": 0,
-          "duplicate_ratio": 0,
-          "context_recall": 0
+          "duplicate_ratio": 0
         },
-        "elapsed_s": 1.6,
-        "seed_rank": {
-          "candidate": {
-            "P01#001:00": 1
-          },
-          "evidence": {
-            "P01#001:00": null
-          }
-        },
-        "sections": [],
-        "judge": {
-          "context_recall": {
-            "score": 0,
-            "n": 2,
-            "hit": 0,
-            "error": null,
-            "detail": [
-              {
-                "claim": "本协议与平台公示的各项交易规则共同构成完整约定。",
-                "supported": false,
-                "reason": "上下文为空"
-              },
-              {
-                "claim": "各规则文件与本协议不一致的，以专门规则文件为准。",
-                "supported": false,
-                "reason": "上下文为空"
-              }
-            ]
-          },
-          "context_relevance": {
-            "score": null,
-            "error": null,
-            "skipped": "上下文为空"
-          }
-        }
+        "outcome": "no_evidence",
+        "elapsed_s": 2.5,
+        "sections": []
       },
       "usage": {
         "input": 0,
@@ -566,10 +204,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 30.771,
+      "latency": 19.993,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:13.698Z",
-      "updatedAt": "2026-08-18T11:50:13.727Z",
+      "createdAt": "2026-08-19T05:19:04.889Z",
+      "updatedAt": "2026-08-19T05:19:04.925Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -591,502 +229,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "773e130148a05478",
-      "traceId": "fbad4829386dbb92475611f5fcbf3c37",
-      "type": "SPAN",
-      "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:50:11.576000+00:00",
-      "endTime": "2026-08-18 11:50:11.577000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "evaluator_count": 1,
-        "evaluation_count": 7,
-        "failed_evaluator_count": 0,
-        "skipped_evaluator_count": 0
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "db276466279033ad",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.001,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:13.698Z",
-      "updatedAt": "2026-08-18T11:50:13.726Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "ccc2dbb7f7e7605e",
-      "traceId": "fbad4829386dbb92475611f5fcbf3c37",
-      "type": "SPAN",
-      "name": "rag.rerank",
-      "startTime": "2026-08-18 11:50:11.029000+00:00",
-      "endTime": "2026-08-18 11:50:11.576000+00:00",
-      "input": {
-        "query": "我看协议上写的和那个售后政策里说的不太一样，到底听谁的啊？",
-        "candidates": 20
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "passed": 0,
-        "min_score": 0.3,
-        "dropped": [
-          "P01#001:00",
-          "L04#006:00",
-          "L04#000:00",
-          "P01#009:00",
-          "L01#005:00",
-          "L01#000:00",
-          "P11#000:00",
-          "L04#004:00",
-          "P01#005:03",
-          "P01#001:02",
-          "L04#005:00",
-          "L03#000:00",
-          "L02#004:01",
-          "P01#005:02",
-          "L04#014:00",
-          "P01#003:01",
-          "L03#002:00",
-          "P01#004:00",
-          "P01#004:03",
-          "P01#000:00"
-        ],
-        "evidence": []
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "d615dd9e9d16e44a",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.547,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:13.698Z",
-      "updatedAt": "2026-08-18T11:50:13.723Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "4920b50abd43f941",
-      "traceId": "fbad4829386dbb92475611f5fcbf3c37",
-      "type": "EVALUATOR",
-      "name": "evaluate",
-      "startTime": "2026-08-18 11:50:11.577000+00:00",
-      "endTime": "2026-08-18 11:50:11.577000+00:00",
-      "modelParameters": {},
-      "input": {
-        "input": {
-          "query": "我看协议上写的和那个售后政策里说的不太一样，到底听谁的啊？"
-        },
-        "output": {
-          "case_id": "R1-026",
-          "type": "single",
-          "style": "colloquial",
-          "doc_id": "P01",
-          "layer": "platform",
-          "kind": "text",
-          "seed_chunk_id": [
-            "P01#001:00"
-          ],
-          "error": null,
-          "scores": {
-            "recall@10": 1,
-            "recall@3": 0,
-            "recall@1": 0,
-            "evidence_tokens": 0,
-            "duplicate_ratio": 0,
-            "context_recall": 0
-          },
-          "elapsed_s": 1.6,
-          "seed_rank": {
-            "candidate": {
-              "P01#001:00": 1
-            },
-            "evidence": {
-              "P01#001:00": null
-            }
-          },
-          "sections": [],
-          "judge": {
-            "context_recall": {
-              "score": 0,
-              "n": 2,
-              "hit": 0,
-              "error": null,
-              "detail": [
-                {
-                  "claim": "本协议与平台公示的各项交易规则共同构成完整约定。",
-                  "supported": false,
-                  "reason": "上下文为空"
-                },
-                {
-                  "claim": "各规则文件与本协议不一致的，以专门规则文件为准。",
-                  "supported": false,
-                  "reason": "上下文为空"
-                }
-              ]
-            },
-            "context_relevance": {
-              "score": null,
-              "error": null,
-              "skipped": "上下文为空"
-            }
-          }
-        },
-        "expected_output": {
-          "claims": [
-            "本协议与平台公示的各项交易规则共同构成完整约定。",
-            "各规则文件与本协议不一致的，以专门规则文件为准。"
-          ],
-          "seed_chunk_id": [
-            "P01#001:00"
-          ],
-          "reference_answer": "本协议与平台公示的各项交易规则共同构成完整约定，各规则文件与本协议不一致的，以专门规则文件为准。"
-        },
-        "metadata": {
-          "kind": "text",
-          "type": "single",
-          "layer": "platform",
-          "style": "colloquial",
-          "doc_id": "P01",
-          "section": "第一章 协议的接受与变更 > 1.1 协议范围",
-          "reviewed": false,
-          "claims_by": "openai:deepseek-v4-pro",
-          "generated_by": "openai:deepseek-v4-flash",
-          "overlap_ratio": 0.15
-        }
-      },
-      "metadata": {
-        "evaluator_kind": "item",
-        "evaluator_index": 0,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": [
-        {
-          "name": "recall@10",
-          "value": 1,
-          "comment": "种子块名次 P01#001:00=1"
-        },
-        {
-          "name": "recall@3",
-          "value": 0,
-          "comment": "种子块名次 P01#001:00=None"
-        },
-        {
-          "name": "recall@1",
-          "value": 0,
-          "comment": "种子块名次 P01#001:00=None"
-        },
-        {
-          "name": "evidence_tokens",
-          "value": 0,
-          "comment": ""
-        },
-        {
-          "name": "duplicate_ratio",
-          "value": 0,
-          "comment": ""
-        },
-        {
-          "name": "context_recall",
-          "value": 0,
-          "comment": "0/2 条 claim 被支撑；没撑住：本协议与平台公示的各项交易规则共同构成完整约定。｜各规则文件与本协议不一致的，以专门规则文件为准。"
-        },
-        {
-          "name": "run_error",
-          "value": 0,
-          "comment": "ok"
-        }
-      ],
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "773e130148a05478",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.0,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:13.698Z",
-      "updatedAt": "2026-08-18T11:50:13.722Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "ed5d3c48f9e220fe",
-      "traceId": "fbad4829386dbb92475611f5fcbf3c37",
-      "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:50:10.940000+00:00",
-      "endTime": "2026-08-18 11:50:10.940000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "routes": [
-          {
-            "sub_query": "1",
-            "layer_k": {
-              "platform": 12,
-              "law": 12
-            },
-            "law_weight": 1
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "d615dd9e9d16e44a",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.0,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:13.698Z",
-      "updatedAt": "2026-08-18T11:50:13.722Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "b6071d840c557fc7",
-      "traceId": "fbad4829386dbb92475611f5fcbf3c37",
-      "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:50:11.576000+00:00",
-      "endTime": "2026-08-18 11:50:11.576000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": []
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": []
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "d615dd9e9d16e44a",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.0,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:13.698Z",
-      "updatedAt": "2026-08-18T11:50:13.720Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "29d9f2cfc15ee935",
-      "traceId": "fbad4829386dbb92475611f5fcbf3c37",
+      "id": "b084cc9e1a5a0997",
+      "traceId": "2cfefa6dd82017dfa1d9d55977688a0b",
       "type": "SPAN",
       "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:49:40.806000+00:00",
-      "endTime": "2026-08-18 11:50:11.576000+00:00",
+      "startTime": "2026-08-19 05:18:44.552000+00:00",
+      "endTime": "2026-08-19 05:19:04.544000+00:00",
       "input": {
         "query": "我看协议上写的和那个售后政策里说的不太一样，到底听谁的啊？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -1117,7 +271,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1130,6 +284,7 @@
       },
       "output": {
         "case_id": "R1-026",
+        "query": "我看协议上写的和那个售后政策里说的不太一样，到底听谁的啊？",
         "type": "single",
         "style": "colloquial",
         "doc_id": "P01",
@@ -1138,48 +293,297 @@
         "seed_chunk_id": [
           "P01#001:00"
         ],
-        "error": null,
+        "acceptable_seed_chunk_ids": null,
+        "error": "NoEvidenceError: 重排后没有可交付政策证据（candidates=20, evidence=0, min_score=0.3）",
         "scores": {
-          "recall@10": 1,
+          "recall@10": 0,
           "recall@3": 0,
           "recall@1": 0,
           "evidence_tokens": 0,
-          "duplicate_ratio": 0,
-          "context_recall": 0
+          "duplicate_ratio": 0
         },
-        "elapsed_s": 1.6,
-        "seed_rank": {
-          "candidate": {
-            "P01#001:00": 1
-          },
-          "evidence": {
-            "P01#001:00": null
+        "outcome": "no_evidence",
+        "elapsed_s": 2.5,
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "33111395e4391e87",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 19.992,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:19:04.889Z",
+      "updatedAt": "2026-08-19T05:19:04.925Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "935b842e7d0dea0c",
+      "traceId": "2cfefa6dd82017dfa1d9d55977688a0b",
+      "type": "SPAN",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-19 05:19:04.545000+00:00",
+      "endTime": "2026-08-19 05:19:04.545000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
           }
+        }
+      },
+      "output": {
+        "evaluator_count": 1,
+        "evaluation_count": 6,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "33111395e4391e87",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:19:04.889Z",
+      "updatedAt": "2026-08-19T05:19:04.924Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "a61e2f7dccb687ad",
+      "traceId": "2cfefa6dd82017dfa1d9d55977688a0b",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-19 05:19:04.545000+00:00",
+      "endTime": "2026-08-19 05:19:04.545000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "我看协议上写的和那个售后政策里说的不太一样，到底听谁的啊？"
         },
-        "sections": [],
-        "judge": {
-          "context_recall": {
-            "score": 0,
-            "n": 2,
-            "hit": 0,
-            "error": null,
-            "detail": [
-              {
-                "claim": "本协议与平台公示的各项交易规则共同构成完整约定。",
-                "supported": false,
-                "reason": "上下文为空"
-              },
-              {
-                "claim": "各规则文件与本协议不一致的，以专门规则文件为准。",
-                "supported": false,
-                "reason": "上下文为空"
-              }
-            ]
+        "output": {
+          "case_id": "R1-026",
+          "query": "我看协议上写的和那个售后政策里说的不太一样，到底听谁的啊？",
+          "type": "single",
+          "style": "colloquial",
+          "doc_id": "P01",
+          "layer": "platform",
+          "kind": "text",
+          "seed_chunk_id": [
+            "P01#001:00"
+          ],
+          "acceptable_seed_chunk_ids": null,
+          "error": "NoEvidenceError: 重排后没有可交付政策证据（candidates=20, evidence=0, min_score=0.3）",
+          "scores": {
+            "recall@10": 0,
+            "recall@3": 0,
+            "recall@1": 0,
+            "evidence_tokens": 0,
+            "duplicate_ratio": 0
           },
-          "context_relevance": {
-            "score": null,
-            "error": null,
-            "skipped": "上下文为空"
+          "outcome": "no_evidence",
+          "elapsed_s": 2.5,
+          "sections": []
+        },
+        "expected_output": {
+          "claims": [
+            "本协议与平台公示的各项交易规则共同构成完整约定。",
+            "各规则文件与本协议不一致的，以专门规则文件为准。"
+          ],
+          "seed_chunk_id": [
+            "P01#001:00"
+          ],
+          "reference_answer": "本协议与平台公示的各项交易规则共同构成完整约定，各规则文件与本协议不一致的，以专门规则文件为准。",
+          "acceptable_seed_chunk_ids": []
+        },
+        "metadata": {
+          "kind": "text",
+          "type": "single",
+          "layer": "platform",
+          "style": "colloquial",
+          "doc_id": "P01",
+          "section": "第一章 协议的接受与变更 > 1.1 协议范围",
+          "reviewed": false,
+          "claims_by": "openai:deepseek-v4-pro",
+          "generated_by": "openai:deepseek-v4-flash",
+          "overlap_ratio": 0.15
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "recall@10",
+          "value": 0,
+          "comment": "种子块名次 "
+        },
+        {
+          "name": "recall@3",
+          "value": 0,
+          "comment": "种子块名次 "
+        },
+        {
+          "name": "recall@1",
+          "value": 0,
+          "comment": "种子块名次 "
+        },
+        {
+          "name": "evidence_tokens",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "duplicate_ratio",
+          "value": 0,
+          "comment": ""
+        },
+        {
+          "name": "run_error",
+          "value": 1,
+          "comment": "NoEvidenceError: 重排后没有可交付政策证据（candidates=20, evidence=0, min_score=0.3）"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "935b842e7d0dea0c",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:19:04.889Z",
+      "updatedAt": "2026-08-19T05:19:04.922Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "54cf565ab6b4e249",
+      "traceId": "2cfefa6dd82017dfa1d9d55977688a0b",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:19:02.035000+00:00",
+      "endTime": "2026-08-19 05:19:04.544000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "我看协议上写的和那个售后政策里说的不太一样，到底听谁的啊？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
           }
         }
       },
@@ -1189,8 +593,9 @@
         "total": 0,
         "unit": "TOKENS"
       },
-      "level": "DEFAULT",
-      "parentObservationId": "db276466279033ad",
+      "level": "ERROR",
+      "statusMessage": "NoEvidenceError: 重排后没有可交付政策证据（candidates=20, evidence=0, min_score=0.3）",
+      "parentObservationId": "b084cc9e1a5a0997",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1198,10 +603,502 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 30.77,
+      "latency": 2.509,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:50:13.698Z",
-      "updatedAt": "2026-08-18T11:50:13.719Z",
+      "createdAt": "2026-08-19T05:19:04.889Z",
+      "updatedAt": "2026-08-19T05:19:04.923Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "output": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "1dc4953a5b673460",
+      "traceId": "2cfefa6dd82017dfa1d9d55977688a0b",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:19:04.544000+00:00",
+      "endTime": "2026-08-19 05:19:04.544000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": []
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "54cf565ab6b4e249",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:19:04.889Z",
+      "updatedAt": "2026-08-19T05:19:04.923Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "6f0781c1045d66e3",
+      "traceId": "2cfefa6dd82017dfa1d9d55977688a0b",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-19 05:19:03.859000+00:00",
+      "endTime": "2026-08-19 05:19:04.543000+00:00",
+      "input": {
+        "query": "我看协议上写的和那个售后政策里说的不太一样，到底听谁的啊？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 0,
+        "min_score": 0.3,
+        "dropped": [
+          "P01#001:00",
+          "L04#006:00",
+          "P01#005:02",
+          "L04#004:00",
+          "L01#005:00",
+          "P01#005:03",
+          "P01#003:01",
+          "P11#000:00",
+          "P01#004:03",
+          "L01#000:00",
+          "L02#004:04",
+          "L01#003:00",
+          "L01#009:00",
+          "L03#000:00",
+          "P09#004:01",
+          "P02#005:01",
+          "L04#011:00",
+          "P11#002:02",
+          "P09#006:01",
+          "L01#007:00"
+        ],
+        "evidence": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "54cf565ab6b4e249",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.684,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:19:04.889Z",
+      "updatedAt": "2026-08-19T05:19:04.922Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "7425f56b4714612c",
+      "traceId": "2cfefa6dd82017dfa1d9d55977688a0b",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-19 05:19:03.749000+00:00",
+      "endTime": "2026-08-19 05:19:03.859000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "P01#001:00",
+            "section": "P01 第一章 协议的接受与变更 > 1.1 协议范围",
+            "rrf": 0.1256,
+            "hits": [
+              "1/platform/dense#3",
+              "1/platform/bm25#1",
+              "2/platform/bm25#9"
+            ]
+          },
+          {
+            "chunk_id": "L04#006:00",
+            "section": "L04 第三十四条 【规则变更的征求意见程序】",
+            "rrf": 0.1311,
+            "hits": [
+              "1/law/dense#3",
+              "1/law/bm25#1",
+              "2/law/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P01#005:02",
+            "section": "P01 第五章 售后与退款 > 5.3 判定依据的唯一性",
+            "rrf": 0.1255,
+            "hits": [
+              "1/platform/dense#5",
+              "1/platform/bm25#2",
+              "2/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "L04#004:00",
+            "section": "L04 第三十二条 【平台交易规则的制定】",
+            "rrf": 0.0839,
+            "hits": [
+              "1/law/dense#2",
+              "1/law/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "L01#005:00",
+            "section": "L01 第二十六条 【格式条款效力】",
+            "rrf": 0.147,
+            "hits": [
+              "1/law/dense#11",
+              "1/law/bm25#2",
+              "2/law/dense#11",
+              "2/law/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "P01#005:03",
+            "section": "P01 第五章 售后与退款 > 5.4 结论以单号为准",
+            "rrf": 0.077,
+            "hits": [
+              "1/platform/dense#7",
+              "1/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P01#003:01",
+            "section": "P01 第三章 订单与合同 > 3.2 商品信息",
+            "rrf": 0.1577,
+            "hits": [
+              "1/platform/dense#2",
+              "1/platform/bm25#12",
+              "2/platform/dense#1",
+              "2/platform/bm25#10"
+            ]
+          },
+          {
+            "chunk_id": "P11#000:00",
+            "section": "P11 ",
+            "rrf": 0.1174,
+            "hits": [
+              "1/platform/dense#11",
+              "1/platform/bm25#3",
+              "2/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P01#004:03",
+            "section": "P01 第四章 平台的角色与责任 > 4.4 平台的协助义务",
+            "rrf": 0.1571,
+            "hits": [
+              "1/platform/dense#10",
+              "1/platform/bm25#4",
+              "2/platform/dense#9",
+              "2/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L01#000:00",
+            "section": "L01 ",
+            "rrf": 0.109,
+            "hits": [
+              "1/law/dense#5",
+              "1/law/bm25#9",
+              "2/law/bm25#9"
+            ]
+          },
+          {
+            "chunk_id": "L02#004:04",
+            "section": "L02 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
+            "rrf": 0.0911,
+            "hits": [
+              "2/law/dense#1",
+              "2/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L01#003:00",
+            "section": "L01 第二十四条 【质量不符时的退货、更换、修理】",
+            "rrf": 0.1124,
+            "hits": [
+              "1/law/dense#12",
+              "2/law/dense#2",
+              "2/law/bm25#8"
+            ]
+          },
+          {
+            "chunk_id": "L01#009:00",
+            "section": "L01 第五十五条 【惩罚性赔偿】",
+            "rrf": 0.0667,
+            "hits": [
+              "2/law/dense#10",
+              "2/law/bm25#10"
+            ]
+          },
+          {
+            "chunk_id": "L03#000:00",
+            "section": "L03 ",
+            "rrf": 0.0476,
+            "hits": [
+              "2/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P09#004:01",
+            "section": "P09 第五条 特定场景的处理口径 > 5.2 商品与描述不符",
+            "rrf": 0.0767,
+            "hits": [
+              "1/platform/dense#12",
+              "2/platform/dense#2"
+            ]
+          },
+          {
+            "chunk_id": "P02#005:01",
+            "section": "P02 第六条 判定顺序",
+            "rrf": 0.0455,
+            "hits": [
+              "2/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L04#011:00",
+            "section": "L04 第六十一条 【平台协助维权义务】",
+            "rrf": 0.0455,
+            "hits": [
+              "2/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P11#002:02",
+            "section": "P11 第二条 定制商品 > 2.3 与约定规格不符",
+            "rrf": 0.0435,
+            "hits": [
+              "2/platform/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "P09#006:01",
+            "section": "P09 第七条 外部维权途径 > 7.2 平台的协助义务",
+            "rrf": 0.0435,
+            "hits": [
+              "2/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L01#007:00",
+            "section": "L01 第四十八条 【经营者民事责任】",
+            "rrf": 0.0747,
+            "hits": [
+              "1/law/bm25#12",
+              "2/law/dense#3"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "54cf565ab6b4e249",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.11,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:19:04.889Z",
+      "updatedAt": "2026-08-19T05:19:04.917Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "9809f114e97a3303",
+      "traceId": "2cfefa6dd82017dfa1d9d55977688a0b",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-19 05:19:02.035000+00:00",
+      "endTime": "2026-08-19 05:19:03.748000+00:00",
+      "input": {
+        "query": "我看协议上写的和那个售后政策里说的不太一样，到底听谁的啊？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": true,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "validity",
+            "text": "平台协议和售后政策内容不一致时，应以哪个为准？"
+          },
+          {
+            "id": "2",
+            "intent": "dispute",
+            "text": "协议条款与售后政策冲突时，消费者应如何维权？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "54cf565ab6b4e249",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.713,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:19:04.889Z",
+      "updatedAt": "2026-08-19T05:19:04.907Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,

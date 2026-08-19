@@ -87,7 +87,29 @@ def rerank(query: str, candidates: list[Candidate], routes: list[Route]) -> list
         )
 
     evidence.sort(key=lambda e: e.score, reverse=True)
-    return [e for e in evidence if e.score >= MIN_SCORE]
+    eligible = [e for e in evidence if e.score >= MIN_SCORE]
+    return _ensure_route_evidence(eligible, routes)
+
+
+def _ensure_route_evidence(evidence: list[Evidence], routes: list[Route]) -> list[Evidence]:
+    """多跳查询先保证每个 rewrite 子查询有一条证据，再按分数补齐。"""
+    if len(routes) < 2 or not evidence:
+        return evidence
+
+    selected: list[Evidence] = []
+    selected_ids: set[str] = set()
+    for route in routes:
+        prefix = f"{route.sub_query.id}/"
+        item = next(
+            (e for e in evidence if e.candidate.chunk_id not in selected_ids
+             and any(hit.startswith(prefix) for hit in e.candidate.hits)),
+            None,
+        )
+        if item is not None:
+            selected.append(item)
+            selected_ids.add(item.candidate.chunk_id)
+    selected.extend(e for e in evidence if e.candidate.chunk_id not in selected_ids)
+    return selected
 
 
 def _relevance(query: str, candidates: list[Candidate]) -> list[float]:

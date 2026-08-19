@@ -229,7 +229,7 @@ def judge_section(row: dict) -> list[str]:
 def write_index(picked: list[tuple[str, dict]], run_name: str, every: bool = False) -> None:
     lines = [
         "# traces —— 现场记录", "",
-        f"从 run `{run_name}` 导出的 {len(picked)} 条，供[基线报告](../baseline-report.md)逐条引用。",
+        f"从 run `{run_name}` 导出的 {len(picked)} 条，供[HTML 报告](../rag-ex-1-report.html)逐条引用。",
         "Langfuse 是本地实例，链接换台机器就打不开，所以现场留一份在仓库里。", "",
         f"重新导出：`python rag/experiments/rag-ex-1/export_traces.py{' --all' if every else ''}`。", "",
     ]

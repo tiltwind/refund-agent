@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-061",
+    "query": "平台收到申诉后，复核结论的告知时限是多久？",
     "type": "single",
     "style": "formal",
     "doc_id": "P08",
@@ -9,6 +10,7 @@
     "seed_chunk_id": [
       "P08#006:02"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
@@ -19,7 +21,7 @@
       "context_recall": 1.0,
       "context_relevance": 0.037
     },
-    "elapsed_s": 1.6,
+    "elapsed_s": 1.8,
     "seed_rank": {
       "candidate": {
         "P08#006:02": 1
@@ -28,6 +30,18 @@
         "P08#006:02": 1
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "other",
+          "text": "平台收到申诉后，复核结论的告知时限是多久？"
+        }
+      ]
+    },
+    "rewrite_hash": "e837b74dbe4ecb08",
     "sections": [
       "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.1 申诉渠道 … 第六条 申诉 > 6.4 复核后的恢复",
       "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.2 申请时限 … 第四条 平台介入的处理 > 4.2 判定时限",
@@ -58,7 +72,7 @@
         "n": 81,
         "hit": 3,
         "truncated": false,
-        "note": "不相关的多为申诉条件、材料、复核后续处理及争议介入等其他条款。",
+        "note": "其他单元多为申诉条件、材料、后续处理或无关争议解决条款。",
         "irrelevant": [
           "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
           "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。",
@@ -74,357 +88,21 @@
         "error": null
       }
     },
-    "trace_id": "94aeedc90ba250e02cda113ce808ccca"
+    "trace_id": "9ca4c2b649499ebb1519012b3cfcb9ce"
   },
   "trace": {
-    "id": "94aeedc90ba250e02cda113ce808ccca",
+    "id": "9ca4c2b649499ebb1519012b3cfcb9ce",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:46:47.216000+00:00"
+    "timestamp": "2026-08-19 05:15:45.461000+00:00"
   },
   "observations": [
     {
-      "id": "b9470e8cb791e274",
-      "traceId": "94aeedc90ba250e02cda113ce808ccca",
-      "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:46:31.017000+00:00",
-      "endTime": "2026-08-18 11:46:52.475000+00:00",
-      "input": {
-        "query": "平台收到申诉后，复核结论的告知时限是多久？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-061",
-        "kind": "text",
-        "type": "single",
-        "layer": "platform",
-        "style": "formal",
-        "doc_id": "P08",
-        "section": "第六条 申诉 > 6.3 处理时限",
-        "reviewed": true,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.471,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-061",
-        "type": "single",
-        "style": "formal",
-        "doc_id": "P08",
-        "layer": "platform",
-        "kind": "text",
-        "seed_chunk_id": [
-          "P08#006:02"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 1486,
-          "duplicate_ratio": 0.371,
-          "context_recall": 1,
-          "context_relevance": 0.037
-        },
-        "elapsed_s": 1.6,
-        "seed_rank": {
-          "candidate": {
-            "P08#006:02": 1
-          },
-          "evidence": {
-            "P08#006:02": 1
-          }
-        },
-        "sections": [
-          "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.1 申诉渠道 … 第六条 申诉 > 6.4 复核后的恢复",
-          "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.2 申请时限 … 第四条 平台介入的处理 > 4.2 判定时限",
-          "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.3 申诉",
-          "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.3 行政投诉的处理时限"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 2,
-            "hit": 2,
-            "detail": [
-              {
-                "claim": "平台在收到申诉后3个工作日内完成复核并告知结论。",
-                "supported": true,
-                "reason": "P08 6.4 明确平台在收到申诉后3个工作日内完成复核并告知结论。"
-              },
-              {
-                "claim": "若平台复核维持原判定，平台须说明具体理由。",
-                "supported": true,
-                "reason": "P08 6.4 明确复核维持原判定的，须说明具体理由。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.037,
-            "n": 81,
-            "hit": 3,
-            "truncated": false,
-            "note": "不相关的多为申诉条件、材料、复核后续处理及争议介入等其他条款。",
-            "irrelevant": [
-              "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
-              "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。",
-              "复核维持原判定的，须说明具体理由。",
-              "申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
-              "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
-              "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。",
-              "复核维持原判定的，须说明具体理由。",
-              "申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
-              "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
-              "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 21.458,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:57.518Z",
-      "updatedAt": "2026-08-18T11:46:57.540Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "parentObservationId": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "d5a6008f47efc35e",
-      "traceId": "94aeedc90ba250e02cda113ce808ccca",
-      "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:46:31.017000+00:00",
-      "endTime": "2026-08-18 11:46:52.472000+00:00",
-      "input": {
-        "query": "平台收到申诉后，复核结论的告知时限是多久？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-061",
-        "kind": "text",
-        "type": "single",
-        "layer": "platform",
-        "style": "formal",
-        "doc_id": "P08",
-        "section": "第六条 申诉 > 6.3 处理时限",
-        "reviewed": true,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.471,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-061",
-        "type": "single",
-        "style": "formal",
-        "doc_id": "P08",
-        "layer": "platform",
-        "kind": "text",
-        "seed_chunk_id": [
-          "P08#006:02"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 1486,
-          "duplicate_ratio": 0.371,
-          "context_recall": 1,
-          "context_relevance": 0.037
-        },
-        "elapsed_s": 1.6,
-        "seed_rank": {
-          "candidate": {
-            "P08#006:02": 1
-          },
-          "evidence": {
-            "P08#006:02": 1
-          }
-        },
-        "sections": [
-          "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.1 申诉渠道 … 第六条 申诉 > 6.4 复核后的恢复",
-          "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.2 申请时限 … 第四条 平台介入的处理 > 4.2 判定时限",
-          "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.3 申诉",
-          "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.3 行政投诉的处理时限"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 2,
-            "hit": 2,
-            "detail": [
-              {
-                "claim": "平台在收到申诉后3个工作日内完成复核并告知结论。",
-                "supported": true,
-                "reason": "P08 6.4 明确平台在收到申诉后3个工作日内完成复核并告知结论。"
-              },
-              {
-                "claim": "若平台复核维持原判定，平台须说明具体理由。",
-                "supported": true,
-                "reason": "P08 6.4 明确复核维持原判定的，须说明具体理由。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.037,
-            "n": 81,
-            "hit": 3,
-            "truncated": false,
-            "note": "不相关的多为申诉条件、材料、复核后续处理及争议介入等其他条款。",
-            "irrelevant": [
-              "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
-              "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。",
-              "复核维持原判定的，须说明具体理由。",
-              "申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
-              "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
-              "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。",
-              "复核维持原判定的，须说明具体理由。",
-              "申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
-              "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
-              "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "b9470e8cb791e274",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 21.455,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:57.518Z",
-      "updatedAt": "2026-08-18T11:46:57.534Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "4b3e4fe3e243bc51",
-      "traceId": "94aeedc90ba250e02cda113ce808ccca",
+      "id": "83bca4fa4eeda022",
+      "traceId": "9ca4c2b649499ebb1519012b3cfcb9ce",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:46:52.474000+00:00",
-      "endTime": "2026-08-18 11:46:52.474000+00:00",
+      "startTime": "2026-08-19 05:15:51.597000+00:00",
+      "endTime": "2026-08-19 05:15:51.598000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -432,6 +110,7 @@
         },
         "output": {
           "case_id": "R1-061",
+          "query": "平台收到申诉后，复核结论的告知时限是多久？",
           "type": "single",
           "style": "formal",
           "doc_id": "P08",
@@ -440,6 +119,7 @@
           "seed_chunk_id": [
             "P08#006:02"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
@@ -450,7 +130,7 @@
             "context_recall": 1,
             "context_relevance": 0.037
           },
-          "elapsed_s": 1.6,
+          "elapsed_s": 1.8,
           "seed_rank": {
             "candidate": {
               "P08#006:02": 1
@@ -459,6 +139,18 @@
               "P08#006:02": 1
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "other",
+                "text": "平台收到申诉后，复核结论的告知时限是多久？"
+              }
+            ]
+          },
+          "rewrite_hash": "e837b74dbe4ecb08",
           "sections": [
             "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.1 申诉渠道 … 第六条 申诉 > 6.4 复核后的恢复",
             "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.2 申请时限 … 第四条 平台介入的处理 > 4.2 判定时限",
@@ -489,7 +181,7 @@
               "n": 81,
               "hit": 3,
               "truncated": false,
-              "note": "不相关的多为申诉条件、材料、复核后续处理及争议介入等其他条款。",
+              "note": "其他单元多为申诉条件、材料、后续处理或无关争议解决条款。",
               "irrelevant": [
                 "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
                 "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。",
@@ -514,7 +206,8 @@
           "seed_chunk_id": [
             "P08#006:02"
           ],
-          "reference_answer": "平台在收到申诉后3个工作日内完成复核并告知结论。若复核维持原判定，须说明具体理由。"
+          "reference_answer": "平台在收到申诉后3个工作日内完成复核并告知结论。若复核维持原判定，须说明具体理由。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "text",
@@ -536,7 +229,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -581,7 +274,7 @@
         {
           "name": "context_relevance",
           "value": 0.037,
-          "comment": "3/81 个内容单元相关；不相关的多为申诉条件、材料、复核后续处理及争议介入等其他条款。"
+          "comment": "3/81 个内容单元相关；其他单元多为申诉条件、材料、后续处理或无关争议解决条款。"
         },
         {
           "name": "run_error",
@@ -596,7 +289,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "23f64f0d023296ef",
+      "parentObservationId": "ffae81a840317055",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -604,10 +297,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.0,
+      "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:57.518Z",
-      "updatedAt": "2026-08-18T11:46:57.531Z",
+      "createdAt": "2026-08-19T05:15:53.785Z",
+      "updatedAt": "2026-08-19T05:15:53.799Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -627,18 +320,382 @@
       "usagePricingTierName": null
     },
     {
-      "id": "23f64f0d023296ef",
-      "traceId": "94aeedc90ba250e02cda113ce808ccca",
+      "id": "8700463185ebed43",
+      "traceId": "9ca4c2b649499ebb1519012b3cfcb9ce",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:15:27.006000+00:00",
+      "endTime": "2026-08-19 05:15:51.596000+00:00",
+      "input": {
+        "query": "平台收到申诉后，复核结论的告知时限是多久？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-061",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "formal",
+        "doc_id": "P08",
+        "section": "第六条 申诉 > 6.3 处理时限",
+        "reviewed": true,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.471,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-061",
+        "query": "平台收到申诉后，复核结论的告知时限是多久？",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "P08",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P08#006:02"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 1486,
+          "duplicate_ratio": 0.371,
+          "context_recall": 1,
+          "context_relevance": 0.037
+        },
+        "elapsed_s": 1.8,
+        "seed_rank": {
+          "candidate": {
+            "P08#006:02": 1
+          },
+          "evidence": {
+            "P08#006:02": 1
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "other",
+              "text": "平台收到申诉后，复核结论的告知时限是多久？"
+            }
+          ]
+        },
+        "rewrite_hash": "e837b74dbe4ecb08",
+        "sections": [
+          "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.1 申诉渠道 … 第六条 申诉 > 6.4 复核后的恢复",
+          "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.2 申请时限 … 第四条 平台介入的处理 > 4.2 判定时限",
+          "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.3 申诉",
+          "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.3 行政投诉的处理时限"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "平台在收到申诉后3个工作日内完成复核并告知结论。",
+                "supported": true,
+                "reason": "P08 6.4 明确平台在收到申诉后3个工作日内完成复核并告知结论。"
+              },
+              {
+                "claim": "若平台复核维持原判定，平台须说明具体理由。",
+                "supported": true,
+                "reason": "P08 6.4 明确复核维持原判定的，须说明具体理由。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.037,
+            "n": 81,
+            "hit": 3,
+            "truncated": false,
+            "note": "其他单元多为申诉条件、材料、后续处理或无关争议解决条款。",
+            "irrelevant": [
+              "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
+              "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。",
+              "复核维持原判定的，须说明具体理由。",
+              "申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
+              "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
+              "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。",
+              "复核维持原判定的，须说明具体理由。",
+              "申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
+              "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
+              "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "a4fdbfa409904a5f",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 24.59,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:15:53.785Z",
+      "updatedAt": "2026-08-19T05:15:53.798Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "a4fdbfa409904a5f",
+      "traceId": "9ca4c2b649499ebb1519012b3cfcb9ce",
+      "type": "SPAN",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-19 05:15:27.006000+00:00",
+      "endTime": "2026-08-19 05:15:51.599000+00:00",
+      "input": {
+        "query": "平台收到申诉后，复核结论的告知时限是多久？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-061",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "formal",
+        "doc_id": "P08",
+        "section": "第六条 申诉 > 6.3 处理时限",
+        "reviewed": true,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.471,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-061",
+        "query": "平台收到申诉后，复核结论的告知时限是多久？",
+        "type": "single",
+        "style": "formal",
+        "doc_id": "P08",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P08#006:02"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 1486,
+          "duplicate_ratio": 0.371,
+          "context_recall": 1,
+          "context_relevance": 0.037
+        },
+        "elapsed_s": 1.8,
+        "seed_rank": {
+          "candidate": {
+            "P08#006:02": 1
+          },
+          "evidence": {
+            "P08#006:02": 1
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "other",
+              "text": "平台收到申诉后，复核结论的告知时限是多久？"
+            }
+          ]
+        },
+        "rewrite_hash": "e837b74dbe4ecb08",
+        "sections": [
+          "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.1 申诉渠道 … 第六条 申诉 > 6.4 复核后的恢复",
+          "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.2 申请时限 … 第四条 平台介入的处理 > 4.2 判定时限",
+          "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.3 申诉",
+          "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.3 行政投诉的处理时限"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "平台在收到申诉后3个工作日内完成复核并告知结论。",
+                "supported": true,
+                "reason": "P08 6.4 明确平台在收到申诉后3个工作日内完成复核并告知结论。"
+              },
+              {
+                "claim": "若平台复核维持原判定，平台须说明具体理由。",
+                "supported": true,
+                "reason": "P08 6.4 明确复核维持原判定的，须说明具体理由。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.037,
+            "n": 81,
+            "hit": 3,
+            "truncated": false,
+            "note": "其他单元多为申诉条件、材料、后续处理或无关争议解决条款。",
+            "irrelevant": [
+              "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
+              "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。",
+              "复核维持原判定的，须说明具体理由。",
+              "申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
+              "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
+              "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。",
+              "复核维持原判定的，须说明具体理由。",
+              "申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
+              "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
+              "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 24.593,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:15:53.785Z",
+      "updatedAt": "2026-08-19T05:15:53.797Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "ffae81a840317055",
+      "traceId": "9ca4c2b649499ebb1519012b3cfcb9ce",
       "type": "SPAN",
       "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:46:52.473000+00:00",
-      "endTime": "2026-08-18 11:46:52.475000+00:00",
+      "startTime": "2026-08-19 05:15:51.597000+00:00",
+      "endTime": "2026-08-19 05:15:51.599000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -662,7 +719,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "b9470e8cb791e274",
+      "parentObservationId": "a4fdbfa409904a5f",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -672,8 +729,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.002,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:57.518Z",
-      "updatedAt": "2026-08-18T11:46:57.531Z",
+      "createdAt": "2026-08-19T05:15:53.785Z",
+      "updatedAt": "2026-08-19T05:15:53.797Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -695,253 +752,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "95a119b798685dea",
-      "traceId": "94aeedc90ba250e02cda113ce808ccca",
-      "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:46:48.784000+00:00",
-      "endTime": "2026-08-18 11:46:48.797000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": [
-          "P08#006:02",
-          "P09#003:01",
-          "P07#004:02",
-          "P09#006:02",
-          "P09#003:00",
-          "P08#006:00",
-          "P08#006:03",
-          "P09#002:01"
-        ]
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.1 申诉渠道 … 第六条 申诉 > 6.4 复核后的恢复",
-            "text": "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。\n\n消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。\n\n消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
-            "score": 0.9776222515106202,
-            "doc_id": "P08",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
-            "reason": "相关性 0.997 × 先验 0.90 → 0.978；命中 1/platform/dense#1, 1/platform/bm25#1"
-          },
-          {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.2 申请时限 … 第四条 平台介入的处理 > 4.2 判定时限",
-            "text": "出现以下任一情形，消费者可申请平台介入：\n\n（一）商家拒绝退款申请或超过 48 小时未响应；\n（二）商家提出的处理方案消费者不接受；\n（三）商家验收结论消费者有异议；\n（四）双方协商超过 3 个自然日仍未达成一致。\n\n消费者应在争议产生后 **15 日**内申请介入。超过时限的，平台仍可受理，但举证难度增加。\n\n申请方须提交：订单信息、争议诉求、支持诉求的凭证（照片、视频、聊天记录、检测报告、物流凭证）。\n\n平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。\n\n举证期结束后，平台在 **72 小时**内出具判定结论，并向双方说明判定依据的具体条款。\n\n平台按以下顺序适用规则：\n\n1. 法律、行政法规、部门规章的强制性规定；\n2. 平台在首页显著位置公示的各项交易规则；\n3. 商家在商品页面作出的更优承诺；\n4. 双方的约定与交易记录；\n5. 行业惯例与公平原则。\n\n| 争议事项 | 举证责任方 |\n|---|---|\n| 退回商品不完好、缺件、调包 | 商家 |\n| 商品存在质量问题 | 消费者（耐用商品 6 个月内除外） |\n| 耐用商品签收 6 个月内的瑕疵 | **商家** |\n| 已履行发货义务 | 商家 |\n| 已履行寄回义务 | 消费者 |\n| 曾作出特别承诺 | 主张一方 |\n\n双方均无法举证的，平台结合物流轨迹、历史交易行为、账户风险状况、商家服务记录综合判定，并在结论中说明推定理由。\n\n判定结论作出后系统自动执行——支持消费者的即时退款，支持商家的关闭申请。**判定结论须附具体理由与所依据的条款，不得仅告知结果。**\n\n平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。\n\n举证期结束后，平台在 **72 小时**内出具判定结论，并向双方说明判定依据的具体条款。\n\n平台按以下顺序适用规则：\n\n1. 法律、行政法规、部门规章的强制性规定；\n2. 平台在首页显著位置公示的各项交易规则；\n3. 商家在商品页面作出的更优承诺；\n4. 双方的约定与交易记录；\n5. 行业惯例与公平原则。\n\n| 争议事项 | 举证责任方 |\n|---|---|\n| 退回商品不完好、缺件、调包 | 商家 |\n| 商品存在质量问题 | 消费者（耐用商品 6 个月内除外） |\n| 耐用商品签收 6 个月内的瑕疵 | **商家** |\n| 已履行发货义务 | 商家 |\n| 已履行寄回义务 | 消费者 |\n| 曾作出特别承诺 | 主张一方 |\n\n双方均无法举证的，平台结合物流轨迹、历史交易行为、账户风险状况、商家服务记录综合判定，并在结论中说明推定理由。\n\n判定结论作出后系统自动执行——支持消费者的即时退款，支持商家的关闭申请。**判定结论须附具体理由与所依据的条款，不得仅告知结果。**",
-            "score": 0.8080700683593751,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.785 × 先验 0.90 → 0.808；命中 1/platform/dense#3, 1/platform/bm25#7"
-          },
-          {
-            "section": "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.3 申诉",
-            "text": "会员等级降级后，权益随之调整，平台提前 7 日通知。\n\n出现以下情形的，平台可冻结会员售后权益，恢复至普通会员标准：\n\n（一）经查实的调包退货、虚假质量问题申报；\n（二）恶意批量下单退货，影响商家正常经营；\n（三）以投诉、差评相要挟索取不当利益。\n\n权益冻结**不影响消费者的法定 7 日无理由退货权**——冻结的只是平台额外给予的延长部分。\n\n消费者对权益冻结有异议的，可通过专属客服通道申诉，平台在 3 个工作日内回复。",
-            "score": 0.6635914611816407,
-            "doc_id": "P07",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
-            "reason": "相关性 0.604 × 先验 0.90 → 0.664；命中 1/platform/dense#7, 1/platform/bm25#11"
-          },
-          {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.3 行政投诉的处理时限",
-            "text": "消费者对平台判定结论仍有异议的，可通过以下途径维权：\n\n（一）向平台所在地或商家所在地市场监督管理部门投诉；\n（二）请求消费者协会或其他依法成立的调解组织调解；\n（三）拨打 12315 投诉举报；\n（四）按约定申请仲裁；\n（五）向人民法院提起诉讼。\n\n消费者通过外部途径维权的，平台应**提供商家的真实名称、地址和有效联系方式**，并提供订单原始记录与交易凭证，积极协助消费者维权。\n\n行政部门应自收到投诉之日起 **7 个工作日**内予以处理并告知消费者；受理后双方同意调解的，应在受理之日起 **60 日**内调解完毕（鉴定、检测时间不计入）。\n\n争议需对商品质量进行鉴定、检测的，双方可协商确定鉴定机构；无法协商一致的，由受理投诉的行政部门指定。",
-            "score": 0.6604703235626221,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.601 × 先验 0.90 → 0.660；命中 1/platform/dense#6, 1/platform/bm25#4"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "735c57237b6203b3",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.013,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:52.458Z",
-      "updatedAt": "2026-08-18T11:46:52.472Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "735c57237b6203b3",
-      "traceId": "94aeedc90ba250e02cda113ce808ccca",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:46:47.216000+00:00",
-      "endTime": "2026-08-18 11:46:48.797000+00:00",
-      "modelParameters": {},
-      "input": {
-        "query": "平台收到申诉后，复核结论的告知时限是多久？",
-        "top_k": 4
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.1 申诉渠道 … 第六条 申诉 > 6.4 复核后的恢复",
-            "text": "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。\n\n消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。\n\n消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
-            "score": 0.9776222515106202,
-            "doc_id": "P08",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
-            "reason": "相关性 0.997 × 先验 0.90 → 0.978；命中 1/platform/dense#1, 1/platform/bm25#1"
-          },
-          {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.2 申请时限 … 第四条 平台介入的处理 > 4.2 判定时限",
-            "text": "出现以下任一情形，消费者可申请平台介入：\n\n（一）商家拒绝退款申请或超过 48 小时未响应；\n（二）商家提出的处理方案消费者不接受；\n（三）商家验收结论消费者有异议；\n（四）双方协商超过 3 个自然日仍未达成一致。\n\n消费者应在争议产生后 **15 日**内申请介入。超过时限的，平台仍可受理，但举证难度增加。\n\n申请方须提交：订单信息、争议诉求、支持诉求的凭证（照片、视频、聊天记录、检测报告、物流凭证）。\n\n平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。\n\n举证期结束后，平台在 **72 小时**内出具判定结论，并向双方说明判定依据的具体条款。\n\n平台按以下顺序适用规则：\n\n1. 法律、行政法规、部门规章的强制性规定；\n2. 平台在首页显著位置公示的各项交易规则；\n3. 商家在商品页面作出的更优承诺；\n4. 双方的约定与交易记录；\n5. 行业惯例与公平原则。\n\n| 争议事项 | 举证责任方 |\n|---|---|\n| 退回商品不完好、缺件、调包 | 商家 |\n| 商品存在质量问题 | 消费者（耐用商品 6 个月内除外） |\n| 耐用商品签收 6 个月内的瑕疵 | **商家** |\n| 已履行发货义务 | 商家 |\n| 已履行寄回义务 | 消费者 |\n| 曾作出特别承诺 | 主张一方 |\n\n双方均无法举证的，平台结合物流轨迹、历史交易行为、账户风险状况、商家服务记录综合判定，并在结论中说明推定理由。\n\n判定结论作出后系统自动执行——支持消费者的即时退款，支持商家的关闭申请。**判定结论须附具体理由与所依据的条款，不得仅告知结果。**\n\n平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。\n\n举证期结束后，平台在 **72 小时**内出具判定结论，并向双方说明判定依据的具体条款。\n\n平台按以下顺序适用规则：\n\n1. 法律、行政法规、部门规章的强制性规定；\n2. 平台在首页显著位置公示的各项交易规则；\n3. 商家在商品页面作出的更优承诺；\n4. 双方的约定与交易记录；\n5. 行业惯例与公平原则。\n\n| 争议事项 | 举证责任方 |\n|---|---|\n| 退回商品不完好、缺件、调包 | 商家 |\n| 商品存在质量问题 | 消费者（耐用商品 6 个月内除外） |\n| 耐用商品签收 6 个月内的瑕疵 | **商家** |\n| 已履行发货义务 | 商家 |\n| 已履行寄回义务 | 消费者 |\n| 曾作出特别承诺 | 主张一方 |\n\n双方均无法举证的，平台结合物流轨迹、历史交易行为、账户风险状况、商家服务记录综合判定，并在结论中说明推定理由。\n\n判定结论作出后系统自动执行——支持消费者的即时退款，支持商家的关闭申请。**判定结论须附具体理由与所依据的条款，不得仅告知结果。**",
-            "score": 0.8080700683593751,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.785 × 先验 0.90 → 0.808；命中 1/platform/dense#3, 1/platform/bm25#7"
-          },
-          {
-            "section": "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.3 申诉",
-            "text": "会员等级降级后，权益随之调整，平台提前 7 日通知。\n\n出现以下情形的，平台可冻结会员售后权益，恢复至普通会员标准：\n\n（一）经查实的调包退货、虚假质量问题申报；\n（二）恶意批量下单退货，影响商家正常经营；\n（三）以投诉、差评相要挟索取不当利益。\n\n权益冻结**不影响消费者的法定 7 日无理由退货权**——冻结的只是平台额外给予的延长部分。\n\n消费者对权益冻结有异议的，可通过专属客服通道申诉，平台在 3 个工作日内回复。",
-            "score": 0.6635914611816407,
-            "doc_id": "P07",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
-            "reason": "相关性 0.604 × 先验 0.90 → 0.664；命中 1/platform/dense#7, 1/platform/bm25#11"
-          },
-          {
-            "section": "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.3 行政投诉的处理时限",
-            "text": "消费者对平台判定结论仍有异议的，可通过以下途径维权：\n\n（一）向平台所在地或商家所在地市场监督管理部门投诉；\n（二）请求消费者协会或其他依法成立的调解组织调解；\n（三）拨打 12315 投诉举报；\n（四）按约定申请仲裁；\n（五）向人民法院提起诉讼。\n\n消费者通过外部途径维权的，平台应**提供商家的真实名称、地址和有效联系方式**，并提供订单原始记录与交易凭证，积极协助消费者维权。\n\n行政部门应自收到投诉之日起 **7 个工作日**内予以处理并告知消费者；受理后双方同意调解的，应在受理之日起 **60 日**内调解完毕（鉴定、检测时间不计入）。\n\n争议需对商品质量进行鉴定、检测的，双方可协商确定鉴定机构；无法协商一致的，由受理投诉的行政部门指定。",
-            "score": 0.6604703235626221,
-            "doc_id": "P09",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
-            "reason": "相关性 0.601 × 先验 0.90 → 0.660；命中 1/platform/dense#6, 1/platform/bm25#4"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "d5a6008f47efc35e",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 1.581,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:52.458Z",
-      "updatedAt": "2026-08-18T11:46:52.471Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "d971148cdc1d654f",
-      "traceId": "94aeedc90ba250e02cda113ce808ccca",
+      "id": "be675b077278337c",
+      "traceId": "9ca4c2b649499ebb1519012b3cfcb9ce",
       "type": "SPAN",
       "name": "rag.route",
-      "startTime": "2026-08-18 11:46:48.093000+00:00",
-      "endTime": "2026-08-18 11:46:48.093000+00:00",
+      "startTime": "2026-08-19 05:15:46.506000+00:00",
+      "endTime": "2026-08-19 05:15:46.506000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -971,7 +793,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "735c57237b6203b3",
+      "parentObservationId": "b5a18db73e1a79a6",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -981,8 +803,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:52.458Z",
-      "updatedAt": "2026-08-18T11:46:52.471Z",
+      "createdAt": "2026-08-19T05:15:48.694Z",
+      "updatedAt": "2026-08-19T05:15:48.714Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1004,12 +826,87 @@
       "usagePricingTierName": null
     },
     {
-      "id": "535849987345da94",
-      "traceId": "94aeedc90ba250e02cda113ce808ccca",
+      "id": "027d4d64fda8c982",
+      "traceId": "9ca4c2b649499ebb1519012b3cfcb9ce",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-19 05:15:45.461000+00:00",
+      "endTime": "2026-08-19 05:15:46.505000+00:00",
+      "input": {
+        "query": "平台收到申诉后，复核结论的告知时限是多久？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "other",
+            "text": "平台收到申诉后，复核结论的告知时限是多久？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "b5a18db73e1a79a6",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.044,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:15:48.694Z",
+      "updatedAt": "2026-08-19T05:15:48.713Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "1cd198968a1f3a18",
+      "traceId": "9ca4c2b649499ebb1519012b3cfcb9ce",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 11:46:48.184000+00:00",
-      "endTime": "2026-08-18 11:46:48.784000+00:00",
+      "startTime": "2026-08-19 05:15:46.597000+00:00",
+      "endTime": "2026-08-19 05:15:47.198000+00:00",
       "input": {
         "query": "平台收到申诉后，复核结论的告知时限是多久？",
         "candidates": 20
@@ -1019,7 +916,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1121,7 +1018,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "735c57237b6203b3",
+      "parentObservationId": "b5a18db73e1a79a6",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1129,10 +1026,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.6,
+      "latency": 0.601,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:52.458Z",
-      "updatedAt": "2026-08-18T11:46:52.470Z",
+      "createdAt": "2026-08-19T05:15:48.694Z",
+      "updatedAt": "2026-08-19T05:15:48.712Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1153,18 +1050,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "c4084da43456eea3",
-      "traceId": "94aeedc90ba250e02cda113ce808ccca",
+      "id": "20e6cbd95fd07202",
+      "traceId": "9ca4c2b649499ebb1519012b3cfcb9ce",
       "type": "SPAN",
       "name": "rag.recall",
-      "startTime": "2026-08-18 11:46:48.094000+00:00",
-      "endTime": "2026-08-18 11:46:48.184000+00:00",
+      "startTime": "2026-08-19 05:15:46.506000+00:00",
+      "endTime": "2026-08-19 05:15:46.597000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1358,7 +1255,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "735c57237b6203b3",
+      "parentObservationId": "b5a18db73e1a79a6",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1366,10 +1263,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.09,
+      "latency": 0.091,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:52.458Z",
-      "updatedAt": "2026-08-18T11:46:52.470Z",
+      "createdAt": "2026-08-19T05:15:48.694Z",
+      "updatedAt": "2026-08-19T05:15:48.710Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1391,21 +1288,31 @@
       "usagePricingTierName": null
     },
     {
-      "id": "1a377743be6c8044",
-      "traceId": "94aeedc90ba250e02cda113ce808ccca",
+      "id": "c3853cd8b4f87cd4",
+      "traceId": "9ca4c2b649499ebb1519012b3cfcb9ce",
       "type": "SPAN",
-      "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:46:47.216000+00:00",
-      "endTime": "2026-08-18 11:46:48.093000+00:00",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:15:47.198000+00:00",
+      "endTime": "2026-08-19 05:15:47.215000+00:00",
       "input": {
-        "query": "平台收到申诉后，复核结论的告知时限是多久？"
+        "top_k": 4,
+        "evidence": [
+          "P08#006:02",
+          "P09#003:01",
+          "P07#004:02",
+          "P09#006:02",
+          "P09#003:00",
+          "P08#006:00",
+          "P08#006:03",
+          "P09#002:01"
+        ]
       },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1417,13 +1324,50 @@
         }
       },
       "output": {
-        "rewritten": true,
-        "needs_law": false,
-        "sub_queries": [
+        "sections": [
           {
-            "id": "1",
-            "intent": "other",
-            "text": "平台收到申诉后，复核结论的告知时限是多久？"
+            "section": "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.1 申诉渠道 … 第六条 申诉 > 6.4 复核后的恢复",
+            "text": "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。\n\n消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。\n\n消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
+            "score": 0.9776222515106202,
+            "doc_id": "P08",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
+            "reason": "相关性 0.997 × 先验 0.90 → 0.978；命中 1/platform/dense#1, 1/platform/bm25#1"
+          },
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.2 申请时限 … 第四条 平台介入的处理 > 4.2 判定时限",
+            "text": "出现以下任一情形，消费者可申请平台介入：\n\n（一）商家拒绝退款申请或超过 48 小时未响应；\n（二）商家提出的处理方案消费者不接受；\n（三）商家验收结论消费者有异议；\n（四）双方协商超过 3 个自然日仍未达成一致。\n\n消费者应在争议产生后 **15 日**内申请介入。超过时限的，平台仍可受理，但举证难度增加。\n\n申请方须提交：订单信息、争议诉求、支持诉求的凭证（照片、视频、聊天记录、检测报告、物流凭证）。\n\n平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。\n\n举证期结束后，平台在 **72 小时**内出具判定结论，并向双方说明判定依据的具体条款。\n\n平台按以下顺序适用规则：\n\n1. 法律、行政法规、部门规章的强制性规定；\n2. 平台在首页显著位置公示的各项交易规则；\n3. 商家在商品页面作出的更优承诺；\n4. 双方的约定与交易记录；\n5. 行业惯例与公平原则。\n\n| 争议事项 | 举证责任方 |\n|---|---|\n| 退回商品不完好、缺件、调包 | 商家 |\n| 商品存在质量问题 | 消费者（耐用商品 6 个月内除外） |\n| 耐用商品签收 6 个月内的瑕疵 | **商家** |\n| 已履行发货义务 | 商家 |\n| 已履行寄回义务 | 消费者 |\n| 曾作出特别承诺 | 主张一方 |\n\n双方均无法举证的，平台结合物流轨迹、历史交易行为、账户风险状况、商家服务记录综合判定，并在结论中说明推定理由。\n\n判定结论作出后系统自动执行——支持消费者的即时退款，支持商家的关闭申请。**判定结论须附具体理由与所依据的条款，不得仅告知结果。**\n\n平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。\n\n举证期结束后，平台在 **72 小时**内出具判定结论，并向双方说明判定依据的具体条款。\n\n平台按以下顺序适用规则：\n\n1. 法律、行政法规、部门规章的强制性规定；\n2. 平台在首页显著位置公示的各项交易规则；\n3. 商家在商品页面作出的更优承诺；\n4. 双方的约定与交易记录；\n5. 行业惯例与公平原则。\n\n| 争议事项 | 举证责任方 |\n|---|---|\n| 退回商品不完好、缺件、调包 | 商家 |\n| 商品存在质量问题 | 消费者（耐用商品 6 个月内除外） |\n| 耐用商品签收 6 个月内的瑕疵 | **商家** |\n| 已履行发货义务 | 商家 |\n| 已履行寄回义务 | 消费者 |\n| 曾作出特别承诺 | 主张一方 |\n\n双方均无法举证的，平台结合物流轨迹、历史交易行为、账户风险状况、商家服务记录综合判定，并在结论中说明推定理由。\n\n判定结论作出后系统自动执行——支持消费者的即时退款，支持商家的关闭申请。**判定结论须附具体理由与所依据的条款，不得仅告知结果。**",
+            "score": 0.8080700683593751,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.785 × 先验 0.90 → 0.808；命中 1/platform/dense#3, 1/platform/bm25#7"
+          },
+          {
+            "section": "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.3 申诉",
+            "text": "会员等级降级后，权益随之调整，平台提前 7 日通知。\n\n出现以下情形的，平台可冻结会员售后权益，恢复至普通会员标准：\n\n（一）经查实的调包退货、虚假质量问题申报；\n（二）恶意批量下单退货，影响商家正常经营；\n（三）以投诉、差评相要挟索取不当利益。\n\n权益冻结**不影响消费者的法定 7 日无理由退货权**——冻结的只是平台额外给予的延长部分。\n\n消费者对权益冻结有异议的，可通过专属客服通道申诉，平台在 3 个工作日内回复。",
+            "score": 0.6635914611816407,
+            "doc_id": "P07",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
+            "reason": "相关性 0.604 × 先验 0.90 → 0.664；命中 1/platform/dense#7, 1/platform/bm25#11"
+          },
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.3 行政投诉的处理时限",
+            "text": "消费者对平台判定结论仍有异议的，可通过以下途径维权：\n\n（一）向平台所在地或商家所在地市场监督管理部门投诉；\n（二）请求消费者协会或其他依法成立的调解组织调解；\n（三）拨打 12315 投诉举报；\n（四）按约定申请仲裁；\n（五）向人民法院提起诉讼。\n\n消费者通过外部途径维权的，平台应**提供商家的真实名称、地址和有效联系方式**，并提供订单原始记录与交易凭证，积极协助消费者维权。\n\n行政部门应自收到投诉之日起 **7 个工作日**内予以处理并告知消费者；受理后双方同意调解的，应在受理之日起 **60 日**内调解完毕（鉴定、检测时间不计入）。\n\n争议需对商品质量进行鉴定、检测的，双方可协商确定鉴定机构；无法协商一致的，由受理投诉的行政部门指定。",
+            "score": 0.6604703235626221,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.601 × 先验 0.90 → 0.660；命中 1/platform/dense#6, 1/platform/bm25#4"
           }
         ]
       },
@@ -1434,7 +1378,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "735c57237b6203b3",
+      "parentObservationId": "b5a18db73e1a79a6",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1442,10 +1386,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.877,
+      "latency": 0.017,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:52.458Z",
-      "updatedAt": "2026-08-18T11:46:52.469Z",
+      "createdAt": "2026-08-19T05:15:48.694Z",
+      "updatedAt": "2026-08-19T05:15:48.710Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -1453,6 +1397,119 @@
       "completionStartTime": null,
       "model": null,
       "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "b5a18db73e1a79a6",
+      "traceId": "9ca4c2b649499ebb1519012b3cfcb9ce",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:15:45.461000+00:00",
+      "endTime": "2026-08-19 05:15:47.215000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "平台收到申诉后，复核结论的告知时限是多久？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.1 申诉渠道 … 第六条 申诉 > 6.4 复核后的恢复",
+            "text": "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。\n\n消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。\n\n消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
+            "score": 0.9776222515106202,
+            "doc_id": "P08",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
+            "reason": "相关性 0.997 × 先验 0.90 → 0.978；命中 1/platform/dense#1, 1/platform/bm25#1"
+          },
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第三条 申请平台介入 > 3.2 申请时限 … 第四条 平台介入的处理 > 4.2 判定时限",
+            "text": "出现以下任一情形，消费者可申请平台介入：\n\n（一）商家拒绝退款申请或超过 48 小时未响应；\n（二）商家提出的处理方案消费者不接受；\n（三）商家验收结论消费者有异议；\n（四）双方协商超过 3 个自然日仍未达成一致。\n\n消费者应在争议产生后 **15 日**内申请介入。超过时限的，平台仍可受理，但举证难度增加。\n\n申请方须提交：订单信息、争议诉求、支持诉求的凭证（照片、视频、聊天记录、检测报告、物流凭证）。\n\n平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。\n\n举证期结束后，平台在 **72 小时**内出具判定结论，并向双方说明判定依据的具体条款。\n\n平台按以下顺序适用规则：\n\n1. 法律、行政法规、部门规章的强制性规定；\n2. 平台在首页显著位置公示的各项交易规则；\n3. 商家在商品页面作出的更优承诺；\n4. 双方的约定与交易记录；\n5. 行业惯例与公平原则。\n\n| 争议事项 | 举证责任方 |\n|---|---|\n| 退回商品不完好、缺件、调包 | 商家 |\n| 商品存在质量问题 | 消费者（耐用商品 6 个月内除外） |\n| 耐用商品签收 6 个月内的瑕疵 | **商家** |\n| 已履行发货义务 | 商家 |\n| 已履行寄回义务 | 消费者 |\n| 曾作出特别承诺 | 主张一方 |\n\n双方均无法举证的，平台结合物流轨迹、历史交易行为、账户风险状况、商家服务记录综合判定，并在结论中说明推定理由。\n\n判定结论作出后系统自动执行——支持消费者的即时退款，支持商家的关闭申请。**判定结论须附具体理由与所依据的条款，不得仅告知结果。**\n\n平台受理后 **24 小时**内通知双方举证，举证期为 **3 个自然日**。\n\n举证期结束后，平台在 **72 小时**内出具判定结论，并向双方说明判定依据的具体条款。\n\n平台按以下顺序适用规则：\n\n1. 法律、行政法规、部门规章的强制性规定；\n2. 平台在首页显著位置公示的各项交易规则；\n3. 商家在商品页面作出的更优承诺；\n4. 双方的约定与交易记录；\n5. 行业惯例与公平原则。\n\n| 争议事项 | 举证责任方 |\n|---|---|\n| 退回商品不完好、缺件、调包 | 商家 |\n| 商品存在质量问题 | 消费者（耐用商品 6 个月内除外） |\n| 耐用商品签收 6 个月内的瑕疵 | **商家** |\n| 已履行发货义务 | 商家 |\n| 已履行寄回义务 | 消费者 |\n| 曾作出特别承诺 | 主张一方 |\n\n双方均无法举证的，平台结合物流轨迹、历史交易行为、账户风险状况、商家服务记录综合判定，并在结论中说明推定理由。\n\n判定结论作出后系统自动执行——支持消费者的即时退款，支持商家的关闭申请。**判定结论须附具体理由与所依据的条款，不得仅告知结果。**",
+            "score": 0.8080700683593751,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.785 × 先验 0.90 → 0.808；命中 1/platform/dense#3, 1/platform/bm25#7"
+          },
+          {
+            "section": "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.3 申诉",
+            "text": "会员等级降级后，权益随之调整，平台提前 7 日通知。\n\n出现以下情形的，平台可冻结会员售后权益，恢复至普通会员标准：\n\n（一）经查实的调包退货、虚假质量问题申报；\n（二）恶意批量下单退货，影响商家正常经营；\n（三）以投诉、差评相要挟索取不当利益。\n\n权益冻结**不影响消费者的法定 7 日无理由退货权**——冻结的只是平台额外给予的延长部分。\n\n消费者对权益冻结有异议的，可通过专属客服通道申诉，平台在 3 个工作日内回复。",
+            "score": 0.6635914611816407,
+            "doc_id": "P07",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
+            "reason": "相关性 0.604 × 先验 0.90 → 0.664；命中 1/platform/dense#7, 1/platform/bm25#11"
+          },
+          {
+            "section": "P09 星辰优选争议处理与平台介入规则 > 第七条 外部维权途径 > 7.3 行政投诉的处理时限",
+            "text": "消费者对平台判定结论仍有异议的，可通过以下途径维权：\n\n（一）向平台所在地或商家所在地市场监督管理部门投诉；\n（二）请求消费者协会或其他依法成立的调解组织调解；\n（三）拨打 12315 投诉举报；\n（四）按约定申请仲裁；\n（五）向人民法院提起诉讼。\n\n消费者通过外部途径维权的，平台应**提供商家的真实名称、地址和有效联系方式**，并提供订单原始记录与交易凭证，积极协助消费者维权。\n\n行政部门应自收到投诉之日起 **7 个工作日**内予以处理并告知消费者；受理后双方同意调解的，应在受理之日起 **60 日**内调解完毕（鉴定、检测时间不计入）。\n\n争议需对商品质量进行鉴定、检测的，双方可协商确定鉴定机构；无法协商一致的，由受理投诉的行政部门指定。",
+            "score": 0.6604703235626221,
+            "doc_id": "P09",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P09-争议处理与平台介入规则.md",
+            "reason": "相关性 0.601 × 先验 0.90 → 0.660；命中 1/platform/dense#6, 1/platform/bm25#4"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "8700463185ebed43",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.754,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:15:48.694Z",
+      "updatedAt": "2026-08-19T05:15:48.709Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,

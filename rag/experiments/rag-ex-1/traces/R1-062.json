@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-062",
+    "query": "我申诉之后，他们大概多久能给我个说法？",
     "type": "single",
     "style": "colloquial",
     "doc_id": "P08",
@@ -9,28 +10,40 @@
     "seed_chunk_id": [
       "P08#006:02"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
       "recall@3": 1.0,
       "recall@1": 1.0,
-      "evidence_tokens": 267,
+      "evidence_tokens": 118,
       "duplicate_ratio": 0.0,
       "context_recall": 1.0,
-      "context_relevance": 0.083
+      "context_relevance": 0.2
     },
-    "elapsed_s": 1.8,
+    "elapsed_s": 2.1,
     "seed_rank": {
       "candidate": {
-        "P08#006:02": 2
+        "P08#006:02": 3
       },
       "evidence": {
         "P08#006:02": 1
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "dispute",
+          "text": "消费者提交申诉后，平台大概需要多长时间给出处理结果或答复？"
+        }
+      ]
+    },
+    "rewrite_hash": "5ee65209d092471e",
     "sections": [
-      "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限",
-      "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.3 申诉"
+      "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限"
     ],
     "judge": {
       "context_recall": {
@@ -41,52 +54,46 @@
           {
             "claim": "平台在收到申诉后3个工作日内完成复核并告知结论。",
             "supported": true,
-            "reason": "P08 6.3 明确写明3个工作日内完成复核并告知结论。"
+            "reason": "上下文明确写明收到申诉后3个工作日内完成复核并告知结论。"
           },
           {
             "claim": "若平台复核维持原判定，平台须说明具体理由。",
             "supported": true,
-            "reason": "P08 6.3 写明复核维持原判定的，须说明具体理由。"
+            "reason": "上下文明确写明复核维持原判定的，须说明具体理由。"
           }
         ],
         "error": null
       },
       "context_relevance": {
-        "score": 0.083,
-        "n": 12,
+        "score": 0.2,
+        "n": 5,
         "hit": 1,
         "truncated": false,
-        "note": "其他单元多为申诉条件、材料、后果或无关条款。",
+        "note": "其余单元涉及申诉期限、材料、理由说明和成立后的处理，未直接回答处理时限。",
         "irrelevant": [
           "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
           "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。",
           "复核维持原判定的，须说明具体理由。",
-          "申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
-          "会员等级降级后，权益随之调整，平台提前 7 日通知。",
-          "出现以下情形的，平台可冻结会员售后权益，恢复至普通会员标准：",
-          "（一）经查实的调包退货、虚假质量问题申报；",
-          "（二）恶意批量下单退货，影响商家正常经营；",
-          "（三）以投诉、差评相要挟索取不当利益。",
-          "权益冻结**不影响消费者的法定 7 日无理由退货权**——冻结的只是平台额外给予的延长部分。"
+          "申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。"
         ],
         "error": null
       }
     },
-    "trace_id": "efb1d53876b006b2cbcfa65ad57b15ac"
+    "trace_id": "3330e210238e3ac90157239d84be9770"
   },
   "trace": {
-    "id": "efb1d53876b006b2cbcfa65ad57b15ac",
+    "id": "3330e210238e3ac90157239d84be9770",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:45:45.655000+00:00"
+    "timestamp": "2026-08-19 05:15:27.013000+00:00"
   },
   "observations": [
     {
-      "id": "db2a912090c06904",
-      "traceId": "efb1d53876b006b2cbcfa65ad57b15ac",
+      "id": "39f69cb0bb24ccb7",
+      "traceId": "3330e210238e3ac90157239d84be9770",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:46:36.114000+00:00",
-      "endTime": "2026-08-18 11:46:36.115000+00:00",
+      "startTime": "2026-08-19 05:15:33.190000+00:00",
+      "endTime": "2026-08-19 05:15:33.191000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -94,6 +101,7 @@
         },
         "output": {
           "case_id": "R1-062",
+          "query": "我申诉之后，他们大概多久能给我个说法？",
           "type": "single",
           "style": "colloquial",
           "doc_id": "P08",
@@ -102,28 +110,40 @@
           "seed_chunk_id": [
             "P08#006:02"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
             "recall@3": 1,
             "recall@1": 1,
-            "evidence_tokens": 267,
+            "evidence_tokens": 118,
             "duplicate_ratio": 0,
             "context_recall": 1,
-            "context_relevance": 0.083
+            "context_relevance": 0.2
           },
-          "elapsed_s": 1.8,
+          "elapsed_s": 2.1,
           "seed_rank": {
             "candidate": {
-              "P08#006:02": 2
+              "P08#006:02": 3
             },
             "evidence": {
               "P08#006:02": 1
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "dispute",
+                "text": "消费者提交申诉后，平台大概需要多长时间给出处理结果或答复？"
+              }
+            ]
+          },
+          "rewrite_hash": "5ee65209d092471e",
           "sections": [
-            "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限",
-            "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.3 申诉"
+            "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限"
           ],
           "judge": {
             "context_recall": {
@@ -134,33 +154,27 @@
                 {
                   "claim": "平台在收到申诉后3个工作日内完成复核并告知结论。",
                   "supported": true,
-                  "reason": "P08 6.3 明确写明3个工作日内完成复核并告知结论。"
+                  "reason": "上下文明确写明收到申诉后3个工作日内完成复核并告知结论。"
                 },
                 {
                   "claim": "若平台复核维持原判定，平台须说明具体理由。",
                   "supported": true,
-                  "reason": "P08 6.3 写明复核维持原判定的，须说明具体理由。"
+                  "reason": "上下文明确写明复核维持原判定的，须说明具体理由。"
                 }
               ],
               "error": null
             },
             "context_relevance": {
-              "score": 0.083,
-              "n": 12,
+              "score": 0.2,
+              "n": 5,
               "hit": 1,
               "truncated": false,
-              "note": "其他单元多为申诉条件、材料、后果或无关条款。",
+              "note": "其余单元涉及申诉期限、材料、理由说明和成立后的处理，未直接回答处理时限。",
               "irrelevant": [
                 "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
                 "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。",
                 "复核维持原判定的，须说明具体理由。",
-                "申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
-                "会员等级降级后，权益随之调整，平台提前 7 日通知。",
-                "出现以下情形的，平台可冻结会员售后权益，恢复至普通会员标准：",
-                "（一）经查实的调包退货、虚假质量问题申报；",
-                "（二）恶意批量下单退货，影响商家正常经营；",
-                "（三）以投诉、差评相要挟索取不当利益。",
-                "权益冻结**不影响消费者的法定 7 日无理由退货权**——冻结的只是平台额外给予的延长部分。"
+                "申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。"
               ],
               "error": null
             }
@@ -174,7 +188,8 @@
           "seed_chunk_id": [
             "P08#006:02"
           ],
-          "reference_answer": "平台在收到申诉后3个工作日内完成复核并告知结论。若复核维持原判定，须说明具体理由。"
+          "reference_answer": "平台在收到申诉后3个工作日内完成复核并告知结论。若复核维持原判定，须说明具体理由。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "text",
@@ -196,7 +211,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -211,7 +226,7 @@
         {
           "name": "recall@10",
           "value": 1,
-          "comment": "种子块名次 P08#006:02=2"
+          "comment": "种子块名次 P08#006:02=3"
         },
         {
           "name": "recall@3",
@@ -225,7 +240,7 @@
         },
         {
           "name": "evidence_tokens",
-          "value": 267,
+          "value": 118,
           "comment": ""
         },
         {
@@ -240,8 +255,8 @@
         },
         {
           "name": "context_relevance",
-          "value": 0.083,
-          "comment": "1/12 个内容单元相关；其他单元多为申诉条件、材料、后果或无关条款。"
+          "value": 0.2,
+          "comment": "1/5 个内容单元相关；其余单元涉及申诉期限、材料、理由说明和成立后的处理，未直接回答处理时限。"
         },
         {
           "name": "run_error",
@@ -256,7 +271,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "0ee55e1564a49da1",
+      "parentObservationId": "71ab53db7df9e6f2",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -266,8 +281,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:37.372Z",
-      "updatedAt": "2026-08-18T11:46:37.396Z",
+      "createdAt": "2026-08-19T05:15:33.653Z",
+      "updatedAt": "2026-08-19T05:15:33.667Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -287,275 +302,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "8fcb472f1cf93ae3",
-      "traceId": "efb1d53876b006b2cbcfa65ad57b15ac",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:46:31.023000+00:00",
-      "endTime": "2026-08-18 11:46:32.863000+00:00",
-      "modelParameters": {},
-      "input": {
-        "query": "我申诉之后，他们大概多久能给我个说法？",
-        "top_k": 4
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限",
-            "text": "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
-            "score": 0.7506274986267091,
-            "doc_id": "P08",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
-            "reason": "相关性 0.713 × 先验 0.90 → 0.751；命中 1/platform/dense#1, 1/platform/bm25#6"
-          },
-          {
-            "section": "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.3 申诉",
-            "text": "会员等级降级后，权益随之调整，平台提前 7 日通知。\n\n出现以下情形的，平台可冻结会员售后权益，恢复至普通会员标准：\n\n（一）经查实的调包退货、虚假质量问题申报；\n（二）恶意批量下单退货，影响商家正常经营；\n（三）以投诉、差评相要挟索取不当利益。\n\n权益冻结**不影响消费者的法定 7 日无理由退货权**——冻结的只是平台额外给予的延长部分。\n\n消费者对权益冻结有异议的，可通过专属客服通道申诉，平台在 3 个工作日内回复。",
-            "score": 0.4386003065109253,
-            "doc_id": "P07",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
-            "reason": "相关性 0.323 × 先验 0.90 → 0.439；命中 1/platform/dense#8, 1/platform/bm25#10"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "305c1f28714b21d0",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 1.84,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:37.372Z",
-      "updatedAt": "2026-08-18T11:46:37.396Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "0dc619248aac087a",
-      "traceId": "efb1d53876b006b2cbcfa65ad57b15ac",
-      "type": "SPAN",
-      "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:45:45.655000+00:00",
-      "endTime": "2026-08-18 11:46:36.115000+00:00",
-      "input": {
-        "query": "我申诉之后，他们大概多久能给我个说法？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-062",
-        "kind": "text",
-        "type": "single",
-        "layer": "platform",
-        "style": "colloquial",
-        "doc_id": "P08",
-        "section": "第六条 申诉 > 6.3 处理时限",
-        "reviewed": true,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.091,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-062",
-        "type": "single",
-        "style": "colloquial",
-        "doc_id": "P08",
-        "layer": "platform",
-        "kind": "text",
-        "seed_chunk_id": [
-          "P08#006:02"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 1,
-          "evidence_tokens": 267,
-          "duplicate_ratio": 0,
-          "context_recall": 1,
-          "context_relevance": 0.083
-        },
-        "elapsed_s": 1.8,
-        "seed_rank": {
-          "candidate": {
-            "P08#006:02": 2
-          },
-          "evidence": {
-            "P08#006:02": 1
-          }
-        },
-        "sections": [
-          "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限",
-          "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.3 申诉"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 2,
-            "hit": 2,
-            "detail": [
-              {
-                "claim": "平台在收到申诉后3个工作日内完成复核并告知结论。",
-                "supported": true,
-                "reason": "P08 6.3 明确写明3个工作日内完成复核并告知结论。"
-              },
-              {
-                "claim": "若平台复核维持原判定，平台须说明具体理由。",
-                "supported": true,
-                "reason": "P08 6.3 写明复核维持原判定的，须说明具体理由。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.083,
-            "n": 12,
-            "hit": 1,
-            "truncated": false,
-            "note": "其他单元多为申诉条件、材料、后果或无关条款。",
-            "irrelevant": [
-              "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
-              "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。",
-              "复核维持原判定的，须说明具体理由。",
-              "申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
-              "会员等级降级后，权益随之调整，平台提前 7 日通知。",
-              "出现以下情形的，平台可冻结会员售后权益，恢复至普通会员标准：",
-              "（一）经查实的调包退货、虚假质量问题申报；",
-              "（二）恶意批量下单退货，影响商家正常经营；",
-              "（三）以投诉、差评相要挟索取不当利益。",
-              "权益冻结**不影响消费者的法定 7 日无理由退货权**——冻结的只是平台额外给予的延长部分。"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 50.46,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:37.372Z",
-      "updatedAt": "2026-08-18T11:46:37.392Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "parentObservationId": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "0ee55e1564a49da1",
-      "traceId": "efb1d53876b006b2cbcfa65ad57b15ac",
+      "id": "71ab53db7df9e6f2",
+      "traceId": "3330e210238e3ac90157239d84be9770",
       "type": "SPAN",
       "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:46:36.114000+00:00",
-      "endTime": "2026-08-18 11:46:36.115000+00:00",
+      "startTime": "2026-08-19 05:15:33.190000+00:00",
+      "endTime": "2026-08-19 05:15:33.191000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -579,7 +337,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "0dc619248aac087a",
+      "parentObservationId": "97488b6416a3c400",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -589,8 +347,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.001,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:37.372Z",
-      "updatedAt": "2026-08-18T11:46:37.390Z",
+      "createdAt": "2026-08-19T05:15:33.653Z",
+      "updatedAt": "2026-08-19T05:15:33.667Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -612,18 +370,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "305c1f28714b21d0",
-      "traceId": "efb1d53876b006b2cbcfa65ad57b15ac",
+      "id": "8a5f54a1f5a5c2e7",
+      "traceId": "3330e210238e3ac90157239d84be9770",
       "type": "SPAN",
       "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:45:45.655000+00:00",
-      "endTime": "2026-08-18 11:46:36.113000+00:00",
+      "startTime": "2026-08-19 05:14:39.294000+00:00",
+      "endTime": "2026-08-19 05:15:33.189000+00:00",
       "input": {
         "query": "我申诉之后，他们大概多久能给我个说法？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -654,7 +412,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -667,6 +425,7 @@
       },
       "output": {
         "case_id": "R1-062",
+        "query": "我申诉之后，他们大概多久能给我个说法？",
         "type": "single",
         "style": "colloquial",
         "doc_id": "P08",
@@ -675,28 +434,40 @@
         "seed_chunk_id": [
           "P08#006:02"
         ],
+        "acceptable_seed_chunk_ids": null,
         "error": null,
         "scores": {
           "recall@10": 1,
           "recall@3": 1,
           "recall@1": 1,
-          "evidence_tokens": 267,
+          "evidence_tokens": 118,
           "duplicate_ratio": 0,
           "context_recall": 1,
-          "context_relevance": 0.083
+          "context_relevance": 0.2
         },
-        "elapsed_s": 1.8,
+        "elapsed_s": 2.1,
         "seed_rank": {
           "candidate": {
-            "P08#006:02": 2
+            "P08#006:02": 3
           },
           "evidence": {
             "P08#006:02": 1
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "dispute",
+              "text": "消费者提交申诉后，平台大概需要多长时间给出处理结果或答复？"
+            }
+          ]
+        },
+        "rewrite_hash": "5ee65209d092471e",
         "sections": [
-          "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限",
-          "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.3 申诉"
+          "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限"
         ],
         "judge": {
           "context_recall": {
@@ -707,33 +478,27 @@
               {
                 "claim": "平台在收到申诉后3个工作日内完成复核并告知结论。",
                 "supported": true,
-                "reason": "P08 6.3 明确写明3个工作日内完成复核并告知结论。"
+                "reason": "上下文明确写明收到申诉后3个工作日内完成复核并告知结论。"
               },
               {
                 "claim": "若平台复核维持原判定，平台须说明具体理由。",
                 "supported": true,
-                "reason": "P08 6.3 写明复核维持原判定的，须说明具体理由。"
+                "reason": "上下文明确写明复核维持原判定的，须说明具体理由。"
               }
             ],
             "error": null
           },
           "context_relevance": {
-            "score": 0.083,
-            "n": 12,
+            "score": 0.2,
+            "n": 5,
             "hit": 1,
             "truncated": false,
-            "note": "其他单元多为申诉条件、材料、后果或无关条款。",
+            "note": "其余单元涉及申诉期限、材料、理由说明和成立后的处理，未直接回答处理时限。",
             "irrelevant": [
               "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
               "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。",
               "复核维持原判定的，须说明具体理由。",
-              "申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
-              "会员等级降级后，权益随之调整，平台提前 7 日通知。",
-              "出现以下情形的，平台可冻结会员售后权益，恢复至普通会员标准：",
-              "（一）经查实的调包退货、虚假质量问题申报；",
-              "（二）恶意批量下单退货，影响商家正常经营；",
-              "（三）以投诉、差评相要挟索取不当利益。",
-              "权益冻结**不影响消费者的法定 7 日无理由退货权**——冻结的只是平台额外给予的延长部分。"
+              "申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。"
             ],
             "error": null
           }
@@ -746,7 +511,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "0dc619248aac087a",
+      "parentObservationId": "97488b6416a3c400",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -754,10 +519,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 50.458,
+      "latency": 53.895,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:37.372Z",
-      "updatedAt": "2026-08-18T11:46:37.389Z",
+      "createdAt": "2026-08-19T05:15:33.653Z",
+      "updatedAt": "2026-08-19T05:15:33.667Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -778,18 +543,760 @@
       "usagePricingTierName": null
     },
     {
-      "id": "90365686c31e8e89",
-      "traceId": "efb1d53876b006b2cbcfa65ad57b15ac",
+      "id": "97488b6416a3c400",
+      "traceId": "3330e210238e3ac90157239d84be9770",
       "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:46:32.270000+00:00",
-      "endTime": "2026-08-18 11:46:32.270000+00:00",
+      "name": "experiment-item-run",
+      "startTime": "2026-08-19 05:14:39.294000+00:00",
+      "endTime": "2026-08-19 05:15:33.192000+00:00",
+      "input": {
+        "query": "我申诉之后，他们大概多久能给我个说法？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-062",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P08",
+        "section": "第六条 申诉 > 6.3 处理时限",
+        "reviewed": true,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.091,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-062",
+        "query": "我申诉之后，他们大概多久能给我个说法？",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P08",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P08#006:02"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 1,
+          "evidence_tokens": 118,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.2
+        },
+        "elapsed_s": 2.1,
+        "seed_rank": {
+          "candidate": {
+            "P08#006:02": 3
+          },
+          "evidence": {
+            "P08#006:02": 1
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "dispute",
+              "text": "消费者提交申诉后，平台大概需要多长时间给出处理结果或答复？"
+            }
+          ]
+        },
+        "rewrite_hash": "5ee65209d092471e",
+        "sections": [
+          "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 2,
+            "hit": 2,
+            "detail": [
+              {
+                "claim": "平台在收到申诉后3个工作日内完成复核并告知结论。",
+                "supported": true,
+                "reason": "上下文明确写明收到申诉后3个工作日内完成复核并告知结论。"
+              },
+              {
+                "claim": "若平台复核维持原判定，平台须说明具体理由。",
+                "supported": true,
+                "reason": "上下文明确写明复核维持原判定的，须说明具体理由。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.2,
+            "n": 5,
+            "hit": 1,
+            "truncated": false,
+            "note": "其余单元涉及申诉期限、材料、理由说明和成立后的处理，未直接回答处理时限。",
+            "irrelevant": [
+              "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。",
+              "申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。",
+              "复核维持原判定的，须说明具体理由。",
+              "申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 53.898,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:15:33.653Z",
+      "updatedAt": "2026-08-19T05:15:33.667Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "parentObservationId": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "0bd90a4d0019d620",
+      "traceId": "3330e210238e3ac90157239d84be9770",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-19 05:15:28.428000+00:00",
+      "endTime": "2026-08-19 05:15:29.105000+00:00",
+      "input": {
+        "query": "我申诉之后，他们大概多久能给我个说法？",
+        "candidates": 20
+      },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 1,
+        "min_score": 0.3,
+        "dropped": [
+          "L03#012:00",
+          "P08#006:00",
+          "L02#003:00",
+          "L02#004:04",
+          "P05#004:01",
+          "P06#005:04",
+          "P09#006:02",
+          "L03#011:00",
+          "P09#002:01",
+          "P01#005:03",
+          "L02#005:01",
+          "L03#004:00",
+          "P10#004:03",
+          "L02#003:03",
+          "L05#022:00",
+          "P09#003:00",
+          "P09#003:05",
+          "L02#002:02",
+          "P09#003:01"
+        ],
+        "evidence": [
+          {
+            "chunk_id": "P08#006:02",
+            "section": "P08 第六条 申诉 > 6.3 处理时限",
+            "score": 0.751,
+            "relevance": 0.713,
+            "prior": 0.9,
+            "excerpt": "平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "f7d922e5c842259e",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.677,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:15:33.653Z",
+      "updatedAt": "2026-08-19T05:15:33.664Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "0f96e170e4edf005",
+      "traceId": "3330e210238e3ac90157239d84be9770",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:15:29.105000+00:00",
+      "endTime": "2026-08-19 05:15:29.108000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "P08#006:02"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限",
+            "text": "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
+            "score": 0.7506274986267091,
+            "doc_id": "P08",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
+            "reason": "相关性 0.713 × 先验 0.90 → 0.751；命中 1/platform/dense#1, 1/platform/bm25#7"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "f7d922e5c842259e",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.003,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:15:33.653Z",
+      "updatedAt": "2026-08-19T05:15:33.664Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "f7d922e5c842259e",
+      "traceId": "3330e210238e3ac90157239d84be9770",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:15:27.013000+00:00",
+      "endTime": "2026-08-19 05:15:29.108000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "我申诉之后，他们大概多久能给我个说法？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限",
+            "text": "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
+            "score": 0.7506274986267091,
+            "doc_id": "P08",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
+            "reason": "相关性 0.713 × 先验 0.90 → 0.751；命中 1/platform/dense#1, 1/platform/bm25#7"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "8a5f54a1f5a5c2e7",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 2.095,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:15:33.653Z",
+      "updatedAt": "2026-08-19T05:15:33.662Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "18699a66a2bb2858",
+      "traceId": "3330e210238e3ac90157239d84be9770",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-19 05:15:27.013000+00:00",
+      "endTime": "2026-08-19 05:15:28.334000+00:00",
+      "input": {
+        "query": "我申诉之后，他们大概多久能给我个说法？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "dispute",
+            "text": "消费者提交申诉后，平台大概需要多长时间给出处理结果或答复？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "f7d922e5c842259e",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.321,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:15:28.557Z",
+      "updatedAt": "2026-08-19T05:15:28.572Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "912a935e15865fe1",
+      "traceId": "3330e210238e3ac90157239d84be9770",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-19 05:15:28.335000+00:00",
+      "endTime": "2026-08-19 05:15:28.428000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "L03#012:00",
+            "section": "L03 第四十六条 【行政投诉处理时限】",
+            "rrf": 0.0952,
+            "hits": [
+              "1/law/dense#1",
+              "1/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P08#006:00",
+            "section": "P08 第六条 申诉 > 6.1 申诉渠道",
+            "rrf": 0.0871,
+            "hits": [
+              "1/platform/dense#4",
+              "1/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "P08#006:02",
+            "section": "P08 第六条 申诉 > 6.3 处理时限",
+            "rrf": 0.0847,
+            "hits": [
+              "1/platform/dense#1",
+              "1/platform/bm25#7"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:00",
+            "section": "L02 第三章 退货程序 > 第十条 【退货通知期限与起算点】",
+            "rrf": 0.0799,
+            "hits": [
+              "1/law/dense#9",
+              "1/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L02#004:04",
+            "section": "L02 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
+            "rrf": 0.0733,
+            "hits": [
+              "1/law/dense#5",
+              "1/law/bm25#10"
+            ]
+          },
+          {
+            "chunk_id": "P05#004:01",
+            "section": "P05 第四条 退回商品的验收 > 4.2 验收时限",
+            "rrf": 0.0657,
+            "hits": [
+              "1/platform/dense#9",
+              "1/platform/bm25#12"
+            ]
+          },
+          {
+            "chunk_id": "P06#005:04",
+            "section": "P06 第六条 物流异常的处理 > 6.5 虚假发货",
+            "rrf": 0.0476,
+            "hits": [
+              "1/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P09#006:02",
+            "section": "P09 第七条 外部维权途径 > 7.3 行政投诉的处理时限",
+            "rrf": 0.0455,
+            "hits": [
+              "1/platform/dense#2"
+            ]
+          },
+          {
+            "chunk_id": "L03#011:00",
+            "section": "L03 第四十四条 【经营者投诉处理机制】",
+            "rrf": 0.0455,
+            "hits": [
+              "1/law/dense#2"
+            ]
+          },
+          {
+            "chunk_id": "P09#002:01",
+            "section": "P09 第三条 申请平台介入 > 3.2 申请时限",
+            "rrf": 0.0435,
+            "hits": [
+              "1/platform/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "P01#005:03",
+            "section": "P01 第五章 售后与退款 > 5.4 结论以单号为准",
+            "rrf": 0.0435,
+            "hits": [
+              "1/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#005:01",
+            "section": "L02 第五章 监督检查 > 第二十七条",
+            "rrf": 0.0435,
+            "hits": [
+              "1/law/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "L03#004:00",
+            "section": "L03 第十八条 【售后有效期起算与退款金额】",
+            "rrf": 0.0435,
+            "hits": [
+              "1/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P10#004:03",
+            "section": "P10 第五条 发票 > 5.4 冲红时限",
+            "rrf": 0.0417,
+            "hits": [
+              "1/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:03",
+            "section": "L02 第三章 退货程序 > 第十三条 【退款时限】",
+            "rrf": 0.0417,
+            "hits": [
+              "1/law/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "L05#022:00",
+            "section": "L05 第二十二条 【申诉与诉讼】",
+            "rrf": 0.0417,
+            "hits": [
+              "1/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "P09#003:00",
+            "section": "P09 第四条 平台介入的处理 > 4.1 受理与举证通知",
+            "rrf": 0.04,
+            "hits": [
+              "1/platform/dense#5"
+            ]
+          },
+          {
+            "chunk_id": "P09#003:05",
+            "section": "P09 第四条 平台介入的处理 > 4.6 判定的执行",
+            "rrf": 0.04,
+            "hits": [
+              "1/platform/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "L02#002:02",
+            "section": "L02 第二章 不适用退货的商品范围和商品完好标准 > 第八条 【商品完好的标准】",
+            "rrf": 0.04,
+            "hits": [
+              "1/law/bm25#5"
+            ]
+          },
+          {
+            "chunk_id": "P09#003:01",
+            "section": "P09 第四条 平台介入的处理 > 4.2 判定时限",
+            "rrf": 0.0385,
+            "hits": [
+              "1/platform/dense#6"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "f7d922e5c842259e",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.093,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:15:28.557Z",
+      "updatedAt": "2026-08-19T05:15:28.571Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "e4129bf75ee1baf7",
+      "traceId": "3330e210238e3ac90157239d84be9770",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:15:28.335000+00:00",
+      "endTime": "2026-08-19 05:15:28.335000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -819,7 +1326,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "8fcb472f1cf93ae3",
+      "parentObservationId": "f7d922e5c842259e",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -829,8 +1336,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:37.372Z",
-      "updatedAt": "2026-08-18T11:46:37.383Z",
+      "createdAt": "2026-08-19T05:15:28.557Z",
+      "updatedAt": "2026-08-19T05:15:28.570Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -839,515 +1346,6 @@
       "model": null,
       "modelParameters": null,
       "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "df28bf175c59381d",
-      "traceId": "efb1d53876b006b2cbcfa65ad57b15ac",
-      "type": "SPAN",
-      "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:46:31.023000+00:00",
-      "endTime": "2026-08-18 11:46:32.269000+00:00",
-      "input": {
-        "query": "我申诉之后，他们大概多久能给我个说法？"
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "rewritten": true,
-        "needs_law": false,
-        "sub_queries": [
-          {
-            "id": "1",
-            "intent": "dispute",
-            "text": "消费者申诉后，平台大概多久会给出处理结果或答复？"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "8fcb472f1cf93ae3",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 1.246,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:37.372Z",
-      "updatedAt": "2026-08-18T11:46:37.383Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "23259625094e4582",
-      "traceId": "efb1d53876b006b2cbcfa65ad57b15ac",
-      "type": "SPAN",
-      "name": "rag.recall",
-      "startTime": "2026-08-18 11:46:32.270000+00:00",
-      "endTime": "2026-08-18 11:46:32.338000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "candidates": [
-          {
-            "chunk_id": "P08#006:00",
-            "section": "P08 第六条 申诉 > 6.1 申诉渠道",
-            "rrf": 0.0893,
-            "hits": [
-              "1/platform/dense#4",
-              "1/platform/bm25#1"
-            ]
-          },
-          {
-            "chunk_id": "P08#006:02",
-            "section": "P08 第六条 申诉 > 6.3 处理时限",
-            "rrf": 0.0861,
-            "hits": [
-              "1/platform/dense#1",
-              "1/platform/bm25#6"
-            ]
-          },
-          {
-            "chunk_id": "L03#012:00",
-            "section": "L03 第四十六条 【行政投诉处理时限】",
-            "rrf": 0.0833,
-            "hits": [
-              "1/law/dense#1",
-              "1/law/bm25#8"
-            ]
-          },
-          {
-            "chunk_id": "L02#004:04",
-            "section": "L02 第四章 特别规定 > 第二十四条 【消费纠纷和解与协助维权】",
-            "rrf": 0.0787,
-            "hits": [
-              "1/law/dense#7",
-              "1/law/bm25#4"
-            ]
-          },
-          {
-            "chunk_id": "L05#010:00",
-            "section": "L05 第十条 【售出 15 日内：可换可修】",
-            "rrf": 0.0723,
-            "hits": [
-              "1/law/dense#5",
-              "1/law/bm25#11"
-            ]
-          },
-          {
-            "chunk_id": "P07#004:02",
-            "section": "P07 第五条 权益的调整与失效 > 5.3 申诉",
-            "rrf": 0.069,
-            "hits": [
-              "1/platform/dense#8",
-              "1/platform/bm25#10"
-            ]
-          },
-          {
-            "chunk_id": "P05#004:01",
-            "section": "P05 第四条 退回商品的验收 > 4.2 验收时限",
-            "rrf": 0.069,
-            "hits": [
-              "1/platform/dense#10",
-              "1/platform/bm25#8"
-            ]
-          },
-          {
-            "chunk_id": "L05#022:00",
-            "section": "L05 第二十二条 【申诉与诉讼】",
-            "rrf": 0.0476,
-            "hits": [
-              "1/law/bm25#1"
-            ]
-          },
-          {
-            "chunk_id": "P09#006:02",
-            "section": "P09 第七条 外部维权途径 > 7.3 行政投诉的处理时限",
-            "rrf": 0.0455,
-            "hits": [
-              "1/platform/dense#2"
-            ]
-          },
-          {
-            "chunk_id": "P01#005:03",
-            "section": "P01 第五章 售后与退款 > 5.4 结论以单号为准",
-            "rrf": 0.0455,
-            "hits": [
-              "1/platform/bm25#2"
-            ]
-          },
-          {
-            "chunk_id": "L03#011:00",
-            "section": "L03 第四十四条 【经营者投诉处理机制】",
-            "rrf": 0.0455,
-            "hits": [
-              "1/law/dense#2"
-            ]
-          },
-          {
-            "chunk_id": "L01#001:00",
-            "section": "L01 第二十条 【经营者信息告知义务】",
-            "rrf": 0.0455,
-            "hits": [
-              "1/law/bm25#2"
-            ]
-          },
-          {
-            "chunk_id": "P09#002:01",
-            "section": "P09 第三条 申请平台介入 > 3.2 申请时限",
-            "rrf": 0.0435,
-            "hits": [
-              "1/platform/dense#3"
-            ]
-          },
-          {
-            "chunk_id": "P10#004:03",
-            "section": "P10 第五条 发票 > 5.4 冲红时限",
-            "rrf": 0.0435,
-            "hits": [
-              "1/platform/bm25#3"
-            ]
-          },
-          {
-            "chunk_id": "L02#005:01",
-            "section": "L02 第五章 监督检查 > 第二十七条",
-            "rrf": 0.0435,
-            "hits": [
-              "1/law/dense#3"
-            ]
-          },
-          {
-            "chunk_id": "L04#008:00",
-            "section": "L04 第五十八条 【质量担保机制】",
-            "rrf": 0.0435,
-            "hits": [
-              "1/law/bm25#3"
-            ]
-          },
-          {
-            "chunk_id": "P09#003:05",
-            "section": "P09 第四条 平台介入的处理 > 4.6 判定的执行",
-            "rrf": 0.0417,
-            "hits": [
-              "1/platform/bm25#4"
-            ]
-          },
-          {
-            "chunk_id": "L02#003:03",
-            "section": "L02 第三章 退货程序 > 第十三条 【退款时限】",
-            "rrf": 0.0417,
-            "hits": [
-              "1/law/dense#4"
-            ]
-          },
-          {
-            "chunk_id": "P09#003:00",
-            "section": "P09 第四条 平台介入的处理 > 4.1 受理与举证通知",
-            "rrf": 0.04,
-            "hits": [
-              "1/platform/dense#5"
-            ]
-          },
-          {
-            "chunk_id": "P08#006:03",
-            "section": "P08 第六条 申诉 > 6.4 复核后的恢复",
-            "rrf": 0.04,
-            "hits": [
-              "1/platform/bm25#5"
-            ]
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "8fcb472f1cf93ae3",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.068,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:37.372Z",
-      "updatedAt": "2026-08-18T11:46:37.382Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "8f698fc9e4e448d5",
-      "traceId": "efb1d53876b006b2cbcfa65ad57b15ac",
-      "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:46:32.853000+00:00",
-      "endTime": "2026-08-18 11:46:32.863000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": [
-          "P08#006:02",
-          "P07#004:02"
-        ]
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "P08 星辰优选风控与异常退款治理规则 > 第六条 申诉 > 6.3 处理时限",
-            "text": "消费者或商家对风控判定有异议的，可在收到告知后 **15 日**内提出申诉。\n\n申诉方应提供支持其主张的材料，如完整开箱视频、物流凭证、聊天记录、检测报告。\n\n平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。\n\n申诉成立的，平台立即解除相应措施，恢复账户权益，并对已受影响的退款申请重新处理。",
-            "score": 0.7506274986267091,
-            "doc_id": "P08",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P08-风控与异常退款治理.md",
-            "reason": "相关性 0.713 × 先验 0.90 → 0.751；命中 1/platform/dense#1, 1/platform/bm25#6"
-          },
-          {
-            "section": "P07 星辰优选会员权益与售后延长规则 > 第五条 权益的调整与失效 > 5.3 申诉",
-            "text": "会员等级降级后，权益随之调整，平台提前 7 日通知。\n\n出现以下情形的，平台可冻结会员售后权益，恢复至普通会员标准：\n\n（一）经查实的调包退货、虚假质量问题申报；\n（二）恶意批量下单退货，影响商家正常经营；\n（三）以投诉、差评相要挟索取不当利益。\n\n权益冻结**不影响消费者的法定 7 日无理由退货权**——冻结的只是平台额外给予的延长部分。\n\n消费者对权益冻结有异议的，可通过专属客服通道申诉，平台在 3 个工作日内回复。",
-            "score": 0.4386003065109253,
-            "doc_id": "P07",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P07-会员权益与售后延长.md",
-            "reason": "相关性 0.323 × 先验 0.90 → 0.439；命中 1/platform/dense#8, 1/platform/bm25#10"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "8fcb472f1cf93ae3",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.01,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:37.372Z",
-      "updatedAt": "2026-08-18T11:46:37.380Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "a24097cffbeb2631",
-      "traceId": "efb1d53876b006b2cbcfa65ad57b15ac",
-      "type": "SPAN",
-      "name": "rag.rerank",
-      "startTime": "2026-08-18 11:46:32.338000+00:00",
-      "endTime": "2026-08-18 11:46:32.853000+00:00",
-      "input": {
-        "query": "我申诉之后，他们大概多久能给我个说法？",
-        "candidates": 20
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "passed": 2,
-        "min_score": 0.3,
-        "dropped": [
-          "P08#006:00",
-          "L03#012:00",
-          "L02#004:04",
-          "L05#010:00",
-          "P05#004:01",
-          "L05#022:00",
-          "P09#006:02",
-          "P01#005:03",
-          "L03#011:00",
-          "L01#001:00",
-          "P09#002:01",
-          "P10#004:03",
-          "L02#005:01",
-          "L04#008:00",
-          "P09#003:05",
-          "L02#003:03",
-          "P09#003:00",
-          "P08#006:03"
-        ],
-        "evidence": [
-          {
-            "chunk_id": "P08#006:02",
-            "section": "P08 第六条 申诉 > 6.3 处理时限",
-            "score": 0.751,
-            "relevance": 0.713,
-            "prior": 0.9,
-            "excerpt": "平台在收到申诉后 **3 个工作日**内完成复核并告知结论。复核维持原判定的，须说明具体理由。"
-          },
-          {
-            "chunk_id": "P07#004:02",
-            "section": "P07 第五条 权益的调整与失效 > 5.3 申诉",
-            "score": 0.439,
-            "relevance": 0.323,
-            "prior": 0.9,
-            "excerpt": "消费者对权益冻结有异议的，可通过专属客服通道申诉，平台在 3 个工作日内回复。"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "8fcb472f1cf93ae3",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.515,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:46:37.372Z",
-      "updatedAt": "2026-08-18T11:46:37.377Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,

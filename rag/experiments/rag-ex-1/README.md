@@ -104,7 +104,7 @@ retriever  rag.search_policy   in {query, top_k}          out {sections: 全文}
 | `recall@3` | 重排后前 3（`DEFAULT_TOP_K = 4`，留一格余量） | 实际交付水位 |
 | `recall@1` | 重排后第 1 | 头部精度，对 `MIN_SCORE` 最敏感 |
 | `evidence_tokens` | 装配后证据的 token 用量 | `TOKEN_BUDGET = 3000` 的实际占用 |
-| `duplicate_ratio` | 重复正文的字符占比 | 装配把同一父块拼了两遍，Recall 看不见 |
+| `duplicate_ratio` | 重复正文的字符占比 | 内容重复信号；是否由装配造成需结合 trace 验证 |
 | `context_recall` | 参考答案的 claim 有几条被检回的上下文支撑 | 种子 ID 判负而它高 = 召回了等价条款，是标注不全不是检索坏 |
 | `context_relevance` | 检回内容里跟 query 相关的句子占比 | 惩罚「多召回」。`top_k` 调大时它下降，与 Recall 一起读才知道净赚还是净亏 |
 

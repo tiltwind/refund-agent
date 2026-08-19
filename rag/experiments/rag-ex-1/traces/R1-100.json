@@ -1,46 +1,41 @@
 {
   "case": {
     "case_id": "R1-100",
+    "query": "海外直邮那单退货，当初交的关税能一起退回来吗？",
     "type": "unanswerable",
     "style": "colloquial",
     "doc_id": "",
     "layer": "",
     "kind": "",
     "seed_chunk_id": [],
-    "error": null,
+    "acceptable_seed_chunk_ids": null,
+    "error": "NoEvidenceError: 重排后没有可交付政策证据（candidates=20, evidence=0, min_score=0.3）",
     "scores": {
-      "unanswerable_raised": 0.0
+      "unanswerable_raised": 1.0
     },
-    "elapsed_s": 1.9,
-    "sections": [],
-    "judge": {
-      "context_relevance": {
-        "score": null,
-        "error": null,
-        "skipped": "上下文为空"
-      }
-    },
-    "trace_id": "9d846e195a217d8988e75b3445683a63"
+    "outcome": "no_evidence",
+    "elapsed_s": 1.8,
+    "trace_id": "e997e3830552d969bfd707bbc4b6dd23"
   },
   "trace": {
-    "id": "9d846e195a217d8988e75b3445683a63",
+    "id": "e997e3830552d969bfd707bbc4b6dd23",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:42:30.730000+00:00"
+    "timestamp": "2026-08-19 05:11:27.212000+00:00"
   },
   "observations": [
     {
-      "id": "e3f770584326f316",
-      "traceId": "9d846e195a217d8988e75b3445683a63",
+      "id": "04bd5a563c42604d",
+      "traceId": "e997e3830552d969bfd707bbc4b6dd23",
       "type": "SPAN",
       "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:42:30.730000+00:00",
-      "endTime": "2026-08-18 11:42:54.864000+00:00",
+      "startTime": "2026-08-19 05:11:27.212000+00:00",
+      "endTime": "2026-08-19 05:11:44.701000+00:00",
       "input": {
         "query": "海外直邮那单退货，当初交的关税能一起退回来吗？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -71,7 +66,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -84,25 +79,20 @@
       },
       "output": {
         "case_id": "R1-100",
+        "query": "海外直邮那单退货，当初交的关税能一起退回来吗？",
         "type": "unanswerable",
         "style": "colloquial",
         "doc_id": "",
         "layer": "",
         "kind": "",
         "seed_chunk_id": [],
-        "error": null,
+        "acceptable_seed_chunk_ids": null,
+        "error": "NoEvidenceError: 重排后没有可交付政策证据（candidates=20, evidence=0, min_score=0.3）",
         "scores": {
-          "unanswerable_raised": 0
+          "unanswerable_raised": 1
         },
-        "elapsed_s": 1.9,
-        "sections": [],
-        "judge": {
-          "context_relevance": {
-            "score": null,
-            "error": null,
-            "skipped": "上下文为空"
-          }
-        }
+        "outcome": "no_evidence",
+        "elapsed_s": 1.8
       },
       "usage": {
         "input": 0,
@@ -118,10 +108,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 24.134,
+      "latency": 17.489,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:42:55.916Z",
-      "updatedAt": "2026-08-18T11:42:55.949Z",
+      "createdAt": "2026-08-19T05:11:47.329Z",
+      "updatedAt": "2026-08-19T05:11:47.391Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -143,22 +133,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "e7e88bb1554d84fa",
-      "traceId": "9d846e195a217d8988e75b3445683a63",
+      "id": "e64148be58089a54",
+      "traceId": "e997e3830552d969bfd707bbc4b6dd23",
       "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:42:54.863000+00:00",
-      "endTime": "2026-08-18 11:42:54.863000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": []
-      },
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:11:43.948000+00:00",
+      "endTime": "2026-08-19 05:11:43.948000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -170,7 +156,16 @@
         }
       },
       "output": {
-        "sections": []
+        "routes": [
+          {
+            "sub_query": "1",
+            "layer_k": {
+              "platform": 18,
+              "law": 5
+            },
+            "law_weight": 0.5
+          }
+        ]
       },
       "usage": {
         "input": 0,
@@ -179,7 +174,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "bdeec73a58575b79",
+      "parentObservationId": "f44d1021e7e66a5e",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -189,75 +184,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:42:55.916Z",
-      "updatedAt": "2026-08-18T11:42:55.949Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "322b947ee088d01d",
-      "traceId": "9d846e195a217d8988e75b3445683a63",
-      "type": "SPAN",
-      "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:42:54.863000+00:00",
-      "endTime": "2026-08-18 11:42:54.864000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "evaluator_count": 1,
-        "evaluation_count": 2,
-        "failed_evaluator_count": 0,
-        "skipped_evaluator_count": 0
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "e3f770584326f316",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.001,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:42:55.916Z",
-      "updatedAt": "2026-08-18T11:42:55.945Z",
+      "createdAt": "2026-08-19T05:11:47.329Z",
+      "updatedAt": "2026-08-19T05:11:47.390Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -279,18 +207,84 @@
       "usagePricingTierName": null
     },
     {
-      "id": "d3f5fd62d8d13f79",
-      "traceId": "9d846e195a217d8988e75b3445683a63",
+      "id": "f44d1021e7e66a5e",
+      "traceId": "e997e3830552d969bfd707bbc4b6dd23",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:11:42.877000+00:00",
+      "endTime": "2026-08-19 05:11:44.700000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "海外直邮那单退货，当初交的关税能一起退回来吗？",
+        "top_k": 4
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "ERROR",
+      "statusMessage": "NoEvidenceError: 重排后没有可交付政策证据（candidates=20, evidence=0, min_score=0.3）",
+      "parentObservationId": "a27354b8b74113bb",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.823,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:11:47.329Z",
+      "updatedAt": "2026-08-19T05:11:47.375Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "output": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "a27354b8b74113bb",
+      "traceId": "e997e3830552d969bfd707bbc4b6dd23",
       "type": "SPAN",
       "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:42:30.730000+00:00",
-      "endTime": "2026-08-18 11:42:54.863000+00:00",
+      "startTime": "2026-08-19 05:11:27.212000+00:00",
+      "endTime": "2026-08-19 05:11:44.700000+00:00",
       "input": {
         "query": "海外直邮那单退货，当初交的关税能一起退回来吗？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -321,7 +315,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -334,25 +328,20 @@
       },
       "output": {
         "case_id": "R1-100",
+        "query": "海外直邮那单退货，当初交的关税能一起退回来吗？",
         "type": "unanswerable",
         "style": "colloquial",
         "doc_id": "",
         "layer": "",
         "kind": "",
         "seed_chunk_id": [],
-        "error": null,
+        "acceptable_seed_chunk_ids": null,
+        "error": "NoEvidenceError: 重排后没有可交付政策证据（candidates=20, evidence=0, min_score=0.3）",
         "scores": {
-          "unanswerable_raised": 0
+          "unanswerable_raised": 1
         },
-        "elapsed_s": 1.9,
-        "sections": [],
-        "judge": {
-          "context_relevance": {
-            "score": null,
-            "error": null,
-            "skipped": "上下文为空"
-          }
-        }
+        "outcome": "no_evidence",
+        "elapsed_s": 1.8
       },
       "usage": {
         "input": 0,
@@ -361,7 +350,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "e3f770584326f316",
+      "parentObservationId": "04bd5a563c42604d",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -369,10 +358,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 24.133,
+      "latency": 17.488,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:42:55.916Z",
-      "updatedAt": "2026-08-18T11:42:55.944Z",
+      "createdAt": "2026-08-19T05:11:47.329Z",
+      "updatedAt": "2026-08-19T05:11:47.374Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -393,199 +382,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "8d93507e682736d3",
-      "traceId": "9d846e195a217d8988e75b3445683a63",
-      "type": "EVALUATOR",
-      "name": "evaluate",
-      "startTime": "2026-08-18 11:42:54.864000+00:00",
-      "endTime": "2026-08-18 11:42:54.864000+00:00",
-      "modelParameters": {},
-      "input": {
-        "input": {
-          "query": "海外直邮那单退货，当初交的关税能一起退回来吗？"
-        },
-        "output": {
-          "case_id": "R1-100",
-          "type": "unanswerable",
-          "style": "colloquial",
-          "doc_id": "",
-          "layer": "",
-          "kind": "",
-          "seed_chunk_id": [],
-          "error": null,
-          "scores": {
-            "unanswerable_raised": 0
-          },
-          "elapsed_s": 1.9,
-          "sections": [],
-          "judge": {
-            "context_relevance": {
-              "score": null,
-              "error": null,
-              "skipped": "上下文为空"
-            }
-          }
-        },
-        "expected_output": {
-          "claims": [],
-          "seed_chunk_id": [],
-          "reference_answer": ""
-        },
-        "metadata": {
-          "kind": "",
-          "type": "unanswerable",
-          "layer": "",
-          "style": "colloquial",
-          "topic": "跨境关税",
-          "doc_id": "",
-          "section": "",
-          "reviewed": true,
-          "generated_by": "handwritten",
-          "overlap_ratio": 0
-        }
-      },
-      "metadata": {
-        "evaluator_kind": "item",
-        "evaluator_index": 0,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": [
-        {
-          "name": "unanswerable_raised",
-          "value": 0,
-          "comment": ""
-        },
-        {
-          "name": "run_error",
-          "value": 0,
-          "comment": "ok"
-        }
-      ],
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "322b947ee088d01d",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.0,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:42:55.916Z",
-      "updatedAt": "2026-08-18T11:42:55.941Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "bdeec73a58575b79",
-      "traceId": "9d846e195a217d8988e75b3445683a63",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:42:52.953000+00:00",
-      "endTime": "2026-08-18 11:42:54.863000+00:00",
-      "modelParameters": {},
-      "input": {
-        "query": "海外直邮那单退货，当初交的关税能一起退回来吗？",
-        "top_k": 4
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": []
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "d3f5fd62d8d13f79",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 1.91,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:42:55.916Z",
-      "updatedAt": "2026-08-18T11:42:55.939Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "ef467fb21e486959",
-      "traceId": "9d846e195a217d8988e75b3445683a63",
+      "id": "0ad2d28e4ccd344c",
+      "traceId": "e997e3830552d969bfd707bbc4b6dd23",
       "type": "SPAN",
       "name": "rag.rerank",
-      "startTime": "2026-08-18 11:42:54.186000+00:00",
-      "endTime": "2026-08-18 11:42:54.863000+00:00",
+      "startTime": "2026-08-19 05:11:44.019000+00:00",
+      "endTime": "2026-08-19 05:11:44.700000+00:00",
       "input": {
         "query": "海外直邮那单退货，当初交的关税能一起退回来吗？",
         "candidates": 20
@@ -595,7 +397,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -640,7 +442,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "bdeec73a58575b79",
+      "parentObservationId": "f44d1021e7e66a5e",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -648,10 +450,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.677,
+      "latency": 0.681,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:42:55.916Z",
-      "updatedAt": "2026-08-18T11:42:55.938Z",
+      "createdAt": "2026-08-19T05:11:47.329Z",
+      "updatedAt": "2026-08-19T05:11:47.373Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -672,18 +474,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "426c91958c666ab4",
-      "traceId": "9d846e195a217d8988e75b3445683a63",
+      "id": "6ffb617e1c972e42",
+      "traceId": "e997e3830552d969bfd707bbc4b6dd23",
       "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:42:54.111000+00:00",
-      "endTime": "2026-08-18 11:42:54.111000+00:00",
+      "name": "experiment-item-evaluation",
+      "startTime": "2026-08-19 05:11:44.701000+00:00",
+      "endTime": "2026-08-19 05:11:44.701000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -695,16 +497,10 @@
         }
       },
       "output": {
-        "routes": [
-          {
-            "sub_query": "1",
-            "layer_k": {
-              "platform": 18,
-              "law": 5
-            },
-            "law_weight": 0.5
-          }
-        ]
+        "evaluator_count": 1,
+        "evaluation_count": 2,
+        "failed_evaluator_count": 0,
+        "skipped_evaluator_count": 0
       },
       "usage": {
         "input": 0,
@@ -713,7 +509,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "bdeec73a58575b79",
+      "parentObservationId": "04bd5a563c42604d",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -723,8 +519,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:42:55.916Z",
-      "updatedAt": "2026-08-18T11:42:55.936Z",
+      "createdAt": "2026-08-19T05:11:47.329Z",
+      "updatedAt": "2026-08-19T05:11:47.373Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -746,18 +542,276 @@
       "usagePricingTierName": null
     },
     {
-      "id": "e57fc293a70523d7",
-      "traceId": "9d846e195a217d8988e75b3445683a63",
+      "id": "918c19597d054c56",
+      "traceId": "e997e3830552d969bfd707bbc4b6dd23",
       "type": "SPAN",
-      "name": "rag.recall",
-      "startTime": "2026-08-18 11:42:54.112000+00:00",
-      "endTime": "2026-08-18 11:42:54.186000+00:00",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:11:44.700000+00:00",
+      "endTime": "2026-08-19 05:11:44.700000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": []
+      },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": []
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "f44d1021e7e66a5e",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:11:47.329Z",
+      "updatedAt": "2026-08-19T05:11:47.370Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "545f5b12c88d0a8c",
+      "traceId": "e997e3830552d969bfd707bbc4b6dd23",
+      "type": "EVALUATOR",
+      "name": "evaluate",
+      "startTime": "2026-08-19 05:11:44.701000+00:00",
+      "endTime": "2026-08-19 05:11:44.701000+00:00",
+      "modelParameters": {},
+      "input": {
+        "input": {
+          "query": "海外直邮那单退货，当初交的关税能一起退回来吗？"
+        },
+        "output": {
+          "case_id": "R1-100",
+          "query": "海外直邮那单退货，当初交的关税能一起退回来吗？",
+          "type": "unanswerable",
+          "style": "colloquial",
+          "doc_id": "",
+          "layer": "",
+          "kind": "",
+          "seed_chunk_id": [],
+          "acceptable_seed_chunk_ids": null,
+          "error": "NoEvidenceError: 重排后没有可交付政策证据（candidates=20, evidence=0, min_score=0.3）",
+          "scores": {
+            "unanswerable_raised": 1
+          },
+          "outcome": "no_evidence",
+          "elapsed_s": 1.8
+        },
+        "expected_output": {
+          "claims": [],
+          "seed_chunk_id": [],
+          "reference_answer": "",
+          "acceptable_seed_chunk_ids": []
+        },
+        "metadata": {
+          "kind": "",
+          "type": "unanswerable",
+          "layer": "",
+          "style": "colloquial",
+          "topic": "跨境关税",
+          "doc_id": "",
+          "section": "",
+          "reviewed": true,
+          "generated_by": "handwritten",
+          "overlap_ratio": 0
+        }
+      },
+      "metadata": {
+        "evaluator_kind": "item",
+        "evaluator_index": 0,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": [
+        {
+          "name": "unanswerable_raised",
+          "value": 1,
+          "comment": ""
+        },
+        {
+          "name": "run_error",
+          "value": 0,
+          "comment": "NoEvidenceError: 重排后没有可交付政策证据（candidates=20, evidence=0, min_score=0.3）"
+        }
+      ],
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "6ffb617e1c972e42",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.0,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:11:47.329Z",
+      "updatedAt": "2026-08-19T05:11:47.367Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "67645f66e8b802e6",
+      "traceId": "e997e3830552d969bfd707bbc4b6dd23",
+      "type": "SPAN",
+      "name": "rag.rewrite",
+      "startTime": "2026-08-19 05:11:42.877000+00:00",
+      "endTime": "2026-08-19 05:11:43.947000+00:00",
+      "input": {
+        "query": "海外直邮那单退货，当初交的关税能一起退回来吗？"
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "rewritten": true,
+        "needs_law": false,
+        "sub_queries": [
+          {
+            "id": "1",
+            "intent": "refund",
+            "text": "海外直邮订单退货时，当初缴纳的关税能否一并退还？"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "f44d1021e7e66a5e",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 1.07,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:11:47.329Z",
+      "updatedAt": "2026-08-19T05:11:47.360Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "00508ccaea34d2cf",
+      "traceId": "e997e3830552d969bfd707bbc4b6dd23",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-19 05:11:43.948000+00:00",
+      "endTime": "2026-08-19 05:11:44.019000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -946,7 +1000,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "bdeec73a58575b79",
+      "parentObservationId": "f44d1021e7e66a5e",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -954,10 +1008,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.074,
+      "latency": 0.071,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:42:55.916Z",
-      "updatedAt": "2026-08-18T11:42:55.936Z",
+      "createdAt": "2026-08-19T05:11:47.329Z",
+      "updatedAt": "2026-08-19T05:11:47.352Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -966,81 +1020,6 @@
       "model": null,
       "modelParameters": null,
       "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "46e1bfb55b882f86",
-      "traceId": "9d846e195a217d8988e75b3445683a63",
-      "type": "SPAN",
-      "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:42:52.954000+00:00",
-      "endTime": "2026-08-18 11:42:54.110000+00:00",
-      "input": {
-        "query": "海外直邮那单退货，当初交的关税能一起退回来吗？"
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "rewritten": true,
-        "needs_law": false,
-        "sub_queries": [
-          {
-            "id": "1",
-            "intent": "refund",
-            "text": "海外直邮订单退货时，当初缴纳的关税能否一并退还？"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "bdeec73a58575b79",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 1.156,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:42:55.916Z",
-      "updatedAt": "2026-08-18T11:42:55.930Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
       "version": null,
       "statusMessage": null,
       "promptId": null,

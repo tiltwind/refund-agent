@@ -1,6 +1,7 @@
 {
   "case": {
     "case_id": "R1-078",
+    "query": "我买的东西保修期是从哪天开始算的？要是换了个新的，保修期是不是重新从头算？",
     "type": "single",
     "style": "colloquial",
     "doc_id": "P11",
@@ -9,6 +10,7 @@
     "seed_chunk_id": [
       "P11#004:02"
     ],
+    "acceptable_seed_chunk_ids": null,
     "error": null,
     "scores": {
       "recall@10": 1.0,
@@ -19,15 +21,32 @@
       "context_recall": 1.0,
       "context_relevance": 0.216
     },
-    "elapsed_s": 2.0,
+    "elapsed_s": 2.3,
     "seed_rank": {
       "candidate": {
-        "P11#004:02": 5
+        "P11#004:02": 9
       },
       "evidence": {
         "P11#004:02": 3
       }
     },
+    "rewrite_plan": {
+      "rewritten": true,
+      "needs_law": false,
+      "sub_queries": [
+        {
+          "id": "1",
+          "intent": "validity",
+          "text": "商品保修期是从哪天开始计算的？"
+        },
+        {
+          "id": "2",
+          "intent": "validity",
+          "text": "商品换新后保修期是否重新从头开始计算？"
+        }
+      ]
+    },
+    "rewrite_hash": "6ef1eb8d28ef2255",
     "sections": [
       "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十八条 【售后有效期起算与退款金额】",
       "L05 部分商品修理更换退货责任规定（三包规定） > 第十四条 【换货标准与有效期重算】",
@@ -47,12 +66,12 @@
           {
             "claim": "三包有效期扣除因修理占用和无零配件待修的时间。",
             "supported": true,
-            "reason": "P11 4.3 明确扣除因修理占用和无零配件待修的时间。"
+            "reason": "P11 4.3 写明扣除修理占用和无零配件待修时间。"
           },
           {
             "claim": "换货后的三包有效期自换货之日起重新计算。",
             "supported": true,
-            "reason": "P11 4.3 明确换货后三包有效期自换货之日起重新计算。"
+            "reason": "P11 4.3 及 L05 第十四条均载明换货后重新计算。"
           }
         ],
         "error": null
@@ -62,7 +81,7 @@
         "n": 37,
         "hit": 8,
         "truncated": false,
-        "note": "不相关的主要是退款金额、无理由退货、三包目录时间节点、折旧费、不实行三包情形等。",
+        "note": "不相关的主要是退款金额、无理由退货、折旧费、三包除外情形等。",
         "irrelevant": [
           "经营者与消费者约定承担退货、更换、修理等义务的有效期限不得低于国家有关规定的要求。",
           "经营者修理的时间不计入上述有效期限。",
@@ -78,21 +97,212 @@
         "error": null
       }
     },
-    "trace_id": "359f696de64ad8066c2c954bd5ec67a4"
+    "trace_id": "6a41612ef8207d2fced7bbb4747df051"
   },
   "trace": {
-    "id": "359f696de64ad8066c2c954bd5ec67a4",
+    "id": "6a41612ef8207d2fced7bbb4747df051",
     "name": "experiment-item-run",
-    "timestamp": "2026-08-18 11:44:57.313000+00:00"
+    "timestamp": "2026-08-19 05:13:49.074000+00:00"
   },
   "observations": [
     {
-      "id": "7f7a6d486005425d",
-      "traceId": "359f696de64ad8066c2c954bd5ec67a4",
+      "id": "6f0e04c9b9d0de3d",
+      "traceId": "6a41612ef8207d2fced7bbb4747df051",
+      "type": "SPAN",
+      "name": "experiment-item-task",
+      "startTime": "2026-08-19 05:13:03.598000+00:00",
+      "endTime": "2026-08-19 05:13:54.866000+00:00",
+      "input": {
+        "query": "我买的东西保修期是从哪天开始算的？要是换了个新的，保修期是不是重新从头算？"
+      },
+      "metadata": {
+        "experiment_name": "retrieval-cases-r1",
+        "experiment_run_name": "r1-rerun-f5e4272",
+        "judge_model": "openai:deepseek-v4-pro",
+        "judge_reasoning": "none",
+        "judge_structured": "json_mode",
+        "collection": "refund_policy_chunks",
+        "embedding_model": "BAAI/bge-m3",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "top_k": 4,
+        "candidate_limit": 20,
+        "rrf_k": 20,
+        "min_score": 0.3,
+        "relevance_weight": 0.8,
+        "prior_weight": 0.2,
+        "token_budget": 3000,
+        "merge_max_parents": 3,
+        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
+        "dataset_item_id": "R1-078",
+        "kind": "text",
+        "type": "single",
+        "layer": "platform",
+        "style": "colloquial",
+        "doc_id": "P11",
+        "section": "第四条 数码与家用电器 > 4.3 三包有效期的计算",
+        "reviewed": true,
+        "claims_by": "openai:deepseek-v4-pro",
+        "generated_by": "openai:deepseek-v4-flash",
+        "overlap_ratio": 0.043,
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "case_id": "R1-078",
+        "query": "我买的东西保修期是从哪天开始算的？要是换了个新的，保修期是不是重新从头算？",
+        "type": "single",
+        "style": "colloquial",
+        "doc_id": "P11",
+        "layer": "platform",
+        "kind": "text",
+        "seed_chunk_id": [
+          "P11#004:02"
+        ],
+        "acceptable_seed_chunk_ids": null,
+        "error": null,
+        "scores": {
+          "recall@10": 1,
+          "recall@3": 1,
+          "recall@1": 0,
+          "evidence_tokens": 808,
+          "duplicate_ratio": 0,
+          "context_recall": 1,
+          "context_relevance": 0.216
+        },
+        "elapsed_s": 2.3,
+        "seed_rank": {
+          "candidate": {
+            "P11#004:02": 9
+          },
+          "evidence": {
+            "P11#004:02": 3
+          }
+        },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "validity",
+              "text": "商品保修期是从哪天开始计算的？"
+            },
+            {
+              "id": "2",
+              "intent": "validity",
+              "text": "商品换新后保修期是否重新从头开始计算？"
+            }
+          ]
+        },
+        "rewrite_hash": "6ef1eb8d28ef2255",
+        "sections": [
+          "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十八条 【售后有效期起算与退款金额】",
+          "L05 部分商品修理更换退货责任规定（三包规定） > 第十四条 【换货标准与有效期重算】",
+          "P11 星辰优选特殊类目售后细则 > 第四条 数码与家用电器 > 4.3 三包有效期的计算"
+        ],
+        "judge": {
+          "context_recall": {
+            "score": 1,
+            "n": 3,
+            "hit": 3,
+            "detail": [
+              {
+                "claim": "三包有效期自开具发票之日起计算。",
+                "supported": true,
+                "reason": "P11 4.3 明确三包有效期自开具发票之日起计算。"
+              },
+              {
+                "claim": "三包有效期扣除因修理占用和无零配件待修的时间。",
+                "supported": true,
+                "reason": "P11 4.3 写明扣除修理占用和无零配件待修时间。"
+              },
+              {
+                "claim": "换货后的三包有效期自换货之日起重新计算。",
+                "supported": true,
+                "reason": "P11 4.3 及 L05 第十四条均载明换货后重新计算。"
+              }
+            ],
+            "error": null
+          },
+          "context_relevance": {
+            "score": 0.216,
+            "n": 37,
+            "hit": 8,
+            "truncated": false,
+            "note": "不相关的主要是退款金额、无理由退货、折旧费、三包除外情形等。",
+            "irrelevant": [
+              "经营者与消费者约定承担退货、更换、修理等义务的有效期限不得低于国家有关规定的要求。",
+              "经营者修理的时间不计入上述有效期限。",
+              "经营者依照国家有关规定或者与消费者约定履行退货义务的，应当按照发票等购货凭证或者服务单据上显示的价格一次性退清相关款项。",
+              "经营者能够证明消费者实际支付的价格与发票等购货凭证或者服务单据上显示的价格不一致的，按照消费者实际支付的价格退清相关款项",
+              "> **适用要点**：三条与判定直接相关的规则——",
+              "> ③ 退款金额以**实际支付价格**为准，凭证价格与实付不一致时以实付为准。",
+              "换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。",
+              "由销售者在发票背面加盖更换章并提供新的三包凭证或者在三包凭证背面加盖更换章。",
+              "未激活、未拆封的数码产品适用通用的无理由退货规则。",
+              "**已激活的商品视为不完好**，不支持无理由退货（见 [P05] 第 3.2 条）。"
+            ],
+            "error": null
+          }
+        }
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "cec1892bfbf78b26",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 51.268,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:13:58.056Z",
+      "updatedAt": "2026-08-19T05:13:58.071Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "bd78c3407a050714",
+      "traceId": "6a41612ef8207d2fced7bbb4747df051",
       "type": "EVALUATOR",
       "name": "evaluate",
-      "startTime": "2026-08-18 11:45:03.044000+00:00",
-      "endTime": "2026-08-18 11:45:03.045000+00:00",
+      "startTime": "2026-08-19 05:13:54.868000+00:00",
+      "endTime": "2026-08-19 05:13:54.868000+00:00",
       "modelParameters": {},
       "input": {
         "input": {
@@ -100,6 +310,7 @@
         },
         "output": {
           "case_id": "R1-078",
+          "query": "我买的东西保修期是从哪天开始算的？要是换了个新的，保修期是不是重新从头算？",
           "type": "single",
           "style": "colloquial",
           "doc_id": "P11",
@@ -108,6 +319,7 @@
           "seed_chunk_id": [
             "P11#004:02"
           ],
+          "acceptable_seed_chunk_ids": null,
           "error": null,
           "scores": {
             "recall@10": 1,
@@ -118,15 +330,32 @@
             "context_recall": 1,
             "context_relevance": 0.216
           },
-          "elapsed_s": 2,
+          "elapsed_s": 2.3,
           "seed_rank": {
             "candidate": {
-              "P11#004:02": 5
+              "P11#004:02": 9
             },
             "evidence": {
               "P11#004:02": 3
             }
           },
+          "rewrite_plan": {
+            "rewritten": true,
+            "needs_law": false,
+            "sub_queries": [
+              {
+                "id": "1",
+                "intent": "validity",
+                "text": "商品保修期是从哪天开始计算的？"
+              },
+              {
+                "id": "2",
+                "intent": "validity",
+                "text": "商品换新后保修期是否重新从头开始计算？"
+              }
+            ]
+          },
+          "rewrite_hash": "6ef1eb8d28ef2255",
           "sections": [
             "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十八条 【售后有效期起算与退款金额】",
             "L05 部分商品修理更换退货责任规定（三包规定） > 第十四条 【换货标准与有效期重算】",
@@ -146,12 +375,12 @@
                 {
                   "claim": "三包有效期扣除因修理占用和无零配件待修的时间。",
                   "supported": true,
-                  "reason": "P11 4.3 明确扣除因修理占用和无零配件待修的时间。"
+                  "reason": "P11 4.3 写明扣除修理占用和无零配件待修时间。"
                 },
                 {
                   "claim": "换货后的三包有效期自换货之日起重新计算。",
                   "supported": true,
-                  "reason": "P11 4.3 明确换货后三包有效期自换货之日起重新计算。"
+                  "reason": "P11 4.3 及 L05 第十四条均载明换货后重新计算。"
                 }
               ],
               "error": null
@@ -161,7 +390,7 @@
               "n": 37,
               "hit": 8,
               "truncated": false,
-              "note": "不相关的主要是退款金额、无理由退货、三包目录时间节点、折旧费、不实行三包情形等。",
+              "note": "不相关的主要是退款金额、无理由退货、折旧费、三包除外情形等。",
               "irrelevant": [
                 "经营者与消费者约定承担退货、更换、修理等义务的有效期限不得低于国家有关规定的要求。",
                 "经营者修理的时间不计入上述有效期限。",
@@ -187,7 +416,8 @@
           "seed_chunk_id": [
             "P11#004:02"
           ],
-          "reference_answer": "三包有效期自开具发票之日起计算，扣除因修理占用和无零配件待修的时间。换货后的三包有效期自换货之日起重新计算。"
+          "reference_answer": "三包有效期自开具发票之日起计算，扣除因修理占用和无零配件待修的时间。换货后的三包有效期自换货之日起重新计算。",
+          "acceptable_seed_chunk_ids": []
         },
         "metadata": {
           "kind": "text",
@@ -209,7 +439,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -224,7 +454,7 @@
         {
           "name": "recall@10",
           "value": 1,
-          "comment": "种子块名次 P11#004:02=5"
+          "comment": "种子块名次 P11#004:02=9"
         },
         {
           "name": "recall@3",
@@ -254,7 +484,7 @@
         {
           "name": "context_relevance",
           "value": 0.216,
-          "comment": "8/37 个内容单元相关；不相关的主要是退款金额、无理由退货、三包目录时间节点、折旧费、不实行三包情形等。"
+          "comment": "8/37 个内容单元相关；不相关的主要是退款金额、无理由退货、折旧费、三包除外情形等。"
         },
         {
           "name": "run_error",
@@ -269,7 +499,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "7b06c6451bddb13e",
+      "parentObservationId": "969addce9b40d55b",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -277,10 +507,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.001,
+      "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:06.758Z",
-      "updatedAt": "2026-08-18T11:45:06.779Z",
+      "createdAt": "2026-08-19T05:13:58.056Z",
+      "updatedAt": "2026-08-19T05:13:58.070Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -300,190 +530,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "0fb8bcb9dec060c9",
-      "traceId": "359f696de64ad8066c2c954bd5ec67a4",
-      "type": "SPAN",
-      "name": "experiment-item-task",
-      "startTime": "2026-08-18 11:44:07.486000+00:00",
-      "endTime": "2026-08-18 11:45:03.043000+00:00",
-      "input": {
-        "query": "我买的东西保修期是从哪天开始算的？要是换了个新的，保修期是不是重新从头算？"
-      },
-      "metadata": {
-        "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
-        "judge_model": "openai:deepseek-v4-pro",
-        "judge_reasoning": "none",
-        "judge_structured": "json_mode",
-        "collection": "refund_policy_chunks",
-        "embedding_model": "BAAI/bge-m3",
-        "reranker": "BAAI/bge-reranker-v2-m3",
-        "top_k": 4,
-        "candidate_limit": 20,
-        "rrf_k": 20,
-        "min_score": 0.3,
-        "relevance_weight": 0.8,
-        "prior_weight": 0.2,
-        "token_budget": 3000,
-        "merge_max_parents": 3,
-        "dataset_id": "cmsxz66b4002dlf07lvwsvuey",
-        "dataset_item_id": "R1-078",
-        "kind": "text",
-        "type": "single",
-        "layer": "platform",
-        "style": "colloquial",
-        "doc_id": "P11",
-        "section": "第四条 数码与家用电器 > 4.3 三包有效期的计算",
-        "reviewed": true,
-        "claims_by": "openai:deepseek-v4-pro",
-        "generated_by": "openai:deepseek-v4-flash",
-        "overlap_ratio": 0.043,
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "case_id": "R1-078",
-        "type": "single",
-        "style": "colloquial",
-        "doc_id": "P11",
-        "layer": "platform",
-        "kind": "text",
-        "seed_chunk_id": [
-          "P11#004:02"
-        ],
-        "error": null,
-        "scores": {
-          "recall@10": 1,
-          "recall@3": 1,
-          "recall@1": 0,
-          "evidence_tokens": 808,
-          "duplicate_ratio": 0,
-          "context_recall": 1,
-          "context_relevance": 0.216
-        },
-        "elapsed_s": 2,
-        "seed_rank": {
-          "candidate": {
-            "P11#004:02": 5
-          },
-          "evidence": {
-            "P11#004:02": 3
-          }
-        },
-        "sections": [
-          "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十八条 【售后有效期起算与退款金额】",
-          "L05 部分商品修理更换退货责任规定（三包规定） > 第十四条 【换货标准与有效期重算】",
-          "P11 星辰优选特殊类目售后细则 > 第四条 数码与家用电器 > 4.3 三包有效期的计算"
-        ],
-        "judge": {
-          "context_recall": {
-            "score": 1,
-            "n": 3,
-            "hit": 3,
-            "detail": [
-              {
-                "claim": "三包有效期自开具发票之日起计算。",
-                "supported": true,
-                "reason": "P11 4.3 明确三包有效期自开具发票之日起计算。"
-              },
-              {
-                "claim": "三包有效期扣除因修理占用和无零配件待修的时间。",
-                "supported": true,
-                "reason": "P11 4.3 明确扣除因修理占用和无零配件待修的时间。"
-              },
-              {
-                "claim": "换货后的三包有效期自换货之日起重新计算。",
-                "supported": true,
-                "reason": "P11 4.3 明确换货后三包有效期自换货之日起重新计算。"
-              }
-            ],
-            "error": null
-          },
-          "context_relevance": {
-            "score": 0.216,
-            "n": 37,
-            "hit": 8,
-            "truncated": false,
-            "note": "不相关的主要是退款金额、无理由退货、三包目录时间节点、折旧费、不实行三包情形等。",
-            "irrelevant": [
-              "经营者与消费者约定承担退货、更换、修理等义务的有效期限不得低于国家有关规定的要求。",
-              "经营者修理的时间不计入上述有效期限。",
-              "经营者依照国家有关规定或者与消费者约定履行退货义务的，应当按照发票等购货凭证或者服务单据上显示的价格一次性退清相关款项。",
-              "经营者能够证明消费者实际支付的价格与发票等购货凭证或者服务单据上显示的价格不一致的，按照消费者实际支付的价格退清相关款项",
-              "> **适用要点**：三条与判定直接相关的规则——",
-              "> ③ 退款金额以**实际支付价格**为准，凭证价格与实付不一致时以实付为准。",
-              "换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。",
-              "由销售者在发票背面加盖更换章并提供新的三包凭证或者在三包凭证背面加盖更换章。",
-              "未激活、未拆封的数码产品适用通用的无理由退货规则。",
-              "**已激活的商品视为不完好**，不支持无理由退货（见 [P05] 第 3.2 条）。"
-            ],
-            "error": null
-          }
-        }
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "cde5358b9980d588",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 55.557,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:06.758Z",
-      "updatedAt": "2026-08-18T11:45:06.779Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "cde5358b9980d588",
-      "traceId": "359f696de64ad8066c2c954bd5ec67a4",
+      "id": "cec1892bfbf78b26",
+      "traceId": "6a41612ef8207d2fced7bbb4747df051",
       "type": "SPAN",
       "name": "experiment-item-run",
-      "startTime": "2026-08-18 11:44:07.486000+00:00",
-      "endTime": "2026-08-18 11:45:03.046000+00:00",
+      "startTime": "2026-08-19 05:13:03.598000+00:00",
+      "endTime": "2026-08-19 05:13:54.869000+00:00",
       "input": {
         "query": "我买的东西保修期是从哪天开始算的？要是换了个新的，保修期是不是重新从头算？"
       },
       "metadata": {
         "experiment_name": "retrieval-cases-r1",
-        "experiment_run_name": "baseline-5",
+        "experiment_run_name": "r1-rerun-f5e4272",
         "judge_model": "openai:deepseek-v4-pro",
         "judge_reasoning": "none",
         "judge_structured": "json_mode",
@@ -514,7 +572,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -527,6 +585,7 @@
       },
       "output": {
         "case_id": "R1-078",
+        "query": "我买的东西保修期是从哪天开始算的？要是换了个新的，保修期是不是重新从头算？",
         "type": "single",
         "style": "colloquial",
         "doc_id": "P11",
@@ -535,6 +594,7 @@
         "seed_chunk_id": [
           "P11#004:02"
         ],
+        "acceptable_seed_chunk_ids": null,
         "error": null,
         "scores": {
           "recall@10": 1,
@@ -545,15 +605,32 @@
           "context_recall": 1,
           "context_relevance": 0.216
         },
-        "elapsed_s": 2,
+        "elapsed_s": 2.3,
         "seed_rank": {
           "candidate": {
-            "P11#004:02": 5
+            "P11#004:02": 9
           },
           "evidence": {
             "P11#004:02": 3
           }
         },
+        "rewrite_plan": {
+          "rewritten": true,
+          "needs_law": false,
+          "sub_queries": [
+            {
+              "id": "1",
+              "intent": "validity",
+              "text": "商品保修期是从哪天开始计算的？"
+            },
+            {
+              "id": "2",
+              "intent": "validity",
+              "text": "商品换新后保修期是否重新从头开始计算？"
+            }
+          ]
+        },
+        "rewrite_hash": "6ef1eb8d28ef2255",
         "sections": [
           "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十八条 【售后有效期起算与退款金额】",
           "L05 部分商品修理更换退货责任规定（三包规定） > 第十四条 【换货标准与有效期重算】",
@@ -573,12 +650,12 @@
               {
                 "claim": "三包有效期扣除因修理占用和无零配件待修的时间。",
                 "supported": true,
-                "reason": "P11 4.3 明确扣除因修理占用和无零配件待修的时间。"
+                "reason": "P11 4.3 写明扣除修理占用和无零配件待修时间。"
               },
               {
                 "claim": "换货后的三包有效期自换货之日起重新计算。",
                 "supported": true,
-                "reason": "P11 4.3 明确换货后三包有效期自换货之日起重新计算。"
+                "reason": "P11 4.3 及 L05 第十四条均载明换货后重新计算。"
               }
             ],
             "error": null
@@ -588,7 +665,7 @@
             "n": 37,
             "hit": 8,
             "truncated": false,
-            "note": "不相关的主要是退款金额、无理由退货、三包目录时间节点、折旧费、不实行三包情形等。",
+            "note": "不相关的主要是退款金额、无理由退货、折旧费、三包除外情形等。",
             "irrelevant": [
               "经营者与消费者约定承担退货、更换、修理等义务的有效期限不得低于国家有关规定的要求。",
               "经营者修理的时间不计入上述有效期限。",
@@ -619,10 +696,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 55.56,
+      "latency": 51.271,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:06.758Z",
-      "updatedAt": "2026-08-18T11:45:06.779Z",
+      "createdAt": "2026-08-19T05:13:58.056Z",
+      "updatedAt": "2026-08-19T05:13:58.070Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -644,18 +721,18 @@
       "usagePricingTierName": null
     },
     {
-      "id": "7b06c6451bddb13e",
-      "traceId": "359f696de64ad8066c2c954bd5ec67a4",
+      "id": "969addce9b40d55b",
+      "traceId": "6a41612ef8207d2fced7bbb4747df051",
       "type": "SPAN",
       "name": "experiment-item-evaluation",
-      "startTime": "2026-08-18 11:45:03.044000+00:00",
-      "endTime": "2026-08-18 11:45:03.045000+00:00",
+      "startTime": "2026-08-19 05:13:54.867000+00:00",
+      "endTime": "2026-08-19 05:13:54.869000+00:00",
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -679,7 +756,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "cde5358b9980d588",
+      "parentObservationId": "cec1892bfbf78b26",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -687,10 +764,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 0.001,
+      "latency": 0.002,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:06.758Z",
-      "updatedAt": "2026-08-18T11:45:06.771Z",
+      "createdAt": "2026-08-19T05:13:58.056Z",
+      "updatedAt": "2026-08-19T05:13:58.068Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -712,18 +789,595 @@
       "usagePricingTierName": null
     },
     {
-      "id": "680cbae39d888bf1",
-      "traceId": "359f696de64ad8066c2c954bd5ec67a4",
-      "type": "SPAN",
-      "name": "rag.route",
-      "startTime": "2026-08-18 11:44:58.468000+00:00",
-      "endTime": "2026-08-18 11:44:58.468000+00:00",
+      "id": "824c97be02e3bcea",
+      "traceId": "6a41612ef8207d2fced7bbb4747df051",
+      "type": "RETRIEVER",
+      "name": "rag.search_policy",
+      "startTime": "2026-08-19 05:13:49.073000+00:00",
+      "endTime": "2026-08-19 05:13:51.334000+00:00",
+      "modelParameters": {},
+      "input": {
+        "query": "我买的东西保修期是从哪天开始算的？要是换了个新的，保修期是不是重新从头算？",
+        "top_k": 4
+      },
       "metadata": {
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十八条 【售后有效期起算与退款金额】",
+            "text": "经营者与消费者约定承担退货、更换、修理等义务的有效期限不得低于国家有关规定的要求。有效期限自经营者向消费者交付商品或者提供服务完结之日起计算，需要经营者另行安装的商品，有效期限自商品安装完成之日起计算。经营者向消费者履行更换义务后，承担更换、修理等义务的有效期限自更换完成之日起重新计算。经营者修理的时间不计入上述有效期限。\n\n经营者依照国家有关规定或者与消费者约定履行退货义务的，应当按照发票等购货凭证或者服务单据上显示的价格一次性退清相关款项。经营者能够证明消费者实际支付的价格与发票等购货凭证或者服务单据上显示的价格不一致的，按照消费者实际支付的价格退清相关款项。\n\n> **适用要点**：三条与判定直接相关的规则——\n> ① **需安装的商品，售后期从安装完成之日起算**，不是签收日；\n> ② **换货后售后期重新计算**，修理占用时间不计入；\n> ③ 退款金额以**实际支付价格**为准，凭证价格与实付不一致时以实付为准。",
+            "score": 0.605938081741333,
+            "doc_id": "L03",
+            "layer": "law",
+            "doc_type": "行政法规",
+            "effective_date": "2024-07-01",
+            "source_path": "doc/policy/law/L03-消费者权益保护法实施条例-摘录.md",
+            "reason": "相关性 0.532 × 先验 0.90 → 0.606；命中 1/law/dense#3, 1/law/bm25#5, 2/law/dense#2, 2/law/bm25#2"
+          },
+          {
+            "section": "L05 部分商品修理更换退货责任规定（三包规定） > 第十四条 【换货标准与有效期重算】",
+            "text": "换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。\n\n换货后的三包有效期自换货之日起重新计算。由销售者在发票背面加盖更换章并提供新的三包凭证或者在三包凭证背面加盖更换章。",
+            "score": 0.5898614692687989,
+            "doc_id": "L05",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "1995-08-25",
+            "source_path": "doc/policy/law/L05-部分商品修理更换退货责任规定.md",
+            "reason": "相关性 0.512 × 先验 0.90 → 0.590；命中 1/law/dense#5, 1/law/bm25#9, 2/law/dense#1, 2/law/bm25#4"
+          },
+          {
+            "section": "P11 星辰优选特殊类目售后细则 > 第四条 数码与家用电器 > 4.3 三包有效期的计算",
+            "text": "未激活、未拆封的数码产品适用通用的无理由退货规则。**已激活的商品视为不完好**，不支持无理由退货（见 [P05] 第 3.2 条）。\n\n列入国家三包目录的商品，在通用售后之上另享三包服务：\n\n| 时间节点（自开票之日起） | 消费者可主张 |\n|---|---|\n| **7 日内**发生性能故障 | 退货、换货或修理（三选一） |\n| **8 至 15 日内**发生性能故障 | 换货或修理 |\n| 三包有效期内 | 免费修理 |\n| 三包有效期内**修理两次仍不能正常使用** | 换货或退货 |\n| 送修超过 **90 日**未修好（无零配件） | 换货 |\n| 因修理方原因修理超过 **30 日** | 换货 |\n\n三包有效期**自开具发票之日起计算**，扣除因修理占用和无零配件待修的时间。**换货后的三包有效期自换货之日起重新计算。**\n\n符合换货条件但消费者要求退货的，对已使用过的商品可收取折旧费。折旧费自开票之日计算至退货之日，扣除修理占用与待修时间。\n\n> 这与无理由退货「按实付金额全额退还」不同——三包退货可扣折旧。\n\n（一）消费者因使用、维护、保管不当造成损坏的；\n（二）非承担三包修理者拆动造成损坏的；\n（三）无三包凭证及有效发票的；\n（四）三包凭证型号与修理产品型号不符或者涂改的；\n（五）因不可抗力造成损坏的。\n\n上述情形不实行三包，但可实行收费修理。\n\n需另行安装的商品（空调、热水器、大家电），**售后有效期自安装完成之日起计算**，不是签收日。",
+            "score": 0.49008145809173587,
+            "doc_id": "P11",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P11-特殊类目售后细则.md",
+            "reason": "相关性 0.388 × 先验 0.90 → 0.490；命中 1/platform/dense#1, 2/platform/dense#1, 2/platform/bm25#3"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "6f0e04c9b9d0de3d",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 2.261,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:13:53.018Z",
+      "updatedAt": "2026-08-19T05:13:53.034Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "acc44a7a1dc4e3c3",
+      "traceId": "6a41612ef8207d2fced7bbb4747df051",
+      "type": "SPAN",
+      "name": "rag.rerank",
+      "startTime": "2026-08-19 05:13:50.578000+00:00",
+      "endTime": "2026-08-19 05:13:51.327000+00:00",
+      "input": {
+        "query": "我买的东西保修期是从哪天开始算的？要是换了个新的，保修期是不是重新从头算？",
+        "candidates": 20
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "passed": 3,
+        "min_score": 0.3,
+        "dropped": [
+          "L05#008:00",
+          "L05#004:00",
+          "L05#010:00",
+          "L01#002:00",
+          "P07#001:00",
+          "P07#001:02",
+          "P11#007:00",
+          "L05#013:00",
+          "P05#004:00",
+          "P11#004:01",
+          "P11#004:05",
+          "L02#003:07",
+          "P11#004:03",
+          "P03#001:02",
+          "L05#011:00",
+          "P05#005:02",
+          "P10#001:01"
+        ],
+        "evidence": [
+          {
+            "chunk_id": "L03#004:00",
+            "section": "L03 第十八条 【售后有效期起算与退款金额】",
+            "score": 0.606,
+            "relevance": 0.532,
+            "prior": 0.9,
+            "excerpt": "经营者与消费者约定承担退货、更换、修理等义务的有效期限不得低于国家有关规定的要求。有效期限自经营者向消费者交付商品或者提供服务完结之日起计算，需要经营者另行安装的商品，有效期限自商品安装完成之日起计算。经营者向消费者履行更换义务后，承担更换…"
+          },
+          {
+            "chunk_id": "L05#014:00",
+            "section": "L05 第十四条 【换货标准与有效期重算】",
+            "score": 0.59,
+            "relevance": 0.512,
+            "prior": 0.9,
+            "excerpt": "换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。 换货后的三包有效期自换货之日起重新计算。由销售者在发票背面加盖更换章并提供新的三包凭证或者在三包凭证背面加盖更换章。"
+          },
+          {
+            "chunk_id": "P11#004:02",
+            "section": "P11 第四条 数码与家用电器 > 4.3 三包有效期的计算",
+            "score": 0.49,
+            "relevance": 0.388,
+            "prior": 0.9,
+            "excerpt": "三包有效期**自开具发票之日起计算**，扣除因修理占用和无零配件待修的时间。**换货后的三包有效期自换货之日起重新计算。**"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "824c97be02e3bcea",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.749,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:13:53.018Z",
+      "updatedAt": "2026-08-19T05:13:53.034Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "a9dd8724a1d2d522",
+      "traceId": "6a41612ef8207d2fced7bbb4747df051",
+      "type": "SPAN",
+      "name": "rag.assemble",
+      "startTime": "2026-08-19 05:13:51.327000+00:00",
+      "endTime": "2026-08-19 05:13:51.333000+00:00",
+      "input": {
+        "top_k": 4,
+        "evidence": [
+          "L03#004:00",
+          "L05#014:00",
+          "P11#004:02"
+        ]
+      },
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "sections": [
+          {
+            "section": "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十八条 【售后有效期起算与退款金额】",
+            "text": "经营者与消费者约定承担退货、更换、修理等义务的有效期限不得低于国家有关规定的要求。有效期限自经营者向消费者交付商品或者提供服务完结之日起计算，需要经营者另行安装的商品，有效期限自商品安装完成之日起计算。经营者向消费者履行更换义务后，承担更换、修理等义务的有效期限自更换完成之日起重新计算。经营者修理的时间不计入上述有效期限。\n\n经营者依照国家有关规定或者与消费者约定履行退货义务的，应当按照发票等购货凭证或者服务单据上显示的价格一次性退清相关款项。经营者能够证明消费者实际支付的价格与发票等购货凭证或者服务单据上显示的价格不一致的，按照消费者实际支付的价格退清相关款项。\n\n> **适用要点**：三条与判定直接相关的规则——\n> ① **需安装的商品，售后期从安装完成之日起算**，不是签收日；\n> ② **换货后售后期重新计算**，修理占用时间不计入；\n> ③ 退款金额以**实际支付价格**为准，凭证价格与实付不一致时以实付为准。",
+            "score": 0.605938081741333,
+            "doc_id": "L03",
+            "layer": "law",
+            "doc_type": "行政法规",
+            "effective_date": "2024-07-01",
+            "source_path": "doc/policy/law/L03-消费者权益保护法实施条例-摘录.md",
+            "reason": "相关性 0.532 × 先验 0.90 → 0.606；命中 1/law/dense#3, 1/law/bm25#5, 2/law/dense#2, 2/law/bm25#2"
+          },
+          {
+            "section": "L05 部分商品修理更换退货责任规定（三包规定） > 第十四条 【换货标准与有效期重算】",
+            "text": "换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。\n\n换货后的三包有效期自换货之日起重新计算。由销售者在发票背面加盖更换章并提供新的三包凭证或者在三包凭证背面加盖更换章。",
+            "score": 0.5898614692687989,
+            "doc_id": "L05",
+            "layer": "law",
+            "doc_type": "部门规章",
+            "effective_date": "1995-08-25",
+            "source_path": "doc/policy/law/L05-部分商品修理更换退货责任规定.md",
+            "reason": "相关性 0.512 × 先验 0.90 → 0.590；命中 1/law/dense#5, 1/law/bm25#9, 2/law/dense#1, 2/law/bm25#4"
+          },
+          {
+            "section": "P11 星辰优选特殊类目售后细则 > 第四条 数码与家用电器 > 4.3 三包有效期的计算",
+            "text": "未激活、未拆封的数码产品适用通用的无理由退货规则。**已激活的商品视为不完好**，不支持无理由退货（见 [P05] 第 3.2 条）。\n\n列入国家三包目录的商品，在通用售后之上另享三包服务：\n\n| 时间节点（自开票之日起） | 消费者可主张 |\n|---|---|\n| **7 日内**发生性能故障 | 退货、换货或修理（三选一） |\n| **8 至 15 日内**发生性能故障 | 换货或修理 |\n| 三包有效期内 | 免费修理 |\n| 三包有效期内**修理两次仍不能正常使用** | 换货或退货 |\n| 送修超过 **90 日**未修好（无零配件） | 换货 |\n| 因修理方原因修理超过 **30 日** | 换货 |\n\n三包有效期**自开具发票之日起计算**，扣除因修理占用和无零配件待修的时间。**换货后的三包有效期自换货之日起重新计算。**\n\n符合换货条件但消费者要求退货的，对已使用过的商品可收取折旧费。折旧费自开票之日计算至退货之日，扣除修理占用与待修时间。\n\n> 这与无理由退货「按实付金额全额退还」不同——三包退货可扣折旧。\n\n（一）消费者因使用、维护、保管不当造成损坏的；\n（二）非承担三包修理者拆动造成损坏的；\n（三）无三包凭证及有效发票的；\n（四）三包凭证型号与修理产品型号不符或者涂改的；\n（五）因不可抗力造成损坏的。\n\n上述情形不实行三包，但可实行收费修理。\n\n需另行安装的商品（空调、热水器、大家电），**售后有效期自安装完成之日起计算**，不是签收日。",
+            "score": 0.49008145809173587,
+            "doc_id": "P11",
+            "layer": "platform",
+            "doc_type": "平台交易规则",
+            "effective_date": "2024-01-01",
+            "source_path": "doc/policy/platform/P11-特殊类目售后细则.md",
+            "reason": "相关性 0.388 × 先验 0.90 → 0.490；命中 1/platform/dense#1, 2/platform/dense#1, 2/platform/bm25#3"
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "824c97be02e3bcea",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.006,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:13:53.018Z",
+      "updatedAt": "2026-08-19T05:13:53.033Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "1c08646d23c0d2f8",
+      "traceId": "6a41612ef8207d2fced7bbb4747df051",
+      "type": "SPAN",
+      "name": "rag.recall",
+      "startTime": "2026-08-19 05:13:50.461000+00:00",
+      "endTime": "2026-08-19 05:13:50.578000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
+          "service.name": "unknown_service"
+        },
+        "scope": {
+          "name": "langfuse-sdk",
+          "version": "4.14.1",
+          "attributes": {
+            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
+          }
+        }
+      },
+      "output": {
+        "candidates": [
+          {
+            "chunk_id": "L05#008:00",
+            "section": "L05 第八条 【三包有效期的计算】",
+            "rrf": 0.1677,
+            "hits": [
+              "1/law/dense#1",
+              "1/law/bm25#4",
+              "2/law/dense#5",
+              "2/law/bm25#6"
+            ]
+          },
+          {
+            "chunk_id": "L03#004:00",
+            "section": "L03 第十八条 【售后有效期起算与退款金额】",
+            "rrf": 0.1744,
+            "hits": [
+              "1/law/dense#3",
+              "1/law/bm25#5",
+              "2/law/dense#2",
+              "2/law/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L05#004:00",
+            "section": "L05 第四条 【最低标准与更优承诺】",
+            "rrf": 0.1654,
+            "hits": [
+              "1/law/dense#8",
+              "1/law/bm25#1",
+              "2/law/dense#9",
+              "2/law/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "L05#010:00",
+            "section": "L05 第十条 【售出 15 日内：可换可修】",
+            "rrf": 0.1223,
+            "hits": [
+              "1/law/dense#2",
+              "1/law/bm25#10",
+              "2/law/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "L05#014:00",
+            "section": "L05 第十四条 【换货标准与有效期重算】",
+            "rrf": 0.1638,
+            "hits": [
+              "1/law/dense#5",
+              "1/law/bm25#9",
+              "2/law/dense#1",
+              "2/law/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "L01#002:00",
+            "section": "L01 第二十三条 【瑕疵举证责任倒置】",
+            "rrf": 0.1338,
+            "hits": [
+              "1/law/dense#7",
+              "1/law/bm25#11",
+              "2/law/dense#11",
+              "2/law/bm25#11"
+            ]
+          },
+          {
+            "chunk_id": "P07#001:00",
+            "section": "P07 第二条 售后权益差异 > 2.1 无理由退货窗口",
+            "rrf": 0.0667,
+            "hits": [
+              "1/platform/dense#9",
+              "1/platform/bm25#11"
+            ]
+          },
+          {
+            "chunk_id": "P07#001:02",
+            "section": "P07 第二条 售后权益差异 > 2.3 权益对照",
+            "rrf": 0.0667,
+            "hits": [
+              "1/platform/dense#10",
+              "1/platform/bm25#10"
+            ]
+          },
+          {
+            "chunk_id": "P11#004:02",
+            "section": "P11 第四条 数码与家用电器 > 4.3 三包有效期的计算",
+            "rrf": 0.1387,
+            "hits": [
+              "1/platform/dense#1",
+              "2/platform/dense#1",
+              "2/platform/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P11#007:00",
+            "section": "P11 第七条 图书、音像与知识付费",
+            "rrf": 0.0931,
+            "hits": [
+              "1/platform/bm25#1",
+              "2/platform/bm25#2"
+            ]
+          },
+          {
+            "chunk_id": "L05#013:00",
+            "section": "L05 第十三条 【无同型号产品时的退货与折旧】",
+            "rrf": 0.1126,
+            "hits": [
+              "1/law/bm25#6",
+              "2/law/dense#6",
+              "2/law/bm25#8"
+            ]
+          },
+          {
+            "chunk_id": "P05#004:00",
+            "section": "P05 第四条 退回商品的验收 > 4.1 验收范围",
+            "rrf": 0.0861,
+            "hits": [
+              "1/platform/bm25#6",
+              "2/platform/bm25#1"
+            ]
+          },
+          {
+            "chunk_id": "P11#004:01",
+            "section": "P11 第四条 数码与家用电器 > 4.2 三包服务",
+            "rrf": 0.0909,
+            "hits": [
+              "1/platform/dense#2",
+              "2/platform/dense#2"
+            ]
+          },
+          {
+            "chunk_id": "P11#004:05",
+            "section": "P11 第四条 数码与家用电器 > 4.6 需安装的商品",
+            "rrf": 0.0835,
+            "hits": [
+              "1/platform/dense#5",
+              "2/platform/dense#3"
+            ]
+          },
+          {
+            "chunk_id": "L02#003:07",
+            "section": "L02 第三章 退货程序 > 第十七条 【退款金额的计算】",
+            "rrf": 0.0805,
+            "hits": [
+              "1/law/bm25#7",
+              "2/law/bm25#3"
+            ]
+          },
+          {
+            "chunk_id": "P11#004:03",
+            "section": "P11 第四条 数码与家用电器 > 4.4 三包退货的折旧",
+            "rrf": 0.0417,
+            "hits": [
+              "2/platform/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "P03#001:02",
+            "section": "P03 第二条 退款金额的计算 > 2.3 部分退货导致优惠失效",
+            "rrf": 0.0417,
+            "hits": [
+              "2/platform/bm25#4"
+            ]
+          },
+          {
+            "chunk_id": "L05#011:00",
+            "section": "L05 第十一条 【修理两次仍不能正常使用】",
+            "rrf": 0.0417,
+            "hits": [
+              "2/law/dense#4"
+            ]
+          },
+          {
+            "chunk_id": "P05#005:02",
+            "section": "P05 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
+            "rrf": 0.0835,
+            "hits": [
+              "1/platform/dense#3",
+              "2/platform/dense#5"
+            ]
+          },
+          {
+            "chunk_id": "P10#001:01",
+            "section": "P10 第二条 满减与套装的部分退货 > 2.2 计算示例",
+            "rrf": 0.04,
+            "hits": [
+              "2/platform/bm25#5"
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "input": 0,
+        "output": 0,
+        "total": 0,
+        "unit": "TOKENS"
+      },
+      "level": "DEFAULT",
+      "parentObservationId": "824c97be02e3bcea",
+      "usageDetails": {},
+      "costDetails": {},
+      "environment": "sdk-experiment",
+      "inputPrice": 0.0,
+      "outputPrice": 0.0,
+      "totalPrice": 0.0,
+      "calculatedTotalCost": 0.0,
+      "latency": 0.117,
+      "projectId": "cmsuby8ne0001p206f942kmwm",
+      "createdAt": "2026-08-19T05:13:53.018Z",
+      "updatedAt": "2026-08-19T05:13:53.032Z",
+      "unit": "TOKENS",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "totalTokens": 0,
+      "completionStartTime": null,
+      "model": null,
+      "modelParameters": null,
+      "input": null,
+      "version": null,
+      "statusMessage": null,
+      "promptId": null,
+      "promptName": null,
+      "promptVersion": null,
+      "modelId": null,
+      "calculatedInputCost": null,
+      "calculatedOutputCost": null,
+      "timeToFirstToken": null,
+      "usagePricingTierId": null,
+      "usagePricingTierName": null
+    },
+    {
+      "id": "cf3f660a1aad14b0",
+      "traceId": "6a41612ef8207d2fced7bbb4747df051",
+      "type": "SPAN",
+      "name": "rag.route",
+      "startTime": "2026-08-19 05:13:50.461000+00:00",
+      "endTime": "2026-08-19 05:13:50.461000+00:00",
+      "metadata": {
+        "resourceAttributes": {
+          "telemetry.sdk.language": "python",
+          "telemetry.sdk.name": "opentelemetry",
+          "telemetry.sdk.version": "1.44.0",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -761,7 +1415,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "80e422ff206658c2",
+      "parentObservationId": "824c97be02e3bcea",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -771,8 +1425,8 @@
       "calculatedTotalCost": 0.0,
       "latency": 0.0,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:01.716Z",
-      "updatedAt": "2026-08-18T11:45:01.737Z",
+      "createdAt": "2026-08-19T05:13:53.018Z",
+      "updatedAt": "2026-08-19T05:13:53.025Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
@@ -794,593 +1448,12 @@
       "usagePricingTierName": null
     },
     {
-      "id": "80e422ff206658c2",
-      "traceId": "359f696de64ad8066c2c954bd5ec67a4",
-      "type": "RETRIEVER",
-      "name": "rag.search_policy",
-      "startTime": "2026-08-18 11:44:57.313000+00:00",
-      "endTime": "2026-08-18 11:44:59.291000+00:00",
-      "modelParameters": {},
-      "input": {
-        "query": "我买的东西保修期是从哪天开始算的？要是换了个新的，保修期是不是重新从头算？",
-        "top_k": 4
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十八条 【售后有效期起算与退款金额】",
-            "text": "经营者与消费者约定承担退货、更换、修理等义务的有效期限不得低于国家有关规定的要求。有效期限自经营者向消费者交付商品或者提供服务完结之日起计算，需要经营者另行安装的商品，有效期限自商品安装完成之日起计算。经营者向消费者履行更换义务后，承担更换、修理等义务的有效期限自更换完成之日起重新计算。经营者修理的时间不计入上述有效期限。\n\n经营者依照国家有关规定或者与消费者约定履行退货义务的，应当按照发票等购货凭证或者服务单据上显示的价格一次性退清相关款项。经营者能够证明消费者实际支付的价格与发票等购货凭证或者服务单据上显示的价格不一致的，按照消费者实际支付的价格退清相关款项。\n\n> **适用要点**：三条与判定直接相关的规则——\n> ① **需安装的商品，售后期从安装完成之日起算**，不是签收日；\n> ② **换货后售后期重新计算**，修理占用时间不计入；\n> ③ 退款金额以**实际支付价格**为准，凭证价格与实付不一致时以实付为准。",
-            "score": 0.605938081741333,
-            "doc_id": "L03",
-            "layer": "law",
-            "doc_type": "行政法规",
-            "effective_date": "2024-07-01",
-            "source_path": "doc/policy/law/L03-消费者权益保护法实施条例-摘录.md",
-            "reason": "相关性 0.532 × 先验 0.90 → 0.606；命中 1/law/dense#3, 1/law/bm25#5, 2/law/dense#2, 2/law/bm25#2"
-          },
-          {
-            "section": "L05 部分商品修理更换退货责任规定（三包规定） > 第十四条 【换货标准与有效期重算】",
-            "text": "换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。\n\n换货后的三包有效期自换货之日起重新计算。由销售者在发票背面加盖更换章并提供新的三包凭证或者在三包凭证背面加盖更换章。",
-            "score": 0.5898614692687989,
-            "doc_id": "L05",
-            "layer": "law",
-            "doc_type": "部门规章",
-            "effective_date": "1995-08-25",
-            "source_path": "doc/policy/law/L05-部分商品修理更换退货责任规定.md",
-            "reason": "相关性 0.512 × 先验 0.90 → 0.590；命中 1/law/dense#5, 1/law/bm25#9, 2/law/dense#1, 2/law/bm25#4"
-          },
-          {
-            "section": "P11 星辰优选特殊类目售后细则 > 第四条 数码与家用电器 > 4.3 三包有效期的计算",
-            "text": "未激活、未拆封的数码产品适用通用的无理由退货规则。**已激活的商品视为不完好**，不支持无理由退货（见 [P05] 第 3.2 条）。\n\n列入国家三包目录的商品，在通用售后之上另享三包服务：\n\n| 时间节点（自开票之日起） | 消费者可主张 |\n|---|---|\n| **7 日内**发生性能故障 | 退货、换货或修理（三选一） |\n| **8 至 15 日内**发生性能故障 | 换货或修理 |\n| 三包有效期内 | 免费修理 |\n| 三包有效期内**修理两次仍不能正常使用** | 换货或退货 |\n| 送修超过 **90 日**未修好（无零配件） | 换货 |\n| 因修理方原因修理超过 **30 日** | 换货 |\n\n三包有效期**自开具发票之日起计算**，扣除因修理占用和无零配件待修的时间。**换货后的三包有效期自换货之日起重新计算。**\n\n符合换货条件但消费者要求退货的，对已使用过的商品可收取折旧费。折旧费自开票之日计算至退货之日，扣除修理占用与待修时间。\n\n> 这与无理由退货「按实付金额全额退还」不同——三包退货可扣折旧。\n\n（一）消费者因使用、维护、保管不当造成损坏的；\n（二）非承担三包修理者拆动造成损坏的；\n（三）无三包凭证及有效发票的；\n（四）三包凭证型号与修理产品型号不符或者涂改的；\n（五）因不可抗力造成损坏的。\n\n上述情形不实行三包，但可实行收费修理。\n\n需另行安装的商品（空调、热水器、大家电），**售后有效期自安装完成之日起计算**，不是签收日。",
-            "score": 0.49008145809173587,
-            "doc_id": "P11",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P11-特殊类目售后细则.md",
-            "reason": "相关性 0.388 × 先验 0.90 → 0.490；命中 1/platform/dense#1, 2/platform/dense#1, 2/platform/bm25#3"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "0fb8bcb9dec060c9",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 1.978,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:01.716Z",
-      "updatedAt": "2026-08-18T11:45:01.736Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "61d80294571b49c1",
-      "traceId": "359f696de64ad8066c2c954bd5ec67a4",
-      "type": "SPAN",
-      "name": "rag.rerank",
-      "startTime": "2026-08-18 11:44:58.590000+00:00",
-      "endTime": "2026-08-18 11:44:59.279000+00:00",
-      "input": {
-        "query": "我买的东西保修期是从哪天开始算的？要是换了个新的，保修期是不是重新从头算？",
-        "candidates": 20
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "passed": 3,
-        "min_score": 0.3,
-        "dropped": [
-          "L05#008:00",
-          "L05#004:00",
-          "L01#002:00",
-          "L05#010:00",
-          "L05#013:00",
-          "P11#007:00",
-          "P11#004:01",
-          "P05#004:00",
-          "L02#003:00",
-          "P05#005:02",
-          "P11#004:05",
-          "L02#003:07",
-          "P11#006:01",
-          "P11#003:03",
-          "L05#009:00",
-          "P09#004:04",
-          "P11#002:01"
-        ],
-        "evidence": [
-          {
-            "chunk_id": "L03#004:00",
-            "section": "L03 第十八条 【售后有效期起算与退款金额】",
-            "score": 0.606,
-            "relevance": 0.532,
-            "prior": 0.9,
-            "excerpt": "经营者与消费者约定承担退货、更换、修理等义务的有效期限不得低于国家有关规定的要求。有效期限自经营者向消费者交付商品或者提供服务完结之日起计算，需要经营者另行安装的商品，有效期限自商品安装完成之日起计算。经营者向消费者履行更换义务后，承担更换…"
-          },
-          {
-            "chunk_id": "L05#014:00",
-            "section": "L05 第十四条 【换货标准与有效期重算】",
-            "score": 0.59,
-            "relevance": 0.512,
-            "prior": 0.9,
-            "excerpt": "换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。 换货后的三包有效期自换货之日起重新计算。由销售者在发票背面加盖更换章并提供新的三包凭证或者在三包凭证背面加盖更换章。"
-          },
-          {
-            "chunk_id": "P11#004:02",
-            "section": "P11 第四条 数码与家用电器 > 4.3 三包有效期的计算",
-            "score": 0.49,
-            "relevance": 0.388,
-            "prior": 0.9,
-            "excerpt": "三包有效期**自开具发票之日起计算**，扣除因修理占用和无零配件待修的时间。**换货后的三包有效期自换货之日起重新计算。**"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "80e422ff206658c2",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.689,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:01.716Z",
-      "updatedAt": "2026-08-18T11:45:01.736Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "0eaffd0473b0d205",
-      "traceId": "359f696de64ad8066c2c954bd5ec67a4",
-      "type": "SPAN",
-      "name": "rag.assemble",
-      "startTime": "2026-08-18 11:44:59.279000+00:00",
-      "endTime": "2026-08-18 11:44:59.291000+00:00",
-      "input": {
-        "top_k": 4,
-        "evidence": [
-          "L03#004:00",
-          "L05#014:00",
-          "P11#004:02"
-        ]
-      },
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "sections": [
-          {
-            "section": "L03 中华人民共和国消费者权益保护法实施条例（网购与售后条款摘录） > 第十八条 【售后有效期起算与退款金额】",
-            "text": "经营者与消费者约定承担退货、更换、修理等义务的有效期限不得低于国家有关规定的要求。有效期限自经营者向消费者交付商品或者提供服务完结之日起计算，需要经营者另行安装的商品，有效期限自商品安装完成之日起计算。经营者向消费者履行更换义务后，承担更换、修理等义务的有效期限自更换完成之日起重新计算。经营者修理的时间不计入上述有效期限。\n\n经营者依照国家有关规定或者与消费者约定履行退货义务的，应当按照发票等购货凭证或者服务单据上显示的价格一次性退清相关款项。经营者能够证明消费者实际支付的价格与发票等购货凭证或者服务单据上显示的价格不一致的，按照消费者实际支付的价格退清相关款项。\n\n> **适用要点**：三条与判定直接相关的规则——\n> ① **需安装的商品，售后期从安装完成之日起算**，不是签收日；\n> ② **换货后售后期重新计算**，修理占用时间不计入；\n> ③ 退款金额以**实际支付价格**为准，凭证价格与实付不一致时以实付为准。",
-            "score": 0.605938081741333,
-            "doc_id": "L03",
-            "layer": "law",
-            "doc_type": "行政法规",
-            "effective_date": "2024-07-01",
-            "source_path": "doc/policy/law/L03-消费者权益保护法实施条例-摘录.md",
-            "reason": "相关性 0.532 × 先验 0.90 → 0.606；命中 1/law/dense#3, 1/law/bm25#5, 2/law/dense#2, 2/law/bm25#2"
-          },
-          {
-            "section": "L05 部分商品修理更换退货责任规定（三包规定） > 第十四条 【换货标准与有效期重算】",
-            "text": "换货时，凡属残次产品、不合格产品或者修理过的产品均不得提供给消费者。\n\n换货后的三包有效期自换货之日起重新计算。由销售者在发票背面加盖更换章并提供新的三包凭证或者在三包凭证背面加盖更换章。",
-            "score": 0.5898614692687989,
-            "doc_id": "L05",
-            "layer": "law",
-            "doc_type": "部门规章",
-            "effective_date": "1995-08-25",
-            "source_path": "doc/policy/law/L05-部分商品修理更换退货责任规定.md",
-            "reason": "相关性 0.512 × 先验 0.90 → 0.590；命中 1/law/dense#5, 1/law/bm25#9, 2/law/dense#1, 2/law/bm25#4"
-          },
-          {
-            "section": "P11 星辰优选特殊类目售后细则 > 第四条 数码与家用电器 > 4.3 三包有效期的计算",
-            "text": "未激活、未拆封的数码产品适用通用的无理由退货规则。**已激活的商品视为不完好**，不支持无理由退货（见 [P05] 第 3.2 条）。\n\n列入国家三包目录的商品，在通用售后之上另享三包服务：\n\n| 时间节点（自开票之日起） | 消费者可主张 |\n|---|---|\n| **7 日内**发生性能故障 | 退货、换货或修理（三选一） |\n| **8 至 15 日内**发生性能故障 | 换货或修理 |\n| 三包有效期内 | 免费修理 |\n| 三包有效期内**修理两次仍不能正常使用** | 换货或退货 |\n| 送修超过 **90 日**未修好（无零配件） | 换货 |\n| 因修理方原因修理超过 **30 日** | 换货 |\n\n三包有效期**自开具发票之日起计算**，扣除因修理占用和无零配件待修的时间。**换货后的三包有效期自换货之日起重新计算。**\n\n符合换货条件但消费者要求退货的，对已使用过的商品可收取折旧费。折旧费自开票之日计算至退货之日，扣除修理占用与待修时间。\n\n> 这与无理由退货「按实付金额全额退还」不同——三包退货可扣折旧。\n\n（一）消费者因使用、维护、保管不当造成损坏的；\n（二）非承担三包修理者拆动造成损坏的；\n（三）无三包凭证及有效发票的；\n（四）三包凭证型号与修理产品型号不符或者涂改的；\n（五）因不可抗力造成损坏的。\n\n上述情形不实行三包，但可实行收费修理。\n\n需另行安装的商品（空调、热水器、大家电），**售后有效期自安装完成之日起计算**，不是签收日。",
-            "score": 0.49008145809173587,
-            "doc_id": "P11",
-            "layer": "platform",
-            "doc_type": "平台交易规则",
-            "effective_date": "2024-01-01",
-            "source_path": "doc/policy/platform/P11-特殊类目售后细则.md",
-            "reason": "相关性 0.388 × 先验 0.90 → 0.490；命中 1/platform/dense#1, 2/platform/dense#1, 2/platform/bm25#3"
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "80e422ff206658c2",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.012,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:01.716Z",
-      "updatedAt": "2026-08-18T11:45:01.733Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "94325150fd7b4d4a",
-      "traceId": "359f696de64ad8066c2c954bd5ec67a4",
-      "type": "SPAN",
-      "name": "rag.recall",
-      "startTime": "2026-08-18 11:44:58.468000+00:00",
-      "endTime": "2026-08-18 11:44:58.590000+00:00",
-      "metadata": {
-        "resourceAttributes": {
-          "telemetry.sdk.language": "python",
-          "telemetry.sdk.name": "opentelemetry",
-          "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
-          "service.name": "unknown_service"
-        },
-        "scope": {
-          "name": "langfuse-sdk",
-          "version": "4.14.1",
-          "attributes": {
-            "public_key": "pk-lf-0d6da5ef-00f1-4590-856f-e74b48dbc857"
-          }
-        }
-      },
-      "output": {
-        "candidates": [
-          {
-            "chunk_id": "L03#004:00",
-            "section": "L03 第十八条 【售后有效期起算与退款金额】",
-            "rrf": 0.1744,
-            "hits": [
-              "1/law/dense#3",
-              "1/law/bm25#5",
-              "2/law/dense#2",
-              "2/law/bm25#2"
-            ]
-          },
-          {
-            "chunk_id": "L05#008:00",
-            "section": "L05 第八条 【三包有效期的计算】",
-            "rrf": 0.1677,
-            "hits": [
-              "1/law/dense#1",
-              "1/law/bm25#4",
-              "2/law/dense#5",
-              "2/law/bm25#6"
-            ]
-          },
-          {
-            "chunk_id": "L05#004:00",
-            "section": "L05 第四条 【最低标准与更优承诺】",
-            "rrf": 0.1654,
-            "hits": [
-              "1/law/dense#8",
-              "1/law/bm25#1",
-              "2/law/dense#9",
-              "2/law/bm25#1"
-            ]
-          },
-          {
-            "chunk_id": "L05#014:00",
-            "section": "L05 第十四条 【换货标准与有效期重算】",
-            "rrf": 0.1638,
-            "hits": [
-              "1/law/dense#5",
-              "1/law/bm25#9",
-              "2/law/dense#1",
-              "2/law/bm25#4"
-            ]
-          },
-          {
-            "chunk_id": "P11#004:02",
-            "section": "P11 第四条 数码与家用电器 > 4.3 三包有效期的计算",
-            "rrf": 0.1387,
-            "hits": [
-              "1/platform/dense#1",
-              "2/platform/dense#1",
-              "2/platform/bm25#3"
-            ]
-          },
-          {
-            "chunk_id": "L01#002:00",
-            "section": "L01 第二十三条 【瑕疵举证责任倒置】",
-            "rrf": 0.1338,
-            "hits": [
-              "1/law/dense#7",
-              "1/law/bm25#11",
-              "2/law/dense#11",
-              "2/law/bm25#11"
-            ]
-          },
-          {
-            "chunk_id": "L05#010:00",
-            "section": "L05 第十条 【售出 15 日内：可换可修】",
-            "rrf": 0.1223,
-            "hits": [
-              "1/law/dense#2",
-              "1/law/bm25#10",
-              "2/law/dense#3"
-            ]
-          },
-          {
-            "chunk_id": "L05#013:00",
-            "section": "L05 第十三条 【无同型号产品时的退货与折旧】",
-            "rrf": 0.1126,
-            "hits": [
-              "1/law/bm25#6",
-              "2/law/dense#6",
-              "2/law/bm25#8"
-            ]
-          },
-          {
-            "chunk_id": "P11#007:00",
-            "section": "P11 第七条 图书、音像与知识付费",
-            "rrf": 0.0931,
-            "hits": [
-              "1/platform/bm25#1",
-              "2/platform/bm25#2"
-            ]
-          },
-          {
-            "chunk_id": "P11#004:01",
-            "section": "P11 第四条 数码与家用电器 > 4.2 三包服务",
-            "rrf": 0.0909,
-            "hits": [
-              "1/platform/dense#2",
-              "2/platform/dense#2"
-            ]
-          },
-          {
-            "chunk_id": "P05#004:00",
-            "section": "P05 第四条 退回商品的验收 > 4.1 验收范围",
-            "rrf": 0.0861,
-            "hits": [
-              "1/platform/bm25#6",
-              "2/platform/bm25#1"
-            ]
-          },
-          {
-            "chunk_id": "L02#003:00",
-            "section": "L02 第三章 退货程序 > 第十条 【退货通知期限与起算点】",
-            "rrf": 0.0855,
-            "hits": [
-              "1/law/bm25#2",
-              "2/law/bm25#5"
-            ]
-          },
-          {
-            "chunk_id": "P05#005:02",
-            "section": "P05 第五条 举证责任 > 5.3 耐用商品的举证责任倒置",
-            "rrf": 0.0835,
-            "hits": [
-              "1/platform/dense#3",
-              "2/platform/dense#5"
-            ]
-          },
-          {
-            "chunk_id": "P11#004:05",
-            "section": "P11 第四条 数码与家用电器 > 4.6 需安装的商品",
-            "rrf": 0.0835,
-            "hits": [
-              "1/platform/dense#5",
-              "2/platform/dense#3"
-            ]
-          },
-          {
-            "chunk_id": "L02#003:07",
-            "section": "L02 第三章 退货程序 > 第十七条 【退款金额的计算】",
-            "rrf": 0.0805,
-            "hits": [
-              "1/law/bm25#7",
-              "2/law/bm25#3"
-            ]
-          },
-          {
-            "chunk_id": "P11#006:01",
-            "section": "P11 第六条 食品、保健食品、化妆品 > 6.2 保质期",
-            "rrf": 0.0787,
-            "hits": [
-              "1/platform/dense#4",
-              "2/platform/dense#7"
-            ]
-          },
-          {
-            "chunk_id": "P11#003:03",
-            "section": "P11 第三条 虚拟商品 > 3.4 自动续费服务",
-            "rrf": 0.0787,
-            "hits": [
-              "1/platform/bm25#4",
-              "2/platform/bm25#7"
-            ]
-          },
-          {
-            "chunk_id": "L05#009:00",
-            "section": "L05 第九条 【售出 7 日内：可退可换可修】",
-            "rrf": 0.0774,
-            "hits": [
-              "1/law/dense#4",
-              "2/law/dense#8"
-            ]
-          },
-          {
-            "chunk_id": "P09#004:04",
-            "section": "P09 第五条 特定场景的处理口径 > 5.5 超出退货窗口但存在质量问题",
-            "rrf": 0.0769,
-            "hits": [
-              "1/platform/dense#6",
-              "2/platform/dense#6"
-            ]
-          },
-          {
-            "chunk_id": "P11#002:01",
-            "section": "P11 第二条 定制商品 > 2.2 生产前可取消",
-            "rrf": 0.0757,
-            "hits": [
-              "1/platform/bm25#5",
-              "2/platform/bm25#8"
-            ]
-          }
-        ]
-      },
-      "usage": {
-        "input": 0,
-        "output": 0,
-        "total": 0,
-        "unit": "TOKENS"
-      },
-      "level": "DEFAULT",
-      "parentObservationId": "80e422ff206658c2",
-      "usageDetails": {},
-      "costDetails": {},
-      "environment": "sdk-experiment",
-      "inputPrice": 0.0,
-      "outputPrice": 0.0,
-      "totalPrice": 0.0,
-      "calculatedTotalCost": 0.0,
-      "latency": 0.122,
-      "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:01.716Z",
-      "updatedAt": "2026-08-18T11:45:01.730Z",
-      "unit": "TOKENS",
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "totalTokens": 0,
-      "completionStartTime": null,
-      "model": null,
-      "modelParameters": null,
-      "input": null,
-      "version": null,
-      "statusMessage": null,
-      "promptId": null,
-      "promptName": null,
-      "promptVersion": null,
-      "modelId": null,
-      "calculatedInputCost": null,
-      "calculatedOutputCost": null,
-      "timeToFirstToken": null,
-      "usagePricingTierId": null,
-      "usagePricingTierName": null
-    },
-    {
-      "id": "7d9c0e6539332cdd",
-      "traceId": "359f696de64ad8066c2c954bd5ec67a4",
+      "id": "f5ee13e82cba9381",
+      "traceId": "6a41612ef8207d2fced7bbb4747df051",
       "type": "SPAN",
       "name": "rag.rewrite",
-      "startTime": "2026-08-18 11:44:57.313000+00:00",
-      "endTime": "2026-08-18 11:44:58.467000+00:00",
+      "startTime": "2026-08-19 05:13:49.074000+00:00",
+      "endTime": "2026-08-19 05:13:50.461000+00:00",
       "input": {
         "query": "我买的东西保修期是从哪天开始算的？要是换了个新的，保修期是不是重新从头算？"
       },
@@ -1389,7 +1462,7 @@
           "telemetry.sdk.language": "python",
           "telemetry.sdk.name": "opentelemetry",
           "telemetry.sdk.version": "1.44.0",
-          "service.instance.id": "8ce64625-a8e9-4636-9a05-b958fdb808de",
+          "service.instance.id": "254840c9-406d-4bf6-ad78-e6ba1aab29dd",
           "service.name": "unknown_service"
         },
         "scope": {
@@ -1423,7 +1496,7 @@
         "unit": "TOKENS"
       },
       "level": "DEFAULT",
-      "parentObservationId": "80e422ff206658c2",
+      "parentObservationId": "824c97be02e3bcea",
       "usageDetails": {},
       "costDetails": {},
       "environment": "sdk-experiment",
@@ -1431,10 +1504,10 @@
       "outputPrice": 0.0,
       "totalPrice": 0.0,
       "calculatedTotalCost": 0.0,
-      "latency": 1.154,
+      "latency": 1.387,
       "projectId": "cmsuby8ne0001p206f942kmwm",
-      "createdAt": "2026-08-18T11:45:01.716Z",
-      "updatedAt": "2026-08-18T11:45:01.729Z",
+      "createdAt": "2026-08-19T05:13:53.018Z",
+      "updatedAt": "2026-08-19T05:13:53.025Z",
       "unit": "TOKENS",
       "promptTokens": 0,
       "completionTokens": 0,
