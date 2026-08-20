@@ -23,20 +23,20 @@ run 的分数不再可比。反过来，期望值变了（改 `cases.jsonl` 的�
 ## 二、跑
 
 ```bash
-python evals/experiments/ex-1/run_experiment.py                       # 全量 27 条
-python evals/experiments/ex-1/run_experiment.py --cases D1-011 D1-027 # 只跑指定用例
-python evals/experiments/ex-1/run_experiment.py -v --concurrency 1    # 逐轮打印工具链和答复
-python evals/experiments/ex-1/run_experiment.py --run-name v1-$(git rev-parse --short HEAD)
+python evals/experiments/ex-1/run_experiment.py   # 全量 27 条
 ```
 
-| 参数 | 默认 | 说明 |
+脚本没有命令行参数，跑法写在文件开头的几个常量里，改跑法就改它们：
+
+| 常量 | 默认 | 说明 |
 |---|---|---|
-| `--dataset` | `refund-cases-d1` | Langfuse 上的数据集名 |
-| `--agent` | `v1` | 被测 agent 版本，做版本对比时只换这个，数据集不动 |
-| `--run-name` | `<agent>-<条数>cases` | 版本对比时传 git sha，UI 上才分得清哪次是哪次 |
-| `--cases` | 全量 | 只跑指定 case_id，调用例时用 |
-| `--concurrency` | 4 | 并发用例数；调高会撞模型限速，也会拖慢本地重排 |
-| `-v` / `--verbose` | 关 | 逐轮打印用户输入、工具链、答复、落库 |
+| `DATASET` | `refund-cases-d1` | Langfuse 上的数据集名 |
+| `AGENT_VERSION` | `v1` | 被测 agent 版本，做版本对比时只换这个，数据集不动 |
+| `CASES` | `[]`（全量） | 填 case_id 只跑这几条，调用例时用；跑子集时不写 `result.json` |
+| `CONCURRENCY` | 4 | 并发用例数；调高会撞模型限速，也会拖慢本地重排 |
+| `VERBOSE` | `False` | 逐轮打印用户输入、工具链、答复、落库 |
+
+run 名固定取 `<agent 版本>-<git short sha>`，UI 上分得清哪次是哪次改动跑出来的。
 
 跑批时每条用例出两行——开始一行，跑完一行带耗时、轮数、工具调用次数和落库笔数：
 
@@ -46,14 +46,14 @@ python evals/experiments/ex-1/run_experiment.py --run-name v1-$(git rev-parse --
 ```
 
 这里的 ✓/✗ 是**跑完了 / 执行失败**，不是判分结果——判分在跑完之后，结果看末尾的汇总和
-Langfuse。加 `-v` 会在两行之间补上每轮的执行细节。用例是并发跑的，日志按用例整块打印，想让
-它按顺序读就把 `--concurrency` 调成 1。
+Langfuse。`VERBOSE` 打开后会在两行之间补上每轮的执行细节。用例是并发跑的，日志按用例整块
+打印，想让它按顺序读就把 `CONCURRENCY` 调成 1。
 
 ### 结果落盘
 
 跑完除了写回 Langfuse，还会把同一份指标写进 [`result.json`](./result.json)——Langfuse 是本地
 实例，换台机器 run 页就打不开，报告和版本对比不该依赖它还起着（`traces/` 留档同理）。
-`--out` 改路径；只跑 `--cases` 子集时默认不写，免得把全量结果覆盖掉。
+只跑 `CASES` 子集时不写，免得把全量结果覆盖掉。
 
 ```json
 {

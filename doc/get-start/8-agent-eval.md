@@ -30,21 +30,20 @@
 ### 1.2 命令
 
 ```bash
-python evals/experiments/ex-1/run_experiment.py                       # 全量 27 条
-python evals/experiments/ex-1/run_experiment.py --cases D1-011 D1-027 # 只跑指定用例
-python evals/experiments/ex-1/run_experiment.py -v --concurrency 1    # 逐轮打印工具链和答复
-python evals/experiments/ex-1/run_experiment.py --run-name v1-$(git rev-parse --short HEAD)
+python evals/experiments/ex-1/run_experiment.py   # 全量 27 条
 ```
 
-| 参数 | 默认 | 说明 |
+脚本只服务 ex-1 这一个实验，因此没有命令行参数，跑法写死在文件开头的常量里：
+
+| 常量 | 默认 | 说明 |
 |---|---|---|
-| `--dataset` | `refund-cases-d1` | Langfuse 上的数据集名 |
-| `--agent` | `v1` | 被测 agent 版本，做版本对比时只换这个 |
-| `--run-name` | `<agent>-<条数>cases` | 版本对比时传 git sha |
-| `--cases` | 全量 | 只跑指定 case_id，调用例时用 |
-| `--concurrency` | 4 | 并发用例数，上限受模型限速与本地重排制约 |
-| `--out` | `result.json` | 指标落盘路径；只跑 `--cases` 子集时默认不写 |
-| `-v` | 关 | 逐轮打印用户输入、工具链、答复、落库 |
+| `DATASET` | `refund-cases-d1` | Langfuse 上的数据集名 |
+| `AGENT_VERSION` | `v1` | 被测 agent 版本，做版本对比时只换这个 |
+| `CASES` | `[]`（全量） | 填 case_id 只跑这几条；跑子集时不写 `result.json` |
+| `CONCURRENCY` | 4 | 并发用例数，上限受模型限速与本地重排制约 |
+| `VERBOSE` | `False` | 逐轮打印用户输入、工具链、答复、落库 |
+
+run 名取 `<agent 版本>-<git short sha>`，版本对比时才对得上是哪次改动跑出来的分。
 
 跑批时每条用例出两行：
 
@@ -59,7 +58,8 @@ python evals/experiments/ex-1/run_experiment.py --run-name v1-$(git rev-parse --
 
 ## 二、SDK 实验脚本
 
-`client.run_experiment` 要三个钩子，`run_experiment.py` 就是这三个函数加一层进度打印：
+`client.run_experiment` 要三个钩子，`run_experiment.py` 就是这三个函数加一层进度打印（`task`
+读的 agent 实例、并发数这些都是模块级常量，不再逐层往下传）：
 
 | 钩子 | 职责 | 返回 |
 |---|---|---|
@@ -69,17 +69,17 @@ python evals/experiments/ex-1/run_experiment.py --run-name v1-$(git rev-parse --
 
 ```python
 result = client.run_experiment(
-    name=args.dataset,
-    run_name=run_name,                                  # 版本对比时传 git sha
-    description=f"{meta['agent_version']} / prompt {meta['prompt_version']}",
+    name=DATASET,
+    run_name=run_name,                                  # <agent 版本>-<git short sha>
+    description=f"{META['agent_version']} / prompt {META['prompt_version']}",
     data=items,
-    task=make_task(args.agent, progress),
+    task=task,
     evaluators=[evaluate],
     run_evaluators=[aggregate],
-    max_concurrency=args.concurrency,
-    metadata={k: str(v) for k, v in meta.items()},
+    max_concurrency=CONCURRENCY,
+    metadata={k: str(v) for k, v in META.items()},
 )
-client.flush()                                          # 短命脚本必须显式 flush
+client.flush()
 ```
 
 跑批需要处理以下五点：
@@ -106,7 +106,7 @@ client.flush()                                          # 短命脚本必须显�
 结果文件丢失或更换机器时，用 `export_result.py` 从 Langfuse 补拉，输出为同一 schema（`case_row` 与 `write_result` 由两个入口共用）：
 
 ```bash
-python evals/experiments/ex-1/export_result.py --run v1-0a0d3c4
+python evals/experiments/ex-1/export_result.py --run v1-6425ffd
 python evals/experiments/ex-1/export_result.py --run v2-abc1234 --out /tmp/v2.json   # 两份 diff 即版本对比
 ```
 
@@ -126,6 +126,8 @@ run 元信息、九项指标、通过与否、耗时与 token 直接读 `result.
 GET /api/public/traces/{id}     单条 trace 的全部 observation
 ```
 
+检索链路的 `rag.rewrite` / `rag.route` / `rag.recall` / `rag.rerank` / `rag.assemble` 五个 span 也在这份 observation 里，报告的检索结论（零证据、候选被阈值挡掉、证据重复）直接引它们，不用猜。
+
 报告中的数字必须来自这两个来源，结论需关联具体用例和 observation。HTML 使用内联 CSS 与 SVG，不依赖 CDN。
 
 ### 3.2 报告内容
@@ -138,23 +140,36 @@ GET /api/public/traces/{id}     单条 trace 的全部 observation
 | 用例明细 | 每行一条用例 × 十列指标，✓ / ✗ / ◐ | 定位到具体用例 |
 | 失败归因 | 逐条列期望链路 vs 实际链路，给处置建议 | 区分 Agent 缺陷与判分口径问题 |
 | 软指标专章 | `citation_hit` 拆成「没检索」和「检索了没召回」 | 定位检索问题的环节 |
+| 检索链路专章 | 零证据次数、证据块重复比例 | 九项指标看不见的检索问题 |
 | 开销 | 模型调用次数、token、并行度 | 决定下次并发怎么设 |
-| 下一步 | 每条问题指明「改 Agent」还是「开 ex-2」 | 形成后续任务 |
+| 下一步 | 每条问题指明「改 Agent」「改检索」还是「开 ex-2」 | 形成后续任务 |
 
 ### 3.3 ex-1 的结论
 
-> **门禁不通过**：`p0_pass_rate = 0.857`，低于要求的 1.0。27 条过 24 条，3 条失败全部挂在 `tool_sequence` 一个指标上，且都是 P0。
+以下是最近一次 run `v1-6425ffd`（2026-08-19）的结果。
+
+> **门禁不通过**：`p0_pass_rate = 0.857`，低于要求的 1.0。27 条过 24 条，3 条失败都是 P0，分属两类：D1-004 执行失败（检索返回零证据），D1-020 / D1-021 挂在 `tool_sequence`。
 
 | 数 | 值 |
 |---|---|
 | `p0_pass_rate`（门禁） | 85.7%（18 / 21） |
 | `overall_pass_rate` | 88.9%（24 / 27） |
-| `error_rate` | 0%（无环境故障干扰） |
-| 墙钟耗时 | 7 分 26 秒（用例耗时合计 1416s，并发 4，并行度约 3.2） |
-| 单条耗时 | 中位 53.1s · P90 70.5s · 最长 88.2s |
-| token | 565k / 165 次模型调用 / 均 20.9k 一条 |
+| `error_rate` | 3.7%（1 条执行失败） |
+| 墙钟耗时 | 8 分 21 秒（用例耗时合计 1457s，并发 4，并行度约 2.9） |
+| 单条耗时 | 中位 52.1s · P90 69.7s · 最长 98.0s |
+| token | 562k / 164 次模型调用 / 均 20.8k 一条 |
 
-`decision_match`、`rule_consistency`、`log_match`、`receipt_in_answer`、`no_leak`、`idempotent_replay` 均为满分。失分集中在 `avg_tool_sequence = 0.889` 与软指标 `avg_citation_hit = 0.704`。
+`avg_tool_sequence = 0.889`、软指标 `avg_citation_hit = 0.673`；其余六项硬指标为 0.963，差额全部来自 D1-004 的执行失败——它没有产出答复和流水，六项硬指标按执行失败记 0，与判定退化不是一回事。
+
+与上一轮 `v1-0a0d3c4` 相比，agent 版本、提示词、数据集、判分逻辑都没动，动的是检索链路。两次 run 的门禁结论相同，但**挂掉的用例换了人**：
+
+| 用例 | v1-0a0d3c4 | v1-6425ffd |
+|---|---|---|
+| D1-004 高风险账户 | 全绿 | 执行失败（检索零证据） |
+| D1-024 冒充身份 | `tool_sequence` 失败（硬否决前没检索） | 通过 |
+| D1-020 / D1-021 多轮 | `tool_sequence` 失败 | 同样失败，同一口径问题 |
+
+D1-024 的翻转要单独记一笔：上一轮把它判为「唯一一条真实的 SOP 偏离」，并据此排了改提示词的 `agent/v2`。同一版提示词、同一条用例，这一轮模型自己检索了政策。那条结论建立在单次采样上，不成立——对应 [6.2 ⑥](#62-p1结论正确但系统退化) 的 `pass^k` 缺口。
 
 ---
 
@@ -173,7 +188,7 @@ GET /api/public/traces/{id}     单条 trace 的全部 observation
 
 导出时将重复的完整系统提示词替换为 `«system prompt: agent/v1/prompt.py»`。
 
-ex-1 保留四条：一条全指标通过、两条多轮评分失败、一条 SOP 偏离。
+ex-1 保留四条：一条全指标通过、两条多轮评分失败、一条 SOP 偏离。这四条来自 run `v1-0a0d3c4`，是那一次运行的现场记录，不随后续 run 更新。
 
 ### 4.2 装配后的证据整段重复
 
@@ -188,20 +203,20 @@ ex-1 保留四条：一条全指标通过、两条多轮评分失败、一条 SO
 | 普通会员 | 自签收之日起 7 天 |
 ```
 
-对全部 run 数据复算后得到：
+对两次 run 的全部检索返回复算后得到：
 
-| 维度 | 数 |
-|---|---|
-| 含重复正文的证据块 | 41 / 106（38.7%），分布在 24 次检索 / 23 条用例 |
-| 重复掉的正文 | 19,569 字 / 66,746 字 = **29.3%** |
-| 最大重复 | 重复 3 遍；单次证据最大 4,192 字，其中 1,702 字是重复 |
-| 主要文档 | P07 占 37 块；其一个父块包含 2～4 个子标题 |
+| 维度 | v1-0a0d3c4 | v1-6425ffd |
+|---|---|---|
+| 含重复正文的证据块 | 41 / 106（38.7%） | 46 / 107（43.0%） |
+| 重复掉的正文 | 19,617 / 66,904 字 = **29.3%** | 21,863 / 71,472 字 = **30.6%** |
+| 最大重复 | 3 遍 | 3 遍 |
+| 主要文档 | P07 占 37 块 | P07 占 43 块（另 P04 两块、P11 一块） |
 
-根因位于 [`rag/retrieving/pipeline/assemble.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/pipeline/assemble.py)：装配阶段按父块回填，但分组键使用 `(parent_seq, parent_id, section_path)`。同一父块的子块具有不同 `section_path`，因此同一个 `parent_id` 会登记多次，`_render` 随后重复拼接父块正文。
+P07 的小节结构是一条下面挂 2～4 个子标题，正好踩中根因。根因位于 [`rag/retrieving/pipeline/assemble.py`](https://github.com/tiltwind/refund-agent/blob/main/rag/retrieving/pipeline/assemble.py)：装配阶段按父块回填，但分组键使用 `(parent_seq, parent_id, section_path)`。同一父块的子块具有不同 `section_path`，因此同一个 `parent_id` 会登记多次，`_render` 随后重复拼接父块正文。
 
-影响：29.3% 的证据正文重复并计入 token。`TOKEN_BUDGET = 3000` 是全部证据的上限，`D1-017` 单次证据为 4,192 字，存在后续证据被截断的风险；本次 run 未观察到截断。
+影响：三成的证据正文重复并计入 token。`TOKEN_BUDGET = 3000` 是全部证据的上限，`v1-6425ffd` 中 `D1-009` 单次证据为 5,236 字（986 字是重复），存在后续证据被截断的风险；两次 run 都未观察到截断。
 
-`citation_hit` 只检查期望条款是否召回，无法发现证据内部重复。
+`citation_hit` 只检查期望条款是否召回，无法发现证据内部重复。两次 run 的数字接近，装配这段代码在两次之间没有改动。
 
 ---
 
@@ -209,72 +224,39 @@ ex-1 保留四条：一条全指标通过、两条多轮评分失败、一条 SO
 
 | # | 问题 | 类别 | 证据 | 现有指标能发现吗 | 处置 |
 |---|---|---|---|---|---|
-| 1 | `D1-024` 拒绝前没调 `search_refund_policy` | **Agent** | `traces/D1-024-274ee602` | 能（`tool_sequence`） | 提示词补「硬否决同样要检索政策依据后再答复」，开 `agent/v2` 重跑对比 |
+| 1 | `D1-004` 检索返回零证据，工具抛 `NoEvidenceError`，整轮中断 | **检索链路** | `rag.rerank` span：`passed=0 / candidates=20 / min_score=0.3` | 能（`error_rate`） | 零证据降级为「空证据 + warn」交回模型；`MIN_SCORE` 到 `r1` 上校准 |
 | 2 | 多轮用例第 2 轮被要求重复调第 1 轮已调过的工具 | **判分口径** | `D1-020` / `D1-021` | 能，但为假阴性 | `must_call` 改为按「累计到本轮」判断；在 ex-2 中验证 |
-| 3 | run metadata 记 `anthropic:claude-sonnet-5`，实跑全在 `deepseek-v4-flash` | **埋点** | 165 次 generation | 不能 | 让 `registry.meta()` 上报实际生效的供应商与模型 |
-| 4 | 装配后的证据整段重复，占正文 29.3% | **检索链路** | 41 / 106 证据块 | **不能** | `_render` 按 `parent_id` 去重；装配后加一条「同块内不应出现完全相同段落」的断言 |
-| 5 | `citation_hit = 0.704`，7 条检索了但没召回期望条款 | **检索质量** | 召回集被 P02 / P07 占满 | 只能看趋势 | 用 [`r1` 检索评测](https://tiltwind.github.io/refund-agent/doc/get-start/5-rag-eval.md)独立评估，与 Agent 回归分开跑 |
+| 3 | `D1-024` 两轮结论相反：上一轮硬否决前没检索，这一轮检索了 | **稳定性** | 两次 run 的 `tool_sequence` | 不能（单次采样） | P0 子集连跑 k=3，报 `pass^k`，确认是偶发还是常态后再决定改不改提示词 |
+| 4 | run metadata 记 `anthropic:claude-sonnet-5`，实跑全在 `deepseek-v4-flash` | **埋点** | 164 次 generation | 不能 | 让 `registry.meta()` 上报实际生效的供应商与模型 |
+| 5 | 装配后的证据整段重复，占正文 30.6% | **检索链路** | 46 / 107 证据块 | **不能** | `_render` 按 `parent_id` 去重；装配后加一条「同块内不应出现完全相同段落」的断言 |
+| 6 | `citation_hit = 0.673`，9 条检索了但没召回期望条款 | **检索质量** | 召回集被 P02 / P07 占满（107 块中占 83 块） | 只能看趋势 | 用 [`r1` 检索评测](https://tiltwind.github.io/refund-agent/doc/get-start/5-rag-eval.md)独立评估，与 Agent 回归分开跑 |
 
-问题 1 和 2 均表现为 `tool_sequence` 失败，但归因和修改对象不同：
+问题 1 与 5 都在检索链路，但暴露方式相反：
 
-- `D1-020` / `D1-021`：第 1 轮已查询会员信息和政策，第 2 轮补充信息后直接复判并执行终局动作。决策、金额、落库和单号均正确，失败来自逐轮 `must_call` 口径。`D1-022` 第 1 轮未调用工具，第 2 轮执行完整链路，因此通过。
-- `D1-024`：订单不属于认证身份，规则引擎返回「订单不存在」，模型未检索政策。身份边界、答复和拒绝落库均正确，但拒绝答复缺少政策依据，因此应修改 Agent，不放宽用例。
+- `D1-004`：重排把 20 个候选全挡在 `MIN_SCORE = 0.3` 之外（被挡的里面有 `P02` 退货窗口和 `P09` 超窗口质量问题），装配拿到空证据，工具抛异常，这一轮没有答复也没有落库。单独重跑这条通过，不是稳定复现；`rag-ex-1` 的 96 条样本中有 5 条 `empty_context`（5.2%），与这次 27 条挂 1 条（3.7%）是同一件事，阈值本身没校准过。抛异常的处理方式放大了后果：一次检索没结果，整条用例的六项硬指标一起记 0。
+- 证据重复则一次都没报警，九项指标结构上看不见它。
 
----
+问题 2 和 3 都表现为 `tool_sequence` 失败，但归因和修改对象不同：
 
-## 六、指标缺口
-
-对照 [7 · 2.5 的验收口径映射表](https://tiltwind.github.io/refund-agent/doc/get-start/7-agent-dataset.md#25-验收口径--指标)与打分器实现，缺口分为 P0 和 P1。
-
-### 6.1 P0：漏判真实缺陷
-
-**① 未校验工具入参。** `_score_turn` 只读取 `names = [call["name"] for call in tools]`，未使用 `args`。例如 `D1-026` 中，即使模型把 `reason_type` 从「无理由」改为「质量问题」，只要拒绝结论不变，现有指标仍会通过。
-增加 `tools.args` 断言，至少覆盖 `check_refund_eligibility` 的两个枚举参数。
-
-**② 未统计工具调用错误。** `check_refund_eligibility` 遇到非法枚举会返回 `参数错误：…`，`_last_verdict` 会跳过这类返回。多次纠错通常表示工具描述或 schema 存在问题。
-统计每轮工具错误次数，记为软指标 `tool_call_validity`。该指标可从现有记录计算，无需修改期望值。
-
-**③ 未校验落库的 `reason`。** 流水包含七个字段，`log_match` 只比较 `decision`、`order_id` 和 `amount`。`reason` 由模型填写，但当前不参与评分。
-增加断言，要求 `reason` 包含规则引擎返回的关键片段。
-
-**④ 未检查答复中的额外数字。** `mention_hit` 只检查必需内容，未检查金额、天数和窗口是否来自工具返回。
-提取答复中的金额与天数，与本轮工具返回的数字集合比较。无需调用模型。
-
-### 6.2 P1：结论正确但系统退化
-
-**⑤ 成本与延迟不参与门禁。** 当前报告记录 565k token 和 P90 70.5s，但未设置阈值。
-run 级增加 `p50/p95_latency`、`tokens_per_case`，版本对比超过阈值时失败。
-
-**⑥ 未测稳定性（`pass^k`）。** 每条用例只运行一次；工具顺序、检索 tie-break 和并发重排仍可能波动。
-P0 子集运行 k=3，报告 `pass^k` 和不稳定用例。
-
-**⑦ 未统计自动闭环率与转人工率。** 需求要求自动闭环率达到 70%，但 handoff 当前归入 `denied`。
-为 `outcome` 增加 handoff，run 级增加 `automation_rate`。需要修改期望值。
-
-**⑧ 未检查多轮 slot 漂移。** `D1-020` 要求第二轮复用订单号，但仅在漂移导致落库 `order_id` 变化时才会触发 `log_match`。
-跨轮比较 `check_refund_eligibility.order_id`，并入工具入参断言。
-
-### 6.3 实施范围
-
-| 批次 | 缺口 | 要动什么 | 附带好处 |
-|---|---|---|---|
-| 只改打分器 | ②④⑤⑥⑧ | 从现有记录计算；新建 ex-2，不修改 `cases.jsonl` | 可用 ex-1 已导出的 trace 回算 |
-| 补充期望值 | ①③⑦ | 在 `cases.jsonl` 增加 `tools.args` / `log.reason` / handoff；新建 d2 与 ex-2 | — |
+- `D1-020` / `D1-021`：第 1 轮已查询会员信息和政策，第 2 轮补充信息后直接复判并执行终局动作。决策、金额、落库和单号均正确，失败来自逐轮 `must_call` 口径。`D1-022` 第 1 轮未调用工具，第 2 轮执行完整链路，因此通过。两次 run 表现一致。
+- `D1-024`：订单不属于认证身份，规则引擎返回「订单不存在」。上一轮模型跳过了政策检索，这一轮调了。同一版提示词跑出两种链路，说明这条不是稳定的 SOP 偏离，先测稳定性再谈改提示词。
 
 ---
 
-## 七、后续规划
+## 六、后续规划
 
 | 顺序 | 做什么 | 动哪一边 | 验收 |
 |---|---|---|---|
-| 1 | 修复 `assemble` 的父块重复并增加装配断言 | 检索链路 | 重跑 d1，确认重复正文与 token 减少；`citation_hit` 仅作观察项 |
-| 2 | 修复 metadata 的实际模型上报 | 埋点 | 下一个 run 记录正确的模型信息 |
-| 3 | 提示词增加硬否决检索要求，发布 `agent/v2` | Agent | 同集对比 v1 / v2，`D1-024` 通过且无退化 |
-| 4 | 修复多轮 `must_call` 口径及 ②④⑤⑥⑧，新建 `ex-2` | 判分 | `D1-020` / `D1-021` 通过；保留 ex-1 原始结果 |
-| 5 | 入参断言、落库 `reason`、handoff 维度 → `d2` + `ex-2` | 期望值 + 判分 | `D1-026` 这类「过程错但结论对」能被判负 |
-| 6 | 建 `r1` 检索评测集（[4](https://tiltwind.github.io/refund-agent/doc/get-start/4-rag-dataset.md) + [5](https://tiltwind.github.io/refund-agent/doc/get-start/5-rag-eval.md)） | 新数据集 | Recall@k 独立评估检索质量；问题 4 的装配重复由 Context Relevance 兜住 |
+| 1 | 零证据降级：`search_policy` 拿不到证据时返回空证据并打 warn，不抛异常打断整轮；`MIN_SCORE` 在 `r1` 上校准并按问题类型分设 | 检索链路 | 重跑 d1，`error_rate = 0`；`rag-ex-1` 的 `empty_context` 归零 |
+| 2 | 修复 `assemble` 的父块重复并增加装配断言 | 检索链路 | 重跑 d1，确认重复正文与 token 减少；`citation_hit` 仅作观察项 |
+| 3 | 修复 metadata 的实际模型上报 | 埋点 | 下一个 run 记录正确的模型信息 |
+| 4 | P0 子集连跑 k=3，报 `pass^k` 与不稳定用例 | 判分 | 分清 `D1-024` 这类翻转是偶发还是常态，再决定要不要改提示词 |
+| 5 | 修复多轮 `must_call` 口径及 ②④⑤⑥⑧，新建 `ex-2` | 判分 | `D1-020` / `D1-021` 通过；保留 ex-1 原始结果 |
+| 6 | 入参断言、落库 `reason`、handoff 维度 → `d2` + `ex-2` | 期望值 + 判分 | `D1-026` 这类「过程错但结论对」能被判负 |
 | 7 | 回流线上失败样本 | 数据集 | 保留原始表述并脱敏，不改写为标准问法 |
 
-先完成 1、2，再分别执行 3（改 Agent）和 4（改评分规则），两者不合并到同一轮实验。
+检索评测集 `r1` 与实验 `rag-ex-1` 已经建好（[4](https://tiltwind.github.io/refund-agent/doc/get-start/4-rag-dataset.md) + [5](https://tiltwind.github.io/refund-agent/doc/get-start/5-rag-eval.md)），检索质量从 Agent 回归里摘出去了：96 条样本上 `context_precision = 0.90`、`context_recall = 0.927`、`hit@1 = 0.552`，另有 5 条 `empty_context`——就是 `D1-004` 那个失败模式的底数。
+
+先完成 1、2（都在检索链路，且 1 是这一轮唯一的真实故障），再执行 4、5（改判分）。改 Agent 的事排在稳定性测完之后，不与判分口径改动合并到同一轮实验。
 
 后续补充版本对比自动化（`evals/compare.py`，同集运行 v1/v2 并逐条 diff）和线上监控（复用不依赖标注的三个指标，见 [7 · 7.4](https://tiltwind.github.io/refund-agent/doc/get-start/7-agent-dataset.md#74-从轮到用例从用例到-run)）。设计见 [2 · 设计 · 6.2 / 6.4](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md#六持续评估闭环)。
