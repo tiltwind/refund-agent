@@ -2,16 +2,6 @@
 
 前八篇的评估都在离线跑：固定用例、固定期望值、跑完出报告。本篇把评估搬到线上流量上——线上算哪些指标、trace 要怎么报才能被评估器读到、评估器与看板怎么配、告警触发后怎么回流。三层评估的分工见 [2 · 设计 · 6.2](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md#六持续评估闭环)。
 
-本篇的产出包括仓库里的上报与判分代码，以及 Langfuse 项目里的评估器、看板和告警：
-
-| 产出 | 在哪 | 作用 |
-|---|---|---|
-| trace 上报 | [`services/telemetry.py`](https://github.com/tiltwind/refund-agent/blob/main/services/telemetry.py) 的 `trace_turn()` + 线上入口 | 把评估器要读的字段报上去 |
-| 字段提取与自洽分数 | [`services/online_monitor.py`](https://github.com/tiltwind/refund-agent/blob/main/services/online_monitor.py) | 三个免标注指标，全量 |
-| 评估器 | Langfuse → Evaluation → Evaluators | 正确性、忠实度，采样 |
-| 看板 | Langfuse → Dashboards | 报表 |
-| 告警 | Langfuse → Monitors | 阈值触发通知 |
-
 ---
 
 ## 一、线上和离线的差别
@@ -23,8 +13,6 @@
 | 指标数 | 十个打分器 | 三个确定性 + 两个判官 + 工程指标 |
 | 成本 | 一轮几分钟的模型调用 | 判官调用费，按采样率摊 |
 | 出口 | pass / fail 门禁 | 趋势 + 阈值告警 |
-
-线上没有 `expected_output`，[7 · 7.4](https://tiltwind.github.io/refund-agent/doc/get-start/7-agent-dataset.md#74-从轮到用例从用例到-run) 列的十个打分器里只有三个能直接搬过来。其余分成两类：`decision_match` 这类结论层的判断交给判官近似；`tool_sequence`、`citation_hit` 这类依赖标注的留在离线。
 
 ## 二、线上指标盘
 
@@ -39,13 +27,12 @@
 | | `error_rate` | span level = ERROR | Langfuse | 全量 | 故障 |
 | | `outcome` 分布 | 链路内打的分类分数 | 链路内 | 全量 | 自动闭环率 |
 
-A 组是确定性计算，不调模型，因此全量跑。B 组每条 trace 要多花一次模型调用，按采样率控制。
 
-`outcome` 记成分类分数（`approved` / `denied` / `clarify` / `ask_order_id` / `handoff`）后，[0 · 需求](https://tiltwind.github.io/refund-agent/doc/get-start/0-requirement.md)第五节那条「自动闭环率 ≥ 70%」在线上能直接算出来。`handoff` 由明确的转人工工具调用识别；v1 尚未提供该工具，因此当前流量只会产生前四类。
+> `outcome` 记成分类分数（`approved` / `denied` / `clarify` / `ask_order_id` / `handoff`）。
 
 ---
 
-## 三、trace 怎么报
+## 三、trace 上报
 
 ### 3.1 上报字段
 
@@ -68,19 +55,13 @@ A 组是确定性计算，不调模型，因此全量跑。B 组每条 trace 要
 | environment | 环境变量；未配置时 prod → `production`，其余 → `eval` | `tracing_environment()` |
 | scores | 三个数值分数和一个 `outcome` 分类分数 | `TurnTrace.finish()` |
 
-模型、token、成本、延迟和错误级别由 CallbackHandler 与 Langfuse SDK 从子节点自动采集。完整 messages 会保留在 `agent-graph` 子节点，根节点只放评估器需要的紧凑 input / output。
+模型、token、成本、延迟和错误级别由 CallbackHandler 与 Langfuse SDK 从子节点自动采集。
+完整 messages 会保留在 `agent-graph` 子节点，根节点只放评估器需要的紧凑 input / output。
 
-`TurnTrace.finish()` 同时更新 root observation output，并通过 `set_trace_io()` 写 trace input / output。前者用于 observation 下钻，后者供当前 trace evaluator 变量映射读取。Langfuse v4 已把 `set_trace_io()` 标记为兼容接口；评估器迁到 observation 目标后可以删掉 trace 级写入。
+`TurnTrace.finish()` 同时更新 root observation output，并通过 `set_trace_io()` 写 trace input / output。
+前者用于 observation 下钻，后者供当前 trace evaluator 变量映射读取。
 
-### 3.2 字段只从一处设置
-
-根节点的 `user_id`、`session_id`、tags 和 metadata 统一由 `trace_turn()` 的 `propagate_attributes()` 设置。`trace.config` 只包含 CallbackHandler 和子节点名，不再把同一批 trace 属性放进 LangChain config。input / output 在 trace 与 root observation 各有一份，属于上一节说明的跨作用域兼容写入。
-
-离线实验仍可直接调用 `trace_config()`。该入口用于没有业务 root observation 的 dataset run，保留 CallbackHandler 的 metadata 约定。线上入口使用 `trace_turn()`，两者不叠加。
-
-trace ID 的 seed 带 environment。同一个 `request_id` 在 `production` 和 `eval` 中会得到不同 ID，避免两批 observation 并入一条 trace。
-
-### 3.3 环境隔离
+### 3.2 环境隔离
 
 `LANGFUSE_TRACING_ENVIRONMENT` 是 Langfuse 的一等字段，看板、评估器和 Monitors 都能按它过滤。线上进程设 `production`，普通离线脚本设 `eval`。Langfuse SDK 的 dataset experiment 会使用 SDK 自己的实验环境标记。
 
@@ -91,7 +72,7 @@ LANGFUSE_TRACING_ENVIRONMENT=production
 LANGFUSE_TRACING_ENVIRONMENT=eval
 ```
 
-### 3.4 调用形状
+### 3.3 调用形状
 
 ```python
 def handle(ctx: RefundContext, message: str, history: list) -> str:
@@ -109,37 +90,19 @@ def handle(ctx: RefundContext, message: str, history: list) -> str:
     return turn["answer"]
 ```
 
-字段提取与 outcome 判断实现在 `services/online_monitor.py`，离线实验也调用这组函数。从本轮新增 messages 和流水差集提取 `tools` / `tool_results` / `answer` / `new_log` 四个字段（[7 · 7.1](https://tiltwind.github.io/refund-agent/doc/get-start/7-agent-dataset.md#71-判分的四个输入)），线上与离线共用口径。
-
-### 3.5 脱敏边界
+### 3.4 脱敏边界
 
 `Langfuse(mask=...)` 是 SDK 级钩子，trace 的 input / output 和全部 span 属性都要过一遍（[`services/telemetry.py`](https://github.com/tiltwind/refund-agent/blob/main/services/telemetry.py)）。评估器读的是入库后的数据，因此判官的 prompt 里拿到的已经是脱敏文本。手机号、身份证、银行卡、邮箱走正则兜底，姓名和收货地址在写入 span 属性之前就不带进来。
 
 ---
 
-## 四、自洽指标：在链路内算
+## 四、线上评估器
 
-三个指标的线上口径与离线的差别：
-
-| 指标 | 离线口径 | 线上口径 |
-|---|---|---|
-| `rule_consistency` | 倒序取 `check_refund_eligibility` 的判定，映射成 outcome 后与实际结论比 | 完全相同，本来就不用标注 |
-| `receipt_in_answer` | 按 `must_include_receipt_no` 双向判 | 改为自洽：有落库行则答复必须含 `new_log[-1]["receipt_no"]`；无落库行则答复不得出现 `\b[RD]\d{4,}\b` |
-| `log_structure` | `log_match` 比对 `decision` / `order_id` / `amount` | 只留结构部分：恰好调用一次终局工具并新增一行流水，或两者都为零 |
-
-判分说明写进 `comment`：挂掉时要能从分数直接跳到「模型说了什么、实际落了什么」，不用再翻 span。
-
-这三个不交给判官，原因是它们本身是确定性计算：读 trace 里的字符串做比对就能出结果，判官只会引入抖动和费用。判官负责的是自然语言层面——答复是否把规则引擎的结论如实转达、依据是否出自检索证据。
-
----
-
-## 五、评估器：正确性与忠实度
-
-### 5.1 配 LLM 连接
+### 4.1 配 LLM 连接
 
 Langfuse UI → **Settings → LLM Connections**，填一组用于判官的模型凭据。判官模型与被测模型分开配，避免同一个模型既做答又判分。
 
-### 5.2 正确性
+### 4.2 正确性 
 
 Evaluation → **Evaluators → + Set up Evaluator**，选托管模板 **Correctness**，变量映射：
 
@@ -157,7 +120,7 @@ Evaluation → **Evaluators → + Set up Evaluator**，选托管模板 **Correct
 | 1 | 低 | 落库对，但答复把结论说拧了或说漏了 |
 | 0 | — | 模型推翻了规则引擎，先看这个 |
 
-### 5.3 忠实度
+### 4.3 忠实度
 
 同样从托管模板选 **Faithfulness**：
 
@@ -171,7 +134,7 @@ Evaluation → **Evaluators → + Set up Evaluator**，选托管模板 **Correct
 
 `citation_hit` 在离线只检查期望条款有没有被召回，不看答复怎么用这批证据（[7 · 五](https://tiltwind.github.io/refund-agent/doc/get-start/7-agent-dataset.md#五指标的收敛记录)）。忠实度补的是后半段。
 
-### 5.4 范围、过滤与采样
+### 4.4 范围、过滤与采样
 
 每个评估器都要设三样：
 
@@ -182,15 +145,11 @@ Evaluation → **Evaluators → + Set up Evaluator**，选托管模板 **Correct
 | 过滤 | `outcome ∈ {approved, denied}` | 追问轮没有终局结论，判正确性没有意义 |
 | 采样 | correctness 20%，faithfulness 10% | 趋势用，不做逐条审计 |
 
-异常段单独配一个评估器：过滤条件设为 `rule_consistency = 0` 或 `outcome = handoff`，采样率 100%。这批 trace 数量少，全量判官的费用可控，而它们正是要逐条看的那些。
-
-### 5.5 判官分数怎么读
-
-判官分数进看板和告警，不做发布门禁。理由与离线一致：门禁只用可重复计算的确定性指标（[7 · 一](https://tiltwind.github.io/refund-agent/doc/get-start/7-agent-dataset.md#一评估目标)）。判官分数掉了，出口是拉出低分 trace 人工看，判完再决定改 Agent、改检索还是改判官提示。
+异常段单独配一个评估器：过滤条件设为 `rule_consistency = 0` 或 `outcome = handoff`，采样率 100%。
 
 ---
 
-## 六、看板
+## 五、线上看板
 
 Langfuse → **Dashboards → New Dashboard**，命名 `RefundAgent 线上质量`，加下面几个 widget。每个都带 `environment = production` 过滤。
 
@@ -205,13 +164,9 @@ Langfuse → **Dashboards → New Dashboard**，命名 `RefundAgent 线上质量
 | 7 | 开销 | Traces | token / cost | 时间、model | 折线 |
 | 8 | 错误 | Traces | count，level = ERROR | 时间 | 折线 |
 
-widget 4 是灰度的读数出口：`registry.select(rollout={"v1": 0.9, "v2": 0.1})` 放量后，同一块看板上按 `agent_version` 切开就是线上的版本对比（[2 · 6.4](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md#六持续评估闭环)）。tag 已经带了 `agent:v1` / `prompt:v1`，维度直接可用。
-
-widget 5 的自动闭环率 = `approved` 与 `denied` 之和占全部 outcome 的比例。
-
 ---
 
-## 七、告警
+## 六、线上告警
 
 Langfuse → **Monitors → New Monitor**。每个监控项四要素：数据源、聚合、窗口、阈值。
 
@@ -241,7 +196,7 @@ Langfuse → **Monitors → New Monitor**。每个监控项四要素：数据源
 
 ---
 
-## 八、告警之后
+## 七、线上告警之后
 
 ```mermaid
 flowchart LR
@@ -256,8 +211,6 @@ flowchart LR
     REG --> RELEASE[发布]
 ```
 
-定位：告警带的是分数名与窗口，从看板下钻到低分 trace 列表；工单侧只有 `request_id` 时用 `create_trace_id(seed=f"{environment}:{request_id}")` 算出 trace 地址。
-
 回流的三条约束（[2 · 6.5](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md#六持续评估闭环)）：
 
 | 约束 | 做法 |
@@ -266,25 +219,8 @@ flowchart LR
 | 脱敏后再进仓库 | trace 上报时已过 mask，落到 `cases.jsonl` 前再核一遍 |
 | 期望值走自检 | 新用例先跑 `python evals/validate_cases.py`，与规则引擎对不上的直接拦下 |
 
-线上回流的用例进 `d2`，不改 `d1`：改了 `d1` 的期望值，ex-1 的历史分数就不再可比（[8 · 二](https://tiltwind.github.io/refund-agent/doc/get-start/8-agent-eval.md#二sdk-实验脚本)）。
-
 ---
 
-## 九、上线清单
-
-| # | 做什么 | 验收 |
-|---|---|---|
-| 1 | 线上进程设置 `LANGFUSE_TRACING_ENVIRONMENT=production` | Langfuse 上能按 environment 筛出生产 trace |
-| 2 | 线上入口使用 `trace_turn()` | 任取一条 trace，input 是用户消息，output 有 `answer` / `evidence` / `rule_verdict` 三个字段 |
-| 3 | 验证三个自洽分数 + `outcome` | 每条正常完成的生产 trace 上有四个分数；异常 trace 带 ERROR level |
-| 4 | 配 correctness / faithfulness 评估器 | 按采样率出分，且只作用于 `environment = production` |
-| 5 | 建看板 | 八个 widget 有数 |
-| 6 | 建 Monitors 并接通知渠道 | 手工把阈值调到必触发，收到一次通知后调回 |
-| 7 | 跑满一周后按分位数重定阈值 | 阈值来自线上分布，不再是离线基线 |
-
-代码侧的 1–3 已落地；部署时完成环境变量与 Langfuse 入库验收。自洽分数不调用模型，可全量覆盖。
-
----
 
 ## 参考
 
