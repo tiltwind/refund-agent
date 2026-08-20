@@ -22,10 +22,12 @@ import hashlib
 import os
 import re
 from contextlib import contextmanager
+from dataclasses import dataclass
 from functools import lru_cache
 from typing import Any
 
 from app.context import RefundContext
+from services import online_monitor
 
 # 兜底脱敏规则。顺序有讲究：18 位身份证会被银行卡的 16-19 位数字规则吃掉，必须排在前面。
 #
@@ -100,6 +102,91 @@ def _handler():
 
 def enabled() -> bool:
     return _handler() is not None
+
+
+def tracing_environment(ctx: RefundContext) -> str:
+    """取 Langfuse 一等环境字段；本地未配置时按数据源给出明确默认值。"""
+    configured = os.getenv("LANGFUSE_TRACING_ENVIRONMENT", "").strip()
+    if configured:
+        return configured
+    return "production" if ctx.request_source == "prod" else "eval"
+
+
+def _callback_config(*, name: str) -> dict:
+    handler = _handler()
+    return {"callbacks": [handler], "run_name": name} if handler is not None else {}
+
+
+@dataclass
+class TurnTrace:
+    """一轮在线 trace 的句柄；无 Langfuse 时仍可完成本地字段提取。"""
+
+    config: dict
+    root: Any = None
+    input: str = ""
+
+    def finish(self, new_messages: list, new_log: list) -> dict:
+        turn = online_monitor.observe(new_messages, new_log)
+        if self.root is None:
+            return turn
+
+        output = online_monitor.trace_output(turn)
+        self.root.update(output=output)
+        # Langfuse v4 的 trace evaluator 仍读取 trace 级 I/O；root.update 写的是
+        # observation。两层都写，评估器与 observation 下钻各自拿到合适的数据。
+        self.root.set_trace_io(input=self.input, output=output)
+        for name, value, comment in online_monitor.online_scores(turn):
+            self.root.score_trace(name=name, value=value, comment=comment)
+        self.root.score_trace(
+            name="outcome",
+            value=online_monitor.actual_outcome(turn),
+            data_type="CATEGORICAL",
+        )
+        return turn
+
+
+@contextmanager
+def trace_turn(ctx: RefundContext, meta: dict, message: str, *, name: str = "refund-chat"):
+    """为一轮请求建立可供线上评估器直接读取的根 observation。"""
+    handler = _handler()
+    if handler is None:
+        yield TurnTrace(config={}, input=message)
+        return
+
+    from langfuse import get_client, propagate_attributes
+
+    client = get_client()
+    environment = tracing_environment(ctx)
+    seed = f"{environment}:{ctx.request_id}" if ctx.request_id else None
+    trace_context = {"trace_id": client.create_trace_id(seed=seed)} if seed else None
+    metadata = {
+        "agent_version": meta.get("agent_version"),
+        "prompt_version": meta.get("prompt_version"),
+        "request_id": ctx.request_id,
+        "request_source": ctx.request_source,
+        "actor": ctx.actor,
+    }
+    tags = [
+        f"source:{ctx.request_source}",
+        f"agent:{meta.get('agent_version', 'unknown')}",
+        f"prompt:{meta.get('prompt_version', 'unknown')}",
+    ]
+
+    with propagate_attributes(
+        user_id=hash_customer(ctx.customer_id),
+        session_id=ctx.session_id or ctx.request_id,
+        tags=tags,
+        metadata=metadata,
+        trace_name=name,
+        environment=environment,
+    ):
+        with client.start_as_current_observation(
+            name=name,
+            as_type="agent",
+            trace_context=trace_context,
+            input=message,
+        ) as root:
+            yield TurnTrace(config=_callback_config(name="agent-graph"), root=root, input=message)
 
 
 @contextmanager

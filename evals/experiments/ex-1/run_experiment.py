@@ -57,7 +57,7 @@ load_env(ROOT / ".env")  # agent/v1 在 import 时就读环境变量，得先补
 from agent import registry  # noqa: E402
 from app.context import RefundContext  # noqa: E402
 from langfuse import Evaluation, get_client  # noqa: E402
-from services import eval_store, telemetry  # noqa: E402
+from services import eval_store, online_monitor, telemetry  # noqa: E402
 
 DATASET = "refund-cases-d1"
 AGENT_VERSION = "v1"
@@ -77,11 +77,11 @@ HARD = (
 
 # 落库单号：批准 R9000+、拒绝 D9000+（services/order/eval.py）。
 # 用它反查「没落库却在答复里报了个编号」——那是编造出来的，比判错更严重。
-RECEIPT_RE = re.compile(r"\b[RD]\d{4,}\b")
+RECEIPT_RE = online_monitor.RECEIPT_RE
 
 # 规则引擎的返回文本形如「通过：……」。「参数错误：……」是工具层的可纠正提示，
 # 不是判定结论，取最后一次判定时要跳过它。
-VERDICT_TO_OUTCOME = {"通过": "approved", "不通过": "denied", "需补充": "clarify"}
+VERDICT_TO_OUTCOME = online_monitor.VERDICT_TO_OUTCOME
 
 
 def _norm(text: str) -> str:
@@ -109,19 +109,7 @@ def _emit(text: str) -> None:
 
 def _observe(new_messages: list, new_log: list) -> dict:
     """把一轮产生的消息压成打分器要的四样东西。"""
-    calls: list[dict] = []
-    results: dict[str, list[str]] = {}
-    answer = ""
-    for msg in new_messages:
-        for call in getattr(msg, "tool_calls", None) or []:
-            calls.append({"name": call["name"], "args": call["args"]})
-        kind = getattr(msg, "type", "")
-        if kind == "tool":
-            results.setdefault(getattr(msg, "name", "?"), []).append(str(msg.content))
-        elif kind == "ai":
-            # 带 tool_calls 的 AI 消息 text 是空的，最后一条非空的才是给用户的答复
-            answer = getattr(msg, "text", "") or answer
-    return {"tools": calls, "tool_results": results, "answer": answer, "new_log": list(new_log)}
+    return online_monitor.observe(new_messages, new_log)
 
 
 def task(*, item, **_) -> dict:
@@ -218,18 +206,11 @@ def _actual_outcome(turn: dict) -> str:
     区分靠**动没动工具**：缺订单号时 SOP 要求一个工具都不调（D1-022），
     而 clarify 是问过规则引擎、拿到「需补充」之后才追问的。比抠答复措辞稳。
     """
-    rows = turn["new_log"]
-    if rows:
-        return "approved" if rows[-1]["decision"] == "批准" else "denied"
-    return "ask_order_id" if not turn["tools"] else "clarify"
+    return online_monitor.actual_outcome(turn)
 
 
 def _last_verdict(turn: dict) -> str | None:
-    for text in reversed(turn["tool_results"].get("check_refund_eligibility", [])):
-        head = text.split("：", 1)[0]
-        if head in VERDICT_TO_OUTCOME:
-            return head
-    return None
+    return online_monitor.last_verdict(turn)
 
 
 def _is_subsequence(want: list, got: list) -> bool:

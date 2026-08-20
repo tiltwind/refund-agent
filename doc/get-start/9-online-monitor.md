@@ -2,12 +2,12 @@
 
 前八篇的评估都在离线跑：固定用例、固定期望值、跑完出报告。本篇把评估搬到线上流量上——线上算哪些指标、trace 要怎么报才能被评估器读到、评估器与看板怎么配、告警触发后怎么回流。三层评估的分工见 [2 · 设计 · 6.2](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md#六持续评估闭环)。
 
-本篇不新增仓库文件，产出是 Langfuse 项目里的四类对象，加上主链路埋点的一处改造：
+本篇的产出包括仓库里的上报与判分代码，以及 Langfuse 项目里的评估器、看板和告警：
 
 | 产出 | 在哪 | 作用 |
 |---|---|---|
-| trace 上报改造 | [`services/telemetry.py`](https://github.com/tiltwind/refund-agent/blob/main/services/telemetry.py) + 线上入口 | 把评估器要读的字段报上去 |
-| 自洽分数 | 链路内 `score_trace` | 三个免标注指标，全量 |
+| trace 上报 | [`services/telemetry.py`](https://github.com/tiltwind/refund-agent/blob/main/services/telemetry.py) 的 `trace_turn()` + 线上入口 | 把评估器要读的字段报上去 |
+| 字段提取与自洽分数 | [`services/online_monitor.py`](https://github.com/tiltwind/refund-agent/blob/main/services/online_monitor.py) | 三个免标注指标，全量 |
 | 评估器 | Langfuse → Evaluation → Evaluators | 正确性、忠实度，采样 |
 | 看板 | Langfuse → Dashboards | 报表 |
 | 告警 | Langfuse → Monitors | 阈值触发通知 |
@@ -41,33 +41,48 @@
 
 A 组是确定性计算，不调模型，因此全量跑。B 组每条 trace 要多花一次模型调用，按采样率控制。
 
-`outcome` 记成分类分数（`approved` / `denied` / `clarify` / `ask_order_id` / `handoff`）后，[0 · 需求](https://tiltwind.github.io/refund-agent/doc/get-start/0-requirement.md)第五节那条「自动闭环率 ≥ 70%」在线上能直接算出来——它在离线算不出，因为 `outcome` 枚举里没有 `handoff`（[7 · 五](https://tiltwind.github.io/refund-agent/doc/get-start/7-agent-dataset.md#五指标的收敛记录)）。线上把转人工单独记一档即可。
+`outcome` 记成分类分数（`approved` / `denied` / `clarify` / `ask_order_id` / `handoff`）后，[0 · 需求](https://tiltwind.github.io/refund-agent/doc/get-start/0-requirement.md)第五节那条「自动闭环率 ≥ 70%」在线上能直接算出来。`handoff` 由明确的转人工工具调用识别；v1 尚未提供该工具，因此当前流量只会产生前四类。
 
 ---
 
 ## 三、trace 怎么报
 
-### 3.1 现在报了什么
+### 3.1 上报字段
 
-`telemetry.trace_config()` 挂上 `CallbackHandler`，LangGraph 的图节点、工具调用和 LLM 调用自动转成 span，检索链路的五个 span 由 `telemetry.span()` 补齐。trace 层带 `session_id`、哈希后的 `user_id`、三个 tag 和一组 metadata。
+`telemetry.trace_turn()` 在 `agent.invoke()` 外建立 `refund-chat` 根 observation。`CallbackHandler` 生成的 LangGraph 图节点、工具和 generation 都挂在它下面；检索链路另有 `rag.search_policy` 根节点和 `rewrite`、`route`、`recall`、`rerank`、`assemble` 五个步骤节点。
 
-排障用这些够了，在线评估还差三样：
+根节点的字段与来源如下：
 
-| 缺什么 | 表现 |
-|---|---|
-| trace 级的干净 input / output | 评估器的 `{{input}}` 拿到的是完整 messages 列表，含系统提示 |
-| 判官要的 context 与真值锚 | `{{context}}`、`{{ground_truth}}` 无处映射 |
-| 线上与离线 trace 的隔离 | 跑批 trace 和生产流量混在同一批指标里 |
+| 字段 | 值 | 设置位置 |
+|---|---|---|
+| trace ID | `create_trace_id(seed=f"{environment}:{request_id}")` | `trace_turn()` |
+| name / type | `refund-chat` / `agent` | `trace_turn()` |
+| input | 本轮用户消息 | root observation 的 `input` |
+| output.`answer` | 给用户的最终答复 | `TurnTrace.finish()` |
+| output.`evidence` | 本轮全部 `search_refund_policy` 返回，以空行连接 | `online_monitor.trace_output()` |
+| output.`rule_verdict` | 最后一次有效的规则引擎判定与理由 | `online_monitor.trace_output()` |
+| `user_id` | 加盐哈希后的 `customer_id` | `propagate_attributes()` |
+| `session_id` | `session_id`，空值回落到 `request_id` | `propagate_attributes()` |
+| tags | `source:*`、`agent:*`、`prompt:*` | `propagate_attributes()` |
+| metadata | `agent_version`、`prompt_version`、`request_id`、`request_source`、`actor` | `propagate_attributes()` |
+| environment | 环境变量；未配置时 prod → `production`，其余 → `eval` | `tracing_environment()` |
+| scores | 三个数值分数和一个 `outcome` 分类分数 | `TurnTrace.finish()` |
 
-### 3.2 要补的四件事
+模型、token、成本、延迟和错误级别由 CallbackHandler 与 Langfuse SDK 从子节点自动采集。完整 messages 会保留在 `agent-graph` 子节点，根节点只放评估器需要的紧凑 input / output。
 
-**① 用 root span 兜住整轮。** `CallbackHandler` 生成的根节点是 LangGraph 的图，input / output 跟着图走。在 invoke 外面自己开一个 span 当 trace 根，input / output 由业务代码决定写什么。
+`TurnTrace.finish()` 同时更新 root observation output，并通过 `set_trace_io()` 写 trace input / output。前者用于 observation 下钻，后者供当前 trace evaluator 变量映射读取。Langfuse v4 已把 `set_trace_io()` 标记为兼容接口；评估器迁到 observation 目标后可以删掉 trace 级写入。
 
-**② trace_id 由 `request_id` 派生。** `create_trace_id(seed=request_id)` 是确定映射，客诉工单里只有 `request_id` 时可以直接算出 trace 地址，事后补分数也不用先查一遍。
+### 3.2 字段只从一处设置
 
-**③ 判官要的字段写进 trace output。** `propagate_attributes` 的 metadata 值会被转成字符串并截到 200 字符，装不下检索证据。证据、答复、规则引擎判定三样合成一个对象，用 `set_trace_io` 写进 trace output，评估器映射到它的字段。
+根节点的 `user_id`、`session_id`、tags 和 metadata 统一由 `trace_turn()` 的 `propagate_attributes()` 设置。`trace.config` 只包含 CallbackHandler 和子节点名，不再把同一批 trace 属性放进 LangChain config。input / output 在 trace 与 root observation 各有一份，属于上一节说明的跨作用域兼容写入。
 
-**④ 环境隔离。** `LANGFUSE_TRACING_ENVIRONMENT` 是 Langfuse 的一等字段，看板、评估器筛选、Monitors 都能按它切。线上进程设 `production`，跑批脚本设 `eval`。
+离线实验仍可直接调用 `trace_config()`。该入口用于没有业务 root observation 的 dataset run，保留 CallbackHandler 的 metadata 约定。线上入口使用 `trace_turn()`，两者不叠加。
+
+trace ID 的 seed 带 environment。同一个 `request_id` 在 `production` 和 `eval` 中会得到不同 ID，避免两批 observation 并入一条 trace。
+
+### 3.3 环境隔离
+
+`LANGFUSE_TRACING_ENVIRONMENT` 是 Langfuse 的一等字段，看板、评估器和 Monitors 都能按它过滤。线上进程设 `production`，普通离线脚本设 `eval`。Langfuse SDK 的 dataset experiment 会使用 SDK 自己的实验环境标记。
 
 ```bash
 # 线上
@@ -76,49 +91,27 @@ LANGFUSE_TRACING_ENVIRONMENT=production
 LANGFUSE_TRACING_ENVIRONMENT=eval
 ```
 
-### 3.3 改造后的调用形状
+### 3.4 调用形状
 
 ```python
-from langfuse import get_client, propagate_attributes
-
 def handle(ctx: RefundContext, message: str, history: list) -> str:
-    client = get_client()
     meta = registry.meta(version)
-
-    with client.start_as_current_observation(
-        name="refund-chat",
-        as_type="agent",
-        trace_context={"trace_id": client.create_trace_id(seed=ctx.request_id)},  # ②
-        input=message,
-    ) as root, propagate_attributes(                                              # ①
-        user_id=telemetry.hash_customer(ctx.customer_id),
-        session_id=ctx.session_id or ctx.request_id,
-        tags=[f"agent:{meta['agent_version']}", f"prompt:{meta['prompt_version']}"],
-        metadata={"request_id": ctx.request_id, "actor": ctx.actor},              # 短维度才放这
-    ):
+    with telemetry.trace_turn(ctx, meta, message) as trace:
         log_before = len(store.decision_log())
         result = agent.invoke(
             {"messages": history + [{"role": "user", "content": message}]},
             context=ctx,
-            config=telemetry.trace_config(ctx, meta),   # callback 照旧挂，span 挂进这条 trace
+            config=trace.config,
         )
-        turn = observe(result["messages"], store.decision_log()[log_before:])
-
-        root.set_trace_io(input=message, output={                                 # ③
-            "answer": turn["answer"],
-            "evidence": "\n\n".join(turn["tool_results"].get("search_refund_policy", [])),
-            "rule_verdict": last_verdict(turn) or "",
-        })
-        for name, value, comment in online_scores(turn):
-            root.score_trace(name=name, value=value, comment=comment)
-        root.score_trace(name="outcome", value=actual_outcome(turn), data_type="CATEGORICAL")
+        new_messages = result["messages"][len(history) + 1:]
+        turn = trace.finish(new_messages, store.decision_log()[log_before:])
 
     return turn["answer"]
 ```
 
-`observe()` / `last_verdict()` / `actual_outcome()` 与 [`run_experiment.py`](https://github.com/tiltwind/refund-agent/blob/main/evals/experiments/ex-1/run_experiment.py) 里的同名函数是同一套逻辑：从本轮新增的 messages 和流水差集里提取 `tools` / `tool_results` / `answer` / `new_log` 四个字段（[7 · 7.1](https://tiltwind.github.io/refund-agent/doc/get-start/7-agent-dataset.md#71-判分的四个输入)）。线上少了 `expected`，能算的只剩不依赖它的那几个。
+字段提取与 outcome 判断实现在 `services/online_monitor.py`，离线实验也调用这组函数。从本轮新增 messages 和流水差集提取 `tools` / `tool_results` / `answer` / `new_log` 四个字段（[7 · 7.1](https://tiltwind.github.io/refund-agent/doc/get-start/7-agent-dataset.md#71-判分的四个输入)），线上与离线共用口径。
 
-### 3.4 脱敏边界
+### 3.5 脱敏边界
 
 `Langfuse(mask=...)` 是 SDK 级钩子，trace 的 input / output 和全部 span 属性都要过一遍（[`services/telemetry.py`](https://github.com/tiltwind/refund-agent/blob/main/services/telemetry.py)）。评估器读的是入库后的数据，因此判官的 prompt 里拿到的已经是脱敏文本。手机号、身份证、银行卡、邮箱走正则兜底，姓名和收货地址在写入 span 属性之前就不带进来。
 
@@ -132,7 +125,7 @@ def handle(ctx: RefundContext, message: str, history: list) -> str:
 |---|---|---|
 | `rule_consistency` | 倒序取 `check_refund_eligibility` 的判定，映射成 outcome 后与实际结论比 | 完全相同，本来就不用标注 |
 | `receipt_in_answer` | 按 `must_include_receipt_no` 双向判 | 改为自洽：有落库行则答复必须含 `new_log[-1]["receipt_no"]`；无落库行则答复不得出现 `\b[RD]\d{4,}\b` |
-| `log_structure` | `log_match` 比对 `decision` / `order_id` / `amount` | 只留结构部分：调用了终局工具则新增流水恰好一行，未调用则零行 |
+| `log_structure` | `log_match` 比对 `decision` / `order_id` / `amount` | 只留结构部分：恰好调用一次终局工具并新增一行流水，或两者都为零 |
 
 判分说明写进 `comment`：挂掉时要能从分数直接跳到「模型说了什么、实际落了什么」，不用再翻 span。
 
@@ -263,7 +256,7 @@ flowchart LR
     REG --> RELEASE[发布]
 ```
 
-定位：告警带的是分数名与窗口，从看板下钻到低分 trace 列表；工单侧只有 `request_id` 时用 `create_trace_id(seed=request_id)` 算出 trace 地址。
+定位：告警带的是分数名与窗口，从看板下钻到低分 trace 列表；工单侧只有 `request_id` 时用 `create_trace_id(seed=f"{environment}:{request_id}")` 算出 trace 地址。
 
 回流的三条约束（[2 · 6.5](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md#六持续评估闭环)）：
 
@@ -281,15 +274,15 @@ flowchart LR
 
 | # | 做什么 | 验收 |
 |---|---|---|
-| 1 | 跑批脚本与线上进程分设 `LANGFUSE_TRACING_ENVIRONMENT` | Langfuse 上按 environment 能筛出两批互不相交的 trace |
-| 2 | 线上入口包 root span，写 trace input / output | 任取一条 trace，input 是用户消息，output 有 `answer` / `evidence` / `rule_verdict` 三个字段 |
-| 3 | 链路内打三个自洽分数 + `outcome` | 每条生产 trace 上有四个分数 |
+| 1 | 线上进程设置 `LANGFUSE_TRACING_ENVIRONMENT=production` | Langfuse 上能按 environment 筛出生产 trace |
+| 2 | 线上入口使用 `trace_turn()` | 任取一条 trace，input 是用户消息，output 有 `answer` / `evidence` / `rule_verdict` 三个字段 |
+| 3 | 验证三个自洽分数 + `outcome` | 每条正常完成的生产 trace 上有四个分数；异常 trace 带 ERROR level |
 | 4 | 配 correctness / faithfulness 评估器 | 按采样率出分，且只作用于 `environment = production` |
 | 5 | 建看板 | 八个 widget 有数 |
 | 6 | 建 Monitors 并接通知渠道 | 手工把阈值调到必触发，收到一次通知后调回 |
 | 7 | 跑满一周后按分位数重定阈值 | 阈值来自线上分布，不再是离线基线 |
 
-先做 1–3：自洽分数不花模型钱，全量覆盖，红线告警靠它。判官和看板排在后面。
+代码侧的 1–3 已落地；部署时完成环境变量与 Langfuse 入库验收。自洽分数不调用模型，可全量覆盖。
 
 ---
 

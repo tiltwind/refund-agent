@@ -34,13 +34,16 @@ def run_case(title: str, customer_id: str, request_id: str, message: str) -> Non
     )
 
     log_before = len(eval_store.decision_log())
-    result = registry.get("v1").invoke(
-        {"messages": [{"role": "user", "content": message}]},
-        context=ctx,
-        # 埋点走 config 而不是 context：context 是给工具层的业务身份，config 是给
-        # LangGraph 运行时的回调通道，两者别混。没配 Langfuse 时这里是个空 dict。
-        config=telemetry.trace_config(ctx, registry.meta("v1"), name=f"refund-chat:{title}"),
-    )
+    with telemetry.trace_turn(ctx, registry.meta("v1"), message) as trace:
+        result = registry.get("v1").invoke(
+            {"messages": [{"role": "user", "content": message}]},
+            context=ctx,
+            # context 传业务身份，config 只挂 LangGraph 的子节点回调。trace 级字段由
+            # 外层 trace_turn 统一设置，避免同一个字段从两处写入。
+            config=trace.config,
+        )
+        new_rows = eval_store.decision_log()[log_before:]
+        trace.finish(result["messages"], new_rows)
 
     # 打印工具调用轨迹，观察五步 SOP 是否被完整执行
     for msg in result["messages"]:
@@ -50,7 +53,6 @@ def run_case(title: str, customer_id: str, request_id: str, message: str) -> Non
     print(f"\nRefundAgent：{result['messages'][-1].text}")
 
     # 「说了」是否等于「做了」：答复里的单号必须来自真实落库的这一笔
-    new_rows = eval_store.decision_log()[log_before:]
     if not new_rows:
         print("  ⚠️ 本轮没有任何终局动作落库")
 
