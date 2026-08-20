@@ -32,3 +32,4 @@ flowchart LR
 | [6 · 装配 Agent](doc/get-start/6-agent-impl.md) | 身份上下文、服务接入层与规则引擎副本、`agent/v1` 提示与工具、演示入口、埋点 |
 | [7 · 指标与数据集](doc/get-start/7-agent-dataset.md) | 从失效模式抽出五个核心指标，再由指标反推数据集覆盖、用例字段与判分实现 |
 | [8 · 跑实验](doc/get-start/8-agent-eval.md) | 跑批与打分脚本、HTML 报告、人工读 trace、ex-1 的关键问题、指标本身的缺口与排期 |
+| [9 · 线上监控](doc/get-start/9-online-monitor.md) | 线上指标盘、trace 上报改造、链路内自洽打分、正确性与忠实度评估器、看板与告警、失败回流 |
