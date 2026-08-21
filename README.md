@@ -33,3 +33,5 @@ flowchart LR
 | [7 · 指标与数据集](doc/get-start/7-agent-dataset.md) | 从失效模式抽出五个核心指标，再由指标反推数据集覆盖、用例字段与判分实现 |
 | [8 · 跑实验](doc/get-start/8-agent-eval.md) | 跑批与打分脚本、HTML 报告、人工读 trace、ex-1 的关键问题、指标本身的缺口与排期 |
 | [9 · 线上监控](doc/get-start/9-online-monitor.md) | 线上指标盘、trace 上报改造、链路内自洽打分、正确性与忠实度评估器、看板与告警、失败回流 |
+| [Agent 评估核心步骤](doc/get-start/agent-eval-core-steps.md) | 评估体系的通用思路：从失效模式倒推指标、指标含义、由指标反推数据集、trace 该报哪些字段、Langfuse 要配置哪些监控 |
+| [用 Langfuse 评估 Agent：核心代码](https://tiltwind.github.io/refund-agent/doc/get-start/agent-langfuse-eval-codes.md) | Langfuse 数据集、执行钩子、逐条评分、run 级聚合与实验启动的核心代码 |
