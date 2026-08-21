@@ -131,7 +131,8 @@ class TurnTrace:
             return turn
 
         output = online_monitor.trace_output(turn)
-        self.root.update(output=output)
+        outcome = online_monitor.actual_outcome(turn)
+        self.root.update(output=output, metadata={"outcome": outcome})
         # Langfuse v4 的 trace evaluator 仍读取 trace 级 I/O；root.update 写的是
         # observation。两层都写，评估器与 observation 下钻各自拿到合适的数据。
         self.root.set_trace_io(input=self.input, output=output)
@@ -139,7 +140,7 @@ class TurnTrace:
             self.root.score_trace(name=name, value=value, comment=comment)
         self.root.score_trace(
             name="outcome",
-            value=online_monitor.actual_outcome(turn),
+            value=outcome,
             data_type="CATEGORICAL",
         )
         return turn

@@ -22,7 +22,7 @@
 | | `receipt_in_answer` | 答复单号 vs 本轮落库单号 | 链路内 | 全量 | 红线告警 |
 | | `log_structure` | 一次终局动作恰好一行流水 | 链路内 | 全量 | 红线告警 |
 | **B 判官** | `correctness` | 规则引擎判定（写进 trace） | Langfuse 评估器 | 采样 | 趋势 |
-| | `faithfulness` | 本轮检索到的证据 | Langfuse 评估器 | 采样 | 趋势 |
+| | `faithfulness` | 本轮客户、政策、判定与执行证据 | Langfuse 评估器 | 采样 | 趋势 |
 | **C 工程** | 延迟 P50 / P90、token、成本 | trace 自带 | Langfuse | 全量 | 容量与成本 |
 | | `error_rate` | span level = ERROR | Langfuse | 全量 | 故障 |
 | | `outcome` 分布 | 链路内打的分类分数 | 链路内 | 全量 | 自动闭环率 |
@@ -46,12 +46,16 @@
 | name / type | `refund-chat` / `agent` | `trace_turn()` |
 | input | 本轮用户消息 | root observation 的 `input` |
 | output.`answer` | 给用户的最终答复 | `TurnTrace.finish()` |
-| output.`evidence` | 本轮全部 `search_refund_policy` 返回，以空行连接 | `online_monitor.trace_output()` |
+| output.`evidence.customer` | 最后一次客户查询中的会员与订单摘要，去掉客户标识和姓名 | `online_monitor.faithfulness_evidence()` |
+| output.`evidence.policy` | 本轮全部 `search_refund_policy` 返回，以空行连接 | `online_monitor.faithfulness_evidence()` |
+| output.`evidence.decision` | 最后一次有效的规则引擎判定与理由 | `online_monitor.faithfulness_evidence()` |
+| output.`evidence.action` | 与实际 outcome 对应的退款或拒绝回执 | `online_monitor.faithfulness_evidence()` |
 | output.`rule_verdict` | 最后一次有效的规则引擎判定与理由 | `online_monitor.trace_output()` |
 | `user_id` | 加盐哈希后的 `customer_id` | `propagate_attributes()` |
 | `session_id` | `session_id`，空值回落到 `request_id` | `propagate_attributes()` |
 | tags | `source:*`、`agent:*`、`prompt:*` | `propagate_attributes()` |
 | metadata | `agent_version`、`prompt_version`、`request_id`、`request_source`、`actor` | `propagate_attributes()` |
+| metadata.`outcome` | 本轮结果分类，供实时评估规则过滤 | `TurnTrace.finish()` |
 | environment | 环境变量；未配置时 prod → `production`，其余 → `eval` | `tracing_environment()` |
 | scores | 三个数值分数和一个 `outcome` 分类分数 | `TurnTrace.finish()` |
 
@@ -92,7 +96,7 @@ def handle(ctx: RefundContext, message: str, history: list) -> str:
 
 ### 3.4 脱敏边界
 
-`Langfuse(mask=...)` 是 SDK 级钩子，trace 的 input / output 和全部 span 属性都要过一遍（[`services/telemetry.py`](https://github.com/tiltwind/refund-agent/blob/main/services/telemetry.py)）。评估器读的是入库后的数据，因此判官的 prompt 里拿到的已经是脱敏文本。手机号、身份证、银行卡、邮箱走正则兜底，姓名和收货地址在写入 span 属性之前就不带进来。
+`Langfuse(mask=...)` 是 SDK 级钩子，trace 的 input / output 和全部 span 属性都要过一遍（[`services/telemetry.py`](https://github.com/tiltwind/refund-agent/blob/main/services/telemetry.py)）。评估器读的是入库后的数据，因此判官的 prompt 里拿到的已经是脱敏文本。手机号、身份证、银行卡、邮箱走正则兜底；根节点的客户证据摘要还会显式移除包含 customer ID 和姓名的身份行。收货地址不写入评估字段。
 
 ---
 
@@ -104,13 +108,15 @@ Langfuse UI → **Settings → LLM Connections**，填一组用于判官的模�
 
 ### 4.2 正确性 
 
-Evaluation → **Evaluators → + Set up Evaluator**，选托管模板 **Correctness**，变量映射：
+Evaluation → **Evaluators → + Set up Evaluator**，选托管模板 **Correctness**。目标选 **Live Observations**，变量从 `refund-chat` 根 observation 读取：
 
 | 模板变量 | 映射到 | 内容 |
 |---|---|---|
-| `{{input}}` | Trace → input | 用户消息 |
-| `{{output}}` | Trace → output 的 `answer` | 给用户的答复 |
-| `{{ground_truth}}` | Trace → output 的 `rule_verdict` | 规则引擎的判定与理由 |
+| `{{query}}` | Input，JSONPath 留空 | 用户消息 |
+| `{{generation}}` | Output，JSONPath `$.answer` | 给用户的答复 |
+| `{{ground_truth}}` | Output，JSONPath `$.rule_verdict` | 规则引擎的判定与理由 |
+
+`$.answer` 末尾不能带空格。Prompt Preview 应同时显示用户消息、最终答复和规则判定。
 
 线上没有人工标注，真值锚取规则引擎的返回（[2 · 6.2](https://tiltwind.github.io/refund-agent/doc/get-start/2-design.md#六持续评估闭环)）。这一条判的是**答复层**：模型有没有把规则引擎给的结论原样转达给用户。落库层由 `rule_consistency` 判，两者分开读：
 
@@ -122,30 +128,122 @@ Evaluation → **Evaluators → + Set up Evaluator**，选托管模板 **Correct
 
 ### 4.3 忠实度
 
-同样从托管模板选 **Faithfulness**：
+最终答复不只陈述政策，还会引用会员等级、订单信息、规则判定、可退金额和执行回执。只把政策检索结果传给托管 Faithfulness，会让判官把这些业务事实判成缺少依据。
+
+新建自定义 evaluator `Refund response faithfulness`，生成的 score name 设为 `faithfulness`，score type 设为 Numeric，范围设为 `0` 到 `1`。Prompt 使用五个变量：
 
 | 模板变量 | 映射到 | 内容 |
 |---|---|---|
-| `{{input}}` | Trace → input | 用户消息 |
-| `{{output}}` | Trace → output 的 `answer` | 给用户的答复 |
-| `{{context}}` | Trace → output 的 `evidence` | 本轮 `search_refund_policy` 的全部返回 |
+| `{{query}}` | Input，JSONPath 留空 | 用户消息 |
+| `{{answer}}` | Output，JSONPath `$.answer` | 给用户的最终答复 |
+| `{{customer_context}}` | Output，JSONPath `$.evidence.customer` | 会员等级和相关订单事实 |
+| `{{policy_context}}` | Output，JSONPath `$.evidence.policy` | 本轮检索到的政策条款 |
+| `{{decision_context}}` | Output，JSONPath `$.evidence.decision` | 规则引擎的有效判定与金额 |
+| `{{action_context}}` | Output，JSONPath `$.evidence.action` | 退款或拒绝的最终回执 |
 
-判的是答复里的政策依据是否出自这批证据。它盯的是编造条款和编造数字——答复写「按平台规则金牌会员 20 天内可退」，而证据里写的是 15 天。
+Evaluator prompt：
+
+```text
+你要评估退款客服答复中的可验证事实是否得到工具证据支持。
+
+用户请求：
+{{query}}
+
+最终答复：
+{{answer}}
+
+客户与订单证据：
+{{customer_context}}
+
+政策证据：
+{{policy_context}}
+
+规则判定证据：
+{{decision_context}}
+
+执行回执证据：
+{{action_context}}
+
+逐项提取最终答复中的可验证事实，并按以下来源核对：
+- 会员、订单、商品、价格和签收天数使用客户与订单证据；
+- 政策、期限和适用条件使用政策证据；
+- 资格结论、原因和可退金额使用规则判定证据；
+- 退款单号、受理编号、实际退款金额和到账说明使用执行回执证据。
+
+与证据冲突或缺少证据的事实需要扣分。礼貌用语、建议和流程提示不作为事实核验。
+返回 0 到 1 的分数，并在 reasoning 中列出冲突或缺少依据的事实。
+```
+
+根节点只汇总最终答复可引用的有效证据：客户查询取最后一次并移除身份行；规则判定取最后一次有效结果；执行回执按实际 outcome 选择；工具参数错误和失败回执不进入 action context。
+
+这个分数判的是完整答复的 groundedness，包括政策和业务事实。答复写「按平台规则金牌会员 20 天内可退」，政策证据写 15 天，会因冲突扣分；答复引用一个不存在的退款单号，会因执行证据缺失扣分。
 
 `citation_hit` 在离线只检查期望条款有没有被召回，不看答复怎么用这批证据（[7 · 五](https://tiltwind.github.io/refund-agent/doc/get-start/7-agent-dataset.md#五指标的收敛记录)）。忠实度补的是后半段。
 
 ### 4.4 范围、过滤与采样
 
-每个评估器都要设三样：
+Langfuse 对每个匹配到的 observation 启动一次评估。一个退款 trace 里有多轮 `ChatOpenAI` generation：Agent 调工具前后会调用模型，RAG query rewrite 也会调用模型。过滤条件设成 `type = GENERATION` 时，同一个 trace 会产生多次 Correctness，且这些 generation 的 output 不含根节点上的 `answer`、`evidence` 和 `rule_verdict`。
+
+Correctness 和 Faithfulness 都评估整轮结果，过滤到唯一的 `refund-chat` 根 observation：
+
+| 项 | 取值 | 说明 |
+|---|---|---|
+| 目标 | Live Observations | 评估根 observation 的紧凑 input / output |
+| Type | `AGENT` | 排除 generation、tool、retriever 等子节点 |
+| Name | `refund-chat` | 同一 trace 还有 `agent-graph` AGENT 节点，名称过滤保证只匹配一个 |
+| Is Root Observation | `true` | UI 提供该条件时添加 |
+| Environment | `production` | 排除跑批和评估器自己的 trace |
+| 采样 | correctness 20%，faithfulness 10% | 趋势用，不做逐条审计 |
+
+对应的匹配逻辑是：
+
+```text
+Type = AGENT
+AND Name = refund-chat
+AND Is Root Observation = true
+AND Environment = production
+```
+
+`Type = AGENT` 不能单独使用，因为 `agent-graph` 也是 AGENT observation。保存前用 Prompt Preview 检查匹配样本：每个 trace 只应出现一个 `refund-chat`，Output 中应有 `answer`、`evidence` 和 `rule_verdict`。
+
+#### 只评估终局结果
+
+`outcome` 是通过 `score_trace()` 写入的 trace categorical score，独立于 observation input / output / metadata。实时评估规则在 observation 入库时匹配，不能把这条 score 当作稳定的触发条件。
+
+`TurnTrace.finish()` 把同一个 outcome 同步写到根 observation metadata：
+
+```python
+outcome = online_monitor.actual_outcome(turn)
+self.root.update(
+    output=output,
+    metadata={"outcome": outcome},
+)
+self.root.score_trace(
+    name="outcome",
+    value=outcome,
+    data_type="CATEGORICAL",
+)
+```
+
+再给评估规则增加 metadata 过滤：
+
+```text
+AND metadata.outcome any of approved, denied
+```
+
+两处数据用途不同：metadata 决定评估器是否运行，categorical score 用于 outcome 分布、看板和分析。
+
+每个评估器最终配置如下：
 
 | 项 | 取值 | 理由 |
 |---|---|---|
-| 目标 | traces | 变量都映射在 trace 层 |
+| 目标 | Live Observations | 每个 trace 匹配一个 `refund-chat` 根节点 |
+| 过滤 | `type = AGENT`、`name = refund-chat`、`is root = true` | 避免对子 generation 重复评估 |
 | 过滤 | `environment = production` | 排掉跑批 trace，省钱且不污染看板 |
-| 过滤 | `outcome ∈ {approved, denied}` | 追问轮没有终局结论，判正确性没有意义 |
+| 过滤 | `metadata.outcome any of approved, denied` | 只评估有终局结论的轮次 |
 | 采样 | correctness 20%，faithfulness 10% | 趋势用，不做逐条审计 |
 
-异常段单独配一个评估器：过滤条件设为 `rule_consistency = 0` 或 `outcome = handoff`，采样率 100%。
+异常段单独配一个评估器时，也把 `rule_consistency` 或 `outcome` 同步写入根 observation metadata，再按 `metadata.rule_consistency = 0` 或 `metadata.outcome = handoff` 过滤，采样率设为 100%。
 
 ---
 

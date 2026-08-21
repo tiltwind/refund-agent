@@ -42,6 +42,40 @@ def rule_verdict(turn: dict) -> str:
     return ""
 
 
+def _customer_evidence(turn: dict) -> str:
+    """保留判定需要的客户与订单事实，去掉客户标识和姓名。"""
+    results = turn["tool_results"].get("get_customer_info", [])
+    if not results:
+        return ""
+    return "\n".join(
+        line for line in results[-1].splitlines() if not line.startswith("客户 ")
+    )
+
+
+def _action_evidence(turn: dict) -> str:
+    """取与实际终局结果对应的最后一条执行回执。"""
+    outcome = actual_outcome(turn)
+    tool = {
+        "approved": "execute_refund",
+        "denied": "record_refund_denial",
+    }.get(outcome)
+    results = turn["tool_results"].get(tool, []) if tool else []
+    for result in reversed(results):
+        if not result.startswith("操作失败："):
+            return result
+    return ""
+
+
+def faithfulness_evidence(turn: dict) -> dict[str, str]:
+    """汇总最终答复可引用的四类权威工具证据。"""
+    return {
+        "customer": _customer_evidence(turn),
+        "policy": "\n\n".join(turn["tool_results"].get("search_refund_policy", [])),
+        "decision": rule_verdict(turn),
+        "action": _action_evidence(turn),
+    }
+
+
 def actual_outcome(turn: dict) -> str:
     """从终局动作、流水和工具轨迹确定本轮结果分类。"""
     names = [call["name"] for call in turn["tools"]]
@@ -57,7 +91,7 @@ def trace_output(turn: dict) -> dict:
     """生成在线评估器读取的紧凑 trace output。"""
     return {
         "answer": turn["answer"],
-        "evidence": "\n\n".join(turn["tool_results"].get("search_refund_policy", [])),
+        "evidence": faithfulness_evidence(turn),
         "rule_verdict": rule_verdict(turn),
     }
 

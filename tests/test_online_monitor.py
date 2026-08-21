@@ -15,8 +15,15 @@ def _turn(*, verdict="通过：符合退款条件", decision="批准", receipt="
             {"name": "execute_refund", "args": {}},
         ],
         "tool_results": {
+            "get_customer_info": [
+                "客户 C1001（张伟）\n会员等级：金牌会员\n名下订单：\n  - O1001：耳机"
+            ],
             "check_refund_eligibility": [verdict],
             "search_refund_policy": ["[E1] 七天无理由退款"],
+            "execute_refund": [
+                "退款已批准，退款单号 R9000，¥99.00 将在 1-3 个工作日原路退回",
+                "操作失败：重复请求",
+            ],
         },
         "answer": answer,
         "new_log": [{"decision": decision, "receipt_no": receipt}],
@@ -26,9 +33,28 @@ def _turn(*, verdict="通过：符合退款条件", decision="批准", receipt="
 def test_trace_output_contains_judge_fields():
     assert online_monitor.trace_output(_turn()) == {
         "answer": "R9000",
-        "evidence": "[E1] 七天无理由退款",
+        "evidence": {
+            "customer": "会员等级：金牌会员\n名下订单：\n  - O1001：耳机",
+            "policy": "[E1] 七天无理由退款",
+            "decision": "通过：符合退款条件",
+            "action": "退款已批准，退款单号 R9000，¥99.00 将在 1-3 个工作日原路退回",
+        },
         "rule_verdict": "通过：符合退款条件",
     }
+
+
+def test_faithfulness_evidence_uses_denial_receipt_for_denied_outcome():
+    turn = _turn(verdict="不通过：超过退款期限", decision="拒绝", receipt="D9000")
+    turn["tool_results"]["record_refund_denial"] = [
+        "已记录拒绝决策，受理编号 D9000：订单 O1001，原因：超过退款期限"
+    ]
+
+    evidence = online_monitor.faithfulness_evidence(turn)
+
+    assert "C1001" not in evidence["customer"]
+    assert "张伟" not in evidence["customer"]
+    assert evidence["decision"] == "不通过：超过退款期限"
+    assert evidence["action"].startswith("已记录拒绝决策，受理编号 D9000")
 
 
 def test_online_scores_pass_for_consistent_terminal_turn():
@@ -58,10 +84,12 @@ def test_turn_trace_writes_output_and_four_trace_scores():
     class Root:
         def __init__(self):
             self.output = None
+            self.metadata = None
             self.scores = []
 
-        def update(self, *, output):
+        def update(self, *, output, metadata):
             self.output = output
+            self.metadata = metadata
 
         def set_trace_io(self, *, input, output):
             self.trace_io = {"input": input, "output": output}
@@ -75,7 +103,12 @@ def test_turn_trace_writes_output_and_four_trace_scores():
     trace.finish([], turn["new_log"])
 
     # 空消息验证 finish 自己按观察结果上报，而不是直接复用测试构造的 turn。
-    assert root.output == {"answer": "", "evidence": "", "rule_verdict": ""}
+    assert root.output == {
+        "answer": "",
+        "evidence": {"customer": "", "policy": "", "decision": "", "action": ""},
+        "rule_verdict": "",
+    }
+    assert root.metadata == {"outcome": "approved"}
     assert root.trace_io == {"input": "我要退款", "output": root.output}
     assert [score["name"] for score in root.scores] == [
         "rule_consistency",
