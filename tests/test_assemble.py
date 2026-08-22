@@ -25,6 +25,9 @@ class AssembleGroupingTests(unittest.TestCase):
         )
         self.assertEqual(len(groups), 1)
         self.assertEqual(groups[0].hit_chunks, {"P#1:00", "P#1:01"})
+        # section_path 不同不能让同一个 parent_id 在 parents 里登记两遍，
+        # 否则 _render 会把这个父块的正文拼两遍。
+        self.assertEqual(len(groups[0].parents), 1)
 
     def test_different_parents_remain_distinct(self):
         groups = assemble._group(

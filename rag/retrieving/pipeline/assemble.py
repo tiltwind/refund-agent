@@ -83,7 +83,10 @@ class _Group:
     def absorb(self, evidence: Evidence) -> None:
         self.hit_chunks.add(evidence.row["chunk_id"])
         key = _key(evidence)
-        if key not in self.parents:
+        # 判重只看 parent_id：同一父块下的子块 section_path 可能不同
+        # （一条下面挂多个子标题），按完整 key 判重会把同一父块记两遍，
+        # _render 就会把它的正文拼两遍。
+        if not any(parent_id == key[1] for _, parent_id, _ in self.parents):
             self.parents.append(key)
             self.parents.sort()
 
@@ -155,6 +158,7 @@ def _render(group: _Group, window: bool = False) -> str:
         if window:
             rows = _hit_window(rows, group.hit_chunks)
         parts.extend(r["body"] for r in rows)
+    assert len(parts) == len(set(parts)), f"证据内出现重复段落：group.parents={group.parents}"
     return "\n\n".join(parts)
 
 
